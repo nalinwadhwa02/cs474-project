@@ -1,0 +1,11 @@
+[project]
+name = "llm-smt-prover"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "z3-solver>=4.12",
+    "openai>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
