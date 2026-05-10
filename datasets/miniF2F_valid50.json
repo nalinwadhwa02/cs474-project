@@ -1,0 +1,641 @@
+[
+  {
+    "id": "mathd_numbertheory_232",
+    "statement": "Theorem: mathd_numbertheory_232\nGiven: x y z : zmod 31\nGiven: h\u2080 : x = 3\u207b\u00b9\nGiven: h\u2081 : y = 5\u207b\u00b9\nGiven: h\u2082 : z = (x + y)\u207b\u00b9\nProve: z = 29",
+    "lean_decl": "theorem mathd_numbertheory_232\n  (x y z : zmod 31)\n  (h\u2080 : x = 3\u207b\u00b9)\n  (h\u2081 : y = 5\u207b\u00b9)\n  (h\u2082 : z = (x + y)\u207b\u00b9) :\n  z = 29",
+    "variables": {},
+    "hypotheses": [
+      "x y z : zmod 31",
+      "h\u2080 : x = 3\u207b\u00b9",
+      "h\u2081 : y = 5\u207b\u00b9",
+      "h\u2082 : z = (x + y)\u207b\u00b9"
+    ],
+    "goal": "z = 29"
+  },
+  {
+    "id": "mathd_numbertheory_466",
+    "statement": "Theorem: mathd_numbertheory_466\nProve: (\u2211 k in (finset.range 11), k) % 9 = 1",
+    "lean_decl": "theorem mathd_numbertheory_466 :\n  (\u2211 k in (finset.range 11), k) % 9 = 1",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(\u2211 k in (finset.range 11), k) % 9 = 1"
+  },
+  {
+    "id": "mathd_algebra_116",
+    "statement": "Theorem: mathd_algebra_116\nVariables: k, x (real)\nGiven: h\u2080 : x = (13 - real.sqrt 131) / 4\nGiven: h\u2081 : 2 * x^2 - 13 * x + k = 0\nProve: k = 19/4",
+    "lean_decl": "theorem mathd_algebra_116\n  (k x: \u211d)\n  (h\u2080 : x = (13 - real.sqrt 131) / 4)\n  (h\u2081 : 2 * x^2 - 13 * x + k = 0) :\n  k = 19/4",
+    "variables": {
+      "k": "Real",
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : x = (13 - real.sqrt 131) / 4",
+      "h\u2081 : 2 * x^2 - 13 * x + k = 0"
+    ],
+    "goal": "k = 19/4"
+  },
+  {
+    "id": "mathd_numbertheory_126",
+    "statement": "Theorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h\u2080 : 0 < x \u2227 0 < a\nGiven: h\u2081 : nat.gcd a 40 = x + 3\nGiven: h\u2082 : nat.lcm a 40 = x * (x + 3)\nGiven: h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b\nProve: a = 8",
+    "lean_decl": "theorem mathd_numbertheory_126\n  (x a : \u2115)\n  (h\u2080 : 0 < x \u2227 0 < a)\n  (h\u2081 : nat.gcd a 40 = x + 3)\n  (h\u2082 : nat.lcm a 40 = x * (x + 3))\n  (h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b) :\n  a = 8",
+    "variables": {
+      "x": "Int",
+      "a": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < x \u2227 0 < a",
+      "h\u2081 : nat.gcd a 40 = x + 3",
+      "h\u2082 : nat.lcm a 40 = x * (x + 3)",
+      "h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b"
+    ],
+    "goal": "a = 8"
+  },
+  {
+    "id": "mathd_numbertheory_335",
+    "statement": "Theorem: mathd_numbertheory_335\nVariables: n (integer)\nGiven: h\u2080 : n % 7 = 5\nProve: (5 * n) % 7 = 4",
+    "lean_decl": "theorem mathd_numbertheory_335\n  (n : \u2115)\n  (h\u2080 : n % 7 = 5) :\n  (5 * n) % 7 = 4",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : n % 7 = 5"
+    ],
+    "goal": "(5 * n) % 7 = 4"
+  },
+  {
+    "id": "mathd_algebra_480",
+    "statement": "Theorem: mathd_algebra_480\nGiven: f : \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200 x < 0, f x = -(x^2) - 1\nGiven: h\u2081 : \u2200 x, 0 \u2264 x \u2227 x < 4 \u2192 f x = 2\nGiven: h\u2082 : \u2200 x \u2265 4, f x = real.sqrt x\nProve: f \u03c0 = 2",
+    "lean_decl": "theorem mathd_algebra_480\n  (f : \u211d \u2192 \u211d)\n  (h\u2080 : \u2200 x < 0, f x = -(x^2) - 1)\n  (h\u2081 : \u2200 x, 0 \u2264 x \u2227 x < 4 \u2192 f x = 2)\n  (h\u2082 : \u2200 x \u2265 4, f x = real.sqrt x) :\n  f \u03c0 = 2",
+    "variables": {},
+    "hypotheses": [
+      "f : \u211d \u2192 \u211d",
+      "h\u2080 : \u2200 x < 0, f x = -(x^2) - 1",
+      "h\u2081 : \u2200 x, 0 \u2264 x \u2227 x < 4 \u2192 f x = 2",
+      "h\u2082 : \u2200 x \u2265 4, f x = real.sqrt x"
+    ],
+    "goal": "f \u03c0 = 2"
+  },
+  {
+    "id": "mathd_numbertheory_739",
+    "statement": "Theorem: mathd_numbertheory_739\nProve: 9! % 10 = 0",
+    "lean_decl": "theorem mathd_numbertheory_739 :\n  9! % 10 = 0",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "9! % 10 = 0"
+  },
+  {
+    "id": "induction_divisibility_3divnto3m2n",
+    "statement": "Theorem: induction_divisibility_3divnto3m2n\nVariables: n (integer)\nProve: 3 \u2223 n^3 + 2 * n",
+    "lean_decl": "theorem induction_divisibility_3divnto3m2n\n  (n : \u2115) :\n  3 \u2223 n^3 + 2 * n",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [],
+    "goal": "3 \u2223 n^3 + 2 * n"
+  },
+  {
+    "id": "induction_divisibility_9div10tonm1",
+    "statement": "Theorem: induction_divisibility_9div10tonm1\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nProve: 9 \u2223 (10^n - 1)",
+    "lean_decl": "theorem induction_divisibility_9div10tonm1\n  (n : \u2115)\n  (h\u2080 : 0 < n) :\n  9 \u2223 (10^n - 1)",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n"
+    ],
+    "goal": "9 \u2223 (10^n - 1)"
+  },
+  {
+    "id": "mathd_numbertheory_48",
+    "statement": "Theorem: mathd_numbertheory_48\nVariables: b (integer)\nGiven: h\u2080 : 0 < b\nGiven: h\u2081 : 3 * b^2 + 2 * b + 1 = 57\nProve: b = 4",
+    "lean_decl": "theorem mathd_numbertheory_48\n  (b : \u2115)\n  (h\u2080 : 0 < b)\n  (h\u2081 : 3 * b^2 + 2 * b + 1 = 57) :\n  b = 4",
+    "variables": {
+      "b": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < b",
+      "h\u2081 : 3 * b^2 + 2 * b + 1 = 57"
+    ],
+    "goal": "b = 4"
+  },
+  {
+    "id": "algebra_2rootspoly_apatapbeq2asqp2ab",
+    "statement": "Theorem: algebra_2rootspoly_apatapbeq2asqp2ab\nVariables: a, b (real)\nProve: (a + a) * (a + b) = 2 * a^2 + 2 * (a * b)",
+    "lean_decl": "theorem algebra_2rootspoly_apatapbeq2asqp2ab\n  (a b : \u2102) :\n  (a + a) * (a + b) = 2 * a^2 + 2 * (a * b)",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [],
+    "goal": "(a + a) * (a + b) = 2 * a^2 + 2 * (a * b)"
+  },
+  {
+    "id": "mathd_numbertheory_202",
+    "statement": "Theorem: mathd_numbertheory_202\nProve: (19^19 + 99^99) % 10 = 8",
+    "lean_decl": "theorem mathd_numbertheory_202 :\n  (19^19 + 99^99) % 10 = 8",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(19^19 + 99^99) % 10 = 8"
+  },
+  {
+    "id": "amc12b_2002_p3",
+    "statement": "Theorem: amc12b_2002_p3\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\nProve: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+    "lean_decl": "theorem amc12b_2002_p3\n  (S : finset \u2115)\n  -- note: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+    "variables": {},
+    "hypotheses": [
+      "S : finset \u2115",
+      "h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)"
+    ],
+    "goal": "we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1"
+  },
+  {
+    "id": "mathd_algebra_37",
+    "statement": "Theorem: mathd_algebra_37\nVariables: x, y (real)\nGiven: h\u2080 : x + y = 7\nGiven: h\u2081 : 3 * x + y = 45\nProve: x^2 - y^2 = 217",
+    "lean_decl": "theorem mathd_algebra_37\n  (x y : \u211d)\n  (h\u2080 : x + y = 7)\n  (h\u2081 : 3 * x + y = 45) :\n  x^2 - y^2 = 217",
+    "variables": {
+      "x": "Real",
+      "y": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : x + y = 7",
+      "h\u2081 : 3 * x + y = 45"
+    ],
+    "goal": "x^2 - y^2 = 217"
+  },
+  {
+    "id": "imo_1987_p4",
+    "statement": "Theorem: imo_1987_p4\nGiven: f : \u2115 \u2192 \u2115\nProve: \u2203 n, f (f n) \u2260 n + 1987",
+    "lean_decl": "theorem imo_1987_p4\n  (f : \u2115 \u2192 \u2115) :\n  \u2203 n, f (f n) \u2260 n + 1987",
+    "variables": {},
+    "hypotheses": [
+      "f : \u2115 \u2192 \u2115"
+    ],
+    "goal": "\u2203 n, f (f n) \u2260 n + 1987"
+  },
+  {
+    "id": "algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta",
+    "statement": "Theorem: algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta\nVariables: b, c, d, a (real)\nProve: (a - d) * (a - c) * (a - b) = -(((a^2 - (b + c) * a) + c * b) * d) + (a^2 - (b + c) * a + c * b) * a",
+    "lean_decl": "theorem algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta\n  (b c d a : \u2102) :\n  (a - d) * (a - c) * (a - b) = -(((a^2 - (b + c) * a) + c * b) * d) + (a^2 - (b + c) * a + c * b) * a",
+    "variables": {
+      "b": "Real",
+      "c": "Real",
+      "d": "Real",
+      "a": "Real"
+    },
+    "hypotheses": [],
+    "goal": "(a - d) * (a - c) * (a - b) = -(((a^2 - (b + c) * a) + c * b) * d) + (a^2 - (b + c) * a + c * b) * a"
+  },
+  {
+    "id": "mathd_algebra_96",
+    "statement": "Theorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : real.log x - real.log y = a\nGiven: h\u2082 : real.log y - real.log z = 15\nGiven: h\u2083 : real.log z - real.log x = -7\nProve: a = -8",
+    "lean_decl": "theorem mathd_algebra_96\n  (x y z a : \u211d)\n  (h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z)\n  (h\u2081 : real.log x - real.log y = a)\n  (h\u2082 : real.log y - real.log z = 15)\n  (h\u2083 : real.log z - real.log x = -7) :\n  a = -8",
+    "variables": {
+      "x": "Real",
+      "y": "Real",
+      "z": "Real",
+      "a": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z",
+      "h\u2081 : real.log x - real.log y = a",
+      "h\u2082 : real.log y - real.log z = 15",
+      "h\u2083 : real.log z - real.log x = -7"
+    ],
+    "goal": "a = -8"
+  },
+  {
+    "id": "mathd_numbertheory_169",
+    "statement": "Theorem: mathd_numbertheory_169\nProve: nat.gcd 20! 200000 = 40000",
+    "lean_decl": "theorem mathd_numbertheory_169 :\n  nat.gcd 20! 200000 = 40000",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "nat.gcd 20! 200000 = 40000"
+  },
+  {
+    "id": "mathd_numbertheory_13",
+    "statement": "Theorem: mathd_numbertheory_13\nVariables: u, v (integer)\nGiven: S : set \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46\nGiven: h\u2081 : is_least S u\nGiven: h\u2082 : is_least (S \\ {u}) v\nGiven: (u + v) : \u211a\nProve: ((u + v) : \u211a) / 2 = 64",
+    "lean_decl": "theorem mathd_numbertheory_13\n  (u v : \u2115)\n  (S : set \u2115)\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46)\n  (h\u2081 : is_least S u)\n  (h\u2082 : is_least (S \\ {u}) v) :\n  ((u + v) : \u211a) / 2 = 64",
+    "variables": {
+      "u": "Int",
+      "v": "Int"
+    },
+    "hypotheses": [
+      "S : set \u2115",
+      "h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46",
+      "h\u2081 : is_least S u",
+      "h\u2082 : is_least (S \\ {u}) v",
+      "(u + v) : \u211a"
+    ],
+    "goal": "((u + v) : \u211a) / 2 = 64"
+  },
+  {
+    "id": "mathd_numbertheory_33",
+    "statement": "Theorem: mathd_numbertheory_33\nVariables: n (integer)\nGiven: h\u2080 : n < 398\nGiven: h\u2081 : (n * 7) % 398 = 1\nProve: n = 57",
+    "lean_decl": "theorem mathd_numbertheory_33\n  (n : \u2115)\n  (h\u2080 : n < 398)\n  (h\u2081 : (n * 7) % 398 = 1) :\n  n = 57",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : n < 398",
+      "h\u2081 : (n * 7) % 398 = 1"
+    ],
+    "goal": "n = 57"
+  },
+  {
+    "id": "mathd_numbertheory_45",
+    "statement": "Theorem: mathd_numbertheory_45\nProve: (nat.gcd 6432 132) + 11 = 23",
+    "lean_decl": "theorem mathd_numbertheory_45 :\n  (nat.gcd 6432 132) + 11 = 23",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(nat.gcd 6432 132) + 11 = 23"
+  },
+  {
+    "id": "algebra_apb4leq8ta4pb4",
+    "statement": "Theorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h\u2080 : 0 < a \u2227 0 < b\nProve: (a + b)^4 \u2264 8 * (a^4 + b^4)",
+    "lean_decl": "theorem algebra_apb4leq8ta4pb4\n  (a b : \u211d)\n  (h\u2080 : 0 < a \u2227 0 < b) :\n  (a + b)^4 \u2264 8 * (a^4 + b^4)",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < a \u2227 0 < b"
+    ],
+    "goal": "(a + b)^4 \u2264 8 * (a^4 + b^4)"
+  },
+  {
+    "id": "aime_1987_p8",
+    "statement": "Theorem: aime_1987_p8\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\nProve: n \u2264 112",
+    "lean_decl": "theorem aime_1987_p8\n  (n : \u2115)\n  (h\u2080 : 0 < n)\n  (h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13) :\n  n \u2264 112",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n",
+      "h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13"
+    ],
+    "goal": "n \u2264 112"
+  },
+  {
+    "id": "mathd_numbertheory_269",
+    "statement": "Theorem: mathd_numbertheory_269\nProve: (2005^2 + 2005^0 + 2005^0 + 2005^5) % 100 = 52",
+    "lean_decl": "theorem mathd_numbertheory_269 :\n  (2005^2 + 2005^0 + 2005^0 + 2005^5) % 100 = 52",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(2005^2 + 2005^0 + 2005^0 + 2005^5) % 100 = 52"
+  },
+  {
+    "id": "imo_1979_p1",
+    "statement": "Theorem: imo_1979_p1\nVariables: p, q (integer)\nGiven: h\u2080 : 0 < q\nGiven: h\u2081 : \u2211 k in finset.Icc (1 : \u2115) 1319, ((-1)^(k + 1) * ((1 : \u211d)/k)) = p/q\nProve: 1979 \u2223 p",
+    "lean_decl": "theorem imo_1979_p1\n  (p q : \u2115)\n  (h\u2080 : 0 < q)\n  (h\u2081 : \u2211 k in finset.Icc (1 : \u2115) 1319, ((-1)^(k + 1) * ((1 : \u211d)/k)) = p/q) :\n  1979 \u2223 p",
+    "variables": {
+      "p": "Int",
+      "q": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < q",
+      "h\u2081 : \u2211 k in finset.Icc (1 : \u2115) 1319, ((-1)^(k + 1) * ((1 : \u211d)/k)) = p/q"
+    ],
+    "goal": "1979 \u2223 p"
+  },
+  {
+    "id": "amc12a_2009_p15",
+    "statement": "Theorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97",
+    "lean_decl": "theorem amc12a_2009_p15\n  (n : \u2115)\n  (h\u2080 : 0 < n)\n  (h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I) :\n  n = 97",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n",
+      "h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I"
+    ],
+    "goal": "n = 97"
+  },
+  {
+    "id": "mathd_algebra_547",
+    "statement": "Theorem: mathd_algebra_547\nVariables: x, y (real)\nGiven: h\u2080 : x = 5\nGiven: h\u2081 : y = 2\nProve: real.sqrt (x^3 - 2^y) = 11",
+    "lean_decl": "theorem mathd_algebra_547\n  (x y : \u211d)\n  (h\u2080 : x = 5)\n  (h\u2081 : y = 2) :\n  real.sqrt (x^3 - 2^y) = 11",
+    "variables": {
+      "x": "Real",
+      "y": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : x = 5",
+      "h\u2081 : y = 2"
+    ],
+    "goal": "real.sqrt (x^3 - 2^y) = 11"
+  },
+  {
+    "id": "mathd_algebra_509",
+    "statement": "Theorem: mathd_algebra_509\nProve: real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6",
+    "lean_decl": "theorem mathd_algebra_509 :\n  real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6"
+  },
+  {
+    "id": "aime_1988_p3",
+    "statement": "Theorem: aime_1988_p3\nVariables: x (real)\nGiven: h\u2080 : 0 < x\nGiven: h\u2081 : real.logb 2 (real.logb 8 x) = real.logb 8 (real.logb 2 x)\nProve: (real.logb 2 x)^2 = 27",
+    "lean_decl": "theorem aime_1988_p3\n  (x : \u211d)\n  (h\u2080 : 0 < x)\n  (h\u2081 : real.logb 2 (real.logb 8 x) = real.logb 8 (real.logb 2 x)) :\n  (real.logb 2 x)^2 = 27",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < x",
+      "h\u2081 : real.logb 2 (real.logb 8 x) = real.logb 8 (real.logb 2 x)"
+    ],
+    "goal": "(real.logb 2 x)^2 = 27"
+  },
+  {
+    "id": "mathd_numbertheory_405",
+    "statement": "Theorem: mathd_numbertheory_405\nVariables: a, b, c (integer)\nGiven: t : \u2115 \u2192 \u2115\nGiven: h\u2080 : t 0 = 0\nGiven: h\u2081 : t 1 = 1\nGiven: h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1)\nGiven: h\u2083 : a \u2261 5 [MOD 16]\nGiven: h\u2084 : b \u2261 10 [MOD 16]\nGiven: h\u2085 : c \u2261 15 [MOD 16]\nProve: (t a + t b + t c) % 7 = 5",
+    "lean_decl": "theorem mathd_numbertheory_405\n  (a b c : \u2115)\n  (t : \u2115 \u2192 \u2115)\n  (h\u2080 : t 0 = 0)\n  (h\u2081 : t 1 = 1)\n  (h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1))\n  (h\u2083 : a \u2261 5 [MOD 16])\n  (h\u2084 : b \u2261 10 [MOD 16])\n  (h\u2085 : c \u2261 15 [MOD 16]) :\n  (t a + t b + t c) % 7 = 5",
+    "variables": {
+      "a": "Int",
+      "b": "Int",
+      "c": "Int"
+    },
+    "hypotheses": [
+      "t : \u2115 \u2192 \u2115",
+      "h\u2080 : t 0 = 0",
+      "h\u2081 : t 1 = 1",
+      "h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1)",
+      "h\u2083 : a \u2261 5 [MOD 16]",
+      "h\u2084 : b \u2261 10 [MOD 16]",
+      "h\u2085 : c \u2261 15 [MOD 16]"
+    ],
+    "goal": "(t a + t b + t c) % 7 = 5"
+  },
+  {
+    "id": "mathd_algebra_251",
+    "statement": "Theorem: mathd_algebra_251\nVariables: x (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 3 + 1 / x = 7 / x\nProve: x = 2",
+    "lean_decl": "theorem mathd_algebra_251\n  (x : \u211d)\n  (h\u2080 : x \u2260 0)\n  (h\u2081 : 3 + 1 / x = 7 / x) :\n  x = 2",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : x \u2260 0",
+      "h\u2081 : 3 + 1 / x = 7 / x"
+    ],
+    "goal": "x = 2"
+  },
+  {
+    "id": "mathd_algebra_214",
+    "statement": "Theorem: mathd_algebra_214\nVariables: a (real)\nGiven: f : \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200 x, f x = a * (x - 2)^2 + 3\nGiven: h\u2081 : f 4 = 4\nProve: f 6 = 7",
+    "lean_decl": "theorem mathd_algebra_214\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (h\u2080 : \u2200 x, f x = a * (x - 2)^2 + 3)\n  (h\u2081 : f 4 = 4) :\n  f 6 = 7",
+    "variables": {
+      "a": "Real"
+    },
+    "hypotheses": [
+      "f : \u211d \u2192 \u211d",
+      "h\u2080 : \u2200 x, f x = a * (x - 2)^2 + 3",
+      "h\u2081 : f 4 = 4"
+    ],
+    "goal": "f 6 = 7"
+  },
+  {
+    "id": "aime_1994_p4",
+    "statement": "Theorem: aime_1994_p4\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994\nProve: n = 312",
+    "lean_decl": "theorem aime_1994_p4\n  (n : \u2115)\n  (h\u2080 : 0 < n)\n  (h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994) :\n  n = 312",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n",
+      "h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994"
+    ],
+    "goal": "n = 312"
+  },
+  {
+    "id": "mathd_numbertheory_709",
+    "statement": "Theorem: mathd_numbertheory_709\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : finset.card (nat.divisors (2 * n)) = 28\nGiven: h\u2082 : finset.card (nat.divisors (3 * n)) = 30\nProve: finset.card (nat.divisors (6 * n)) = 35",
+    "lean_decl": "theorem mathd_numbertheory_709\n  (n : \u2115)\n  (h\u2080 : 0 < n)\n  (h\u2081 : finset.card (nat.divisors (2 * n)) = 28)\n  (h\u2082 : finset.card (nat.divisors (3 * n)) = 30) :\n  finset.card (nat.divisors (6 * n)) = 35",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n",
+      "h\u2081 : finset.card (nat.divisors (2 * n)) = 28",
+      "h\u2082 : finset.card (nat.divisors (3 * n)) = 30"
+    ],
+    "goal": "finset.card (nat.divisors (6 * n)) = 35"
+  },
+  {
+    "id": "numbertheory_nckeqnm1ckpnm1ckm1",
+    "statement": "Theorem: numbertheory_nckeqnm1ckpnm1ckm1\nVariables: n, k (integer)\nGiven: h\u2080 : 0 < n \u2227 0 < k\nGiven: h\u2081 : k \u2264 n\nProve: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+    "lean_decl": "theorem numbertheory_nckeqnm1ckpnm1ckm1\n  (n k : \u2115)\n  (h\u2080 : 0 < n \u2227 0 < k)\n  (h\u2081 : k \u2264 n) :\n  nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+    "variables": {
+      "n": "Int",
+      "k": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < n \u2227 0 < k",
+      "h\u2081 : k \u2264 n"
+    ],
+    "goal": "nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)"
+  },
+  {
+    "id": "mathd_numbertheory_35",
+    "statement": "Theorem: mathd_numbertheory_35\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)\nProve: \u2211 k in S, k = 24",
+    "lean_decl": "theorem mathd_numbertheory_35\n  (S : finset \u2115)\n  (h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)) :\n  \u2211 k in S, k = 24",
+    "variables": {},
+    "hypotheses": [
+      "S : finset \u2115",
+      "h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)"
+    ],
+    "goal": "\u2211 k in S, k = 24"
+  },
+  {
+    "id": "imo_1993_p5",
+    "statement": "Theorem: imo_1993_p5\nProve: \u2203 f : \u2115 \u2192 \u2115, f 1 = 2 \u2227 \u2200 n, f (f n) = f n + n \u2227 (\u2200 n, f n < f (n + 1))",
+    "lean_decl": "theorem imo_1993_p5 :\n  \u2203 f : \u2115 \u2192 \u2115, f 1 = 2 \u2227 \u2200 n, f (f n) = f n + n \u2227 (\u2200 n, f n < f (n + 1))",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "\u2203 f : \u2115 \u2192 \u2115, f 1 = 2 \u2227 \u2200 n, f (f n) = f n + n \u2227 (\u2200 n, f n < f (n + 1))"
+  },
+  {
+    "id": "amc12a_2015_p10",
+    "statement": "Theorem: amc12a_2015_p10\nVariables: x, y (integer)\nGiven: h\u2080 : 0 < y\nGiven: h\u2081 : y < x\nGiven: h\u2082 : x + y + (x * y) = 80\nProve: x = 26",
+    "lean_decl": "theorem amc12a_2015_p10\n  (x y : \u2124)\n  (h\u2080 : 0 < y)\n  (h\u2081 : y < x)\n  (h\u2082 : x + y + (x * y) = 80) :\n  x = 26",
+    "variables": {
+      "x": "Int",
+      "y": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < y",
+      "h\u2081 : y < x",
+      "h\u2082 : x + y + (x * y) = 80"
+    ],
+    "goal": "x = 26"
+  },
+  {
+    "id": "imo_1961_p1",
+    "statement": "Theorem: imo_1961_p1\nVariables: x, y, z, a, b (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : x \u2260 y\nGiven: h\u2082 : y \u2260 z\nGiven: h\u2083 : z \u2260 x\nGiven: h\u2084 : x + y + z = a\nGiven: h\u2085 : x^2 + y^2 + z^2 = b^2\nGiven: h\u2086 : x * y = z^2\nProve: 0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2",
+    "lean_decl": "theorem imo_1961_p1\n  (x y z a b : \u211d)\n  (h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z)\n  (h\u2081 : x \u2260 y)\n  (h\u2082 : y \u2260 z)\n  (h\u2083 : z \u2260 x)\n  (h\u2084 : x + y + z = a)\n  (h\u2085 : x^2 + y^2 + z^2 = b^2)\n  (h\u2086 : x * y = z^2) :\n  0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2",
+    "variables": {
+      "x": "Real",
+      "y": "Real",
+      "z": "Real",
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z",
+      "h\u2081 : x \u2260 y",
+      "h\u2082 : y \u2260 z",
+      "h\u2083 : z \u2260 x",
+      "h\u2084 : x + y + z = a",
+      "h\u2085 : x^2 + y^2 + z^2 = b^2",
+      "h\u2086 : x * y = z^2"
+    ],
+    "goal": "0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2"
+  },
+  {
+    "id": "mathd_algebra_73",
+    "statement": "Theorem: mathd_algebra_73\nVariables: p, q, r, x (real)\nGiven: h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\nGiven: h\u2081 : x \u2260 r\nProve: x = p + q - r",
+    "lean_decl": "theorem mathd_algebra_73\n  (p q r x : \u2102)\n  (h\u2080 : (x - p) * (x - q) = (r - p) * (r - q))\n  (h\u2081 : x \u2260 r) :\n  x = p + q - r",
+    "variables": {
+      "p": "Real",
+      "q": "Real",
+      "r": "Real",
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)",
+      "h\u2081 : x \u2260 r"
+    ],
+    "goal": "x = p + q - r"
+  },
+  {
+    "id": "amc12a_2016_p2",
+    "statement": "Theorem: amc12a_2016_p2\nVariables: x (real)\nGiven: h\u2080 : (10:\u211d)^x * 100^(2 * x) = 1000^5\nProve: x = 3",
+    "lean_decl": "theorem amc12a_2016_p2\n  (x : \u211d)\n  (h\u2080 : (10:\u211d)^x * 100^(2 * x) = 1000^5) :\n  x = 3",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : (10:\u211d)^x * 100^(2 * x) = 1000^5"
+    ],
+    "goal": "x = 3"
+  },
+  {
+    "id": "mathd_algebra_482",
+    "statement": "Theorem: mathd_algebra_482\nVariables: m, n (integer), k (real)\nGiven: f : \u211d \u2192 \u211d\nGiven: h\u2080 : nat.prime m\nGiven: h\u2081 : nat.prime n\nGiven: h\u2082 : \u2200 x, f x = x^2 - 12 * x + k\nGiven: h\u2083 : f m = 0\nGiven: h\u2084 : f n = 0\nGiven: h\u2085 : m \u2260 n\nProve: k = 35",
+    "lean_decl": "theorem mathd_algebra_482\n  (m n : \u2115)\n  (k : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (h\u2080 : nat.prime m)\n  (h\u2081 : nat.prime n)\n  (h\u2082 : \u2200 x, f x = x^2 - 12 * x + k)\n  (h\u2083 : f m = 0)\n  (h\u2084 : f n = 0)\n  (h\u2085 : m \u2260 n) :\n  k = 35",
+    "variables": {
+      "m": "Int",
+      "n": "Int",
+      "k": "Real"
+    },
+    "hypotheses": [
+      "f : \u211d \u2192 \u211d",
+      "h\u2080 : nat.prime m",
+      "h\u2081 : nat.prime n",
+      "h\u2082 : \u2200 x, f x = x^2 - 12 * x + k",
+      "h\u2083 : f m = 0",
+      "h\u2084 : f n = 0",
+      "h\u2085 : m \u2260 n"
+    ],
+    "goal": "k = 35"
+  },
+  {
+    "id": "amc12b_2021_p21",
+    "statement": "Theorem: amc12b_2021_p21\nGiven: S : finset \u211d\nGiven: h\u2080 : \u2200 (x : \u211d), x \u2208 S \u2194 0 < x \u2227 x^((2 : \u211d)^real.sqrt 2) = (real.sqrt 2)^((2 : \u211d)^x)\nProve: \u21912 \u2264 \u2211 k in S, k \u2227 \u2211 k in S, k < 6",
+    "lean_decl": "theorem amc12b_2021_p21\n  (S : finset \u211d)\n  (h\u2080 : \u2200 (x : \u211d), x \u2208 S \u2194 0 < x \u2227 x^((2 : \u211d)^real.sqrt 2) = (real.sqrt 2)^((2 : \u211d)^x)) :\n  \u21912 \u2264 \u2211 k in S, k \u2227 \u2211 k in S, k < 6",
+    "variables": {},
+    "hypotheses": [
+      "S : finset \u211d",
+      "h\u2080 : \u2200 (x : \u211d), x \u2208 S \u2194 0 < x \u2227 x^((2 : \u211d)^real.sqrt 2) = (real.sqrt 2)^((2 : \u211d)^x)"
+    ],
+    "goal": "\u21912 \u2264 \u2211 k in S, k \u2227 \u2211 k in S, k < 6"
+  },
+  {
+    "id": "numbertheory_prmdvsneqnsqmodpeq0",
+    "statement": "Theorem: numbertheory_prmdvsneqnsqmodpeq0\nVariables: n, p (integer)\nGiven: h\u2080 : nat.prime p\nProve: \u2191p \u2223 n \u2194 (n^2) % p = 0",
+    "lean_decl": "theorem numbertheory_prmdvsneqnsqmodpeq0\n  (n : \u2124)\n  (p : \u2115)\n  (h\u2080 : nat.prime p) :\n  \u2191p \u2223 n \u2194 (n^2) % p = 0",
+    "variables": {
+      "n": "Int",
+      "p": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : nat.prime p"
+    ],
+    "goal": "\u2191p \u2223 n \u2194 (n^2) % p = 0"
+  },
+  {
+    "id": "amc12b_2002_p11",
+    "statement": "Theorem: amc12b_2002_p11\nVariables: a, b (integer)\nGiven: h\u2080 : nat.prime a\nGiven: h\u2081 : nat.prime b\nGiven: h\u2082 : nat.prime (a + b)\nGiven: h\u2083 : nat.prime (a - b)\nProve: nat.prime (a + b + (a - b + (a + b)))",
+    "lean_decl": "theorem amc12b_2002_p11\n  (a b : \u2115)\n  (h\u2080 : nat.prime a)\n  (h\u2081 : nat.prime b)\n  (h\u2082 : nat.prime (a + b))\n  (h\u2083 : nat.prime (a - b)) :\n  nat.prime (a + b + (a - b + (a + b)))",
+    "variables": {
+      "a": "Int",
+      "b": "Int"
+    },
+    "hypotheses": [
+      "h\u2080 : nat.prime a",
+      "h\u2081 : nat.prime b",
+      "h\u2082 : nat.prime (a + b)",
+      "h\u2083 : nat.prime (a - b)"
+    ],
+    "goal": "nat.prime (a + b + (a - b + (a + b)))"
+  },
+  {
+    "id": "amc12a_2003_p24",
+    "statement": "Theorem: amc12a_2003_p24\nVariables: a, b (real)\nProve: is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0",
+    "lean_decl": "theorem amc12a_2003_p24 :\n  is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [],
+    "goal": "is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0"
+  },
+  {
+    "id": "mathd_algebra_31",
+    "statement": "Theorem: mathd_algebra_31\nGiven: x : nnreal\nGiven: u : \u2115 \u2192 nnreal\nGiven: h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n)\nGiven: h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)\nProve: 9 = nnreal.sqrt (x + 9)",
+    "lean_decl": "theorem mathd_algebra_31\n  (x : nnreal)\n  (u : \u2115 \u2192 nnreal)\n  (h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n))\n  (h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)) :\n  9 = nnreal.sqrt (x + 9)",
+    "variables": {},
+    "hypotheses": [
+      "x : nnreal",
+      "u : \u2115 \u2192 nnreal",
+      "h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n)",
+      "h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)"
+    ],
+    "goal": "9 = nnreal.sqrt (x + 9)"
+  },
+  {
+    "id": "mathd_algebra_110",
+    "statement": "Theorem: mathd_algebra_110\nVariables: q, e (real)\nGiven: h\u2080 : q = 2 - 2 * complex.I\nGiven: h\u2081 : e = 5 + 5 * complex.I\nProve: q * e = 20",
+    "lean_decl": "theorem mathd_algebra_110\n  (q e : \u2102)\n  (h\u2080 : q = 2 - 2 * complex.I)\n  (h\u2081 : e = 5 + 5 * complex.I) :\n  q * e = 20",
+    "variables": {
+      "q": "Real",
+      "e": "Real"
+    },
+    "hypotheses": [
+      "h\u2080 : q = 2 - 2 * complex.I",
+      "h\u2081 : e = 5 + 5 * complex.I"
+    ],
+    "goal": "q * e = 20"
+  },
+  {
+    "id": "amc12a_2016_p3",
+    "statement": "Theorem: amc12a_2016_p3\nGiven: f : \u211d \u2192 \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)\nProve: f (3 / 8) (-(2 / 5)) = -(1 / 40)",
+    "lean_decl": "theorem amc12a_2016_p3\n  (f : \u211d \u2192 \u211d \u2192 \u211d)\n  (h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)) :\n  f (3 / 8) (-(2 / 5)) = -(1 / 40)",
+    "variables": {},
+    "hypotheses": [
+      "f : \u211d \u2192 \u211d \u2192 \u211d",
+      "h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)"
+    ],
+    "goal": "f (3 / 8) (-(2 / 5)) = -(1 / 40)"
+  },
+  {
+    "id": "amc12a_2002_p1",
+    "statement": "Theorem: amc12a_2002_p1\nGiven: f : \u2102 \u2192 \u2102\nGiven: h\u2080 : \u2200 x, f x = (2 * x + 3) * (x - 4) + (2 * x + 3) * (x - 6)\nGiven: h\u2081 : fintype (f \u207b\u00b9' {0})\nProve: \u2211 y in (f\u207b\u00b9' {0}).to_finset, y = 7 / 2",
+    "lean_decl": "theorem amc12a_2002_p1\n  (f : \u2102 \u2192 \u2102)\n  (h\u2080 : \u2200 x, f x = (2 * x + 3) * (x - 4) + (2 * x + 3) * (x - 6))\n  (h\u2081 : fintype (f \u207b\u00b9' {0})) :\n  \u2211 y in (f\u207b\u00b9' {0}).to_finset, y = 7 / 2",
+    "variables": {},
+    "hypotheses": [
+      "f : \u2102 \u2192 \u2102",
+      "h\u2080 : \u2200 x, f x = (2 * x + 3) * (x - 4) + (2 * x + 3) * (x - 6)",
+      "h\u2081 : fintype (f \u207b\u00b9' {0})"
+    ],
+    "goal": "\u2211 y in (f\u207b\u00b9' {0}).to_finset, y = 7 / 2"
+  }
+]

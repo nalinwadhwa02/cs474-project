@@ -10,6 +10,7 @@ Parses datasets/miniF2F/lean/src/{valid,test}.lean and extracts:
   - lean_decl   : full raw Lean declaration
 """
 
+import json
 import re
 from pathlib import Path
 
@@ -17,10 +18,14 @@ DATASET_DIR = Path(__file__).parent / "datasets" / "miniF2F" / "lean" / "src"
 
 # Lean type -> Z3 sort
 _TYPE_MAP = {
-    "ℝ": "Real",   "real": "Real",
-    "ℤ": "Int",    "int": "Int",
-    "ℕ": "Int",    "nat": "Int",
-    "ℂ": "Real",   "complex": "Real",   # approximation; complex problems will likely fail Z3
+    "ℝ": "Real",
+    "real": "Real",
+    "ℤ": "Int",
+    "int": "Int",
+    "ℕ": "Int",
+    "nat": "Int",
+    "ℂ": "Real",
+    "complex": "Real",  # approximation; complex problems will likely fail Z3
 }
 
 # Matches a "simple" type token (single word / unicode symbol)
@@ -54,7 +59,7 @@ def _parse_lean_file(path: Path) -> list[dict]:
         hypotheses: list[str] = []
         depth = 0
         buf: list[str] = []
-        for ch in decl[name_m.end():]:
+        for ch in decl[name_m.end() :]:
             if ch == "(":
                 if depth == 0:
                     buf = []
@@ -80,20 +85,22 @@ def _parse_lean_file(path: Path) -> list[dict]:
             elif ch == ")":
                 depth2 -= 1
             elif ch == ":" and depth2 == 0:
-                goal_raw = decl[idx + 1:].strip()
+                goal_raw = decl[idx + 1 :].strip()
                 break
 
         # Build readable statement for the LLM
         statement = _build_statement(name, variables, hypotheses, goal_raw)
 
-        theorems.append({
-            "id": name,
-            "statement": statement,
-            "lean_decl": decl.strip(),
-            "variables": variables,
-            "hypotheses": hypotheses,
-            "goal": goal_raw,
-        })
+        theorems.append(
+            {
+                "id": name,
+                "statement": statement,
+                "lean_decl": decl.strip(),
+                "variables": variables,
+                "hypotheses": hypotheses,
+                "goal": goal_raw,
+            }
+        )
 
     return theorems
 
@@ -109,7 +116,7 @@ def _classify_group(group: str, variables: dict, hypotheses: list) -> None:
     if colon == -1:
         return
     lhs = group[:colon].strip()
-    rhs = group[colon + 1:].strip()
+    rhs = group[colon + 1 :].strip()
 
     z3_sort = _TYPE_MAP.get(rhs)
     if z3_sort and _SIMPLE_TYPE.match(rhs):
@@ -139,15 +146,23 @@ def _build_statement(name: str, variables: dict, hypotheses: list, goal: str) ->
     return "\n".join(parts)
 
 
+VALID50_PATH = Path(__file__).parent / "datasets" / "miniF2F_valid50.json"
+
+
 def load_problems(split: str = "valid") -> list[dict]:
     """
-    Load all theorems from the miniF2F Lean dataset.
+    Load theorems from the miniF2F Lean dataset.
 
     Args:
-        split: "valid" or "test"
+        split: "valid", "valid50", or "test"
     Returns:
         List of problem dicts.
     """
+    if split == "valid50":
+        if not VALID50_PATH.exists():
+            raise FileNotFoundError(f"valid50.json not found at {VALID50_PATH}")
+        return json.loads(VALID50_PATH.read_text(encoding="utf-8"))
+
     path = DATASET_DIR / f"{split}.lean"
     if not path.exists():
         raise FileNotFoundError(
