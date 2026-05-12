@@ -1,6 +1,0 @@
-16:59:53  INFO      Run dir : /home/nalin/cs474-project/runs/20260509_165953_9be789_Qwen3.5-4B_valid
-16:59:53  INFO      Model   : Qwen/Qwen3.5-4B
-16:59:53  INFO      Server  : http://0.0.0.0:8081
-16:59:53  INFO      Loaded 244 problems from miniF2F (valid)
-16:59:53  INFO      Running 244 problems — logs in /home/nalin/cs474-project/runs/20260509_165953_9be789_Qwen3.5-4B_valid
-16:59:53  DEBUG     amc12a_2019_p21  calling model...

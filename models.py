@@ -1,8 +1,30 @@
-from openai import OpenAI
+from openai import OpenAI, APIStatusError, APIConnectionError, APITimeoutError
 import json
+import logging
 import pickle
 import os
 import hashlib
+
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception,
+    before_sleep_log,
+)
+
+_log = logging.getLogger(__name__)
+
+_RETRYABLE = (
+    APIConnectionError,
+    APITimeoutError,
+)
+
+
+def _is_retryable_status(exc: BaseException) -> bool:
+    if isinstance(exc, APIStatusError):
+        return exc.status_code in (429, 500, 502, 503, 504)
+    return isinstance(exc, _RETRYABLE)
 
 
 class LLMCache:
@@ -55,7 +77,7 @@ class LLM:
         model: str,
         no_cache: bool = False,
     ):
-        if base_url == str:
+        if base_url is not None:
             self.client = OpenAI(
                 base_url=base_url, api_key=api_key if api_key is not None else "none"
             )
@@ -77,6 +99,13 @@ class LLM:
         if not self.no_cache_flag:
             self.cache = LLMCache(self.model)
 
+    @retry(
+        retry=retry_if_exception(_is_retryable_status),
+        wait=wait_exponential(multiplier=2, min=4, max=120),
+        stop=stop_after_attempt(5),
+        before_sleep=before_sleep_log(_log, logging.WARNING),
+        reraise=True,
+    )
     def _call_api(self, messages):
         completion = self.client.chat.completions.create(
             model=self.model,

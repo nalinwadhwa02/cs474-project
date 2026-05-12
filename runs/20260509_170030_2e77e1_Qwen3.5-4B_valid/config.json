@@ -1,9 +1,0 @@
-{
-  "base_url": "http://0.0.0.0:8081",
-  "model": "Qwen/Qwen3.5-4B",
-  "split": "valid",
-  "problem_filter": null,
-  "limit": null,
-  "n_problems": 244,
-  "started_at": "2026-05-09T17:00:30.109735+00:00"
-}

@@ -1,4 +1,5 @@
 import argparse
+import traceback
 import json
 import logging
 import re
@@ -6,13 +7,11 @@ import secrets
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-
-from openai import OpenAI
-
-from models import LLM
+from tqdm import tqdm
 
 # from lemmas import LIBRARY, library_prompt_block
 # from verifier import make_vars, verify_chain
+from models import LLM
 from problems import load_problems
 from english_prompts import build_english_messages
 
@@ -76,7 +75,7 @@ def extract_json_object(raw: str) -> dict | None:
 def run_proof(theorem: dict, model: LLM) -> dict:
     messages = build_english_messages(theorem)
     # messages = build_messages(theorem)
-    response = model.get_chat_completions(messages, verbose=True)
+    response = model.get_chat_completions(messages)
     raw = response["choices"][0]["message"]["content"].strip()
     parsed = extract_json_object(raw)
 
@@ -252,13 +251,18 @@ def main() -> None:
     logger.info("Running %d problems — logs in %s", len(problems), run_dir)
 
     succeeded = 0
-    for theorem in problems:
-        logger.debug("%s  calling model ...", theorem["id"])
-        result = run_proof(theorem, client)
-        log_result(logger, result)  # see below
-        save_problem_result(run_dir, result, theorem)
-        if result["succeeded"]:
-            succeeded += 1
+    for theorem in tqdm(problems):
+        try:
+            logger.debug("%s  calling model ...", theorem["id"])
+            result = run_proof(theorem, client)
+            log_result(logger, result)  # see below
+            save_problem_result(run_dir, result, theorem)
+            if result["succeeded"]:
+                succeeded += 1
+        except Exception:
+            logger.error(
+                f"Failed running {theorem['id']} with Exception: {traceback.format_exc()}"
+            )
 
     logger.info(
         "Done. %d/%d proved. Results saved to %s", succeeded, len(problems), run_dir

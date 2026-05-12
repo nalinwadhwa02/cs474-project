@@ -1,44 +1,188 @@
+"""
+Prompt for stage 2: given a theorem and a stage-1 English proof, extract a Z3
+formalization (theorem encoding, universal lemmas, ground-term instantiations)
+that Z3 can verify via quantifier instantiation.
+"""
+
+import json
+
 SYSTEM_PROMPT = """\
-You are a formal theorem prover assistant. Given a mathematical theorem and a \
-lemma library, produce a step-by-step proof where each step applies exactly one lemma.
+You are a formal-methods assistant. Given a theorem and a natural-language
+proof, extract a Z3 formalization so that Z3 can verify the proof's conclusion
+by quantifier instantiation.
 
-{lemma_block}
+You are NOT re-proving the theorem from scratch. Your job is to:
+  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.
+  2. State, as universally-quantified Z3 formulas, the lemmas the English
+     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,
+     definitional axioms for non-builtin operations).
+  3. Provide the specific ground-term instantiations the proof uses.
 
-## Proof Step Format
-Return a JSON array of steps. Each step is an object with:
-  "precond"       : A Z3 Python expression that holds at the start of this step.
-  "lemma_name"    : Exactly one lemma name from the list above.
-  "bindings"      : Object mapping each lemma variable to a Z3 Python expression.
-  "postcond"      : A Z3 Python expression this step establishes.
-  "justification" : One-sentence explanation.
+Z3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,
+the proof closes. If not, more or different instantiations were needed.
 
-## Z3 Expression Syntax
-Variables are pre-declared — just use their names directly (not Real("x"), just x).
-  Arithmetic : +, -, *, **, /
-  Comparisons: >=, <=, ==, >, <
-  Logic      : And(...), Or(...), Not(...), Implies(...)
-  Example binding: {{"a": "x + 1", "b": "y**2"}}
+## Output Format
+Return a single JSON object — no markdown fences, no preamble, no trailing text.
 
-## Rules
-- Use only lemma names listed above (exact spelling).
-- The final step's postcond must equal or imply the theorem goal.
-- Each step's postcond should appear in or imply the next step's precond.
-- Return ONLY the JSON array — no explanation, no markdown fences.
+{
+  "theorem": {
+    "variables": [{"name": "n", "sort": "Int"}, ...],
+    "hypotheses": ["<Z3 expr>", ...],
+    "goal": "<Z3 expr>"
+  },
+  "functions": [
+    {"name": "MyFunc", "args": ["Real", "Int"], "result": "Real"},
+    ...
+  ],
+  "lemmas": [
+    {
+      "name": "interval_at_most_one_int",
+      "english": "An open real interval (a,b) of length < 1 contains at most one integer.",
+      "vars": [
+        {"name": "a", "sort": "Real"},
+        {"name": "b", "sort": "Real"},
+        {"name": "x", "sort": "Real"},
+        {"name": "y", "sort": "Real"}
+      ],
+      "body": "Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)"
+    },
+    ...
+  ],
+  "instantiations": [
+    {"lemma": "<lemma name>", "terms": {"a": "<expr in theorem vars>", ...}},
+    ...
+  ]
+}
+
+The `functions` field is optional and only needed for problem-specific
+uninterpreted functions not in the predeclared list below.
+
+## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)
+  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)
+  Ln(x)             : Real -> Real          (natural log)
+  Sqrt(x)           : Real -> Real
+  Exp(x)            : Real -> Real
+  Sin(x), Cos(x), Tan(x) : Real -> Real
+  Factorial(n)      : Int -> Int
+  GCD(a, b), LCM(a, b)   : Int x Int -> Int
+  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)
+  Floor(x), Ceil(x) : Real -> Int
+
+Z3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.
+You MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,
+`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.
+
+## Z3 Syntax (Python API)
+Reference declared variables directly by name (e.g. `n`, not `Int("n")`).
+  Arithmetic   :  +  -  *  /  **
+  Comparisons  :  <  <=  ==  >=  >  !=
+  Logic        :  And, Or, Not, Implies
+  Conditional  :  If(cond, then_expr, else_expr)
+  Coercion     :  ToReal(int_expr), ToInt(real_expr)
+  Constants    :  IntVal(k), RealVal(k)
+  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer
+  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)
+
+## Sorts
+"Int", "Real", or "Bool". No others.
+
+## CRITICAL: ALL variables must be declared in theorem.variables
+Every name referenced anywhere in `hypotheses` or `goal` — including names
+bound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST
+be listed in `theorem.variables` with its sort. The verifier pre-declares only
+those names; any undeclared name causes a compile error.
+
+Example: if a hypothesis is
+  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`
+then `k` MUST appear in `theorem.variables` as `{"name": "k", "sort": "Int"}`.
+
+## CRITICAL: bound variables in lemma bodies
+Do NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`
+to introduce new bound names. The outer `ForAll(vars, body)` is added
+automatically by the verifier, and any name not in `vars` (or the predeclared
+namespace) is undefined.
+
+WRONG:
+  "vars": [{"name": "a", "sort": "Real"}, {"name": "b", "sort": "Real"}],
+  "body": "Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    x and y are NOT in vars — they're undefined, compilation will fail.
+
+RIGHT:
+  "vars": [
+    {"name": "a", "sort": "Real"}, {"name": "b", "sort": "Real"},
+    {"name": "x", "sort": "Real"}, {"name": "y", "sort": "Real"}
+  ],
+  "body": "Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)"
+
+If the lemma logically has nested quantification (rare), only THEN use explicit
+`ForAll([new_var], ...)` inside `body`, and only for the inner one.
+
+## Limitations to be aware of
+- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.
+  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.
+- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)
+  unless you assert them as instantiated lemmas.
+- Equality reasoning across uninterpreted functions is shallow; the LLM hints
+  (instantiations) are what make the proof go through, not Z3's own QI.
+
+## Critical rules
+- Each lemma MUST be a universally true mathematical statement. If you assert
+  something false, Z3 will use it and produce an unsound proof. State side
+  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.
+- A common subtle error: when claiming "interval of length < 1 has at most one
+  integer", REMEMBER TO CONSTRAIN the candidate values to be integers (via
+  `IsInt(x)`). Without that, the claim is false over reals.
+- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST
+  be supplied in every instantiation of that lemma.
+- Ground terms in `instantiations` use ONLY the theorem's declared variables,
+  numerals, and predeclared/declared functions.
+- Use the SMALLEST number of lemmas needed.
+
+Return ONLY the JSON object.
 """
 
 
-def build_messages(theorem: dict) -> list[dict]:
-    system = SYSTEM_PROMPT.format(lemma_block=library_prompt_block())
-    hyp_lines = "\n".join(f"  {h}" for h in theorem["hypotheses"])
-    var_info = ", ".join(f"{v} ({s.lower()})" for v, s in theorem["variables"].items())
+_MAX_PRIOR_RESPONSE_CHARS = 3000
+
+
+def build_messages(
+    theorem_id: str,
+    statement: str,
+    goal: str,
+    english_proof: dict,
+    prior_attempts: list[dict] | None = None,
+) -> list[dict]:
+    """Build the chat messages for stage-2 formalization.
+
+    `prior_attempts` is a list of {"raw_response": str, "errors": list[str]}
+    dicts from earlier tries in the same retry loop. The most recent attempt's
+    formalization and errors are embedded directly into the user message so the
+    message list stays at [system, user] regardless of retry count — avoiding
+    token blowup from accumulating assistant/user pairs.
+    """
     user = (
-        f"## Theorem: {theorem['id']}\n\n"
-        f"{theorem['statement']}\n\n"
-        + (f"Hypotheses:\n{hyp_lines}\n\n" if hyp_lines else "")
-        + f"Variables: {var_info}\n\n"
-        f"Produce the JSON proof steps."
+        f"## Theorem: {theorem_id}\n\n"
+        f"{statement}\n\n"
+        f"Goal: {goal}\n\n"
+        "## English proof (from stage 1)\n"
+        f"{json.dumps(english_proof, indent=2, ensure_ascii=False)}\n\n"
+        "Produce the JSON formalization."
     )
+    if prior_attempts:
+        last = prior_attempts[-1]
+        raw = last["raw_response"]
+        if len(raw) > _MAX_PRIOR_RESPONSE_CHARS:
+            raw = raw[:_MAX_PRIOR_RESPONSE_CHARS] + "\n... [truncated]"
+        error_text = "\n".join(f"- {e}" for e in last["errors"])
+        user += (
+            "\n\n## Previous attempt (failed)\n"
+            f"Your last formalization:\n{raw}\n\n"
+            f"Errors:\n{error_text}\n\n"
+            "Fix these issues and return the corrected JSON object only."
+        )
+
     return [
-        {"role": "system", "content": system},
+        {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user},
     ]
