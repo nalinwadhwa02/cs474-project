@@ -199,7 +199,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         help="Model name as served by the endpoint",
-        default="deepseek-ai/deepseek-v4-flash",
+        default="gpt-5.4-mini-2026-03-17",
     )
 
     parser.add_argument(
@@ -210,8 +210,8 @@ def main() -> None:
     parser.add_argument(
         "--split",
         default="valid50",
-        choices=["valid", "valid50", "test"],
-        help="miniF2F split to use (default: valid50)",
+        choices=["valid", "valid50", "test", "test50", "alphageometry"],
+        help="Dataset split to use (default: valid50)",
     )
     parser.add_argument(
         "--problem", help="Run a single problem by id instead of the full split"

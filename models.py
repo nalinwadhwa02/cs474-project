@@ -86,7 +86,7 @@ class LLM:
             from dotenv import load_dotenv
 
             load_dotenv()
-            api_key = os.environ.get("NVIDIA-NIM-API-KEY", None)
+            api_key = "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"
             if api_key is None:
                 raise ValueError("No NVIDIA-NIM-API-KEY set!")
             self.client = OpenAI(
@@ -110,7 +110,8 @@ class LLM:
         completion = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0,
+            temperature=1,
+            # timeout=60,
             # extra_body={
             #     "chat_template_kwargs": {"thinking": True, "reasoning_effort": "high"}
             # },

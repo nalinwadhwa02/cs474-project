@@ -1,0 +1,639 @@
+[
+  {
+    "id": "mathd_algebra_478",
+    "statement": "Theorem: mathd_algebra_478\nVariables: b, h, v (real)\nGiven: h₀ : 0 < b ∧ 0 < h ∧ 0 < v\nGiven: h₁ : v = 1 / 3 * (b * h)\nGiven: h₂ : b = 30\nGiven: h₃ : h = 13 / 2\nProve: v = 65",
+    "lean_decl": "theorem mathd_algebra_478\n  (b h v : ℝ)\n  (h₀ : 0 < b ∧ 0 < h ∧ 0 < v)\n  (h₁ : v = 1 / 3 * (b * h))\n  (h₂ : b = 30)\n  (h₃ : h = 13 / 2) :\n  v = 65",
+    "variables": {
+      "b": "Real",
+      "h": "Real",
+      "v": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 0 < b ∧ 0 < h ∧ 0 < v",
+      "h₁ : v = 1 / 3 * (b * h)",
+      "h₂ : b = 30",
+      "h₃ : h = 13 / 2"
+    ],
+    "goal": "v = 65"
+  },
+  {
+    "id": "numbertheory_4x3m7y3neq2003",
+    "statement": "Theorem: numbertheory_4x3m7y3neq2003\nVariables: x, y (integer)\nProve: 4 * x^3 - 7 * y^3 ≠ 2003",
+    "lean_decl": "theorem numbertheory_4x3m7y3neq2003\n  (x y : ℤ) :\n  4 * x^3 - 7 * y^3 ≠ 2003",
+    "variables": {
+      "x": "Int",
+      "y": "Int"
+    },
+    "hypotheses": [],
+    "goal": "4 * x^3 - 7 * y^3 ≠ 2003"
+  },
+  {
+    "id": "aime_1983_p1",
+    "statement": "Theorem: aime_1983_p1\nVariables: x, y, z, w (integer)\nGiven: ht : 1 < x ∧ 1 < y ∧ 1 < z\nGiven: hw : 0 ≤ w\nGiven: h0 : real.log w / real.log x = 24\nGiven: h1 : real.log w / real.log y = 40\nGiven: h2 : real.log w / real.log (x * y * z) = 12\nProve: real.log w / real.log z = 60",
+    "lean_decl": "theorem aime_1983_p1\n  (x y z w : ℕ)\n  (ht : 1 < x ∧ 1 < y ∧ 1 < z)\n  (hw : 0 ≤ w)\n  (h0 : real.log w / real.log x = 24)\n  (h1 : real.log w / real.log y = 40)\n  (h2 : real.log w / real.log (x * y * z) = 12):\n  real.log w / real.log z = 60",
+    "variables": {
+      "x": "Int",
+      "y": "Int",
+      "z": "Int",
+      "w": "Int"
+    },
+    "hypotheses": [
+      "ht : 1 < x ∧ 1 < y ∧ 1 < z",
+      "hw : 0 ≤ w",
+      "h0 : real.log w / real.log x = 24",
+      "h1 : real.log w / real.log y = 40",
+      "h2 : real.log w / real.log (x * y * z) = 12"
+    ],
+    "goal": "real.log w / real.log z = 60"
+  },
+  {
+    "id": "amc12_2001_p5",
+    "statement": "Theorem: amc12_2001_p5\nGiven: id : ℕ → ℕ\nProve: finset.prod (finset.filter (λ x, ¬ even x) (finset.range 10000)) (id : ℕ → ℕ) = (10000!) / ((2^5000) * 5000!)",
+    "lean_decl": "theorem amc12_2001_p5 :\n  finset.prod (finset.filter (λ x, ¬ even x) (finset.range 10000)) (id : ℕ → ℕ) = (10000!) / ((2^5000) * 5000!)",
+    "variables": {},
+    "hypotheses": [
+      "id : ℕ → ℕ"
+    ],
+    "goal": "finset.prod (finset.filter (λ x, ¬ even x) (finset.range 10000)) (id : ℕ → ℕ) = (10000!) / ((2^5000) * 5000!)"
+  },
+  {
+    "id": "mathd_algebra_141",
+    "statement": "Theorem: mathd_algebra_141\nVariables: a, b (real)\nGiven: h₁ : (a * b)=180\nGiven: h₂ : 2 * (a + b)=54\nProve: (a^2 + b^2) = 369",
+    "lean_decl": "theorem mathd_algebra_141\n  (a b : ℝ)\n  (h₁ : (a * b)=180)\n  (h₂ : 2 * (a + b)=54) :\n  (a^2 + b^2) = 369",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [
+      "h₁ : (a * b)=180",
+      "h₂ : 2 * (a + b)=54"
+    ],
+    "goal": "(a^2 + b^2) = 369"
+  },
+  {
+    "id": "mathd_numbertheory_3",
+    "statement": "Theorem: mathd_numbertheory_3\nProve: (∑ x in finset.range 10, ((x + 1)^2)) % 10 = 5",
+    "lean_decl": "theorem mathd_numbertheory_3 :\n  (∑ x in finset.range 10, ((x + 1)^2)) % 10 = 5",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(∑ x in finset.range 10, ((x + 1)^2)) % 10 = 5"
+  },
+  {
+    "id": "imo_1969_p2",
+    "statement": "Theorem: imo_1969_p2\nVariables: m, n (real), k (integer)\nGiven: a : ℕ → ℝ\nGiven: y : ℝ → ℝ\nGiven: h₀ : 0 < k\nGiven: h₁ : ∀ x, y x = ∑ i in finset.range k, ((real.cos (a i + x)) / (2^i))\nGiven: h₂ : y m = 0\nGiven: h₃ : y n = 0\nProve: ∃ t : ℤ, m - n = t * π",
+    "lean_decl": "theorem imo_1969_p2\n  (m n : ℝ)\n  (k : ℕ)\n  (a : ℕ → ℝ)\n  (y : ℝ → ℝ)\n  (h₀ : 0 < k)\n  (h₁ : ∀ x, y x = ∑ i in finset.range k, ((real.cos (a i + x)) / (2^i)))\n  (h₂ : y m = 0)\n  (h₃ : y n = 0) :\n  ∃ t : ℤ, m - n = t * π",
+    "variables": {
+      "m": "Real",
+      "n": "Real",
+      "k": "Int"
+    },
+    "hypotheses": [
+      "a : ℕ → ℝ",
+      "y : ℝ → ℝ",
+      "h₀ : 0 < k",
+      "h₁ : ∀ x, y x = ∑ i in finset.range k, ((real.cos (a i + x)) / (2^i))",
+      "h₂ : y m = 0",
+      "h₃ : y n = 0"
+    ],
+    "goal": "∃ t : ℤ, m - n = t * π"
+  },
+  {
+    "id": "mathd_algebra_209",
+    "statement": "Theorem: mathd_algebra_209\nGiven: σ : equiv ℝ ℝ\nGiven: h₀ : σ.2 2 = 10\nGiven: h₁ : σ.2 10 = 1\nGiven: h₂ : σ.2 1 = 2\nProve: σ.1 (σ.1 10) = 1",
+    "lean_decl": "theorem mathd_algebra_209\n  (σ : equiv ℝ ℝ)\n  (h₀ : σ.2 2 = 10)\n  (h₁ : σ.2 10 = 1)\n  (h₂ : σ.2 1 = 2) :\n  σ.1 (σ.1 10) = 1",
+    "variables": {},
+    "hypotheses": [
+      "σ : equiv ℝ ℝ",
+      "h₀ : σ.2 2 = 10",
+      "h₁ : σ.2 10 = 1",
+      "h₂ : σ.2 1 = 2"
+    ],
+    "goal": "σ.1 (σ.1 10) = 1"
+  },
+  {
+    "id": "mathd_numbertheory_1124",
+    "statement": "Theorem: mathd_numbertheory_1124\nVariables: n (integer)\nGiven: h₀ : n ≤ 9\nGiven: h₁ : 18∣374 * 10 + n\nProve: n = 4",
+    "lean_decl": "theorem mathd_numbertheory_1124\n  (n : ℕ)\n  (h₀ : n ≤ 9)\n  (h₁ : 18∣374 * 10 + n) :\n  n = 4",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h₀ : n ≤ 9",
+      "h₁ : 18∣374 * 10 + n"
+    ],
+    "goal": "n = 4"
+  },
+  {
+    "id": "imo_1983_p6",
+    "statement": "Theorem: imo_1983_p6\nVariables: a, b, c (real)\nGiven: h₀ : 0 < a ∧ 0 < b ∧ 0 < c\nGiven: h₁ : c < a + b\nGiven: h₂ : b < a + c\nGiven: h₃ : a < b + c\nProve: 0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)",
+    "lean_decl": "theorem imo_1983_p6\n  (a b c : ℝ)\n  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)\n  (h₁ : c < a + b)\n  (h₂ : b < a + c)\n  (h₃ : a < b + c) :\n  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)",
+    "variables": {
+      "a": "Real",
+      "b": "Real",
+      "c": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 0 < a ∧ 0 < b ∧ 0 < c",
+      "h₁ : c < a + b",
+      "h₂ : b < a + c",
+      "h₃ : a < b + c"
+    ],
+    "goal": "0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)"
+  },
+  {
+    "id": "mathd_numbertheory_237",
+    "statement": "Theorem: mathd_numbertheory_237\nProve: (∑ k in (finset.range 101), k) % 6 = 4",
+    "lean_decl": "theorem mathd_numbertheory_237 :\n  (∑ k in (finset.range 101), k) % 6 = 4",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(∑ k in (finset.range 101), k) % 6 = 4"
+  },
+  {
+    "id": "mathd_algebra_33",
+    "statement": "Theorem: mathd_algebra_33\nVariables: x, y, z (real)\nGiven: h₀ : x ≠ 0\nGiven: h₁ : 2 * x = 5 * y\nGiven: h₂ : 7 * y = 10 * z\nProve: z / x = 7 / 25",
+    "lean_decl": "theorem mathd_algebra_33\n  (x y z : ℝ)\n  (h₀ : x ≠ 0)\n  (h₁ : 2 * x = 5 * y)\n  (h₂ : 7 * y = 10 * z) :\n  z / x = 7 / 25",
+    "variables": {
+      "x": "Real",
+      "y": "Real",
+      "z": "Real"
+    },
+    "hypotheses": [
+      "h₀ : x ≠ 0",
+      "h₁ : 2 * x = 5 * y",
+      "h₂ : 7 * y = 10 * z"
+    ],
+    "goal": "z / x = 7 / 25"
+  },
+  {
+    "id": "amc12b_2021_p3",
+    "statement": "Theorem: amc12b_2021_p3\nVariables: x (real)\nGiven: h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53\nProve: x = 3 / 4",
+    "lean_decl": "theorem amc12b_2021_p3\n  (x : ℝ)\n  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :\n  x = 3 / 4",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53"
+    ],
+    "goal": "x = 3 / 4"
+  },
+  {
+    "id": "mathd_numbertheory_299",
+    "statement": "Theorem: mathd_numbertheory_299\nProve: (1 * 3 * 5 * 7 * 9 * 11 * 13) % 10 = 5",
+    "lean_decl": "theorem mathd_numbertheory_299 :\n  (1 * 3 * 5 * 7 * 9 * 11 * 13) % 10 = 5",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(1 * 3 * 5 * 7 * 9 * 11 * 13) % 10 = 5"
+  },
+  {
+    "id": "amc12b_2020_p2",
+    "statement": "Theorem: amc12b_2020_p2\nVariables: (100, ^, 2, -, 7, 2) (real)\nProve: ((100 ^ 2 - 7 ^ 2):ℝ) / (70 ^ 2 - 11 ^ 2) * ((70 - 11) * (70 + 11) / ((100 - 7) * (100 + 7))) = 1",
+    "lean_decl": "theorem amc12b_2020_p2 :\n  ((100 ^ 2 - 7 ^ 2):ℝ) / (70 ^ 2 - 11 ^ 2) * ((70 - 11) * (70 + 11) / ((100 - 7) * (100 + 7))) = 1",
+    "variables": {
+      "(100": "Real",
+      "^": "Real",
+      "2": "Real",
+      "-": "Real",
+      "7": "Real",
+      "2)": "Real"
+    },
+    "hypotheses": [],
+    "goal": "((100 ^ 2 - 7 ^ 2):ℝ) / (70 ^ 2 - 11 ^ 2) * ((70 - 11) * (70 + 11) / ((100 - 7) * (100 + 7))) = 1"
+  },
+  {
+    "id": "algebra_sqineq_unitcircatbpabsamblt1",
+    "statement": "Theorem: algebra_sqineq_unitcircatbpabsamblt1\nVariables: a, b (real)\nGiven: h₀ : a^2 + b^2 = 1\nProve: a * b + ∥a - b∥ ≤ 1",
+    "lean_decl": "theorem algebra_sqineq_unitcircatbpabsamblt1\n  (a b: ℝ)\n  (h₀ : a^2 + b^2 = 1) :\n  a * b + ∥a - b∥ ≤ 1",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [
+      "h₀ : a^2 + b^2 = 1"
+    ],
+    "goal": "a * b + ∥a - b∥ ≤ 1"
+  },
+  {
+    "id": "imo_1977_p6",
+    "statement": "Theorem: imo_1977_p6\nGiven: f : ℕ → ℕ\nGiven: h₀ : ∀ n, 0 < f n\nGiven: h₁ : ∀ n, 0 < n → f (f n) < f (n + 1)\nProve: ∀ n, 0 < n → f n = n",
+    "lean_decl": "theorem imo_1977_p6\n  (f : ℕ → ℕ)\n  (h₀ : ∀ n, 0 < f n)\n  (h₁ : ∀ n, 0 < n → f (f n) < f (n + 1)) :\n  ∀ n, 0 < n → f n = n",
+    "variables": {},
+    "hypotheses": [
+      "f : ℕ → ℕ",
+      "h₀ : ∀ n, 0 < f n",
+      "h₁ : ∀ n, 0 < n → f (f n) < f (n + 1)"
+    ],
+    "goal": "∀ n, 0 < n → f n = n"
+  },
+  {
+    "id": "mathd_algebra_419",
+    "statement": "Theorem: mathd_algebra_419\nVariables: a, b (real)\nGiven: h₀ : a = -1\nGiven: h₁ : b = 5\nProve: -a - b^2 + 3 * (a * b) = -39",
+    "lean_decl": "theorem mathd_algebra_419\n  (a b : ℝ)\n  (h₀ : a = -1)\n  (h₁ : b = 5) :\n  -a - b^2 + 3 * (a * b) = -39",
+    "variables": {
+      "a": "Real",
+      "b": "Real"
+    },
+    "hypotheses": [
+      "h₀ : a = -1",
+      "h₁ : b = 5"
+    ],
+    "goal": "-a - b^2 + 3 * (a * b) = -39"
+  },
+  {
+    "id": "amc12a_2020_p10",
+    "statement": "Theorem: amc12a_2020_p10\nVariables: n (integer)\nGiven: h₀ : 0 < n\nGiven: h₁ : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)\nProve: (nat.digits 10 n).sum = 13",
+    "lean_decl": "theorem amc12a_2020_p10\n  (n : ℕ)\n  (h₀ : 0 < n)\n  (h₁ : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)) :\n  (nat.digits 10 n).sum = 13",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h₀ : 0 < n",
+      "h₁ : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)"
+    ],
+    "goal": "(nat.digits 10 n).sum = 13"
+  },
+  {
+    "id": "imo_1960_p2",
+    "statement": "Theorem: imo_1960_p2\nVariables: x (real)\nGiven: h₀ : 0 ≤ 1 + 2 * x\nGiven: h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0\nGiven: h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) ≤ x ∧ x < 45 / 8",
+    "lean_decl": "theorem imo_1960_p2\n  (x : ℝ)\n  (h₀ : 0 ≤ 1 + 2 * x)\n  (h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0)\n  (h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9) :\n  -(1 / 2) ≤ x ∧ x < 45 / 8",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 0 ≤ 1 + 2 * x",
+      "h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0",
+      "h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9"
+    ],
+    "goal": "-(1 / 2) ≤ x ∧ x < 45 / 8"
+  },
+  {
+    "id": "mathd_numbertheory_427",
+    "statement": "Theorem: mathd_numbertheory_427\nVariables: a (integer)\nGiven: h₀ : a = (∑ k in (nat.divisors 500), k)\nProve: ∑ k in finset.filter (λ x, nat.prime x) (nat.divisors a), k = 25",
+    "lean_decl": "theorem mathd_numbertheory_427\n  (a : ℕ)\n  (h₀ : a = (∑ k in (nat.divisors 500), k)) :\n  ∑ k in finset.filter (λ x, nat.prime x) (nat.divisors a), k = 25",
+    "variables": {
+      "a": "Int"
+    },
+    "hypotheses": [
+      "h₀ : a = (∑ k in (nat.divisors 500), k)"
+    ],
+    "goal": "∑ k in finset.filter (λ x, nat.prime x) (nat.divisors a), k = 25"
+  },
+  {
+    "id": "numbertheory_x5neqy2p4",
+    "statement": "Theorem: numbertheory_x5neqy2p4\nVariables: x, y (integer)\nProve: x^5 ≠ y^2 + 4",
+    "lean_decl": "theorem numbertheory_x5neqy2p4\n  (x y : ℤ) :\n  x^5 ≠ y^2 + 4",
+    "variables": {
+      "x": "Int",
+      "y": "Int"
+    },
+    "hypotheses": [],
+    "goal": "x^5 ≠ y^2 + 4"
+  },
+  {
+    "id": "imo_2007_p6",
+    "statement": "Theorem: imo_2007_p6\nGiven: a : ℕ → nnreal\nGiven: h₀ : ∑ x in finset.range 100, ((a (x + 1))^2) = 1\nProve: ∑ x in finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25",
+    "lean_decl": "theorem imo_2007_p6\n  (a : ℕ → nnreal)\n  (h₀ : ∑ x in finset.range 100, ((a (x + 1))^2) = 1) :\n  ∑ x in finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25",
+    "variables": {},
+    "hypotheses": [
+      "a : ℕ → nnreal",
+      "h₀ : ∑ x in finset.range 100, ((a (x + 1))^2) = 1"
+    ],
+    "goal": "∑ x in finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25"
+  },
+  {
+    "id": "mathd_algebra_398",
+    "statement": "Theorem: mathd_algebra_398\nVariables: a, b, c (real)\nGiven: h₀ : 0 < a ∧ 0 < b ∧ 0 < c\nGiven: h₁ : 9 * b = 20 * c\nGiven: h₂ : 7 * a = 4 * b\nProve: 63 * a = 80 * c",
+    "lean_decl": "theorem mathd_algebra_398\n  (a b c : ℝ)\n  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)\n  (h₁ : 9 * b = 20 * c)\n  (h₂ : 7 * a = 4 * b) :\n  63 * a = 80 * c",
+    "variables": {
+      "a": "Real",
+      "b": "Real",
+      "c": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 0 < a ∧ 0 < b ∧ 0 < c",
+      "h₁ : 9 * b = 20 * c",
+      "h₂ : 7 * a = 4 * b"
+    ],
+    "goal": "63 * a = 80 * c"
+  },
+  {
+    "id": "imo_1963_p5",
+    "statement": "Theorem: imo_1963_p5\nProve: real.cos (π / 7) - real.cos (2 * π / 7) + real.cos (3 * π / 7) = 1 / 2",
+    "lean_decl": "theorem imo_1963_p5 :\n  real.cos (π / 7) - real.cos (2 * π / 7) + real.cos (3 * π / 7) = 1 / 2",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "real.cos (π / 7) - real.cos (2 * π / 7) + real.cos (3 * π / 7) = 1 / 2"
+  },
+  {
+    "id": "mathd_numbertheory_430",
+    "statement": "Theorem: mathd_numbertheory_430\nVariables: a, b, c (integer)\nGiven: h₀ : 1 ≤ a ∧ a ≤ 9\nGiven: h₁ : 1 ≤ b ∧ b ≤ 9\nGiven: h₂ : 1 ≤ c ∧ c ≤ 9\nGiven: h₃ : a ≠ b\nGiven: h₄ : a ≠ c\nGiven: h₅ : b ≠ c\nGiven: h₆ : a + b = c\nGiven: h₇ : 10 * a + a - b = 2 * c\nGiven: h₈ : c * b = 10 * a + a + a\nProve: a + b + c = 8",
+    "lean_decl": "theorem mathd_numbertheory_430\n  (a b c : ℕ)\n  (h₀ : 1 ≤ a ∧ a ≤ 9)\n  (h₁ : 1 ≤ b ∧ b ≤ 9)\n  (h₂ : 1 ≤ c ∧ c ≤ 9)\n  (h₃ : a ≠ b)\n  (h₄ : a ≠ c)\n  (h₅ : b ≠ c)\n  (h₆ : a + b = c)\n  (h₇ : 10 * a + a - b = 2 * c)\n  (h₈ : c * b = 10 * a + a + a) :\n  a + b + c = 8",
+    "variables": {
+      "a": "Int",
+      "b": "Int",
+      "c": "Int"
+    },
+    "hypotheses": [
+      "h₀ : 1 ≤ a ∧ a ≤ 9",
+      "h₁ : 1 ≤ b ∧ b ≤ 9",
+      "h₂ : 1 ≤ c ∧ c ≤ 9",
+      "h₃ : a ≠ b",
+      "h₄ : a ≠ c",
+      "h₅ : b ≠ c",
+      "h₆ : a + b = c",
+      "h₇ : 10 * a + a - b = 2 * c",
+      "h₈ : c * b = 10 * a + a + a"
+    ],
+    "goal": "a + b + c = 8"
+  },
+  {
+    "id": "mathd_algebra_459",
+    "statement": "Theorem: mathd_algebra_459\nGiven: a b c d : ℚ\nGiven: h₀ : 3 * a = b + c + d\nGiven: h₁ : 4 * b = a + c + d\nGiven: h₂ : 2 * c = a + b + d\nGiven: h₃ : 8 * a + 10 * b + 6 * c = 24\nProve: ↑d.denom + d.num = 28",
+    "lean_decl": "theorem mathd_algebra_459\n  (a b c d : ℚ)\n  (h₀ : 3 * a = b + c + d)\n  (h₁ : 4 * b = a + c + d)\n  (h₂ : 2 * c = a + b + d)\n  (h₃ : 8 * a + 10 * b + 6 * c = 24) :\n  ↑d.denom + d.num = 28",
+    "variables": {},
+    "hypotheses": [
+      "a b c d : ℚ",
+      "h₀ : 3 * a = b + c + d",
+      "h₁ : 4 * b = a + c + d",
+      "h₂ : 2 * c = a + b + d",
+      "h₃ : 8 * a + 10 * b + 6 * c = 24"
+    ],
+    "goal": "↑d.denom + d.num = 28"
+  },
+  {
+    "id": "induction_12dvd4expnp1p20",
+    "statement": "Theorem: induction_12dvd4expnp1p20\nVariables: n (integer)\nProve: 12 ∣ 4^(n+1) + 20",
+    "lean_decl": "theorem induction_12dvd4expnp1p20\n  (n : ℕ) :\n  12 ∣ 4^(n+1) + 20",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [],
+    "goal": "12 ∣ 4^(n+1) + 20"
+  },
+  {
+    "id": "mathd_algebra_320",
+    "statement": "Theorem: mathd_algebra_320\nVariables: a, b, c (integer)\nGiven: x : nnreal\nGiven: h₀ : 0 < a ∧ 0 < b ∧ 0 < c\nGiven: h₁ : 2 * x^2 = 4 * x + 9\nGiven: h₂ : x = (a + nnreal.sqrt b) / c\nProve: a + b + c = 26",
+    "lean_decl": "theorem mathd_algebra_320\n  (x : nnreal)\n  (a b c : ℕ)\n  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)\n  (h₁ : 2 * x^2 = 4 * x + 9)\n  (h₂ : x = (a + nnreal.sqrt b) / c) :\n  a + b + c = 26",
+    "variables": {
+      "a": "Int",
+      "b": "Int",
+      "c": "Int"
+    },
+    "hypotheses": [
+      "x : nnreal",
+      "h₀ : 0 < a ∧ 0 < b ∧ 0 < c",
+      "h₁ : 2 * x^2 = 4 * x + 9",
+      "h₂ : x = (a + nnreal.sqrt b) / c"
+    ],
+    "goal": "a + b + c = 26"
+  },
+  {
+    "id": "mathd_algebra_137",
+    "statement": "Theorem: mathd_algebra_137\nVariables: x (integer)\nGiven: h₀ : ↑x + (4:ℝ) / (100:ℝ) * ↑x = 598\nProve: x = 575",
+    "lean_decl": "theorem mathd_algebra_137\n  (x : ℕ)\n  (h₀ : ↑x + (4:ℝ) / (100:ℝ) * ↑x = 598) :\n  x = 575",
+    "variables": {
+      "x": "Int"
+    },
+    "hypotheses": [
+      "h₀ : ↑x + (4:ℝ) / (100:ℝ) * ↑x = 598"
+    ],
+    "goal": "x = 575"
+  },
+  {
+    "id": "imo_1997_p5",
+    "statement": "Theorem: imo_1997_p5\nVariables: x, y (integer)\nGiven: h₀ : 0 < x ∧ 0 < y\nGiven: h₁ : x^(y^2) = y^x\nProve: (x, y) = (1, 1) ∨ (x, y) = (16, 2) ∨ (x, y) = (27, 3)",
+    "lean_decl": "theorem imo_1997_p5\n  (x y : ℕ)\n  (h₀ : 0 < x ∧ 0 < y)\n  (h₁ : x^(y^2) = y^x) :\n  (x, y) = (1, 1) ∨ (x, y) = (16, 2) ∨ (x, y) = (27, 3)",
+    "variables": {
+      "x": "Int",
+      "y": "Int"
+    },
+    "hypotheses": [
+      "h₀ : 0 < x ∧ 0 < y",
+      "h₁ : x^(y^2) = y^x"
+    ],
+    "goal": "(x, y) = (1, 1) ∨ (x, y) = (16, 2) ∨ (x, y) = (27, 3)"
+  },
+  {
+    "id": "mathd_numbertheory_277",
+    "statement": "Theorem: mathd_numbertheory_277\nVariables: m, n (integer)\nGiven: h₀ : nat.gcd m n = 6\nGiven: h₁ : nat.lcm m n = 126\nProve: 60 ≤ m + n",
+    "lean_decl": "theorem mathd_numbertheory_277\n  (m n : ℕ)\n  (h₀ : nat.gcd m n = 6)\n  (h₁ : nat.lcm m n = 126) :\n  60 ≤ m + n",
+    "variables": {
+      "m": "Int",
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h₀ : nat.gcd m n = 6",
+      "h₁ : nat.lcm m n = 126"
+    ],
+    "goal": "60 ≤ m + n"
+  },
+  {
+    "id": "mathd_numbertheory_559",
+    "statement": "Theorem: mathd_numbertheory_559\nVariables: x, y (integer)\nGiven: h₀ : x % 3 = 2\nGiven: h₁ : y % 5 = 4\nGiven: h₂ : x % 10 = y % 10\nProve: 14 ≤ x",
+    "lean_decl": "theorem mathd_numbertheory_559\n  (x y : ℕ)\n  (h₀ : x % 3 = 2)\n  (h₁ : y % 5 = 4)\n  (h₂ : x % 10 = y % 10) :\n  14 ≤ x",
+    "variables": {
+      "x": "Int",
+      "y": "Int"
+    },
+    "hypotheses": [
+      "h₀ : x % 3 = 2",
+      "h₁ : y % 5 = 4",
+      "h₂ : x % 10 = y % 10"
+    ],
+    "goal": "14 ≤ x"
+  },
+  {
+    "id": "mathd_algebra_160",
+    "statement": "Theorem: mathd_algebra_160\nVariables: n, x (real)\nGiven: h₀ : n + x = 97\nGiven: h₁ : n + 5 * x = 265\nProve: n + 2 * x = 139",
+    "lean_decl": "theorem mathd_algebra_160\n  (n x : ℝ)\n  (h₀ : n + x = 97)\n  (h₁ : n + 5 * x = 265) :\n  n + 2 * x = 139",
+    "variables": {
+      "n": "Real",
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h₀ : n + x = 97",
+      "h₁ : n + 5 * x = 265"
+    ],
+    "goal": "n + 2 * x = 139"
+  },
+  {
+    "id": "mathd_algebra_24",
+    "statement": "Theorem: mathd_algebra_24\nVariables: x (real)\nGiven: h₀ : x / 50 = 40\nProve: x = 2000",
+    "lean_decl": "theorem mathd_algebra_24\n  (x : ℝ)\n  (h₀ : x / 50 = 40) :\n  x = 2000",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [
+      "h₀ : x / 50 = 40"
+    ],
+    "goal": "x = 2000"
+  },
+  {
+    "id": "mathd_algebra_176",
+    "statement": "Theorem: mathd_algebra_176\nVariables: x (real)\nProve: (x + 1)^2 * x = x^3 + 2 * x^2 + x",
+    "lean_decl": "theorem mathd_algebra_176\n  (x : ℝ) :\n  (x + 1)^2 * x = x^3 + 2 * x^2 + x",
+    "variables": {
+      "x": "Real"
+    },
+    "hypotheses": [],
+    "goal": "(x + 1)^2 * x = x^3 + 2 * x^2 + x"
+  },
+  {
+    "id": "induction_nfactltnexpnm1ngt3",
+    "statement": "Theorem: induction_nfactltnexpnm1ngt3\nVariables: n (integer)\nGiven: h₀ : 3 ≤ n\nProve: n! < n^(n - 1)",
+    "lean_decl": "theorem induction_nfactltnexpnm1ngt3\n  (n : ℕ)\n  (h₀ : 3 ≤ n) :\n  n! < n^(n - 1)",
+    "variables": {
+      "n": "Int"
+    },
+    "hypotheses": [
+      "h₀ : 3 ≤ n"
+    ],
+    "goal": "n! < n^(n - 1)"
+  },
+  {
+    "id": "mathd_algebra_208",
+    "statement": "Theorem: mathd_algebra_208\nGiven: (1 : ℝ)/3\nProve: real.sqrt 1000000 - 1000000^((1:ℝ)/3) = 900",
+    "lean_decl": "theorem mathd_algebra_208 :\n  real.sqrt 1000000 - 1000000^((1:ℝ)/3) = 900",
+    "variables": {},
+    "hypotheses": [
+      "(1 : ℝ)/3"
+    ],
+    "goal": "real.sqrt 1000000 - 1000000^((1:ℝ)/3) = 900"
+  },
+  {
+    "id": "mathd_numbertheory_353",
+    "statement": "Theorem: mathd_numbertheory_353\nVariables: s (integer)\nGiven: h₀ : s = ∑ k in finset.Icc 2010 4018, k\nProve: s % 2009 = 0",
+    "lean_decl": "theorem mathd_numbertheory_353\n  (s : ℕ)\n  (h₀ : s = ∑ k in finset.Icc 2010 4018, k) :\n  s % 2009 = 0",
+    "variables": {
+      "s": "Int"
+    },
+    "hypotheses": [
+      "h₀ : s = ∑ k in finset.Icc 2010 4018, k"
+    ],
+    "goal": "s % 2009 = 0"
+  },
+  {
+    "id": "numbertheory_notequiv2i2jasqbsqdiv8",
+    "statement": "Theorem: numbertheory_notequiv2i2jasqbsqdiv8\nVariables: a, b (integer)\nProve: ¬ ((∃ i j, a = 2*i ∧ b=2*j) ↔ (∃ k, a^2 + b^2 = 8*k))",
+    "lean_decl": "theorem numbertheory_notequiv2i2jasqbsqdiv8\n  (a b : ℤ) :\n  ¬ ((∃ i j, a = 2*i ∧ b=2*j) ↔ (∃ k, a^2 + b^2 = 8*k))",
+    "variables": {
+      "a": "Int",
+      "b": "Int"
+    },
+    "hypotheses": [],
+    "goal": "¬ ((∃ i j, a = 2*i ∧ b=2*j) ↔ (∃ k, a^2 + b^2 = 8*k))"
+  },
+  {
+    "id": "mathd_algebra_156",
+    "statement": "Theorem: mathd_algebra_156\nVariables: x, y (real)\nGiven: f g : ℝ → ℝ\nGiven: h₀ : ∀t, f t = t^4\nGiven: h₁ : ∀t, g t = 5 * t^2 - 6\nGiven: h₂ : f x = g x\nGiven: h₃ : f y = g y\nGiven: h₄ : x^2 < y^2\nProve: y^2 - x^2 = 1",
+    "lean_decl": "theorem mathd_algebra_156\n  (x y : ℝ)\n  (f g : ℝ → ℝ)\n  (h₀ : ∀t, f t = t^4)\n  (h₁ : ∀t, g t = 5 * t^2 - 6)\n  (h₂ : f x = g x)\n  (h₃ : f y = g y)\n  (h₄ : x^2 < y^2) :\n  y^2 - x^2 = 1",
+    "variables": {
+      "x": "Real",
+      "y": "Real"
+    },
+    "hypotheses": [
+      "f g : ℝ → ℝ",
+      "h₀ : ∀t, f t = t^4",
+      "h₁ : ∀t, g t = 5 * t^2 - 6",
+      "h₂ : f x = g x",
+      "h₃ : f y = g y",
+      "h₄ : x^2 < y^2"
+    ],
+    "goal": "y^2 - x^2 = 1"
+  },
+  {
+    "id": "mathd_numbertheory_12",
+    "statement": "Theorem: mathd_numbertheory_12\nProve: finset.card (finset.filter (λ x, 20∣x) (finset.Icc 15 85)) = 4",
+    "lean_decl": "theorem mathd_numbertheory_12 :\n  finset.card (finset.filter (λ x, 20∣x) (finset.Icc 15 85)) = 4",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "finset.card (finset.filter (λ x, 20∣x) (finset.Icc 15 85)) = 4"
+  },
+  {
+    "id": "mathd_numbertheory_345",
+    "statement": "Theorem: mathd_numbertheory_345\nProve: (2000 + 2001 + 2002 + 2003 + 2004 + 2005 + 2006) % 7 = 0",
+    "lean_decl": "theorem mathd_numbertheory_345 :\n  (2000 + 2001 + 2002 + 2003 + 2004 + 2005 + 2006) % 7 = 0",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(2000 + 2001 + 2002 + 2003 + 2004 + 2005 + 2006) % 7 = 0"
+  },
+  {
+    "id": "mathd_numbertheory_447",
+    "statement": "Theorem: mathd_numbertheory_447\nProve: ∑ k in finset.filter (λ x, 3∣x) (finset.Icc 1 49), (k % 10) = 78",
+    "lean_decl": "theorem mathd_numbertheory_447 :\n  ∑ k in finset.filter (λ x, 3∣x) (finset.Icc 1 49), (k % 10) = 78",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "∑ k in finset.filter (λ x, 3∣x) (finset.Icc 1 49), (k % 10) = 78"
+  },
+  {
+    "id": "mathd_numbertheory_328",
+    "statement": "Theorem: mathd_numbertheory_328\nProve: (5^999999) % 7 = 6",
+    "lean_decl": "theorem mathd_numbertheory_328 :\n  (5^999999) % 7 = 6",
+    "variables": {},
+    "hypotheses": [],
+    "goal": "(5^999999) % 7 = 6"
+  },
+  {
+    "id": "mathd_numbertheory_451",
+    "statement": "Theorem: mathd_numbertheory_451\nGiven: S : finset ℕ\nGiven: h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((nat.divisors m).card = 4 ∧ ∑ p in (nat.divisors m), p = n)\nProve: ∑ k in S, k = 2016",
+    "lean_decl": "theorem mathd_numbertheory_451\n  (S : finset ℕ)\n  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((nat.divisors m).card = 4 ∧ ∑ p in (nat.divisors m), p = n)) :\n  ∑ k in S, k = 2016",
+    "variables": {},
+    "hypotheses": [
+      "S : finset ℕ",
+      "h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((nat.divisors m).card = 4 ∧ ∑ p in (nat.divisors m), p = n)"
+    ],
+    "goal": "∑ k in S, k = 2016"
+  },
+  {
+    "id": "aime_1997_p9",
+    "statement": "Theorem: aime_1997_p9\nVariables: a (real)\nGiven: h₀ : 0 < a\nGiven: h₁ : 1 / a - int.floor (1 / a) = a^2 - int.floor (a^2)\nGiven: h₂ : 2 < a^2\nGiven: h₃ : a^2 < 3\nProve: a^12 - 144 * (1 / a) = 233",
+    "lean_decl": "theorem aime_1997_p9\n  (a : ℝ)\n  (h₀ : 0 < a)\n  (h₁ : 1 / a - int.floor (1 / a) = a^2 - int.floor (a^2))\n  (h₂ : 2 < a^2)\n  (h₃ : a^2 < 3) :\n  a^12 - 144 * (1 / a) = 233",
+    "variables": {
+      "a": "Real"
+    },
+    "hypotheses": [
+      "h₀ : 0 < a",
+      "h₁ : 1 / a - int.floor (1 / a) = a^2 - int.floor (a^2)",
+      "h₂ : 2 < a^2",
+      "h₃ : a^2 < 3"
+    ],
+    "goal": "a^12 - 144 * (1 / a) = 233"
+  },
+  {
+    "id": "algebra_sqineq_at2malt1",
+    "statement": "Theorem: algebra_sqineq_at2malt1\nVariables: a (real)\nProve: a * (2 - a) ≤ 1",
+    "lean_decl": "theorem algebra_sqineq_at2malt1\n  (a : ℝ) :\n  a * (2 - a) ≤ 1",
+    "variables": {
+      "a": "Real"
+    },
+    "hypotheses": [],
+    "goal": "a * (2 - a) ≤ 1"
+  },
+  {
+    "id": "algebra_apbmpcneq0_aeq0anbeq0anceq0",
+    "statement": "Theorem: algebra_apbmpcneq0_aeq0anbeq0anceq0\nVariables: m, n (real)\nGiven: a b c : ℚ\nGiven: h₀ : 0 < m ∧ 0 < n\nGiven: h₁ : m^3 = 2\nGiven: h₂ : n^3 = 4\nGiven: h₃ : (a:ℝ) + b * m + c * n = 0\nProve: a = 0 ∧ b = 0 ∧ c = 0",
+    "lean_decl": "theorem algebra_apbmpcneq0_aeq0anbeq0anceq0\n  (a b c : ℚ)\n  (m n : ℝ)\n  (h₀ : 0 < m ∧ 0 < n)\n  (h₁ : m^3 = 2)\n  (h₂ : n^3 = 4)\n  (h₃ : (a:ℝ) + b * m + c * n = 0) :\n  a = 0 ∧ b = 0 ∧ c = 0",
+    "variables": {
+      "m": "Real",
+      "n": "Real"
+    },
+    "hypotheses": [
+      "a b c : ℚ",
+      "h₀ : 0 < m ∧ 0 < n",
+      "h₁ : m^3 = 2",
+      "h₂ : n^3 = 4",
+      "h₃ : (a:ℝ) + b * m + c * n = 0"
+    ],
+    "goal": "a = 0 ∧ b = 0 ∧ c = 0"
+  },
+  {
+    "id": "mathd_algebra_171",
+    "statement": "Theorem: mathd_algebra_171\nGiven: f : ℝ → ℝ\nGiven: h₀ : ∀x, f x = 5 * x + 4\nProve: f 1 = 9",
+    "lean_decl": "theorem mathd_algebra_171\n  (f : ℝ → ℝ)\n  (h₀ : ∀x, f x = 5 * x + 4) :\n  f 1 = 9",
+    "variables": {},
+    "hypotheses": [
+      "f : ℝ → ℝ",
+      "h₀ : ∀x, f x = 5 * x + 4"
+    ],
+    "goal": "f 1 = 9"
+  }
+]

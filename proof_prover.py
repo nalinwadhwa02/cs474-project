@@ -411,7 +411,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         help="Model name as served by the endpoint",
-        default="deepseek-ai/deepseek-v4-flash",
+        default="gpt-5.4-mini-2026-03-17",
     )
     parser.add_argument(
         "--api-key",
@@ -420,8 +420,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--proofs-dir",
-        required=True,
+        # required=True, 
         help="Path to a proofs dir(contains <id>.json files)",
+        default="/Users/dush/cs474-project/runs/20260515_081823_b674e0_gpt-5.4-mini-2026-03-17_test50",
     )
     parser.add_argument(
         "--problem", help="Run a single problem by id instead of the full set"

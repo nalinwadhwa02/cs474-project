@@ -72,6 +72,29 @@ Z3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.
 You MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,
 `Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.
 
+## Geometry problems (AlphaGeometry DSL)
+If the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,
+`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST
+translate them into Cartesian coordinate arithmetic — do NOT copy the predicates
+verbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).
+
+
+**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or
+collinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient
+with NO lemmas. Try empty lemmas first.
+
+For `cyclic` goals, expand the 4×4 determinant manually:
+  `cyclic(a,b,c,d)` iff
+  ```
+  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))
+  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))
+  + ...
+  ```
+  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))
+  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))
+  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))
+  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`
+
 ## Z3 Syntax (Python API)
 Reference declared variables directly by name (e.g. `n`, not `Int("n")`).
   Arithmetic   :  +  -  *  /  **
@@ -139,6 +162,66 @@ If the lemma logically has nested quantification (rare), only THEN use explicit
   numerals, and predeclared/declared functions.
 - Use the SMALLEST number of lemmas needed.
 
+## CRITICAL: Encoding theorem-specific functions
+If the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument
+function), do NOT declare it as a plain scalar variable in `theorem.variables`.
+Instead, declare it in the `functions` field and axiomatize its behavior via lemmas.
+
+WRONG (f is a function, not a scalar):
+  "variables": [{"name": "f", "sort": "Real"}, ...]
+  //  then `f` is just one real number — you cannot apply it to arguments
+
+RIGHT:
+  "functions": [{"name": "f", "args": ["Real"], "result": "Real"}]
+  "lemmas": [{"name": "f_def", "vars": [{"name": "x", "sort": "Real"}],
+              "body": "f(x) == <defining expression in x>"}]
+  "instantiations": [{"lemma": "f_def", "terms": {"x": "<concrete value>"}}]
+
+Instantiate a function-definition lemma at every specific argument value that
+the proof (or the goal) actually uses.
+
+CRITICAL: If a name appears in `functions`, do NOT also list it in
+`theorem.variables`. The two declarations conflict and cause a compile error.
+A function name is in scope everywhere once declared in `functions`; you never
+also need it in `variables`.
+
+## CRITICAL: Complex numbers
+Z3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,
+`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.
+
+Strategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each
+complex quantity, state the definitions as hypotheses, and prove the goal in
+terms of real/imaginary components.
+
+Example: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:
+  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)
+  hypotheses:
+    q_re == 2,  q_im == -2,
+    e_re == 5,  e_im == 5,
+    prod_re == q_re*e_re - q_im*e_im,
+    prod_im == q_re*e_im + q_im*e_re
+  goal: And(prod_re == 20, prod_im == 0)
+
+No lemmas needed — Z3's arithmetic solver closes it directly.
+
+## CRITICAL: Transcribe hypotheses verbatim
+Copy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,
+or rephrase them.
+
+Example: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be
+  `n * 7 % 398 == 1`
+NOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not
+the actual constraint given, and Z3 may reach wrong conclusions).
+
+## CRITICAL: Try Z3's arithmetic solver first
+For theorems whose hypotheses and goal are pure linear or modular arithmetic
+(no functions, no transcendentals), first attempt `"lemmas": [], "instantiations": []`.
+Z3's built-in arithmetic/bit-vector solver will often close such goals directly
+without any user-supplied lemmas.
+
+## CRITICAL: Primality and Euclid's lemma
+`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`
+is prime, and Z3 integer arithmetic has no built-in notion of primality.
 Return ONLY the JSON object.
 """
 
