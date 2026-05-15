@@ -1,0 +1,73 @@
+{
+  "theorem_id": "numbertheory_prmdvsneqnsqmodpeq0",
+  "statement": "Theorem: numbertheory_prmdvsneqnsqmodpeq0\nVariables: n, p (integer)\nGiven: h\u2080 : nat.prime p\nProve: \u2191p \u2223 n \u2194 (n^2) % p = 0",
+  "goal": "\u2191p \u2223 n \u2194 (n^2) % p = 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: numbertheory_prmdvsneqnsqmodpeq0\n\nTheorem: numbertheory_prmdvsneqnsqmodpeq0\nVariables: n, p (integer)\nGiven: h\u2080 : nat.prime p\nProve: \u2191p \u2223 n \u2194 (n^2) % p = 0\n\nHypotheses:\n  h\u2080 : nat.prime p\n\nVariables: n (int), p (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"For a prime p, divisibility by p is equivalent to being congruent to 0 mod p, and if p divides n then it also divides n^2; conversely, if p divides n^2, Euclid\u2019s lemma for primes forces p to divide n.\",\"plan\":[\"Convert the modular statement (n^2) % p = 0 into the divisibility statement p \u2223 n^2.\",\"Prove the forward direction by showing p \u2223 n implies p \u2223 n^2, hence the remainder of n^2 mod p is 0.\",\"Prove the reverse direction by using primality of p and Euclid\u2019s lemma: p \u2223 n^2 implies p \u2223 n.\",\"Combine the two implications to obtain the equivalence.\"],\"steps\":[{\"claim\":\"(n^2) % p = 0 if and only if p \u2223 n^2.\",\"reasoning\":\"For any integer p \u2260 0, an integer has remainder 0 upon division by p exactly when it is divisible by p. This is the standard characterization of divisibility via the modulo operation.\",\"facts_used\":[\"definition of divisibility\",\"definition of modulo\"]},{\"claim\":\"If p \u2223 n, then p \u2223 n^2.\",\"reasoning\":\"Assume p \u2223 n, so n = p\u0561\u0562 for some integer b. Then n^2 = (pb)^2 = p(pb^2), which is divisible by p.\",\"facts_used\":[\"definition of divisibility\",\"algebraic expansion\"]},{\"claim\":\"If p \u2223 n, then (n^2) % p = 0.\",\"reasoning\":\"By step 2, p divides n^2. By step 1, divisibility by p is equivalent to having remainder 0 modulo p, so (n^2) % p = 0.\",\"facts_used\":[\"step 1\",\"step 2\"]},{\"claim\":\"If (n^2) % p = 0, then p \u2223 n.\",\"reasoning\":\"By step 1, (n^2) % p = 0 implies p \u2223 n^2. Since p is prime by hypothesis, Euclid\u2019s lemma for primes implies that p dividing n^2 = n\u00b7n forces p to divide n.\",\"facts_used\":[\"step 1\",\"Euclid's lemma\",\"hypothesis h\u2080 : nat.prime p\"]},{\"claim\":\"p \u2223 n \u2194 (n^2) % p = 0.\",\"reasoning\":\"Steps 3 and 4 prove each implication of the biconditional.\",\"facts_used\":[\"step 3\",\"step 4\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "For a prime p, divisibility by p is equivalent to being congruent to 0 mod p, and if p divides n then it also divides n^2; conversely, if p divides n^2, Euclid\u2019s lemma for primes forces p to divide n.",
+    "plan": [
+      "Convert the modular statement (n^2) % p = 0 into the divisibility statement p \u2223 n^2.",
+      "Prove the forward direction by showing p \u2223 n implies p \u2223 n^2, hence the remainder of n^2 mod p is 0.",
+      "Prove the reverse direction by using primality of p and Euclid\u2019s lemma: p \u2223 n^2 implies p \u2223 n.",
+      "Combine the two implications to obtain the equivalence."
+    ],
+    "steps": [
+      {
+        "claim": "(n^2) % p = 0 if and only if p \u2223 n^2.",
+        "reasoning": "For any integer p \u2260 0, an integer has remainder 0 upon division by p exactly when it is divisible by p. This is the standard characterization of divisibility via the modulo operation.",
+        "facts_used": [
+          "definition of divisibility",
+          "definition of modulo"
+        ]
+      },
+      {
+        "claim": "If p \u2223 n, then p \u2223 n^2.",
+        "reasoning": "Assume p \u2223 n, so n = p\u0561\u0562 for some integer b. Then n^2 = (pb)^2 = p(pb^2), which is divisible by p.",
+        "facts_used": [
+          "definition of divisibility",
+          "algebraic expansion"
+        ]
+      },
+      {
+        "claim": "If p \u2223 n, then (n^2) % p = 0.",
+        "reasoning": "By step 2, p divides n^2. By step 1, divisibility by p is equivalent to having remainder 0 modulo p, so (n^2) % p = 0.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "If (n^2) % p = 0, then p \u2223 n.",
+        "reasoning": "By step 1, (n^2) % p = 0 implies p \u2223 n^2. Since p is prime by hypothesis, Euclid\u2019s lemma for primes implies that p dividing n^2 = n\u00b7n forces p to divide n.",
+        "facts_used": [
+          "step 1",
+          "Euclid's lemma",
+          "hypothesis h\u2080 : nat.prime p"
+        ]
+      },
+      {
+        "claim": "p \u2223 n \u2194 (n^2) % p = 0.",
+        "reasoning": "Steps 3 and 4 prove each implication of the biconditional.",
+        "facts_used": [
+          "step 3",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.816913+00:00"
+}

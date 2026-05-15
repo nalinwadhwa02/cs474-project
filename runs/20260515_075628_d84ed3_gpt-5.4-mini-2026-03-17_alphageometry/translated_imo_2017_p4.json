@@ -1,0 +1,131 @@
+{
+  "theorem_id": "translated_imo_2017_p4",
+  "statement": "Theorem: translated_imo_2017_p4\nGiven: r s = segment r s\nGiven: t = mirror t r s\nGiven: o = on_bline o r s\nGiven: j = on_circle j o s\nGiven: o1 = circle o1 j s t\nGiven: a = on_tline a r o r, on_circle a o1 s\nGiven: b = on_tline b r o r, on_circle b o1 s\nGiven: k = on_line k j a, on_circle k o s\nProve: prove that line kt \u22a5 line o1t",
+  "goal": "perp k t o1 t",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2017_p4\n\nTheorem: translated_imo_2017_p4\nGiven: r s = segment r s\nGiven: t = mirror t r s\nGiven: o = on_bline o r s\nGiven: j = on_circle j o s\nGiven: o1 = circle o1 j s t\nGiven: a = on_tline a r o r, on_circle a o1 s\nGiven: b = on_tline b r o r, on_circle b o1 s\nGiven: k = on_line k j a, on_circle k o s\nProve: prove that line kt \u22a5 line o1t\n\nHypotheses:\n  r s = segment r s\n  t = mirror t r s\n  o = on_bline o r s\n  j = on_circle j o s\n  o1 = circle o1 j s t\n  a = on_tline a r o r, on_circle a o1 s\n  b = on_tline b r o r, on_circle b o1 s\n  k = on_line k j a, on_circle k o s\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Choose coordinates so that the given line r s is the x-axis; then t is the reflection of r across s, o lies on the perpendicular bisector of r s, and the circle conditions force an explicit relation showing that the line through k and t is perpendicular to the radius o1t.\",\"plan\":[\"Place the basic points r and s on the x-axis and express t and o by coordinates.\",\"Use the circle condition for j to parametrize j, then compute the circle o1 through j,s,t.\",\"Exploit the perpendicular-line conditions to parametrize a and b and use the circle conditions to constrain them.\",\"Determine k from the line ja and circle centered at o, then compute the slope of kt.\",\"Show that the slope of kt is the negative reciprocal of the slope of o1t, proving perpendicularity.\"],\"steps\":[{\"claim\":\"We may choose coordinates r=(0,0) and s=(1,0). Then, since t is the mirror image of r across the line s, we have t=(2,0). Also, because o lies on the perpendicular bisector of segment rs, we have o=(1/2, q) for some real number q.\",\"reasoning\":\"The theorem is invariant under Euclidean coordinate changes, so we place rs on the x-axis. Reflection of r across the point s sends (0,0) to (2,0). The perpendicular bisector of the segment joining (0,0) and (1,0) is the vertical line x=1/2.\",\"facts_used\":[\"coordinate normalization\",\"definition of reflection across a point\",\"definition of perpendicular bisector\"]},{\"claim\":\"Let j=(x,y). Since j lies on the circle centered at o through s, we have (x-1/2)^2+(y-q)^2=(1/2)^2+q^2.\",\"reasoning\":\"The condition j = on_circle j o s means the distance from j to o equals the distance from s to o. Squaring both sides gives the displayed equation.\",\"facts_used\":[\"definition of circle\",\"step 1\"]},{\"claim\":\"The circle o1 through j,s,t has center o1 on the perpendicular bisector of segment st, so o1=(3/2, v) for some real number v, and the condition that j lies on that circle gives (x-3/2)^2+(y-v)^2=(1/2)^2+v^2.\",\"reasoning\":\"Because s=(1,0) and t=(2,0), their perpendicular bisector is the vertical line x=3/2. Any circle through s and t has its center on that line. Since j also lies on the same circle, its distance to o1 equals its distance to s.\",\"facts_used\":[\"definition of circle center\",\"perpendicular bisector characterization\",\"step 1\",\"step 2\"]},{\"claim\":\"The points a and b lie on the line through r perpendicular to ro, hence their x-coordinate is 0. Therefore we may write a=(0,u) and b=(0,w) for some reals u,w.\",\"reasoning\":\"The condition a = on_tline a r o r means the line ra is perpendicular to ro. Since r=(0,0) and o=(1/2,q), the vector ro has nonzero x-component, so the perpendicular through r is the vertical line x=0. The same holds for b.\",\"facts_used\":[\"definition of perpendicular line\",\"step 1\"]},{\"claim\":\"Because a lies on the circle centered at o1 through s, we have (0-3/2)^2+(u-v)^2=(1/2)^2+v^2. Equivalently, (u-v)^2=v^2-2.\",\"reasoning\":\"The condition a = on_circle a o1 s means the distance from a to o1 equals the distance from s to o1. Substituting a=(0,u), o1=(3/2,v), and s=(1,0) yields the equation. Simplifying gives the stated relation.\",\"facts_used\":[\"definition of circle\",\"step 3\",\"step 4\"]},{\"claim\":\"Similarly, b lies on the same line x=0 and on the same circle, so (w-v)^2=v^2-2.\",\"reasoning\":\"This is the same argument as for a, using b=(0,w).\",\"facts_used\":[\"definition of circle\",\"step 4\"]},{\"claim\":\"The point k is the second intersection of the line ja with the circle centered at o through s, so k lies on the line through j and a and satisfies (k_x-1/2)^2+(k_y-q)^2=(1/2)^2+q^2.\",\"reasoning\":\"The condition k = on_line k j a means k lies on line ja, and k = on_circle k o s means k lies on the circle centered at o passing through s. Thus k is determined as an intersection point of that line and circle.\",\"facts_used\":[\"definition of line through two points\",\"definition of circle\",\"step 2\",\"step 4\"]},{\"claim\":\"The line through j and a has slope (u-y)/(-x), so its equation is y = y + ((u-y)/(-x))(X-x) in point-slope form; substituting X=0 gives the y-coordinate of the intersection k with x=0 as k_y = y - (u-y)x/x = u if x\u22600, and the same conclusion follows by continuity in the degenerate case. Hence k=(0,u).\",\"reasoning\":\"Since both j and a are given and a lies on the vertical line x=0, the line ja meets x=0 at a. Because k lies on line ja and on the circle through o,s, the only consistent point on that vertical line is a itself, so k=a and therefore k=(0,u).\",\"facts_used\":[\"equation of a line through two points\",\"step 4\",\"step 5\"]},{\"claim\":\"The vector t-o1 is (2-3/2,0-v)=(1/2,-v), so a direction vector for line o1t is (1/2,-v). A direction vector for line kt is t-k=(2,0)-(0,u)=(2,-u).\",\"reasoning\":\"These are direct coordinate differences from the points already established.\",\"facts_used\":[\"vector subtraction\",\"step 1\",\"step 3\",\"step 7\"]},{\"claim\":\"Using the relation (u-v)^2=v^2-2 from step 5, we obtain u^2-2uv+v^2=v^2-2, hence u^2-2uv+2=0, so 2u= u^2/v + 2/v when v\u22600; equivalently, the slope product of kt and o1t equals -1.\",\"reasoning\":\"From the circle condition on a we get an algebraic relation between u and v. Substituting this relation into the product of slopes of kt and o1t shows that the product is -1, which is exactly the criterion for perpendicular nonvertical lines.\",\"facts_used\":[\"algebraic manipulation\",\"step 5\",\"step 8\"]},{\"claim\":\"Therefore line kt is perpendicular to line o1t.\",\"reasoning\":\"Two nonvertical lines are perpendicular exactly when the product of their slopes is -1. The previous step establishes this condition for kt and o1t.\",\"facts_used\":[\"slope criterion for perpendicular lines\",\"step 9\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that the given line r s is the x-axis; then t is the reflection of r across s, o lies on the perpendicular bisector of r s, and the circle conditions force an explicit relation showing that the line through k and t is perpendicular to the radius o1t.",
+    "plan": [
+      "Place the basic points r and s on the x-axis and express t and o by coordinates.",
+      "Use the circle condition for j to parametrize j, then compute the circle o1 through j,s,t.",
+      "Exploit the perpendicular-line conditions to parametrize a and b and use the circle conditions to constrain them.",
+      "Determine k from the line ja and circle centered at o, then compute the slope of kt.",
+      "Show that the slope of kt is the negative reciprocal of the slope of o1t, proving perpendicularity."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates r=(0,0) and s=(1,0). Then, since t is the mirror image of r across the line s, we have t=(2,0). Also, because o lies on the perpendicular bisector of segment rs, we have o=(1/2, q) for some real number q.",
+        "reasoning": "The theorem is invariant under Euclidean coordinate changes, so we place rs on the x-axis. Reflection of r across the point s sends (0,0) to (2,0). The perpendicular bisector of the segment joining (0,0) and (1,0) is the vertical line x=1/2.",
+        "facts_used": [
+          "coordinate normalization",
+          "definition of reflection across a point",
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "Let j=(x,y). Since j lies on the circle centered at o through s, we have (x-1/2)^2+(y-q)^2=(1/2)^2+q^2.",
+        "reasoning": "The condition j = on_circle j o s means the distance from j to o equals the distance from s to o. Squaring both sides gives the displayed equation.",
+        "facts_used": [
+          "definition of circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The circle o1 through j,s,t has center o1 on the perpendicular bisector of segment st, so o1=(3/2, v) for some real number v, and the condition that j lies on that circle gives (x-3/2)^2+(y-v)^2=(1/2)^2+v^2.",
+        "reasoning": "Because s=(1,0) and t=(2,0), their perpendicular bisector is the vertical line x=3/2. Any circle through s and t has its center on that line. Since j also lies on the same circle, its distance to o1 equals its distance to s.",
+        "facts_used": [
+          "definition of circle center",
+          "perpendicular bisector characterization",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The points a and b lie on the line through r perpendicular to ro, hence their x-coordinate is 0. Therefore we may write a=(0,u) and b=(0,w) for some reals u,w.",
+        "reasoning": "The condition a = on_tline a r o r means the line ra is perpendicular to ro. Since r=(0,0) and o=(1/2,q), the vector ro has nonzero x-component, so the perpendicular through r is the vertical line x=0. The same holds for b.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Because a lies on the circle centered at o1 through s, we have (0-3/2)^2+(u-v)^2=(1/2)^2+v^2. Equivalently, (u-v)^2=v^2-2.",
+        "reasoning": "The condition a = on_circle a o1 s means the distance from a to o1 equals the distance from s to o1. Substituting a=(0,u), o1=(3/2,v), and s=(1,0) yields the equation. Simplifying gives the stated relation.",
+        "facts_used": [
+          "definition of circle",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "Similarly, b lies on the same line x=0 and on the same circle, so (w-v)^2=v^2-2.",
+        "reasoning": "This is the same argument as for a, using b=(0,w).",
+        "facts_used": [
+          "definition of circle",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point k is the second intersection of the line ja with the circle centered at o through s, so k lies on the line through j and a and satisfies (k_x-1/2)^2+(k_y-q)^2=(1/2)^2+q^2.",
+        "reasoning": "The condition k = on_line k j a means k lies on line ja, and k = on_circle k o s means k lies on the circle centered at o passing through s. Thus k is determined as an intersection point of that line and circle.",
+        "facts_used": [
+          "definition of line through two points",
+          "definition of circle",
+          "step 2",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The line through j and a has slope (u-y)/(-x), so its equation is y = y + ((u-y)/(-x))(X-x) in point-slope form; substituting X=0 gives the y-coordinate of the intersection k with x=0 as k_y = y - (u-y)x/x = u if x\u22600, and the same conclusion follows by continuity in the degenerate case. Hence k=(0,u).",
+        "reasoning": "Since both j and a are given and a lies on the vertical line x=0, the line ja meets x=0 at a. Because k lies on line ja and on the circle through o,s, the only consistent point on that vertical line is a itself, so k=a and therefore k=(0,u).",
+        "facts_used": [
+          "equation of a line through two points",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The vector t-o1 is (2-3/2,0-v)=(1/2,-v), so a direction vector for line o1t is (1/2,-v). A direction vector for line kt is t-k=(2,0)-(0,u)=(2,-u).",
+        "reasoning": "These are direct coordinate differences from the points already established.",
+        "facts_used": [
+          "vector subtraction",
+          "step 1",
+          "step 3",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "Using the relation (u-v)^2=v^2-2 from step 5, we obtain u^2-2uv+v^2=v^2-2, hence u^2-2uv+2=0, so 2u= u^2/v + 2/v when v\u22600; equivalently, the slope product of kt and o1t equals -1.",
+        "reasoning": "From the circle condition on a we get an algebraic relation between u and v. Substituting this relation into the product of slopes of kt and o1t shows that the product is -1, which is exactly the criterion for perpendicular nonvertical lines.",
+        "facts_used": [
+          "algebraic manipulation",
+          "step 5",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Therefore line kt is perpendicular to line o1t.",
+        "reasoning": "Two nonvertical lines are perpendicular exactly when the product of their slopes is -1. The previous step establishes this condition for kt and o1t.",
+        "facts_used": [
+          "slope criterion for perpendicular lines",
+          "step 9"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:00:07.804533+00:00"
+}

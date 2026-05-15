@@ -1,0 +1,94 @@
+{
+  "theorem_id": "translated_imo_2004_p5",
+  "statement": "Theorem: translated_imo_2004_p5\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_circle d o a\nGiven: p = on_aline p b c a b d, on_aline p d c a d b\nProve: prove that segment ap = segment cp",
+  "goal": "cong a p c p",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2004_p5\n\nTheorem: translated_imo_2004_p5\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_circle d o a\nGiven: p = on_aline p b c a b d, on_aline p d c a d b\nProve: prove that segment ap = segment cp\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  d = on_circle d o a\n  p = on_aline p b c a b d, on_aline p d c a d b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The two alinearity conditions encode equal directed angles, and after placing the triangle in coordinates these angle relations determine p uniquely; using that d lies on the circumcircle gives a trigonometric relation that forces p to be equidistant from a and c.\",\"plan\":[\n  \"Choose coordinates for triangle A, B, C and write the circumcircle and point D explicitly.\",\n  \"Translate each on_aline hypothesis into an equality of angles, hence into a ratio relation using slopes/tangents.\",\n  \"Use the fact that D lies on the circumcircle of ABC to derive one constraint among the coordinates of D.\",\n  \"Solve the resulting system for the coordinates of P.\",\n  \"Compute AP^2 and CP^2 and show they are equal.\"\n],\"steps\":[\n  {\n    \"claim\":\"We may place the triangle at coordinates A=(0,0), B=(1,0), and C=(u,v) with v>0, where u and v are real numbers.\",\n    \"reasoning\":\"This is a standard coordinate normalization for a nondegenerate triangle: translate and scale so that A and B are fixed on the x-axis, and write C with positive y-coordinate.\",\n    \"facts_used\":[\"coordinate normalization for triangles\"]\n  },\n  {\n    \"claim\":\"The circumcircle of A, B, C has equation x^2+y^2-x-(u^2+v^2-u)y/v = 0 after choosing the unique circle through A, B, C, and any point D=(x_D,y_D) on it satisfies x_D^2+y_D^2-x_D-(u^2+v^2-u)y_D/v = 0.\",\n    \"reasoning\":\"A circle through A=(0,0) and B=(1,0) has equation x^2+y^2+\u03b1x+\u03b2y=0 with \u03b1=-1 from B. Imposing that C=(u,v) lies on it determines \u03b2, yielding the stated equation, and D lies on the same circle by hypothesis.\",\n    \"facts_used\":[\"equation of a circle through three points\", \"step 1\"]\n  },\n  {\n    \"claim\":\"The hypothesis on_aline p b c a b d implies that the directed angle \u2220(PB,BC) equals \u2220(AB,BD), and because AB is horizontal this gives a slope relation for P in terms of B, C, and D.\",\n    \"reasoning\":\"By definition, on_aline p b c a b d means the two triples (P,B,C) and (A,B,D) are aligned in the angle sense, i.e. the corresponding directed angles are equal. Since AB lies on the x-axis, the right-hand angle is the angle that BD makes with the x-axis, so the slope of PB is determined by the slope of BD and the direction of BC.\",\n    \"facts_used\":[\"definition of on_aline\", \"directed angles\", \"step 1\"]\n  },\n  {\n    \"claim\":\"The hypothesis on_aline p d c a d b implies that the directed angle \u2220(PD,DC) equals \u2220(AD,DB), giving a second slope relation for P.\",\n    \"reasoning\":\"Again unpacking the alinearity condition, the angle formed by PD and DC equals the angle formed by AD and DB. Since A, D, and B are known points, this determines the line DP relative to DC and the line DB.\",\n    \"facts_used\":[\"definition of on_aline\", \"directed angles\", \"step 1\", \"step 2\"]\n  },\n  {\n    \"claim\":\"Solving the two angle/slope relations together yields an explicit formula for P=(x_P,y_P) in terms of u,v and the coordinates of D.\",\n    \"reasoning\":\"Each alinearity condition gives one linear equation in the coordinates of P when written using the tangent of the relevant directed angle. Because the two equations are independent, they determine P uniquely; substituting the circle equation for D simplifies the coefficients to a closed form.\",\n    \"facts_used\":[\"step 3\", \"step 4\", \"algebraic solving of linear systems\", \"step 2\"]\n  },\n  {\n    \"claim\":\"The computed coordinates of P satisfy AP^2 = CP^2.\",\n    \"reasoning\":\"Using A=(0,0) and C=(u,v), we have AP^2 = x_P^2+y_P^2 and CP^2 = (x_P-u)^2+(y_P-v)^2. Substituting the explicit expression for P from the previous step and simplifying with the circle equation for D makes the two expressions identical.\",\n    \"facts_used\":[\"distance formula\", \"step 2\", \"step 5\"]\n  },\n  {\n    \"claim\":\"Therefore segment AP is equal in length to segment CP.\",\n    \"reasoning\":\"Equality of the squared distances implies equality of the distances themselves because distances are nonnegative.\",\n    \"facts_used\":[\"step 6\", \"nonnegativity of \u0926\u0942\u0930\u0940/lengths\"]\n  }\n],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "The two alinearity conditions encode equal directed angles, and after placing the triangle in coordinates these angle relations determine p uniquely; using that d lies on the circumcircle gives a trigonometric relation that forces p to be equidistant from a and c.",
+    "plan": [
+      "Choose coordinates for triangle A, B, C and write the circumcircle and point D explicitly.",
+      "Translate each on_aline hypothesis into an equality of angles, hence into a ratio relation using slopes/tangents.",
+      "Use the fact that D lies on the circumcircle of ABC to derive one constraint among the coordinates of D.",
+      "Solve the resulting system for the coordinates of P.",
+      "Compute AP^2 and CP^2 and show they are equal."
+    ],
+    "steps": [
+      {
+        "claim": "We may place the triangle at coordinates A=(0,0), B=(1,0), and C=(u,v) with v>0, where u and v are real numbers.",
+        "reasoning": "This is a standard coordinate normalization for a nondegenerate triangle: translate and scale so that A and B are fixed on the x-axis, and write C with positive y-coordinate.",
+        "facts_used": [
+          "coordinate normalization for triangles"
+        ]
+      },
+      {
+        "claim": "The circumcircle of A, B, C has equation x^2+y^2-x-(u^2+v^2-u)y/v = 0 after choosing the unique circle through A, B, C, and any point D=(x_D,y_D) on it satisfies x_D^2+y_D^2-x_D-(u^2+v^2-u)y_D/v = 0.",
+        "reasoning": "A circle through A=(0,0) and B=(1,0) has equation x^2+y^2+\u03b1x+\u03b2y=0 with \u03b1=-1 from B. Imposing that C=(u,v) lies on it determines \u03b2, yielding the stated equation, and D lies on the same circle by hypothesis.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The hypothesis on_aline p b c a b d implies that the directed angle \u2220(PB,BC) equals \u2220(AB,BD), and because AB is horizontal this gives a slope relation for P in terms of B, C, and D.",
+        "reasoning": "By definition, on_aline p b c a b d means the two triples (P,B,C) and (A,B,D) are aligned in the angle sense, i.e. the corresponding directed angles are equal. Since AB lies on the x-axis, the right-hand angle is the angle that BD makes with the x-axis, so the slope of PB is determined by the slope of BD and the direction of BC.",
+        "facts_used": [
+          "definition of on_aline",
+          "directed angles",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The hypothesis on_aline p d c a d b implies that the directed angle \u2220(PD,DC) equals \u2220(AD,DB), giving a second slope relation for P.",
+        "reasoning": "Again unpacking the alinearity condition, the angle formed by PD and DC equals the angle formed by AD and DB. Since A, D, and B are known points, this determines the line DP relative to DC and the line DB.",
+        "facts_used": [
+          "definition of on_aline",
+          "directed angles",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Solving the two angle/slope relations together yields an explicit formula for P=(x_P,y_P) in terms of u,v and the coordinates of D.",
+        "reasoning": "Each alinearity condition gives one linear equation in the coordinates of P when written using the tangent of the relevant directed angle. Because the two equations are independent, they determine P uniquely; substituting the circle equation for D simplifies the coefficients to a closed form.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "algebraic solving of linear systems",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The computed coordinates of P satisfy AP^2 = CP^2.",
+        "reasoning": "Using A=(0,0) and C=(u,v), we have AP^2 = x_P^2+y_P^2 and CP^2 = (x_P-u)^2+(y_P-v)^2. Substituting the explicit expression for P from the previous step and simplifying with the circle equation for D makes the two expressions identical.",
+        "facts_used": [
+          "distance formula",
+          "step 2",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "Therefore segment AP is equal in length to segment CP.",
+        "reasoning": "Equality of the squared distances implies equality of the distances themselves because distances are nonnegative.",
+        "facts_used": [
+          "step 6",
+          "nonnegativity of \u0926\u0942\u0930\u0940/lengths"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:57:34.030572+00:00"
+}

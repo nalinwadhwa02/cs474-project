@@ -1,0 +1,59 @@
+{
+  "theorem_id": "mathd_algebra_251",
+  "statement": "Theorem: mathd_algebra_251\nVariables: x (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 3 + 1 / x = 7 / x\nProve: x = 2",
+  "goal": "x = 2",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_251\n\nTheorem: mathd_algebra_251\nVariables: x (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 3 + 1 / x = 7 / x\nProve: x = 2\n\nHypotheses:\n  h\u2080 : x \u2260 0\n  h\u2081 : 3 + 1 / x = 7 / x\n\nVariables: x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since x is nonzero, we can multiply the equation 3 + 1/x = 7/x by x to eliminate denominators and solve the resulting linear equation.\",\n  \"plan\": [\n    \"Use the nonzero hypothesis to justify multiplying both sides by x.\",\n    \"Rewrite the equation after clearing denominators.\",\n    \"Simplify to a linear equation in x.\",\n    \"Solve the linear equation and conclude x = 2.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Multiplying the equation 3 + 1 / x = 7 / x by x is valid and yields 3x + 1 = 7.\",\n      \"reasoning\": \"Because h\u2080 states x \u2260 0, division by x is well-defined and multiplying both sides of h\u2081 by x preserves equality. Distributing x across the left-hand side gives x\u00b73 + x\u00b7(1/x) = 3x + 1, and on the right-hand side x\u00b7(7/x) = 7.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"multiplication preserves equality\", \"definition of division\"]\n    },\n    {\n      \"claim\": \"The equation 3x + 1 = 7 simplifies to 3x = 6.\",\n      \"reasoning\": \"Subtracting 1 from both sides of the equation preserves equality, so 3x + 1 - 1 = 7 - 1, which reduces to 3x = 6.\",\n      \"facts_used\": [\"step 1\", \"subtraction preserves equality\"]\n    },\n    {\n      \"claim\": \"x = 2.\",\n      \"reasoning\": \"Dividing both sides of 3x = 6 by 3 gives x = 6/3 = 2.\",\n      \"facts_used\": [\"step 2\", \"division preserves equality\", \"arithmetic simplification\"]\n    }\n  ],\n  \"final_answer\": \"2\"\n}",
+  "english_proof": {
+    "key_observation": "Since x is nonzero, we can multiply the equation 3 + 1/x = 7/x by x to eliminate denominators and solve the resulting linear equation.",
+    "plan": [
+      "Use the nonzero hypothesis to justify multiplying both sides by x.",
+      "Rewrite the equation after clearing denominators.",
+      "Simplify to a linear equation in x.",
+      "Solve the linear equation and conclude x = 2."
+    ],
+    "steps": [
+      {
+        "claim": "Multiplying the equation 3 + 1 / x = 7 / x by x is valid and yields 3x + 1 = 7.",
+        "reasoning": "Because h\u2080 states x \u2260 0, division by x is well-defined and multiplying both sides of h\u2081 by x preserves equality. Distributing x across the left-hand side gives x\u00b73 + x\u00b7(1/x) = 3x + 1, and on the right-hand side x\u00b7(7/x) = 7.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "multiplication preserves equality",
+          "definition of division"
+        ]
+      },
+      {
+        "claim": "The equation 3x + 1 = 7 simplifies to 3x = 6.",
+        "reasoning": "Subtracting 1 from both sides of the equation preserves equality, so 3x + 1 - 1 = 7 - 1, which reduces to 3x = 6.",
+        "facts_used": [
+          "step 1",
+          "subtraction preserves equality"
+        ]
+      },
+      {
+        "claim": "x = 2.",
+        "reasoning": "Dividing both sides of 3x = 6 by 3 gives x = 6/3 = 2.",
+        "facts_used": [
+          "step 2",
+          "division preserves equality",
+          "arithmetic simplification"
+        ]
+      }
+    ],
+    "final_answer": "2"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:02:01.207288+00:00"
+}

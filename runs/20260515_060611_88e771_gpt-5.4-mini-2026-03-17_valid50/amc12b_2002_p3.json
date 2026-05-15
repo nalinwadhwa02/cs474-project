@@ -1,0 +1,81 @@
+{
+  "theorem_id": "amc12b_2002_p3",
+  "statement": "Theorem: amc12b_2002_p3\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\nProve: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+  "goal": "we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12b_2002_p3\n\nTheorem: amc12b_2002_p3\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\nProve: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1\n\nHypotheses:\n  S : finset \u2115\n  h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"For every natural number n, the expression n^2 + 2 - 3n equals (n-1)(n-2) in the integers, so the primality condition can only hold when this product is a positive prime; checking small cases shows this happens exactly for n = 3.\",\"plan\":[\"Rewrite the polynomial as a product to understand when it can be prime.\",\"Show that n = 3 satisfies the membership condition, so S is nonempty.\",\"Prove that no n other than 3 can make n^2 + 2 - 3n prime.\",\"Conclude that S has exactly one element, hence card S = 1.\"],\"steps\":[{\"claim\":\"For every natural number n, n^2 + 2 - 3*n = (n - 1)*(n - 2) when interpreted as an integer expression.\",\"reasoning\":\"Expanding (n - 1)(n - 2) gives n^2 - 3n + 2, which is the same polynomial as n^2 + 2 - 3n. The note about truncation indicates that the intended expression is this polynomial form, not the truncated natural-number subtraction form.\",\"facts_used\":[\"algebraic expansion\"]},{\"claim\":\"If n \u2208 S, then n > 0 and n^2 + 2 - 3*n is prime.\",\"reasoning\":\"This is exactly the forward direction of the membership equivalence h\u2080(n).\",\"facts_used\":[\"h\u2080\"]},{\"claim\":\"3 \u2208 S.\",\"reasoning\":\"Substituting n = 3 gives 3^2 + 2 - 3\u00b73 = 2, and 2 is prime. Also 3 > 0, so the right-hand side of h\u2080(3) holds, hence 3 \u2208 S.\",\"facts_used\":[\"h\u2080\",\"direct computation\",\"prime 2\"]},{\"claim\":\"If n \u2208 S, then n = 3.\",\"reasoning\":\"By step 2, n^2 + 2 - 3n must be prime. Using step 1, this number is (n - 1)(n - 2). For n \u2265 4, both factors are at least 2, so the product is composite. For n = 1 or 2, the product is 0, which is not prime. For n = 3, the product is 2, which is prime. Therefore the only possible n is 3.\",\"facts_used\":[\"step 1\",\"definition of prime\",\"case analysis on n\"]},{\"claim\":\"S = {3}.\",\"reasoning\":\"Step 3 shows 3 \u2208 S, and step 4 shows every element of S must equal 3. Therefore S has exactly one element, namely 3.\",\"facts_used\":[\"step 3\",\"step 4\",\"extensionality of finite sets\"]},{\"claim\":\"S.card = 1.\",\"reasoning\":\"A finite set with exactly one element has cardinality 1.\",\"facts_used\":[\"step 5\",\"finite set cardinality\"]}],\"final_answer\":\"1\"}",
+  "english_proof": {
+    "key_observation": "For every natural number n, the expression n^2 + 2 - 3n equals (n-1)(n-2) in the integers, so the primality condition can only hold when this product is a positive prime; checking small cases shows this happens exactly for n = 3.",
+    "plan": [
+      "Rewrite the polynomial as a product to understand when it can be prime.",
+      "Show that n = 3 satisfies the membership condition, so S is nonempty.",
+      "Prove that no n other than 3 can make n^2 + 2 - 3n prime.",
+      "Conclude that S has exactly one element, hence card S = 1."
+    ],
+    "steps": [
+      {
+        "claim": "For every natural number n, n^2 + 2 - 3*n = (n - 1)*(n - 2) when interpreted as an integer expression.",
+        "reasoning": "Expanding (n - 1)(n - 2) gives n^2 - 3n + 2, which is the same polynomial as n^2 + 2 - 3n. The note about truncation indicates that the intended expression is this polynomial form, not the truncated natural-number subtraction form.",
+        "facts_used": [
+          "algebraic expansion"
+        ]
+      },
+      {
+        "claim": "If n \u2208 S, then n > 0 and n^2 + 2 - 3*n is prime.",
+        "reasoning": "This is exactly the forward direction of the membership equivalence h\u2080(n).",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "3 \u2208 S.",
+        "reasoning": "Substituting n = 3 gives 3^2 + 2 - 3\u00b73 = 2, and 2 is prime. Also 3 > 0, so the right-hand side of h\u2080(3) holds, hence 3 \u2208 S.",
+        "facts_used": [
+          "h\u2080",
+          "direct computation",
+          "prime 2"
+        ]
+      },
+      {
+        "claim": "If n \u2208 S, then n = 3.",
+        "reasoning": "By step 2, n^2 + 2 - 3n must be prime. Using step 1, this number is (n - 1)(n - 2). For n \u2265 4, both factors are at least 2, so the product is composite. For n = 1 or 2, the product is 0, which is not prime. For n = 3, the product is 2, which is prime. Therefore the only possible n is 3.",
+        "facts_used": [
+          "step 1",
+          "definition of prime",
+          "case analysis on n"
+        ]
+      },
+      {
+        "claim": "S = {3}.",
+        "reasoning": "Step 3 shows 3 \u2208 S, and step 4 shows every element of S must equal 3. Therefore S has exactly one element, namely 3.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "extensionality of finite sets"
+        ]
+      },
+      {
+        "claim": "S.card = 1.",
+        "reasoning": "A finite set with exactly one element has cardinality 1.",
+        "facts_used": [
+          "step 5",
+          "finite set cardinality"
+        ]
+      }
+    ],
+    "final_answer": "1"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.808523+00:00"
+}

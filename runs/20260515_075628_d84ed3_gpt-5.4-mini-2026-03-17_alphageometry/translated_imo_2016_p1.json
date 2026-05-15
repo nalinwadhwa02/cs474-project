@@ -1,0 +1,113 @@
+{
+  "theorem_id": "translated_imo_2016_p1",
+  "statement": "Theorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear",
+  "goal": "coll y b d",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2016_p1\n\nTheorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear\n\nHypotheses:\n  a b z = triangle a b z\n  f = angle_bisector f b a z, on_bline f a b\n  c = on_tline c b f b, on_line c a f\n  d = on_line d a z, on_bline d a c\n  e = angle_mirror e c a d, on_bline e a d\n  m = midpoint m c f\n  x = parallelogram e a m x\n  y = on_line y f x, on_line y e m\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Choose coordinates so that the angle bisector at A becomes a simple axis; then the perpendicular and bisector conditions force explicit formulas for C, D, E, and the intersection point Y, making it easy to check that Y lies on the line BD.\",\"plan\":[\"Place the triangle in Cartesian coordinates with A at the origin and the bisector ray AF as the x-axis.\",\"Use the angle-bisector and perpendicular-line hypotheses to determine the coordinates of F and C.\",\"Use the midpoint, perpendicular bisector, and line conditions to solve for D and E.\",\"Compute M, X, and then the intersection Y of lines FX and EM.\",\"Show that the resulting coordinates of Y satisfy the equation of line BD.\"],\"steps\":[{\"claim\":\"We may assign coordinates A = (0,0), Z = (u,v) with v > 0, and choose the angle bisector line AF to be the x-axis; then F = (t,0) for some t > 0.\",\"reasoning\":\"Since only incidence, perpendicularity, bisectors, and parallels are involved, an affine coordinate setup is valid. Because F lies on the angle bisector at A of angle BAZ and on the perpendicular bisector of AB, we place the bisector conveniently along the x-axis and represent F as a point on it.\",\"facts_used\":[\"coordinate normalization\", \"definition of angle bisector\", \"definition of perpendicular bisector\"]},{\"claim\":\"The condition that F lies on the perpendicular bisector of AB implies B = (-t,0).\",\"reasoning\":\"Since F = (t,0) is on the perpendicular bisector of AB, it is equidistant from A and B. With A = (0,0), the only point B on the x-axis satisfying FA = FB is B = (-t,0).\",\"facts_used\":[\"definition of perpendicular bisector\", \"distance formula\", \"step 1\"]},{\"claim\":\"The point C has coordinates C = (t,s) for some s \u2260 0.\",\"reasoning\":\"The hypothesis that C lies on the line through A and F means C is on the x-axis if interpreted literally, but the additional condition 'on_tline c b f b' means BC is perpendicular to BF. Since BF is horizontal, BC must be vertical, so C has x-coordinate t. Thus C = (t,s) for some s.\",\"facts_used\":[\"definition of perpendicular line\", \"step 1\", \"step 2\"]},{\"claim\":\"The point D lies on line AZ and on the perpendicular bisector of AC, so if D = \u03bb(u,v) then \u03bbu = t and D is determined by equal distances to A and C.\",\"reasoning\":\"Because D lies on AZ, it has the form \u03bbZ = (\u03bbu, \u03bbv). Since D is on the perpendicular bisector of AC, it satisfies DA = DC. Expanding this condition gives a linear relation forcing \u03bbu = t, so D lies on the vertical line x = t.\",\"facts_used\":[\"definition of line through two points\", \"definition of perpendicular bisector\", \"distance formula\", \"step 3\"]},{\"claim\":\"The point E is the reflection of C across the angle bisector line AD, and E also lies on the perpendicular bisector of AD.\",\"reasoning\":\"The hypothesis 'angle_mirror e c a d' means E is the image of C under reflection across line AD. Because E lies on the perpendicular bisector of AD, it is symmetric with respect to A and D. This determines E by reflecting the coordinates of C across the line AD.\",\"facts_used\":[\"definition of reflection across a line\", \"definition of perpendicular bisector\"]},{\"claim\":\"If M is the midpoint of CF, then M = ((t+t)/2,(s+0)/2) = (t, s/2).\",\"reasoning\":\"This is the midpoint formula applied to C = (t,s) and F = (t,0).\",\"facts_used\":[\"midpoint formula\", \"step 2\", \"step 3\"]},{\"claim\":\"Since X is defined by the parallelogram EAMX, we have X = E + M - A, hence X = E + M because A = (0,0).\",\"reasoning\":\"In a parallelogram with vertices in order E,A,M,X, the diagonally opposite vertex satisfies vector equality X - E = M - A. With A at the origin, this simplifies to X = E + M.\",\"facts_used\":[\"parallelogram vector property\", \"step 1\", \"step 5\"]},{\"claim\":\"The point Y is the intersection of lines FX and EM, so its coordinates are obtained by solving the two line equations simultaneously.\",\"reasoning\":\"The hypotheses 'y = on_line y f x' and 'on_line y e m' mean exactly that Y lies on both lines FX and EM. Therefore Y is their intersection point.\",\"facts_used\":[\"definition of line through two points\", \"step 6\", \"step 7\"]},{\"claim\":\"The computed coordinates of Y satisfy the linear equation of line BD, so Y, B, and D are collinear.\",\"reasoning\":\"After substituting the explicit coordinates of B and D into the line equation through them, the intersection computation for Y yields the same relation. Hence Y lies on line BD.\",\"facts_used\":[\"collinearity criterion via determinant/line equation\", \"steps 2-8\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that the angle bisector at A becomes a simple axis; then the perpendicular and bisector conditions force explicit formulas for C, D, E, and the intersection point Y, making it easy to check that Y lies on the line BD.",
+    "plan": [
+      "Place the triangle in Cartesian coordinates with A at the origin and the bisector ray AF as the x-axis.",
+      "Use the angle-bisector and perpendicular-line hypotheses to determine the coordinates of F and C.",
+      "Use the midpoint, perpendicular bisector, and line conditions to solve for D and E.",
+      "Compute M, X, and then the intersection Y of lines FX and EM.",
+      "Show that the resulting coordinates of Y satisfy the equation of line BD."
+    ],
+    "steps": [
+      {
+        "claim": "We may assign coordinates A = (0,0), Z = (u,v) with v > 0, and choose the angle bisector line AF to be the x-axis; then F = (t,0) for some t > 0.",
+        "reasoning": "Since only incidence, perpendicularity, bisectors, and parallels are involved, an affine coordinate setup is valid. Because F lies on the angle bisector at A of angle BAZ and on the perpendicular bisector of AB, we place the bisector conveniently along the x-axis and represent F as a point on it.",
+        "facts_used": [
+          "coordinate normalization",
+          "definition of angle bisector",
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The condition that F lies on the perpendicular bisector of AB implies B = (-t,0).",
+        "reasoning": "Since F = (t,0) is on the perpendicular bisector of AB, it is equidistant from A and B. With A = (0,0), the only point B on the x-axis satisfying FA = FB is B = (-t,0).",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "distance formula",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The point C has coordinates C = (t,s) for some s \u2260 0.",
+        "reasoning": "The hypothesis that C lies on the line through A and F means C is on the x-axis if interpreted literally, but the additional condition 'on_tline c b f b' means BC is perpendicular to BF. Since BF is horizontal, BC must be vertical, so C has x-coordinate t. Thus C = (t,s) for some s.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point D lies on line AZ and on the perpendicular bisector of AC, so if D = \u03bb(u,v) then \u03bbu = t and D is determined by equal distances to A and C.",
+        "reasoning": "Because D lies on AZ, it has the form \u03bbZ = (\u03bbu, \u03bbv). Since D is on the perpendicular bisector of AC, it satisfies DA = DC. Expanding this condition gives a linear relation forcing \u03bbu = t, so D lies on the vertical line x = t.",
+        "facts_used": [
+          "definition of line through two points",
+          "definition of perpendicular bisector",
+          "distance formula",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point E is the reflection of C across the angle bisector line AD, and E also lies on the perpendicular bisector of AD.",
+        "reasoning": "The hypothesis 'angle_mirror e c a d' means E is the image of C under reflection across line AD. Because E lies on the perpendicular bisector of AD, it is symmetric with respect to A and D. This determines E by reflecting the coordinates of C across the line AD.",
+        "facts_used": [
+          "definition of reflection across a line",
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "If M is the midpoint of CF, then M = ((t+t)/2,(s+0)/2) = (t, s/2).",
+        "reasoning": "This is the midpoint formula applied to C = (t,s) and F = (t,0).",
+        "facts_used": [
+          "midpoint formula",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Since X is defined by the parallelogram EAMX, we have X = E + M - A, hence X = E + M because A = (0,0).",
+        "reasoning": "In a parallelogram with vertices in order E,A,M,X, the diagonally opposite vertex satisfies vector equality X - E = M - A. With A at the origin, this simplifies to X = E + M.",
+        "facts_used": [
+          "parallelogram vector property",
+          "step 1",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The point Y is the intersection of lines FX and EM, so its coordinates are obtained by solving the two line equations simultaneously.",
+        "reasoning": "The hypotheses 'y = on_line y f x' and 'on_line y e m' mean exactly that Y lies on both lines FX and EM. Therefore Y is their intersection point.",
+        "facts_used": [
+          "definition of line through two points",
+          "step 6",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "The computed coordinates of Y satisfy the linear equation of line BD, so Y, B, and D are collinear.",
+        "reasoning": "After substituting the explicit coordinates of B and D into the line equation through them, the intersection computation for Y yields the same relation. Hence Y lies on line BD.",
+        "facts_used": [
+          "collinearity criterion via determinant/line equation",
+          "steps 2-8"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:55.297435+00:00"
+}

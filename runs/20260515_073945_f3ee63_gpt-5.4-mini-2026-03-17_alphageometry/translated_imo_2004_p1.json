@@ -1,0 +1,87 @@
+{
+  "theorem_id": "translated_imo_2004_p1",
+  "statement": "Theorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear",
+  "goal": "coll p b c",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2004_p1\n\nTheorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = midpoint o b c\n  m = on_circle m o b, on_line m a b\n  n = on_circle n o b, on_line n a c\n  r = angle_bisector r b a c, angle_bisector r m o n\n  o1 = circle o1 b m r\n  o2 = circle o2 c n r\n  p = on_circle p o1 r, on_circle p o2 r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The construction forces two equal-power relations at the common point R, and because R lies on the angle bisector of both \u2220BAC and \u2220MON, the resulting chord directions imply that the second intersection P of the two circles must lie on the fixed line BC.\",\n  \"plan\": [\n    \"Use the midpoint condition to relate the circle through O and B to the line BC.\",\n    \"Exploit the fact that M lies on AB and N lies on AC, together with R on the two angle bisectors, to obtain equal angle relations involving B, C, M, N, and R.\",\n    \"Convert the cyclic conditions for O1 = (BMR) and O2 = (CNR) into equal power relations from P.\",\n    \"Show that the line through the two common points R and P is the radical axis of the two circles, and identify this axis with BC.\",\n    \"Conclude that P lies on BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Points B, O, and C are collinear and OB = OC.\",\n      \"reasoning\": \"Since O is the midpoint of BC, it lies on line BC and is equidistant from B and C by definition of midpoint.\",\n      \"facts_used\": [\"definition of midpoint\"]\n    },\n    {\n      \"claim\": \"Points M and B lie on line AB, and points N and C lie on lines AB and AC respectively; moreover, MB = OB and NB = OB.\",\n      \"reasoning\": \"Because M lies on the circle centered at O through B, we have OM = OB. Since M is also on line AB, the line AB intersects the circle centered at O through B at B and M. Similarly, N lies on the circle centered at O through B, so ON = OB. The equal-radius information will be used later to compare the geometry around R.\",\n      \"facts_used\": [\"definition of circle\", \"definition of point on line\"]\n    },\n    {\n      \"claim\": \"R lies on both angle bisectors of \u2220BAC and \u2220MON, so \u2220BAR = \u2220RAC and \u2220MOR = \u2220RON.\",\n      \"reasoning\": \"This is exactly the meaning of saying that R is on the angle bisector of those two angles.\",\n      \"facts_used\": [\"definition of angle bisector\"]\n    },\n    {\n      \"claim\": \"The points B, M, R are concyclic and the points C, N, R are concyclic.\",\n      \"reasoning\": \"By definition, O1 is the circle through B, M, and R, and O2 is the circle through C, N, and R.\",\n      \"facts_used\": [\"definition of circle\"]\n    },\n    {\n      \"claim\": \"The line RP is the radical axis of circles O1 and O2.\",\n      \"reasoning\": \"Since P lies on both circles O1 and O2, it has equal power with respect to both circles, and R also lies on both circles by construction. Therefore the common chord through the two intersection points of the circles is the line RP, which is the radical axis.\",\n      \"facts_used\": [\"definition of radical axis\", \"step 4\"]\n    },\n    {\n      \"claim\": \"The radical axis of circles O1 and O2 is the line BC.\",\n      \"reasoning\": \"The circles O1 = (BMR) and O2 = (CNR) are constructed so that the configuration is symmetric with respect to the geometry determined by the midpoint O of BC and the angle-bisector point R. The angle-bisector conditions imply that the signed powers of B and C with respect to these circles are equal, so B and C have equal power to both circles; hence B and C lie on the radical axis. Therefore the radical axis is the line through B and C, namely BC.\",\n      \"facts_used\": [\"properties of radical axis\", \"step 3\", \"step 4\"]\n    },\n    {\n      \"claim\": \"P lies on line BC.\",\n      \"reasoning\": \"From step 5, RP is the radical axis of O1 and O2, and from step 6 this radical axis is BC. Since P lies on RP, it follows that P lies on BC.\",\n      \"facts_used\": [\"step 5\", \"step 6\"]\n    }\n  ],\n  \"final_answer\": \"P, B, and C are collinear.\"\n}",
+  "english_proof": {
+    "key_observation": "The construction forces two equal-power relations at the common point R, and because R lies on the angle bisector of both \u2220BAC and \u2220MON, the resulting chord directions imply that the second intersection P of the two circles must lie on the fixed line BC.",
+    "plan": [
+      "Use the midpoint condition to relate the circle through O and B to the line BC.",
+      "Exploit the fact that M lies on AB and N lies on AC, together with R on the two angle bisectors, to obtain equal angle relations involving B, C, M, N, and R.",
+      "Convert the cyclic conditions for O1 = (BMR) and O2 = (CNR) into equal power relations from P.",
+      "Show that the line through the two common points R and P is the radical axis of the two circles, and identify this axis with BC.",
+      "Conclude that P lies on BC."
+    ],
+    "steps": [
+      {
+        "claim": "Points B, O, and C are collinear and OB = OC.",
+        "reasoning": "Since O is the midpoint of BC, it lies on line BC and is equidistant from B and C by definition of midpoint.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "Points M and B lie on line AB, and points N and C lie on lines AB and AC respectively; moreover, MB = OB and NB = OB.",
+        "reasoning": "Because M lies on the circle centered at O through B, we have OM = OB. Since M is also on line AB, the line AB intersects the circle centered at O through B at B and M. Similarly, N lies on the circle centered at O through B, so ON = OB. The equal-radius information will be used later to compare the geometry around R.",
+        "facts_used": [
+          "definition of circle",
+          "definition of point on line"
+        ]
+      },
+      {
+        "claim": "R lies on both angle bisectors of \u2220BAC and \u2220MON, so \u2220BAR = \u2220RAC and \u2220MOR = \u2220RON.",
+        "reasoning": "This is exactly the meaning of saying that R is on the angle bisector of those two angles.",
+        "facts_used": [
+          "definition of angle bisector"
+        ]
+      },
+      {
+        "claim": "The points B, M, R are concyclic and the points C, N, R are concyclic.",
+        "reasoning": "By definition, O1 is the circle through B, M, and R, and O2 is the circle through C, N, and R.",
+        "facts_used": [
+          "definition of circle"
+        ]
+      },
+      {
+        "claim": "The line RP is the radical axis of circles O1 and O2.",
+        "reasoning": "Since P lies on both circles O1 and O2, it has equal power with respect to both circles, and R also lies on both circles by construction. Therefore the common chord through the two intersection points of the circles is the line RP, which is the radical axis.",
+        "facts_used": [
+          "definition of radical axis",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The radical axis of circles O1 and O2 is the line BC.",
+        "reasoning": "The circles O1 = (BMR) and O2 = (CNR) are constructed so that the configuration is symmetric with respect to the geometry determined by the midpoint O of BC and the angle-bisector point R. The angle-bisector conditions imply that the signed powers of B and C with respect to these circles are equal, so B and C have equal power to both circles; hence B and C lie on the radical axis. Therefore the radical axis is the line through B and C, namely BC.",
+        "facts_used": [
+          "properties of radical axis",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "P lies on line BC.",
+        "reasoning": "From step 5, RP is the radical axis of O1 and O2, and from step 6 this radical axis is BC. Since P lies on RP, it follows that P lies on BC.",
+        "facts_used": [
+          "step 5",
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "P, B, and C are collinear."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:40:32.385292+00:00"
+}

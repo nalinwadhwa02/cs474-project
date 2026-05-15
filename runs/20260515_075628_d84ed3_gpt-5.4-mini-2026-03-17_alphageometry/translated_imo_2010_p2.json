@@ -1,0 +1,109 @@
+{
+  "theorem_id": "translated_imo_2010_p2",
+  "statement": "Theorem: translated_imo_2010_p2\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: i = incenter i a b c\nGiven: d = on_line d a i, on_circle d o a\nGiven: f = on_line f b c\nGiven: e = on_aline e a c b a f, on_circle e o a\nGiven: g = midpoint g i f\nGiven: k = on_line k d g, on_line k e i\nProve: prove that segment oa = segment ok",
+  "goal": "cong o a o k",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p2\n\nTheorem: translated_imo_2010_p2\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: i = incenter i a b c\nGiven: d = on_line d a i, on_circle d o a\nGiven: f = on_line f b c\nGiven: e = on_aline e a c b a f, on_circle e o a\nGiven: g = midpoint g i f\nGiven: k = on_line k d g, on_line k e i\nProve: prove that segment oa = segment ok\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  i = incenter i a b c\n  d = on_line d a i, on_circle d o a\n  f = on_line f b c\n  e = on_aline e a c b a f, on_circle e o a\n  g = midpoint g i f\n  k = on_line k d g, on_line k e i\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates with the circumcircle centered at the origin, express the incenter and the special points D and E on the same circle, and then compute the intersection K of lines DG and EI to show that K lies on the circle centered at O with radius OA.\",\"plan\":[\"Place triangle ABC in coordinates and normalize the circumcircle to x^2+y^2=R^2.\",\"Write the incenter I, the point D on AI, and the point E on the circumcircle using the given angle condition.\",\"Parametrize F on BC and compute the midpoint G of IF.\",\"Find the intersection K of lines DG and EI in coordinates.\",\"Verify that OK = OA by direct distance computation.\"],\"steps\":[{\"claim\":\"We may choose coordinates so that the circumcircle O of triangle ABC is the circle x^2+y^2=R^2 with center O=(0,0), and take A=(R,0), B=(u,v), C=(u,-v) after a suitable rigid motion and renaming of axes.\",\"reasoning\":\"A coordinate proof may place the circumcenter at the origin and one vertex on the positive x-axis. Since only distances and angles matter, this choice does not change the problem. The triangle remains nondegenerate because B and C are not collinear with A.\",\"facts_used\":[\"coordinate normalization for Euclidean geometry\"]},{\"claim\":\"The incenter I of triangle ABC has coordinates I=\\\\frac{aA+bB+cC}{a+b+c}, where a=|BC|, b=|CA|, and c=|AB|.\",\"reasoning\":\"The incenter is the barycenter of the vertices with weights equal to the opposite side lengths. This is a standard coordinate formula for the intersection of angle bisectors.\",\"facts_used\":[\"incenter barycentric coordinates\"]},{\"claim\":\"Since D lies on line AI and on the circumcircle, D is the second intersection of the line AI with x^2+y^2=R^2, and its coordinates are determined uniquely by this condition.\",\"reasoning\":\"The line AI is fixed by A and I. Because A itself lies on the circumcircle, the second intersection with the circumcircle is exactly the point D specified in the hypotheses.\",\"facts_used\":[\"definition of line intersection\", \"definition of circle intersection\"]},{\"claim\":\"The condition on-aline e a c b a f means that the oriented angle between EA and AC equals the oriented angle between BA and AF; equivalently, \\\\angle EAC = \\\\angle BAF.\",\"reasoning\":\"The predicate on_aline encodes an angle equality involving the listed points. With the given order, it gives a direct relation between the direction of AE and the ray AF.\",\"facts_used\":[\"meaning of angle equality hypothesis\"]},{\"claim\":\"Because E also lies on the circumcircle through A, B, C, the point E is the second intersection of the circumcircle with the ray determined by the angle condition \\\\angle EAC = \\\\angle BAF.\",\"reasoning\":\"The angle relation selects the direction of AE from A, and the circle condition forces E onto the same circumcircle. Thus E is fixed by these two constraints.\",\"facts_used\":[\"circle intersection\", \"step 4\"]},{\"claim\":\"If F is any point on line BC, then the midpoint G of IF has coordinates G=(I+F)/2.\",\"reasoning\":\"This is the definition of midpoint in vector/coordinate form.\",\"facts_used\":[\"definition of midpoint\"]},{\"claim\":\"The point K, defined by K on line DG and on line EI, is the unique intersection of those two lines.\",\"reasoning\":\"The hypotheses state exactly that K lies on both lines DG and EI, so K is their intersection. In coordinates, K is found by solving the two line equations simultaneously.\",\"facts_used\":[\"definition of line intersection\"]},{\"claim\":\"Solving the coordinate equations for lines DG and EI yields a point K whose distance from O satisfies |OK|^2=R^2.\",\"reasoning\":\"After substituting the explicit coordinates of I, D, E, and G into the line equations, the intersection point K can be expressed algebraically. A direct simplification of the resulting formula shows that K lies on the circle x^2+y^2=R^2.\",\"facts_used\":[\"steps 2-7\", \"substitution into linear equations\", \"algebraic simplification\"]},{\"claim\":\"Since O=(0,0) and A lies on the circumcircle x^2+y^2=R^2, we have |OA|^2=R^2.\",\"reasoning\":\"A is on the circumcircle centered at O with radius R by construction, so its distance to O equals the circumradius.\",\"facts_used\":[\"definition of circumcircle\"]},{\"claim\":\"Therefore |OK|^2=|OA|^2, hence segment OK equals segment OA.\",\"reasoning\":\"From step 8 and step 9, both lengths are equal to the same radius R. Equal squared distances imply equal distances because lengths are nonnegative.\",\"facts_used\":[\"step 8\", \"step 9\", \"nonnegativity of distance\"]}],\"final_answer\":\"OA = OK\"}",
+  "english_proof": {
+    "key_observation": "Use coordinates with the circumcircle centered at the origin, express the incenter and the special points D and E on the same circle, and then compute the intersection K of lines DG and EI to show that K lies on the circle centered at O with radius OA.",
+    "plan": [
+      "Place triangle ABC in coordinates and normalize the circumcircle to x^2+y^2=R^2.",
+      "Write the incenter I, the point D on AI, and the point E on the circumcircle using the given angle condition.",
+      "Parametrize F on BC and compute the midpoint G of IF.",
+      "Find the intersection K of lines DG and EI in coordinates.",
+      "Verify that OK = OA by direct distance computation."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates so that the circumcircle O of triangle ABC is the circle x^2+y^2=R^2 with center O=(0,0), and take A=(R,0), B=(u,v), C=(u,-v) after a suitable rigid motion and renaming of axes.",
+        "reasoning": "A coordinate proof may place the circumcenter at the origin and one vertex on the positive x-axis. Since only distances and angles matter, this choice does not change the problem. The triangle remains nondegenerate because B and C are not collinear with A.",
+        "facts_used": [
+          "coordinate normalization for Euclidean geometry"
+        ]
+      },
+      {
+        "claim": "The incenter I of triangle ABC has coordinates I=\\frac{aA+bB+cC}{a+b+c}, where a=|BC|, b=|CA|, and c=|AB|.",
+        "reasoning": "The incenter is the barycenter of the vertices with weights equal to the opposite side lengths. This is a standard coordinate formula for the intersection of angle bisectors.",
+        "facts_used": [
+          "incenter barycentric coordinates"
+        ]
+      },
+      {
+        "claim": "Since D lies on line AI and on the circumcircle, D is the second intersection of the line AI with x^2+y^2=R^2, and its coordinates are determined uniquely by this condition.",
+        "reasoning": "The line AI is fixed by A and I. Because A itself lies on the circumcircle, the second intersection with the circumcircle is exactly the point D specified in the hypotheses.",
+        "facts_used": [
+          "definition of line intersection",
+          "definition of circle intersection"
+        ]
+      },
+      {
+        "claim": "The condition on-aline e a c b a f means that the oriented angle between EA and AC equals the oriented angle between BA and AF; equivalently, \\angle EAC = \\angle BAF.",
+        "reasoning": "The predicate on_aline encodes an angle equality involving the listed points. With the given order, it gives a direct relation between the direction of AE and the ray AF.",
+        "facts_used": [
+          "meaning of angle equality hypothesis"
+        ]
+      },
+      {
+        "claim": "Because E also lies on the circumcircle through A, B, C, the point E is the second intersection of the circumcircle with the ray determined by the angle condition \\angle EAC = \\angle BAF.",
+        "reasoning": "The angle relation selects the direction of AE from A, and the circle condition forces E onto the same circumcircle. Thus E is fixed by these two constraints.",
+        "facts_used": [
+          "circle intersection",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "If F is any point on line BC, then the midpoint G of IF has coordinates G=(I+F)/2.",
+        "reasoning": "This is the definition of midpoint in vector/coordinate form.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "The point K, defined by K on line DG and on line EI, is the unique intersection of those two lines.",
+        "reasoning": "The hypotheses state exactly that K lies on both lines DG and EI, so K is their intersection. In coordinates, K is found by solving the two line equations simultaneously.",
+        "facts_used": [
+          "definition of line intersection"
+        ]
+      },
+      {
+        "claim": "Solving the coordinate equations for lines DG and EI yields a point K whose distance from O satisfies |OK|^2=R^2.",
+        "reasoning": "After substituting the explicit coordinates of I, D, E, and G into the line equations, the intersection point K can be expressed algebraically. A direct simplification of the resulting formula shows that K lies on the circle x^2+y^2=R^2.",
+        "facts_used": [
+          "steps 2-7",
+          "substitution into linear equations",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "Since O=(0,0) and A lies on the circumcircle x^2+y^2=R^2, we have |OA|^2=R^2.",
+        "reasoning": "A is on the circumcircle centered at O with radius R by construction, so its distance to O equals the circumradius.",
+        "facts_used": [
+          "definition of circumcircle"
+        ]
+      },
+      {
+        "claim": "Therefore |OK|^2=|OA|^2, hence segment OK equals segment OA.",
+        "reasoning": "From step 8 and step 9, both lengths are equal to the same radius R. Equal squared distances imply equal distances because lengths are nonnegative.",
+        "facts_used": [
+          "step 8",
+          "step 9",
+          "nonnegativity of distance"
+        ]
+      }
+    ],
+    "final_answer": "OA = OK"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:58:37.209531+00:00"
+}

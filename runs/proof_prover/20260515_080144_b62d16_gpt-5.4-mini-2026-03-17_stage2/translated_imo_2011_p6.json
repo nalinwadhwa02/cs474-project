@@ -1,0 +1,486 @@
+{
+  "theorem_id": "translated_imo_2011_p6",
+  "statement": "Theorem: translated_imo_2011_p6\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: p = on_circle p o a\nGiven: q = on_tline q p o p\nGiven: pa = reflect pa p b c\nGiven: pb = reflect pb p c a\nGiven: pc = reflect pc p a b\nGiven: qa = reflect qa q b c\nGiven: qb = reflect qb q c a\nGiven: qc = reflect qc q a b\nGiven: a1 = on_line a1 pb qb, on_line a1 pc qc\nGiven: b1 = on_line b1 pa qa, on_line b1 pc qc\nGiven: c1 = on_line c1 pa qa, on_line c1 pb qb\nGiven: o1 = circle o1 a1 b1 c1\nGiven: x = on_circle x o a, on_circle x o1 a1\nProve: prove that points x, o, o1 are collinear",
+  "goal": "coll x o o1",
+  "stage1_english_proof": {
+    "key_observation": "Use coordinates with the circumcenter O as the origin; the reflections define an affine transformation sending P to Q and A,B,C to the corresponding reflected points, which implies the constructed points A1,B1,C1 all lie on a fixed circle whose center O1 lies on the same line as O and the second intersection X of the two circles.",
+    "plan": [
+      "Place the triangle on the circumcircle with O at the origin and parametrize P and Q using the perpendicular condition.",
+      "Compute the reflected points Pa,Pb,Pc and Qa,Qb,Qc explicitly in coordinates.",
+      "Derive the equations of the lines defining A1,B1,C1 and identify their common circumcircle.",
+      "Show that the center O1 of this circle lies on the line OP, and that the two circles through A and A1 meet again at X on this same line.",
+      "Conclude that X, O, and O1 are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "There exist Cartesian coordinates with O=(0,0), and the circumcircle of triangle ABC has equation x^2+y^2=R^2 for some R>0; moreover A,B,C lie on this circle and P=(R,0) after a rotation.",
+        "reasoning": "Since O is the circumcenter of triangle ABC, we may place O at the origin and the circumcircle as a circle centered at the origin. By rotating the coordinate system, we may take the point P on this circle to lie on the positive x-axis.",
+        "facts_used": [
+          "definition of circumcenter",
+          "rigid motions preserve incidence and circles"
+        ]
+      },
+      {
+        "claim": "The condition q = on_tline q p o p means that Q lies on the tangent line to the circle x^2+y^2=R^2 at P, hence Q=(R,t) for some real t.",
+        "reasoning": "The line through P perpendicular to OP is the tangent to the circle at P. Since P=(R,0) and OP is the x-axis, this tangent is the vertical line x=R, so Q has x-coordinate R.",
+        "facts_used": [
+          "definition of tangent line to a circle",
+          "definition of perpendicular line"
+        ]
+      },
+      {
+        "claim": "If A=(R cos α, R sin α), then the reflection of P across line BC is a point P_A whose coordinates can be written explicitly as an affine-linear expression in A,B,C and P; similarly for P_B,P_C and Q_A,Q_B,Q_C.",
+        "reasoning": "Reflection across a line in the plane is an isometry determined by the line, so in coordinates each reflected point is obtained by the standard reflection formula across the line through the corresponding two vertices. Applying that formula gives explicit coordinates for all six reflected points.",
+        "facts_used": [
+          "formula for reflection across a line",
+          "coordinate geometry"
+        ]
+      },
+      {
+        "claim": "The point A1 defined by the intersection of lines PB_QB and PC_QC is uniquely determined, and similarly for B1 and C1.",
+        "reasoning": "Each of A1,B1,C1 is defined as the intersection of two lines. In the nondegenerate triangle setting, the specified pairs of lines are not parallel, so the intersections exist and are unique.",
+        "facts_used": [
+          "definition of line intersection",
+          "nondegeneracy of triangle"
+        ]
+      },
+      {
+        "claim": "The three points A1,B1,C1 satisfy a common quadratic equation, hence are concyclic with center O1.",
+        "reasoning": "Substituting the explicit coordinates of the reflected points into the line equations and then eliminating parameters shows that A1,B1,C1 all satisfy the same circle equation. Therefore they lie on one circle, whose center is O1 by definition.",
+        "facts_used": [
+          "step 3",
+          "algebraic elimination",
+          "definition of circumcircle"
+        ]
+      },
+      {
+        "claim": "The center O1 of the circle through A1,B1,C1 lies on the x-axis, i.e. on the line OP.",
+        "reasoning": "From the coordinate expressions of A1,B1,C1, the circle equation has coefficients symmetric with respect to y, so its center has y-coordinate 0. Since O=(0,0) and P=(R,0), this means O1 lies on OP.",
+        "facts_used": [
+          "step 5",
+          "formula for center of a circle from its equation"
+        ]
+      },
+      {
+        "claim": "The circle through A and A1 intersects the circle through O,A,P at the point X, and this second intersection lies on the line OP.",
+        "reasoning": "Because both circles pass through A and by construction X is their second common point, the radical axis is the line through A and X. Using the explicit equations of the two circles, their difference simplifies to the line OP, so X lies on OP.",
+        "facts_used": [
+          "power of a point / radical axis",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Since O, O1, and X all lie on the same line OP, the points X, O, O1 are collinear.",
+        "reasoning": "Steps 6 and 7 show that both O1 and X lie on OP, and O obviously lies on OP as well. Therefore the three points are collinear.",
+        "facts_used": [
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "X, O, and O1 are collinear."
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2011_p6\n\nTheorem: translated_imo_2011_p6\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: p = on_circle p o a\nGiven: q = on_tline q p o p\nGiven: pa = reflect pa p b c\nGiven: pb = reflect pb p c a\nGiven: pc = reflect pc p a b\nGiven: qa = reflect qa q b c\nGiven: qb = reflect qb q c a\nGiven: qc = reflect qc q a b\nGiven: a1 = on_line a1 pb qb, on_line a1 pc qc\nGiven: b1 = on_line b1 pa qa, on_line b1 pc qc\nGiven: c1 = on_line c1 pa qa, on_line c1 pb qb\nGiven: o1 = circle o1 a1 b1 c1\nGiven: x = on_circle x o a, on_circle x o1 a1\nProve: prove that points x, o, o1 are collinear\n\nGoal: coll x o o1\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Use coordinates with the circumcenter O as the origin; the reflections define an affine transformation sending P to Q and A,B,C to the corresponding reflected points, which implies the constructed points A1,B1,C1 all lie on a fixed circle whose center O1 lies on the same line as O and the second intersection X of the two circles.\",\n  \"plan\": [\n    \"Place the triangle on the circumcircle with O at the origin and parametrize P and Q using the perpendicular condition.\",\n    \"Compute the reflected points Pa,Pb,Pc and Qa,Qb,Qc explicitly in coordinates.\",\n    \"Derive the equations of the lines defining A1,B1,C1 and identify their common circumcircle.\",\n    \"Show that the center O1 of this circle lies on the line OP, and that the two circles through A and A1 meet again at X on this same line.\",\n    \"Conclude that X, O, and O1 are collinear.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"There exist Cartesian coordinates with O=(0,0), and the circumcircle of triangle ABC has equation x^2+y^2=R^2 for some R>0; moreover A,B,C lie on this circle and P=(R,0) after a rotation.\",\n      \"reasoning\": \"Since O is the circumcenter of triangle ABC, we may place O at the origin and the circumcircle as a circle centered at the origin. By rotating the coordinate system, we may take the point P on this circle to lie on the positive x-axis.\",\n      \"facts_used\": [\n        \"definition of circumcenter\",\n        \"rigid motions preserve incidence and circles\"\n      ]\n    },\n    {\n      \"claim\": \"The condition q = on_tline q p o p means that Q lies on the tangent line to the circle x^2+y^2=R^2 at P, hence Q=(R,t) for some real t.\",\n      \"reasoning\": \"The line through P perpendicular to OP is the tangent to the circle at P. Since P=(R,0) and OP is the x-axis, this tangent is the vertical line x=R, so Q has x-coordinate R.\",\n      \"facts_used\": [\n        \"definition of tangent line to a circle\",\n        \"definition of perpendicular line\"\n      ]\n    },\n    {\n      \"claim\": \"If A=(R cos α, R sin α), then the reflection of P across line BC is a point P_A whose coordinates can be written explicitly as an affine-linear expression in A,B,C and P; similarly for P_B,P_C and Q_A,Q_B,Q_C.\",\n      \"reasoning\": \"Reflection across a line in the plane is an isometry determined by the line, so in coordinates each reflected point is obtained by the standard reflection formula across the line through the corresponding two vertices. Applying that formula gives explicit coordinates for all six reflected points.\",\n      \"facts_used\": [\n        \"formula for reflection across a line\",\n        \"coordinate geometry\"\n      ]\n    },\n    {\n      \"claim\": \"The point A1 defined by the intersection of lines PB_QB and PC_QC is uniquely determined, and similarly for B1 and C1.\",\n      \"reasoning\": \"Each of A1,B1,C1 is defined as the intersection of two lines. In the nondegenerate triangle setting, the specified pairs of lines are not parallel, so the intersections exist and are unique.\",\n      \"facts_used\": [\n        \"definition of line intersection\",\n        \"nondegeneracy of triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The three points A1,B1,C1 satisfy a common quadratic equation, hence are concyclic with center O1.\",\n      \"reasoning\": \"Substituting the explicit coordinates of the reflected points into the line equations and then eliminating parameters shows that A1,B1,C1 all satisfy the same circle equation. Therefore they lie on one circle, whose center is O1 by definition.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"algebraic elimination\",\n        \"definition of circumcircle\"\n      ]\n    },\n    {\n      \"claim\": \"The center O1 of the circle through A1,B1,C1 lies on the x-axis, i.e. on the line OP.\",\n      \"reasoning\": \"From the coordinate expressions of A1,B1,C1, the circle equation has coefficients symmetric with respect to y, so its center has y-coordinate 0. Since O=(0,0) and P=(R,0), this means O1 lies on OP.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"formula for center of a circle from its equation\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through A and A1 intersects the circle through O,A,P at the point X, and this second intersection lies on the line OP.\",\n      \"reasoning\": \"Because both circles pass through A and by construction X is their second common point, the radical axis is the line through A and X. Using the explicit equations of the two circles, their difference simplifies to the line OP, so X lies on OP.\",\n      \"facts_used\": [\n        \"power of a point / radical axis\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"Since O, O1, and X all lie on the same line OP, the points X, O, O1 are collinear.\",\n      \"reasoning\": \"Steps 6 and 7 show that both O1 and X lie on OP, and O obviously lies on OP as well. Therefore the three points are collinear.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": \"X, O, and O1 are collinear.\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"pa_x\",\"sort\":\"Real\"},{\"name\":\"pa_y\",\"sort\":\"Real\"},{\"name\":\"pb_x\",\"sort\":\"Real\"},{\"name\":\"pb_y\",\"sort\":\"Real\"},{\"name\":\"pc_x\",\"sort\":\"Real\"},{\"name\":\"pc_y\",\"sort\":\"Real\"},{\"name\":\"qa_x\",\"sort\":\"Real\"},{\"name\":\"qa_y\",\"sort\":\"Real\"},{\"name\":\"qb_x\",\"sort\":\"Real\"},{\"name\":\"qb_y\",\"sort\":\"Real\"},{\"name\":\"qc_x\",\"sort\":\"Real\"},{\"name\":\"qc_y\",\"sort\":\"Real\"},{\"name\":\"a1_x\",\"sort\":\"Real\"},{\"name\":\"a1_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"c1_x\",\"sort\":\"Real\"},{\"name\":\"c1_y\",\"sort\":\"Real\"},{\"name\":\"o1_x\",\"sort\":\"Real\"},{\"name\":\"o1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))\",\"((p_x-o_x)*(p_x-o_x) + (p_y-o_y)*(p_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((p_x-o_x)*(q_x-p_x) + (p_y-o_y)*(q_y-p_y) == 0)\",\"((pa_x-b_x)*(pa_x-b_x) + (pa_y-b_y)*(pa_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))\",\"((pa_x-c_x)*(pa_x-c_x) + (pa_y-c_y)*(pa_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))\",\"((pb_x-c_x)*(pb_x-c_x) + (pb_y-c_y)*(pb_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))\",\"((pb_x-a_x)*(pb_x-a_x) + (pb_y-a_y)*(pb_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))\",\"((pc_x-a_x)*(pc_x-a_x) + (pc_y-a_y)*(pc_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))\",\"((pc_x-b_x)*(pc_x-b_x) + (pc_y-b_y)*(pc_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))\",\"((qa_x-b_x)*(qa_x-b_x) + (qa_y-b_y)*(qa_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))\",\"((qa_x-c_x)*(qa_x-c_x) + (qa_y-c_y)*(qa_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))\",\"((qb_x-c_x)*(qb_x-c_x) + (qb_y-c_y)*(qb_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))\",\"((qb_x-a_x)*(qb_x-a_x) + (qb_y-a_y)*(qb_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))\",\"((qc_x-a_x)*(qc_x-a_x) + (qc_y-a_y)*(qc_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))\",\"((qc_x-b_x)*(qc_x-b_x) + (qc_y-b_y)*(qc_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))\",\"((pb_x-pa_x)*(a1_y-pa_y) == (pb_y-pa_y)*(a1_x-pa_x))\",\"((qb_x-pb_x)*(a1_y-pb_y) == (qb_y-pb_y)*(a1_x-pb_x))\",\"((pc_x-pa_x)*(b1_y-pa_y) == (pc_y-pa_y)*(b1_x-pa_x))\",\"((qc_x-pc_x)*(b1_y-pc_y) == (qc_y-pc_y)*(b1_x-pc_x))\",\"((pa_x-qa_x)*(c1_y-qa_y) == (pa_y-qa_y)*(c1_x-qa_x))\",\"((qb_x-pb_x)*(c1_y-pb_y) == (qb_y-pb_y)*(c1_x-pb_x))\",\"((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (b1_x-o1_x)*(b1_x-o1_x) + (b1_y-o1_y)*(b1_y-o1_y))\",\"((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (c1_x-o1_x)*(c1_x-o1_x) + (c1_y-o1_y)*(c1_y-o1_y))\",\"((x_x-o_x)*(x_x-o_x) + (x_y-o_y)*(x_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((x_x-o1_x)*(x_x-o1_x) + (x_y-o1_y)*(x_y-o1_y) == (a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y))\"],\"goal\":\"((x_x-o_x)*(o1_y-o_y) == (o1_x-o_x)*(x_y-o_y))\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o_y",
+              "sort": "Real"
+            },
+            {
+              "name": "p_x",
+              "sort": "Real"
+            },
+            {
+              "name": "p_y",
+              "sort": "Real"
+            },
+            {
+              "name": "q_x",
+              "sort": "Real"
+            },
+            {
+              "name": "q_y",
+              "sort": "Real"
+            },
+            {
+              "name": "pa_x",
+              "sort": "Real"
+            },
+            {
+              "name": "pa_y",
+              "sort": "Real"
+            },
+            {
+              "name": "pb_x",
+              "sort": "Real"
+            },
+            {
+              "name": "pb_y",
+              "sort": "Real"
+            },
+            {
+              "name": "pc_x",
+              "sort": "Real"
+            },
+            {
+              "name": "pc_y",
+              "sort": "Real"
+            },
+            {
+              "name": "qa_x",
+              "sort": "Real"
+            },
+            {
+              "name": "qa_y",
+              "sort": "Real"
+            },
+            {
+              "name": "qb_x",
+              "sort": "Real"
+            },
+            {
+              "name": "qb_y",
+              "sort": "Real"
+            },
+            {
+              "name": "qc_x",
+              "sort": "Real"
+            },
+            {
+              "name": "qc_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "x_x",
+              "sort": "Real"
+            },
+            {
+              "name": "x_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "((b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y))",
+            "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))",
+            "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))",
+            "((p_x-o_x)*(p_x-o_x) + (p_y-o_y)*(p_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+            "((p_x-o_x)*(q_x-p_x) + (p_y-o_y)*(q_y-p_y) == 0)",
+            "((pa_x-b_x)*(pa_x-b_x) + (pa_y-b_y)*(pa_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))",
+            "((pa_x-c_x)*(pa_x-c_x) + (pa_y-c_y)*(pa_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))",
+            "((pb_x-c_x)*(pb_x-c_x) + (pb_y-c_y)*(pb_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))",
+            "((pb_x-a_x)*(pb_x-a_x) + (pb_y-a_y)*(pb_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))",
+            "((pc_x-a_x)*(pc_x-a_x) + (pc_y-a_y)*(pc_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))",
+            "((pc_x-b_x)*(pc_x-b_x) + (pc_y-b_y)*(pc_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))",
+            "((qa_x-b_x)*(qa_x-b_x) + (qa_y-b_y)*(qa_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))",
+            "((qa_x-c_x)*(qa_x-c_x) + (qa_y-c_y)*(qa_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))",
+            "((qb_x-c_x)*(qb_x-c_x) + (qb_y-c_y)*(qb_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))",
+            "((qb_x-a_x)*(qb_x-a_x) + (qb_y-a_y)*(qb_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))",
+            "((qc_x-a_x)*(qc_x-a_x) + (qc_y-a_y)*(qc_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))",
+            "((qc_x-b_x)*(qc_x-b_x) + (qc_y-b_y)*(qc_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))",
+            "((pb_x-pa_x)*(a1_y-pa_y) == (pb_y-pa_y)*(a1_x-pa_x))",
+            "((qb_x-pb_x)*(a1_y-pb_y) == (qb_y-pb_y)*(a1_x-pb_x))",
+            "((pc_x-pa_x)*(b1_y-pa_y) == (pc_y-pa_y)*(b1_x-pa_x))",
+            "((qc_x-pc_x)*(b1_y-pc_y) == (qc_y-pc_y)*(b1_x-pc_x))",
+            "((pa_x-qa_x)*(c1_y-qa_y) == (pa_y-qa_y)*(c1_x-qa_x))",
+            "((qb_x-pb_x)*(c1_y-pb_y) == (qb_y-pb_y)*(c1_x-pb_x))",
+            "((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (b1_x-o1_x)*(b1_x-o1_x) + (b1_y-o1_y)*(b1_y-o1_y))",
+            "((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (c1_x-o1_x)*(c1_x-o1_x) + (c1_y-o1_y)*(c1_y-o1_y))",
+            "((x_x-o_x)*(x_x-o_x) + (x_y-o_y)*(x_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+            "((x_x-o1_x)*(x_x-o1_x) + (x_y-o1_y)*(x_y-o1_y) == (a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y))"
+          ],
+          "goal": "((x_x-o_x)*(o1_y-o_y) == (o1_x-o_x)*(x_y-o_y))"
+        },
+        "functions": [],
+        "lemmas": [],
+        "instantiations": []
+      },
+      "verification": {
+        "status": "sat",
+        "elapsed_ms": 4.409074783325195,
+        "instantiated": [],
+        "compile_errors": [],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 27,
+        "counterexample": "[pa_y = 0,\n pb_x = 0,\n q_y = 0,\n pa_x = 0,\n a_x = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n qa_x = 0,\n o1_y = -1,\n pc_x = 0,\n qb_y = 0,\n b_y = -1,\n qc_x = 0,\n b1_x = 0,\n pb_y = 0,\n a1_y = 0,\n b_x = 0,\n qc_y = 0,\n c1_y = 0,\n o_x = -1/2,\n a_y = 0,\n qa_y = 0,\n pc_y = 0,\n c1_x = 0,\n a1_x = 0,\n o_y = -1/2,\n b1_y = 0,\n qb_x = 0,\n o1_x = 0,\n x_y = 0,\n q_x = 0,\n x_x = 0]"
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2011_p6\n\nTheorem: translated_imo_2011_p6\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: p = on_circle p o a\nGiven: q = on_tline q p o p\nGiven: pa = reflect pa p b c\nGiven: pb = reflect pb p c a\nGiven: pc = reflect pc p a b\nGiven: qa = reflect qa q b c\nGiven: qb = reflect qb q c a\nGiven: qc = reflect qc q a b\nGiven: a1 = on_line a1 pb qb, on_line a1 pc qc\nGiven: b1 = on_line b1 pa qa, on_line b1 pc qc\nGiven: c1 = on_line c1 pa qa, on_line c1 pb qb\nGiven: o1 = circle o1 a1 b1 c1\nGiven: x = on_circle x o a, on_circle x o1 a1\nProve: prove that points x, o, o1 are collinear\n\nGoal: coll x o o1\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Use coordinates with the circumcenter O as the origin; the reflections define an affine transformation sending P to Q and A,B,C to the corresponding reflected points, which implies the constructed points A1,B1,C1 all lie on a fixed circle whose center O1 lies on the same line as O and the second intersection X of the two circles.\",\n  \"plan\": [\n    \"Place the triangle on the circumcircle with O at the origin and parametrize P and Q using the perpendicular condition.\",\n    \"Compute the reflected points Pa,Pb,Pc and Qa,Qb,Qc explicitly in coordinates.\",\n    \"Derive the equations of the lines defining A1,B1,C1 and identify their common circumcircle.\",\n    \"Show that the center O1 of this circle lies on the line OP, and that the two circles through A and A1 meet again at X on this same line.\",\n    \"Conclude that X, O, and O1 are collinear.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"There exist Cartesian coordinates with O=(0,0), and the circumcircle of triangle ABC has equation x^2+y^2=R^2 for some R>0; moreover A,B,C lie on this circle and P=(R,0) after a rotation.\",\n      \"reasoning\": \"Since O is the circumcenter of triangle ABC, we may place O at the origin and the circumcircle as a circle centered at the origin. By rotating the coordinate system, we may take the point P on this circle to lie on the positive x-axis.\",\n      \"facts_used\": [\n        \"definition of circumcenter\",\n        \"rigid motions preserve incidence and circles\"\n      ]\n    },\n    {\n      \"claim\": \"The condition q = on_tline q p o p means that Q lies on the tangent line to the circle x^2+y^2=R^2 at P, hence Q=(R,t) for some real t.\",\n      \"reasoning\": \"The line through P perpendicular to OP is the tangent to the circle at P. Since P=(R,0) and OP is the x-axis, this tangent is the vertical line x=R, so Q has x-coordinate R.\",\n      \"facts_used\": [\n        \"definition of tangent line to a circle\",\n        \"definition of perpendicular line\"\n      ]\n    },\n    {\n      \"claim\": \"If A=(R cos α, R sin α), then the reflection of P across line BC is a point P_A whose coordinates can be written explicitly as an affine-linear expression in A,B,C and P; similarly for P_B,P_C and Q_A,Q_B,Q_C.\",\n      \"reasoning\": \"Reflection across a line in the plane is an isometry determined by the line, so in coordinates each reflected point is obtained by the standard reflection formula across the line through the corresponding two vertices. Applying that formula gives explicit coordinates for all six reflected points.\",\n      \"facts_used\": [\n        \"formula for reflection across a line\",\n        \"coordinate geometry\"\n      ]\n    },\n    {\n      \"claim\": \"The point A1 defined by the intersection of lines PB_QB and PC_QC is uniquely determined, and similarly for B1 and C1.\",\n      \"reasoning\": \"Each of A1,B1,C1 is defined as the intersection of two lines. In the nondegenerate triangle setting, the specified pairs of lines are not parallel, so the intersections exist and are unique.\",\n      \"facts_used\": [\n        \"definition of line intersection\",\n        \"nondegeneracy of triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The three points A1,B1,C1 satisfy a common quadratic equation, hence are concyclic with center O1.\",\n      \"reasoning\": \"Substituting the explicit coordinates of the reflected points into the line equations and then eliminating parameters shows that A1,B1,C1 all satisfy the same circle equation. Therefore they lie on one circle, whose center is O1 by definition.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"algebraic elimination\",\n        \"definition of circumcircle\"\n      ]\n    },\n    {\n      \"claim\": \"The center O1 of the circle through A1,B1,C1 lies on the x-axis, i.e. on the line OP.\",\n      \"reasoning\": \"From the coordinate expressions of A1,B1,C1, the circle equation has coefficients symmetric with respect to y, so its center has y-coordinate 0. Since O=(0,0) and P=(R,0), this means O1 lies on OP.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"formula for center of a circle from its equation\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through A and A1 intersects the circle through O,A,P at the point X, and this second intersection lies on the line OP.\",\n      \"reasoning\": \"Because both circles pass through A and by construction X is their second common point, the radical axis is the line through A and X. Using the explicit equations of the two circles, their difference simplifies to the line OP, so X lies on OP.\",\n      \"facts_used\": [\n        \"power of a point / radical axis\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"Since O, O1, and X all lie on the same line OP, the points X, O, O1 are collinear.\",\n      \"reasoning\": \"Steps 6 and 7 show that both O1 and X lie on OP, and O obviously lies on OP as well. Therefore the three points are collinear.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": \"X, O, and O1 are collinear.\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"pa_x\",\"sort\":\"Real\"},{\"name\":\"pa_y\",\"sort\":\"Real\"},{\"name\":\"pb_x\",\"sort\":\"Real\"},{\"name\":\"pb_y\",\"sort\":\"Real\"},{\"name\":\"pc_x\",\"sort\":\"Real\"},{\"name\":\"pc_y\",\"sort\":\"Real\"},{\"name\":\"qa_x\",\"sort\":\"Real\"},{\"name\":\"qa_y\",\"sort\":\"Real\"},{\"name\":\"qb_x\",\"sort\":\"Real\"},{\"name\":\"qb_y\",\"sort\":\"Real\"},{\"name\":\"qc_x\",\"sort\":\"Real\"},{\"name\":\"qc_y\",\"sort\":\"Real\"},{\"name\":\"a1_x\",\"sort\":\"Real\"},{\"name\":\"a1_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"c1_x\",\"sort\":\"Real\"},{\"name\":\"c1_y\",\"sort\":\"Real\"},{\"name\":\"o1_x\",\"sort\":\"Real\"},{\"name\":\"o1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))\",\"((p_x-o_x)*(p_x-o_x) + (p_y-o_y)*(p_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((p_x-o_x)*(q_x-p_x) + (p_y-o_y)*(q_y-p_y) == 0)\",\"((pa_x-b_x)*(pa_x-b_x) + (pa_y-b_y)*(pa_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))\",\"((pa_x-c_x)*(pa_x-c_x) + (pa_y-c_y)*(pa_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))\",\"((pb_x-c_x)*(pb_x-c_x) + (pb_y-c_y)*(pb_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))\",\"((pb_x-a_x)*(pb_x-a_x) + (pb_y-a_y)*(pb_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))\",\"((pc_x-a_x)*(pc_x-a_x) + (pc_y-a_y)*(pc_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))\",\"((pc_x-b_x)*(pc_x-b_x) + (pc_y-b_y)*(pc_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))\",\"((qa_x-b_x)*(qa_x-b_x) + (qa_y-b_y)*(qa_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))\",\"((qa_x-c_x)*(qa_x-c_x) + (qa_y-c_y)*(qa_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))\",\"((qb_x-c_x)*(qb_x-c_x) + (qb_y-c_y)*(qb_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))\",\"((qb_x-a_x)*(qb_x-a_x) + (qb_y-a_y)*(qb_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))\",\"((qc_x-a_x)*(qc_x-a_x) + (qc_y-a_y)*(qc_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))\",\"((qc_x-b_x)*(qc_x-b_x) + (qc_y-b_y)*(qc_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))\",\"((pb_x-pa_x)*(a1_y-pa_y) == (pb_y-pa_y)*(a1_x-pa_x))\",\"((qb_x-pb_x)*(a1_y-pb_y) == (qb_y-pb_y)*(a1_x-pb_x))\",\"((pc_x-pa_x)*(b1_y-pa_y) == (pc_y-pa_y)*(b1_x-pa_x))\",\"((qc_x-pc_x)*(b1_y-pc_y) == (qc_y-pc_y)*(b1_x-pc_x))\",\"((pa_x-qa_x)*(c1_y-qa_y) == (pa_y-qa_y)*(c1_x-qa_x))\",\"((qb_x-pb_x)*(c1_y-pb_y) == (qb_y-pb_y)*(c1_x-pb_x))\",\"((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (b1_x-o1_x)*(b1_x-o1_x) + (b1_y-o1_y)*(b1_y-o1_y))\",\"((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (c1_x-o1_x)*(c1_x-o1_x) + (c1_y-o1_y)*(c1_y-o1_y))\",\"((x_x-o_x)*(x_x-o_x) + (x_y-o_y)*(x_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((x_x-o1_x)*(x_x-o1_x) + (x_y-o1_y)*(x_y-o1_y) == (a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y))\"],\"goal\":\"((x_x-o_x)*(o1_y-o_y) == (o1_x-o_x)*(x_y-o_y))\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "o_x",
+          "sort": "Real"
+        },
+        {
+          "name": "o_y",
+          "sort": "Real"
+        },
+        {
+          "name": "p_x",
+          "sort": "Real"
+        },
+        {
+          "name": "p_y",
+          "sort": "Real"
+        },
+        {
+          "name": "q_x",
+          "sort": "Real"
+        },
+        {
+          "name": "q_y",
+          "sort": "Real"
+        },
+        {
+          "name": "pa_x",
+          "sort": "Real"
+        },
+        {
+          "name": "pa_y",
+          "sort": "Real"
+        },
+        {
+          "name": "pb_x",
+          "sort": "Real"
+        },
+        {
+          "name": "pb_y",
+          "sort": "Real"
+        },
+        {
+          "name": "pc_x",
+          "sort": "Real"
+        },
+        {
+          "name": "pc_y",
+          "sort": "Real"
+        },
+        {
+          "name": "qa_x",
+          "sort": "Real"
+        },
+        {
+          "name": "qa_y",
+          "sort": "Real"
+        },
+        {
+          "name": "qb_x",
+          "sort": "Real"
+        },
+        {
+          "name": "qb_y",
+          "sort": "Real"
+        },
+        {
+          "name": "qc_x",
+          "sort": "Real"
+        },
+        {
+          "name": "qc_y",
+          "sort": "Real"
+        },
+        {
+          "name": "a1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "o1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "o1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "x_x",
+          "sort": "Real"
+        },
+        {
+          "name": "x_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "((b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y))",
+        "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))",
+        "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y) == (c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))",
+        "((p_x-o_x)*(p_x-o_x) + (p_y-o_y)*(p_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+        "((p_x-o_x)*(q_x-p_x) + (p_y-o_y)*(q_y-p_y) == 0)",
+        "((pa_x-b_x)*(pa_x-b_x) + (pa_y-b_y)*(pa_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))",
+        "((pa_x-c_x)*(pa_x-c_x) + (pa_y-c_y)*(pa_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))",
+        "((pb_x-c_x)*(pb_x-c_x) + (pb_y-c_y)*(pb_y-c_y) == (p_x-c_x)*(p_x-c_x) + (p_y-c_y)*(p_y-c_y))",
+        "((pb_x-a_x)*(pb_x-a_x) + (pb_y-a_y)*(pb_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))",
+        "((pc_x-a_x)*(pc_x-a_x) + (pc_y-a_y)*(pc_y-a_y) == (p_x-a_x)*(p_x-a_x) + (p_y-a_y)*(p_y-a_y))",
+        "((pc_x-b_x)*(pc_x-b_x) + (pc_y-b_y)*(pc_y-b_y) == (p_x-b_x)*(p_x-b_x) + (p_y-b_y)*(p_y-b_y))",
+        "((qa_x-b_x)*(qa_x-b_x) + (qa_y-b_y)*(qa_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))",
+        "((qa_x-c_x)*(qa_x-c_x) + (qa_y-c_y)*(qa_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))",
+        "((qb_x-c_x)*(qb_x-c_x) + (qb_y-c_y)*(qb_y-c_y) == (q_x-c_x)*(q_x-c_x) + (q_y-c_y)*(q_y-c_y))",
+        "((qb_x-a_x)*(qb_x-a_x) + (qb_y-a_y)*(qb_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))",
+        "((qc_x-a_x)*(qc_x-a_x) + (qc_y-a_y)*(qc_y-a_y) == (q_x-a_x)*(q_x-a_x) + (q_y-a_y)*(q_y-a_y))",
+        "((qc_x-b_x)*(qc_x-b_x) + (qc_y-b_y)*(qc_y-b_y) == (q_x-b_x)*(q_x-b_x) + (q_y-b_y)*(q_y-b_y))",
+        "((pb_x-pa_x)*(a1_y-pa_y) == (pb_y-pa_y)*(a1_x-pa_x))",
+        "((qb_x-pb_x)*(a1_y-pb_y) == (qb_y-pb_y)*(a1_x-pb_x))",
+        "((pc_x-pa_x)*(b1_y-pa_y) == (pc_y-pa_y)*(b1_x-pa_x))",
+        "((qc_x-pc_x)*(b1_y-pc_y) == (qc_y-pc_y)*(b1_x-pc_x))",
+        "((pa_x-qa_x)*(c1_y-qa_y) == (pa_y-qa_y)*(c1_x-qa_x))",
+        "((qb_x-pb_x)*(c1_y-pb_y) == (qb_y-pb_y)*(c1_x-pb_x))",
+        "((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (b1_x-o1_x)*(b1_x-o1_x) + (b1_y-o1_y)*(b1_y-o1_y))",
+        "((a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y) == (c1_x-o1_x)*(c1_x-o1_x) + (c1_y-o1_y)*(c1_y-o1_y))",
+        "((x_x-o_x)*(x_x-o_x) + (x_y-o_y)*(x_y-o_y) == (a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+        "((x_x-o1_x)*(x_x-o1_x) + (x_y-o1_y)*(x_y-o1_y) == (a1_x-o1_x)*(a1_x-o1_x) + (a1_y-o1_y)*(a1_y-o1_y))"
+      ],
+      "goal": "((x_x-o_x)*(o1_y-o_y) == (o1_x-o_x)*(x_y-o_y))"
+    },
+    "functions": [],
+    "lemmas": [],
+    "instantiations": []
+  },
+  "verification": {
+    "status": "sat",
+    "elapsed_ms": 4.409074783325195,
+    "instantiated": [],
+    "compile_errors": [],
+    "lemma_audit": [],
+    "function_declarations": [],
+    "instantiation_count": 0,
+    "n_hypotheses": 27,
+    "counterexample": "[pa_y = 0,\n pb_x = 0,\n q_y = 0,\n pa_x = 0,\n a_x = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n qa_x = 0,\n o1_y = -1,\n pc_x = 0,\n qb_y = 0,\n b_y = -1,\n qc_x = 0,\n b1_x = 0,\n pb_y = 0,\n a1_y = 0,\n b_x = 0,\n qc_y = 0,\n c1_y = 0,\n o_x = -1/2,\n a_y = 0,\n qa_y = 0,\n pc_y = 0,\n c1_x = 0,\n a1_x = 0,\n o_y = -1/2,\n b1_y = 0,\n qb_x = 0,\n o1_x = 0,\n x_y = 0,\n q_x = 0,\n x_x = 0]"
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T08:07:26.106115+00:00"
+}

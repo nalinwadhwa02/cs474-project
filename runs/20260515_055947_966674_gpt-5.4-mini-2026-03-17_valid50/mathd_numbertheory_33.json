@@ -1,0 +1,75 @@
+{
+  "theorem_id": "mathd_numbertheory_33",
+  "statement": "Theorem: mathd_numbertheory_33\nVariables: n (integer)\nGiven: h\u2080 : n < 398\nGiven: h\u2081 : (n * 7) % 398 = 1\nProve: n = 57",
+  "goal": "n = 57",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_33\n\nTheorem: mathd_numbertheory_33\nVariables: n (integer)\nGiven: h\u2080 : n < 398\nGiven: h\u2081 : (n * 7) % 398 = 1\nProve: n = 57\n\nHypotheses:\n  h\u2080 : n < 398\n  h\u2081 : (n * 7) % 398 = 1\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since 7 and 398 are coprime, 7 has a multiplicative inverse modulo 398; checking the inverse shows that 57 is the unique residue with 7\u00b757 \u2261 1 mod 398, and the bound n < 398 forces n to equal that residue.\",\n  \"plan\": [\n    \"Show that 7\u00b757 differs from 1 by a multiple of 398.\",\n    \"Use the modular equation (n\u00b77) % 398 = 1 to conclude n\u00b77 \u2261 1 mod 398.\",\n    \"Deduce that n is congruent to 57 modulo 398.\",\n    \"Use the bound n < 398 to identify n with its residue class representative.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"7 * 57 = 399 = 398 + 1, so 7 * 57 \u2261 1 mod 398.\",\n      \"reasoning\": \"Direct multiplication gives 7 * 57 = 399. Since 399 - 1 = 398 is divisible by 398, the product 7 * 57 leaves remainder 1 upon division by 398.\",\n      \"facts_used\": [\"direct computation\", \"definition of congruence modulo\"]\n    },\n    {\n      \"claim\": \"From h\u2081, we have n * 7 \u2261 1 mod 398.\",\n      \"reasoning\": \"The statement (n * 7) % 398 = 1 means exactly that the remainder of n * 7 upon division by 398 is 1, which is equivalent to n * 7 being congruent to 1 modulo 398.\",\n      \"facts_used\": [\"definition of modular arithmetic\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"n * 7 \u2261 57 * 7 mod 398.\",\n      \"reasoning\": \"By step 1, 57 * 7 \u2261 1 mod 398. By step 2, n * 7 \u2261 1 mod 398. Since both are congruent to 1 modulo 398, they are congruent to each other modulo 398.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"transitivity of congruence\"]\n    },\n    {\n      \"claim\": \"n \u2261 57 mod 398.\",\n      \"reasoning\": \"Because 7 and 398 are coprime, multiplication by 7 is cancellable modulo 398. Applying cancellation to the congruence n * 7 \u2261 57 * 7 mod 398 yields n \u2261 57 mod 398.\",\n      \"facts_used\": [\"cancellation modulo a coprime factor\", \"gcd(7, 398) = 1\", \"step 3\"]\n    },\n    {\n      \"claim\": \"n = 57.\",\n      \"reasoning\": \"From n \u2261 57 mod 398, there exists an integer k such that n = 57 + 398k. Since h\u2080 gives n < 398 and 57 < 398, the only possible integer k is 0. Therefore n = 57.\",\n      \"facts_used\": [\"definition of congruence modulo\", \"h\u2080\", \"integer bounds\"]\n    }\n  ],\n  \"final_answer\": \"57\"\n}",
+  "english_proof": {
+    "key_observation": "Since 7 and 398 are coprime, 7 has a multiplicative inverse modulo 398; checking the inverse shows that 57 is the unique residue with 7\u00b757 \u2261 1 mod 398, and the bound n < 398 forces n to equal that residue.",
+    "plan": [
+      "Show that 7\u00b757 differs from 1 by a multiple of 398.",
+      "Use the modular equation (n\u00b77) % 398 = 1 to conclude n\u00b77 \u2261 1 mod 398.",
+      "Deduce that n is congruent to 57 modulo 398.",
+      "Use the bound n < 398 to identify n with its residue class representative."
+    ],
+    "steps": [
+      {
+        "claim": "7 * 57 = 399 = 398 + 1, so 7 * 57 \u2261 1 mod 398.",
+        "reasoning": "Direct multiplication gives 7 * 57 = 399. Since 399 - 1 = 398 is divisible by 398, the product 7 * 57 leaves remainder 1 upon division by 398.",
+        "facts_used": [
+          "direct computation",
+          "definition of congruence modulo"
+        ]
+      },
+      {
+        "claim": "From h\u2081, we have n * 7 \u2261 1 mod 398.",
+        "reasoning": "The statement (n * 7) % 398 = 1 means exactly that the remainder of n * 7 upon division by 398 is 1, which is equivalent to n * 7 being congruent to 1 modulo 398.",
+        "facts_used": [
+          "definition of modular arithmetic",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "n * 7 \u2261 57 * 7 mod 398.",
+        "reasoning": "By step 1, 57 * 7 \u2261 1 mod 398. By step 2, n * 7 \u2261 1 mod 398. Since both are congruent to 1 modulo 398, they are congruent to each other modulo 398.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "transitivity of congruence"
+        ]
+      },
+      {
+        "claim": "n \u2261 57 mod 398.",
+        "reasoning": "Because 7 and 398 are coprime, multiplication by 7 is cancellable modulo 398. Applying cancellation to the congruence n * 7 \u2261 57 * 7 mod 398 yields n \u2261 57 mod 398.",
+        "facts_used": [
+          "cancellation modulo a coprime factor",
+          "gcd(7, 398) = 1",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "n = 57.",
+        "reasoning": "From n \u2261 57 mod 398, there exists an integer k such that n = 57 + 398k. Since h\u2080 gives n < 398 and 57 < 398, the only possible integer k is 0. Therefore n = 57.",
+        "facts_used": [
+          "definition of congruence modulo",
+          "h\u2080",
+          "integer bounds"
+        ]
+      }
+    ],
+    "final_answer": "57"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:01:11.276176+00:00"
+}

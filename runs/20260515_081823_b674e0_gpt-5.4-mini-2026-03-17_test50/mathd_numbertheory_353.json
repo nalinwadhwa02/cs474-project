@@ -1,0 +1,80 @@
+{
+  "theorem_id": "mathd_numbertheory_353",
+  "statement": "Theorem: mathd_numbertheory_353\nVariables: s (integer)\nGiven: h\u2080 : s = \u2211 k in finset.Icc 2010 4018, k\nProve: s % 2009 = 0",
+  "goal": "s % 2009 = 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_353\n\nTheorem: mathd_numbertheory_353\nVariables: s (integer)\nGiven: h\u2080 : s = \u2211 k in finset.Icc 2010 4018, k\nProve: s % 2009 = 0\n\nHypotheses:\n  h\u2080 : s = \u2211 k in finset.Icc 2010 4018, k\n\nVariables: s (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The interval from 2010 to 4018 contains exactly 2009 consecutive integers, and modulo 2009 their sum is the same as the sum of residues 1 through 2009, which is divisible by 2009.\",\n  \"plan\": [\n    \"Rewrite the interval sum as a sum over 2009 consecutive integers.\",\n    \"Replace each term 2010 + i by i + 1 for i = 0, ..., 2008.\",\n    \"Compute the sum of 1 through 2009.\",\n    \"Show that this sum is a multiple of 2009, hence has remainder 0 modulo 2009.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"s = \u2211 k in finset.Icc 2010 4018, k\",\n      \"reasoning\": \"This is exactly the given hypothesis h\u2080.\",\n      \"facts_used\": [\"h\u2080\"]\n    },\n    {\n      \"claim\": \"\u2211 k in finset.Icc 2010 4018, k = \u2211 i in finset.Icc 0 2008, (2010 + i)\",\n      \"reasoning\": \"The integers from 2010 to 4018 are exactly the 2009 consecutive integers 2010 + i for i = 0, 1, ..., 2008. This is just a reindexing of the finite interval sum.\",\n      \"facts_used\": [\"reindexing of finite sums over intervals\"]\n    },\n    {\n      \"claim\": \"\u2211 i in finset.Icc 0 2008, (2010 + i) = \u2211 i in finset.Icc 0 2008, (i + 1)\",\n      \"reasoning\": \"Since 2010 \u2261 1 modulo 2009, each term 2010 + i can be viewed as i + 1 for the purpose of summing consecutive residues; equivalently, the list 2010, 2011, ..., 4018 matches 1, 2, ..., 2009 up to adding 2009 to each term. A direct substitution shows the same arithmetic progression with 2009 terms.\",\n      \"facts_used\": [\"arithmetic progression\", \"reindexing of finite sums over intervals\"]\n    },\n    {\n      \"claim\": \"\u2211 i in finset.Icc 0 2008, (i + 1) = \u2211 j in finset.Icc 1 2009, j = 2009 * 2010 / 2\",\n      \"reasoning\": \"The terms are exactly the integers 1 through 2009, so the sum is the standard formula for the first n positive integers with n = 2009.\",\n      \"facts_used\": [\"sum of first n positive integers\"]\n    },\n    {\n      \"claim\": \"2009 * 2010 / 2 is divisible by 2009\",\n      \"reasoning\": \"Because 2010 / 2 = 1005, the expression equals 2009 * 1005, which is a multiple of 2009.\",\n      \"facts_used\": [\"arithmetic simplification\"]\n    },\n    {\n      \"claim\": \"s % 2009 = 0\",\n      \"reasoning\": \"From steps 1 through 5, s is equal to an integer multiple of 2009, so its remainder upon division by 2009 is 0.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"step 3\", \"step 4\", \"step 5\", \"definition of modulo\"]\n    }\n  ],\n  \"final_answer\": \"0\"\n}",
+  "english_proof": {
+    "key_observation": "The interval from 2010 to 4018 contains exactly 2009 consecutive integers, and modulo 2009 their sum is the same as the sum of residues 1 through 2009, which is divisible by 2009.",
+    "plan": [
+      "Rewrite the interval sum as a sum over 2009 consecutive integers.",
+      "Replace each term 2010 + i by i + 1 for i = 0, ..., 2008.",
+      "Compute the sum of 1 through 2009.",
+      "Show that this sum is a multiple of 2009, hence has remainder 0 modulo 2009."
+    ],
+    "steps": [
+      {
+        "claim": "s = \u2211 k in finset.Icc 2010 4018, k",
+        "reasoning": "This is exactly the given hypothesis h\u2080.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "\u2211 k in finset.Icc 2010 4018, k = \u2211 i in finset.Icc 0 2008, (2010 + i)",
+        "reasoning": "The integers from 2010 to 4018 are exactly the 2009 consecutive integers 2010 + i for i = 0, 1, ..., 2008. This is just a reindexing of the finite interval sum.",
+        "facts_used": [
+          "reindexing of finite sums over intervals"
+        ]
+      },
+      {
+        "claim": "\u2211 i in finset.Icc 0 2008, (2010 + i) = \u2211 i in finset.Icc 0 2008, (i + 1)",
+        "reasoning": "Since 2010 \u2261 1 modulo 2009, each term 2010 + i can be viewed as i + 1 for the purpose of summing consecutive residues; equivalently, the list 2010, 2011, ..., 4018 matches 1, 2, ..., 2009 up to adding 2009 to each term. A direct substitution shows the same arithmetic progression with 2009 terms.",
+        "facts_used": [
+          "arithmetic progression",
+          "reindexing of finite sums over intervals"
+        ]
+      },
+      {
+        "claim": "\u2211 i in finset.Icc 0 2008, (i + 1) = \u2211 j in finset.Icc 1 2009, j = 2009 * 2010 / 2",
+        "reasoning": "The terms are exactly the integers 1 through 2009, so the sum is the standard formula for the first n positive integers with n = 2009.",
+        "facts_used": [
+          "sum of first n positive integers"
+        ]
+      },
+      {
+        "claim": "2009 * 2010 / 2 is divisible by 2009",
+        "reasoning": "Because 2010 / 2 = 1005, the expression equals 2009 * 1005, which is a multiple of 2009.",
+        "facts_used": [
+          "arithmetic simplification"
+        ]
+      },
+      {
+        "claim": "s % 2009 = 0",
+        "reasoning": "From steps 1 through 5, s is equal to an integer multiple of 2009, so its remainder upon division by 2009 is 0.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "step 4",
+          "step 5",
+          "definition of modulo"
+        ]
+      }
+    ],
+    "final_answer": "0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:26.704292+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "theorem_id": "mathd_algebra_478",
+  "statement": "Theorem: mathd_algebra_478\nVariables: b, h, v (real)\nGiven: h\u2080 : 0 < b \u2227 0 < h \u2227 0 < v\nGiven: h\u2081 : v = 1 / 3 * (b * h)\nGiven: h\u2082 : b = 30\nGiven: h\u2083 : h = 13 / 2\nProve: v = 65",
+  "goal": "v = 65",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_478\n\nTheorem: mathd_algebra_478\nVariables: b, h, v (real)\nGiven: h\u2080 : 0 < b \u2227 0 < h \u2227 0 < v\nGiven: h\u2081 : v = 1 / 3 * (b * h)\nGiven: h\u2082 : b = 30\nGiven: h\u2083 : h = 13 / 2\nProve: v = 65\n\nHypotheses:\n  h\u2080 : 0 < b \u2227 0 < h \u2227 0 < v\n  h\u2081 : v = 1 / 3 * (b * h)\n  h\u2082 : b = 30\n  h\u2083 : h = 13 / 2\n\nVariables: b (real), h (real), v (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Substitute the given values of b and h into v = (1/3)\u00b7(b\u00b7h) and simplify the arithmetic.\",\n  \"plan\": [\n    \"Use the formula for v.\",\n    \"Replace b with 30 and h with 13/2.\",\n    \"Compute the product b\u00b7h.\",\n    \"Multiply by 1/3 and simplify to get 65.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"v = 1 / 3 * (30 * (13 / 2))\",\n      \"reasoning\": \"From h\u2081, we have v = 1 / 3 * (b * h). Substituting b = 30 and h = 13 / 2 from h\u2082 and h\u2083 gives the stated equation.\",\n      \"facts_used\": [\"h\u2081\", \"h\u2082\", \"h\u2083\"]\n    },\n    {\n      \"claim\": \"30 * (13 / 2) = 195\",\n      \"reasoning\": \"Rewrite 30 as 60/2, so 30 * (13 / 2) = (60/2) * (13/2) = 60 * 13 / 2 = 390 / 2 = 195. Equivalently, direct arithmetic gives 30 * 13 = 390 and 390 / 2 = 195.\",\n      \"facts_used\": [\"basic arithmetic\"]\n    },\n    {\n      \"claim\": \"v = 1 / 3 * 195\",\n      \"reasoning\": \"Substitute the result of step 2 into the expression from step 1.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"1 / 3 * 195 = 65\",\n      \"reasoning\": \"Since 195 \u00f7 3 = 65, multiplying 195 by 1/3 yields 65.\",\n      \"facts_used\": [\"basic arithmetic\"]\n    },\n    {\n      \"claim\": \"v = 65\",\n      \"reasoning\": \"By step 3, v equals 1 / 3 * 195, and by step 4 this equals 65. Therefore v = 65.\",\n      \"facts_used\": [\"step 3\", \"step 4\"]\n    }\n  ],\n  \"final_answer\": \"65\"\n}",
+  "english_proof": {
+    "key_observation": "Substitute the given values of b and h into v = (1/3)\u00b7(b\u00b7h) and simplify the arithmetic.",
+    "plan": [
+      "Use the formula for v.",
+      "Replace b with 30 and h with 13/2.",
+      "Compute the product b\u00b7h.",
+      "Multiply by 1/3 and simplify to get 65."
+    ],
+    "steps": [
+      {
+        "claim": "v = 1 / 3 * (30 * (13 / 2))",
+        "reasoning": "From h\u2081, we have v = 1 / 3 * (b * h). Substituting b = 30 and h = 13 / 2 from h\u2082 and h\u2083 gives the stated equation.",
+        "facts_used": [
+          "h\u2081",
+          "h\u2082",
+          "h\u2083"
+        ]
+      },
+      {
+        "claim": "30 * (13 / 2) = 195",
+        "reasoning": "Rewrite 30 as 60/2, so 30 * (13 / 2) = (60/2) * (13/2) = 60 * 13 / 2 = 390 / 2 = 195. Equivalently, direct arithmetic gives 30 * 13 = 390 and 390 / 2 = 195.",
+        "facts_used": [
+          "basic arithmetic"
+        ]
+      },
+      {
+        "claim": "v = 1 / 3 * 195",
+        "reasoning": "Substitute the result of step 2 into the expression from step 1.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "1 / 3 * 195 = 65",
+        "reasoning": "Since 195 \u00f7 3 = 65, multiplying 195 by 1/3 yields 65.",
+        "facts_used": [
+          "basic arithmetic"
+        ]
+      },
+      {
+        "claim": "v = 65",
+        "reasoning": "By step 3, v equals 1 / 3 * 195, and by step 4 this equals 65. Therefore v = 65.",
+        "facts_used": [
+          "step 3",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "65"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:18:27.209845+00:00"
+}

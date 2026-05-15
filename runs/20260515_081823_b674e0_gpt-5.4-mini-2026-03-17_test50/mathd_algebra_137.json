@@ -1,0 +1,72 @@
+{
+  "theorem_id": "mathd_algebra_137",
+  "statement": "Theorem: mathd_algebra_137\nVariables: x (integer)\nGiven: h\u2080 : \u2191x + (4:\u211d) / (100:\u211d) * \u2191x = 598\nProve: x = 575",
+  "goal": "x = 575",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_137\n\nTheorem: mathd_algebra_137\nVariables: x (integer)\nGiven: h\u2080 : \u2191x + (4:\u211d) / (100:\u211d) * \u2191x = 598\nProve: x = 575\n\nHypotheses:\n  h\u2080 : \u2191x + (4:\u211d) / (100:\u211d) * \u2191x = 598\n\nVariables: x (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The equation is linear in x, so we can factor x out of the left-hand side and then solve by dividing both sides by the resulting coefficient.\",\n  \"plan\": [\n    \"Rewrite the left-hand side as a single multiple of x.\",\n    \"Convert the decimal fraction 4/100 into a rational coefficient.\",\n    \"Solve the resulting linear equation for x.\",\n    \"Conclude that the integer x must equal 575.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The hypothesis implies (1 + 4/100) * (x : \u211d) = 598.\",\n      \"reasoning\": \"Since both terms on the left-hand side are multiples of x, we factor out (x : \u211d): x + (4/100) * x = (1 + 4/100) * x. This is a standard distributive-law rearrangement.\",\n      \"facts_used\": [\"distributive law\", \"step 1\"]\n    },\n    {\n      \"claim\": \"We have 1 + 4/100 = 26/25.\",\n      \"reasoning\": \"Compute the rational sum: 1 = 100/100, so 1 + 4/100 = 104/100 = 26/25 after simplifying.\",\n      \"facts_used\": [\"arithmetic on rational numbers\"]\n    },\n    {\n      \"claim\": \"(26/25) * (x : \u211d) = 598.\",\n      \"reasoning\": \"Substituting the simplification from the previous step into the factored equation gives the new linear equation.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"(x : \u211d) = 575.\",\n      \"reasoning\": \"Multiply both sides of (26/25) * (x : \u211d) = 598 by 25/26. Since 598 * 25 / 26 = 575, this isolates x.\",\n      \"facts_used\": [\"multiplicative inverse\", \"arithmetic on rational numbers\", \"step 3\"]\n    },\n    {\n      \"claim\": \"x = 575.\",\n      \"reasoning\": \"The equality (x : \u211d) = 575 implies the integer x itself is 575, because the coercion from integers to \u10e0\u10d4als is injective.\",\n      \"facts_used\": [\"injectivity of integer coercion to \u10e0\u10d4als\", \"step 4\"]\n    }\n  ],\n  \"final_answer\": \"575\"\n}",
+  "english_proof": {
+    "key_observation": "The equation is linear in x, so we can factor x out of the left-hand side and then solve by dividing both sides by the resulting coefficient.",
+    "plan": [
+      "Rewrite the left-hand side as a single multiple of x.",
+      "Convert the decimal fraction 4/100 into a rational coefficient.",
+      "Solve the resulting linear equation for x.",
+      "Conclude that the integer x must equal 575."
+    ],
+    "steps": [
+      {
+        "claim": "The hypothesis implies (1 + 4/100) * (x : \u211d) = 598.",
+        "reasoning": "Since both terms on the left-hand side are multiples of x, we factor out (x : \u211d): x + (4/100) * x = (1 + 4/100) * x. This is a standard distributive-law rearrangement.",
+        "facts_used": [
+          "distributive law",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "We have 1 + 4/100 = 26/25.",
+        "reasoning": "Compute the rational sum: 1 = 100/100, so 1 + 4/100 = 104/100 = 26/25 after simplifying.",
+        "facts_used": [
+          "arithmetic on rational numbers"
+        ]
+      },
+      {
+        "claim": "(26/25) * (x : \u211d) = 598.",
+        "reasoning": "Substituting the simplification from the previous step into the factored equation gives the new linear equation.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "(x : \u211d) = 575.",
+        "reasoning": "Multiply both sides of (26/25) * (x : \u211d) = 598 by 25/26. Since 598 * 25 / 26 = 575, this isolates x.",
+        "facts_used": [
+          "multiplicative inverse",
+          "arithmetic on rational numbers",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "x = 575.",
+        "reasoning": "The equality (x : \u211d) = 575 implies the integer x itself is 575, because the coercion from integers to \u10e0\u10d4als is injective.",
+        "facts_used": [
+          "injectivity of integer coercion to \u10e0\u10d4als",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "575"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:49.021730+00:00"
+}

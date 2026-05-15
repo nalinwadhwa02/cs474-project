@@ -1,0 +1,77 @@
+{
+  "theorem_id": "imo_1983_p6",
+  "statement": "Theorem: imo_1983_p6\nVariables: a, b, c (real)\nGiven: h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\nGiven: h\u2081 : c < a + b\nGiven: h\u2082 : b < a + c\nGiven: h\u2083 : a < b + c\nProve: 0 \u2264 a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)",
+  "goal": "0 \u2264 a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1983_p6\n\nTheorem: imo_1983_p6\nVariables: a, b, c (real)\nGiven: h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\nGiven: h\u2081 : c < a + b\nGiven: h\u2082 : b < a + c\nGiven: h\u2083 : a < b + c\nProve: 0 \u2264 a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a)\n\nHypotheses:\n  h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\n  h\u2081 : c < a + b\n  h\u2082 : b < a + c\n  h\u2083 : a < b + c\n\nVariables: a (real), b (real), c (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The expression can be rewritten by a cyclic factorization as a sum of two nonnegative terms, one proportional to (a-b)^2 and one proportional to (b-c)^2, using the triangle inequalities to control the remaining linear factor.\",\n  \"plan\": [\n    \"Rewrite the target expression by grouping terms cyclically.\",\n    \"Introduce symmetric combinations such as a+b-c, b+c-a, c+a-b.\",\n    \"Use the triangle inequalities to show these combinations are positive.\",\n    \"Factor the expression into a sum of squares times positive coefficients.\",\n    \"Conclude nonnegativity from positivity of all factors.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Let E = a^2*b*(a-b) + b^2*c*(b-c) + c^2*a*(c-a). Then E = a*b*(a-b)^2 + b*c*(b-c)^2 + c*a*(c-a)^2 + (a-b)(b-c)(c-a)(a+b+c).\",\n      \"reasoning\": \"Expand the right-hand side and collect like terms. The square terms produce the cubic differences, and the remaining mixed term exactly accounts for the cyclic cross-cancellation.\",\n      \"facts_used\": [\"algebraic expansion\", \"collecting like terms\"]\n    },\n    {\n      \"claim\": \"(a+b+c) > 0 and each of a, b, c is positive.\",\n      \"reasoning\": \"This follows directly from 0 < a, 0 < b, and 0 < c.\",\n      \"facts_used\": [\"h\u2080\"]\n    },\n    {\n      \"claim\": \"(a-b)(b-c)(c-a)(a+b+c) is nonnegative under the triangle inequalities.\",\n      \"reasoning\": \"From c < a+b, b < a+c, and a < b+c, we get a+b-c > 0, a+c-b > 0, and b+c-a > 0. These imply that the signs of a-b, b-c, and c-a cannot make the product negative in the factorization from step 1; equivalently, the product (a-b)(b-c)(c-a) has the same sign as (a+b-c)(a+c-b)(b+c-a), which is positive.\",\n      \"facts_used\": [\"h\u2081\", \"h\u2082\", \"h\u2083\", \"step 1\"]\n    },\n    {\n      \"claim\": \"a*b*(a-b)^2 + b*c*(b-c)^2 + c*a*(c-a)^2 is nonnegative.\",\n      \"reasoning\": \"Each coefficient a*b, b*c, and c*a is positive by step 2, and each square is nonnegative, so every summand is nonnegative.\",\n      \"facts_used\": [\"step 2\", \"squares are nonnegative\", \"product of nonnegative numbers is nonnegative\"]\n    },\n    {\n      \"claim\": \"E \u2265 0.\",\n      \"reasoning\": \"By step 1, E is the sum of the expression in step 4 and the expression in step 3. Both are nonnegative, so their sum is nonnegative.\",\n      \"facts_used\": [\"step 1\", \"step 3\", \"step 4\", \"sum of nonnegative numbers is nonnegative\"]\n    }\n  ],\n  \"final_answer\": \"0 \u2264 a^2*b*(a - b) + b^2*c*(b - c) + c^2*a*(c - a)\"\n}",
+  "english_proof": {
+    "key_observation": "The expression can be rewritten by a cyclic factorization as a sum of two nonnegative terms, one proportional to (a-b)^2 and one proportional to (b-c)^2, using the triangle inequalities to control the remaining linear factor.",
+    "plan": [
+      "Rewrite the target expression by grouping terms cyclically.",
+      "Introduce symmetric combinations such as a+b-c, b+c-a, c+a-b.",
+      "Use the triangle inequalities to show these combinations are positive.",
+      "Factor the expression into a sum of squares times positive coefficients.",
+      "Conclude nonnegativity from positivity of all factors."
+    ],
+    "steps": [
+      {
+        "claim": "Let E = a^2*b*(a-b) + b^2*c*(b-c) + c^2*a*(c-a). Then E = a*b*(a-b)^2 + b*c*(b-c)^2 + c*a*(c-a)^2 + (a-b)(b-c)(c-a)(a+b+c).",
+        "reasoning": "Expand the right-hand side and collect like terms. The square terms produce the cubic differences, and the remaining mixed term exactly accounts for the cyclic cross-cancellation.",
+        "facts_used": [
+          "algebraic expansion",
+          "collecting like terms"
+        ]
+      },
+      {
+        "claim": "(a+b+c) > 0 and each of a, b, c is positive.",
+        "reasoning": "This follows directly from 0 < a, 0 < b, and 0 < c.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "(a-b)(b-c)(c-a)(a+b+c) is nonnegative under the triangle inequalities.",
+        "reasoning": "From c < a+b, b < a+c, and a < b+c, we get a+b-c > 0, a+c-b > 0, and b+c-a > 0. These imply that the signs of a-b, b-c, and c-a cannot make the product negative in the factorization from step 1; equivalently, the product (a-b)(b-c)(c-a) has the same sign as (a+b-c)(a+c-b)(b+c-a), which is positive.",
+        "facts_used": [
+          "h\u2081",
+          "h\u2082",
+          "h\u2083",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "a*b*(a-b)^2 + b*c*(b-c)^2 + c*a*(c-a)^2 is nonnegative.",
+        "reasoning": "Each coefficient a*b, b*c, and c*a is positive by step 2, and each square is nonnegative, so every summand is nonnegative.",
+        "facts_used": [
+          "step 2",
+          "squares are nonnegative",
+          "product of nonnegative numbers is nonnegative"
+        ]
+      },
+      {
+        "claim": "E \u2265 0.",
+        "reasoning": "By step 1, E is the sum of the expression in step 4 and the expression in step 3. Both are nonnegative, so their sum is nonnegative.",
+        "facts_used": [
+          "step 1",
+          "step 3",
+          "step 4",
+          "sum of nonnegative numbers is nonnegative"
+        ]
+      }
+    ],
+    "final_answer": "0 \u2264 a^2*b*(a - b) + b^2*c*(b - c) + c^2*a*(c - a)"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:19:17.571442+00:00"
+}

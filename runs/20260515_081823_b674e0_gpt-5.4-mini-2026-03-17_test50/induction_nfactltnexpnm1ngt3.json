@@ -1,0 +1,91 @@
+{
+  "theorem_id": "induction_nfactltnexpnm1ngt3",
+  "statement": "Theorem: induction_nfactltnexpnm1ngt3\nVariables: n (integer)\nGiven: h\u2080 : 3 \u2264 n\nProve: n! < n^(n - 1)",
+  "goal": "n! < n^(n - 1)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: induction_nfactltnexpnm1ngt3\n\nTheorem: induction_nfactltnexpnm1ngt3\nVariables: n (integer)\nGiven: h\u2080 : 3 \u2264 n\nProve: n! < n^(n - 1)\n\nHypotheses:\n  h\u2080 : 3 \u2264 n\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"For n \u2265 3, the inductive step compares n! to n^(n-1) by using the induction hypothesis for n\u22121 and the fact that n\u22121 < n, so multiplying by n preserves a strict inequality.\",\n  \"plan\": [\n    \"Proceed by induction on n starting at the base case n = 3.\",\n    \"Verify the inequality directly for the base case.\",\n    \"Assume the result for n\u22121 and prove it for n.\",\n    \"Use the induction hypothesis and the fact that n\u22121 < n to compare powers.\",\n    \"Conclude the desired inequality for n.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For n = 3, we have 3! < 3^(3 - 1).\",\n      \"reasoning\": \"Compute both sides: 3! = 6 and 3^(3-1) = 9, so 6 < 9.\",\n      \"facts_used\": [\"definition of factorial\", \"basic arithmetic\"]\n    },\n    {\n      \"claim\": \"Assume for some integer n \u2265 4 that (n - 1)! < (n - 1)^((n - 1) - 1).\",\n      \"reasoning\": \"This is the induction hypothesis for the predecessor integer n\u22121, which is at least 3 when n \u2265 4.\",\n      \"facts_used\": [\"induction hypothesis\", \"arithmetic on integers\"]\n    },\n    {\n      \"claim\": \"We have n! = n \u00b7 (n - 1)!.\",\n      \"reasoning\": \"This is the recursive definition of factorial.\",\n      \"facts_used\": [\"definition of factorial\"]\n    },\n    {\n      \"claim\": \"n \u00b7 (n - 1)! < n \u00b7 (n - 1)^(n - 2).\",\n      \"reasoning\": \"Multiplying the induction hypothesis by the positive integer n preserves the strict inequality.\",\n      \"facts_used\": [\"step 2\", \"order preservation under multiplication by a positive number\"]\n    },\n    {\n      \"claim\": \"(n - 1)^(n - 2) < n^(n - 2).\",\n      \"reasoning\": \"Since n - 1 < n and n - 2 \u2265 1, raising both sides to the positive exponent n\u22122 preserves the strict inequality.\",\n      \"facts_used\": [\"integer inequality\", \"monotonicity of x \u21a6 x^\u0acd\u0a95 for positive exponents\"]\n    },\n    {\n      \"claim\": \"n \u00b7 (n - 1)^(n - 2) \u2264 n \u00b7 n^(n - 2) = n^(n - 1).\",\n      \"reasoning\": \"The first inequality follows from the previous step after multiplying by positive n, and the equality is exponent arithmetic.\",\n      \"facts_used\": [\"step 5\", \"multiplication preserves order\", \"exponent laws\"]\n    },\n    {\n      \"claim\": \"n! < n^(n - 1).\",\n      \"reasoning\": \"Combining n! = n\u00b7(n\u22121)! with the strict inequality from the induction hypothesis and the comparison of powers gives n! < n\u00b7(n\u22121)^(n\u22122) < n^(n\u22121).\",\n      \"facts_used\": [\"step 3\", \"step 4\", \"step 6\", \"transitivity of inequality\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "For n \u2265 3, the inductive step compares n! to n^(n-1) by using the induction hypothesis for n\u22121 and the fact that n\u22121 < n, so multiplying by n preserves a strict inequality.",
+    "plan": [
+      "Proceed by induction on n starting at the base case n = 3.",
+      "Verify the inequality directly for the base case.",
+      "Assume the result for n\u22121 and prove it for n.",
+      "Use the induction hypothesis and the fact that n\u22121 < n to compare powers.",
+      "Conclude the desired inequality for n."
+    ],
+    "steps": [
+      {
+        "claim": "For n = 3, we have 3! < 3^(3 - 1).",
+        "reasoning": "Compute both sides: 3! = 6 and 3^(3-1) = 9, so 6 < 9.",
+        "facts_used": [
+          "definition of factorial",
+          "basic arithmetic"
+        ]
+      },
+      {
+        "claim": "Assume for some integer n \u2265 4 that (n - 1)! < (n - 1)^((n - 1) - 1).",
+        "reasoning": "This is the induction hypothesis for the predecessor integer n\u22121, which is at least 3 when n \u2265 4.",
+        "facts_used": [
+          "induction hypothesis",
+          "arithmetic on integers"
+        ]
+      },
+      {
+        "claim": "We have n! = n \u00b7 (n - 1)!.",
+        "reasoning": "This is the recursive definition of factorial.",
+        "facts_used": [
+          "definition of factorial"
+        ]
+      },
+      {
+        "claim": "n \u00b7 (n - 1)! < n \u00b7 (n - 1)^(n - 2).",
+        "reasoning": "Multiplying the induction hypothesis by the positive integer n preserves the strict inequality.",
+        "facts_used": [
+          "step 2",
+          "order preservation under multiplication by a positive number"
+        ]
+      },
+      {
+        "claim": "(n - 1)^(n - 2) < n^(n - 2).",
+        "reasoning": "Since n - 1 < n and n - 2 \u2265 1, raising both sides to the positive exponent n\u22122 preserves the strict inequality.",
+        "facts_used": [
+          "integer inequality",
+          "monotonicity of x \u21a6 x^\u0acd\u0a95 for positive exponents"
+        ]
+      },
+      {
+        "claim": "n \u00b7 (n - 1)^(n - 2) \u2264 n \u00b7 n^(n - 2) = n^(n - 1).",
+        "reasoning": "The first inequality follows from the previous step after multiplying by positive n, and the equality is exponent arithmetic.",
+        "facts_used": [
+          "step 5",
+          "multiplication preserves order",
+          "exponent laws"
+        ]
+      },
+      {
+        "claim": "n! < n^(n - 1).",
+        "reasoning": "Combining n! = n\u00b7(n\u22121)! with the strict inequality from the induction hypothesis and the comparison of powers gives n! < n\u00b7(n\u22121)^(n\u22122) < n^(n\u22121).",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "step 6",
+          "transitivity of inequality"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:19.845104+00:00"
+}

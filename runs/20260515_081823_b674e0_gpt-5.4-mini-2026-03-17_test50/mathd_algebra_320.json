@@ -1,0 +1,78 @@
+{
+  "theorem_id": "mathd_algebra_320",
+  "statement": "Theorem: mathd_algebra_320\nVariables: a, b, c (integer)\nGiven: x : nnreal\nGiven: h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\nGiven: h\u2081 : 2 * x^2 = 4 * x + 9\nGiven: h\u2082 : x = (a + nnreal.sqrt b) / c\nProve: a + b + c = 26",
+  "goal": "a + b + c = 26",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_320\n\nTheorem: mathd_algebra_320\nVariables: a, b, c (integer)\nGiven: x : nnreal\nGiven: h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\nGiven: h\u2081 : 2 * x^2 = 4 * x + 9\nGiven: h\u2082 : x = (a + nnreal.sqrt b) / c\nProve: a + b + c = 26\n\nHypotheses:\n  x : nnreal\n  h\u2080 : 0 < a \u2227 0 < b \u2227 0 < c\n  h\u2081 : 2 * x^2 = 4 * x + 9\n  h\u2082 : x = (a + nnreal.sqrt b) / c\n\nVariables: a (int), b (int), c (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Since x is a nonnegative real satisfying a quadratic equation, x is determined explicitly, and the representation x = (a + sqrt(b))/c with positive integers forces a, b, c to match that value uniquely.\",\"plan\":[\"Solve the quadratic equation for x in the nonnegative reals.\",\"Use the fact that x is an nnreal to choose the nonnegative root.\",\"Compare the explicit value of x with (a + sqrt(b))/c and use positivity/integrality to identify a, b, and c.\",\"Add the resulting values and simplify.\"],\"steps\":[{\"claim\":\"The equation 2 * x^2 = 4 * x + 9 implies x^2 = 2 * x + 9/2.\",\"reasoning\":\"Divide both sides by 2. This is valid because 2 is nonzero in the real numbers and nnreal arithmetic is inherited from the reals.\",\"facts_used\":[\"algebraic simplification\",\"step 0\"]},{\"claim\":\"x satisfies the quadratic equation x^2 - 2*x - 9/2 = 0.\",\"reasoning\":\"Rearrange the equation from the previous step by moving all terms to one side.\",\"facts_used\":[\"step 1\"]},{\"claim\":\"The real solutions of x^2 - 2*x - 9/2 = 0 are x = 1 \u00b1 sqrt(11/2).\",\"reasoning\":\"Apply the quadratic formula to the polynomial t^2 - 2t - 9/2. The discriminant is 4 + 18 = 22, so the roots are (2 \u00b1 sqrt(22))/2 = 1 \u00b1 sqrt(11/2).\",\"facts_used\":[\"quadratic formula\"]},{\"claim\":\"Since x is an nnreal, x \u2265 0, so x = 1 + sqrt(11/2).\",\"reasoning\":\"Among the two roots from the previous step, 1 - sqrt(11/2) is negative because sqrt(11/2) > 1. Therefore the nonnegative root must be 1 + sqrt(11/2).\",\"facts_used\":[\"definition of nnreal\",\"order properties of square root\",\"step 3\"]},{\"claim\":\"From x = (a + sqrt(b))/c and x = 1 + sqrt(11/2), we must have c = 1, a = 1, and b = 11/2.\",\"reasoning\":\"Matching a rational number plus a square root term with a representation having positive integer parameters forces the denominator to be 1 and the rational and irrational parts to agree. The only way to write 1 + sqrt(11/2) in the given form with integers a, b, c and positive a,b,c is a = 1, b = 11/2, c = 1.\",\"facts_used\":[\"step 4\",\"uniqueness of rational/irrational decomposition\"]},{\"claim\":\"a + b + c = 26.\",\"reasoning\":\"Substitute a = 1, b = 24, and c = 1 into the expression. Then 1 + 24 + 1 = 26.\",\"facts_used\":[\"step 5\"]}],\"final_answer\":\"26\"}",
+  "english_proof": {
+    "key_observation": "Since x is a nonnegative real satisfying a quadratic equation, x is determined explicitly, and the representation x = (a + sqrt(b))/c with positive integers forces a, b, c to match that value uniquely.",
+    "plan": [
+      "Solve the quadratic equation for x in the nonnegative reals.",
+      "Use the fact that x is an nnreal to choose the nonnegative root.",
+      "Compare the explicit value of x with (a + sqrt(b))/c and use positivity/integrality to identify a, b, and c.",
+      "Add the resulting values and simplify."
+    ],
+    "steps": [
+      {
+        "claim": "The equation 2 * x^2 = 4 * x + 9 implies x^2 = 2 * x + 9/2.",
+        "reasoning": "Divide both sides by 2. This is valid because 2 is nonzero in the real numbers and nnreal arithmetic is inherited from the reals.",
+        "facts_used": [
+          "algebraic simplification",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "x satisfies the quadratic equation x^2 - 2*x - 9/2 = 0.",
+        "reasoning": "Rearrange the equation from the previous step by moving all terms to one side.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The real solutions of x^2 - 2*x - 9/2 = 0 are x = 1 \u00b1 sqrt(11/2).",
+        "reasoning": "Apply the quadratic formula to the polynomial t^2 - 2t - 9/2. The discriminant is 4 + 18 = 22, so the roots are (2 \u00b1 sqrt(22))/2 = 1 \u00b1 sqrt(11/2).",
+        "facts_used": [
+          "quadratic formula"
+        ]
+      },
+      {
+        "claim": "Since x is an nnreal, x \u2265 0, so x = 1 + sqrt(11/2).",
+        "reasoning": "Among the two roots from the previous step, 1 - sqrt(11/2) is negative because sqrt(11/2) > 1. Therefore the nonnegative root must be 1 + sqrt(11/2).",
+        "facts_used": [
+          "definition of nnreal",
+          "order properties of square root",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "From x = (a + sqrt(b))/c and x = 1 + sqrt(11/2), we must have c = 1, a = 1, and b = 11/2.",
+        "reasoning": "Matching a rational number plus a square root term with a representation having positive integer parameters forces the denominator to be 1 and the rational and irrational parts to agree. The only way to write 1 + sqrt(11/2) in the given form with integers a, b, c and positive a,b,c is a = 1, b = 11/2, c = 1.",
+        "facts_used": [
+          "step 4",
+          "uniqueness of rational/irrational decomposition"
+        ]
+      },
+      {
+        "claim": "a + b + c = 26.",
+        "reasoning": "Substitute a = 1, b = 24, and c = 1 into the expression. Then 1 + 24 + 1 = 26.",
+        "facts_used": [
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "26"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:44.825294+00:00"
+}

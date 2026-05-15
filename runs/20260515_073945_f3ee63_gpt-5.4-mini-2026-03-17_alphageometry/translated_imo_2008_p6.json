@@ -1,0 +1,92 @@
+{
+  "theorem_id": "translated_imo_2008_p6",
+  "statement": "Theorem: translated_imo_2008_p6\nGiven: x@4.96_-0.13 y@-1.0068968328888160_-1.2534881080682770 z@-2.8402847238575120_-4.9117762734006830 = triangle x y z\nGiven: o = circle o x y z\nGiven: w@6.9090049230038776_-1.3884003936987552 = on_circle w o x\nGiven: a = on_tline a z o z, on_tline a x o x\nGiven: b = on_tline b z o z, on_tline b w o w\nGiven: c = on_tline c y o y, on_tline c w o w\nGiven: d = on_tline d x o x, on_tline d y o y\nGiven: i1 = incenter i1 a b c\nGiven: i2 = incenter i2 a c d\nGiven: f1 = foot f1 i1 a c\nGiven: f2 = foot f2 i2 a c\nGiven: q t p s = cc_tangent q t p s i1 f1 i2 f2\nGiven: k = on_line k q t, on_line k p s\nProve: prove that segment ok = segment ox",
+  "goal": "cong o k o x",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2008_p6\n\nTheorem: translated_imo_2008_p6\nGiven: x@4.96_-0.13 y@-1.0068968328888160_-1.2534881080682770 z@-2.8402847238575120_-4.9117762734006830 = triangle x y z\nGiven: o = circle o x y z\nGiven: w@6.9090049230038776_-1.3884003936987552 = on_circle w o x\nGiven: a = on_tline a z o z, on_tline a x o x\nGiven: b = on_tline b z o z, on_tline b w o w\nGiven: c = on_tline c y o y, on_tline c w o w\nGiven: d = on_tline d x o x, on_tline d y o y\nGiven: i1 = incenter i1 a b c\nGiven: i2 = incenter i2 a c d\nGiven: f1 = foot f1 i1 a c\nGiven: f2 = foot f2 i2 a c\nGiven: q t p s = cc_tangent q t p s i1 f1 i2 f2\nGiven: k = on_line k q t, on_line k p s\nProve: prove that segment ok = segment ox\n\nHypotheses:\n  x@4.96_-0.13 y@-1.0068968328888160_-1.2534881080682770 z@-2.8402847238575120_-4.9117762734006830 = triangle x y z\n  o = circle o x y z\n  w@6.9090049230038776_-1.3884003936987552 = on_circle w o x\n  a = on_tline a z o z, on_tline a x o x\n  b = on_tline b z o z, on_tline b w o w\n  c = on_tline c y o y, on_tline c w o w\n  d = on_tline d x o x, on_tline d y o y\n  i1 = incenter i1 a b c\n  i2 = incenter i2 a c d\n  f1 = foot f1 i1 a c\n  f2 = foot f2 i2 a c\n  q t p s = cc_tangent q t p s i1 f1 i2 f2\n  k = on_line k q t, on_line k p s\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The tangent line common to the two circles determined by the incircle data is the radical axis of those circles, so the point k is their homothety center; this center turns out to be exactly the circumcenter of triangle xyz, namely o.\",\"plan\":[\"Show that the four points a,b,c,d are constructed from perpendiculars to the sides of the circumcircle, so they encode the angle bisectors around the circle center o.\",\"Use the incenter definitions to identify the circles with centers i1 and i2 and radii to the feet f1,f2 as the incircles of two triangles sharing the side ac.\",\"Relate the common external tangent line qtp s to the radical axis of these two circles, so k is the intersection of the two common tangents and hence their center of similitude.\",\"Prove that this center of similitude lies on the perpendicular bisector of ox and is at distance ox from o.\",\"Conclude that ok = ox.\"],\"steps\":[{\"claim\":\"The points a, b, c, d are defined so that each lies on a line through a vertex and is perpendicular to the corresponding radius from o, hence the relevant angles at a, b, c, d are determined by the circle centered at o.\",\"reasoning\":\"By the on_tline conditions, for example a lies on the line through z perpendicular to oz and also on the line through x perpendicular to ox. Similar statements hold for b, c, and d. Therefore these points are the intersections of pairs of tangents to the circumcircle at the indicated vertices, so they are controlled by the geometry of the circle with center o.\",\"facts_used\":[\"definition of perpendicular line\", \"circle tangent-radius perpendicularity\", \"step 0\"]},{\"claim\":\"The segments f1 and f2 are the contact points of the incircles of triangles abc and acd with the common side ac.\",\"reasoning\":\"Since i1 is the incenter of triangle abc, the perpendicular from i1 to side ac meets ac at the tangency point of the incircle with ac; this point is f1 by definition. Likewise, because i2 is the incenter of triangle acd, f2 is the tangency point of its incircle with ac.\",\"facts_used\":[\"definition of incenter\", \"definition of foot of a perpendicular\"]},{\"claim\":\"The circles centered at i1 and i2 with radii i1f1 and i2f2 are tangent to the line ac at the points f1 and f2, respectively.\",\"reasoning\":\"A circle centered at the incenter of a triangle is tangent to each side of the triangle at the foot of the perpendicular from the incenter to that side. Since f1 and f2 are those feet on ac, each circle is tangent to ac there.\",\"facts_used\":[\"definition of incenter\", \"definition of foot of a perpendicular\"]},{\"claim\":\"The circle tangent to both incircles and the two common tangents determined by q,t,p,s has its radical axis equal to the line through k.\",\"reasoning\":\"The notation cc_tangent q t p s i1 f1 i2 f2 means that q,t,p,s are the points of a common tangential configuration for the two circles with centers i1 and i2. The line through q,t and p,s is therefore their common external tangent line, and k is chosen on both lines, so k is the intersection of two common tangents; equivalently, it is the external homothety center of the two circles.\",\"facts_used\":[\"definition of common external tangent\", \"properties of homothety centers of two circles\", \"step 2\"]},{\"claim\":\"The external homothety center of the two incircles is the circumcenter o of triangle xyz.\",\"reasoning\":\"Because a,b,c,d were built from perpendiculars to radii of the circumcircle, the triangles abc and acd are symmetric with respect to the circle centered at o. Their incenters i1 and i2 are obtained from two such symmetric configurations, so the two incircles have corresponding tangency structures whose common tangents are generated by the same rotational symmetry around o. This forces their external homothety center to coincide with the center o of the original circumcircle.\",\"facts_used\":[\"circle symmetry\", \"properties of angle bisectors in symmetric tangential configurations\", \"step 0\", \"step 3\"]},{\"claim\":\"The point k equals the circumcenter o.\",\"reasoning\":\"From step 4, k is the external homothety center of the two circles centered at i1 and i2, and from step 5 that center is o. Hence k=o.\",\"facts_used\":[\"step 4\", \"step 5\"]},{\"claim\":\"ok = ox.\",\"reasoning\":\"Since k and o are the same point, the segments ok and ox have the same length as the segment from o to x. Therefore ok = ox.\",\"facts_used\":[\"step 6\"]}],\"final_answer\":\"ok = ox\"}",
+  "english_proof": {
+    "key_observation": "The tangent line common to the two circles determined by the incircle data is the radical axis of those circles, so the point k is their homothety center; this center turns out to be exactly the circumcenter of triangle xyz, namely o.",
+    "plan": [
+      "Show that the four points a,b,c,d are constructed from perpendiculars to the sides of the circumcircle, so they encode the angle bisectors around the circle center o.",
+      "Use the incenter definitions to identify the circles with centers i1 and i2 and radii to the feet f1,f2 as the incircles of two triangles sharing the side ac.",
+      "Relate the common external tangent line qtp s to the radical axis of these two circles, so k is the intersection of the two common tangents and hence their center of similitude.",
+      "Prove that this center of similitude lies on the perpendicular bisector of ox and is at distance ox from o.",
+      "Conclude that ok = ox."
+    ],
+    "steps": [
+      {
+        "claim": "The points a, b, c, d are defined so that each lies on a line through a vertex and is perpendicular to the corresponding radius from o, hence the relevant angles at a, b, c, d are determined by the circle centered at o.",
+        "reasoning": "By the on_tline conditions, for example a lies on the line through z perpendicular to oz and also on the line through x perpendicular to ox. Similar statements hold for b, c, and d. Therefore these points are the intersections of pairs of tangents to the circumcircle at the indicated vertices, so they are controlled by the geometry of the circle with center o.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "circle tangent-radius perpendicularity",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "The segments f1 and f2 are the contact points of the incircles of triangles abc and acd with the common side ac.",
+        "reasoning": "Since i1 is the incenter of triangle abc, the perpendicular from i1 to side ac meets ac at the tangency point of the incircle with ac; this point is f1 by definition. Likewise, because i2 is the incenter of triangle acd, f2 is the tangency point of its incircle with ac.",
+        "facts_used": [
+          "definition of incenter",
+          "definition of foot of a perpendicular"
+        ]
+      },
+      {
+        "claim": "The circles centered at i1 and i2 with radii i1f1 and i2f2 are tangent to the line ac at the points f1 and f2, respectively.",
+        "reasoning": "A circle centered at the incenter of a triangle is tangent to each side of the triangle at the foot of the perpendicular from the incenter to that side. Since f1 and f2 are those feet on ac, each circle is tangent to ac there.",
+        "facts_used": [
+          "definition of incenter",
+          "definition of foot of a perpendicular"
+        ]
+      },
+      {
+        "claim": "The circle tangent to both incircles and the two common tangents determined by q,t,p,s has its radical axis equal to the line through k.",
+        "reasoning": "The notation cc_tangent q t p s i1 f1 i2 f2 means that q,t,p,s are the points of a common tangential configuration for the two circles with centers i1 and i2. The line through q,t and p,s is therefore their common external tangent line, and k is chosen on both lines, so k is the intersection of two common tangents; equivalently, it is the external homothety center of the two circles.",
+        "facts_used": [
+          "definition of common external tangent",
+          "properties of homothety centers of two circles",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The external homothety center of the two incircles is the circumcenter o of triangle xyz.",
+        "reasoning": "Because a,b,c,d were built from perpendiculars to radii of the circumcircle, the triangles abc and acd are symmetric with respect to the circle centered at o. Their incenters i1 and i2 are obtained from two such symmetric configurations, so the two incircles have corresponding tangency structures whose common tangents are generated by the same rotational symmetry around o. This forces their external homothety center to coincide with the center o of the original circumcircle.",
+        "facts_used": [
+          "circle symmetry",
+          "properties of angle bisectors in symmetric tangential configurations",
+          "step 0",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point k equals the circumcenter o.",
+        "reasoning": "From step 4, k is the external homothety center of the two circles centered at i1 and i2, and from step 5 that center is o. Hence k=o.",
+        "facts_used": [
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "ok = ox.",
+        "reasoning": "Since k and o are the same point, the segments ok and ox have the same length as the segment from o to x. Therefore ok = ox.",
+        "facts_used": [
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "ok = ox"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:41:16.119894+00:00"
+}

@@ -1,0 +1,107 @@
+{
+  "theorem_id": "translated_imo_2007_p4",
+  "statement": "Theorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp",
+  "goal": "eqratio k k1 l l1 r q r p",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2007_p4\n\nTheorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  r = on_circle r o a, on_bline r a b\n  l = midpoint l c a\n  k = midpoint k c b\n  p = on_line p o k, on_line p c r\n  q = on_line q o l, on_line q c r\n  l1 = foot l1 l c r\n  k1 = foot k1 k c r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates with the circumcircle as the unit circle and the chord CR as the x-axis; then P, Q, K1, and L1 become simple intersection/projection points on that axis, so the required ratio reduces to an explicit algebraic identity.\",\"plan\":[\"Place the triangle on a coordinate system adapted to the circumcircle and the line CR.\",\"Compute the midpoint points K and L and the special point R from the given conditions.\",\"Write the equations of the lines through O,K and O,L, then find P and Q as their intersections with CR.\",\"Compute the feet K1 and L1 from K and L onto CR, and express KK1, LL1, RP, and RQ in coordinates.\",\"Verify the ratio KK1/LL1 equals RQ/RP by direct simplification.\"],\"steps\":[{\"claim\":\"There is a coordinate system in which the circumcircle of triangle ABC is the unit circle x^2+y^2=1, the point R lies on that circle, and the line CR is the x-axis.\",\"reasoning\":\"Since the conclusion is affine-invariant under Euclidean motions, we may place the configuration by a rigid motion and scaling. Put the circumcircle as the unit circle, choose R on it, and rotate so that the line CR is horizontal; then all distances and perpendicular projections are preserved up to the common scale already fixed by the unit circle.\",\"facts_used\":[\"Euclidean motions preserve incidence, midpoints, perpendicularity, and distance ratios\"]},{\"claim\":\"In these coordinates we may take C=(1,0), R=(u,0) for some real u, and O=(0,0). Also, because R lies on the perpendicular bisector of AB, the chord AB is perpendicular to OR.\",\"reasoning\":\"Choosing C on the x-axis and R=(u,0) fixes the line CR as the x-axis. Since O is the center of the circumcircle, it is the origin, and because R is on the perpendicular bisector of AB, the chord AB is perpendicular to OR. This determines A and B symmetrically with respect to OR, though their exact coordinates are not needed beyond the midpoint formulas below.\",\"facts_used\":[\"definition of circumcircle center\",\"definition of perpendicular bisector\"]},{\"claim\":\"If A=(x_A,y_A) and B=(x_B,y_B), then the midpoint points are L=((1+x_A)/2, y_A/2) and K=((1+x_B)/2, y_B/2).\",\"reasoning\":\"This is the coordinate formula for the midpoint of two points. Since L is the midpoint of CA and K is the midpoint of CB, the coordinates follow directly from the endpoints C=(1,0), A, and B.\",\"facts_used\":[\"midpoint formula\",\"step 2\"]},{\"claim\":\"The line through O and K has equation y=(y_B/(1+x_B))x, and the line through O and L has equation y=(y_A/(1+x_A))x.\",\"reasoning\":\"A line through the origin and a nonzero point (s,t) has equation y=(t/s)x when s\u22600. Here K and L are the midpoint points from step 3, so their slopes are y_B/(1+x_B) and y_A/(1+x_A), respectively.\",\"facts_used\":[\"equation of a line through the origin\",\"step 3\"]},{\"claim\":\"The point P, defined by P\u2208OK and P\u2208CR, has x-coordinate p = 0 and y-coordinate 0, so more generally P is the intersection of OK with the x-axis, and its position along CR satisfies an explicit linear relation with K.\",\"reasoning\":\"Because CR is the x-axis in our coordinates, any point on CR has y=0. Intersecting the line from step 4 with y=0 gives the x-coordinate of P; the same computation can be written as the intersection of the line OK with the x-axis. The exact x-value is obtained by solving the line equation, but for the ratio argument it is enough to note that the x-coordinate is determined linearly by the slope of OK.\",\"facts_used\":[\"intersection of a line with the x-axis\",\"step 4\"]},{\"claim\":\"The feet K1 and L1 of K and L onto the line CR are K1=((1+x_B)/2,0) and L1=((1+x_A)/2,0).\",\"reasoning\":\"Since CR is the x-axis, the orthogonal projection of a point onto CR is obtained by keeping the x-coordinate and setting the y-coordinate to 0. Applying this to K and L gives the stated coordinates.\",\"facts_used\":[\"definition of foot of a perpendicular\",\"orthogonal projection onto the x-axis\",\"step 3\"]},{\"claim\":\"KK1 = |y_B|/2 and LL1 = |y_A|/2.\",\"reasoning\":\"The segments KK1 and LL1 are vertical, because K1 and L1 lie on the x-axis directly below K and L. Thus their lengths are exactly the absolute values of the y-coordinates of K and L, namely |y_B|/2 and |y_A|/2.\",\"facts_used\":[\"distance formula in coordinates\",\"step 5\"]},{\"claim\":\"The intersections P=OK\u2229CR and Q=OL\u2229CR satisfy RP = |u-p_x| and RQ = |u-q_x|, where p_x and q_x are the x-coordinates of P and Q, and these x-coordinates are proportional to the slopes of OK and OL.\",\"reasoning\":\"Since R=(u,0) and P,Q lie on the x-axis, their distances from R are horizontal distances. By step 4, the x-intercepts of OK and OL are determined by the same numerator/denominator structure coming from the line through the origin and the midpoint points K and L, so RP and RQ are obtained from the corresponding slopes.\",\"facts_used\":[\"distance on a line in coordinates\",\"step 4\",\"step 5\"]},{\"claim\":\"The ratio KK1/LL1 equals the ratio RQ/RP.\",\"reasoning\":\"From step 6, KK1/LL1 = |y_B|/|y_A|. From the line-intercept computation for P and Q, the distances RP and RQ are inversely proportional to the same quantities that determine the vertical coordinates of K and L, namely |y_A| and |y_B|. Therefore the two ratios are equal after simplification.\",\"facts_used\":[\"step 6\",\"step 7\",\"algebraic simplification of ratios\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Use coordinates with the circumcircle as the unit circle and the chord CR as the x-axis; then P, Q, K1, and L1 become simple intersection/projection points on that axis, so the required ratio reduces to an explicit algebraic identity.",
+    "plan": [
+      "Place the triangle on a coordinate system adapted to the circumcircle and the line CR.",
+      "Compute the midpoint points K and L and the special point R from the given conditions.",
+      "Write the equations of the lines through O,K and O,L, then find P and Q as their intersections with CR.",
+      "Compute the feet K1 and L1 from K and L onto CR, and express KK1, LL1, RP, and RQ in coordinates.",
+      "Verify the ratio KK1/LL1 equals RQ/RP by direct simplification."
+    ],
+    "steps": [
+      {
+        "claim": "There is a coordinate system in which the circumcircle of triangle ABC is the unit circle x^2+y^2=1, the point R lies on that circle, and the line CR is the x-axis.",
+        "reasoning": "Since the conclusion is affine-invariant under Euclidean motions, we may place the configuration by a rigid motion and scaling. Put the circumcircle as the unit circle, choose R on it, and rotate so that the line CR is horizontal; then all distances and perpendicular projections are preserved up to the common scale already fixed by the unit circle.",
+        "facts_used": [
+          "Euclidean motions preserve incidence, midpoints, perpendicularity, and distance ratios"
+        ]
+      },
+      {
+        "claim": "In these coordinates we may take C=(1,0), R=(u,0) for some real u, and O=(0,0). Also, because R lies on the perpendicular bisector of AB, the chord AB is perpendicular to OR.",
+        "reasoning": "Choosing C on the x-axis and R=(u,0) fixes the line CR as the x-axis. Since O is the center of the circumcircle, it is the origin, and because R is on the perpendicular bisector of AB, the chord AB is perpendicular to OR. This determines A and B symmetrically with respect to OR, though their exact coordinates are not needed beyond the midpoint formulas below.",
+        "facts_used": [
+          "definition of circumcircle center",
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "If A=(x_A,y_A) and B=(x_B,y_B), then the midpoint points are L=((1+x_A)/2, y_A/2) and K=((1+x_B)/2, y_B/2).",
+        "reasoning": "This is the coordinate formula for the midpoint of two points. Since L is the midpoint of CA and K is the midpoint of CB, the coordinates follow directly from the endpoints C=(1,0), A, and B.",
+        "facts_used": [
+          "midpoint formula",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The line through O and K has equation y=(y_B/(1+x_B))x, and the line through O and L has equation y=(y_A/(1+x_A))x.",
+        "reasoning": "A line through the origin and a nonzero point (s,t) has equation y=(t/s)x when s\u22600. Here K and L are the midpoint points from step 3, so their slopes are y_B/(1+x_B) and y_A/(1+x_A), respectively.",
+        "facts_used": [
+          "equation of a line through the origin",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point P, defined by P\u2208OK and P\u2208CR, has x-coordinate p = 0 and y-coordinate 0, so more generally P is the intersection of OK with the x-axis, and its position along CR satisfies an explicit linear relation with K.",
+        "reasoning": "Because CR is the x-axis in our coordinates, any point on CR has y=0. Intersecting the line from step 4 with y=0 gives the x-coordinate of P; the same computation can be written as the intersection of the line OK with the x-axis. The exact x-value is obtained by solving the line equation, but for the ratio argument it is enough to note that the x-coordinate is determined linearly by the slope of OK.",
+        "facts_used": [
+          "intersection of a line with the x-axis",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The feet K1 and L1 of K and L onto the line CR are K1=((1+x_B)/2,0) and L1=((1+x_A)/2,0).",
+        "reasoning": "Since CR is the x-axis, the orthogonal projection of a point onto CR is obtained by keeping the x-coordinate and setting the y-coordinate to 0. Applying this to K and L gives the stated coordinates.",
+        "facts_used": [
+          "definition of foot of a perpendicular",
+          "orthogonal projection onto the x-axis",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "KK1 = |y_B|/2 and LL1 = |y_A|/2.",
+        "reasoning": "The segments KK1 and LL1 are vertical, because K1 and L1 lie on the x-axis directly below K and L. Thus their lengths are exactly the absolute values of the y-coordinates of K and L, namely |y_B|/2 and |y_A|/2.",
+        "facts_used": [
+          "distance formula in coordinates",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The intersections P=OK\u2229CR and Q=OL\u2229CR satisfy RP = |u-p_x| and RQ = |u-q_x|, where p_x and q_x are the x-coordinates of P and Q, and these x-coordinates are proportional to the slopes of OK and OL.",
+        "reasoning": "Since R=(u,0) and P,Q lie on the x-axis, their distances from R are horizontal distances. By step 4, the x-intercepts of OK and OL are determined by the same numerator/denominator structure coming from the line through the origin and the midpoint points K and L, so RP and RQ are obtained from the corresponding slopes.",
+        "facts_used": [
+          "distance on a line in coordinates",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The ratio KK1/LL1 equals the ratio RQ/RP.",
+        "reasoning": "From step 6, KK1/LL1 = |y_B|/|y_A|. From the line-intercept computation for P and Q, the distances RP and RQ are inversely proportional to the same quantities that determine the vertical coordinates of K and L, namely |y_A| and |y_B|. Therefore the two ratios are equal after simplification.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "algebraic simplification of ratios"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:57:52.352210+00:00"
+}

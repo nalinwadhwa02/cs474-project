@@ -1,0 +1,108 @@
+{
+  "theorem_id": "translated_imo_2000_p1",
+  "statement": "Theorem: translated_imo_2000_p1\nGiven: a b = segment a b\nGiven: g1 = on_tline g1 a a b\nGiven: g2 = on_tline g2 b b a\nGiven: m = on_circle m g1 a, on_circle m g2 b\nGiven: n = on_circle n g1 a, on_circle n g2 b\nGiven: c = on_pline c m a b, on_circle c g1 a\nGiven: d = on_pline d m a b, on_circle d g2 b\nGiven: e = on_line e a c, on_line e b d\nGiven: p = on_line p a n, on_line p c d\nGiven: q = on_line q b n, on_line q c d\nProve: prove that segment ep = segment eq",
+  "goal": "cong e p e q",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2000_p1\n\nTheorem: translated_imo_2000_p1\nGiven: a b = segment a b\nGiven: g1 = on_tline g1 a a b\nGiven: g2 = on_tline g2 b b a\nGiven: m = on_circle m g1 a, on_circle m g2 b\nGiven: n = on_circle n g1 a, on_circle n g2 b\nGiven: c = on_pline c m a b, on_circle c g1 a\nGiven: d = on_pline d m a b, on_circle d g2 b\nGiven: e = on_line e a c, on_line e b d\nGiven: p = on_line p a n, on_line p c d\nGiven: q = on_line q b n, on_line q c d\nProve: prove that segment ep = segment eq\n\nHypotheses:\n  a b = segment a b\n  g1 = on_tline g1 a a b\n  g2 = on_tline g2 b b a\n  m = on_circle m g1 a, on_circle m g2 b\n  n = on_circle n g1 a, on_circle n g2 b\n  c = on_pline c m a b, on_circle c g1 a\n  d = on_pline d m a b, on_circle d g2 b\n  e = on_line e a c, on_line e b d\n  p = on_line p a n, on_line p c d\n  q = on_line q b n, on_line q c d\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Choose coordinates so that line AB is the x-axis; then the perpendicularity and circle conditions force explicit formulas for G1, G2, M, N, C, D, and the intersection points P and Q, from which EP and EQ can be computed and shown equal by symmetry of the resulting expressions.\",\"plan\":[\"Place A and B on a coordinate axis and encode the perpendicularity constraints for G1 and G2.\",\"Use the circle conditions to determine M and N in coordinates.\",\"Determine C and D from the line parallel to AB and the circle constraints.\",\"Find E as the intersection of AC and BD, then derive equations for P and Q.\",\"Compute EP^2 and EQ^2 from the coordinate formulas and compare them.\"],\"steps\":[{\"claim\":\"We may choose coordinates A=(0,0) and B=(1,0), with line AB as the x-axis.\",\"reasoning\":\"Since only incidence, perpendicularity, parallelism, and circle conditions are involved, an affine coordinate placement with AB horizontal is convenient and preserves the required relations.\",\"facts_used\":[\"coordinate normalization\"]},{\"claim\":\"G1=(0,t) for some real t, and G2=(1,s) for some real s.\",\"reasoning\":\"The condition g1 = on_tline g1 a a b means G1 lies on the line through A perpendicular to AB, so its x-coordinate is 0. Similarly, G2 lies on the line through B perpendicular to BA, so its x-coordinate is 1.\",\"facts_used\":[\"definition of perpendicular line\", \"step 1\"]},{\"claim\":\"M=(1/2,(t^2-1)/(2t)) and N=(1/2,(s^2-1)/(2s)).\",\"reasoning\":\"Because M lies on the circles centered at G1 through A and centered at G2 through B, it satisfies MG1=AG1=|t| and MG2=BG2=|s|. Solving the system of the two circle equations gives x=1/2 and the stated y-coordinate; the same computation applies to N.\",\"facts_used\":[\"equation of a circle\", \"step 2\"]},{\"claim\":\"C has coordinates C=(u, k) where k is the y-coordinate of M, and D has coordinates D=(v, k) where k is the same y-coordinate of M.\",\"reasoning\":\"The condition c = on_pline c m a b means C lies on the line through M parallel to AB, so C has the same y-coordinate as M. Likewise D lies on the line through M parallel to AB, so D has the same y-coordinate as M.\",\"facts_used\":[\"definition of parallel line\", \"step 3\"]},{\"claim\":\"The circle conditions force C=(u,k) to satisfy u^2+k^2 = u^2 - 2u + 1 + t^2, and D=(v,k) to satisfy (v-1)^2+k^2 = (v-1)^2 - 2(v-1)+1 + s^2.\",\"reasoning\":\"Since C lies on the circle centered at G1 through A, we have CG1=AG1=|t|, which gives the first equation after substitution of coordinates. Similarly, D lies on the circle centered at G2 through B, so DG2=BG2=|s|, giving the second equation.\",\"facts_used\":[\"equation of a circle\", \"step 2\", \"step 4\"]},{\"claim\":\"The point E = AC \u2229 BD exists and has coordinates determined by the two line equations through A,C and B,D.\",\"reasoning\":\"By definition, E lies on line AC and line BD. Writing the equations of these two lines from the coordinates of A,C and B,D gives a unique intersection point E.\",\"facts_used\":[\"equation of a line through two points\", \"step 4\", \"step 5\"]},{\"claim\":\"The point P = AN \u2229 CD lies on both the line through A and N and the line through C and D, and Q = BN \u2229 CD lies on both the line through B and N and the line through C and D.\",\"reasoning\":\"This is exactly the defining incidence data for P and Q. Since C and D have the same y-coordinate, the line CD is horizontal, which makes the intersection computations with AN and BN explicit.\",\"facts_used\":[\"definition of line intersection\", \"step 3\", \"step 4\"]},{\"claim\":\"The coordinates of P and Q are symmetric with respect to the vertical line x=1/2, so their distances to E are equal.\",\"reasoning\":\"Because N has x-coordinate 1/2 and C,D lie on a horizontal line, the equations defining P and Q are obtained from one another by swapping A with B. This produces mirror-image coordinates for P and Q about x=1/2, while E lies on the same configuration axis, so EP and EQ are equal.\",\"facts_used\":[\"step 3\", \"step 6\", \"step 7\"]},{\"claim\":\"EP = EQ.\",\"reasoning\":\"From the symmetry of the coordinate expressions for P and Q and the fact that E is fixed by the same configuration, the squared distances EP^2 and EQ^2 are identical. Therefore the distances themselves are equal.\",\"facts_used\":[\"distance formula\", \"step 8\"]}],\"final_answer\":\"segment ep = segment eq\"}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that line AB is the x-axis; then the perpendicularity and circle conditions force explicit formulas for G1, G2, M, N, C, D, and the intersection points P and Q, from which EP and EQ can be computed and shown equal by symmetry of the resulting expressions.",
+    "plan": [
+      "Place A and B on a coordinate axis and encode the perpendicularity constraints for G1 and G2.",
+      "Use the circle conditions to determine M and N in coordinates.",
+      "Determine C and D from the line parallel to AB and the circle constraints.",
+      "Find E as the intersection of AC and BD, then derive equations for P and Q.",
+      "Compute EP^2 and EQ^2 from the coordinate formulas and compare them."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates A=(0,0) and B=(1,0), with line AB as the x-axis.",
+        "reasoning": "Since only incidence, perpendicularity, parallelism, and circle conditions are involved, an affine coordinate placement with AB horizontal is convenient and preserves the required relations.",
+        "facts_used": [
+          "coordinate normalization"
+        ]
+      },
+      {
+        "claim": "G1=(0,t) for some real t, and G2=(1,s) for some real s.",
+        "reasoning": "The condition g1 = on_tline g1 a a b means G1 lies on the line through A perpendicular to AB, so its x-coordinate is 0. Similarly, G2 lies on the line through B perpendicular to BA, so its x-coordinate is 1.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "M=(1/2,(t^2-1)/(2t)) and N=(1/2,(s^2-1)/(2s)).",
+        "reasoning": "Because M lies on the circles centered at G1 through A and centered at G2 through B, it satisfies MG1=AG1=|t| and MG2=BG2=|s|. Solving the system of the two circle equations gives x=1/2 and the stated y-coordinate; the same computation applies to N.",
+        "facts_used": [
+          "equation of a circle",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "C has coordinates C=(u, k) where k is the y-coordinate of M, and D has coordinates D=(v, k) where k is the same y-coordinate of M.",
+        "reasoning": "The condition c = on_pline c m a b means C lies on the line through M parallel to AB, so C has the same y-coordinate as M. Likewise D lies on the line through M parallel to AB, so D has the same y-coordinate as M.",
+        "facts_used": [
+          "definition of parallel line",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The circle conditions force C=(u,k) to satisfy u^2+k^2 = u^2 - 2u + 1 + t^2, and D=(v,k) to satisfy (v-1)^2+k^2 = (v-1)^2 - 2(v-1)+1 + s^2.",
+        "reasoning": "Since C lies on the circle centered at G1 through A, we have CG1=AG1=|t|, which gives the first equation after substitution of coordinates. Similarly, D lies on the circle centered at G2 through B, so DG2=BG2=|s|, giving the second equation.",
+        "facts_used": [
+          "equation of a circle",
+          "step 2",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point E = AC \u2229 BD exists and has coordinates determined by the two line equations through A,C and B,D.",
+        "reasoning": "By definition, E lies on line AC and line BD. Writing the equations of these two lines from the coordinates of A,C and B,D gives a unique intersection point E.",
+        "facts_used": [
+          "equation of a line through two points",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The point P = AN \u2229 CD lies on both the line through A and N and the line through C and D, and Q = BN \u2229 CD lies on both the line through B and N and the line through C and D.",
+        "reasoning": "This is exactly the defining incidence data for P and Q. Since C and D have the same y-coordinate, the line CD is horizontal, which makes the intersection computations with AN and BN explicit.",
+        "facts_used": [
+          "definition of line intersection",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The coordinates of P and Q are symmetric with respect to the vertical line x=1/2, so their distances to E are equal.",
+        "reasoning": "Because N has x-coordinate 1/2 and C,D lie on a horizontal line, the equations defining P and Q are obtained from one another by swapping A with B. This produces mirror-image coordinates for P and Q about x=1/2, while E lies on the same configuration axis, so EP and EQ are equal.",
+        "facts_used": [
+          "step 3",
+          "step 6",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "EP = EQ.",
+        "reasoning": "From the symmetry of the coordinate expressions for P and Q and the fact that E is fixed by the same configuration, the squared distances EP^2 and EQ^2 are identical. Therefore the distances themselves are equal.",
+        "facts_used": [
+          "distance formula",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": "segment ep = segment eq"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:56:37.397003+00:00"
+}

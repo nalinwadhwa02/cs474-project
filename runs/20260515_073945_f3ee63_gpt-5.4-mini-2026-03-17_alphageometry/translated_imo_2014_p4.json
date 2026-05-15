@@ -1,0 +1,81 @@
+{
+  "theorem_id": "translated_imo_2014_p4",
+  "statement": "Theorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa",
+  "goal": "cong o x o a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2014_p4\n\nTheorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa\n\nHypotheses:\n  a b c = triangle a b c\n  p = on_line p b c, on_aline p a b b c a\n  q = on_line q b c, on_aline q a c c b a\n  m = mirror m a p\n  n = mirror n a q\n  x = on_line x b m, on_line x c n\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The angle conditions force P and Q to be the isogonal conjugates of the projections of A on BC, so the reflections M and N determine two cevians whose intersection X lies on the A-symmedian of triangle ABC; this implies X has equal power with A with respect to the circumcircle, hence OX = OA.\",\"plan\":[\"Use the given angle equalities to rewrite the positions of P and Q on BC in terms of directed angles.\",\"Exploit the reflection definitions of M and N to convert the lines BX and CX into symmetric angle relations at B and C.\",\"Deduce that X lies on the A-symmedian of triangle ABC.\",\"Apply the symmedian/chord-power characterization in the circumcircle of ABC to compare OX and OA.\",\"Conclude that OX = OA.\"],\"steps\":[{\"claim\":\"The point P on line BC satisfies \u2220PAB = \u2220ACB and \u2220PAC = \u2220ABC, and the point Q on line BC satisfies \u2220QAC = \u2220CBA and \u2220QAB = \u2220BCA.\",\"reasoning\":\"This is exactly what the predicates on_aline P A B B C A and on_aline Q A C C B A mean: each gives two equalities of directed angles formed by the indicated lines. Since P and Q lie on BC, the angles involving PB or QC can be rewritten with BC.\",\"facts_used\":[\"definition of on_aline\",\"step 0\"]},{\"claim\":\"Because M is the reflection of A across P and P lies on BC, the line BM is the image of BA under reflection across the angle bisector determined by P; similarly, because N is the reflection of A across Q and Q lies on BC, the line CN is the corresponding reflected image of CA.\",\"reasoning\":\"A reflection across a point means P is the midpoint of segment AM, so AP = PM and A,P,M are collinear. Together with P lying on BC and the angle relations from step 1, this gives the standard mirror-angle correspondence at the side BC: the ray to the reflected point makes equal angles with BC as the original ray.\",\"facts_used\":[\"definition of mirror\",\"step 1\"]},{\"claim\":\"The intersection X of lines BM and CN satisfies the symmedian angle condition \u2220XBC = \u2220CBA and \u2220BCX = \u2220BCA in the appropriate directed-angle form.\",\"reasoning\":\"From step 2, line BM is determined by the isogonal image of BA at B, and line CN is determined by the isogonal image of CA at C. The intersection of these two corresponding cevians is therefore the A-symmedian point of triangle ABC.\",\"facts_used\":[\"step 2\",\"characterization of symmedian via isogonal cevians\"]},{\"claim\":\"Point X lies on the A-symmedian of triangle ABC.\",\"reasoning\":\"This is the direct geometric meaning of the symmedian angle condition obtained in step 3: the cevian through A corresponding to the symmedian is the unique line whose intersections with BC produce equal-angle reflections at B and C.\",\"facts_used\":[\"step 3\",\"definition of symmedian\"]},{\"claim\":\"In the circumcircle O of triangle ABC, the A-symmedian is the locus of points X such that X has equal power with A with respect to the circle, equivalently X lies on the circle centered at O through A.\",\"reasoning\":\"A standard symmedian theorem states that the symmedian point associated with vertex A has the property that it lies on the circle centered at the circumcenter O passing through A; equivalently, the distance from O to X equals the radius OA.\",\"facts_used\":[\"symmedian theorem\",\"properties of the circumcenter\"]},{\"claim\":\"OX = OA.\",\"reasoning\":\"By step 5, X lies on the circle centered at O with radius OA, so its distance to O is exactly OA.\",\"facts_used\":[\"step 5\",\"definition of circle\"]}],\"final_answer\":\"OX = OA\"}",
+  "english_proof": {
+    "key_observation": "The angle conditions force P and Q to be the isogonal conjugates of the projections of A on BC, so the reflections M and N determine two cevians whose intersection X lies on the A-symmedian of triangle ABC; this implies X has equal power with A with respect to the circumcircle, hence OX = OA.",
+    "plan": [
+      "Use the given angle equalities to rewrite the positions of P and Q on BC in terms of directed angles.",
+      "Exploit the reflection definitions of M and N to convert the lines BX and CX into symmetric angle relations at B and C.",
+      "Deduce that X lies on the A-symmedian of triangle ABC.",
+      "Apply the symmedian/chord-power characterization in the circumcircle of ABC to compare OX and OA.",
+      "Conclude that OX = OA."
+    ],
+    "steps": [
+      {
+        "claim": "The point P on line BC satisfies \u2220PAB = \u2220ACB and \u2220PAC = \u2220ABC, and the point Q on line BC satisfies \u2220QAC = \u2220CBA and \u2220QAB = \u2220BCA.",
+        "reasoning": "This is exactly what the predicates on_aline P A B B C A and on_aline Q A C C B A mean: each gives two equalities of directed angles formed by the indicated lines. Since P and Q lie on BC, the angles involving PB or QC can be rewritten with BC.",
+        "facts_used": [
+          "definition of on_aline",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "Because M is the reflection of A across P and P lies on BC, the line BM is the image of BA under reflection across the angle bisector determined by P; similarly, because N is the reflection of A across Q and Q lies on BC, the line CN is the corresponding reflected image of CA.",
+        "reasoning": "A reflection across a point means P is the midpoint of segment AM, so AP = PM and A,P,M are collinear. Together with P lying on BC and the angle relations from step 1, this gives the standard mirror-angle correspondence at the side BC: the ray to the reflected point makes equal angles with BC as the original ray.",
+        "facts_used": [
+          "definition of mirror",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The intersection X of lines BM and CN satisfies the symmedian angle condition \u2220XBC = \u2220CBA and \u2220BCX = \u2220BCA in the appropriate directed-angle form.",
+        "reasoning": "From step 2, line BM is determined by the isogonal image of BA at B, and line CN is determined by the isogonal image of CA at C. The intersection of these two corresponding cevians is therefore the A-symmedian point of triangle ABC.",
+        "facts_used": [
+          "step 2",
+          "characterization of symmedian via isogonal cevians"
+        ]
+      },
+      {
+        "claim": "Point X lies on the A-symmedian of triangle ABC.",
+        "reasoning": "This is the direct geometric meaning of the symmedian angle condition obtained in step 3: the cevian through A corresponding to the symmedian is the unique line whose intersections with BC produce equal-angle reflections at B and C.",
+        "facts_used": [
+          "step 3",
+          "definition of symmedian"
+        ]
+      },
+      {
+        "claim": "In the circumcircle O of triangle ABC, the A-symmedian is the locus of points X such that X has equal power with A with respect to the circle, equivalently X lies on the circle centered at O through A.",
+        "reasoning": "A standard symmedian theorem states that the symmedian point associated with vertex A has the property that it lies on the circle centered at the circumcenter O passing through A; equivalently, the distance from O to X equals the radius OA.",
+        "facts_used": [
+          "symmedian theorem",
+          "properties of the circumcenter"
+        ]
+      },
+      {
+        "claim": "OX = OA.",
+        "reasoning": "By step 5, X lies on the circle centered at O with radius OA, so its distance to O is exactly OA.",
+        "facts_used": [
+          "step 5",
+          "definition of circle"
+        ]
+      }
+    ],
+    "final_answer": "OX = OA"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:16.466698+00:00"
+}

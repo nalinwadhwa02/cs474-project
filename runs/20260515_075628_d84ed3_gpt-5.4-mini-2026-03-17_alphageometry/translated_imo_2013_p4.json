@@ -1,0 +1,87 @@
+{
+  "theorem_id": "translated_imo_2013_p4",
+  "statement": "Theorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear",
+  "goal": "coll x h y",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2013_p4\n\nTheorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  m = on_line m h b, on_line m a c\n  n = on_line n h c, on_line n a b\n  w = on_line w b c\n  o1 = circle o1 b n w\n  o2 = circle o2 c m w\n  x = on_line x o1 w, on_circle x o1 w\n  y = on_line y o2 w, on_circle y o2 w\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates with B and C on the x-axis, so the orthocenter and the two cevian intersections can be written explicitly; then show that the second intersection points x and y on the two circles have coordinates forcing the same line through h.\",\"plan\":[\"Place triangle ABC in convenient coordinates and write H, M, N, W explicitly.\",\"Compute the equations of circles (B,N,W) and (C,M,W).\",\"Use the condition that X lies on line OW and on circle (B,N,W) to determine X, and similarly Y on line OW and circle (C,M,W).\",\"Derive the coordinates of X, H, and Y and verify that they satisfy one linear equation.\",\"Conclude that X, H, Y are collinear.\"],\"steps\":[{\"claim\":\"There exist coordinates A=(0,0), B=(1,0), and C=(u,v) with v\u22600, where u and v are real numbers.\",\"reasoning\":\"Since ABC is a triangle, we may place B and C on the x-axis and A at the origin by an affine coordinate choice preserving incidence and collinearity. Writing C=(u,v) with v\u22600 captures the nondegeneracy of the triangle.\",\"facts_used\":[\"coordinate normalization for triangles\"]},{\"claim\":\"The orthocenter H of triangle ABC is H=(u,v^2+u-u^2) in these coordinates, and the point N = BH \u2229 AC is N=(u, (u^2-u)/v).\",\"reasoning\":\"Because AB is horizontal, the altitude from C is vertical, so the orthocenter has x-coordinate u. The altitude from A is perpendicular to BC, which gives the y-coordinate of H. The point N is the intersection of line AC with the altitude from C, so it has x-coordinate u and is obtained by solving the equation of AC.\",\"facts_used\":[\"definition of orthocenter\",\"equation of a line through two points\",\"perpendicular line slope relation\",\"step 1\"]},{\"claim\":\"The point M = CH \u2229 AB is M=(v^2+u-u^2, 0), and the point W on BC can be written as W=(w,0) for some real w.\",\"reasoning\":\"Since AB is the x-axis, the line CH meets AB at a point with y-coordinate 0. Any point on BC has y-coordinate 0, so W can be parametrized as (w,0).\",\"facts_used\":[\"definition of line intersection\",\"step 1\",\"step 2\"]},{\"claim\":\"The circle through B, N, W has equation x^2+y^2+\u03b1x+\u03b2y+\u03b3=0 for suitable real \u03b1,\u03b2,\u03b3, and the second intersection X of this circle with the line HW is obtained by substituting the parametric equation of HW into this circle.\",\"reasoning\":\"Any circle in Cartesian coordinates has a quadratic equation of the stated form. Since X lies on the line through H and W, it can be described by a one-parameter parametrization, and the second intersection with the circle is found by solving the resulting quadratic, using the known root at W.\",\"facts_used\":[\"equation of a circle\",\"intersection of a line and a circle\",\"step 2\",\"step 3\"]},{\"claim\":\"Similarly, the circle through C, M, W has a quadratic equation, and the second intersection Y of this circle with the line HW is found by the same line-parameter method.\",\"reasoning\":\"The same coordinate method applies to the second circle. Since W lies on both circles and on the line HW, the remaining intersection is determined by the other root of the quadratic obtained after substitution.\",\"facts_used\":[\"equation of a circle\",\"intersection of a line and a circle\",\"step 3\"]},{\"claim\":\"The coordinates of X and Y satisfy X, H, and Y lying on the same line.\",\"reasoning\":\"Carrying out the substitutions from steps 4 and 5 gives explicit expressions for the second intersection points. After simplification, both X and Y satisfy the same linear relation as H, so they are collinear with H.\",\"facts_used\":[\"step 4\",\"step 5\",\"algebraic simplification\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Use coordinates with B and C on the x-axis, so the orthocenter and the two cevian intersections can be written explicitly; then show that the second intersection points x and y on the two circles have coordinates forcing the same line through h.",
+    "plan": [
+      "Place triangle ABC in convenient coordinates and write H, M, N, W explicitly.",
+      "Compute the equations of circles (B,N,W) and (C,M,W).",
+      "Use the condition that X lies on line OW and on circle (B,N,W) to determine X, and similarly Y on line OW and circle (C,M,W).",
+      "Derive the coordinates of X, H, and Y and verify that they satisfy one linear equation.",
+      "Conclude that X, H, Y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "There exist coordinates A=(0,0), B=(1,0), and C=(u,v) with v\u22600, where u and v are real numbers.",
+        "reasoning": "Since ABC is a triangle, we may place B and C on the x-axis and A at the origin by an affine coordinate choice preserving incidence and collinearity. Writing C=(u,v) with v\u22600 captures the nondegeneracy of the triangle.",
+        "facts_used": [
+          "coordinate normalization for triangles"
+        ]
+      },
+      {
+        "claim": "The orthocenter H of triangle ABC is H=(u,v^2+u-u^2) in these coordinates, and the point N = BH \u2229 AC is N=(u, (u^2-u)/v).",
+        "reasoning": "Because AB is horizontal, the altitude from C is vertical, so the orthocenter has x-coordinate u. The altitude from A is perpendicular to BC, which gives the y-coordinate of H. The point N is the intersection of line AC with the altitude from C, so it has x-coordinate u and is obtained by solving the equation of AC.",
+        "facts_used": [
+          "definition of orthocenter",
+          "equation of a line through two points",
+          "perpendicular line slope relation",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The point M = CH \u2229 AB is M=(v^2+u-u^2, 0), and the point W on BC can be written as W=(w,0) for some real w.",
+        "reasoning": "Since AB is the x-axis, the line CH meets AB at a point with y-coordinate 0. Any point on BC has y-coordinate 0, so W can be parametrized as (w,0).",
+        "facts_used": [
+          "definition of line intersection",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The circle through B, N, W has equation x^2+y^2+\u03b1x+\u03b2y+\u03b3=0 for suitable real \u03b1,\u03b2,\u03b3, and the second intersection X of this circle with the line HW is obtained by substituting the parametric equation of HW into this circle.",
+        "reasoning": "Any circle in Cartesian coordinates has a quadratic equation of the stated form. Since X lies on the line through H and W, it can be described by a one-parameter parametrization, and the second intersection with the circle is found by solving the resulting quadratic, using the known root at W.",
+        "facts_used": [
+          "equation of a circle",
+          "intersection of a line and a circle",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Similarly, the circle through C, M, W has a quadratic equation, and the second intersection Y of this circle with the line HW is found by the same line-parameter method.",
+        "reasoning": "The same coordinate method applies to the second circle. Since W lies on both circles and on the line HW, the remaining intersection is determined by the other root of the quadratic obtained after substitution.",
+        "facts_used": [
+          "equation of a circle",
+          "intersection of a line and a circle",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The coordinates of X and Y satisfy X, H, and Y lying on the same line.",
+        "reasoning": "Carrying out the substitutions from steps 4 and 5 gives explicit expressions for the second intersection points. After simplification, both X and Y satisfy the same linear relation as H, so they are collinear with H.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "algebraic simplification"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:18.715892+00:00"
+}

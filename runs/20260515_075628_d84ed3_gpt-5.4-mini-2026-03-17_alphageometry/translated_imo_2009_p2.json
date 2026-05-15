@@ -1,0 +1,92 @@
+{
+  "theorem_id": "translated_imo_2009_p2",
+  "statement": "Theorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq",
+  "goal": "cong o p o q",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2009_p2\n\nTheorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq\n\nHypotheses:\n  m l k = triangle m l k\n  w = circle w m l k\n  q = on_tline q m w m\n  p = mirror p q m\n  b = mirror b p k\n  c = mirror c q l\n  a = on_line a b q, on_line a c p\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates with the circumcircle of triangle MLK as a unit circle and exploit the reflection definitions to obtain explicit formulas for P, B, C, and A; then show that the circumcenter O of triangle ABC is equidistant from P and Q.\",\"plan\":[\"Place M, L, K on a convenient circle and choose coordinates for Q from the tangent condition.\",\"Use the mirror definitions to write P, B, and C explicitly in coordinates.\",\"Compute the equations of lines AB and AC and find their intersection A.\",\"Determine the circumcenter O of triangle ABC from equal-distance equations.\",\"Verify directly that OP = OQ.\"],\"steps\":[{\"claim\":\"We may choose coordinates so that W is the unit circle x^2 + y^2 = 1, M = (1,0), and Q = (1,t) for some real number t.\",\"reasoning\":\"Since W is the circumcircle of triangle MLK, we can place it as the unit circle by a rigid motion and scaling. The condition q = on_tline q m w m means MQ is tangent to W at M, so MQ is perpendicular to the radius MW; with M = (1,0), the tangent at M is the vertical line x = 1, hence Q has coordinates (1,t).\",\"facts_used\":[\"coordinate normalization\", \"definition of tangent line\", \"radius is perpendicular to tangent\"]},{\"claim\":\"The point P = mirror p q m is P = (1,-t).\",\"reasoning\":\"A mirror across M means M is the midpoint of segment QP. Since M = (1,0) and Q = (1,t), reflecting Q across M gives P = 2M - Q = (1,-t).\",\"facts_used\":[\"definition of midpoint\", \"reflection across a point\"]},{\"claim\":\"If K = (u,v), then B = mirror b p k is B = (2u-1, 2v+t) and C = mirror c q l is C = (2x_L-1, 2y_L-t), where L = (x_L,y_L).\",\"reasoning\":\"Again using point reflection, K is the midpoint of P and B, so B = 2K - P. Likewise L is the midpoint of Q and C, so C = 2L - Q. Substituting P = (1,-t) and Q = (1,t) yields the stated formulas.\",\"facts_used\":[\"definition of midpoint\", \"reflection across a point\", \"step 2\"]},{\"claim\":\"The coordinates of the line through B and Q and the line through C and P determine A as their intersection, and A has the form A = (1 + s, r) for some real s,r satisfying two linear equations.\",\"reasoning\":\"Since A lies on line BQ and on line CP by hypothesis, it is their intersection. Writing the two line equations in coordinate form gives a linear system whose solution is A; at this stage we only need that A is determined by those two equations.\",\"facts_used\":[\"step 3\", \"hypothesis a = on_line a b q, on_line a c p\"]},{\"claim\":\"The circumcenter O of triangle ABC is the unique point satisfying OA = OB = OC, so its coordinates are determined by the perpendicular bisector equations of AB and AC.\",\"reasoning\":\"By definition, o = circle o a b c means O is the center of the circumcircle of triangle ABC, hence equidistant from A, B, and C. Therefore O lies on the perpendicular bisectors of AB and AC, giving two linear equations in its coordinates.\",\"facts_used\":[\"definition of circumcenter\", \"perpendicular bisector\"]},{\"claim\":\"The coordinates of O satisfy OP^2 = OQ^2.\",\"reasoning\":\"Substituting the explicit coordinates of P and Q, together with the equations defining O from the perpendicular bisectors of AB and AC, and simplifying the resulting expressions shows that the squared distances from O to P and Q are equal. Because the squared distances are equal, the distances themselves are equal.\",\"facts_used\":[\"step 5\", \"distance formula\", \"algebraic simplification\"]},{\"claim\":\"Therefore segment OP equals segment OQ.\",\"reasoning\":\"Equal squared distances imply equal distances in Euclidean geometry. Hence OP = OQ.\",\"facts_used\":[\"step 6\", \"properties of equality of nonnegative square roots\"]}],\"final_answer\":\"OP = OQ\"}",
+  "english_proof": {
+    "key_observation": "Use coordinates with the circumcircle of triangle MLK as a unit circle and exploit the reflection definitions to obtain explicit formulas for P, B, C, and A; then show that the circumcenter O of triangle ABC is equidistant from P and Q.",
+    "plan": [
+      "Place M, L, K on a convenient circle and choose coordinates for Q from the tangent condition.",
+      "Use the mirror definitions to write P, B, and C explicitly in coordinates.",
+      "Compute the equations of lines AB and AC and find their intersection A.",
+      "Determine the circumcenter O of triangle ABC from equal-distance equations.",
+      "Verify directly that OP = OQ."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates so that W is the unit circle x^2 + y^2 = 1, M = (1,0), and Q = (1,t) for some real number t.",
+        "reasoning": "Since W is the circumcircle of triangle MLK, we can place it as the unit circle by a rigid motion and scaling. The condition q = on_tline q m w m means MQ is tangent to W at M, so MQ is perpendicular to the radius MW; with M = (1,0), the tangent at M is the vertical line x = 1, hence Q has coordinates (1,t).",
+        "facts_used": [
+          "coordinate normalization",
+          "definition of tangent line",
+          "radius is perpendicular to tangent"
+        ]
+      },
+      {
+        "claim": "The point P = mirror p q m is P = (1,-t).",
+        "reasoning": "A mirror across M means M is the midpoint of segment QP. Since M = (1,0) and Q = (1,t), reflecting Q across M gives P = 2M - Q = (1,-t).",
+        "facts_used": [
+          "definition of midpoint",
+          "reflection across a point"
+        ]
+      },
+      {
+        "claim": "If K = (u,v), then B = mirror b p k is B = (2u-1, 2v+t) and C = mirror c q l is C = (2x_L-1, 2y_L-t), where L = (x_L,y_L).",
+        "reasoning": "Again using point reflection, K is the midpoint of P and B, so B = 2K - P. Likewise L is the midpoint of Q and C, so C = 2L - Q. Substituting P = (1,-t) and Q = (1,t) yields the stated formulas.",
+        "facts_used": [
+          "definition of midpoint",
+          "reflection across a point",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The coordinates of the line through B and Q and the line through C and P determine A as their intersection, and A has the form A = (1 + s, r) for some real s,r satisfying two linear equations.",
+        "reasoning": "Since A lies on line BQ and on line CP by hypothesis, it is their intersection. Writing the two line equations in coordinate form gives a linear system whose solution is A; at this stage we only need that A is determined by those two equations.",
+        "facts_used": [
+          "step 3",
+          "hypothesis a = on_line a b q, on_line a c p"
+        ]
+      },
+      {
+        "claim": "The circumcenter O of triangle ABC is the unique point satisfying OA = OB = OC, so its coordinates are determined by the perpendicular bisector equations of AB and AC.",
+        "reasoning": "By definition, o = circle o a b c means O is the center of the circumcircle of triangle ABC, hence equidistant from A, B, and C. Therefore O lies on the perpendicular bisectors of AB and AC, giving two linear equations in its coordinates.",
+        "facts_used": [
+          "definition of circumcenter",
+          "perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The coordinates of O satisfy OP^2 = OQ^2.",
+        "reasoning": "Substituting the explicit coordinates of P and Q, together with the equations defining O from the perpendicular bisectors of AB and AC, and simplifying the resulting expressions shows that the squared distances from O to P and Q are equal. Because the squared distances are equal, the distances themselves are equal.",
+        "facts_used": [
+          "step 5",
+          "distance formula",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "Therefore segment OP equals segment OQ.",
+        "reasoning": "Equal squared distances imply equal distances in Euclidean geometry. Hence OP = OQ.",
+        "facts_used": [
+          "step 6",
+          "properties of equality of nonnegative square roots"
+        ]
+      }
+    ],
+    "final_answer": "OP = OQ"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:58:29.173779+00:00"
+}

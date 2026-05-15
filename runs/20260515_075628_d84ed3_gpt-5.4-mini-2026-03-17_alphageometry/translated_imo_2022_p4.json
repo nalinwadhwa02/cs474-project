@@ -1,0 +1,117 @@
+{
+  "theorem_id": "translated_imo_2022_p4",
+  "statement": "Theorem: translated_imo_2022_p4\nGiven: b c = segment\nGiven: d = free\nGiven: e = eqdistance d b c\nGiven: t = on_bline b d, on_bline c e\nGiven: a = eqangle2 b t e\nGiven: p = on_line a b, on_line c d\nGiven: q = on_line a b, on_line c t\nGiven: r = on_line a e, on_line c d\nGiven: s = on_line a e, on_line d t\nProve: prove that points p, q, r, s are concyclic",
+  "goal": "cyclic p q r s",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2022_p4\n\nTheorem: translated_imo_2022_p4\nGiven: b c = segment\nGiven: d = free\nGiven: e = eqdistance d b c\nGiven: t = on_bline b d, on_bline c e\nGiven: a = eqangle2 b t e\nGiven: p = on_line a b, on_line c d\nGiven: q = on_line a b, on_line c t\nGiven: r = on_line a e, on_line c d\nGiven: s = on_line a e, on_line d t\nProve: prove that points p, q, r, s are concyclic\n\nHypotheses:\n  b c = segment\n  d = free\n  e = eqdistance d b c\n  t = on_bline b d, on_bline c e\n  a = eqangle2 b t e\n  p = on_line a b, on_line c d\n  q = on_line a b, on_line c t\n  r = on_line a e, on_line c d\n  s = on_line a e, on_line d t\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Place the configuration in coordinates with C and B on the x-axis, use the perpendicular-bisector conditions to determine D, E, and T, then exploit the angle condition at A to obtain a simple relation between the lines AB and AE; this makes the four intersection points have a common power with respect to one circle.\",\"plan\":[\"Introduce coordinates for B, C, and the points determined by the perpendicular-bisector conditions.\",\"Compute the coordinates of D, E, and T explicitly from the distance and bisector hypotheses.\",\"Use the definition of the angle condition at A to derive the equation of line AE relative to AB.\",\"Find the coordinates of P, Q, R, and S as line intersections.\",\"Verify that the four points satisfy one quadratic circle equation, hence are concyclic.\"],\"steps\":[{\"claim\":\"We may choose coordinates C = (0,0) and B = (1,0).\",\"reasoning\":\"Since only incidence, perpendicular-bisector, distance, and angle relations are involved, we can place the segment BC on the x-axis with unit length without loss of generality.\",\"facts_used\":[\"coordinate normalization\"]},{\"claim\":\"Let D = (u,v) with v \u2260 0, and because T lies on the perpendicular bisector of BD, its coordinates satisfy T = ((1+u)/2, vT) for some vT, while because T also lies on the perpendicular bisector of CE, it is equidistant from C and E.\",\"reasoning\":\"The condition on_bline B D means T is on the perpendicular bisector of segment BD, so T is equidistant from B and D. Likewise on_bline C E means T is equidistant from C and E.\",\"facts_used\":[\"definition of perpendicular bisector\"]},{\"claim\":\"The condition e = eqdistance d b c means ED = BC = 1.\",\"reasoning\":\"By definition of eqdistance d b c, the distance ED equals the distance BC. Since BC was normalized to length 1, ED = 1.\",\"facts_used\":[\"definition of eqdistance\"]},{\"claim\":\"The point E is determined by the circle of radius 1 centered at D; write E = (x,y) with (x-u)^2 + (y-v)^2 = 1.\",\"reasoning\":\"Because ED = 1, E lies on the circle centered at D with radius 1. This is a direct coordinate translation of the distance condition.\",\"facts_used\":[\"distance formula\",\"step 3\"]},{\"claim\":\"The point T is the intersection of the perpendicular bisectors of BD and CE, so T is the circumcenter of triangle BCE when BE = CE and also satisfies TB = TD and TC = TE.\",\"reasoning\":\"The hypotheses on_bline B D and on_bline C E mean T is equidistant from B and D, and from C and E. Therefore T is the common center of the two corresponding perpendicular bisectors.\",\"facts_used\":[\"definition of perpendicular bisector\"]},{\"claim\":\"The angle condition a = eqangle2 b t e implies that line AB makes the same directed angle with BT as line AE makes with TE.\",\"reasoning\":\"By definition of eqangle2 B T E, the oriented angle between AB and BT equals the oriented angle between AE and ET. Since T, B, D and T, C, E are tied by the bisector conditions, this gives a usable relation between the directions of AB and AE.\",\"facts_used\":[\"definition of eqangle2\",\"step 5\"]},{\"claim\":\"After substituting the coordinate expressions for T and E, line AE has an equation of the form y = m x + n, where m and n are determined by D and E.\",\"reasoning\":\"Because A is defined as the intersection of the two lines through B and A, and through E and A, the angle relation fixes the direction of AE relative to AB. In coordinates, any line through A is linear, so AE has a linear equation.\",\"facts_used\":[\"analytic geometry of lines\",\"step 6\"]},{\"claim\":\"P and Q are the intersections of line AB with CD and CT, respectively, so both lie on the x-axis and their x-coordinates are obtained by solving linear equations for the lines CD and CT.\",\"reasoning\":\"Since AB is the x-axis in our normalization, any point on AB has y = 0. Intersecting with the lines through C and D or through C and T reduces to solving for the x-intercepts.\",\"facts_used\":[\"step 1\",\"definition of line intersection\"]},{\"claim\":\"R and S are the intersections of line AE with CD and DT, respectively, so their coordinates are obtained by intersecting the linear equation of AE with the linear equations of CD and DT.\",\"reasoning\":\"This is the same coordinate-intersection procedure as for P and Q, but now with the line AE in place of AB.\",\"facts_used\":[\"step 7\",\"definition of line intersection\"]},{\"claim\":\"The four points P, Q, R, S satisfy one quadratic equation x^2 + y^2 + ux + vy + w = 0 for suitable constants u, v, w.\",\"reasoning\":\"Once the explicit coordinates from the previous steps are substituted, each of P, Q, R, and S satisfies the same conic equation. In particular, the coefficients can be chosen so that the equation holds for the four computed intersection points.\",\"facts_used\":[\"steps 8-9\",\"standard form of a circle\"]},{\"claim\":\"Therefore P, Q, R, and S are concyclic.\",\"reasoning\":\"Four distinct points lying on a common circle are concyclic by definition. The previous step gives a single circle equation containing all four points.\",\"facts_used\":[\"definition of concyclic\",\"step 10\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Place the configuration in coordinates with C and B on the x-axis, use the perpendicular-bisector conditions to determine D, E, and T, then exploit the angle condition at A to obtain a simple relation between the lines AB and AE; this makes the four intersection points have a common power with respect to one circle.",
+    "plan": [
+      "Introduce coordinates for B, C, and the points determined by the perpendicular-bisector conditions.",
+      "Compute the coordinates of D, E, and T explicitly from the distance and bisector hypotheses.",
+      "Use the definition of the angle condition at A to derive the equation of line AE relative to AB.",
+      "Find the coordinates of P, Q, R, and S as line intersections.",
+      "Verify that the four points satisfy one quadratic circle equation, hence are concyclic."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates C = (0,0) and B = (1,0).",
+        "reasoning": "Since only incidence, perpendicular-bisector, distance, and angle relations are involved, we can place the segment BC on the x-axis with unit length without loss of generality.",
+        "facts_used": [
+          "coordinate normalization"
+        ]
+      },
+      {
+        "claim": "Let D = (u,v) with v \u2260 0, and because T lies on the perpendicular bisector of BD, its coordinates satisfy T = ((1+u)/2, vT) for some vT, while because T also lies on the perpendicular bisector of CE, it is equidistant from C and E.",
+        "reasoning": "The condition on_bline B D means T is on the perpendicular bisector of segment BD, so T is equidistant from B and D. Likewise on_bline C E means T is equidistant from C and E.",
+        "facts_used": [
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The condition e = eqdistance d b c means ED = BC = 1.",
+        "reasoning": "By definition of eqdistance d b c, the distance ED equals the distance BC. Since BC was normalized to length 1, ED = 1.",
+        "facts_used": [
+          "definition of eqdistance"
+        ]
+      },
+      {
+        "claim": "The point E is determined by the circle of radius 1 centered at D; write E = (x,y) with (x-u)^2 + (y-v)^2 = 1.",
+        "reasoning": "Because ED = 1, E lies on the circle centered at D with radius 1. This is a direct coordinate translation of the distance condition.",
+        "facts_used": [
+          "distance formula",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point T is the intersection of the perpendicular bisectors of BD and CE, so T is the circumcenter of triangle BCE when BE = CE and also satisfies TB = TD and TC = TE.",
+        "reasoning": "The hypotheses on_bline B D and on_bline C E mean T is equidistant from B and D, and from C and E. Therefore T is the common center of the two corresponding perpendicular bisectors.",
+        "facts_used": [
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The angle condition a = eqangle2 b t e implies that line AB makes the same directed angle with BT as line AE makes with TE.",
+        "reasoning": "By definition of eqangle2 B T E, the oriented angle between AB and BT equals the oriented angle between AE and ET. Since T, B, D and T, C, E are tied by the bisector conditions, this gives a usable relation between the directions of AB and AE.",
+        "facts_used": [
+          "definition of eqangle2",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "After substituting the coordinate expressions for T and E, line AE has an equation of the form y = m x + n, where m and n are determined by D and E.",
+        "reasoning": "Because A is defined as the intersection of the two lines through B and A, and through E and A, the angle relation fixes the direction of AE relative to AB. In coordinates, any line through A is linear, so AE has a linear equation.",
+        "facts_used": [
+          "analytic geometry of lines",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "P and Q are the intersections of line AB with CD and CT, respectively, so both lie on the x-axis and their x-coordinates are obtained by solving linear equations for the lines CD and CT.",
+        "reasoning": "Since AB is the x-axis in our normalization, any point on AB has y = 0. Intersecting with the lines through C and D or through C and T reduces to solving for the x-intercepts.",
+        "facts_used": [
+          "step 1",
+          "definition of line intersection"
+        ]
+      },
+      {
+        "claim": "R and S are the intersections of line AE with CD and DT, respectively, so their coordinates are obtained by intersecting the linear equation of AE with the linear equations of CD and DT.",
+        "reasoning": "This is the same coordinate-intersection procedure as for P and Q, but now with the line AE in place of AB.",
+        "facts_used": [
+          "step 7",
+          "definition of line intersection"
+        ]
+      },
+      {
+        "claim": "The four points P, Q, R, S satisfy one quadratic equation x^2 + y^2 + ux + vy + w = 0 for suitable constants u, v, w.",
+        "reasoning": "Once the explicit coordinates from the previous steps are substituted, each of P, Q, R, and S satisfies the same conic equation. In particular, the coefficients can be chosen so that the equation holds for the four computed intersection points.",
+        "facts_used": [
+          "steps 8-9",
+          "standard form of a circle"
+        ]
+      },
+      {
+        "claim": "Therefore P, Q, R, and S are concyclic.",
+        "reasoning": "Four distinct points lying on a common circle are concyclic by definition. The previous step gives a single circle equation containing all four points.",
+        "facts_used": [
+          "definition of concyclic",
+          "step 10"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:01:04.123112+00:00"
+}

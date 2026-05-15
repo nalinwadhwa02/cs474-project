@@ -1,0 +1,21 @@
+{
+  "theorem_id": "mathd_algebra_176",
+  "statement": "Theorem: mathd_algebra_176\nVariables: x (real)\nProve: (x + 1)^2 * x = x^3 + 2 * x^2 + x",
+  "goal": "(x + 1)^2 * x = x^3 + 2 * x^2 + x",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_176\n\nTheorem: mathd_algebra_176\nVariables: x (real)\nProve: (x + 1)^2 * x = x^3 + 2 * x^2 + x\n\nVariables: x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Expand the square using the binomial identity, then distribute multiplication by x and combine like terms.\",\n  \"plan\": [\n    \"Expand (x + 1)^2 as x^2 + 2x + 1.\",\n    \"Multiply the expanded expression by x.\",\n    \"Use distributivity to rewrite the product as a sum of monomials.\",\n    \"Combine the resulting terms to match the right-hand side.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"(x + 1)^2 = x^2 + 2x + 1.\",\n      \"reasoning\": By the binomial expansion, or by direct multiplication, (x + 1)(x + 1) = x^2 + x + x + 1 = x^2 + 2x + 1.\",\n      \"facts_used\": [\"binomial expansion\", \"distributive law\", \"associativity and commutativity of addition\"]\n    },\n    {\n      \"claim\": \"(x + 1)^2 * x = (x^2 + 2x + 1) * x.\",\n      \"reasoning\": Substitute the expression from step 1 into the left-hand side.\",\n      \"facts_used\": [\"step 1\", \"substitution\"]\n    },\n    {\n      \"claim\": \"(x^2 + 2x + 1) * x = x^3 + 2x^2 + x.\",\n      \"reasoning\": Distribute multiplication by x across the sum: x^2*x + (2x)*x + 1*x = x^3 + 2x^2 + x.\",\n      \"facts_used\": [\"distributive law\", \"associativity of multiplication\", \"commutativity of multiplication\", \"step 2\"]\n    },\n    {\n      \"claim\": \"(x + 1)^2 * x = x^3 + 2x^2 + x.\",\n      \"reasoning\": Combine steps 2 and 3 to obtain the desired equality.\",\n      \"facts_used\": [\"step 2\", \"step 3\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": null,
+  "parse_error": "could not extract JSON object",
+  "schema_missing": [],
+  "succeeded": false,
+  "timestamp": "2026-05-15T08:21:15.543498+00:00"
+}

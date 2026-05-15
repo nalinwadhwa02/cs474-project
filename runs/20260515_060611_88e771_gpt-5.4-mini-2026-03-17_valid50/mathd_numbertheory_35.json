@@ -1,0 +1,73 @@
+{
+  "theorem_id": "mathd_numbertheory_35",
+  "statement": "Theorem: mathd_numbertheory_35\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)\nProve: \u2211 k in S, k = 24",
+  "goal": "\u2211 k in S, k = 24",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_35\n\nTheorem: mathd_numbertheory_35\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)\nProve: \u2211 k in S, k = 24\n\nHypotheses:\n  S : finset \u2115\n  h\u2080 : \u2200 (n : \u2115), n \u2223 (nat.sqrt 196)\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The hypothesis says every natural number divides \u221a196, so in particular the sum over any finite set of such numbers is forced to be the fixed value 24 once \u221a196 is evaluated and the divisibility condition is interpreted correctly.\",\n  \"plan\": [\n    \"Compute nat.sqrt 196 explicitly.\",\n    \"Use the divisibility hypothesis to identify the possible values of elements of S.\",\n    \"Show that the sum of all elements of S must equal the sum of the divisors of 14 in this setting.\",\n    \"Evaluate that sum to obtain 24.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"nat.sqrt 196 = 14.\",\n      \"reasoning\": \"Since 14^2 = 196 and 14 is the unique natural number whose square is 196, the natural square root of 196 is 14.\",\n      \"facts_used\": [\"definition of nat.sqrt\", \"arithmetical computation\"]\n    },\n    {\n      \"claim\": \"For every n : \u2115, the condition n \u2223 nat.sqrt 196 is equivalent to n \u2223 14.\",\n      \"reasoning\": \"By step 1, nat.sqrt 196 can be replaced by 14 in the divisibility statement.\",\n      \"facts_used\": [\"step 1\", \"substitution\"]\n    },\n    {\n      \"claim\": \"The natural divisors of 14 are exactly 1, 2, 7, and 14.\",\n      \"reasoning\": \"Since 14 = 2 \u00d7 7 and 2 and 7 are prime, its positive divisors are precisely the products of subsets of {2,7}, namely 1, 2, 7, and 14.\",\n      \"facts_used\": [\"prime factorization\", \"divisors of a product of primes\"]\n    },\n    {\n      \"claim\": \"The sum of all natural divisors of 14 is 24.\",\n      \"reasoning\": \"Adding the divisors from step 3 gives 1 + 2 + 7 + 14 = 24.\",\n      \"facts_used\": [\"step 3\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"\u2211 k in S, k = 24.\",\n      \"reasoning\": \"By the hypothesis, every element of S divides nat.sqrt 196, hence every element of S is among the divisors listed in step 3. Therefore the sum over S is the sum of these divisors, which is 24 by step 4.\",\n      \"facts_used\": [\"step 2\", \"step 4\", \"finite sum over a finite set\"]\n    }\n  ],\n  \"final_answer\": \"24\"\n}",
+  "english_proof": {
+    "key_observation": "The hypothesis says every natural number divides \u221a196, so in particular the sum over any finite set of such numbers is forced to be the fixed value 24 once \u221a196 is evaluated and the divisibility condition is interpreted correctly.",
+    "plan": [
+      "Compute nat.sqrt 196 explicitly.",
+      "Use the divisibility hypothesis to identify the possible values of elements of S.",
+      "Show that the sum of all elements of S must equal the sum of the divisors of 14 in this setting.",
+      "Evaluate that sum to obtain 24."
+    ],
+    "steps": [
+      {
+        "claim": "nat.sqrt 196 = 14.",
+        "reasoning": "Since 14^2 = 196 and 14 is the unique natural number whose square is 196, the natural square root of 196 is 14.",
+        "facts_used": [
+          "definition of nat.sqrt",
+          "arithmetical computation"
+        ]
+      },
+      {
+        "claim": "For every n : \u2115, the condition n \u2223 nat.sqrt 196 is equivalent to n \u2223 14.",
+        "reasoning": "By step 1, nat.sqrt 196 can be replaced by 14 in the divisibility statement.",
+        "facts_used": [
+          "step 1",
+          "substitution"
+        ]
+      },
+      {
+        "claim": "The natural divisors of 14 are exactly 1, 2, 7, and 14.",
+        "reasoning": "Since 14 = 2 \u00d7 7 and 2 and 7 are prime, its positive divisors are precisely the products of subsets of {2,7}, namely 1, 2, 7, and 14.",
+        "facts_used": [
+          "prime factorization",
+          "divisors of a product of primes"
+        ]
+      },
+      {
+        "claim": "The sum of all natural divisors of 14 is 24.",
+        "reasoning": "Adding the divisors from step 3 gives 1 + 2 + 7 + 14 = 24.",
+        "facts_used": [
+          "step 3",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "\u2211 k in S, k = 24.",
+        "reasoning": "By the hypothesis, every element of S divides nat.sqrt 196, hence every element of S is among the divisors listed in step 3. Therefore the sum over S is the sum of these divisors, which is 24 by step 4.",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "finite sum over a finite set"
+        ]
+      }
+    ],
+    "final_answer": "24"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.815146+00:00"
+}

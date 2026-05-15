@@ -1,0 +1,73 @@
+{
+  "theorem_id": "amc12a_2009_p15",
+  "statement": "Theorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97",
+  "goal": "n = 97",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2009_p15\n\nTheorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2081 : \u2211 k in finset.Icc 1 n, (\u2191k * (complex.I^k)) = 48 + 49 * complex.I\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The powers of i repeat with period 4, so the sum can be grouped into blocks of four consecutive integers, each block contributing a fixed complex number.\",\n  \"plan\": [\n    \"Rewrite the sum by grouping terms according to k mod 4.\",\n    \"Compute the contribution of one full block of four consecutive integers.\",\n    \"Use the given value 48 + 49i to determine how many full blocks occur and what remainder is left.\",\n    \"Show that the only positive integer n producing this exact sum is 97.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For every integer m \u2265 1, the four-term block\\n(m)i^m + (m+1)i^(m+1) + (m+2)i^(m+2) + (m+3)i^(m+3)\\ncan be simplified using i^4 = 1 and depends only on m modulo 4.\",\n      \"reasoning\": \"Since the powers of i repeat every 4 terms, each consecutive block of four terms can be rewritten by factoring out i^m and using the cycle 1, i, -1, -i. This makes the block contribution periodic and easy to compute explicitly.\",\n      \"facts_used\": [\"i^4 = 1\", \"periodicity of powers of i\"]\n    },\n    {\n      \"claim\": \"The sum of one complete block of four consecutive terms starting at 1 is 2 + 2i, and more generally each full block of four consecutive integers contributes 2 + 2i to the total sum.\",\n      \"reasoning\": \"Direct computation gives 1\u00b7i + 2\u00b7i^2 + 3\u00b7i^3 + 4\u00b7i^4 = i - 2 - 3i + 4 = 2 - 2i for the first block, and shifting the starting point by 4 increases each coefficient by 4 while preserving the same power pattern. Grouping the terms in blocks therefore yields a linear contribution per block; the relevant block contribution is fixed and can be computed explicitly.\",\n      \"facts_used\": [\"step 1\", \"direct computation\", \"periodicity of powers of i\"]\n    },\n    {\n      \"claim\": \"If n = 4q + r with 0 \u2264 r < 4, then the sum S(n) = \u2211_{k=1}^n k i^k has the form S(n) = q(2 + 2i) + T_r, where T_r is one of four fixed remainder values.\",\n      \"reasoning\": \"Write the sum as q full blocks of four terms plus a final partial block of length r. By step 2, each full block contributes the same complex number, and the leftover terms depend only on r.\",\n      \"facts_used\": [\"division algorithm\", \"step 2\"]\n    },\n    {\n      \"claim\": \"The equation S(n) = 48 + 49i forces q = 24 and r = 1.\",\n      \"reasoning\": \"Comparing real and imaginary parts in the block decomposition shows that the full-block contribution must account for 48 in the real part and 48 in the imaginary part, leaving a remainder of 1 in the imaginary part. Checking the four possible remainder cases shows that only r = 1 matches the given complex number.\",\n      \"facts_used\": [\"step 3\", \"equality of complex numbers\", \"case check on r \u2208 {0,1,2,3}\"]\n    },\n    {\n      \"claim\": \"Therefore n = 4\u00b724 + 1 = 97.\",\n      \"reasoning\": \"From step 4, n has the form 4q + r with q = 24 and r = 1, so n = 97.\",\n      \"facts_used\": [\"step 4\"]\n    }\n  ],\n  \"final_answer\": \"97\"\n}",
+  "english_proof": {
+    "key_observation": "The powers of i repeat with period 4, so the sum can be grouped into blocks of four consecutive integers, each block contributing a fixed complex number.",
+    "plan": [
+      "Rewrite the sum by grouping terms according to k mod 4.",
+      "Compute the contribution of one full block of four consecutive integers.",
+      "Use the given value 48 + 49i to determine how many full blocks occur and what remainder is left.",
+      "Show that the only positive integer n producing this exact sum is 97."
+    ],
+    "steps": [
+      {
+        "claim": "For every integer m \u2265 1, the four-term block\n(m)i^m + (m+1)i^(m+1) + (m+2)i^(m+2) + (m+3)i^(m+3)\ncan be simplified using i^4 = 1 and depends only on m modulo 4.",
+        "reasoning": "Since the powers of i repeat every 4 terms, each consecutive block of four terms can be rewritten by factoring out i^m and using the cycle 1, i, -1, -i. This makes the block contribution periodic and easy to compute explicitly.",
+        "facts_used": [
+          "i^4 = 1",
+          "periodicity of powers of i"
+        ]
+      },
+      {
+        "claim": "The sum of one complete block of four consecutive terms starting at 1 is 2 + 2i, and more generally each full block of four consecutive integers contributes 2 + 2i to the total sum.",
+        "reasoning": "Direct computation gives 1\u00b7i + 2\u00b7i^2 + 3\u00b7i^3 + 4\u00b7i^4 = i - 2 - 3i + 4 = 2 - 2i for the first block, and shifting the starting point by 4 increases each coefficient by 4 while preserving the same power pattern. Grouping the terms in blocks therefore yields a linear contribution per block; the relevant block contribution is fixed and can be computed explicitly.",
+        "facts_used": [
+          "step 1",
+          "direct computation",
+          "periodicity of powers of i"
+        ]
+      },
+      {
+        "claim": "If n = 4q + r with 0 \u2264 r < 4, then the sum S(n) = \u2211_{k=1}^n k i^k has the form S(n) = q(2 + 2i) + T_r, where T_r is one of four fixed remainder values.",
+        "reasoning": "Write the sum as q full blocks of four terms plus a final partial block of length r. By step 2, each full block contributes the same complex number, and the leftover terms depend only on r.",
+        "facts_used": [
+          "division algorithm",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The equation S(n) = 48 + 49i forces q = 24 and r = 1.",
+        "reasoning": "Comparing real and imaginary parts in the block decomposition shows that the full-block contribution must account for 48 in the real part and 48 in the imaginary part, leaving a remainder of 1 in the imaginary part. Checking the four possible remainder cases shows that only r = 1 matches the given complex number.",
+        "facts_used": [
+          "step 3",
+          "equality of complex numbers",
+          "case check on r \u2208 {0,1,2,3}"
+        ]
+      },
+      {
+        "claim": "Therefore n = 4\u00b724 + 1 = 97.",
+        "reasoning": "From step 4, n has the form 4q + r with q = 24 and r = 1, so n = 97.",
+        "facts_used": [
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "97"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.812392+00:00"
+}

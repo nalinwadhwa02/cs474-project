@@ -1,0 +1,67 @@
+{
+  "theorem_id": "mathd_numbertheory_427",
+  "statement": "Theorem: mathd_numbertheory_427\nVariables: a (integer)\nGiven: h\u2080 : a = (\u2211 k in (nat.divisors 500), k)\nProve: \u2211 k in finset.filter (\u03bb x, nat.prime x) (nat.divisors a), k = 25",
+  "goal": "\u2211 k in finset.filter (\u03bb x, nat.prime x) (nat.divisors a), k = 25",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_427\n\nTheorem: mathd_numbertheory_427\nVariables: a (integer)\nGiven: h\u2080 : a = (\u2211 k in (nat.divisors 500), k)\nProve: \u2211 k in finset.filter (\u03bb x, nat.prime x) (nat.divisors a), k = 25\n\nHypotheses:\n  h\u2080 : a = (\u2211 k in (nat.divisors 500), k)\n\nVariables: a (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The sum of the divisors of 500 is 1092, and the prime divisors of 1092 are exactly 2, 3, and 13, whose sum is 18.\",\"plan\":[\"Compute the divisor-sum of 500 to identify a.\",\"Factor the resulting integer a.\",\"Determine which divisors of a are prime.\",\"Add those prime divisors and compare with the target.\"],\"steps\":[{\"claim\":\"The sum of all positive divisors of 500 is 1092, so a = 1092.\",\"reasoning\":\"Factor 500 as 2^2 \u00b7 5^3. Using the multiplicative formula for the sum of divisors, \u03c3(500) = (1+2+4)(1+5+25+125) = 7\u00b7156 = 1092. By the given hypothesis h\u2080, a equals this divisor sum, hence a = 1092.\",\"facts_used\":[\"sum of divisors formula\",\"factorization of 500\",\"step 0\"]},{\"claim\":\"The prime factorization of 1092 is 2^2 \u00b7 3 \u00b7 7 \u00b7 13.\",\"reasoning\":\"Since 1092 = 4\u00b7273 = 2^2\u00b7273 and 273 = 3\u00b791 = 3\u00b77\u00b713, we obtain 1092 = 2^2\u00b73\u00b77\u00b713.\",\"facts_used\":[\"integer factorization\",\"step 1\"]},{\"claim\":\"The prime divisors of a are exactly 2, 3, 7, and 13.\",\"reasoning\":\"Because a = 1092 from step 1, the divisors of a that are prime are precisely the prime factors appearing in its factorization, namely 2, 3, 7, and 13.\",\"facts_used\":[\"definition of divisor\",\"definition of prime number\",\"step 1\",\"step 2\"]},{\"claim\":\"The sum of the prime divisors of a is 25.\",\"reasoning\":\"Adding the prime divisors from step 3 gives 2 + 3 + 7 + 13 = 25.\",\"facts_used\":[\"arithmetic\",\"step 3\"]}],\"final_answer\":\"25\"}",
+  "english_proof": {
+    "key_observation": "The sum of the divisors of 500 is 1092, and the prime divisors of 1092 are exactly 2, 3, and 13, whose sum is 18.",
+    "plan": [
+      "Compute the divisor-sum of 500 to identify a.",
+      "Factor the resulting integer a.",
+      "Determine which divisors of a are prime.",
+      "Add those prime divisors and compare with the target."
+    ],
+    "steps": [
+      {
+        "claim": "The sum of all positive divisors of 500 is 1092, so a = 1092.",
+        "reasoning": "Factor 500 as 2^2 \u00b7 5^3. Using the multiplicative formula for the sum of divisors, \u03c3(500) = (1+2+4)(1+5+25+125) = 7\u00b7156 = 1092. By the given hypothesis h\u2080, a equals this divisor sum, hence a = 1092.",
+        "facts_used": [
+          "sum of divisors formula",
+          "factorization of 500",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "The prime factorization of 1092 is 2^2 \u00b7 3 \u00b7 7 \u00b7 13.",
+        "reasoning": "Since 1092 = 4\u00b7273 = 2^2\u00b7273 and 273 = 3\u00b791 = 3\u00b77\u00b713, we obtain 1092 = 2^2\u00b73\u00b77\u00b713.",
+        "facts_used": [
+          "integer factorization",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The prime divisors of a are exactly 2, 3, 7, and 13.",
+        "reasoning": "Because a = 1092 from step 1, the divisors of a that are prime are precisely the prime factors appearing in its factorization, namely 2, 3, 7, and 13.",
+        "facts_used": [
+          "definition of divisor",
+          "definition of prime number",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The sum of the prime divisors of a is 25.",
+        "reasoning": "Adding the prime divisors from step 3 gives 2 + 3 + 7 + 13 = 25.",
+        "facts_used": [
+          "arithmetic",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "25"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:04.788766+00:00"
+}

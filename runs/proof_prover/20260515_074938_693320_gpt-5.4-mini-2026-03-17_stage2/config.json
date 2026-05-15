@@ -1,0 +1,9 @@
+{
+  "model": "gpt-5.4-mini-2026-03-17",
+  "stage1_run": "/Users/dush/cs474-project/runs/20260515_073945_f3ee63_gpt-5.4-mini-2026-03-17_alphageometry",
+  "problem_filter": null,
+  "limit": 50,
+  "max_retries": 3,
+  "n_problems": 30,
+  "started_at": "2026-05-15T07:49:38.751230+00:00"
+}

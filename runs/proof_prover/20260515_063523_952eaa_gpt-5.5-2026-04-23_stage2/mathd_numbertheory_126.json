@@ -1,0 +1,605 @@
+{
+  "theorem_id": "mathd_numbertheory_126",
+  "statement": "Theorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h₀ : 0 < x ∧ 0 < a\nGiven: h₁ : nat.gcd a 40 = x + 3\nGiven: h₂ : nat.lcm a 40 = x * (x + 3)\nGiven: h₃ : ∀ b : ℕ, 0 < b → nat.gcd b 40 = x + 3 ∧ nat.lcm b 40 = x * (x + 3) → a ≤ b\nProve: a = 8",
+  "goal": "a = 8",
+  "stage1_english_proof": {
+    "key_observation": "For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)·lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.",
+    "plan": [
+      "Use the standard gcd-lcm product identity to relate x and a.",
+      "Substitute the given expressions for gcd and lcm and solve for x.",
+      "Use the fact that gcd(a,40) divides 40 to narrow down x.",
+      "Check the resulting value satisfies the equations and conclude a=8."
+    ],
+    "steps": [
+      {
+        "claim": "nat.gcd a 40 * nat.lcm a 40 = 40 * a.",
+        "reasoning": "This is the standard identity for positive integers: gcd(m,n)·lcm(m,n)=m·n. Since h₀ gives 0<a and 40 is positive, the identity applies to a and 40.",
+        "facts_used": [
+          "gcd_lcm_mul",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "(x + 3) * (x * (x + 3)) = 40 * a.",
+        "reasoning": "By h₁, nat.gcd a 40 = x + 3, and by h₂, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.",
+        "facts_used": [
+          "step 1",
+          "h₁",
+          "h₂"
+        ]
+      },
+      {
+        "claim": "x + 3 divides 40.",
+        "reasoning": "Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.",
+        "facts_used": [
+          "definition of gcd",
+          "h₁"
+        ]
+      },
+      {
+        "claim": "x + 3 = 8.",
+        "reasoning": "The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h₀, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "divisors of 40"
+        ]
+      },
+      {
+        "claim": "a = 8.",
+        "reasoning": "From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "algebra"
+        ]
+      }
+    ],
+    "final_answer": "8"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: mathd_numbertheory_126\n\nTheorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h₀ : 0 < x ∧ 0 < a\nGiven: h₁ : nat.gcd a 40 = x + 3\nGiven: h₂ : nat.lcm a 40 = x * (x + 3)\nGiven: h₃ : ∀ b : ℕ, 0 < b → nat.gcd b 40 = x + 3 ∧ nat.lcm b 40 = x * (x + 3) → a ≤ b\nProve: a = 8\n\nGoal: a = 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)·lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.\",\n  \"plan\": [\n    \"Use the standard gcd-lcm product identity to relate x and a.\",\n    \"Substitute the given expressions for gcd and lcm and solve for x.\",\n    \"Use the fact that gcd(a,40) divides 40 to narrow down x.\",\n    \"Check the resulting value satisfies the equations and conclude a=8.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"nat.gcd a 40 * nat.lcm a 40 = 40 * a.\",\n      \"reasoning\": \"This is the standard identity for positive integers: gcd(m,n)·lcm(m,n)=m·n. Since h₀ gives 0<a and 40 is positive, the identity applies to a and 40.\",\n      \"facts_used\": [\n        \"gcd_lcm_mul\",\n        \"step 0\"\n      ]\n    },\n    {\n      \"claim\": \"(x + 3) * (x * (x + 3)) = 40 * a.\",\n      \"reasoning\": \"By h₁, nat.gcd a 40 = x + 3, and by h₂, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"h₁\",\n        \"h₂\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 divides 40.\",\n      \"reasoning\": \"Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.\",\n      \"facts_used\": [\n        \"definition of gcd\",\n        \"h₁\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 = 8.\",\n      \"reasoning\": \"The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h₀, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"divisors of 40\"\n      ]\n    },\n    {\n      \"claim\": \"a = 8.\",\n      \"reasoning\": \"From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebra\"\n      ]\n    }\n  ],\n  \"final_answer\": \"8\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"status\": \"the_stated_theorem_is_false_with_the_given_h3\",\n  \"diagnostic\": \"The hypotheses as stated admit the counterexample x = 37, a = 1480: GCD(1480,40)=40=x+3 and LCM(1480,40)=1480=x*(x+3). The minimality condition h3 is also satisfied for this fixed x, since any positive b with GCD(b,40)=40 and LCM(b,40)=1480 must have b=1480 by the gcd-lcm product identity. Therefore no sound collection of universally true lemmas can make Z3 prove a == 8 from these hypotheses.\",\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"x\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"a\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < x, 0 < a)\",\n      \"GCD(a, 40) == x + 3\",\n      \"LCM(a, 40) == x * (x + 3)\",\n      \"ForAll([b], Implies(And(0 < b, GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b))\"\n    ],\n    \"goal\": \"a == 8\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"gcd_lcm_product_40\",\n      \"english\": \"For every positive integer m, gcd(m,40) times lcm(m,40) equals 40m.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(0 < m, GCD(m, 40) * LCM(m, 40) == 40 * m)\"\n    },\n    {\n      \"name\": \"gcd_divides_40_and_argument\",\n      \"english\": \"If d is gcd(m,40) for positive m, then d is positive and divides both 40 and m.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, GCD(m, 40) == d), And(0 < d, 40 % d == 0, m % d == 0))\"\n    },\n    {\n      \"name\": \"positive_divisors_of_40\",\n      \"english\": \"The positive integer divisors of 40 are exactly 1, 2, 4, 5, 8, 10, 20, and 40.\",\n      \"vars\": [\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"gcd_lcm_product_40\",\n      \"terms\": {\n        \"m\": \"a\"\n      }\n    },\n    {\n      \"lemma\": \"gcd_divides_40_and_argument\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"d\": \"x + 3\"\n      }\n    },\n    {\n      \"lemma\": \"positive_divisors_of_40\",\n      \"terms\": {\n        \"d\": \"x + 3\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "status": "the_stated_theorem_is_false_with_the_given_h3",
+        "diagnostic": "The hypotheses as stated admit the counterexample x = 37, a = 1480: GCD(1480,40)=40=x+3 and LCM(1480,40)=1480=x*(x+3). The minimality condition h3 is also satisfied for this fixed x, since any positive b with GCD(b,40)=40 and LCM(b,40)=1480 must have b=1480 by the gcd-lcm product identity. Therefore no sound collection of universally true lemmas can make Z3 prove a == 8 from these hypotheses.",
+        "theorem": {
+          "variables": [
+            {
+              "name": "x",
+              "sort": "Int"
+            },
+            {
+              "name": "a",
+              "sort": "Int"
+            },
+            {
+              "name": "b",
+              "sort": "Int"
+            }
+          ],
+          "hypotheses": [
+            "And(0 < x, 0 < a)",
+            "GCD(a, 40) == x + 3",
+            "LCM(a, 40) == x * (x + 3)",
+            "ForAll([b], Implies(And(0 < b, GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b))"
+          ],
+          "goal": "a == 8"
+        },
+        "lemmas": [
+          {
+            "name": "gcd_lcm_product_40",
+            "english": "For every positive integer m, gcd(m,40) times lcm(m,40) equals 40m.",
+            "vars": [
+              {
+                "name": "m",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(0 < m, GCD(m, 40) * LCM(m, 40) == 40 * m)"
+          },
+          {
+            "name": "gcd_divides_40_and_argument",
+            "english": "If d is gcd(m,40) for positive m, then d is positive and divides both 40 and m.",
+            "vars": [
+              {
+                "name": "m",
+                "sort": "Int"
+              },
+              {
+                "name": "d",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(0 < m, GCD(m, 40) == d), And(0 < d, 40 % d == 0, m % d == 0))"
+          },
+          {
+            "name": "positive_divisors_of_40",
+            "english": "The positive integer divisors of 40 are exactly 1, 2, 4, 5, 8, 10, 20, and 40.",
+            "vars": [
+              {
+                "name": "d",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "gcd_lcm_product_40",
+            "terms": {
+              "m": "a"
+            }
+          },
+          {
+            "lemma": "gcd_divides_40_and_argument",
+            "terms": {
+              "m": "a",
+              "d": "x + 3"
+            }
+          },
+          {
+            "lemma": "positive_divisors_of_40",
+            "terms": {
+              "d": "x + 3"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unknown",
+        "elapsed_ms": 30362.629175186157,
+        "instantiated": [
+          {
+            "lemma": "gcd_lcm_product_40",
+            "terms": {
+              "m": "a"
+            },
+            "z3_form": "Implies(a > 0, GCD(a, 40)*LCM(a, 40) == 40*a)"
+          },
+          {
+            "lemma": "gcd_divides_40_and_argument",
+            "terms": {
+              "m": "a",
+              "d": "x + 3"
+            },
+            "z3_form": "Implies(And(a > 0, GCD(a, 40) == x + 3),\n        And(x + 3 > 0, 40%(x + 3) == 0, a%(x + 3) == 0))"
+          },
+          {
+            "lemma": "positive_divisors_of_40",
+            "terms": {
+              "d": "x + 3"
+            },
+            "z3_form": "Implies(And(x + 3 > 0, 40%(x + 3) == 0),\n        Or(x + 3 == 1,\n           x + 3 == 2,\n           x + 3 == 4,\n           x + 3 == 5,\n           x + 3 == 8,\n           x + 3 == 10,\n           x + 3 == 20,\n           x + 3 == 40))"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "gcd_lcm_product_40",
+            "english": "For every positive integer m, gcd(m,40) times lcm(m,40) equals 40m.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "gcd_divides_40_and_argument",
+            "english": "If d is gcd(m,40) for positive m, then d is positive and divides both 40 and m.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "positive_divisors_of_40",
+            "english": "The positive integer divisors of 40 are exactly 1, 2, 4, 5, 8, 10, 20, and 40.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 3,
+        "n_hypotheses": 4
+      },
+      "errors": [
+        "Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations."
+      ]
+    },
+    {
+      "attempt": 2,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: mathd_numbertheory_126\n\nTheorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h₀ : 0 < x ∧ 0 < a\nGiven: h₁ : nat.gcd a 40 = x + 3\nGiven: h₂ : nat.lcm a 40 = x * (x + 3)\nGiven: h₃ : ∀ b : ℕ, 0 < b → nat.gcd b 40 = x + 3 ∧ nat.lcm b 40 = x * (x + 3) → a ≤ b\nProve: a = 8\n\nGoal: a = 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)·lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.\",\n  \"plan\": [\n    \"Use the standard gcd-lcm product identity to relate x and a.\",\n    \"Substitute the given expressions for gcd and lcm and solve for x.\",\n    \"Use the fact that gcd(a,40) divides 40 to narrow down x.\",\n    \"Check the resulting value satisfies the equations and conclude a=8.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"nat.gcd a 40 * nat.lcm a 40 = 40 * a.\",\n      \"reasoning\": \"This is the standard identity for positive integers: gcd(m,n)·lcm(m,n)=m·n. Since h₀ gives 0<a and 40 is positive, the identity applies to a and 40.\",\n      \"facts_used\": [\n        \"gcd_lcm_mul\",\n        \"step 0\"\n      ]\n    },\n    {\n      \"claim\": \"(x + 3) * (x * (x + 3)) = 40 * a.\",\n      \"reasoning\": \"By h₁, nat.gcd a 40 = x + 3, and by h₂, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"h₁\",\n        \"h₂\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 divides 40.\",\n      \"reasoning\": \"Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.\",\n      \"facts_used\": [\n        \"definition of gcd\",\n        \"h₁\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 = 8.\",\n      \"reasoning\": \"The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h₀, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"divisors of 40\"\n      ]\n    },\n    {\n      \"claim\": \"a = 8.\",\n      \"reasoning\": \"From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebra\"\n      ]\n    }\n  ],\n  \"final_answer\": \"8\"\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"status\": \"the_stated_theorem_is_false_with_the_given_h3\",\n  \"diagnostic\": \"The hypotheses as stated admit the counterexample x = 37, a = 1480: GCD(1480,40)=40=x+3 and LCM(1480,40)=1480=x*(x+3). The minimality condition h3 is also satisfied for this fixed x, since any positive b with GCD(b,40)=40 and LCM(b,40)=1480 must have b=1480 by the gcd-lcm product identity. Therefore no sound collection of universally true lemmas can make Z3 prove a == 8 from these hypotheses.\",\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"x\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"a\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < x, 0 < a)\",\n      \"GCD(a, 40) == x + 3\",\n      \"LCM(a, 40) == x * (x + 3)\",\n      \"ForAll([b], Implies(And(0 < b, GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b))\"\n    ],\n    \"goal\": \"a == 8\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"gcd_lcm_product_40\",\n      \"english\": \"For every positive integer m, gcd(m,40) times lcm(m,40) equals 40m.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(0 < m, GCD(m, 40) * LCM(m, 40) == 40 * m)\"\n    },\n    {\n      \"name\": \"gcd_divides_40_and_argument\",\n      \"english\": \"If d is gcd(m,40) for positive m, then d is positive and divides both 40 and m.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, GCD(m, 40) == d), And(0 < d, 40 % d == 0, m % d == 0))\"\n    },\n    {\n      \"name\": \"positive_divisors_of_40\",\n      \"english\": \"The positive integer divisors of 40 are exactly 1, 2, 4, 5, 8, 10, 20, and 40.\",\n      \"vars\": [\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"gcd_lcm_product_40\",\n      \"terms\": {\n        \"m\": \"a\"\n      }\n    },\n    {\n      \"lemma\": \"gcd_divides_40_and_argument\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"d\": \"x + 3\"\n      }\n    },\n    {\n      \"lemma\": \"positive_divisors_of_40\",\n      \"terms\": {\n        \"d\": \"x + 3\"\n      }\n    }\n  ]\n}\n\nErrors:\n- Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations.\n\nFix these issues and return the corrected JSON object only."
+        }
+      ],
+      "raw_response": "{\n  \"status\": \"cannot_correct_soundly\",\n  \"reason\": \"The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.\",\n  \"counterexample\": {\n    \"x\": 37,\n    \"a\": 1480,\n    \"checks\": [\n      \"0 < 37 and 0 < 1480\",\n      \"GCD(1480, 40) = 40 = 37 + 3\",\n      \"LCM(1480, 40) = 1480 = 37 * (37 + 3)\",\n      \"For any positive b with GCD(b, 40) = 40 and LCM(b, 40) = 1480, the gcd-lcm identity gives 40 * b = 40 * 1480, hence b = 1480, so a <= b holds.\"\n    ],\n    \"conclusion\": \"All hypotheses hold but a != 8.\"\n  }\n}",
+      "formalization": {
+        "status": "cannot_correct_soundly",
+        "reason": "The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.",
+        "counterexample": {
+          "x": 37,
+          "a": 1480,
+          "checks": [
+            "0 < 37 and 0 < 1480",
+            "GCD(1480, 40) = 40 = 37 + 3",
+            "LCM(1480, 40) = 1480 = 37 * (37 + 3)",
+            "For any positive b with GCD(b, 40) = 40 and LCM(b, 40) = 1480, the gcd-lcm identity gives 40 * b = 40 * 1480, hence b = 1480, so a <= b holds."
+          ],
+          "conclusion": "All hypotheses hold but a != 8."
+        }
+      },
+      "verification": {
+        "status": "compile_error",
+        "stage": "structure",
+        "error": "missing 'theorem' field",
+        "compile_errors": [],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 0
+      },
+      "errors": [
+        "compile error at stage 'structure': missing 'theorem' field"
+      ]
+    },
+    {
+      "attempt": 3,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: mathd_numbertheory_126\n\nTheorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h₀ : 0 < x ∧ 0 < a\nGiven: h₁ : nat.gcd a 40 = x + 3\nGiven: h₂ : nat.lcm a 40 = x * (x + 3)\nGiven: h₃ : ∀ b : ℕ, 0 < b → nat.gcd b 40 = x + 3 ∧ nat.lcm b 40 = x * (x + 3) → a ≤ b\nProve: a = 8\n\nGoal: a = 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)·lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.\",\n  \"plan\": [\n    \"Use the standard gcd-lcm product identity to relate x and a.\",\n    \"Substitute the given expressions for gcd and lcm and solve for x.\",\n    \"Use the fact that gcd(a,40) divides 40 to narrow down x.\",\n    \"Check the resulting value satisfies the equations and conclude a=8.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"nat.gcd a 40 * nat.lcm a 40 = 40 * a.\",\n      \"reasoning\": \"This is the standard identity for positive integers: gcd(m,n)·lcm(m,n)=m·n. Since h₀ gives 0<a and 40 is positive, the identity applies to a and 40.\",\n      \"facts_used\": [\n        \"gcd_lcm_mul\",\n        \"step 0\"\n      ]\n    },\n    {\n      \"claim\": \"(x + 3) * (x * (x + 3)) = 40 * a.\",\n      \"reasoning\": \"By h₁, nat.gcd a 40 = x + 3, and by h₂, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"h₁\",\n        \"h₂\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 divides 40.\",\n      \"reasoning\": \"Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.\",\n      \"facts_used\": [\n        \"definition of gcd\",\n        \"h₁\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 = 8.\",\n      \"reasoning\": \"The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h₀, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"divisors of 40\"\n      ]\n    },\n    {\n      \"claim\": \"a = 8.\",\n      \"reasoning\": \"From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebra\"\n      ]\n    }\n  ],\n  \"final_answer\": \"8\"\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"status\": \"cannot_correct_soundly\",\n  \"reason\": \"The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.\",\n  \"counterexample\": {\n    \"x\": 37,\n    \"a\": 1480,\n    \"checks\": [\n      \"0 < 37 and 0 < 1480\",\n      \"GCD(1480, 40) = 40 = 37 + 3\",\n      \"LCM(1480, 40) = 1480 = 37 * (37 + 3)\",\n      \"For any positive b with GCD(b, 40) = 40 and LCM(b, 40) = 1480, the gcd-lcm identity gives 40 * b = 40 * 1480, hence b = 1480, so a <= b holds.\"\n    ],\n    \"conclusion\": \"All hypotheses hold but a != 8.\"\n  }\n}\n\nErrors:\n- compile error at stage 'structure': missing 'theorem' field\n\nFix these issues and return the corrected JSON object only."
+        }
+      ],
+      "raw_response": "{\n  \"status\": \"cannot_correct_soundly\",\n  \"reason\": \"The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.\",\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"x\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"a\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < x, 0 < a)\",\n      \"GCD(a, 40) == x + 3\",\n      \"LCM(a, 40) == x * (x + 3)\",\n      \"ForAll([b], Implies(0 < b, Implies(And(GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b)))\"\n    ],\n    \"goal\": \"a == 8\"\n  },\n  \"functions\": [],\n  \"lemmas\": [\n    {\n      \"name\": \"gcd_lcm_product\",\n      \"english\": \"For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"n\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, 0 < n), GCD(m, n) * LCM(m, n) == m * n)\"\n    },\n    {\n      \"name\": \"gcd_divides_right\",\n      \"english\": \"For positive integers m,n, gcd(m,n) divides n.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"n\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, 0 < n), n % GCD(m, n) == 0)\"\n    },\n    {\n      \"name\": \"positive_divisors_of_40\",\n      \"english\": \"The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.\",\n      \"vars\": [\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"gcd_lcm_product\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"n\": \"40\"\n      }\n    },\n    {\n      \"lemma\": \"gcd_divides_right\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"n\": \"40\"\n      }\n    },\n    {\n      \"lemma\": \"positive_divisors_of_40\",\n      \"terms\": {\n        \"d\": \"x + 3\"\n      }\n    }\n  ],\n  \"counterexample\": {\n    \"x\": 37,\n    \"a\": 1480,\n    \"explanation\": [\n      \"0 < 37 and 0 < 1480.\",\n      \"GCD(1480, 40) = 40 = 37 + 3.\",\n      \"LCM(1480, 40) = 1480 = 37 * (37 + 3).\",\n      \"For any positive b satisfying GCD(b,40)=40 and LCM(b,40)=1480, the gcd-lcm identity gives 40*b = 40*1480, hence b = 1480, so a <= b.\",\n      \"Thus all hypotheses hold but a != 8.\"\n    ]\n  }\n}",
+      "formalization": {
+        "status": "cannot_correct_soundly",
+        "reason": "The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.",
+        "theorem": {
+          "variables": [
+            {
+              "name": "x",
+              "sort": "Int"
+            },
+            {
+              "name": "a",
+              "sort": "Int"
+            },
+            {
+              "name": "b",
+              "sort": "Int"
+            }
+          ],
+          "hypotheses": [
+            "And(0 < x, 0 < a)",
+            "GCD(a, 40) == x + 3",
+            "LCM(a, 40) == x * (x + 3)",
+            "ForAll([b], Implies(0 < b, Implies(And(GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b)))"
+          ],
+          "goal": "a == 8"
+        },
+        "functions": [],
+        "lemmas": [
+          {
+            "name": "gcd_lcm_product",
+            "english": "For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.",
+            "vars": [
+              {
+                "name": "m",
+                "sort": "Int"
+              },
+              {
+                "name": "n",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(0 < m, 0 < n), GCD(m, n) * LCM(m, n) == m * n)"
+          },
+          {
+            "name": "gcd_divides_right",
+            "english": "For positive integers m,n, gcd(m,n) divides n.",
+            "vars": [
+              {
+                "name": "m",
+                "sort": "Int"
+              },
+              {
+                "name": "n",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(0 < m, 0 < n), n % GCD(m, n) == 0)"
+          },
+          {
+            "name": "positive_divisors_of_40",
+            "english": "The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.",
+            "vars": [
+              {
+                "name": "d",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "gcd_lcm_product",
+            "terms": {
+              "m": "a",
+              "n": "40"
+            }
+          },
+          {
+            "lemma": "gcd_divides_right",
+            "terms": {
+              "m": "a",
+              "n": "40"
+            }
+          },
+          {
+            "lemma": "positive_divisors_of_40",
+            "terms": {
+              "d": "x + 3"
+            }
+          }
+        ],
+        "counterexample": {
+          "x": 37,
+          "a": 1480,
+          "explanation": [
+            "0 < 37 and 0 < 1480.",
+            "GCD(1480, 40) = 40 = 37 + 3.",
+            "LCM(1480, 40) = 1480 = 37 * (37 + 3).",
+            "For any positive b satisfying GCD(b,40)=40 and LCM(b,40)=1480, the gcd-lcm identity gives 40*b = 40*1480, hence b = 1480, so a <= b.",
+            "Thus all hypotheses hold but a != 8."
+          ]
+        }
+      },
+      "verification": {
+        "status": "unknown",
+        "elapsed_ms": 901.3381004333496,
+        "instantiated": [
+          {
+            "lemma": "gcd_lcm_product",
+            "terms": {
+              "m": "a",
+              "n": "40"
+            },
+            "z3_form": "Implies(And(a > 0, True), GCD(a, 40)*LCM(a, 40) == a*40)"
+          },
+          {
+            "lemma": "gcd_divides_right",
+            "terms": {
+              "m": "a",
+              "n": "40"
+            },
+            "z3_form": "Implies(And(a > 0, True), 40%GCD(a, 40) == 0)"
+          },
+          {
+            "lemma": "positive_divisors_of_40",
+            "terms": {
+              "d": "x + 3"
+            },
+            "z3_form": "Implies(And(x + 3 > 0, 40%(x + 3) == 0),\n        Or(x + 3 == 1,\n           x + 3 == 2,\n           x + 3 == 4,\n           x + 3 == 5,\n           x + 3 == 8,\n           x + 3 == 10,\n           x + 3 == 20,\n           x + 3 == 40))"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "gcd_lcm_product",
+            "english": "For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "gcd_divides_right",
+            "english": "For positive integers m,n, gcd(m,n) divides n.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "positive_divisors_of_40",
+            "english": "The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 3,
+        "n_hypotheses": 4
+      },
+      "errors": [
+        "Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations."
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_126\n\nTheorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h₀ : 0 < x ∧ 0 < a\nGiven: h₁ : nat.gcd a 40 = x + 3\nGiven: h₂ : nat.lcm a 40 = x * (x + 3)\nGiven: h₃ : ∀ b : ℕ, 0 < b → nat.gcd b 40 = x + 3 ∧ nat.lcm b 40 = x * (x + 3) → a ≤ b\nProve: a = 8\n\nGoal: a = 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)·lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.\",\n  \"plan\": [\n    \"Use the standard gcd-lcm product identity to relate x and a.\",\n    \"Substitute the given expressions for gcd and lcm and solve for x.\",\n    \"Use the fact that gcd(a,40) divides 40 to narrow down x.\",\n    \"Check the resulting value satisfies the equations and conclude a=8.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"nat.gcd a 40 * nat.lcm a 40 = 40 * a.\",\n      \"reasoning\": \"This is the standard identity for positive integers: gcd(m,n)·lcm(m,n)=m·n. Since h₀ gives 0<a and 40 is positive, the identity applies to a and 40.\",\n      \"facts_used\": [\n        \"gcd_lcm_mul\",\n        \"step 0\"\n      ]\n    },\n    {\n      \"claim\": \"(x + 3) * (x * (x + 3)) = 40 * a.\",\n      \"reasoning\": \"By h₁, nat.gcd a 40 = x + 3, and by h₂, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"h₁\",\n        \"h₂\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 divides 40.\",\n      \"reasoning\": \"Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.\",\n      \"facts_used\": [\n        \"definition of gcd\",\n        \"h₁\"\n      ]\n    },\n    {\n      \"claim\": \"x + 3 = 8.\",\n      \"reasoning\": \"The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h₀, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"divisors of 40\"\n      ]\n    },\n    {\n      \"claim\": \"a = 8.\",\n      \"reasoning\": \"From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebra\"\n      ]\n    }\n  ],\n  \"final_answer\": \"8\"\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"status\": \"cannot_correct_soundly\",\n  \"reason\": \"The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.\",\n  \"counterexample\": {\n    \"x\": 37,\n    \"a\": 1480,\n    \"checks\": [\n      \"0 < 37 and 0 < 1480\",\n      \"GCD(1480, 40) = 40 = 37 + 3\",\n      \"LCM(1480, 40) = 1480 = 37 * (37 + 3)\",\n      \"For any positive b with GCD(b, 40) = 40 and LCM(b, 40) = 1480, the gcd-lcm identity gives 40 * b = 40 * 1480, hence b = 1480, so a <= b holds.\"\n    ],\n    \"conclusion\": \"All hypotheses hold but a != 8.\"\n  }\n}\n\nErrors:\n- compile error at stage 'structure': missing 'theorem' field\n\nFix these issues and return the corrected JSON object only."
+    }
+  ],
+  "raw_response": "{\n  \"status\": \"cannot_correct_soundly\",\n  \"reason\": \"The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.\",\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"x\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"a\",\n        \"sort\": \"Int\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < x, 0 < a)\",\n      \"GCD(a, 40) == x + 3\",\n      \"LCM(a, 40) == x * (x + 3)\",\n      \"ForAll([b], Implies(0 < b, Implies(And(GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b)))\"\n    ],\n    \"goal\": \"a == 8\"\n  },\n  \"functions\": [],\n  \"lemmas\": [\n    {\n      \"name\": \"gcd_lcm_product\",\n      \"english\": \"For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"n\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, 0 < n), GCD(m, n) * LCM(m, n) == m * n)\"\n    },\n    {\n      \"name\": \"gcd_divides_right\",\n      \"english\": \"For positive integers m,n, gcd(m,n) divides n.\",\n      \"vars\": [\n        {\n          \"name\": \"m\",\n          \"sort\": \"Int\"\n        },\n        {\n          \"name\": \"n\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < m, 0 < n), n % GCD(m, n) == 0)\"\n    },\n    {\n      \"name\": \"positive_divisors_of_40\",\n      \"english\": \"The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.\",\n      \"vars\": [\n        {\n          \"name\": \"d\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"gcd_lcm_product\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"n\": \"40\"\n      }\n    },\n    {\n      \"lemma\": \"gcd_divides_right\",\n      \"terms\": {\n        \"m\": \"a\",\n        \"n\": \"40\"\n      }\n    },\n    {\n      \"lemma\": \"positive_divisors_of_40\",\n      \"terms\": {\n        \"d\": \"x + 3\"\n      }\n    }\n  ],\n  \"counterexample\": {\n    \"x\": 37,\n    \"a\": 1480,\n    \"explanation\": [\n      \"0 < 37 and 0 < 1480.\",\n      \"GCD(1480, 40) = 40 = 37 + 3.\",\n      \"LCM(1480, 40) = 1480 = 37 * (37 + 3).\",\n      \"For any positive b satisfying GCD(b,40)=40 and LCM(b,40)=1480, the gcd-lcm identity gives 40*b = 40*1480, hence b = 1480, so a <= b.\",\n      \"Thus all hypotheses hold but a != 8.\"\n    ]\n  }\n}",
+  "formalization": {
+    "status": "cannot_correct_soundly",
+    "reason": "The theorem as stated is false, so no sound collection of universally true lemmas and instantiations can make Z3 prove a == 8 from the given hypotheses.",
+    "theorem": {
+      "variables": [
+        {
+          "name": "x",
+          "sort": "Int"
+        },
+        {
+          "name": "a",
+          "sort": "Int"
+        },
+        {
+          "name": "b",
+          "sort": "Int"
+        }
+      ],
+      "hypotheses": [
+        "And(0 < x, 0 < a)",
+        "GCD(a, 40) == x + 3",
+        "LCM(a, 40) == x * (x + 3)",
+        "ForAll([b], Implies(0 < b, Implies(And(GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b)))"
+      ],
+      "goal": "a == 8"
+    },
+    "functions": [],
+    "lemmas": [
+      {
+        "name": "gcd_lcm_product",
+        "english": "For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.",
+        "vars": [
+          {
+            "name": "m",
+            "sort": "Int"
+          },
+          {
+            "name": "n",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(And(0 < m, 0 < n), GCD(m, n) * LCM(m, n) == m * n)"
+      },
+      {
+        "name": "gcd_divides_right",
+        "english": "For positive integers m,n, gcd(m,n) divides n.",
+        "vars": [
+          {
+            "name": "m",
+            "sort": "Int"
+          },
+          {
+            "name": "n",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(And(0 < m, 0 < n), n % GCD(m, n) == 0)"
+      },
+      {
+        "name": "positive_divisors_of_40",
+        "english": "The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.",
+        "vars": [
+          {
+            "name": "d",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(And(0 < d, 40 % d == 0), Or(d == 1, d == 2, d == 4, d == 5, d == 8, d == 10, d == 20, d == 40))"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "gcd_lcm_product",
+        "terms": {
+          "m": "a",
+          "n": "40"
+        }
+      },
+      {
+        "lemma": "gcd_divides_right",
+        "terms": {
+          "m": "a",
+          "n": "40"
+        }
+      },
+      {
+        "lemma": "positive_divisors_of_40",
+        "terms": {
+          "d": "x + 3"
+        }
+      }
+    ],
+    "counterexample": {
+      "x": 37,
+      "a": 1480,
+      "explanation": [
+        "0 < 37 and 0 < 1480.",
+        "GCD(1480, 40) = 40 = 37 + 3.",
+        "LCM(1480, 40) = 1480 = 37 * (37 + 3).",
+        "For any positive b satisfying GCD(b,40)=40 and LCM(b,40)=1480, the gcd-lcm identity gives 40*b = 40*1480, hence b = 1480, so a <= b.",
+        "Thus all hypotheses hold but a != 8."
+      ]
+    }
+  },
+  "verification": {
+    "status": "unknown",
+    "elapsed_ms": 901.3381004333496,
+    "instantiated": [
+      {
+        "lemma": "gcd_lcm_product",
+        "terms": {
+          "m": "a",
+          "n": "40"
+        },
+        "z3_form": "Implies(And(a > 0, True), GCD(a, 40)*LCM(a, 40) == a*40)"
+      },
+      {
+        "lemma": "gcd_divides_right",
+        "terms": {
+          "m": "a",
+          "n": "40"
+        },
+        "z3_form": "Implies(And(a > 0, True), 40%GCD(a, 40) == 0)"
+      },
+      {
+        "lemma": "positive_divisors_of_40",
+        "terms": {
+          "d": "x + 3"
+        },
+        "z3_form": "Implies(And(x + 3 > 0, 40%(x + 3) == 0),\n        Or(x + 3 == 1,\n           x + 3 == 2,\n           x + 3 == 4,\n           x + 3 == 5,\n           x + 3 == 8,\n           x + 3 == 10,\n           x + 3 == 20,\n           x + 3 == 40))"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "gcd_lcm_product",
+        "english": "For positive integers m,n, gcd(m,n) times lcm(m,n) equals m times n.",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "gcd_divides_right",
+        "english": "For positive integers m,n, gcd(m,n) divides n.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "positive_divisors_of_40",
+        "english": "The positive integer divisors of 40 are exactly 1,2,4,5,8,10,20,40.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 3,
+    "n_hypotheses": 4
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T07:20:21.465757+00:00"
+}

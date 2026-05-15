@@ -1,0 +1,395 @@
+{
+  "theorem_id": "amc12a_2009_p15",
+  "statement": "Theorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h₀ : 0 < n\nGiven: h₁ : ∑ k in finset.Icc 1 n, (↑k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97",
+  "goal": "n = 97",
+  "stage1_english_proof": {
+    "key_observation": "The powers of i repeat with period 4, so the sum can be grouped into blocks of four consecutive integers, each block contributing a fixed complex number.",
+    "plan": [
+      "Rewrite the sum by grouping terms according to k mod 4.",
+      "Compute the contribution of one full block of four consecutive integers.",
+      "Use the given value 48 + 49i to determine how many full blocks occur and what remainder is left.",
+      "Show that the only positive integer n producing this exact sum is 97."
+    ],
+    "steps": [
+      {
+        "claim": "For every integer m ≥ 1, the four-term block\n(m)i^m + (m+1)i^(m+1) + (m+2)i^(m+2) + (m+3)i^(m+3)\ncan be simplified using i^4 = 1 and depends only on m modulo 4.",
+        "reasoning": "Since the powers of i repeat every 4 terms, each consecutive block of four terms can be rewritten by factoring out i^m and using the cycle 1, i, -1, -i. This makes the block contribution periodic and easy to compute explicitly.",
+        "facts_used": [
+          "i^4 = 1",
+          "periodicity of powers of i"
+        ]
+      },
+      {
+        "claim": "The sum of one complete block of four consecutive terms starting at 1 is 2 + 2i, and more generally each full block of four consecutive integers contributes 2 + 2i to the total sum.",
+        "reasoning": "Direct computation gives 1·i + 2·i^2 + 3·i^3 + 4·i^4 = i - 2 - 3i + 4 = 2 - 2i for the first block, and shifting the starting point by 4 increases each coefficient by 4 while preserving the same power pattern. Grouping the terms in blocks therefore yields a linear contribution per block; the relevant block contribution is fixed and can be computed explicitly.",
+        "facts_used": [
+          "step 1",
+          "direct computation",
+          "periodicity of powers of i"
+        ]
+      },
+      {
+        "claim": "If n = 4q + r with 0 ≤ r < 4, then the sum S(n) = ∑_{k=1}^n k i^k has the form S(n) = q(2 + 2i) + T_r, where T_r is one of four fixed remainder values.",
+        "reasoning": "Write the sum as q full blocks of four terms plus a final partial block of length r. By step 2, each full block contributes the same complex number, and the leftover terms depend only on r.",
+        "facts_used": [
+          "division algorithm",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The equation S(n) = 48 + 49i forces q = 24 and r = 1.",
+        "reasoning": "Comparing real and imaginary parts in the block decomposition shows that the full-block contribution must account for 48 in the real part and 48 in the imaginary part, leaving a remainder of 1 in the imaginary part. Checking the four possible remainder cases shows that only r = 1 matches the given complex number.",
+        "facts_used": [
+          "step 3",
+          "equality of complex numbers",
+          "case check on r ∈ {0,1,2,3}"
+        ]
+      },
+      {
+        "claim": "Therefore n = 4·24 + 1 = 97.",
+        "reasoning": "From step 4, n has the form 4q + r with q = 24 and r = 1, so n = 97.",
+        "facts_used": [
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "97"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: amc12a_2009_p15\n\nTheorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h₀ : 0 < n\nGiven: h₁ : ∑ k in finset.Icc 1 n, (↑k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97\n\nGoal: n = 97\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The powers of i repeat with period 4, so the sum can be grouped into blocks of four consecutive integers, each block contributing a fixed complex number.\",\n  \"plan\": [\n    \"Rewrite the sum by grouping terms according to k mod 4.\",\n    \"Compute the contribution of one full block of four consecutive integers.\",\n    \"Use the given value 48 + 49i to determine how many full blocks occur and what remainder is left.\",\n    \"Show that the only positive integer n producing this exact sum is 97.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For every integer m ≥ 1, the four-term block\\n(m)i^m + (m+1)i^(m+1) + (m+2)i^(m+2) + (m+3)i^(m+3)\\ncan be simplified using i^4 = 1 and depends only on m modulo 4.\",\n      \"reasoning\": \"Since the powers of i repeat every 4 terms, each consecutive block of four terms can be rewritten by factoring out i^m and using the cycle 1, i, -1, -i. This makes the block contribution periodic and easy to compute explicitly.\",\n      \"facts_used\": [\n        \"i^4 = 1\",\n        \"periodicity of powers of i\"\n      ]\n    },\n    {\n      \"claim\": \"The sum of one complete block of four consecutive terms starting at 1 is 2 + 2i, and more generally each full block of four consecutive integers contributes 2 + 2i to the total sum.\",\n      \"reasoning\": \"Direct computation gives 1·i + 2·i^2 + 3·i^3 + 4·i^4 = i - 2 - 3i + 4 = 2 - 2i for the first block, and shifting the starting point by 4 increases each coefficient by 4 while preserving the same power pattern. Grouping the terms in blocks therefore yields a linear contribution per block; the relevant block contribution is fixed and can be computed explicitly.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"direct computation\",\n        \"periodicity of powers of i\"\n      ]\n    },\n    {\n      \"claim\": \"If n = 4q + r with 0 ≤ r < 4, then the sum S(n) = ∑_{k=1}^n k i^k has the form S(n) = q(2 + 2i) + T_r, where T_r is one of four fixed remainder values.\",\n      \"reasoning\": \"Write the sum as q full blocks of four terms plus a final partial block of length r. By step 2, each full block contributes the same complex number, and the leftover terms depend only on r.\",\n      \"facts_used\": [\n        \"division algorithm\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The equation S(n) = 48 + 49i forces q = 24 and r = 1.\",\n      \"reasoning\": \"Comparing real and imaginary parts in the block decomposition shows that the full-block contribution must account for 48 in the real part and 48 in the imaginary part, leaving a remainder of 1 in the imaginary part. Checking the four possible remainder cases shows that only r = 1 matches the given complex number.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"equality of complex numbers\",\n        \"case check on r ∈ {0,1,2,3}\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore n = 4·24 + 1 = 97.\",\n      \"reasoning\": \"From step 4, n has the form 4q + r with q = 24 and r = 1, so n = 97.\",\n      \"facts_used\": [\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": \"97\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"n\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"0 < n\",\n      \"S_re(n) == 48\",\n      \"S_im(n) == 49\"\n    ],\n    \"goal\": \"n == 97\"\n  },\n  \"functions\": [\n    {\n      \"name\": \"S_re\",\n      \"args\": [\n        \"Int\"\n      ],\n      \"result\": \"Int\"\n    },\n    {\n      \"name\": \"S_im\",\n      \"args\": [\n        \"Int\"\n      ],\n      \"result\": \"Int\"\n    }\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"sum_block_decomposition_mod4\",\n      \"english\": \"For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(0 < a, And(Implies(a % 4 == 0, And(S_re(a) == 2 * (a / 4), S_im(a) == -2 * (a / 4))), Implies(a % 4 == 1, And(S_re(a) == 2 * (a / 4), S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 2, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 3, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == -2 * (a / 4) - 2))))\"\n    },\n    {\n      \"name\": \"mod4_cases\",\n      \"english\": \"Every integer has remainder 0, 1, 2, or 3 modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Or(a % 4 == 0, a % 4 == 1, a % 4 == 2, a % 4 == 3)\"\n    },\n    {\n      \"name\": \"div_mod4_identity\",\n      \"english\": \"Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"a == 4 * (a / 4) + a % 4\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"sum_block_decomposition_mod4\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    },\n    {\n      \"lemma\": \"mod4_cases\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    },\n    {\n      \"lemma\": \"div_mod4_identity\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "n",
+              "sort": "Int"
+            }
+          ],
+          "hypotheses": [
+            "0 < n",
+            "S_re(n) == 48",
+            "S_im(n) == 49"
+          ],
+          "goal": "n == 97"
+        },
+        "functions": [
+          {
+            "name": "S_re",
+            "args": [
+              "Int"
+            ],
+            "result": "Int"
+          },
+          {
+            "name": "S_im",
+            "args": [
+              "Int"
+            ],
+            "result": "Int"
+          }
+        ],
+        "lemmas": [
+          {
+            "name": "sum_block_decomposition_mod4",
+            "english": "For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(0 < a, And(Implies(a % 4 == 0, And(S_re(a) == 2 * (a / 4), S_im(a) == -2 * (a / 4))), Implies(a % 4 == 1, And(S_re(a) == 2 * (a / 4), S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 2, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 3, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == -2 * (a / 4) - 2))))"
+          },
+          {
+            "name": "mod4_cases",
+            "english": "Every integer has remainder 0, 1, 2, or 3 modulo 4.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Int"
+              }
+            ],
+            "body": "Or(a % 4 == 0, a % 4 == 1, a % 4 == 2, a % 4 == 3)"
+          },
+          {
+            "name": "div_mod4_identity",
+            "english": "Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Int"
+              }
+            ],
+            "body": "a == 4 * (a / 4) + a % 4"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "sum_block_decomposition_mod4",
+            "terms": {
+              "a": "n"
+            }
+          },
+          {
+            "lemma": "mod4_cases",
+            "terms": {
+              "a": "n"
+            }
+          },
+          {
+            "lemma": "div_mod4_identity",
+            "terms": {
+              "a": "n"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 1.8279552459716797,
+        "instantiated": [
+          {
+            "lemma": "sum_block_decomposition_mod4",
+            "terms": {
+              "a": "n"
+            },
+            "z3_form": "Implies(n > 0,\n        And(Implies(n%4 == 0,\n                    And(S_re(n) == 2*(n/4),\n                        S_im(n) == -2*(n/4))),\n            Implies(n%4 == 1,\n                    And(S_re(n) == 2*(n/4),\n                        S_im(n) == 2*(n/4) + 1)),\n            Implies(n%4 == 2,\n                    And(S_re(n) == -2*(n/4) - 2,\n                        S_im(n) == 2*(n/4) + 1)),\n            Implies(n%4 == 3,\n                    And(S_re(n) == -2*(n/4) - 2,\n                        S_im(n) == -2*(n/4) - 2))))"
+          },
+          {
+            "lemma": "mod4_cases",
+            "terms": {
+              "a": "n"
+            },
+            "z3_form": "Or(n%4 == 0, n%4 == 1, n%4 == 2, n%4 == 3)"
+          },
+          {
+            "lemma": "div_mod4_identity",
+            "terms": {
+              "a": "n"
+            },
+            "z3_form": "n == 4*(n/4) + n%4"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "sum_block_decomposition_mod4",
+            "english": "For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "mod4_cases",
+            "english": "Every integer has remainder 0, 1, 2, or 3 modulo 4.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "div_mod4_identity",
+            "english": "Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [
+          {
+            "name": "S_re",
+            "args": [
+              "Int"
+            ],
+            "result": "Int"
+          },
+          {
+            "name": "S_im",
+            "args": [
+              "Int"
+            ],
+            "result": "Int"
+          }
+        ],
+        "instantiation_count": 3,
+        "n_hypotheses": 3
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2009_p15\n\nTheorem: amc12a_2009_p15\nVariables: n (integer)\nGiven: h₀ : 0 < n\nGiven: h₁ : ∑ k in finset.Icc 1 n, (↑k * (complex.I^k)) = 48 + 49 * complex.I\nProve: n = 97\n\nGoal: n = 97\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The powers of i repeat with period 4, so the sum can be grouped into blocks of four consecutive integers, each block contributing a fixed complex number.\",\n  \"plan\": [\n    \"Rewrite the sum by grouping terms according to k mod 4.\",\n    \"Compute the contribution of one full block of four consecutive integers.\",\n    \"Use the given value 48 + 49i to determine how many full blocks occur and what remainder is left.\",\n    \"Show that the only positive integer n producing this exact sum is 97.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For every integer m ≥ 1, the four-term block\\n(m)i^m + (m+1)i^(m+1) + (m+2)i^(m+2) + (m+3)i^(m+3)\\ncan be simplified using i^4 = 1 and depends only on m modulo 4.\",\n      \"reasoning\": \"Since the powers of i repeat every 4 terms, each consecutive block of four terms can be rewritten by factoring out i^m and using the cycle 1, i, -1, -i. This makes the block contribution periodic and easy to compute explicitly.\",\n      \"facts_used\": [\n        \"i^4 = 1\",\n        \"periodicity of powers of i\"\n      ]\n    },\n    {\n      \"claim\": \"The sum of one complete block of four consecutive terms starting at 1 is 2 + 2i, and more generally each full block of four consecutive integers contributes 2 + 2i to the total sum.\",\n      \"reasoning\": \"Direct computation gives 1·i + 2·i^2 + 3·i^3 + 4·i^4 = i - 2 - 3i + 4 = 2 - 2i for the first block, and shifting the starting point by 4 increases each coefficient by 4 while preserving the same power pattern. Grouping the terms in blocks therefore yields a linear contribution per block; the relevant block contribution is fixed and can be computed explicitly.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"direct computation\",\n        \"periodicity of powers of i\"\n      ]\n    },\n    {\n      \"claim\": \"If n = 4q + r with 0 ≤ r < 4, then the sum S(n) = ∑_{k=1}^n k i^k has the form S(n) = q(2 + 2i) + T_r, where T_r is one of four fixed remainder values.\",\n      \"reasoning\": \"Write the sum as q full blocks of four terms plus a final partial block of length r. By step 2, each full block contributes the same complex number, and the leftover terms depend only on r.\",\n      \"facts_used\": [\n        \"division algorithm\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The equation S(n) = 48 + 49i forces q = 24 and r = 1.\",\n      \"reasoning\": \"Comparing real and imaginary parts in the block decomposition shows that the full-block contribution must account for 48 in the real part and 48 in the imaginary part, leaving a remainder of 1 in the imaginary part. Checking the four possible remainder cases shows that only r = 1 matches the given complex number.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"equality of complex numbers\",\n        \"case check on r ∈ {0,1,2,3}\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore n = 4·24 + 1 = 97.\",\n      \"reasoning\": \"From step 4, n has the form 4q + r with q = 24 and r = 1, so n = 97.\",\n      \"facts_used\": [\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": \"97\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"n\",\n        \"sort\": \"Int\"\n      }\n    ],\n    \"hypotheses\": [\n      \"0 < n\",\n      \"S_re(n) == 48\",\n      \"S_im(n) == 49\"\n    ],\n    \"goal\": \"n == 97\"\n  },\n  \"functions\": [\n    {\n      \"name\": \"S_re\",\n      \"args\": [\n        \"Int\"\n      ],\n      \"result\": \"Int\"\n    },\n    {\n      \"name\": \"S_im\",\n      \"args\": [\n        \"Int\"\n      ],\n      \"result\": \"Int\"\n    }\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"sum_block_decomposition_mod4\",\n      \"english\": \"For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Implies(0 < a, And(Implies(a % 4 == 0, And(S_re(a) == 2 * (a / 4), S_im(a) == -2 * (a / 4))), Implies(a % 4 == 1, And(S_re(a) == 2 * (a / 4), S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 2, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 3, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == -2 * (a / 4) - 2))))\"\n    },\n    {\n      \"name\": \"mod4_cases\",\n      \"english\": \"Every integer has remainder 0, 1, 2, or 3 modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"Or(a % 4 == 0, a % 4 == 1, a % 4 == 2, a % 4 == 3)\"\n    },\n    {\n      \"name\": \"div_mod4_identity\",\n      \"english\": \"Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.\",\n      \"vars\": [\n        {\n          \"name\": \"a\",\n          \"sort\": \"Int\"\n        }\n      ],\n      \"body\": \"a == 4 * (a / 4) + a % 4\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"sum_block_decomposition_mod4\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    },\n    {\n      \"lemma\": \"mod4_cases\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    },\n    {\n      \"lemma\": \"div_mod4_identity\",\n      \"terms\": {\n        \"a\": \"n\"\n      }\n    }\n  ]\n}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "n",
+          "sort": "Int"
+        }
+      ],
+      "hypotheses": [
+        "0 < n",
+        "S_re(n) == 48",
+        "S_im(n) == 49"
+      ],
+      "goal": "n == 97"
+    },
+    "functions": [
+      {
+        "name": "S_re",
+        "args": [
+          "Int"
+        ],
+        "result": "Int"
+      },
+      {
+        "name": "S_im",
+        "args": [
+          "Int"
+        ],
+        "result": "Int"
+      }
+    ],
+    "lemmas": [
+      {
+        "name": "sum_block_decomposition_mod4",
+        "english": "For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(0 < a, And(Implies(a % 4 == 0, And(S_re(a) == 2 * (a / 4), S_im(a) == -2 * (a / 4))), Implies(a % 4 == 1, And(S_re(a) == 2 * (a / 4), S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 2, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == 2 * (a / 4) + 1)), Implies(a % 4 == 3, And(S_re(a) == -2 * (a / 4) - 2, S_im(a) == -2 * (a / 4) - 2))))"
+      },
+      {
+        "name": "mod4_cases",
+        "english": "Every integer has remainder 0, 1, 2, or 3 modulo 4.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Int"
+          }
+        ],
+        "body": "Or(a % 4 == 0, a % 4 == 1, a % 4 == 2, a % 4 == 3)"
+      },
+      {
+        "name": "div_mod4_identity",
+        "english": "Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Int"
+          }
+        ],
+        "body": "a == 4 * (a / 4) + a % 4"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "sum_block_decomposition_mod4",
+        "terms": {
+          "a": "n"
+        }
+      },
+      {
+        "lemma": "mod4_cases",
+        "terms": {
+          "a": "n"
+        }
+      },
+      {
+        "lemma": "div_mod4_identity",
+        "terms": {
+          "a": "n"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 1.8279552459716797,
+    "instantiated": [
+      {
+        "lemma": "sum_block_decomposition_mod4",
+        "terms": {
+          "a": "n"
+        },
+        "z3_form": "Implies(n > 0,\n        And(Implies(n%4 == 0,\n                    And(S_re(n) == 2*(n/4),\n                        S_im(n) == -2*(n/4))),\n            Implies(n%4 == 1,\n                    And(S_re(n) == 2*(n/4),\n                        S_im(n) == 2*(n/4) + 1)),\n            Implies(n%4 == 2,\n                    And(S_re(n) == -2*(n/4) - 2,\n                        S_im(n) == 2*(n/4) + 1)),\n            Implies(n%4 == 3,\n                    And(S_re(n) == -2*(n/4) - 2,\n                        S_im(n) == -2*(n/4) - 2))))"
+      },
+      {
+        "lemma": "mod4_cases",
+        "terms": {
+          "a": "n"
+        },
+        "z3_form": "Or(n%4 == 0, n%4 == 1, n%4 == 2, n%4 == 3)"
+      },
+      {
+        "lemma": "div_mod4_identity",
+        "terms": {
+          "a": "n"
+        },
+        "z3_form": "n == 4*(n/4) + n%4"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "sum_block_decomposition_mod4",
+        "english": "For S(n)=sum_{k=1}^n k i^k, grouping terms in blocks of four gives explicit real and imaginary parts according to n modulo 4.",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "mod4_cases",
+        "english": "Every integer has remainder 0, 1, 2, or 3 modulo 4.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "div_mod4_identity",
+        "english": "Division algorithm for divisor 4: a equals 4 times its quotient plus its remainder modulo 4.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [
+      {
+        "name": "S_re",
+        "args": [
+          "Int"
+        ],
+        "result": "Int"
+      },
+      {
+        "name": "S_im",
+        "args": [
+          "Int"
+        ],
+        "result": "Int"
+      }
+    ],
+    "instantiation_count": 3,
+    "n_hypotheses": 3
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:51:00.562103+00:00"
+}

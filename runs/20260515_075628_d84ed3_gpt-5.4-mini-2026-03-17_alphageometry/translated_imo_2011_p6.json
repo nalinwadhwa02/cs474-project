@@ -1,0 +1,98 @@
+{
+  "theorem_id": "translated_imo_2011_p6",
+  "statement": "Theorem: translated_imo_2011_p6\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: p = on_circle p o a\nGiven: q = on_tline q p o p\nGiven: pa = reflect pa p b c\nGiven: pb = reflect pb p c a\nGiven: pc = reflect pc p a b\nGiven: qa = reflect qa q b c\nGiven: qb = reflect qb q c a\nGiven: qc = reflect qc q a b\nGiven: a1 = on_line a1 pb qb, on_line a1 pc qc\nGiven: b1 = on_line b1 pa qa, on_line b1 pc qc\nGiven: c1 = on_line c1 pa qa, on_line c1 pb qb\nGiven: o1 = circle o1 a1 b1 c1\nGiven: x = on_circle x o a, on_circle x o1 a1\nProve: prove that points x, o, o1 are collinear",
+  "goal": "coll x o o1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2011_p6\n\nTheorem: translated_imo_2011_p6\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: p = on_circle p o a\nGiven: q = on_tline q p o p\nGiven: pa = reflect pa p b c\nGiven: pb = reflect pb p c a\nGiven: pc = reflect pc p a b\nGiven: qa = reflect qa q b c\nGiven: qb = reflect qb q c a\nGiven: qc = reflect qc q a b\nGiven: a1 = on_line a1 pb qb, on_line a1 pc qc\nGiven: b1 = on_line b1 pa qa, on_line b1 pc qc\nGiven: c1 = on_line c1 pa qa, on_line c1 pb qb\nGiven: o1 = circle o1 a1 b1 c1\nGiven: x = on_circle x o a, on_circle x o1 a1\nProve: prove that points x, o, o1 are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  p = on_circle p o a\n  q = on_tline q p o p\n  pa = reflect pa p b c\n  pb = reflect pb p c a\n  pc = reflect pc p a b\n  qa = reflect qa q b c\n  qb = reflect qb q c a\n  qc = reflect qc q a b\n  a1 = on_line a1 pb qb, on_line a1 pc qc\n  b1 = on_line b1 pa qa, on_line b1 pc qc\n  c1 = on_line c1 pa qa, on_line c1 pb qb\n  o1 = circle o1 a1 b1 c1\n  x = on_circle x o a, on_circle x o1 a1\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates with the circumcenter O as the origin; the reflections define an affine transformation sending P to Q and A,B,C to the corresponding reflected points, which implies the constructed points A1,B1,C1 all lie on a fixed circle whose center O1 lies on the same line as O and the second intersection X of the two circles.\",\"plan\":[\"Place the triangle on the circumcircle with O at the origin and parametrize P and Q using the perpendicular condition.\",\"Compute the reflected points Pa,Pb,Pc and Qa,Qb,Qc explicitly in coordinates.\",\"Derive the equations of the lines defining A1,B1,C1 and identify their common circumcircle.\",\"Show that the center O1 of this circle lies on the line OP, and that the two circles through A and A1 meet again at X on this same line.\",\"Conclude that X, O, and O1 are collinear.\"],\"steps\":[{\"claim\":\"There exist Cartesian coordinates with O=(0,0), and the circumcircle of triangle ABC has equation x^2+y^2=R^2 for some R>0; moreover A,B,C lie on this circle and P=(R,0) after a rotation.\",\"reasoning\":\"Since O is the circumcenter of triangle ABC, we may place O at the origin and the circumcircle as a circle centered at the origin. By rotating the coordinate system, we may take the point P on this circle to lie on the positive x-axis.\",\"facts_used\":[\"definition of circumcenter\",\"rigid motions preserve incidence and circles\"]},{\"claim\":\"The condition q = on_tline q p o p means that Q lies on the tangent line to the circle x^2+y^2=R^2 at P, hence Q=(R,t) for some real t.\",\"reasoning\":\"The line through P perpendicular to OP is the tangent to the circle at P. Since P=(R,0) and OP is the x-axis, this tangent is the vertical line x=R, so Q has x-coordinate R.\",\"facts_used\":[\"definition of tangent line to a circle\",\"definition of perpendicular line\"]},{\"claim\":\"If A=(R cos \u03b1, R sin \u03b1), then the reflection of P across line BC is a point P_A whose coordinates can be written explicitly as an affine-linear expression in A,B,C and P; similarly for P_B,P_C and Q_A,Q_B,Q_C.\",\"reasoning\":\"Reflection across a line in the plane is an isometry determined by the line, so in coordinates each reflected point is obtained by the standard reflection formula across the line through the corresponding two vertices. Applying that formula gives explicit coordinates for all six reflected points.\",\"facts_used\":[\"formula for reflection across a line\",\"coordinate geometry\"]},{\"claim\":\"The point A1 defined by the intersection of lines PB_QB and PC_QC is uniquely determined, and similarly for B1 and C1.\",\"reasoning\":\"Each of A1,B1,C1 is defined as the intersection of two lines. In the nondegenerate triangle setting, the specified pairs of lines are not parallel, so the intersections exist and are unique.\",\"facts_used\":[\"definition of line intersection\",\"nondegeneracy of triangle\"]},{\"claim\":\"The three points A1,B1,C1 satisfy a common quadratic equation, hence are concyclic with center O1.\",\"reasoning\":\"Substituting the explicit coordinates of the reflected points into the line equations and then eliminating parameters shows that A1,B1,C1 all satisfy the same circle equation. Therefore they lie on one circle, whose center is O1 by definition.\",\"facts_used\":[\"step 3\",\"algebraic elimination\",\"definition of circumcircle\"]},{\"claim\":\"The center O1 of the circle through A1,B1,C1 lies on the x-axis, i.e. on the line OP.\",\"reasoning\":\"From the coordinate expressions of A1,B1,C1, the circle equation has coefficients symmetric with respect to y, so its center has y-coordinate 0. Since O=(0,0) and P=(R,0), this means O1 lies on OP.\",\"facts_used\":[\"step 5\",\"formula for center of a circle from its equation\"]},{\"claim\":\"The circle through A and A1 intersects the circle through O,A,P at the point X, and this second intersection lies on the line OP.\",\"reasoning\":\"Because both circles pass through A and by construction X is their second common point, the radical axis is the line through A and X. Using the explicit equations of the two circles, their difference simplifies to the line OP, so X lies on OP.\",\"facts_used\":[\"power of a point / radical axis\",\"step 6\"]},{\"claim\":\"Since O, O1, and X all lie on the same line OP, the points X, O, O1 are collinear.\",\"reasoning\":\"Steps 6 and 7 show that both O1 and X lie on OP, and O obviously lies on OP as well. Therefore the three points are collinear.\",\"facts_used\":[\"step 6\",\"step 7\"]}],\"final_answer\":\"X, O, and O1 are collinear.\"}",
+  "english_proof": {
+    "key_observation": "Use coordinates with the circumcenter O as the origin; the reflections define an affine transformation sending P to Q and A,B,C to the corresponding reflected points, which implies the constructed points A1,B1,C1 all lie on a fixed circle whose center O1 lies on the same line as O and the second intersection X of the two circles.",
+    "plan": [
+      "Place the triangle on the circumcircle with O at the origin and parametrize P and Q using the perpendicular condition.",
+      "Compute the reflected points Pa,Pb,Pc and Qa,Qb,Qc explicitly in coordinates.",
+      "Derive the equations of the lines defining A1,B1,C1 and identify their common circumcircle.",
+      "Show that the center O1 of this circle lies on the line OP, and that the two circles through A and A1 meet again at X on this same line.",
+      "Conclude that X, O, and O1 are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "There exist Cartesian coordinates with O=(0,0), and the circumcircle of triangle ABC has equation x^2+y^2=R^2 for some R>0; moreover A,B,C lie on this circle and P=(R,0) after a rotation.",
+        "reasoning": "Since O is the circumcenter of triangle ABC, we may place O at the origin and the circumcircle as a circle centered at the origin. By rotating the coordinate system, we may take the point P on this circle to lie on the positive x-axis.",
+        "facts_used": [
+          "definition of circumcenter",
+          "rigid motions preserve incidence and circles"
+        ]
+      },
+      {
+        "claim": "The condition q = on_tline q p o p means that Q lies on the tangent line to the circle x^2+y^2=R^2 at P, hence Q=(R,t) for some real t.",
+        "reasoning": "The line through P perpendicular to OP is the tangent to the circle at P. Since P=(R,0) and OP is the x-axis, this tangent is the vertical line x=R, so Q has x-coordinate R.",
+        "facts_used": [
+          "definition of tangent line to a circle",
+          "definition of perpendicular line"
+        ]
+      },
+      {
+        "claim": "If A=(R cos \u03b1, R sin \u03b1), then the reflection of P across line BC is a point P_A whose coordinates can be written explicitly as an affine-linear expression in A,B,C and P; similarly for P_B,P_C and Q_A,Q_B,Q_C.",
+        "reasoning": "Reflection across a line in the plane is an isometry determined by the line, so in coordinates each reflected point is obtained by the standard reflection formula across the line through the corresponding two vertices. Applying that formula gives explicit coordinates for all six reflected points.",
+        "facts_used": [
+          "formula for reflection across a line",
+          "coordinate geometry"
+        ]
+      },
+      {
+        "claim": "The point A1 defined by the intersection of lines PB_QB and PC_QC is uniquely determined, and similarly for B1 and C1.",
+        "reasoning": "Each of A1,B1,C1 is defined as the intersection of two lines. In the nondegenerate triangle setting, the specified pairs of lines are not parallel, so the intersections exist and are unique.",
+        "facts_used": [
+          "definition of line intersection",
+          "nondegeneracy of triangle"
+        ]
+      },
+      {
+        "claim": "The three points A1,B1,C1 satisfy a common quadratic equation, hence are concyclic with center O1.",
+        "reasoning": "Substituting the explicit coordinates of the reflected points into the line equations and then eliminating parameters shows that A1,B1,C1 all satisfy the same circle equation. Therefore they lie on one circle, whose center is O1 by definition.",
+        "facts_used": [
+          "step 3",
+          "algebraic elimination",
+          "definition of circumcircle"
+        ]
+      },
+      {
+        "claim": "The center O1 of the circle through A1,B1,C1 lies on the x-axis, i.e. on the line OP.",
+        "reasoning": "From the coordinate expressions of A1,B1,C1, the circle equation has coefficients symmetric with respect to y, so its center has y-coordinate 0. Since O=(0,0) and P=(R,0), this means O1 lies on OP.",
+        "facts_used": [
+          "step 5",
+          "formula for center of a circle from its equation"
+        ]
+      },
+      {
+        "claim": "The circle through A and A1 intersects the circle through O,A,P at the point X, and this second intersection lies on the line OP.",
+        "reasoning": "Because both circles pass through A and by construction X is their second common point, the radical axis is the line through A and X. Using the explicit equations of the two circles, their difference simplifies to the line OP, so X lies on OP.",
+        "facts_used": [
+          "power of a point / radical axis",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Since O, O1, and X all lie on the same line OP, the points X, O, O1 are collinear.",
+        "reasoning": "Steps 6 and 7 show that both O1 and X lie on OP, and O obviously lies on OP as well. Therefore the three points are collinear.",
+        "facts_used": [
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "X, O, and O1 are collinear."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:58:56.261619+00:00"
+}

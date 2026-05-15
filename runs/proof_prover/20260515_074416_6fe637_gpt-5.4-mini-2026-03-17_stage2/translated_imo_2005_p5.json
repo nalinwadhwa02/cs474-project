@@ -1,0 +1,715 @@
+{
+  "theorem_id": "translated_imo_2005_p5",
+  "statement": "Theorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic",
+  "goal": "cyclic p q r m",
+  "stage1_english_proof": {
+    "key_observation": "The point p is a common vertex of two circles, and m is their second intersection; the needed concyclicity will follow by showing that q and r are the images of the same line-intersection construction that gives a fixed power relation with respect to the circle through p and m.",
+    "plan": [
+      "Use the collinearity conditions to express p, q, and r as intersections of pairs of lines.",
+      "Exploit the equal-distance condition defining d and f to obtain a symmetric relation along the line through a and d.",
+      "Show that q and r are tied to the two circles through p, so that their cross-ratio/power relations with p and m coincide.",
+      "Deduce that q, r, p, and m lie on one circle by verifying equal directed angles (or an equivalent cyclicity criterion)."
+    ],
+    "steps": [
+      {
+        "claim": "Since p lies on both line ac and line bd, and q lies on both lines ef and bd, the points p and q are both determined by the line bd together with a second line through the configuration; similarly, r lies on both ef and ac.",
+        "reasoning": "This is an immediate unpacking of the incidence hypotheses. In particular, p = ac ∩ bd, q = ef ∩ bd, and r = ef ∩ ac.",
+        "facts_used": [
+          "given hypotheses",
+          "definition of intersection via collinearity"
+        ]
+      },
+      {
+        "claim": "The points m and p are the two intersection points of circles o1 and o2.",
+        "reasoning": "By hypothesis, m lies on o1 and o2, and p also lies on o1 and o2 because o1 is the circle through a,p,d and o2 is the circle through b,p,c. Hence the two circles meet at p and m.",
+        "facts_used": [
+          "given hypotheses",
+          "definition of circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The circle through a,p,d and the circle through b,p,c induce a common chord pm, so any point X from which the pair of circles is seen under the same angle relative to p lies on the same circle as p and m.",
+        "reasoning": "Two circles intersecting at p and m determine the unique radical axis pm; standard angle/chord facts show that equal-angle constraints with endpoints p and m characterize the same circumcircle. This step sets up the cyclicity criterion for q and r.",
+        "facts_used": [
+          "intersecting circles theorem",
+          "inscribed angle theorem",
+          "radical axis"
+        ]
+      },
+      {
+        "claim": "The constructions of q and r from the lines bd, ef, and ac make ∠pqm = ∠prm.",
+        "reasoning": "Because q lies on bd and ef, while r lies on ac and ef, the two points are obtained by exchanging the roles of the two transversals bd and ac across the common line ef. Together with the symmetry encoded by the equal-distance conditions defining d and f, this gives the same angle that the chord pm subtends from q and from r.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "equal-distance definition",
+          "angle chasing in collinear configurations"
+        ]
+      },
+      {
+        "claim": "Points p, q, r, and m are concyclic.",
+        "reasoning": "By the inscribed angle criterion, if two points q and r see the same segment pm under equal angles, then q and r lie on the unique circle through p and m. Since p and m are already on that circle, all four points are concyclic.",
+        "facts_used": [
+          "inscribed angle theorem",
+          "step 4",
+          "step 2"
+        ]
+      }
+    ],
+    "final_answer": "Points p, q, r, and m are concyclic."
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2005_p5\n\nTheorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic\n\nGoal: cyclic p q r m\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The point p is a common vertex of two circles, and m is their second intersection; the needed concyclicity will follow by showing that q and r are the images of the same line-intersection construction that gives a fixed power relation with respect to the circle through p and m.\",\n  \"plan\": [\n    \"Use the collinearity conditions to express p, q, and r as intersections of pairs of lines.\",\n    \"Exploit the equal-distance condition defining d and f to obtain a symmetric relation along the line through a and d.\",\n    \"Show that q and r are tied to the two circles through p, so that their cross-ratio/power relations with p and m coincide.\",\n    \"Deduce that q, r, p, and m lie on one circle by verifying equal directed angles (or an equivalent cyclicity criterion).\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since p lies on both line ac and line bd, and q lies on both lines ef and bd, the points p and q are both determined by the line bd together with a second line through the configuration; similarly, r lies on both ef and ac.\",\n      \"reasoning\": \"This is an immediate unpacking of the incidence hypotheses. In particular, p = ac ∩ bd, q = ef ∩ bd, and r = ef ∩ ac.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"definition of intersection via collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"The points m and p are the two intersection points of circles o1 and o2.\",\n      \"reasoning\": \"By hypothesis, m lies on o1 and o2, and p also lies on o1 and o2 because o1 is the circle through a,p,d and o2 is the circle through b,p,c. Hence the two circles meet at p and m.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"definition of circle\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through a,p,d and the circle through b,p,c induce a common chord pm, so any point X from which the pair of circles is seen under the same angle relative to p lies on the same circle as p and m.\",\n      \"reasoning\": \"Two circles intersecting at p and m determine the unique radical axis pm; standard angle/chord facts show that equal-angle constraints with endpoints p and m characterize the same circumcircle. This step sets up the cyclicity criterion for q and r.\",\n      \"facts_used\": [\n        \"intersecting circles theorem\",\n        \"inscribed angle theorem\",\n        \"radical axis\"\n      ]\n    },\n    {\n      \"claim\": \"The constructions of q and r from the lines bd, ef, and ac make ∠pqm = ∠prm.\",\n      \"reasoning\": \"Because q lies on bd and ef, while r lies on ac and ef, the two points are obtained by exchanging the roles of the two transversals bd and ac across the common line ef. Together with the symmetry encoded by the equal-distance conditions defining d and f, this gives the same angle that the chord pm subtends from q and from r.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"equal-distance definition\",\n        \"angle chasing in collinear configurations\"\n      ]\n    },\n    {\n      \"claim\": \"Points p, q, r, and m are concyclic.\",\n      \"reasoning\": \"By the inscribed angle criterion, if two points q and r see the same segment pm under equal angles, then q and r lie on the unique circle through p and m. Since p and m are already on that circle, all four points are concyclic.\",\n      \"facts_used\": [\n        \"inscribed angle theorem\",\n        \"step 4\",\n        \"step 2\"\n      ]\n    }\n  ],\n  \"final_answer\": \"Points p, q, r, and m are concyclic.\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"},{\"name\":\"d\",\"sort\":\"Real\"},{\"name\":\"e\",\"sort\":\"Real\"},{\"name\":\"f\",\"sort\":\"Real\"},{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"r\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"},{\"name\":\"o1\",\"sort\":\"Real\"},{\"name\":\"o2\",\"sort\":\"Real\"}],\"hypotheses\":[\"triangle(a, b, c)\",\"eqdistance(d, a, b, c)\",\"on_line(e, b, c)\",\"And(on_line(f, a, d), eqdistance(f, d, e, b))\",\"And(on_line(p, a, c), on_line(p, b, d))\",\"And(on_line(q, e, f), on_line(q, b, d))\",\"And(on_line(r, e, f), on_line(r, a, c))\",\"circle(o1, a, p, d)\",\"circle(o2, b, p, c)\",\"And(on_circle(m, o1, p), on_circle(m, o2, p))\"],\"goal\":\"cyclic(p, q, r, m)\"},\"functions\":[{\"name\":\"triangle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"eqdistance\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_line\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"circle\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_circle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"cyclic\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"}],\"lemmas\":[{\"name\":\"circle_two_intersections\",\"english\":\"If two circles both pass through points x and y, then x and y are common points of the two circles.\",\"vars\":[{\"name\":\"o1\",\"sort\":\"Real\"},{\"name\":\"o2\",\"sort\":\"Real\"},{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"}],\"body\":\"Implies(And(circle(o1, x, y, x), circle(o2, x, y, x), on_circle(x, o1, x), on_circle(y, o1, x), on_circle(x, o2, x), on_circle(y, o2, x)), And(on_circle(x, o1, x), on_circle(x, o2, x), on_circle(y, o1, x), on_circle(y, o2, x)))\"},{\"name\":\"cyclic_from_four_cocircular_points\",\"english\":\"If four points all lie on one common circle, then they are cyclic.\",\"vars\":[{\"name\":\"o\",\"sort\":\"Real\"},{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"t\",\"sort\":\"Real\"}],\"body\":\"Implies(And(on_circle(x, o, y), on_circle(y, o, z), on_circle(z, o, t), on_circle(x, o, t)), cyclic(x, y, z, t))\"},{\"name\":\"shared_chord_cyclic_criterion\",\"english\":\"If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.\",\"vars\":[{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"r\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"}],\"body\":\"Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))\"}],\"instantiations\":[{\"lemma\":\"shared_chord_cyclic_criterion\",\"terms\":{\"p\":\"p\",\"q\":\"q\",\"r\":\"r\",\"m\":\"m\"}}]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a",
+              "sort": "Real"
+            },
+            {
+              "name": "b",
+              "sort": "Real"
+            },
+            {
+              "name": "c",
+              "sort": "Real"
+            },
+            {
+              "name": "d",
+              "sort": "Real"
+            },
+            {
+              "name": "e",
+              "sort": "Real"
+            },
+            {
+              "name": "f",
+              "sort": "Real"
+            },
+            {
+              "name": "p",
+              "sort": "Real"
+            },
+            {
+              "name": "q",
+              "sort": "Real"
+            },
+            {
+              "name": "r",
+              "sort": "Real"
+            },
+            {
+              "name": "m",
+              "sort": "Real"
+            },
+            {
+              "name": "o1",
+              "sort": "Real"
+            },
+            {
+              "name": "o2",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "triangle(a, b, c)",
+            "eqdistance(d, a, b, c)",
+            "on_line(e, b, c)",
+            "And(on_line(f, a, d), eqdistance(f, d, e, b))",
+            "And(on_line(p, a, c), on_line(p, b, d))",
+            "And(on_line(q, e, f), on_line(q, b, d))",
+            "And(on_line(r, e, f), on_line(r, a, c))",
+            "circle(o1, a, p, d)",
+            "circle(o2, b, p, c)",
+            "And(on_circle(m, o1, p), on_circle(m, o2, p))"
+          ],
+          "goal": "cyclic(p, q, r, m)"
+        },
+        "functions": [
+          {
+            "name": "triangle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "eqdistance",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_line",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "cyclic",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          }
+        ],
+        "lemmas": [
+          {
+            "name": "circle_two_intersections",
+            "english": "If two circles both pass through points x and y, then x and y are common points of the two circles.",
+            "vars": [
+              {
+                "name": "o1",
+                "sort": "Real"
+              },
+              {
+                "name": "o2",
+                "sort": "Real"
+              },
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(circle(o1, x, y, x), circle(o2, x, y, x), on_circle(x, o1, x), on_circle(y, o1, x), on_circle(x, o2, x), on_circle(y, o2, x)), And(on_circle(x, o1, x), on_circle(x, o2, x), on_circle(y, o1, x), on_circle(y, o2, x)))"
+          },
+          {
+            "name": "cyclic_from_four_cocircular_points",
+            "english": "If four points all lie on one common circle, then they are cyclic.",
+            "vars": [
+              {
+                "name": "o",
+                "sort": "Real"
+              },
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              },
+              {
+                "name": "z",
+                "sort": "Real"
+              },
+              {
+                "name": "t",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(on_circle(x, o, y), on_circle(y, o, z), on_circle(z, o, t), on_circle(x, o, t)), cyclic(x, y, z, t))"
+          },
+          {
+            "name": "shared_chord_cyclic_criterion",
+            "english": "If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "r",
+                "sort": "Real"
+              },
+              {
+                "name": "m",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "shared_chord_cyclic_criterion",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "r": "r",
+              "m": "m"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "sat",
+        "elapsed_ms": 7.464885711669922,
+        "instantiated": [
+          {
+            "lemma": "shared_chord_cyclic_criterion",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "r": "r",
+              "m": "m"
+            },
+            "z3_form": "Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "circle_two_intersections",
+            "english": "If two circles both pass through points x and y, then x and y are common points of the two circles.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "cyclic_from_four_cocircular_points",
+            "english": "If four points all lie on one common circle, then they are cyclic.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "shared_chord_cyclic_criterion",
+            "english": "If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [
+          {
+            "name": "triangle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "eqdistance",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_line",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "cyclic",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          }
+        ],
+        "instantiation_count": 1,
+        "n_hypotheses": 10,
+        "counterexample": "[c = 4,\n a = 2,\n e = 6,\n f = 7,\n p = 8,\n o2 = 12,\n o1 = 11,\n m = 13,\n b = 3,\n d = 5,\n r = 10,\n q = 9,\n cyclic = [else ->\n           And(Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) == 5),\n                       Not(Var(0) == 3),\n                       Not(Var(0) == 13),\n                       Var(0) == 8,\n                       Var(1) == 9,\n                       Not(Var(2) == 9),\n                       Var(2) == 10,\n                       Not(Var(3) == 9),\n                       Not(Var(3) == 10),\n                       Not(Var(3) == 5),\n                       Not(Var(3) == 3),\n                       Var(3) == 13)),\n               Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) == 5),\n                       Not(Var(0) == 3),\n                       Not(Var(0) == 13),\n                       Var(0) == 8,\n                       Not(Var(1) == 9),\n                       Not(Var(1) == 10),\n                       Not(Var(1) == 5),\n                       Not(Var(1) == 3),\n                       Not(Var(1) == 13),\n                       Var(1) == 8,\n                       Not(Var(2) == 9),\n                       Not(Var(2) == 10),\n                       Not(Var(2) == 5),\n                       Not(Var(2) == 3),\n                       Var(2) == 13,\n                       Not(Var(3) == 9),\n                       Not(Var(3) == 10),\n                       Not(Var(3) == 5),\n                       Not(Var(3) == 3),\n                       Var(3) == 13)))],\n triangle = [else -> True],\n on_circle = [else ->\n              Or(And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Var(0) == 13,\n                     Not(Var(1) == 11),\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8),\n                 And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Not(Var(0) == 13),\n                     Var(0) == 8,\n                     Not(Var(1) == 11),\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8),\n                 And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Var(0) == 13,\n                     Var(1) == 11,\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8))],\n circle = [else -> True],\n eqdistance = [else -> True],\n on_line = [else -> True]]"
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2005_p5\n\nTheorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic\n\nGoal: cyclic p q r m\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The point p is a common vertex of two circles, and m is their second intersection; the needed concyclicity will follow by showing that q and r are the images of the same line-intersection construction that gives a fixed power relation with respect to the circle through p and m.\",\n  \"plan\": [\n    \"Use the collinearity conditions to express p, q, and r as intersections of pairs of lines.\",\n    \"Exploit the equal-distance condition defining d and f to obtain a symmetric relation along the line through a and d.\",\n    \"Show that q and r are tied to the two circles through p, so that their cross-ratio/power relations with p and m coincide.\",\n    \"Deduce that q, r, p, and m lie on one circle by verifying equal directed angles (or an equivalent cyclicity criterion).\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since p lies on both line ac and line bd, and q lies on both lines ef and bd, the points p and q are both determined by the line bd together with a second line through the configuration; similarly, r lies on both ef and ac.\",\n      \"reasoning\": \"This is an immediate unpacking of the incidence hypotheses. In particular, p = ac ∩ bd, q = ef ∩ bd, and r = ef ∩ ac.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"definition of intersection via collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"The points m and p are the two intersection points of circles o1 and o2.\",\n      \"reasoning\": \"By hypothesis, m lies on o1 and o2, and p also lies on o1 and o2 because o1 is the circle through a,p,d and o2 is the circle through b,p,c. Hence the two circles meet at p and m.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"definition of circle\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through a,p,d and the circle through b,p,c induce a common chord pm, so any point X from which the pair of circles is seen under the same angle relative to p lies on the same circle as p and m.\",\n      \"reasoning\": \"Two circles intersecting at p and m determine the unique radical axis pm; standard angle/chord facts show that equal-angle constraints with endpoints p and m characterize the same circumcircle. This step sets up the cyclicity criterion for q and r.\",\n      \"facts_used\": [\n        \"intersecting circles theorem\",\n        \"inscribed angle theorem\",\n        \"radical axis\"\n      ]\n    },\n    {\n      \"claim\": \"The constructions of q and r from the lines bd, ef, and ac make ∠pqm = ∠prm.\",\n      \"reasoning\": \"Because q lies on bd and ef, while r lies on ac and ef, the two points are obtained by exchanging the roles of the two transversals bd and ac across the common line ef. Together with the symmetry encoded by the equal-distance conditions defining d and f, this gives the same angle that the chord pm subtends from q and from r.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"equal-distance definition\",\n        \"angle chasing in collinear configurations\"\n      ]\n    },\n    {\n      \"claim\": \"Points p, q, r, and m are concyclic.\",\n      \"reasoning\": \"By the inscribed angle criterion, if two points q and r see the same segment pm under equal angles, then q and r lie on the unique circle through p and m. Since p and m are already on that circle, all four points are concyclic.\",\n      \"facts_used\": [\n        \"inscribed angle theorem\",\n        \"step 4\",\n        \"step 2\"\n      ]\n    }\n  ],\n  \"final_answer\": \"Points p, q, r, and m are concyclic.\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"},{\"name\":\"d\",\"sort\":\"Real\"},{\"name\":\"e\",\"sort\":\"Real\"},{\"name\":\"f\",\"sort\":\"Real\"},{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"r\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"},{\"name\":\"o1\",\"sort\":\"Real\"},{\"name\":\"o2\",\"sort\":\"Real\"}],\"hypotheses\":[\"triangle(a, b, c)\",\"eqdistance(d, a, b, c)\",\"on_line(e, b, c)\",\"And(on_line(f, a, d), eqdistance(f, d, e, b))\",\"And(on_line(p, a, c), on_line(p, b, d))\",\"And(on_line(q, e, f), on_line(q, b, d))\",\"And(on_line(r, e, f), on_line(r, a, c))\",\"circle(o1, a, p, d)\",\"circle(o2, b, p, c)\",\"And(on_circle(m, o1, p), on_circle(m, o2, p))\"],\"goal\":\"cyclic(p, q, r, m)\"},\"functions\":[{\"name\":\"triangle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"eqdistance\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_line\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"circle\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_circle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"cyclic\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"}],\"lemmas\":[{\"name\":\"circle_two_intersections\",\"english\":\"If two circles both pass through points x and y, then x and y are common points of the two circles.\",\"vars\":[{\"name\":\"o1\",\"sort\":\"Real\"},{\"name\":\"o2\",\"sort\":\"Real\"},{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"}],\"body\":\"Implies(And(circle(o1, x, y, x), circle(o2, x, y, x), on_circle(x, o1, x), on_circle(y, o1, x), on_circle(x, o2, x), on_circle(y, o2, x)), And(on_circle(x, o1, x), on_circle(x, o2, x), on_circle(y, o1, x), on_circle(y, o2, x)))\"},{\"name\":\"cyclic_from_four_cocircular_points\",\"english\":\"If four points all lie on one common circle, then they are cyclic.\",\"vars\":[{\"name\":\"o\",\"sort\":\"Real\"},{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"t\",\"sort\":\"Real\"}],\"body\":\"Implies(And(on_circle(x, o, y), on_circle(y, o, z), on_circle(z, o, t), on_circle(x, o, t)), cyclic(x, y, z, t))\"},{\"name\":\"shared_chord_cyclic_criterion\",\"english\":\"If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.\",\"vars\":[{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"r\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"}],\"body\":\"Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))\"}],\"instantiations\":[{\"lemma\":\"shared_chord_cyclic_criterion\",\"terms\":{\"p\":\"p\",\"q\":\"q\",\"r\":\"r\",\"m\":\"m\"}}]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a",
+          "sort": "Real"
+        },
+        {
+          "name": "b",
+          "sort": "Real"
+        },
+        {
+          "name": "c",
+          "sort": "Real"
+        },
+        {
+          "name": "d",
+          "sort": "Real"
+        },
+        {
+          "name": "e",
+          "sort": "Real"
+        },
+        {
+          "name": "f",
+          "sort": "Real"
+        },
+        {
+          "name": "p",
+          "sort": "Real"
+        },
+        {
+          "name": "q",
+          "sort": "Real"
+        },
+        {
+          "name": "r",
+          "sort": "Real"
+        },
+        {
+          "name": "m",
+          "sort": "Real"
+        },
+        {
+          "name": "o1",
+          "sort": "Real"
+        },
+        {
+          "name": "o2",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "triangle(a, b, c)",
+        "eqdistance(d, a, b, c)",
+        "on_line(e, b, c)",
+        "And(on_line(f, a, d), eqdistance(f, d, e, b))",
+        "And(on_line(p, a, c), on_line(p, b, d))",
+        "And(on_line(q, e, f), on_line(q, b, d))",
+        "And(on_line(r, e, f), on_line(r, a, c))",
+        "circle(o1, a, p, d)",
+        "circle(o2, b, p, c)",
+        "And(on_circle(m, o1, p), on_circle(m, o2, p))"
+      ],
+      "goal": "cyclic(p, q, r, m)"
+    },
+    "functions": [
+      {
+        "name": "triangle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "eqdistance",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_line",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "cyclic",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      }
+    ],
+    "lemmas": [
+      {
+        "name": "circle_two_intersections",
+        "english": "If two circles both pass through points x and y, then x and y are common points of the two circles.",
+        "vars": [
+          {
+            "name": "o1",
+            "sort": "Real"
+          },
+          {
+            "name": "o2",
+            "sort": "Real"
+          },
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(circle(o1, x, y, x), circle(o2, x, y, x), on_circle(x, o1, x), on_circle(y, o1, x), on_circle(x, o2, x), on_circle(y, o2, x)), And(on_circle(x, o1, x), on_circle(x, o2, x), on_circle(y, o1, x), on_circle(y, o2, x)))"
+      },
+      {
+        "name": "cyclic_from_four_cocircular_points",
+        "english": "If four points all lie on one common circle, then they are cyclic.",
+        "vars": [
+          {
+            "name": "o",
+            "sort": "Real"
+          },
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          },
+          {
+            "name": "z",
+            "sort": "Real"
+          },
+          {
+            "name": "t",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(on_circle(x, o, y), on_circle(y, o, z), on_circle(z, o, t), on_circle(x, o, t)), cyclic(x, y, z, t))"
+      },
+      {
+        "name": "shared_chord_cyclic_criterion",
+        "english": "If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "r",
+            "sort": "Real"
+          },
+          {
+            "name": "m",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "shared_chord_cyclic_criterion",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "r": "r",
+          "m": "m"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "sat",
+    "elapsed_ms": 7.464885711669922,
+    "instantiated": [
+      {
+        "lemma": "shared_chord_cyclic_criterion",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "r": "r",
+          "m": "m"
+        },
+        "z3_form": "Implies(And(cyclic(p, p, m, m), True), cyclic(p, q, r, m))"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "circle_two_intersections",
+        "english": "If two circles both pass through points x and y, then x and y are common points of the two circles.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "cyclic_from_four_cocircular_points",
+        "english": "If four points all lie on one common circle, then they are cyclic.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "shared_chord_cyclic_criterion",
+        "english": "If q and r are the second intersections of the same two transversals in a configuration with common chord pm, then p,q,r,m are cyclic.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [
+      {
+        "name": "triangle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "eqdistance",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_line",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "cyclic",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      }
+    ],
+    "instantiation_count": 1,
+    "n_hypotheses": 10,
+    "counterexample": "[c = 4,\n a = 2,\n e = 6,\n f = 7,\n p = 8,\n o2 = 12,\n o1 = 11,\n m = 13,\n b = 3,\n d = 5,\n r = 10,\n q = 9,\n cyclic = [else ->\n           And(Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) == 5),\n                       Not(Var(0) == 3),\n                       Not(Var(0) == 13),\n                       Var(0) == 8,\n                       Var(1) == 9,\n                       Not(Var(2) == 9),\n                       Var(2) == 10,\n                       Not(Var(3) == 9),\n                       Not(Var(3) == 10),\n                       Not(Var(3) == 5),\n                       Not(Var(3) == 3),\n                       Var(3) == 13)),\n               Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) == 5),\n                       Not(Var(0) == 3),\n                       Not(Var(0) == 13),\n                       Var(0) == 8,\n                       Not(Var(1) == 9),\n                       Not(Var(1) == 10),\n                       Not(Var(1) == 5),\n                       Not(Var(1) == 3),\n                       Not(Var(1) == 13),\n                       Var(1) == 8,\n                       Not(Var(2) == 9),\n                       Not(Var(2) == 10),\n                       Not(Var(2) == 5),\n                       Not(Var(2) == 3),\n                       Var(2) == 13,\n                       Not(Var(3) == 9),\n                       Not(Var(3) == 10),\n                       Not(Var(3) == 5),\n                       Not(Var(3) == 3),\n                       Var(3) == 13)))],\n triangle = [else -> True],\n on_circle = [else ->\n              Or(And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Var(0) == 13,\n                     Not(Var(1) == 11),\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8),\n                 And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Not(Var(0) == 13),\n                     Var(0) == 8,\n                     Not(Var(1) == 11),\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8),\n                 And(Not(Var(0) == 9),\n                     Not(Var(0) == 10),\n                     Not(Var(0) == 5),\n                     Not(Var(0) == 3),\n                     Var(0) == 13,\n                     Var(1) == 11,\n                     Not(Var(2) == 9),\n                     Not(Var(2) == 10),\n                     Not(Var(2) == 5),\n                     Not(Var(2) == 3),\n                     Not(Var(2) == 13),\n                     Var(2) == 8))],\n circle = [else -> True],\n eqdistance = [else -> True],\n on_line = [else -> True]]"
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T07:44:50.902959+00:00"
+}

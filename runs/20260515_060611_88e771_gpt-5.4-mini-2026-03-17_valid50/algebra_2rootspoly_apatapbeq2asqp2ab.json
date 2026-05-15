@@ -1,0 +1,64 @@
+{
+  "theorem_id": "algebra_2rootspoly_apatapbeq2asqp2ab",
+  "statement": "Theorem: algebra_2rootspoly_apatapbeq2asqp2ab\nVariables: a, b (real)\nProve: (a + a) * (a + b) = 2 * a^2 + 2 * (a * b)",
+  "goal": "(a + a) * (a + b) = 2 * a^2 + 2 * (a * b)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_2rootspoly_apatapbeq2asqp2ab\n\nTheorem: algebra_2rootspoly_apatapbeq2asqp2ab\nVariables: a, b (real)\nProve: (a + a) * (a + b) = 2 * a^2 + 2 * (a * b)\n\nVariables: a (real), b (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Expand the left-hand side using distributivity and then simplify the repeated terms.\",\n  \"plan\": [\n    \"Rewrite a + a as 2a.\",\n    \"Distribute 2a across the sum a + b.\",\n    \"Rewrite the resulting terms as 2a^2 and 2ab.\",\n    \"Conclude that both sides are equal.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"(a + a) * (a + b) = (2 * a) * (a + b).\",\n      \"reasoning\": \"Since a + a is the sum of two equal terms, it equals 2 * a by the definition of multiplication by 2.\",\n      \"facts_used\": [\"definition of multiplication by 2\"]\n    },\n    {\n      \"claim\": \"(2 * a) * (a + b) = (2 * a) * a + (2 * a) * b.\",\n      \"reasoning\": \"By distributivity of multiplication over addition, multiplying 2a by the sum a + b gives the sum of the two products.\",\n      \"facts_used\": [\"distributive law\"]\n    },\n    {\n      \"claim\": \"(2 * a) * a = 2 * a^2 and (2 * a) * b = 2 * (a * b).\",\n      \"reasoning\": \"Using associativity and commutativity of multiplication, we can regroup the factors to identify a^2 = a * a and a * b.\",\n      \"facts_used\": [\"associative law of multiplication\", \"commutative law of multiplication\", \"definition of exponentiation\"]\n    },\n    {\n      \"claim\": \"(a + a) * (a + b) = 2 * a^2 + 2 * (a * b).\",\n      \"reasoning\": \"Combining the previous steps yields the desired expression for the left-hand side, which matches the right-hand side.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"step 3\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Expand the left-hand side using distributivity and then simplify the repeated terms.",
+    "plan": [
+      "Rewrite a + a as 2a.",
+      "Distribute 2a across the sum a + b.",
+      "Rewrite the resulting terms as 2a^2 and 2ab.",
+      "Conclude that both sides are equal."
+    ],
+    "steps": [
+      {
+        "claim": "(a + a) * (a + b) = (2 * a) * (a + b).",
+        "reasoning": "Since a + a is the sum of two equal terms, it equals 2 * a by the definition of multiplication by 2.",
+        "facts_used": [
+          "definition of multiplication by 2"
+        ]
+      },
+      {
+        "claim": "(2 * a) * (a + b) = (2 * a) * a + (2 * a) * b.",
+        "reasoning": "By distributivity of multiplication over addition, multiplying 2a by the sum a + b gives the sum of the two products.",
+        "facts_used": [
+          "distributive law"
+        ]
+      },
+      {
+        "claim": "(2 * a) * a = 2 * a^2 and (2 * a) * b = 2 * (a * b).",
+        "reasoning": "Using associativity and commutativity of multiplication, we can regroup the factors to identify a^2 = a * a and a * b.",
+        "facts_used": [
+          "associative law of multiplication",
+          "commutative law of multiplication",
+          "definition of exponentiation"
+        ]
+      },
+      {
+        "claim": "(a + a) * (a + b) = 2 * a^2 + 2 * (a * b).",
+        "reasoning": "Combining the previous steps yields the desired expression for the left-hand side, which matches the right-hand side.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.808154+00:00"
+}

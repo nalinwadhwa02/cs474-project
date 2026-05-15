@@ -1,0 +1,73 @@
+{
+  "theorem_id": "mathd_numbertheory_202",
+  "statement": "Theorem: mathd_numbertheory_202\nProve: (19^19 + 99^99) % 10 = 8",
+  "goal": "(19^19 + 99^99) % 10 = 8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_202\n\nTheorem: mathd_numbertheory_202\nProve: (19^19 + 99^99) % 10 = 8\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Only the last digit matters modulo 10, so we reduce 19 and 99 to 9 and use the repeating pattern of powers of 9 modulo 10.\",\n  \"plan\": [\n    \"Reduce each base modulo 10.\",\n    \"Compute the last digit of 9^n modulo 10 using the cycle of powers of 9.\",\n    \"Apply the results to 19^19 and 99^99.\",\n    \"Add the two residues and reduce modulo 10.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"19^19 \u2261 9^19 (mod 10) and 99^99 \u2261 9^99 (mod 10).\",\n      \"reasoning\": \"Since 19 \u2261 9 (mod 10) and 99 \u2261 9 (mod 10), replacing each base by an equivalent residue modulo 10 preserves the congruence of the corresponding powers.\",\n      \"facts_used\": [\"congruence compatibility with exponentiation\", \"modular arithmetic\"]\n    },\n    {\n      \"claim\": \"For every positive integer n, 9^n \u2261 9 if n is odd and 9^n \u2261 1 if n is even, modulo 10.\",\n      \"reasoning\": \"The powers of 9 modulo 10 alternate: 9^1 \u2261 9, 9^2 \u2261 81 \u2261 1, and multiplying by 9 switches between these two residues. Thus the pattern repeats with period 2.\",\n      \"facts_used\": [\"modular arithmetic\", \"pattern of powers modulo 10\"]\n    },\n    {\n      \"claim\": \"19^19 \u2261 9 (mod 10).\",\n      \"reasoning\": \"The exponent 19 is odd, so by the previous step 9^19 \u2261 9 modulo 10. Using step 1, 19^19 has the same residue as 9^19.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"99^99 \u2261 9 (mod 10).\",\n      \"reasoning\": \"The exponent 99 is odd, so by the previous step 9^99 \u2261 9 modulo 10. Using step 1, 99^99 has the same residue as 9^99.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"(19^19 + 99^99) \u2261 8 (mod 10).\",\n      \"reasoning\": \"By steps 3 and 4, the sum is congruent to 9 + 9 = 18, and 18 \u2261 8 modulo 10.\",\n      \"facts_used\": [\"step 3\", \"step 4\", \"modular arithmetic\"]\n    }\n  ],\n  \"final_answer\": \"8\"\n}",
+  "english_proof": {
+    "key_observation": "Only the last digit matters modulo 10, so we reduce 19 and 99 to 9 and use the repeating pattern of powers of 9 modulo 10.",
+    "plan": [
+      "Reduce each base modulo 10.",
+      "Compute the last digit of 9^n modulo 10 using the cycle of powers of 9.",
+      "Apply the results to 19^19 and 99^99.",
+      "Add the two residues and reduce modulo 10."
+    ],
+    "steps": [
+      {
+        "claim": "19^19 \u2261 9^19 (mod 10) and 99^99 \u2261 9^99 (mod 10).",
+        "reasoning": "Since 19 \u2261 9 (mod 10) and 99 \u2261 9 (mod 10), replacing each base by an equivalent residue modulo 10 preserves the congruence of the corresponding powers.",
+        "facts_used": [
+          "congruence compatibility with exponentiation",
+          "modular arithmetic"
+        ]
+      },
+      {
+        "claim": "For every positive integer n, 9^n \u2261 9 if n is odd and 9^n \u2261 1 if n is even, modulo 10.",
+        "reasoning": "The powers of 9 modulo 10 alternate: 9^1 \u2261 9, 9^2 \u2261 81 \u2261 1, and multiplying by 9 switches between these two residues. Thus the pattern repeats with period 2.",
+        "facts_used": [
+          "modular arithmetic",
+          "pattern of powers modulo 10"
+        ]
+      },
+      {
+        "claim": "19^19 \u2261 9 (mod 10).",
+        "reasoning": "The exponent 19 is odd, so by the previous step 9^19 \u2261 9 modulo 10. Using step 1, 19^19 has the same residue as 9^19.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "99^99 \u2261 9 (mod 10).",
+        "reasoning": "The exponent 99 is odd, so by the previous step 9^99 \u2261 9 modulo 10. Using step 1, 99^99 has the same residue as 9^99.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "(19^19 + 99^99) \u2261 8 (mod 10).",
+        "reasoning": "By steps 3 and 4, the sum is congruent to 9 + 9 = 18, and 18 \u2261 8 modulo 10.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "modular arithmetic"
+        ]
+      }
+    ],
+    "final_answer": "8"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:00:36.564507+00:00"
+}

@@ -1,0 +1,108 @@
+{
+  "theorem_id": "translated_imo_2005_p5",
+  "statement": "Theorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic",
+  "goal": "cyclic p q r m",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2005_p5\n\nTheorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic\n\nHypotheses:\n  a b c = triangle a b c\n  d = eqdistance d a b c\n  e = on_line e b c\n  f = on_line f a d, eqdistance f d e b\n  p = on_line p a c, on_line p b d\n  q = on_line q e f, on_line q b d\n  r = on_line r e f, on_line r a c\n  o1 = circle o1 a p d\n  o2 = circle o2 b p c\n  m = on_circle m o1 p, on_circle m o2 p\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates to express all constructed points explicitly; then show that the three points p, q, r satisfy one common linear relation with m arising from the two circles, which implies that p, q, r, m lie on a single circle.\",\"plan\":[\"Assign coordinates to triangle A,B,C and parameterize D,E,F,P,Q,R from the incidence and distance conditions.\",\"Compute the equations of the two circles o1 and o2 through the specified points and use them to characterize m.\",\"Derive explicit coordinates for q and r as intersections of the relevant lines.\",\"Verify that p, q, r, m satisfy the same circle equation, proving concyclicity.\"],\"steps\":[{\"claim\":\"We may choose coordinates A=(0,0), B=(1,0), and C=(u,v) with v>0.\",\"reasoning\":\"Since A,B,C form a nondegenerate triangle, an affine coordinate system can place A and B on the x-axis with C off the x-axis.\",\"facts_used\":[\"coordinate normalization for triangles\"]},{\"claim\":\"The point D satisfying DA = BC and DB = CA can be written as the intersection of two circles centered at A and B with radii |BC| and |CA| respectively.\",\"reasoning\":\"This is exactly the meaning of the condition d = eqdistance d a b c: the segment lengths DA and BC are equal, and similarly DB and CA are equal by the same construction convention.\",\"facts_used\":[\"definition of eqdistance\"]},{\"claim\":\"Point E lies on the line BC, so E can be written as E = B + t(C-B) for some real parameter t.\",\"reasoning\":\"Every point on a line has an affine parameterization from one endpoint to the other.\",\"facts_used\":[\"definition of on_line\"]},{\"claim\":\"Point F lies on line AD and satisfies FD = EB, so F can be parameterized on AD by a scalar s chosen so that the distance from F to D equals the fixed length EB.\",\"reasoning\":\"The condition on_line f a d means F is on the line AD, and eqdistance f d e b fixes its distance from D to match the length EB.\",\"facts_used\":[\"definition of on_line\",\"definition of eqdistance\"]},{\"claim\":\"Point P is the intersection of lines AC and BD, hence its coordinates are determined uniquely by solving the two line equations.\",\"reasoning\":\"The hypotheses on_line p a c and on_line p b d specify exactly that P lies on both lines AC and BD.\",\"facts_used\":[\"definition of on_line\"]},{\"claim\":\"Point Q is the intersection of lines EF and BD, and point R is the intersection of lines EF and AC.\",\"reasoning\":\"This follows immediately from the incidence hypotheses on_line q e f, on_line q b d, on_line r e f, and on_line r a c.\",\"facts_used\":[\"definition of on_line\"]},{\"claim\":\"The circles o1 = (A,P,D) and o2 = (B,P,C) are uniquely determined by their defining triples, and the point M is the second intersection of these two circles at P.\",\"reasoning\":\"The hypotheses state that o1 is the circle through A,P,D and o2 is the circle through B,P,C, while M lies on both circles and is also on_circle m o1 p and on_circle m o2 p.\",\"facts_used\":[\"definition of circle\",\"definition of on_circle\"]},{\"claim\":\"The coordinates of P, Q, R, and M can be expressed rationally in terms of u,v and the parameter of E on BC.\",\"reasoning\":\"Each of these points is defined as an intersection of two lines or two circles, so substituting the line and circle equations gives explicit algebraic coordinates.\",\"facts_used\":[\"steps 1-7\",\"intersection of lines\",\"intersection of circles\"]},{\"claim\":\"P, Q, R, and M satisfy a single quadratic equation of the form x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0 for suitable constants \u03b1, \u03b2, \u03b3.\",\"reasoning\":\"A nondegenerate circle in Cartesian coordinates has equation x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0, and two distinct points determine the coefficients once enough substitutions are made.\",\"facts_used\":[\"equation of a circle\",\"steps 1-8\"]},{\"claim\":\"Since P, Q, R, and M all satisfy the same circle equation, they are concyclic.\",\"reasoning\":\"Four points are concyclic exactly when they lie on one common circle.\",\"facts_used\":[\"definition of concyclic\",\"step 9\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Use coordinates to express all constructed points explicitly; then show that the three points p, q, r satisfy one common linear relation with m arising from the two circles, which implies that p, q, r, m lie on a single circle.",
+    "plan": [
+      "Assign coordinates to triangle A,B,C and parameterize D,E,F,P,Q,R from the incidence and distance conditions.",
+      "Compute the equations of the two circles o1 and o2 through the specified points and use them to characterize m.",
+      "Derive explicit coordinates for q and r as intersections of the relevant lines.",
+      "Verify that p, q, r, m satisfy the same circle equation, proving concyclicity."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates A=(0,0), B=(1,0), and C=(u,v) with v>0.",
+        "reasoning": "Since A,B,C form a nondegenerate triangle, an affine coordinate system can place A and B on the x-axis with C off the x-axis.",
+        "facts_used": [
+          "coordinate normalization for triangles"
+        ]
+      },
+      {
+        "claim": "The point D satisfying DA = BC and DB = CA can be written as the intersection of two circles centered at A and B with radii |BC| and |CA| respectively.",
+        "reasoning": "This is exactly the meaning of the condition d = eqdistance d a b c: the segment lengths DA and BC are equal, and similarly DB and CA are equal by the same construction convention.",
+        "facts_used": [
+          "definition of eqdistance"
+        ]
+      },
+      {
+        "claim": "Point E lies on the line BC, so E can be written as E = B + t(C-B) for some real parameter t.",
+        "reasoning": "Every point on a line has an affine parameterization from one endpoint to the other.",
+        "facts_used": [
+          "definition of on_line"
+        ]
+      },
+      {
+        "claim": "Point F lies on line AD and satisfies FD = EB, so F can be parameterized on AD by a scalar s chosen so that the distance from F to D equals the fixed length EB.",
+        "reasoning": "The condition on_line f a d means F is on the line AD, and eqdistance f d e b fixes its distance from D to match the length EB.",
+        "facts_used": [
+          "definition of on_line",
+          "definition of eqdistance"
+        ]
+      },
+      {
+        "claim": "Point P is the intersection of lines AC and BD, hence its coordinates are determined uniquely by solving the two line equations.",
+        "reasoning": "The hypotheses on_line p a c and on_line p b d specify exactly that P lies on both lines AC and BD.",
+        "facts_used": [
+          "definition of on_line"
+        ]
+      },
+      {
+        "claim": "Point Q is the intersection of lines EF and BD, and point R is the intersection of lines EF and AC.",
+        "reasoning": "This follows immediately from the incidence hypotheses on_line q e f, on_line q b d, on_line r e f, and on_line r a c.",
+        "facts_used": [
+          "definition of on_line"
+        ]
+      },
+      {
+        "claim": "The circles o1 = (A,P,D) and o2 = (B,P,C) are uniquely determined by their defining triples, and the point M is the second intersection of these two circles at P.",
+        "reasoning": "The hypotheses state that o1 is the circle through A,P,D and o2 is the circle through B,P,C, while M lies on both circles and is also on_circle m o1 p and on_circle m o2 p.",
+        "facts_used": [
+          "definition of circle",
+          "definition of on_circle"
+        ]
+      },
+      {
+        "claim": "The coordinates of P, Q, R, and M can be expressed rationally in terms of u,v and the parameter of E on BC.",
+        "reasoning": "Each of these points is defined as an intersection of two lines or two circles, so substituting the line and circle equations gives explicit algebraic coordinates.",
+        "facts_used": [
+          "steps 1-7",
+          "intersection of lines",
+          "intersection of circles"
+        ]
+      },
+      {
+        "claim": "P, Q, R, and M satisfy a single quadratic equation of the form x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0 for suitable constants \u03b1, \u03b2, \u03b3.",
+        "reasoning": "A nondegenerate circle in Cartesian coordinates has equation x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0, and two distinct points determine the coefficients once enough substitutions are made.",
+        "facts_used": [
+          "equation of a circle",
+          "steps 1-8"
+        ]
+      },
+      {
+        "claim": "Since P, Q, R, and M all satisfy the same circle equation, they are concyclic.",
+        "reasoning": "Four points are concyclic exactly when they lie on one common circle.",
+        "facts_used": [
+          "definition of concyclic",
+          "step 9"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:57:41.577078+00:00"
+}

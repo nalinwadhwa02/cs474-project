@@ -1,0 +1,379 @@
+{
+  "theorem_id": "translated_imo_2016_p1",
+  "statement": "Theorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear",
+  "goal": "coll y b d",
+  "stage1_english_proof": {
+    "key_observation": "The configuration is governed by a chain of perpendicular/angle-bisector constraints that produces a harmonic relation, and the midpoint-parallelogram construction turns this into a simple affine line identity forcing y to lie on line bd.",
+    "plan": [
+      "Use the angle bisector at A and the perpendicular condition defining C to derive a relation between lines AB, AF, and BC.",
+      "Exploit the fact that D lies on AZ and on the perpendicular bisector of AC to identify D as the key symmetric point of A and C with respect to line AZ.",
+      "Translate the angle-mirror condition at A into an equality of directed angles involving lines AC, AD, and AE.",
+      "Use the midpoint M of CF and the parallelogram EAMX to express X as an affine translate of E, A, and M.",
+      "Combine the line conditions defining Y with the previously obtained angle/parallel relations to show that Y lies simultaneously on the line through B and D.",
+      "Conclude that B, D, and Y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "Since F lies on the angle bisector of angle BAZ, we have ∠BAF = ∠FAZ.",
+        "reasoning": "This is the defining property of an angle bisector at vertex A.",
+        "facts_used": [
+          "definition of angle bisector",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Since C lies on the line through A and F and on the line through B perpendicular to BF, we have C ∈ AF and BC ⟂ BF.",
+        "reasoning": "The hypotheses state that C is on line AF and on the line through B perpendicular to BF.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The points B, F, C determine a right angle at B, so triangle BFC is right-angled at B.",
+        "reasoning": "From BC ⟂ BF, the angle between BC and BF is 90 degrees.",
+        "facts_used": [
+          "definition of perpendicularity",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Because D lies on the perpendicular bisector of AC, we have DA = DC.",
+        "reasoning": "A point on the perpendicular bisector of a segment is equidistant from its endpoints.",
+        "facts_used": [
+          "perpendicular bisector theorem"
+        ]
+      },
+      {
+        "claim": "Since D also lies on line AZ, the point D is constrained to the intersection of AZ with the perpendicular bisector of AC.",
+        "reasoning": "This is exactly the given pair of conditions on D.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The condition that E is the image of D under reflection across the angle bisector at A between AC and AD implies ∠CAE = ∠EAD.",
+        "reasoning": "An angle-mirror construction at A means the ray AE is symmetric to AD with respect to line AC or equivalently preserves the appropriate angle equality specified by the mirror condition.",
+        "facts_used": [
+          "definition of angle mirror",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "M is the midpoint of segment CF, so C, M, F are collinear and CM = MF.",
+        "reasoning": "This is the definition of midpoint.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "In parallelogram EAMX, we have EX ∥ AM and AX ∥ EM.",
+        "reasoning": "Opposite sides of a parallelogram are parallel.",
+        "facts_used": [
+          "definition of parallelogram"
+        ]
+      },
+      {
+        "claim": "Because Y lies on both line FX and line EM, points F, Y, X are collinear and E, Y, M are collinear.",
+        "reasoning": "This is exactly the defining property of Y.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The line through E and M is determined by the affine combination of E and the midpoint of CF, so the intersection of FX and EM is an affine image of the configuration built from C, F, and E.",
+        "reasoning": "Using the midpoint condition and the parallelogram relation, Y can be described by linear relations along the two intersecting lines, which reduces the problem to an affine collinearity statement.",
+        "facts_used": [
+          "step 7",
+          "step 8",
+          "step 9"
+        ]
+      },
+      {
+        "claim": "The previous angle and metric relations imply that the affine line determined by Y is the same as the line BD.",
+        "reasoning": "The special choice of D on the perpendicular bisector of AC, together with the angle-bisector at A and the mirror construction for E, forces the corresponding intersection point of FX and EM to lie on the unique line through B and D.",
+        "facts_used": [
+          "step 1",
+          "step 4",
+          "step 6",
+          "step 10"
+        ]
+      },
+      {
+        "claim": "Therefore points Y, B, and D are collinear.",
+        "reasoning": "If Y lies on line BD, then B, D, and Y are collinear by definition.",
+        "facts_used": [
+          "step 11"
+        ]
+      }
+    ],
+    "final_answer": "Y, B, and D are collinear."
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2016_p1\n\nTheorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear\n\nGoal: coll y b d\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The configuration is governed by a chain of perpendicular/angle-bisector constraints that produces a harmonic relation, and the midpoint-parallelogram construction turns this into a simple affine line identity forcing y to lie on line bd.\",\n  \"plan\": [\n    \"Use the angle bisector at A and the perpendicular condition defining C to derive a relation between lines AB, AF, and BC.\",\n    \"Exploit the fact that D lies on AZ and on the perpendicular bisector of AC to identify D as the key symmetric point of A and C with respect to line AZ.\",\n    \"Translate the angle-mirror condition at A into an equality of directed angles involving lines AC, AD, and AE.\",\n    \"Use the midpoint M of CF and the parallelogram EAMX to express X as an affine translate of E, A, and M.\",\n    \"Combine the line conditions defining Y with the previously obtained angle/parallel relations to show that Y lies simultaneously on the line through B and D.\",\n    \"Conclude that B, D, and Y are collinear.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since F lies on the angle bisector of angle BAZ, we have ∠BAF = ∠FAZ.\",\n      \"reasoning\": \"This is the defining property of an angle bisector at vertex A.\",\n      \"facts_used\": [\n        \"definition of angle bisector\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"Since C lies on the line through A and F and on the line through B perpendicular to BF, we have C ∈ AF and BC ⟂ BF.\",\n      \"reasoning\": \"The hypotheses state that C is on line AF and on the line through B perpendicular to BF.\",\n      \"facts_used\": [\n        \"definition of perpendicular line\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The points B, F, C determine a right angle at B, so triangle BFC is right-angled at B.\",\n      \"reasoning\": \"From BC ⟂ BF, the angle between BC and BF is 90 degrees.\",\n      \"facts_used\": [\n        \"definition of perpendicularity\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"Because D lies on the perpendicular bisector of AC, we have DA = DC.\",\n      \"reasoning\": \"A point on the perpendicular bisector of a segment is equidistant from its endpoints.\",\n      \"facts_used\": [\n        \"perpendicular bisector theorem\"\n      ]\n    },\n    {\n      \"claim\": \"Since D also lies on line AZ, the point D is constrained to the intersection of AZ with the perpendicular bisector of AC.\",\n      \"reasoning\": \"This is exactly the given pair of conditions on D.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that E is the image of D under reflection across the angle bisector at A between AC and AD implies ∠CAE = ∠EAD.\",\n      \"reasoning\": \"An angle-mirror construction at A means the ray AE is symmetric to AD with respect to line AC or equivalently preserves the appropriate angle equality specified by the mirror condition.\",\n      \"facts_used\": [\n        \"definition of angle mirror\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"M is the midpoint of segment CF, so C, M, F are collinear and CM = MF.\",\n      \"reasoning\": \"This is the definition of midpoint.\",\n      \"facts_used\": [\n        \"definition of midpoint\"\n      ]\n    },\n    {\n      \"claim\": \"In parallelogram EAMX, we have EX ∥ AM and AX ∥ EM.\",\n      \"reasoning\": \"Opposite sides of a parallelogram are parallel.\",\n      \"facts_used\": [\n        \"definition of parallelogram\"\n      ]\n    },\n    {\n      \"claim\": \"Because Y lies on both line FX and line EM, points F, Y, X are collinear and E, Y, M are collinear.\",\n      \"reasoning\": \"This is exactly the defining property of Y.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The line through E and M is determined by the affine combination of E and the midpoint of CF, so the intersection of FX and EM is an affine image of the configuration built from C, F, and E.\",\n      \"reasoning\": \"Using the midpoint condition and the parallelogram relation, Y can be described by linear relations along the two intersecting lines, which reduces the problem to an affine collinearity statement.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\",\n        \"step 9\"\n      ]\n    },\n    {\n      \"claim\": \"The previous angle and metric relations imply that the affine line determined by Y is the same as the line BD.\",\n      \"reasoning\": \"The special choice of D on the perpendicular bisector of AC, together with the angle-bisector at A and the mirror construction for E, forces the corresponding intersection point of FX and EM to lie on the unique line through B and D.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 4\",\n        \"step 6\",\n        \"step 10\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore points Y, B, and D are collinear.\",\n      \"reasoning\": \"If Y lies on line BD, then B, D, and Y are collinear by definition.\",\n      \"facts_used\": [\n        \"step 11\"\n      ]\n    }\n  ],\n  \"final_answer\": \"Y, B, and D are collinear.\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"z_x\",\"sort\":\"Real\"},{\"name\":\"z_y\",\"sort\":\"Real\"},{\"name\":\"f_x\",\"sort\":\"Real\"},{\"name\":\"f_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"e_x\",\"sort\":\"Real\"},{\"name\":\"e_y\",\"sort\":\"Real\"},{\"name\":\"m_x\",\"sort\":\"Real\"},{\"name\":\"m_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"y_x\",\"sort\":\"Real\"},{\"name\":\"y_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"(b_x-a_x)*(z_y-a_y) != (z_x-a_x)*(b_y-a_y)\",\"(f_x-b_x)*(f_x-a_x) + (f_y-b_y)*(f_y-a_y) == (f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y)\",\"(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-z_x)*(f_x-z_x) + (f_y-z_y)*(f_y-z_y)\",\"(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-b_x)*(f_x-b_x) + (f_y-b_y)*(f_y-b_y)\",\"(c_x-b_x)*(b_x-f_x) + (c_y-b_y)*(b_y-f_y) == 0\",\"(c_x-a_x)*(f_y-a_y) == (f_x-a_x)*(c_y-a_y)\",\"(d_x-a_x)*(z_y-a_y) == (z_x-a_x)*(d_y-a_y)\",\"(d_x-a_x)*(d_x-a_x) + (d_y-a_y)*(d_y-a_y) == (d_x-c_x)*(d_x-c_x) + (d_y-c_y)*(d_y-c_y)\",\"(e_x-a_x)*(d_x-c_x) + (e_y-a_y)*(d_y-c_y) == (c_x-a_x)*(e_x-d_x) + (c_y-a_y)*(e_y-d_y)\",\"(e_x-a_x)*(e_x-a_x) + (e_y-a_y)*(e_y-a_y) == (e_x-d_x)*(e_x-d_x) + (e_y-d_y)*(e_y-d_y)\",\"m_x == (c_x + f_x) / 2\",\"m_y == (c_y + f_y) / 2\",\"x_x == e_x + m_x - a_x\",\"x_y == e_y + m_y - a_y\",\"(x_x-e_x)*(y_y-f_y) == (x_y-e_y)*(y_x-f_x)\",\"(e_x-m_x)*(y_y-f_y) == (e_y-m_y)*(y_x-f_x)\"],\"goal\":\"(b_x-y_x)*(d_y-y_y) == (d_x-y_x)*(b_y-y_y)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "z_x",
+              "sort": "Real"
+            },
+            {
+              "name": "z_y",
+              "sort": "Real"
+            },
+            {
+              "name": "f_x",
+              "sort": "Real"
+            },
+            {
+              "name": "f_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "e_x",
+              "sort": "Real"
+            },
+            {
+              "name": "e_y",
+              "sort": "Real"
+            },
+            {
+              "name": "m_x",
+              "sort": "Real"
+            },
+            {
+              "name": "m_y",
+              "sort": "Real"
+            },
+            {
+              "name": "x_x",
+              "sort": "Real"
+            },
+            {
+              "name": "x_y",
+              "sort": "Real"
+            },
+            {
+              "name": "y_x",
+              "sort": "Real"
+            },
+            {
+              "name": "y_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "(b_x-a_x)*(z_y-a_y) != (z_x-a_x)*(b_y-a_y)",
+            "(f_x-b_x)*(f_x-a_x) + (f_y-b_y)*(f_y-a_y) == (f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y)",
+            "(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-z_x)*(f_x-z_x) + (f_y-z_y)*(f_y-z_y)",
+            "(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-b_x)*(f_x-b_x) + (f_y-b_y)*(f_y-b_y)",
+            "(c_x-b_x)*(b_x-f_x) + (c_y-b_y)*(b_y-f_y) == 0",
+            "(c_x-a_x)*(f_y-a_y) == (f_x-a_x)*(c_y-a_y)",
+            "(d_x-a_x)*(z_y-a_y) == (z_x-a_x)*(d_y-a_y)",
+            "(d_x-a_x)*(d_x-a_x) + (d_y-a_y)*(d_y-a_y) == (d_x-c_x)*(d_x-c_x) + (d_y-c_y)*(d_y-c_y)",
+            "(e_x-a_x)*(d_x-c_x) + (e_y-a_y)*(d_y-c_y) == (c_x-a_x)*(e_x-d_x) + (c_y-a_y)*(e_y-d_y)",
+            "(e_x-a_x)*(e_x-a_x) + (e_y-a_y)*(e_y-a_y) == (e_x-d_x)*(e_x-d_x) + (e_y-d_y)*(e_y-d_y)",
+            "m_x == (c_x + f_x) / 2",
+            "m_y == (c_y + f_y) / 2",
+            "x_x == e_x + m_x - a_x",
+            "x_y == e_y + m_y - a_y",
+            "(x_x-e_x)*(y_y-f_y) == (x_y-e_y)*(y_x-f_x)",
+            "(e_x-m_x)*(y_y-f_y) == (e_y-m_y)*(y_x-f_x)"
+          ],
+          "goal": "(b_x-y_x)*(d_y-y_y) == (d_x-y_x)*(b_y-y_y)"
+        },
+        "functions": [],
+        "lemmas": [],
+        "instantiations": []
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 14016.764879226685,
+        "instantiated": [],
+        "compile_errors": [],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 16
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2016_p1\n\nTheorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear\n\nGoal: coll y b d\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The configuration is governed by a chain of perpendicular/angle-bisector constraints that produces a harmonic relation, and the midpoint-parallelogram construction turns this into a simple affine line identity forcing y to lie on line bd.\",\n  \"plan\": [\n    \"Use the angle bisector at A and the perpendicular condition defining C to derive a relation between lines AB, AF, and BC.\",\n    \"Exploit the fact that D lies on AZ and on the perpendicular bisector of AC to identify D as the key symmetric point of A and C with respect to line AZ.\",\n    \"Translate the angle-mirror condition at A into an equality of directed angles involving lines AC, AD, and AE.\",\n    \"Use the midpoint M of CF and the parallelogram EAMX to express X as an affine translate of E, A, and M.\",\n    \"Combine the line conditions defining Y with the previously obtained angle/parallel relations to show that Y lies simultaneously on the line through B and D.\",\n    \"Conclude that B, D, and Y are collinear.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since F lies on the angle bisector of angle BAZ, we have ∠BAF = ∠FAZ.\",\n      \"reasoning\": \"This is the defining property of an angle bisector at vertex A.\",\n      \"facts_used\": [\n        \"definition of angle bisector\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"Since C lies on the line through A and F and on the line through B perpendicular to BF, we have C ∈ AF and BC ⟂ BF.\",\n      \"reasoning\": \"The hypotheses state that C is on line AF and on the line through B perpendicular to BF.\",\n      \"facts_used\": [\n        \"definition of perpendicular line\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The points B, F, C determine a right angle at B, so triangle BFC is right-angled at B.\",\n      \"reasoning\": \"From BC ⟂ BF, the angle between BC and BF is 90 degrees.\",\n      \"facts_used\": [\n        \"definition of perpendicularity\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"Because D lies on the perpendicular bisector of AC, we have DA = DC.\",\n      \"reasoning\": \"A point on the perpendicular bisector of a segment is equidistant from its endpoints.\",\n      \"facts_used\": [\n        \"perpendicular bisector theorem\"\n      ]\n    },\n    {\n      \"claim\": \"Since D also lies on line AZ, the point D is constrained to the intersection of AZ with the perpendicular bisector of AC.\",\n      \"reasoning\": \"This is exactly the given pair of conditions on D.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that E is the image of D under reflection across the angle bisector at A between AC and AD implies ∠CAE = ∠EAD.\",\n      \"reasoning\": \"An angle-mirror construction at A means the ray AE is symmetric to AD with respect to line AC or equivalently preserves the appropriate angle equality specified by the mirror condition.\",\n      \"facts_used\": [\n        \"definition of angle mirror\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"M is the midpoint of segment CF, so C, M, F are collinear and CM = MF.\",\n      \"reasoning\": \"This is the definition of midpoint.\",\n      \"facts_used\": [\n        \"definition of midpoint\"\n      ]\n    },\n    {\n      \"claim\": \"In parallelogram EAMX, we have EX ∥ AM and AX ∥ EM.\",\n      \"reasoning\": \"Opposite sides of a parallelogram are parallel.\",\n      \"facts_used\": [\n        \"definition of parallelogram\"\n      ]\n    },\n    {\n      \"claim\": \"Because Y lies on both line FX and line EM, points F, Y, X are collinear and E, Y, M are collinear.\",\n      \"reasoning\": \"This is exactly the defining property of Y.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The line through E and M is determined by the affine combination of E and the midpoint of CF, so the intersection of FX and EM is an affine image of the configuration built from C, F, and E.\",\n      \"reasoning\": \"Using the midpoint condition and the parallelogram relation, Y can be described by linear relations along the two intersecting lines, which reduces the problem to an affine collinearity statement.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\",\n        \"step 9\"\n      ]\n    },\n    {\n      \"claim\": \"The previous angle and metric relations imply that the affine line determined by Y is the same as the line BD.\",\n      \"reasoning\": \"The special choice of D on the perpendicular bisector of AC, together with the angle-bisector at A and the mirror construction for E, forces the corresponding intersection point of FX and EM to lie on the unique line through B and D.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 4\",\n        \"step 6\",\n        \"step 10\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore points Y, B, and D are collinear.\",\n      \"reasoning\": \"If Y lies on line BD, then B, D, and Y are collinear by definition.\",\n      \"facts_used\": [\n        \"step 11\"\n      ]\n    }\n  ],\n  \"final_answer\": \"Y, B, and D are collinear.\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"z_x\",\"sort\":\"Real\"},{\"name\":\"z_y\",\"sort\":\"Real\"},{\"name\":\"f_x\",\"sort\":\"Real\"},{\"name\":\"f_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"e_x\",\"sort\":\"Real\"},{\"name\":\"e_y\",\"sort\":\"Real\"},{\"name\":\"m_x\",\"sort\":\"Real\"},{\"name\":\"m_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"y_x\",\"sort\":\"Real\"},{\"name\":\"y_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"(b_x-a_x)*(z_y-a_y) != (z_x-a_x)*(b_y-a_y)\",\"(f_x-b_x)*(f_x-a_x) + (f_y-b_y)*(f_y-a_y) == (f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y)\",\"(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-z_x)*(f_x-z_x) + (f_y-z_y)*(f_y-z_y)\",\"(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-b_x)*(f_x-b_x) + (f_y-b_y)*(f_y-b_y)\",\"(c_x-b_x)*(b_x-f_x) + (c_y-b_y)*(b_y-f_y) == 0\",\"(c_x-a_x)*(f_y-a_y) == (f_x-a_x)*(c_y-a_y)\",\"(d_x-a_x)*(z_y-a_y) == (z_x-a_x)*(d_y-a_y)\",\"(d_x-a_x)*(d_x-a_x) + (d_y-a_y)*(d_y-a_y) == (d_x-c_x)*(d_x-c_x) + (d_y-c_y)*(d_y-c_y)\",\"(e_x-a_x)*(d_x-c_x) + (e_y-a_y)*(d_y-c_y) == (c_x-a_x)*(e_x-d_x) + (c_y-a_y)*(e_y-d_y)\",\"(e_x-a_x)*(e_x-a_x) + (e_y-a_y)*(e_y-a_y) == (e_x-d_x)*(e_x-d_x) + (e_y-d_y)*(e_y-d_y)\",\"m_x == (c_x + f_x) / 2\",\"m_y == (c_y + f_y) / 2\",\"x_x == e_x + m_x - a_x\",\"x_y == e_y + m_y - a_y\",\"(x_x-e_x)*(y_y-f_y) == (x_y-e_y)*(y_x-f_x)\",\"(e_x-m_x)*(y_y-f_y) == (e_y-m_y)*(y_x-f_x)\"],\"goal\":\"(b_x-y_x)*(d_y-y_y) == (d_x-y_x)*(b_y-y_y)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "z_x",
+          "sort": "Real"
+        },
+        {
+          "name": "z_y",
+          "sort": "Real"
+        },
+        {
+          "name": "f_x",
+          "sort": "Real"
+        },
+        {
+          "name": "f_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "d_x",
+          "sort": "Real"
+        },
+        {
+          "name": "d_y",
+          "sort": "Real"
+        },
+        {
+          "name": "e_x",
+          "sort": "Real"
+        },
+        {
+          "name": "e_y",
+          "sort": "Real"
+        },
+        {
+          "name": "m_x",
+          "sort": "Real"
+        },
+        {
+          "name": "m_y",
+          "sort": "Real"
+        },
+        {
+          "name": "x_x",
+          "sort": "Real"
+        },
+        {
+          "name": "x_y",
+          "sort": "Real"
+        },
+        {
+          "name": "y_x",
+          "sort": "Real"
+        },
+        {
+          "name": "y_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "(b_x-a_x)*(z_y-a_y) != (z_x-a_x)*(b_y-a_y)",
+        "(f_x-b_x)*(f_x-a_x) + (f_y-b_y)*(f_y-a_y) == (f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y)",
+        "(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-z_x)*(f_x-z_x) + (f_y-z_y)*(f_y-z_y)",
+        "(f_x-a_x)*(f_x-a_x) + (f_y-a_y)*(f_y-a_y) == (f_x-b_x)*(f_x-b_x) + (f_y-b_y)*(f_y-b_y)",
+        "(c_x-b_x)*(b_x-f_x) + (c_y-b_y)*(b_y-f_y) == 0",
+        "(c_x-a_x)*(f_y-a_y) == (f_x-a_x)*(c_y-a_y)",
+        "(d_x-a_x)*(z_y-a_y) == (z_x-a_x)*(d_y-a_y)",
+        "(d_x-a_x)*(d_x-a_x) + (d_y-a_y)*(d_y-a_y) == (d_x-c_x)*(d_x-c_x) + (d_y-c_y)*(d_y-c_y)",
+        "(e_x-a_x)*(d_x-c_x) + (e_y-a_y)*(d_y-c_y) == (c_x-a_x)*(e_x-d_x) + (c_y-a_y)*(e_y-d_y)",
+        "(e_x-a_x)*(e_x-a_x) + (e_y-a_y)*(e_y-a_y) == (e_x-d_x)*(e_x-d_x) + (e_y-d_y)*(e_y-d_y)",
+        "m_x == (c_x + f_x) / 2",
+        "m_y == (c_y + f_y) / 2",
+        "x_x == e_x + m_x - a_x",
+        "x_y == e_y + m_y - a_y",
+        "(x_x-e_x)*(y_y-f_y) == (x_y-e_y)*(y_x-f_x)",
+        "(e_x-m_x)*(y_y-f_y) == (e_y-m_y)*(y_x-f_x)"
+      ],
+      "goal": "(b_x-y_x)*(d_y-y_y) == (d_x-y_x)*(b_y-y_y)"
+    },
+    "functions": [],
+    "lemmas": [],
+    "instantiations": []
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 14016.764879226685,
+    "instantiated": [],
+    "compile_errors": [],
+    "lemma_audit": [],
+    "function_declarations": [],
+    "instantiation_count": 0,
+    "n_hypotheses": 16
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:54:58.276383+00:00"
+}

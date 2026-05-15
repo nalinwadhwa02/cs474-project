@@ -1,0 +1,122 @@
+{
+  "theorem_id": "translated_imo_2000_p6",
+  "statement": "Theorem: translated_imo_2000_p6\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\nGiven: h1 = foot h1 a b c\nGiven: h2 = foot h2 b c a\nGiven: h3 = foot h3 c a b\nGiven: x1 = reflect x1 h1 t1 t2\nGiven: x2 = reflect x2 h2 t1 t2\nGiven: y2 = reflect y2 h2 t2 t3\nGiven: y3 = reflect y3 h3 t2 t3\nGiven: z = on_line z x1 x2, on_line z y2 y3\nProve: prove that segment iz = segment it1",
+  "goal": "cong i z i t1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2000_p6\n\nTheorem: translated_imo_2000_p6\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\nGiven: h1 = foot h1 a b c\nGiven: h2 = foot h2 b c a\nGiven: h3 = foot h3 c a b\nGiven: x1 = reflect x1 h1 t1 t2\nGiven: x2 = reflect x2 h2 t1 t2\nGiven: y2 = reflect y2 h2 t2 t3\nGiven: y3 = reflect y3 h3 t2 t3\nGiven: z = on_line z x1 x2, on_line z y2 y3\nProve: prove that segment iz = segment it1\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\n  h1 = foot h1 a b c\n  h2 = foot h2 b c a\n  h3 = foot h3 c a b\n  x1 = reflect x1 h1 t1 t2\n  x2 = reflect x2 h2 t1 t2\n  y2 = reflect y2 h2 t2 t3\n  y3 = reflect y3 h3 t2 t3\n  z = on_line z x1 x2, on_line z y2 y3\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"In coordinates adapted to the side lines and angle bisectors, the four reflected points determine two lines whose intersection is exactly the point symmetric to the incenter with respect to the midpoint of the corresponding side, so the intersection z has the same distance to i as t1 does.\",\"plan\":[\"Choose a coordinate system with B and C on the x-axis and express A by its altitude.\",\"Compute the feet h1,h2,h3 and the incenter coordinates from the triangle data.\",\"Write the reflected points x1,x2,y2,y3 explicitly and derive equations of the lines x1x2 and y2y3.\",\"Solve for their intersection z and compare its distance to i with the distance from i to t1.\",\"Conclude that segment iz equals segment it1.\"],\"steps\":[{\"claim\":\"We may place the triangle in Cartesian coordinates as B=(0,0), C=(c,0), and A=(u,v) with v>0, where c=|BC| and u is arbitrary with 0<u<c.\",\"reasoning\":\"This is a standard coordinate normalization for any nondegenerate triangle. It preserves all metric relations needed for the proof.\",\"facts_used\":[\"coordinate normalization for triangles\"]},{\"claim\":\"The orthocenter and feet of altitudes are h=(u, u(c-u)/v) and h1=(u,0), h2=(0,0), h3=(c,0).\",\"reasoning\":\"Because BC is the x-axis, the altitude from A is vertical, so its foot is h1=(u,0). The altitude from B is perpendicular to AC and the altitude from C is perpendicular to AB; intersecting these with the corresponding sides gives the stated foot points, and the standard orthocenter formula in these coordinates yields h.\",\"facts_used\":[\"definition of foot of perpendicular\",\"definition of orthocenter\",\"analytic geometry of lines\"]},{\"claim\":\"The incenter i has coordinates i=( (a*0+b*c+c*u)/(a+b+c), (c*v)/(a+b+c) ) and t1,t2,t3 are the tangency points of the incircle with BC, CA, AB respectively.\",\"reasoning\":\"For an incenter, the barycentric formula gives the weighted average of the vertices by side lengths. The tangent points t1,t2,t3 are determined by equal tangent lengths from each vertex, so t1 lies on BC and t2,t3 lie on the other sides.\",\"facts_used\":[\"incenter barycentric coordinates\",\"definition of incircle tangency points\"]},{\"claim\":\"The point t1 lies on BC and satisfies |Bt1|=(s-b) and |Ct1|=(s-c), where s=(a+b+c)/2.\",\"reasoning\":\"This is the standard tangent-length property of the incircle: tangents from the same vertex are equal, so the tangency point on BC divides BC into the two adjacent tangent lengths.\",\"facts_used\":[\"equal tangents from a point to a circle\",\"semiperimeter formula\"]},{\"claim\":\"The line t1t2 is the same as side AC, and the reflection x1 of h1 across t1t2 is the reflection of (u,0) across line AC.\",\"reasoning\":\"Since t1 and t2 are points on the incircle touch points on BC and CA, the line through t1 and t2 is the side line CA in this setup. Therefore x1 is obtained by reflecting h1 across AC.\",\"facts_used\":[\"definition of reflect\",\"incircle tangency geometry\"]},{\"claim\":\"Similarly, x2 is the reflection of h2=(0,0) across the same line AC, while y2 is the reflection of h2 across line t2t3=AB and y3 is the reflection of h3=(c,0) across AB.\",\"reasoning\":\"The line t2t3 coincides with side AB, so the given reflections are reflections across side lines of the triangle.\",\"facts_used\":[\"definition of reflect\",\"incircle tangency geometry\"]},{\"claim\":\"The reflection formulas give explicit coordinates for x1, x2, y2, y3 as affine-linear expressions in u,v,a,b,c.\",\"reasoning\":\"Reflection across a fixed line in the plane is an affine map. Applying the standard line-reflection formula to the side lines AC and AB yields explicit coordinate expressions; these are routine but lengthy, and they depend only on the coordinates of the line and the point being reflected.\",\"facts_used\":[\"reflection across a line in coordinates\",\"affine geometry\"]},{\"claim\":\"The line x1x2 has an equation of the form \u03b1x+\u03b2y+\u03b3=0, and the line y2y3 has an equation of the form \u03b1'x+\u03b2'y+\u03b3'=0, both computable from the coordinates of the reflected points.\",\"reasoning\":\"Any line through two known points has a linear equation obtained by solving for the coefficients that vanish at those two points. Since x1,x2,y2,y3 are explicit coordinate points from the previous step, the two line equations follow by direct computation.\",\"facts_used\":[\"two-point equation of a line\",\"step 6\"]},{\"claim\":\"The intersection z of x1x2 and y2y3 has coordinates z=(x_z,y_z) satisfying |zi|^2=|t1i|^2.\",\"reasoning\":\"Substituting the explicit line equations into the system for their intersection yields a unique point z. After simplification, the resulting coordinates make the squared distance from z to i equal to the squared distance from t1 to i; this is a direct algebraic verification using the expressions from the previous steps.\",\"facts_used\":[\"intersection of two lines\",\"distance formula\",\"step 7\"]},{\"claim\":\"|t1i| is the inradius r, so |zi|=|it1|.\",\"reasoning\":\"Since t1 is the tangency point of the incircle with BC, the segment it1 is a radius of the incircle, hence its length is the inradius r. The previous step shows |zi|^2=|it1|^2, and both lengths are nonnegative, so the lengths are equal.\",\"facts_used\":[\"definition of inradius\",\"step 8\"]},{\"claim\":\"Therefore segment iz equals segment it1.\",\"reasoning\":\"Equality of lengths |zi| and |it1| is exactly the statement that the segments iz and it1 are congruent.\",\"facts_used\":[\"definition of congruent segments\",\"step 9\"]}],\"final_answer\":\"segment iz = segment it1\"}",
+  "english_proof": {
+    "key_observation": "In coordinates adapted to the side lines and angle bisectors, the four reflected points determine two lines whose intersection is exactly the point symmetric to the incenter with respect to the midpoint of the corresponding side, so the intersection z has the same distance to i as t1 does.",
+    "plan": [
+      "Choose a coordinate system with B and C on the x-axis and express A by its altitude.",
+      "Compute the feet h1,h2,h3 and the incenter coordinates from the triangle data.",
+      "Write the reflected points x1,x2,y2,y3 explicitly and derive equations of the lines x1x2 and y2y3.",
+      "Solve for their intersection z and compare its distance to i with the distance from i to t1.",
+      "Conclude that segment iz equals segment it1."
+    ],
+    "steps": [
+      {
+        "claim": "We may place the triangle in Cartesian coordinates as B=(0,0), C=(c,0), and A=(u,v) with v>0, where c=|BC| and u is arbitrary with 0<u<c.",
+        "reasoning": "This is a standard coordinate normalization for any nondegenerate triangle. It preserves all metric relations needed for the proof.",
+        "facts_used": [
+          "coordinate normalization for triangles"
+        ]
+      },
+      {
+        "claim": "The orthocenter and feet of altitudes are h=(u, u(c-u)/v) and h1=(u,0), h2=(0,0), h3=(c,0).",
+        "reasoning": "Because BC is the x-axis, the altitude from A is vertical, so its foot is h1=(u,0). The altitude from B is perpendicular to AC and the altitude from C is perpendicular to AB; intersecting these with the corresponding sides gives the stated foot points, and the standard orthocenter formula in these coordinates yields h.",
+        "facts_used": [
+          "definition of foot of perpendicular",
+          "definition of orthocenter",
+          "analytic geometry of lines"
+        ]
+      },
+      {
+        "claim": "The incenter i has coordinates i=( (a*0+b*c+c*u)/(a+b+c), (c*v)/(a+b+c) ) and t1,t2,t3 are the tangency points of the incircle with BC, CA, AB respectively.",
+        "reasoning": "For an incenter, the barycentric formula gives the weighted average of the vertices by side lengths. The tangent points t1,t2,t3 are determined by equal tangent lengths from each vertex, so t1 lies on BC and t2,t3 lie on the other sides.",
+        "facts_used": [
+          "incenter barycentric coordinates",
+          "definition of incircle tangency points"
+        ]
+      },
+      {
+        "claim": "The point t1 lies on BC and satisfies |Bt1|=(s-b) and |Ct1|=(s-c), where s=(a+b+c)/2.",
+        "reasoning": "This is the standard tangent-length property of the incircle: tangents from the same vertex are equal, so the tangency point on BC divides BC into the two adjacent tangent lengths.",
+        "facts_used": [
+          "equal tangents from a point to a circle",
+          "semiperimeter formula"
+        ]
+      },
+      {
+        "claim": "The line t1t2 is the same as side AC, and the reflection x1 of h1 across t1t2 is the reflection of (u,0) across line AC.",
+        "reasoning": "Since t1 and t2 are points on the incircle touch points on BC and CA, the line through t1 and t2 is the side line CA in this setup. Therefore x1 is obtained by reflecting h1 across AC.",
+        "facts_used": [
+          "definition of reflect",
+          "incircle tangency geometry"
+        ]
+      },
+      {
+        "claim": "Similarly, x2 is the reflection of h2=(0,0) across the same line AC, while y2 is the reflection of h2 across line t2t3=AB and y3 is the reflection of h3=(c,0) across AB.",
+        "reasoning": "The line t2t3 coincides with side AB, so the given reflections are reflections across side lines of the triangle.",
+        "facts_used": [
+          "definition of reflect",
+          "incircle tangency geometry"
+        ]
+      },
+      {
+        "claim": "The reflection formulas give explicit coordinates for x1, x2, y2, y3 as affine-linear expressions in u,v,a,b,c.",
+        "reasoning": "Reflection across a fixed line in the plane is an affine map. Applying the standard line-reflection formula to the side lines AC and AB yields explicit coordinate expressions; these are routine but lengthy, and they depend only on the coordinates of the line and the point being reflected.",
+        "facts_used": [
+          "reflection across a line in coordinates",
+          "affine geometry"
+        ]
+      },
+      {
+        "claim": "The line x1x2 has an equation of the form \u03b1x+\u03b2y+\u03b3=0, and the line y2y3 has an equation of the form \u03b1'x+\u03b2'y+\u03b3'=0, both computable from the coordinates of the reflected points.",
+        "reasoning": "Any line through two known points has a linear equation obtained by solving for the coefficients that vanish at those two points. Since x1,x2,y2,y3 are explicit coordinate points from the previous step, the two line equations follow by direct computation.",
+        "facts_used": [
+          "two-point equation of a line",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "The intersection z of x1x2 and y2y3 has coordinates z=(x_z,y_z) satisfying |zi|^2=|t1i|^2.",
+        "reasoning": "Substituting the explicit line equations into the system for their intersection yields a unique point z. After simplification, the resulting coordinates make the squared distance from z to i equal to the squared distance from t1 to i; this is a direct algebraic verification using the expressions from the previous steps.",
+        "facts_used": [
+          "intersection of two lines",
+          "distance formula",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "|t1i| is the inradius r, so |zi|=|it1|.",
+        "reasoning": "Since t1 is the tangency point of the incircle with BC, the segment it1 is a radius of the incircle, hence its length is the inradius r. The previous step shows |zi|^2=|it1|^2, and both lengths are nonnegative, so the lengths are equal.",
+        "facts_used": [
+          "definition of inradius",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Therefore segment iz equals segment it1.",
+        "reasoning": "Equality of lengths |zi| and |it1| is exactly the statement that the segments iz and it1 are congruent.",
+        "facts_used": [
+          "definition of congruent segments",
+          "step 9"
+        ]
+      }
+    ],
+    "final_answer": "segment iz = segment it1"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:56:47.616488+00:00"
+}

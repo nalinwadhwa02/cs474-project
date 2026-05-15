@@ -1,0 +1,57 @@
+{
+  "theorem_id": "induction_divisibility_9div10tonm1",
+  "statement": "Theorem: induction_divisibility_9div10tonm1\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nProve: 9 \u2223 (10^n - 1)",
+  "goal": "9 \u2223 (10^n - 1)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: induction_divisibility_9div10tonm1\n\nTheorem: induction_divisibility_9div10tonm1\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nProve: 9 \u2223 (10^n - 1)\n\nHypotheses:\n  h\u2080 : 0 < n\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Since 10 \u2261 1 mod 9, every power 10^n is also congruent to 1 mod 9, so 10^n - 1 is divisible by 9.\",\"plan\":[\"Use induction on the positive integer n.\",\"Verify the base case n = 1 directly.\",\"Assume 9 divides 10^n - 1 and prove the statement for n + 1.\",\"Rewrite 10^(n+1) - 1 in terms of 10^n - 1 and factor out 9.\"],\"steps\":[{\"claim\":\"For n = 1, 9 divides 10^1 - 1.\",\"reasoning\":\"We compute 10^1 - 1 = 9, and 9 divides 9 by definition.\",\"facts_used\":[\"definition of divisibility\"]},{\"claim\":\"If 9 divides 10^n - 1, then 9 divides 10^(n+1) - 1.\",\"reasoning\":\"We have 10^(n+1) - 1 = 10(10^n - 1) + 9. By the induction hypothesis, 10^n - 1 is divisible by 9, so 10(10^n - 1) is also divisible by 9, and 9 is obviously divisible by 9. Therefore their sum is divisible by 9.\",\"facts_used\":[\"induction hypothesis\",\"closure of divisibility under multiplication\",\"closure of divisibility under addition\"]},{\"claim\":\"For every integer n > 0, 9 divides 10^n - 1.\",\"reasoning\":\"The base case holds, and the induction step shows that the property for n implies the property for n+1. Since n is positive, induction applies to all n \u2265 1.\",\"facts_used\":[\"mathematical induction\",\"step 1\",\"step 2\"]}],\"final_answer\":\"9 \u2223 (10^n - 1)\"}",
+  "english_proof": {
+    "key_observation": "Since 10 \u2261 1 mod 9, every power 10^n is also congruent to 1 mod 9, so 10^n - 1 is divisible by 9.",
+    "plan": [
+      "Use induction on the positive integer n.",
+      "Verify the base case n = 1 directly.",
+      "Assume 9 divides 10^n - 1 and prove the statement for n + 1.",
+      "Rewrite 10^(n+1) - 1 in terms of 10^n - 1 and factor out 9."
+    ],
+    "steps": [
+      {
+        "claim": "For n = 1, 9 divides 10^1 - 1.",
+        "reasoning": "We compute 10^1 - 1 = 9, and 9 divides 9 by definition.",
+        "facts_used": [
+          "definition of divisibility"
+        ]
+      },
+      {
+        "claim": "If 9 divides 10^n - 1, then 9 divides 10^(n+1) - 1.",
+        "reasoning": "We have 10^(n+1) - 1 = 10(10^n - 1) + 9. By the induction hypothesis, 10^n - 1 is divisible by 9, so 10(10^n - 1) is also divisible by 9, and 9 is obviously divisible by 9. Therefore their sum is divisible by 9.",
+        "facts_used": [
+          "induction hypothesis",
+          "closure of divisibility under multiplication",
+          "closure of divisibility under addition"
+        ]
+      },
+      {
+        "claim": "For every integer n > 0, 9 divides 10^n - 1.",
+        "reasoning": "The base case holds, and the induction step shows that the property for n implies the property for n+1. Since n is positive, induction applies to all n \u2265 1.",
+        "facts_used": [
+          "mathematical induction",
+          "step 1",
+          "step 2"
+        ]
+      }
+    ],
+    "final_answer": "9 \u2223 (10^n - 1)"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.807781+00:00"
+}

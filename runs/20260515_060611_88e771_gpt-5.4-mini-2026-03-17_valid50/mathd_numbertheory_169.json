@@ -1,0 +1,79 @@
+{
+  "theorem_id": "mathd_numbertheory_169",
+  "statement": "Theorem: mathd_numbertheory_169\nProve: nat.gcd 20! 200000 = 40000",
+  "goal": "nat.gcd 20! 200000 = 40000",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_169\n\nTheorem: mathd_numbertheory_169\nProve: nat.gcd 20! 200000 = 40000\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Compute the prime factorizations of 20! and 200000, then take the minimum exponent of each prime to determine the gcd.\",\"plan\":[\"Factor 200000 into primes.\",\"Determine the exponents of 2 and 5 in 20! using Legendre\u2019s formula.\",\"Compare the prime exponents in 20! and 200000 to find the gcd.\",\"Multiply the common prime powers to obtain the result.\"],\"steps\":[{\"claim\":\"200000 = 2^6 * 5^5.\",\"reasoning\":\"We have 200000 = 2 * 10^5 = 2 * (2 * 5)^5 = 2^6 * 5^5.\",\"facts_used\":[\"algebraic expansion of powers\"]},{\"claim\":\"The exponent of 2 in 20! is 18.\",\"reasoning\":\"By Legendre\u2019s formula, v_2(20!) = floor(20/2) + floor(20/4) + floor(20/8) + floor(20/16) = 10 + 5 + 2 + 1 = 18.\",\"facts_used\":[\"Legendre's formula\"]},{\"claim\":\"The exponent of 5 in 20! is 4.\",\"reasoning\":\"By Legendre\u2019s formula, v_5(20!) = floor(20/5) + floor(20/25) = 4 + 0 = 4.\",\"facts_used\":[\"Legendre's formula\"]},{\"claim\":\"For every prime p other than 2 and 5, the exponent of p in 200000 is 0, so the gcd has no such prime factors.\",\"reasoning\":\"The factorization 200000 = 2^6 * 5^5 contains only the primes 2 and 5. Therefore any other prime cannot divide 200000, and hence cannot appear in the gcd.\",\"facts_used\":[\"step 1\",\"definition of gcd via prime exponents\"]},{\"claim\":\"nat.gcd 20! 200000 = 2^6 * 5^4.\",\"reasoning\":\"The gcd takes, for each prime, the minimum of the exponents appearing in the two numbers. For 2, min(18,6)=6; for 5, min(4,5)=4; and for all other primes the exponent is 0.\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\",\"definition of gcd via prime exponents\"]},{\"claim\":\"2^6 * 5^4 = 40000.\",\"reasoning\":\"Compute 2^6 = 64 and 5^4 = 625, so 64 * 625 = 40000.\",\"facts_used\":[\"exponentiation\",\"multiplication\"]}],\"final_answer\":\"40000\"}",
+  "english_proof": {
+    "key_observation": "Compute the prime factorizations of 20! and 200000, then take the minimum exponent of each prime to determine the gcd.",
+    "plan": [
+      "Factor 200000 into primes.",
+      "Determine the exponents of 2 and 5 in 20! using Legendre\u2019s formula.",
+      "Compare the prime exponents in 20! and 200000 to find the gcd.",
+      "Multiply the common prime powers to obtain the result."
+    ],
+    "steps": [
+      {
+        "claim": "200000 = 2^6 * 5^5.",
+        "reasoning": "We have 200000 = 2 * 10^5 = 2 * (2 * 5)^5 = 2^6 * 5^5.",
+        "facts_used": [
+          "algebraic expansion of powers"
+        ]
+      },
+      {
+        "claim": "The exponent of 2 in 20! is 18.",
+        "reasoning": "By Legendre\u2019s formula, v_2(20!) = floor(20/2) + floor(20/4) + floor(20/8) + floor(20/16) = 10 + 5 + 2 + 1 = 18.",
+        "facts_used": [
+          "Legendre's formula"
+        ]
+      },
+      {
+        "claim": "The exponent of 5 in 20! is 4.",
+        "reasoning": "By Legendre\u2019s formula, v_5(20!) = floor(20/5) + floor(20/25) = 4 + 0 = 4.",
+        "facts_used": [
+          "Legendre's formula"
+        ]
+      },
+      {
+        "claim": "For every prime p other than 2 and 5, the exponent of p in 200000 is 0, so the gcd has no such prime factors.",
+        "reasoning": "The factorization 200000 = 2^6 * 5^5 contains only the primes 2 and 5. Therefore any other prime cannot divide 200000, and hence cannot appear in the gcd.",
+        "facts_used": [
+          "step 1",
+          "definition of gcd via prime exponents"
+        ]
+      },
+      {
+        "claim": "nat.gcd 20! 200000 = 2^6 * 5^4.",
+        "reasoning": "The gcd takes, for each prime, the minimum of the exponents appearing in the two numbers. For 2, min(18,6)=6; for 5, min(4,5)=4; and for all other primes the exponent is 0.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "definition of gcd via prime exponents"
+        ]
+      },
+      {
+        "claim": "2^6 * 5^4 = 40000.",
+        "reasoning": "Compute 2^6 = 64 and 5^4 = 625, so 64 * 625 = 40000.",
+        "facts_used": [
+          "exponentiation",
+          "multiplication"
+        ]
+      }
+    ],
+    "final_answer": "40000"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.809858+00:00"
+}

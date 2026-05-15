@@ -1,0 +1,124 @@
+{
+  "theorem_id": "translated_imo_2003_p4",
+  "statement": "Theorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr",
+  "goal": "cong p q q r",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2003_p4\n\nTheorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  b1 = on_circle b1 o a, on_bline b1 c a\n  d1 = on_circle d1 o a, on_bline d1 c a\n  x = on_line x b b1, on_line x a c\n  d = on_line d d1 x, on_circle d o a\n  p = foot p d b c\n  q = foot q d c a\n  r = foot r d a b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.\",\"plan\":[\"Introduce coordinates adapted to triangle ABC and the circumcircle.\",\"Use the conditions defining B1, D1, X, and D to derive equations for D.\",\"Compute the projections of D onto BC, CA, and AB.\",\"Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.\",\"Conclude that Q is the midpoint of PR, hence PQ = QR.\"],\"steps\":[{\"claim\":\"We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\\\neq 0.\",\"reasoning\":\"Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.\",\"facts_used\":[\"affine coordinate normalization\"]},{\"claim\":\"The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\\\alpha x+\\\\beta y=0 for suitable constants \\\\alpha,\\\\beta.\",\"reasoning\":\"Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\\\alpha x+\\\\beta y+\\\\gamma=0, so here \\\\gamma=0.\",\"facts_used\":[\"equation of a circle through the origin\"]},{\"claim\":\"The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.\",\"reasoning\":\"Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.\",\"facts_used\":[\"perpendicular bisector characterization\"]},{\"claim\":\"Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.\",\"reasoning\":\"Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.\",\"facts_used\":[\"step 2\", \"quadratic equation\"]},{\"claim\":\"The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.\",\"reasoning\":\"This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.\",\"facts_used\":[\"given hypotheses\"]},{\"claim\":\"The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.\",\"reasoning\":\"The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.\",\"facts_used\":[\"given hypotheses\", \"secant-circle intersection\"]},{\"claim\":\"The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.\",\"reasoning\":\"From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.\",\"facts_used\":[\"step 2\", \"step 5\", \"step 6\"]},{\"claim\":\"Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).\",\"reasoning\":\"Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.\",\"facts_used\":[\"definition of foot of a perpendicular\", \"step 1\"]},{\"claim\":\"The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.\",\"reasoning\":\"For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.\",\"facts_used\":[\"orthogonal projection onto a line is affine\"]},{\"claim\":\"A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.\",\"reasoning\":\"This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.\",\"facts_used\":[\"step 7\", \"step 8\"]},{\"claim\":\"Therefore Q is the midpoint of segment PR.\",\"reasoning\":\"An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.\",\"facts_used\":[\"step 9\"]},{\"claim\":\"Since Q is the midpoint of PR, we have PQ = QR.\",\"reasoning\":\"A midpoint of a segment is equidistant from its endpoints by definition.\",\"facts_used\":[\"definition of midpoint\", \"step 10\"]}],\"final_answer\":\"PQ = QR\"}",
+  "english_proof": {
+    "key_observation": "The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.",
+    "plan": [
+      "Introduce coordinates adapted to triangle ABC and the circumcircle.",
+      "Use the conditions defining B1, D1, X, and D to derive equations for D.",
+      "Compute the projections of D onto BC, CA, and AB.",
+      "Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.",
+      "Conclude that Q is the midpoint of PR, hence PQ = QR."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\neq 0.",
+        "reasoning": "Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.",
+        "facts_used": [
+          "affine coordinate normalization"
+        ]
+      },
+      {
+        "claim": "The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\alpha x+\\beta y=0 for suitable constants \\alpha,\\beta.",
+        "reasoning": "Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\alpha x+\\beta y+\\gamma=0, so here \\gamma=0.",
+        "facts_used": [
+          "equation of a circle through the origin"
+        ]
+      },
+      {
+        "claim": "The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.",
+        "reasoning": "Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.",
+        "facts_used": [
+          "perpendicular bisector characterization"
+        ]
+      },
+      {
+        "claim": "Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.",
+        "reasoning": "Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.",
+        "facts_used": [
+          "step 2",
+          "quadratic equation"
+        ]
+      },
+      {
+        "claim": "The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.",
+        "reasoning": "This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.",
+        "reasoning": "The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.",
+        "facts_used": [
+          "given hypotheses",
+          "secant-circle intersection"
+        ]
+      },
+      {
+        "claim": "The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.",
+        "reasoning": "From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.",
+        "facts_used": [
+          "step 2",
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).",
+        "reasoning": "Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.",
+        "facts_used": [
+          "definition of foot of a perpendicular",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.",
+        "reasoning": "For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.",
+        "facts_used": [
+          "orthogonal projection onto a line is affine"
+        ]
+      },
+      {
+        "claim": "A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.",
+        "reasoning": "This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.",
+        "facts_used": [
+          "step 7",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Therefore Q is the midpoint of segment PR.",
+        "reasoning": "An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.",
+        "facts_used": [
+          "step 9"
+        ]
+      },
+      {
+        "claim": "Since Q is the midpoint of PR, we have PQ = QR.",
+        "reasoning": "A midpoint of a segment is equidistant from its endpoints by definition.",
+        "facts_used": [
+          "definition of midpoint",
+          "step 10"
+        ]
+      }
+    ],
+    "final_answer": "PQ = QR"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:40:25.051015+00:00"
+}

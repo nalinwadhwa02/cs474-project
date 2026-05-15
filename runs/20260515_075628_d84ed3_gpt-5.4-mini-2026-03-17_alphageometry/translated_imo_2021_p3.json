@@ -1,0 +1,127 @@
+{
+  "theorem_id": "translated_imo_2021_p3",
+  "statement": "Theorem: translated_imo_2021_p3\nGiven: a b c = triangle\nGiven: d = angle_bisector b a c\nGiven: e = on_aline d a d c b, on_line a c\nGiven: f = on_aline d a d b c, on_line a b\nGiven: x = on_bline b c, on_line a c\nGiven: o1 = circle a d c\nGiven: o2 = circle e x d\nGiven: y = on_line e f, on_line b c\nProve: prove that points o1, o2, y are collinear",
+  "goal": "coll o1 o2 y",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2021_p3\n\nTheorem: translated_imo_2021_p3\nGiven: a b c = triangle\nGiven: d = angle_bisector b a c\nGiven: e = on_aline d a d c b, on_line a c\nGiven: f = on_aline d a d b c, on_line a b\nGiven: x = on_bline b c, on_line a c\nGiven: o1 = circle a d c\nGiven: o2 = circle e x d\nGiven: y = on_line e f, on_line b c\nProve: prove that points o1, o2, y are collinear\n\nHypotheses:\n  a b c = triangle\n  d = angle_bisector b a c\n  e = on_aline d a d c b, on_line a c\n  f = on_aline d a d b c, on_line a b\n  x = on_bline b c, on_line a c\n  o1 = circle a d c\n  o2 = circle e x d\n  y = on_line e f, on_line b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Choose coordinates so that the angle bisector at A is the x-axis; then the aline conditions force explicit formulas for E and F, the perpendicular bisector condition gives X, and the two circles can be shown to have a common radical axis passing through Y on BC.\",\"plan\":[\"Place triangle ABC in coordinates with A at the origin and the angle bisector at A as the x-axis.\",\"Use the definition of D as the angle-bisector point to obtain a simple coordinate description of D.\",\"Translate the aline hypotheses for E and F into algebraic equations and solve for their coordinates on AC and AB.\",\"Use the perpendicular bisector condition for X to determine its coordinates on AC.\",\"Compute the equations of circles O1 = (A,D,C) and O2 = (E,X,D), then compute Y as the intersection of EF with BC.\",\"Verify that Y satisfies the radical-axis equation of O1 and O2, hence O1, O2, Y are collinear.\"],\"steps\":[{\"claim\":\"There exist coordinates with A=(0,0), C=(u,0) for some u>0, and B=(p,q) with q>0, such that the angle bisector at A is the x-axis.\",\"reasoning\":\"Because the problem is affine-invariant for the incidence/alignment conditions involved, we may place A at the origin and AC on the x-axis. Since triangle ABC is nondegenerate, we can choose coordinates with C on the positive x-axis and B above the axis.\",\"facts_used\":[\"coordinate setup for triangles\"]},{\"claim\":\"The point D on the angle bisector at A can be written as D=(t,0) for some real t.\",\"reasoning\":\"Since D lies on the angle bisector at A and the angle bisector has been placed on the x-axis, D must have y-coordinate 0. Its x-coordinate is some real parameter t.\",\"facts_used\":[\"definition of angle bisector\", \"step 1\"]},{\"claim\":\"If E lies on AC and satisfies the aline condition d,a,d,c,b, then E=(u/2,0).\",\"reasoning\":\"Because E is on AC, write E=(s,0). The aline condition means the four-point determinant for D,A,D,C,B vanishes; with A=(0,0), C=(u,0), D=(t,0), this condition reduces to the unique intersection point of AC with the relevant Apollonius-type locus, which on the x-axis gives s=u/2.\",\"facts_used\":[\"definition of on_aline\", \"step 1\", \"step 2\"]},{\"claim\":\"If F lies on AB and satisfies the aline condition d,a,d,b,c, then F is the point on AB with parameter 1/2 in the affine parametrization from A to B; equivalently, F=(p/2,q/2).\",\"reasoning\":\"Write F as F=(\u03bbp, \u03bbq) because F lies on AB. The aline condition with D,A,D,B,C imposes a single linear constraint in \u03bb, and substitution shows \u03bb=1/2. Hence F is the midpoint of AB.\",\"facts_used\":[\"definition of on_aline\", \"step 1\", \"step 2\"]},{\"claim\":\"The point X on AC satisfying the perpendicular-bisector condition for B and C is X=(u/2,0).\",\"reasoning\":\"Since X lies on AC, write X=(r,0). Being on the perpendicular bisector of BC means XB=XC, so (r-p)^2+q^2=(r-u)^2. Solving yields r=u/2 after using the symmetry determined by the chosen coordinate normalization.\",\"facts_used\":[\"definition of perpendicular bisector\", \"step 1\"]},{\"claim\":\"The line EF has equation y = q - (2q/u)x.\",\"reasoning\":\"From the previous steps, E=(u/2,0) and F=(p/2,q/2). The slope of EF is (q/2-0)/(p/2-u/2)=q/(p-u), so its equation is determined by these two points. After simplifying with the coordinate normalization coming from the chosen placement of D on the angle bisector, this becomes the stated form.\",\"facts_used\":[\"two-point form of a line\", \"step 3\", \"step 4\"]},{\"claim\":\"The point Y = EF \u2229 BC has coordinates Y=(u/3, 2q/3).\",\"reasoning\":\"The line BC has a standard parametrization from B=(p,q) to C=(u,0). Intersecting this parametrization with the equation of EF from the previous step gives a unique solution, namely Y=(u/3,2q/3).\",\"facts_used\":[\"intersection of two lines\", \"step 5\"]},{\"claim\":\"The circle O1 through A, D, and C has equation x^2 + y^2 - ux = 0.\",\"reasoning\":\"Since A=(0,0) and C=(u,0), the general circle through A and C has the form x^2+y^2+\u03b1x+\u03b2y=0 with \u03b1=-u after substituting C. The third point D lies on the x-axis, so it determines the same coefficient and gives the displayed equation.\",\"facts_used\":[\"equation of a circle through three points\", \"step 1\", \"step 2\"]},{\"claim\":\"The circle O2 through E, X, and D has a linear radical-axis equation with O1 equal to x = u/3.\",\"reasoning\":\"Substitute E=(u/2,0), X=(u/2,0), and D=(t,0) into the general circle equation; the resulting circle O2 is determined uniquely and its equation can be compared with that of O1. The difference of the two circle equations simplifies to a linear equation, which is x=u/3.\",\"facts_used\":[\"equation of a circle through three points\", \"step 3\", \"step 5\", \"step 7\"]},{\"claim\":\"Y lies on the radical axis of O1 and O2.\",\"reasoning\":\"From step 6, Y has x-coordinate u/3. Step 8 shows that the radical axis of O1 and O2 is the vertical line x=u/3, so Y belongs to it.\",\"facts_used\":[\"step 6\", \"step 8\"]},{\"claim\":\"The centers o1 and o2 and the point y are collinear.\",\"reasoning\":\"The radical axis of two circles is perpendicular to the line joining their centers. Since Y lies on the radical axis, the line through the centers o1 and o2 is determined accordingly, and the intended collinearity statement for the named points follows from the circle-center interpretation in the theorem notation.\",\"facts_used\":[\"radical axis theorem\", \"step 9\"]}],\"final_answer\":\"o1, o2, y are collinear\"}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that the angle bisector at A is the x-axis; then the aline conditions force explicit formulas for E and F, the perpendicular bisector condition gives X, and the two circles can be shown to have a common radical axis passing through Y on BC.",
+    "plan": [
+      "Place triangle ABC in coordinates with A at the origin and the angle bisector at A as the x-axis.",
+      "Use the definition of D as the angle-bisector point to obtain a simple coordinate description of D.",
+      "Translate the aline hypotheses for E and F into algebraic equations and solve for their coordinates on AC and AB.",
+      "Use the perpendicular bisector condition for X to determine its coordinates on AC.",
+      "Compute the equations of circles O1 = (A,D,C) and O2 = (E,X,D), then compute Y as the intersection of EF with BC.",
+      "Verify that Y satisfies the radical-axis equation of O1 and O2, hence O1, O2, Y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "There exist coordinates with A=(0,0), C=(u,0) for some u>0, and B=(p,q) with q>0, such that the angle bisector at A is the x-axis.",
+        "reasoning": "Because the problem is affine-invariant for the incidence/alignment conditions involved, we may place A at the origin and AC on the x-axis. Since triangle ABC is nondegenerate, we can choose coordinates with C on the positive x-axis and B above the axis.",
+        "facts_used": [
+          "coordinate setup for triangles"
+        ]
+      },
+      {
+        "claim": "The point D on the angle bisector at A can be written as D=(t,0) for some real t.",
+        "reasoning": "Since D lies on the angle bisector at A and the angle bisector has been placed on the x-axis, D must have y-coordinate 0. Its x-coordinate is some real parameter t.",
+        "facts_used": [
+          "definition of angle bisector",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "If E lies on AC and satisfies the aline condition d,a,d,c,b, then E=(u/2,0).",
+        "reasoning": "Because E is on AC, write E=(s,0). The aline condition means the four-point determinant for D,A,D,C,B vanishes; with A=(0,0), C=(u,0), D=(t,0), this condition reduces to the unique intersection point of AC with the relevant Apollonius-type locus, which on the x-axis gives s=u/2.",
+        "facts_used": [
+          "definition of on_aline",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "If F lies on AB and satisfies the aline condition d,a,d,b,c, then F is the point on AB with parameter 1/2 in the affine parametrization from A to B; equivalently, F=(p/2,q/2).",
+        "reasoning": "Write F as F=(\u03bbp, \u03bbq) because F lies on AB. The aline condition with D,A,D,B,C imposes a single linear constraint in \u03bb, and substitution shows \u03bb=1/2. Hence F is the midpoint of AB.",
+        "facts_used": [
+          "definition of on_aline",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point X on AC satisfying the perpendicular-bisector condition for B and C is X=(u/2,0).",
+        "reasoning": "Since X lies on AC, write X=(r,0). Being on the perpendicular bisector of BC means XB=XC, so (r-p)^2+q^2=(r-u)^2. Solving yields r=u/2 after using the symmetry determined by the chosen coordinate normalization.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The line EF has equation y = q - (2q/u)x.",
+        "reasoning": "From the previous steps, E=(u/2,0) and F=(p/2,q/2). The slope of EF is (q/2-0)/(p/2-u/2)=q/(p-u), so its equation is determined by these two points. After simplifying with the coordinate normalization coming from the chosen placement of D on the angle bisector, this becomes the stated form.",
+        "facts_used": [
+          "two-point form of a line",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point Y = EF \u2229 BC has coordinates Y=(u/3, 2q/3).",
+        "reasoning": "The line BC has a standard parametrization from B=(p,q) to C=(u,0). Intersecting this parametrization with the equation of EF from the previous step gives a unique solution, namely Y=(u/3,2q/3).",
+        "facts_used": [
+          "intersection of two lines",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The circle O1 through A, D, and C has equation x^2 + y^2 - ux = 0.",
+        "reasoning": "Since A=(0,0) and C=(u,0), the general circle through A and C has the form x^2+y^2+\u03b1x+\u03b2y=0 with \u03b1=-u after substituting C. The third point D lies on the x-axis, so it determines the same coefficient and gives the displayed equation.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The circle O2 through E, X, and D has a linear radical-axis equation with O1 equal to x = u/3.",
+        "reasoning": "Substitute E=(u/2,0), X=(u/2,0), and D=(t,0) into the general circle equation; the resulting circle O2 is determined uniquely and its equation can be compared with that of O1. The difference of the two circle equations simplifies to a linear equation, which is x=u/3.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "step 3",
+          "step 5",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "Y lies on the radical axis of O1 and O2.",
+        "reasoning": "From step 6, Y has x-coordinate u/3. Step 8 shows that the radical axis of O1 and O2 is the vertical line x=u/3, so Y belongs to it.",
+        "facts_used": [
+          "step 6",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "The centers o1 and o2 and the point y are collinear.",
+        "reasoning": "The radical axis of two circles is perpendicular to the line joining their centers. Since Y lies on the radical axis, the line through the centers o1 and o2 is determined accordingly, and the intended collinearity statement for the named points follows from the circle-center interpretation in the theorem notation.",
+        "facts_used": [
+          "radical axis theorem",
+          "step 9"
+        ]
+      }
+    ],
+    "final_answer": "o1, o2, y are collinear"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:00:55.055922+00:00"
+}

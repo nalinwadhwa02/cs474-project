@@ -1,0 +1,8 @@
+{
+  "model": "gpt-5.4-mini-2026-03-17",
+  "split": "valid50",
+  "problem_filter": null,
+  "limit": 1,
+  "n_problems": 1,
+  "started_at": "2026-05-15T05:58:09.962432+00:00"
+}

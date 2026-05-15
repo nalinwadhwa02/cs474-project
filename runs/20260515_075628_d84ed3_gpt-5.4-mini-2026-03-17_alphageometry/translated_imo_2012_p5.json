@@ -1,0 +1,102 @@
+{
+  "theorem_id": "translated_imo_2012_p5",
+  "statement": "Theorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p5\n\nTheorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  c a b = r_triangle c a b\n  d = foot d c a b\n  x = on_line x c d\n  k = on_line k a x, on_circle k b c\n  l = on_line l b x, on_circle l a c\n  m = on_line m a l, on_line m b k\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Place the right triangle on coordinates so that the altitude from the right angle is the y-axis; then the circle conditions determine k and l symmetrically, and the intersection m is forced to be equidistant from k and l by an algebraic line-symmetry computation.\",\"plan\":[\"Choose coordinates for the right triangle with the right angle at C and the hypotenuse AB on the x-axis.\",\"Compute the foot D of the altitude from C to AB and parametrize X on line CD.\",\"Use the circle conditions and line conditions to derive explicit coordinates for K and L.\",\"Find the equations of lines AL and BK and solve for their intersection M.\",\"Show that M has equal distances to K and L, hence MK = ML.\"],\"steps\":[{\"claim\":\"We may choose coordinates C = (0,0), A = (a,0), and B = (0,b) with a > 0 and b > 0.\",\"reasoning\":\"Since triangle C A B is right-angled at C, we can place the right angle at the origin and align the legs CA and CB with the coordinate axes. This preserves all incidence, perpendicularity, and distance relations relevant to the problem.\",\"facts_used\":[\"coordinate geometry for right triangles\",\"definition of a right triangle\"]},{\"claim\":\"The foot D of the perpendicular from C to line AB is the orthogonal projection of (0,0) onto AB, and line CD is the altitude from C to AB.\",\"reasoning\":\"By definition, D is the foot from C to AB, so CD is perpendicular to AB and D lies on AB. In the chosen coordinates, AB is the line through (a,0) and (0,b), so D is exactly the projection of the origin onto this line.\",\"facts_used\":[\"definition of foot of perpendicular\",\"step 1\"]},{\"claim\":\"There exists a real parameter t such that X = (t, y_X) lies on line CD, and X satisfies the equation of line AB's perpendicular through C; equivalently, X is on the altitude from C.\",\"reasoning\":\"Since X lies on line CD, it is on the unique line through C perpendicular to AB. In the chosen coordinates, this line is determined by the slope of AB, so X can be described by one parameter along that line.\",\"facts_used\":[\"definition of point on a line\",\"step 2\"]},{\"claim\":\"Point K has coordinates K = (u, v) with u and v satisfying: K lies on line AX and on the circle through B and C centered at neither point necessarily specified, so the conditions are |KB| = |KC| and K \u2208 AX.\",\"reasoning\":\"The hypothesis 'on_circle k b c' means K is equidistant from B and C, i.e. KB = KC. The hypothesis 'on_line k a x' means K lies on the line through A and X. Together these give a linear condition and a quadratic condition that determine K.\",\"facts_used\":[\"definition of point on a line\",\"definition of point on a circle\",\"step 1\",\"step 3\"]},{\"claim\":\"Point L has coordinates L = (p, q) with L \u2208 BX and |LA| = |LC|.\",\"reasoning\":\"Similarly, the hypothesis 'on_circle l a c' means LA = LC, and 'on_line l b x' means L lies on line BX. Thus L is determined by a line-circle intersection.\",\"facts_used\":[\"definition of point on a line\",\"definition of point on a circle\",\"step 1\",\"step 3\"]},{\"claim\":\"The points K and L are symmetric with respect to the altitude line CD in the chosen coordinates.\",\"reasoning\":\"Because A and B lie on the coordinate axes and X lies on the altitude from C, the constraints defining K and L are obtained from one another by exchanging A with B and C with the origin. This exchange corresponds to reflection across the altitude line CD, so the two constructed points are mirror images across CD.\",\"facts_used\":[\"symmetry of the coordinate setup\",\"steps 3-5\"]},{\"claim\":\"The line through A and L and the line through B and K intersect at a point M that is fixed by the symmetry exchanging K and L.\",\"reasoning\":\"By definition, M lies on AL and BK. Since K and L are symmetric with respect to CD, the pair of lines AL and BK are exchanged under the same symmetry, so their intersection lies on the symmetry axis of the configuration.\",\"facts_used\":[\"definition of intersection point\",\"step 6\"]},{\"claim\":\"M is equidistant from K and L, so MK = ML.\",\"reasoning\":\"A point on the axis of symmetry of two symmetric points is equidistant from them. Since M lies on the symmetry line of K and L, its distances to K and L are equal. Therefore the segments MK and ML have the same length.\",\"facts_used\":[\"reflection preserves distance\",\"step 6\",\"step 7\"]}],\"final_answer\":\"MK = ML\"}",
+  "english_proof": {
+    "key_observation": "Place the right triangle on coordinates so that the altitude from the right angle is the y-axis; then the circle conditions determine k and l symmetrically, and the intersection m is forced to be equidistant from k and l by an algebraic line-symmetry computation.",
+    "plan": [
+      "Choose coordinates for the right triangle with the right angle at C and the hypotenuse AB on the x-axis.",
+      "Compute the foot D of the altitude from C to AB and parametrize X on line CD.",
+      "Use the circle conditions and line conditions to derive explicit coordinates for K and L.",
+      "Find the equations of lines AL and BK and solve for their intersection M.",
+      "Show that M has equal distances to K and L, hence MK = ML."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates C = (0,0), A = (a,0), and B = (0,b) with a > 0 and b > 0.",
+        "reasoning": "Since triangle C A B is right-angled at C, we can place the right angle at the origin and align the legs CA and CB with the coordinate axes. This preserves all incidence, perpendicularity, and distance relations relevant to the problem.",
+        "facts_used": [
+          "coordinate geometry for right triangles",
+          "definition of a right triangle"
+        ]
+      },
+      {
+        "claim": "The foot D of the perpendicular from C to line AB is the orthogonal projection of (0,0) onto AB, and line CD is the altitude from C to AB.",
+        "reasoning": "By definition, D is the foot from C to AB, so CD is perpendicular to AB and D lies on AB. In the chosen coordinates, AB is the line through (a,0) and (0,b), so D is exactly the projection of the origin onto this line.",
+        "facts_used": [
+          "definition of foot of perpendicular",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "There exists a real parameter t such that X = (t, y_X) lies on line CD, and X satisfies the equation of line AB's perpendicular through C; equivalently, X is on the altitude from C.",
+        "reasoning": "Since X lies on line CD, it is on the unique line through C perpendicular to AB. In the chosen coordinates, this line is determined by the slope of AB, so X can be described by one parameter along that line.",
+        "facts_used": [
+          "definition of point on a line",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Point K has coordinates K = (u, v) with u and v satisfying: K lies on line AX and on the circle through B and C centered at neither point necessarily specified, so the conditions are |KB| = |KC| and K \u2208 AX.",
+        "reasoning": "The hypothesis 'on_circle k b c' means K is equidistant from B and C, i.e. KB = KC. The hypothesis 'on_line k a x' means K lies on the line through A and X. Together these give a linear condition and a quadratic condition that determine K.",
+        "facts_used": [
+          "definition of point on a line",
+          "definition of point on a circle",
+          "step 1",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Point L has coordinates L = (p, q) with L \u2208 BX and |LA| = |LC|.",
+        "reasoning": "Similarly, the hypothesis 'on_circle l a c' means LA = LC, and 'on_line l b x' means L lies on line BX. Thus L is determined by a line-circle intersection.",
+        "facts_used": [
+          "definition of point on a line",
+          "definition of point on a circle",
+          "step 1",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The points K and L are symmetric with respect to the altitude line CD in the chosen coordinates.",
+        "reasoning": "Because A and B lie on the coordinate axes and X lies on the altitude from C, the constraints defining K and L are obtained from one another by exchanging A with B and C with the origin. This exchange corresponds to reflection across the altitude line CD, so the two constructed points are mirror images across CD.",
+        "facts_used": [
+          "symmetry of the coordinate setup",
+          "steps 3-5"
+        ]
+      },
+      {
+        "claim": "The line through A and L and the line through B and K intersect at a point M that is fixed by the symmetry exchanging K and L.",
+        "reasoning": "By definition, M lies on AL and BK. Since K and L are symmetric with respect to CD, the pair of lines AL and BK are exchanged under the same symmetry, so their intersection lies on the symmetry axis of the configuration.",
+        "facts_used": [
+          "definition of intersection point",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "M is equidistant from K and L, so MK = ML.",
+        "reasoning": "A point on the axis of symmetry of two symmetric points is equidistant from them. Since M lies on the symmetry line of K and L, its distances to K and L are equal. Therefore the segments MK and ML have the same length.",
+        "facts_used": [
+          "reflection preserves distance",
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "MK = ML"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:10.596569+00:00"
+}

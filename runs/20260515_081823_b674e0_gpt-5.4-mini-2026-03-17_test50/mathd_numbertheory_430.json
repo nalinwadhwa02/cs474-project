@@ -1,0 +1,68 @@
+{
+  "theorem_id": "mathd_numbertheory_430",
+  "statement": "Theorem: mathd_numbertheory_430\nVariables: a, b, c (integer)\nGiven: h\u2080 : 1 \u2264 a \u2227 a \u2264 9\nGiven: h\u2081 : 1 \u2264 b \u2227 b \u2264 9\nGiven: h\u2082 : 1 \u2264 c \u2227 c \u2264 9\nGiven: h\u2083 : a \u2260 b\nGiven: h\u2084 : a \u2260 c\nGiven: h\u2085 : b \u2260 c\nGiven: h\u2086 : a + b = c\nGiven: h\u2087 : 10 * a + a - b = 2 * c\nGiven: h\u2088 : c * b = 10 * a + a + a\nProve: a + b + c = 8",
+  "goal": "a + b + c = 8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_430\n\nTheorem: mathd_numbertheory_430\nVariables: a, b, c (integer)\nGiven: h\u2080 : 1 \u2264 a \u2227 a \u2264 9\nGiven: h\u2081 : 1 \u2264 b \u2227 b \u2264 9\nGiven: h\u2082 : 1 \u2264 c \u2227 c \u2264 9\nGiven: h\u2083 : a \u2260 b\nGiven: h\u2084 : a \u2260 c\nGiven: h\u2085 : b \u2260 c\nGiven: h\u2086 : a + b = c\nGiven: h\u2087 : 10 * a + a - b = 2 * c\nGiven: h\u2088 : c * b = 10 * a + a + a\nProve: a + b + c = 8\n\nHypotheses:\n  h\u2080 : 1 \u2264 a \u2227 a \u2264 9\n  h\u2081 : 1 \u2264 b \u2227 b \u2264 9\n  h\u2082 : 1 \u2264 c \u2227 c \u2264 9\n  h\u2083 : a \u2260 b\n  h\u2084 : a \u2260 c\n  h\u2085 : b \u2260 c\n  h\u2086 : a + b = c\n  h\u2087 : 10 * a + a - b = 2 * c\n  h\u2088 : c * b = 10 * a + a + a\n\nVariables: a (int), b (int), c (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use the equations to rewrite everything in terms of a and b: from c = a + b, the relation 11a - b = 2c becomes 9a = 3b, so b = 3a; then c = 4a, and the digit bounds force a = 1.\",\"plan\":[\"Rewrite h\u2087 using c = a + b.\",\"Deduce a linear relation between a and b.\",\"Combine that relation with the digit bounds to determine a and b.\",\"Compute c and verify the sum a + b + c.\"],\"steps\":[{\"claim\":\"b = 3a.\",\"reasoning\":\"From h\u2086 we have c = a + b. Substitute this into h\u2087: 10a + a - b = 2(a + b). Simplifying gives 11a - b = 2a + 2b, so 9a = 3b. Dividing by 3 yields b = 3a.\",\"facts_used\":[\"h\u2086\",\"h\u2087\",\"algebra\"]},{\"claim\":\"a = 1.\",\"reasoning\":\"By h\u2080, 1 \u2264 a \u2264 9. From step 1, b = 3a. Since h\u2081 gives b \u2264 9, we get 3a \u2264 9, hence a \u2264 3. Also h\u2083 says a \u2260 b, so a \u2260 3a, which implies a \u2260 0; together with 1 \u2264 a, the only possibility compatible with b = 3a and b \u2264 9 is a = 1 because if a = 2 or 3 then b = 6 or 9 and c = a + b would force c = 8 or 12, contradicting h\u2082 in the second case and h\u2084/h\u2085 in the first case via distinctness and the remaining equations. More directly, substituting b = 3a into h\u2088 below gives 3a(a+b)=11a, forcing a = 1.\",\"facts_used\":[\"h\u2080\",\"h\u2081\",\"h\u2083\",\"step 1\"]},{\"claim\":\"b = 3 and c = 4.\",\"reasoning\":\"From step 1 and step 2, b = 3a = 3. Then h\u2086 gives c = a + b = 1 + 3 = 4.\",\"facts_used\":[\"step 1\",\"step 2\",\"h\u2086\"]},{\"claim\":\"a + b + c = 8.\",\"reasoning\":\"Using step 2 and step 3, a + b + c = 1 + 3 + 4 = 8.\",\"facts_used\":[\"step 2\",\"step 3\"]}],\"final_answer\":\"8\"}",
+  "english_proof": {
+    "key_observation": "Use the equations to rewrite everything in terms of a and b: from c = a + b, the relation 11a - b = 2c becomes 9a = 3b, so b = 3a; then c = 4a, and the digit bounds force a = 1.",
+    "plan": [
+      "Rewrite h\u2087 using c = a + b.",
+      "Deduce a linear relation between a and b.",
+      "Combine that relation with the digit bounds to determine a and b.",
+      "Compute c and verify the sum a + b + c."
+    ],
+    "steps": [
+      {
+        "claim": "b = 3a.",
+        "reasoning": "From h\u2086 we have c = a + b. Substitute this into h\u2087: 10a + a - b = 2(a + b). Simplifying gives 11a - b = 2a + 2b, so 9a = 3b. Dividing by 3 yields b = 3a.",
+        "facts_used": [
+          "h\u2086",
+          "h\u2087",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "a = 1.",
+        "reasoning": "By h\u2080, 1 \u2264 a \u2264 9. From step 1, b = 3a. Since h\u2081 gives b \u2264 9, we get 3a \u2264 9, hence a \u2264 3. Also h\u2083 says a \u2260 b, so a \u2260 3a, which implies a \u2260 0; together with 1 \u2264 a, the only possibility compatible with b = 3a and b \u2264 9 is a = 1 because if a = 2 or 3 then b = 6 or 9 and c = a + b would force c = 8 or 12, contradicting h\u2082 in the second case and h\u2084/h\u2085 in the first case via distinctness and the remaining equations. More directly, substituting b = 3a into h\u2088 below gives 3a(a+b)=11a, forcing a = 1.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2083",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "b = 3 and c = 4.",
+        "reasoning": "From step 1 and step 2, b = 3a = 3. Then h\u2086 gives c = a + b = 1 + 3 = 4.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "h\u2086"
+        ]
+      },
+      {
+        "claim": "a + b + c = 8.",
+        "reasoning": "Using step 2 and step 3, a + b + c = 1 + 3 + 4 = 8.",
+        "facts_used": [
+          "step 2",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "8"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:31.206933+00:00"
+}

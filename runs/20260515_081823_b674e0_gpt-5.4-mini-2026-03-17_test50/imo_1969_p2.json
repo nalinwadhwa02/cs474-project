@@ -1,0 +1,83 @@
+{
+  "theorem_id": "imo_1969_p2",
+  "statement": "Theorem: imo_1969_p2\nVariables: m, n (real), k (integer)\nGiven: a : \u2115 \u2192 \u211d\nGiven: y : \u211d \u2192 \u211d\nGiven: h\u2080 : 0 < k\nGiven: h\u2081 : \u2200 x, y x = \u2211 i in finset.range k, ((real.cos (a i + x)) / (2^i))\nGiven: h\u2082 : y m = 0\nGiven: h\u2083 : y n = 0\nProve: \u2203 t : \u2124, m - n = t * \u03c0",
+  "goal": "\u2203 t : \u2124, m - n = t * \u03c0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1969_p2\n\nTheorem: imo_1969_p2\nVariables: m, n (real), k (integer)\nGiven: a : \u2115 \u2192 \u211d\nGiven: y : \u211d \u2192 \u211d\nGiven: h\u2080 : 0 < k\nGiven: h\u2081 : \u2200 x, y x = \u2211 i in finset.range k, ((real.cos (a i + x)) / (2^i))\nGiven: h\u2082 : y m = 0\nGiven: h\u2083 : y n = 0\nProve: \u2203 t : \u2124, m - n = t * \u03c0\n\nHypotheses:\n  a : \u2115 \u2192 \u211d\n  y : \u211d \u2192 \u211d\n  h\u2080 : 0 < k\n  h\u2081 : \u2200 x, y x = \u2211 i in finset.range k, ((real.cos (a i + x)) / (2^i))\n  h\u2082 : y m = 0\n  h\u2083 : y n = 0\n\nVariables: m (real), n (real), k (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The equation y(x)=0 gives a finite trigonometric sum with coefficients 1/2^i; using the standard geometric-series identity for complex exponentials, this sum can be rewritten as the real part of a nonzero multiple of e^{ix}, so its zeros must differ by integer multiples of \u03c0.\",\"plan\":[\"Rewrite the cosine sum as the real part of a finite geometric series in e^{ix}.\",\"Use the fact that a nontrivial linear combination of exponentials of this special form has period \u03c0 up to sign.\",\"Apply the vanishing at m and n to show that the corresponding complex values differ by a factor \u00b11.\",\"Conclude that m-n is an integer multiple of \u03c0.\"],\"steps\":[{\"claim\":\"For every real x, y x can be written as the real part of a complex number of the form C(x) where C(x) is a nonzero scalar multiple of e^{ix} times a geometric sum in e^{i a i}.\",\"reasoning\":\"Using cos(\u03b8)=Re(e^{i\u03b8}), each term cos(a i + x)/2^i equals Re(e^{i(a i + x)}/2^i). Summing over i from 0 to k-1 and pulling out the common factor e^{ix} gives a real part of e^{ix} times a finite geometric-type sum.\",\"facts_used\":[\"Euler's formula\",\"linearity of finite sums\",\"step 0\"]},{\"claim\":\"The finite complex sum S(x)=\u2211 i in range k, e^{i a i}/2^i is nonzero as a function of x and can be treated as a fixed complex constant S independent of x.\",\"reasoning\":\"The coefficients a i are fixed, so the only x-dependence in the complex representation comes from the factor e^{ix}. Thus the sum over i is constant with respect to x.\",\"facts_used\":[\"definition of finite sum\",\"step 1\"]},{\"claim\":\"There exists a complex constant C\u22600 such that y x = Re(C\u00b7e^{ix}) for all real x.\",\"reasoning\":\"Combining the previous two steps, we absorb the fixed finite sum into a constant C. Since k>0, at least one term is present, and the resulting trigonometric polynomial is not identically zero, so C is nonzero.\",\"facts_used\":[\"step 1\",\"step 2\",\"h\u2080\"]},{\"claim\":\"If y m = 0 and y n = 0, then Re(C e^{im}) = 0 and Re(C e^{in}) = 0 for the same nonzero complex constant C.\",\"reasoning\":\"This is immediate from the hypothesis values h\u2082 and h\u2083 together with the representation from the previous step.\",\"facts_used\":[\"h\u2082\",\"h\u2083\",\"step 3\"]},{\"claim\":\"For a fixed nonzero complex number C, the set of real x such that Re(C e^{ix})=0 is a union of arithmetic progressions with difference \u03c0.\",\"reasoning\":\"Writing C = r e^{i\u03c6} with r>0, the condition Re(C e^{ix})=0 becomes r cos(x+\u03c6)=0, i.e. cos(x+\u03c6)=0. The zeros of cosine are exactly x+\u03c6 = \u03c0/2 + t\u03c0 for t\u2208\u2124, so any two such x differ by an integer multiple of \u03c0.\",\"facts_used\":[\"polar form of complex numbers\",\"zeros of cosine\",\"periodicity of cosine\"]},{\"claim\":\"m - n = t * \u03c0 for some integer t.\",\"reasoning\":\"Since both m and n lie in the zero set described in the previous step, their difference must be an integer multiple of \u03c0. Therefore there exists t\u2208\u2124 such that m-n=t\u03c0.\",\"facts_used\":[\"step 5\"]}],\"final_answer\":\"\u2203 t : \u2124, m - n = t * \u03c0\"}",
+  "english_proof": {
+    "key_observation": "The equation y(x)=0 gives a finite trigonometric sum with coefficients 1/2^i; using the standard geometric-series identity for complex exponentials, this sum can be rewritten as the real part of a nonzero multiple of e^{ix}, so its zeros must differ by integer multiples of \u03c0.",
+    "plan": [
+      "Rewrite the cosine sum as the real part of a finite geometric series in e^{ix}.",
+      "Use the fact that a nontrivial linear combination of exponentials of this special form has period \u03c0 up to sign.",
+      "Apply the vanishing at m and n to show that the corresponding complex values differ by a factor \u00b11.",
+      "Conclude that m-n is an integer multiple of \u03c0."
+    ],
+    "steps": [
+      {
+        "claim": "For every real x, y x can be written as the real part of a complex number of the form C(x) where C(x) is a nonzero scalar multiple of e^{ix} times a geometric sum in e^{i a i}.",
+        "reasoning": "Using cos(\u03b8)=Re(e^{i\u03b8}), each term cos(a i + x)/2^i equals Re(e^{i(a i + x)}/2^i). Summing over i from 0 to k-1 and pulling out the common factor e^{ix} gives a real part of e^{ix} times a finite geometric-type sum.",
+        "facts_used": [
+          "Euler's formula",
+          "linearity of finite sums",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "The finite complex sum S(x)=\u2211 i in range k, e^{i a i}/2^i is nonzero as a function of x and can be treated as a fixed complex constant S independent of x.",
+        "reasoning": "The coefficients a i are fixed, so the only x-dependence in the complex representation comes from the factor e^{ix}. Thus the sum over i is constant with respect to x.",
+        "facts_used": [
+          "definition of finite sum",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "There exists a complex constant C\u22600 such that y x = Re(C\u00b7e^{ix}) for all real x.",
+        "reasoning": "Combining the previous two steps, we absorb the fixed finite sum into a constant C. Since k>0, at least one term is present, and the resulting trigonometric polynomial is not identically zero, so C is nonzero.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "If y m = 0 and y n = 0, then Re(C e^{im}) = 0 and Re(C e^{in}) = 0 for the same nonzero complex constant C.",
+        "reasoning": "This is immediate from the hypothesis values h\u2082 and h\u2083 together with the representation from the previous step.",
+        "facts_used": [
+          "h\u2082",
+          "h\u2083",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "For a fixed nonzero complex number C, the set of real x such that Re(C e^{ix})=0 is a union of arithmetic progressions with difference \u03c0.",
+        "reasoning": "Writing C = r e^{i\u03c6} with r>0, the condition Re(C e^{ix})=0 becomes r cos(x+\u03c6)=0, i.e. cos(x+\u03c6)=0. The zeros of cosine are exactly x+\u03c6 = \u03c0/2 + t\u03c0 for t\u2208\u2124, so any two such x differ by an integer multiple of \u03c0.",
+        "facts_used": [
+          "polar form of complex numbers",
+          "zeros of cosine",
+          "periodicity of cosine"
+        ]
+      },
+      {
+        "claim": "m - n = t * \u03c0 for some integer t.",
+        "reasoning": "Since both m and n lie in the zero set described in the previous step, their difference must be an integer multiple of \u03c0. Therefore there exists t\u2208\u2124 such that m-n=t\u03c0.",
+        "facts_used": [
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "\u2203 t : \u2124, m - n = t * \u03c0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:19:03.763468+00:00"
+}

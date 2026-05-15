@@ -1,0 +1,106 @@
+{
+  "theorem_id": "imo_1960_p2",
+  "statement": "Theorem: imo_1960_p2\nVariables: x (real)\nGiven: h\u2080 : 0 \u2264 1 + 2 * x\nGiven: h\u2081 : (1 - real.sqrt (1 + 2 * x))^2 \u2260 0\nGiven: h\u2082 : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) \u2264 x \u2227 x < 45 / 8",
+  "goal": "-(1 / 2) \u2264 x \u2227 x < 45 / 8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1960_p2\n\nTheorem: imo_1960_p2\nVariables: x (real)\nGiven: h\u2080 : 0 \u2264 1 + 2 * x\nGiven: h\u2081 : (1 - real.sqrt (1 + 2 * x))^2 \u2260 0\nGiven: h\u2082 : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) \u2264 x \u2227 x < 45 / 8\n\nHypotheses:\n  h\u2080 : 0 \u2264 1 + 2 * x\n  h\u2081 : (1 - real.sqrt (1 + 2 * x))^2 \u2260 0\n  h\u2082 : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\n\nVariables: x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Set t = sqrt(1 + 2x); then x = (t^2 - 1)/2 and the given inequality becomes a simple quadratic inequality in t after cancelling the nonzero denominator.\",\"plan\":[\"Introduce t = sqrt(1 + 2x) and rewrite x in terms of t.\",\"Use the nonvanishing assumption to justify dividing by (1 - t)^2.\",\"Convert the inequality to a polynomial inequality in t and factor it.\",\"Deduce bounds on t, then translate them back to bounds on x.\"],\"steps\":[{\"claim\":\"Let t = real.sqrt (1 + 2 * x). Then t \u2265 0 and t^2 = 1 + 2 * x.\",\"reasoning\":\"This is the definition of the real square root applied to the nonnegative number 1 + 2x, which is guaranteed by h\u2080. By the defining property of sqrt, t is nonnegative and its square is the original number.\",\"facts_used\":[\"h\u2080\",\"definition of real.sqrt\"]},{\"claim\":\"We have x = (t^2 - 1) / 2.\",\"reasoning\":\"From t^2 = 1 + 2x, subtract 1 from both sides to get t^2 - 1 = 2x, and then divide by 2.\",\"facts_used\":[\"step 1\",\"basic algebra\"]},{\"claim\":\"The denominator (1 - t)^2 is positive.\",\"reasoning\":\"Hypothesis h\u2081 says (1 - t)^2 \u2260 0. Since a square is always nonnegative, the only possibility is that it is strictly positive.\",\"facts_used\":[\"h\u2081\",\"nonnegativity of squares\"]},{\"claim\":\"The inequality h\u2082 is equivalent to 4x^2 < (2x + 9)(1 - t)^2.\",\"reasoning\":\"By step 3, the denominator is positive, so multiplying both sides of h\u2082 by (1 - t)^2 preserves the inequality.\",\"facts_used\":[\"step 3\",\"multiplication of inequalities by a positive number\"]},{\"claim\":\"After substituting x = (t^2 - 1)/2, the inequality in step 4 simplifies to t^2(t - 3)(t + 3) < 0.\",\"reasoning\":\"Using x = (t^2 - 1)/2, we get 4x^2 = (t^2 - 1)^2 and 2x + 9 = t^2 + 8. Then the inequality becomes (t^2 - 1)^2 < (t^2 + 8)(1 - t)^2. Expanding and simplifying gives t^2(t^2 - 9) < 0, i.e. t^2(t - 3)(t + 3) < 0.\",\"facts_used\":[\"step 2\",\"step 4\",\"algebraic expansion and factorization\"]},{\"claim\":\"We have 0 \u2264 t < 3.\",\"reasoning\":\"From step 1, t \u2265 0. In step 5, the factor t^2 is nonnegative and t + 3 is strictly positive, so the product can be negative only if t - 3 < 0. Therefore t < 3.\",\"facts_used\":[\"step 1\",\"step 5\",\"sign analysis\"]},{\"claim\":\"x \u2265 -1/2.\",\"reasoning\":\"Since t \u2265 0, step 1 gives 1 + 2x = t^2 \u2265 0, hence 2x \u2265 -1 and therefore x \u2265 -1/2.\",\"facts_used\":[\"step 1\",\"basic algebra\"]},{\"claim\":\"x < 45/8.\",\"reasoning\":\"From step 6, t < 3, so t^2 < 9. Using step 2, x = (t^2 - 1)/2 < (9 - 1)/2 = 4. Since 4 < 45/8, it follows that x < 45/8.\",\"facts_used\":[\"step 2\",\"step 6\",\"basic algebra\"]},{\"claim\":\"-(1 / 2) \u2264 x \u2227 x < 45 / 8.\",\"reasoning\":\"This follows immediately by combining steps 7 and 8.\",\"facts_used\":[\"steps 7, 8\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Set t = sqrt(1 + 2x); then x = (t^2 - 1)/2 and the given inequality becomes a simple quadratic inequality in t after cancelling the nonzero denominator.",
+    "plan": [
+      "Introduce t = sqrt(1 + 2x) and rewrite x in terms of t.",
+      "Use the nonvanishing assumption to justify dividing by (1 - t)^2.",
+      "Convert the inequality to a polynomial inequality in t and factor it.",
+      "Deduce bounds on t, then translate them back to bounds on x."
+    ],
+    "steps": [
+      {
+        "claim": "Let t = real.sqrt (1 + 2 * x). Then t \u2265 0 and t^2 = 1 + 2 * x.",
+        "reasoning": "This is the definition of the real square root applied to the nonnegative number 1 + 2x, which is guaranteed by h\u2080. By the defining property of sqrt, t is nonnegative and its square is the original number.",
+        "facts_used": [
+          "h\u2080",
+          "definition of real.sqrt"
+        ]
+      },
+      {
+        "claim": "We have x = (t^2 - 1) / 2.",
+        "reasoning": "From t^2 = 1 + 2x, subtract 1 from both sides to get t^2 - 1 = 2x, and then divide by 2.",
+        "facts_used": [
+          "step 1",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "The denominator (1 - t)^2 is positive.",
+        "reasoning": "Hypothesis h\u2081 says (1 - t)^2 \u2260 0. Since a square is always nonnegative, the only possibility is that it is strictly positive.",
+        "facts_used": [
+          "h\u2081",
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "The inequality h\u2082 is equivalent to 4x^2 < (2x + 9)(1 - t)^2.",
+        "reasoning": "By step 3, the denominator is positive, so multiplying both sides of h\u2082 by (1 - t)^2 preserves the inequality.",
+        "facts_used": [
+          "step 3",
+          "multiplication of inequalities by a positive number"
+        ]
+      },
+      {
+        "claim": "After substituting x = (t^2 - 1)/2, the inequality in step 4 simplifies to t^2(t - 3)(t + 3) < 0.",
+        "reasoning": "Using x = (t^2 - 1)/2, we get 4x^2 = (t^2 - 1)^2 and 2x + 9 = t^2 + 8. Then the inequality becomes (t^2 - 1)^2 < (t^2 + 8)(1 - t)^2. Expanding and simplifying gives t^2(t^2 - 9) < 0, i.e. t^2(t - 3)(t + 3) < 0.",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "algebraic expansion and factorization"
+        ]
+      },
+      {
+        "claim": "We have 0 \u2264 t < 3.",
+        "reasoning": "From step 1, t \u2265 0. In step 5, the factor t^2 is nonnegative and t + 3 is strictly positive, so the product can be negative only if t - 3 < 0. Therefore t < 3.",
+        "facts_used": [
+          "step 1",
+          "step 5",
+          "sign analysis"
+        ]
+      },
+      {
+        "claim": "x \u2265 -1/2.",
+        "reasoning": "Since t \u2265 0, step 1 gives 1 + 2x = t^2 \u2265 0, hence 2x \u2265 -1 and therefore x \u2265 -1/2.",
+        "facts_used": [
+          "step 1",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "x < 45/8.",
+        "reasoning": "From step 6, t < 3, so t^2 < 9. Using step 2, x = (t^2 - 1)/2 < (9 - 1)/2 = 4. Since 4 < 45/8, it follows that x < 45/8.",
+        "facts_used": [
+          "step 2",
+          "step 6",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "-(1 / 2) \u2264 x \u2227 x < 45 / 8.",
+        "reasoning": "This follows immediately by combining steps 7 and 8.",
+        "facts_used": [
+          "steps 7, 8"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:01.712067+00:00"
+}

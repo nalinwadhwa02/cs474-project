@@ -1,0 +1,339 @@
+{
+  "theorem_id": "mathd_numbertheory_335",
+  "statement": "Theorem: mathd_numbertheory_335\nVariables: n (integer)\nGiven: h₀ : n % 7 = 5\nProve: (5 * n) % 7 = 4",
+  "goal": "(5 * n) % 7 = 4",
+  "stage1_english_proof": {
+    "key_observation": "Since n ≡ 5 mod 7, multiplying both sides by 5 gives 5n ≡ 25 ≡ 4 mod 7.",
+    "plan": [
+      "Rewrite the hypothesis n % 7 = 5 as a congruence modulo 7.",
+      "Multiply the congruence by 5.",
+      "Reduce 25 modulo 7 to obtain the remainder 4.",
+      "Conclude that (5 * n) % 7 = 4."
+    ],
+    "steps": [
+      {
+        "claim": "n ≡ 5 mod 7.",
+        "reasoning": "The hypothesis n % 7 = 5 means that the remainder of n upon division by 7 is 5, which is exactly the statement that n is congruent to 5 modulo 7.",
+        "facts_used": [
+          "definition of modular arithmetic",
+          "h₀"
+        ]
+      },
+      {
+        "claim": "5n ≡ 25 mod 7.",
+        "reasoning": "Multiplying both sides of the congruence n ≡ 5 mod 7 by 5 preserves congruence, so 5n ≡ 5·5 = 25 mod 7.",
+        "facts_used": [
+          "congruence compatibility with multiplication",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "25 ≡ 4 mod 7.",
+        "reasoning": "Since 25 = 21 + 4 and 21 is divisible by 7, the remainder of 25 upon division by 7 is 4.",
+        "facts_used": [
+          "division algorithm",
+          "basic arithmetic"
+        ]
+      },
+      {
+        "claim": "5n ≡ 4 mod 7.",
+        "reasoning": "From step 2 and step 3, 5n is congruent to 25 mod 7 and 25 is congruent to 4 mod 7, so by transitivity of congruence, 5n ≡ 4 mod 7.",
+        "facts_used": [
+          "transitivity of congruence",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "(5 * n) % 7 = 4.",
+        "reasoning": "The statement 5n ≡ 4 mod 7 means exactly that the remainder of 5n upon division by 7 is 4, which is written as (5 * n) % 7 = 4.",
+        "facts_used": [
+          "definition of modular arithmetic",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "4"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: mathd_numbertheory_335\n\nTheorem: mathd_numbertheory_335\nVariables: n (integer)\nGiven: h₀ : n % 7 = 5\nProve: (5 * n) % 7 = 4\n\nGoal: (5 * n) % 7 = 4\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Since n ≡ 5 mod 7, multiplying both sides by 5 gives 5n ≡ 25 ≡ 4 mod 7.\",\n  \"plan\": [\n    \"Rewrite the hypothesis n % 7 = 5 as a congruence modulo 7.\",\n    \"Multiply the congruence by 5.\",\n    \"Reduce 25 modulo 7 to obtain the remainder 4.\",\n    \"Conclude that (5 * n) % 7 = 4.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"n ≡ 5 mod 7.\",\n      \"reasoning\": \"The hypothesis n % 7 = 5 means that the remainder of n upon division by 7 is 5, which is exactly the statement that n is congruent to 5 modulo 7.\",\n      \"facts_used\": [\n        \"definition of modular arithmetic\",\n        \"h₀\"\n      ]\n    },\n    {\n      \"claim\": \"5n ≡ 25 mod 7.\",\n      \"reasoning\": \"Multiplying both sides of the congruence n ≡ 5 mod 7 by 5 preserves congruence, so 5n ≡ 5·5 = 25 mod 7.\",\n      \"facts_used\": [\n        \"congruence compatibility with multiplication\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"25 ≡ 4 mod 7.\",\n      \"reasoning\": \"Since 25 = 21 + 4 and 21 is divisible by 7, the remainder of 25 upon division by 7 is 4.\",\n      \"facts_used\": [\n        \"division algorithm\",\n        \"basic arithmetic\"\n      ]\n    },\n    {\n      \"claim\": \"5n ≡ 4 mod 7.\",\n      \"reasoning\": \"From step 2 and step 3, 5n is congruent to 25 mod 7 and 25 is congruent to 4 mod 7, so by transitivity of congruence, 5n ≡ 4 mod 7.\",\n      \"facts_used\": [\n        \"transitivity of congruence\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"(5 * n) % 7 = 4.\",\n      \"reasoning\": \"The statement 5n ≡ 4 mod 7 means exactly that the remainder of 5n upon division by 7 is 4, which is written as (5 * n) % 7 = 4.\",\n      \"facts_used\": [\n        \"definition of modular arithmetic\",\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": \"4\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"n\",\"sort\":\"Int\"}],\"hypotheses\":[\"n % 7 == 5\"],\"goal\":\"(5 * n) % 7 == 4\"},\"functions\":[],\"lemmas\":[{\"name\":\"mod_mul_right\",\"english\":\"If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Int\"},{\"name\":\"b\",\"sort\":\"Int\"},{\"name\":\"k\",\"sort\":\"Int\"},{\"name\":\"m\",\"sort\":\"Int\"}],\"body\":\"Implies(And(m != 0, a % m == b % m), (k * a) % m == (k * b) % m)\"},{\"name\":\"mod_eq_from_remainder\",\"english\":\"If an integer has remainder r modulo m, then its modulo m value is r.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Int\"},{\"name\":\"m\",\"sort\":\"Int\"},{\"name\":\"r\",\"sort\":\"Int\"}],\"body\":\"Implies(And(m != 0, a % m == r), a % m == r)\"},{\"name\":\"mul_mod_reduce_25_7\",\"english\":\"The remainder of 25 modulo 7 is 4.\",\"vars\":[],\"body\":\"25 % 7 == 4\"}],\"instantiations\":[{\"lemma\":\"mod_mul_right\",\"terms\":{\"a\":\"n\",\"b\":\"5\",\"k\":\"5\",\"m\":\"7\"}},{\"lemma\":\"mul_mod_reduce_25_7\",\"terms\":{}}]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "n",
+              "sort": "Int"
+            }
+          ],
+          "hypotheses": [
+            "n % 7 == 5"
+          ],
+          "goal": "(5 * n) % 7 == 4"
+        },
+        "functions": [],
+        "lemmas": [
+          {
+            "name": "mod_mul_right",
+            "english": "If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Int"
+              },
+              {
+                "name": "b",
+                "sort": "Int"
+              },
+              {
+                "name": "k",
+                "sort": "Int"
+              },
+              {
+                "name": "m",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(m != 0, a % m == b % m), (k * a) % m == (k * b) % m)"
+          },
+          {
+            "name": "mod_eq_from_remainder",
+            "english": "If an integer has remainder r modulo m, then its modulo m value is r.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Int"
+              },
+              {
+                "name": "m",
+                "sort": "Int"
+              },
+              {
+                "name": "r",
+                "sort": "Int"
+              }
+            ],
+            "body": "Implies(And(m != 0, a % m == r), a % m == r)"
+          },
+          {
+            "name": "mul_mod_reduce_25_7",
+            "english": "The remainder of 25 modulo 7 is 4.",
+            "vars": [],
+            "body": "25 % 7 == 4"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "mod_mul_right",
+            "terms": {
+              "a": "n",
+              "b": "5",
+              "k": "5",
+              "m": "7"
+            }
+          },
+          {
+            "lemma": "mul_mod_reduce_25_7",
+            "terms": {}
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 0.28014183044433594,
+        "instantiated": [
+          {
+            "lemma": "mod_mul_right",
+            "terms": {
+              "a": "n",
+              "b": "5",
+              "k": "5",
+              "m": "7"
+            },
+            "z3_form": "Implies(And(True, n%7 == 5), (5*n)%7 == 4)"
+          },
+          {
+            "lemma": "mul_mod_reduce_25_7",
+            "terms": {},
+            "z3_form": "True"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "mod_mul_right",
+            "english": "If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "mod_eq_from_remainder",
+            "english": "If an integer has remainder r modulo m, then its modulo m value is r.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "mul_mod_reduce_25_7",
+            "english": "The remainder of 25 modulo 7 is 4.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 2,
+        "n_hypotheses": 1
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_335\n\nTheorem: mathd_numbertheory_335\nVariables: n (integer)\nGiven: h₀ : n % 7 = 5\nProve: (5 * n) % 7 = 4\n\nGoal: (5 * n) % 7 = 4\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Since n ≡ 5 mod 7, multiplying both sides by 5 gives 5n ≡ 25 ≡ 4 mod 7.\",\n  \"plan\": [\n    \"Rewrite the hypothesis n % 7 = 5 as a congruence modulo 7.\",\n    \"Multiply the congruence by 5.\",\n    \"Reduce 25 modulo 7 to obtain the remainder 4.\",\n    \"Conclude that (5 * n) % 7 = 4.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"n ≡ 5 mod 7.\",\n      \"reasoning\": \"The hypothesis n % 7 = 5 means that the remainder of n upon division by 7 is 5, which is exactly the statement that n is congruent to 5 modulo 7.\",\n      \"facts_used\": [\n        \"definition of modular arithmetic\",\n        \"h₀\"\n      ]\n    },\n    {\n      \"claim\": \"5n ≡ 25 mod 7.\",\n      \"reasoning\": \"Multiplying both sides of the congruence n ≡ 5 mod 7 by 5 preserves congruence, so 5n ≡ 5·5 = 25 mod 7.\",\n      \"facts_used\": [\n        \"congruence compatibility with multiplication\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"25 ≡ 4 mod 7.\",\n      \"reasoning\": \"Since 25 = 21 + 4 and 21 is divisible by 7, the remainder of 25 upon division by 7 is 4.\",\n      \"facts_used\": [\n        \"division algorithm\",\n        \"basic arithmetic\"\n      ]\n    },\n    {\n      \"claim\": \"5n ≡ 4 mod 7.\",\n      \"reasoning\": \"From step 2 and step 3, 5n is congruent to 25 mod 7 and 25 is congruent to 4 mod 7, so by transitivity of congruence, 5n ≡ 4 mod 7.\",\n      \"facts_used\": [\n        \"transitivity of congruence\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"(5 * n) % 7 = 4.\",\n      \"reasoning\": \"The statement 5n ≡ 4 mod 7 means exactly that the remainder of 5n upon division by 7 is 4, which is written as (5 * n) % 7 = 4.\",\n      \"facts_used\": [\n        \"definition of modular arithmetic\",\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": \"4\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"n\",\"sort\":\"Int\"}],\"hypotheses\":[\"n % 7 == 5\"],\"goal\":\"(5 * n) % 7 == 4\"},\"functions\":[],\"lemmas\":[{\"name\":\"mod_mul_right\",\"english\":\"If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Int\"},{\"name\":\"b\",\"sort\":\"Int\"},{\"name\":\"k\",\"sort\":\"Int\"},{\"name\":\"m\",\"sort\":\"Int\"}],\"body\":\"Implies(And(m != 0, a % m == b % m), (k * a) % m == (k * b) % m)\"},{\"name\":\"mod_eq_from_remainder\",\"english\":\"If an integer has remainder r modulo m, then its modulo m value is r.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Int\"},{\"name\":\"m\",\"sort\":\"Int\"},{\"name\":\"r\",\"sort\":\"Int\"}],\"body\":\"Implies(And(m != 0, a % m == r), a % m == r)\"},{\"name\":\"mul_mod_reduce_25_7\",\"english\":\"The remainder of 25 modulo 7 is 4.\",\"vars\":[],\"body\":\"25 % 7 == 4\"}],\"instantiations\":[{\"lemma\":\"mod_mul_right\",\"terms\":{\"a\":\"n\",\"b\":\"5\",\"k\":\"5\",\"m\":\"7\"}},{\"lemma\":\"mul_mod_reduce_25_7\",\"terms\":{}}]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "n",
+          "sort": "Int"
+        }
+      ],
+      "hypotheses": [
+        "n % 7 == 5"
+      ],
+      "goal": "(5 * n) % 7 == 4"
+    },
+    "functions": [],
+    "lemmas": [
+      {
+        "name": "mod_mul_right",
+        "english": "If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Int"
+          },
+          {
+            "name": "b",
+            "sort": "Int"
+          },
+          {
+            "name": "k",
+            "sort": "Int"
+          },
+          {
+            "name": "m",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(And(m != 0, a % m == b % m), (k * a) % m == (k * b) % m)"
+      },
+      {
+        "name": "mod_eq_from_remainder",
+        "english": "If an integer has remainder r modulo m, then its modulo m value is r.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Int"
+          },
+          {
+            "name": "m",
+            "sort": "Int"
+          },
+          {
+            "name": "r",
+            "sort": "Int"
+          }
+        ],
+        "body": "Implies(And(m != 0, a % m == r), a % m == r)"
+      },
+      {
+        "name": "mul_mod_reduce_25_7",
+        "english": "The remainder of 25 modulo 7 is 4.",
+        "vars": [],
+        "body": "25 % 7 == 4"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "mod_mul_right",
+        "terms": {
+          "a": "n",
+          "b": "5",
+          "k": "5",
+          "m": "7"
+        }
+      },
+      {
+        "lemma": "mul_mod_reduce_25_7",
+        "terms": {}
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 0.28014183044433594,
+    "instantiated": [
+      {
+        "lemma": "mod_mul_right",
+        "terms": {
+          "a": "n",
+          "b": "5",
+          "k": "5",
+          "m": "7"
+        },
+        "z3_form": "Implies(And(True, n%7 == 5), (5*n)%7 == 4)"
+      },
+      {
+        "lemma": "mul_mod_reduce_25_7",
+        "terms": {},
+        "z3_form": "True"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "mod_mul_right",
+        "english": "If two integers are congruent modulo m, then multiplying both by the same integer preserves congruence of remainders.",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "mod_eq_from_remainder",
+        "english": "If an integer has remainder r modulo m, then its modulo m value is r.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "mul_mod_reduce_25_7",
+        "english": "The remainder of 25 modulo 7 is 4.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 2,
+    "n_hypotheses": 1
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:15:53.968248+00:00"
+}

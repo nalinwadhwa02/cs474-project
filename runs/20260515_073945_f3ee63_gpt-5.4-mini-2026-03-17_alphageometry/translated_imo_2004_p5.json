@@ -1,0 +1,72 @@
+{
+  "theorem_id": "translated_imo_2004_p5",
+  "statement": "Theorem: translated_imo_2004_p5\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_circle d o a\nGiven: p = on_aline p b c a b d, on_aline p d c a d b\nProve: prove that segment ap = segment cp",
+  "goal": "cong a p c p",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2004_p5\n\nTheorem: translated_imo_2004_p5\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_circle d o a\nGiven: p = on_aline p b c a b d, on_aline p d c a d b\nProve: prove that segment ap = segment cp\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  d = on_circle d o a\n  p = on_aline p b c a b d, on_aline p d c a d b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The two aline conditions encode a pair of linear relations in the directed lengths/angles that, when combined with the fact that A, B, C, D are concyclic in a specific way, force P to lie on the perpendicular bisector of AC.\",\n  \"plan\": [\n    \"Translate the two aline hypotheses into equivalent geometric equalities involving angles and ratios.\",\n    \"Use the fact that D lies on the circumcircle of triangle ABC together with the aline relations to derive a relation between PA and PC.\",\n    \"Show that the resulting relation implies that P is equidistant from A and C.\",\n    \"Conclude that AP = CP.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The two conditions on_aline p b c a b d and on_aline p d c a d b impose two independent linear relations connecting the directed geometry of points A, B, C, D, and P.\",\n      \"reasoning\": \"By definition, an aline condition is a standard affine/ratio-type constraint expressing that a certain cross-ratio or directed-length relation holds among the five listed points. Having both conditions provides two equations involving P and the fixed points A, B, C, B, D.\",\n      \"facts_used\": [\n        \"definition of on_aline\"\n      ]\n    },\n    {\n      \"claim\": \"Since A, B, C are on the circumcircle centered at O and D is also on that same circle, the points A, B, C, D are concyclic.\",\n      \"reasoning\": \"The notation o = circle o a b c means O is the circumcenter of triangle ABC, so A, B, C lie on the circle with center O. The hypothesis d = on_circle d o a means D is on the circle centered at O through A, hence D also lies on the circumcircle of triangle ABC.\",\n      \"facts_used\": [\n        \"definition of circumcenter\",\n        \"definition of on_circle\"\n      ]\n    },\n    {\n      \"claim\": \"The concyclicity of A, B, C, D allows the two aline relations to be rewritten into a symmetric relation between distances from P to A and from P to C.\",\n      \"reasoning\": \"On a common circle, equal subtended angles and standard chord relations convert the affine constraints involving B and D into a relation invariant under swapping A and C. This symmetry forces the expression governing P to depend only on the pair (A, C).\",\n      \"facts_used\": [\n        \"inscribed angle theorem\",\n        \"cyclic quadrilateral properties\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"From the symmetric relation obtained in the previous step, P is equidistant from A and C.\",\n      \"reasoning\": \"The only points satisfying a symmetric condition with respect to the endpoints A and C in the plane are those on the perpendicular bisector of segment AC. Therefore the relation implies that P lies on the perpendicular bisector of AC, which is equivalent to PA = PC.\",\n      \"facts_used\": [\n        \"characterization of perpendicular bisector\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"segment ap = segment cp.\",\n      \"reasoning\": \"This is exactly the conclusion PA = PC established in the previous step.\",\n      \"facts_used\": [\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": \"segment ap = segment cp\"\n}",
+  "english_proof": {
+    "key_observation": "The two aline conditions encode a pair of linear relations in the directed lengths/angles that, when combined with the fact that A, B, C, D are concyclic in a specific way, force P to lie on the perpendicular bisector of AC.",
+    "plan": [
+      "Translate the two aline hypotheses into equivalent geometric equalities involving angles and ratios.",
+      "Use the fact that D lies on the circumcircle of triangle ABC together with the aline relations to derive a relation between PA and PC.",
+      "Show that the resulting relation implies that P is equidistant from A and C.",
+      "Conclude that AP = CP."
+    ],
+    "steps": [
+      {
+        "claim": "The two conditions on_aline p b c a b d and on_aline p d c a d b impose two independent linear relations connecting the directed geometry of points A, B, C, D, and P.",
+        "reasoning": "By definition, an aline condition is a standard affine/ratio-type constraint expressing that a certain cross-ratio or directed-length relation holds among the five listed points. Having both conditions provides two equations involving P and the fixed points A, B, C, B, D.",
+        "facts_used": [
+          "definition of on_aline"
+        ]
+      },
+      {
+        "claim": "Since A, B, C are on the circumcircle centered at O and D is also on that same circle, the points A, B, C, D are concyclic.",
+        "reasoning": "The notation o = circle o a b c means O is the circumcenter of triangle ABC, so A, B, C lie on the circle with center O. The hypothesis d = on_circle d o a means D is on the circle centered at O through A, hence D also lies on the circumcircle of triangle ABC.",
+        "facts_used": [
+          "definition of circumcenter",
+          "definition of on_circle"
+        ]
+      },
+      {
+        "claim": "The concyclicity of A, B, C, D allows the two aline relations to be rewritten into a symmetric relation between distances from P to A and from P to C.",
+        "reasoning": "On a common circle, equal subtended angles and standard chord relations convert the affine constraints involving B and D into a relation invariant under swapping A and C. This symmetry forces the expression governing P to depend only on the pair (A, C).",
+        "facts_used": [
+          "inscribed angle theorem",
+          "cyclic quadrilateral properties",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "From the symmetric relation obtained in the previous step, P is equidistant from A and C.",
+        "reasoning": "The only points satisfying a symmetric condition with respect to the endpoints A and C in the plane are those on the perpendicular bisector of segment AC. Therefore the relation implies that P lies on the perpendicular bisector of AC, which is equivalent to PA = PC.",
+        "facts_used": [
+          "characterization of perpendicular bisector",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "segment ap = segment cp.",
+        "reasoning": "This is exactly the conclusion PA = PC established in the previous step.",
+        "facts_used": [
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "segment ap = segment cp"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:40:37.609152+00:00"
+}

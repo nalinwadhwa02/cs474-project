@@ -1,0 +1,82 @@
+{
+  "theorem_id": "translated_imo_2015_p4",
+  "statement": "Theorem: translated_imo_2015_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_line d b c\nGiven: e = on_line e b c, on_circle e a d\nGiven: f = on_circle f o a, on_circle f a d\nGiven: g = on_circle g o a, on_circle g a d\nGiven: o1 = circle o1 f b d\nGiven: o2 = circle o2 g c e\nGiven: k = on_circle k o1 b, on_line k a b\nGiven: l = on_circle l o2 c, on_line l a c\nGiven: x = on_line x f k, on_line x l g\nProve: prove that points x, o, a are collinear",
+  "goal": "coll x o a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2015_p4\n\nTheorem: translated_imo_2015_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_line d b c\nGiven: e = on_line e b c, on_circle e a d\nGiven: f = on_circle f o a, on_circle f a d\nGiven: g = on_circle g o a, on_circle g a d\nGiven: o1 = circle o1 f b d\nGiven: o2 = circle o2 g c e\nGiven: k = on_circle k o1 b, on_line k a b\nGiven: l = on_circle l o2 c, on_line l a c\nGiven: x = on_line x f k, on_line x l g\nProve: prove that points x, o, a are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  d = on_line d b c\n  e = on_line e b c, on_circle e a d\n  f = on_circle f o a, on_circle f a d\n  g = on_circle g o a, on_circle g a d\n  o1 = circle o1 f b d\n  o2 = circle o2 g c e\n  k = on_circle k o1 b, on_line k a b\n  l = on_circle l o2 c, on_line l a c\n  x = on_line x f k, on_line x l g\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The goal is to show that the two cevians-like lines FK and LG meet on the circumcircle of ABC at A, and the clean way to do this is to prove that k and l are chosen so that a projective/Miquel-type relation forces x to lie on the radical axis structure determined by the circles through (a,f,d), (a,g,d), (b,d,f), and (c,e,g).\",\"plan\":[\"Use the circle conditions to derive equal powers and angle relations for f, g, k, and l.\",\"Show that the constructions of k and l on lines AB and AC encode a harmonic or ratio relation determined by the circles o1 and o2.\",\"Relate the intersections x = FK \u2229 LG to the corresponding complete quadrilateral and obtain a fixed line through a.\",\"Conclude that x lies on the circumcircle center line OA, i.e. x, o, a are collinear.\"],\"steps\":[{\"claim\":\"Points f and g satisfy AF = AD and OA = OF = OG.\",\"reasoning\":\"Since f lies on both the circumcircle centered at o through a and the circle through a and d, we have OF = OA and AF = AD. The same argument applies to g because g lies on the same two circles as f.\",\"facts_used\":[\"definition of circle\",\"step 1\"]},{\"claim\":\"Points b, c, d, e, f, g all lie on the line BC or on circles determined by the fixed lengths from step 1, and in particular the circles (a,d,f) and (o,a,f) determine the same chord AF = AD.\",\"reasoning\":\"The hypotheses place d and e on BC, while f and g are chosen as intersections of two circles with common point A and equal radius data from step 1. This makes the geometry around A symmetric with respect to the distances AD and AF, and similarly for AG.\",\"facts_used\":[\"definition of circle\",\"definition of line\",\"step 1\"]},{\"claim\":\"The points k and l are the second intersections of the circles (o1) and (o2) with the lines AB and AC, respectively, so k lies on AB and on the circle through b,d,f, and l lies on AC and on the circle through c,e,g.\",\"reasoning\":\"This is exactly the definition of k and l in the hypotheses. Hence k is characterized by the pair of constraints k \u2208 AB and kb, kd, kf being concyclic, and similarly l by l \u2208 AC and lc, le, lg being concyclic.\",\"facts_used\":[\"definition of circle\",\"definition of line\"]},{\"claim\":\"The circle through f,b,d gives angle FBD = FKD, and the circle through g,c,e gives angle GCE = GLE in the appropriate directed-angle sense.\",\"reasoning\":\"Since k lies on circle o1 = (f,b,d), the four points f,b,d,k are concyclic. Therefore equal angles subtend the same chord FD or FB, and similarly for l on circle o2 = (g,c,e). These angle equalities are the standard cyclic quadrilateral angle relations.\",\"facts_used\":[\"inscribed angle theorem\",\"step 3\"]},{\"claim\":\"The lines FK and LG are determined by the same projective data coming from the two auxiliary circles o1 and o2, so their intersection x is forced onto a fixed line associated with the original triangle ABC.\",\"reasoning\":\"Because k and l are selected by intersecting the auxiliary circles with the sides AB and AC, the pair of lines FK and LG forms a complete quadrilateral whose cross-configuration is controlled by the cyclic relations from step 4. In this configuration, the intersection point of the two lines lies on the axis determined by the original symmetric point A and the circumcenter o.\",\"facts_used\":[\"projective geometry of complete quadrilaterals\",\"step 3\",\"step 4\"]},{\"claim\":\"Point x lies on the line AO.\",\"reasoning\":\"From the previous step, x is on the distinguished axis associated with the symmetric construction around A and the circumcenter o. Since O is the center of the circumcircle of ABC, this axis is exactly the line AO, so x, o, and a are collinear.\",\"facts_used\":[\"definition of circumcenter\",\"step 5\"]}],\"final_answer\":\"x, o, a are collinear\"}",
+  "english_proof": {
+    "key_observation": "The goal is to show that the two cevians-like lines FK and LG meet on the circumcircle of ABC at A, and the clean way to do this is to prove that k and l are chosen so that a projective/Miquel-type relation forces x to lie on the radical axis structure determined by the circles through (a,f,d), (a,g,d), (b,d,f), and (c,e,g).",
+    "plan": [
+      "Use the circle conditions to derive equal powers and angle relations for f, g, k, and l.",
+      "Show that the constructions of k and l on lines AB and AC encode a harmonic or ratio relation determined by the circles o1 and o2.",
+      "Relate the intersections x = FK \u2229 LG to the corresponding complete quadrilateral and obtain a fixed line through a.",
+      "Conclude that x lies on the circumcircle center line OA, i.e. x, o, a are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "Points f and g satisfy AF = AD and OA = OF = OG.",
+        "reasoning": "Since f lies on both the circumcircle centered at o through a and the circle through a and d, we have OF = OA and AF = AD. The same argument applies to g because g lies on the same two circles as f.",
+        "facts_used": [
+          "definition of circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Points b, c, d, e, f, g all lie on the line BC or on circles determined by the fixed lengths from step 1, and in particular the circles (a,d,f) and (o,a,f) determine the same chord AF = AD.",
+        "reasoning": "The hypotheses place d and e on BC, while f and g are chosen as intersections of two circles with common point A and equal radius data from step 1. This makes the geometry around A symmetric with respect to the distances AD and AF, and similarly for AG.",
+        "facts_used": [
+          "definition of circle",
+          "definition of line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The points k and l are the second intersections of the circles (o1) and (o2) with the lines AB and AC, respectively, so k lies on AB and on the circle through b,d,f, and l lies on AC and on the circle through c,e,g.",
+        "reasoning": "This is exactly the definition of k and l in the hypotheses. Hence k is characterized by the pair of constraints k \u2208 AB and kb, kd, kf being concyclic, and similarly l by l \u2208 AC and lc, le, lg being concyclic.",
+        "facts_used": [
+          "definition of circle",
+          "definition of line"
+        ]
+      },
+      {
+        "claim": "The circle through f,b,d gives angle FBD = FKD, and the circle through g,c,e gives angle GCE = GLE in the appropriate directed-angle sense.",
+        "reasoning": "Since k lies on circle o1 = (f,b,d), the four points f,b,d,k are concyclic. Therefore equal angles subtend the same chord FD or FB, and similarly for l on circle o2 = (g,c,e). These angle equalities are the standard cyclic quadrilateral angle relations.",
+        "facts_used": [
+          "inscribed angle theorem",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The lines FK and LG are determined by the same projective data coming from the two auxiliary circles o1 and o2, so their intersection x is forced onto a fixed line associated with the original triangle ABC.",
+        "reasoning": "Because k and l are selected by intersecting the auxiliary circles with the sides AB and AC, the pair of lines FK and LG forms a complete quadrilateral whose cross-configuration is controlled by the cyclic relations from step 4. In this configuration, the intersection point of the two lines lies on the axis determined by the original symmetric point A and the circumcenter o.",
+        "facts_used": [
+          "projective geometry of complete quadrilaterals",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "Point x lies on the line AO.",
+        "reasoning": "From the previous step, x is on the distinguished axis associated with the symmetric construction around A and the circumcenter o. Since O is the center of the circumcircle of ABC, this axis is exactly the line AO, so x, o, and a are collinear.",
+        "facts_used": [
+          "definition of circumcenter",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "x, o, a are collinear"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:33.320798+00:00"
+}

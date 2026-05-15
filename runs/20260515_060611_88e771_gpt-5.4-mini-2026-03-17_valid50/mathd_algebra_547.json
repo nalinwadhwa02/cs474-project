@@ -1,0 +1,66 @@
+{
+  "theorem_id": "mathd_algebra_547",
+  "statement": "Theorem: mathd_algebra_547\nVariables: x, y (real)\nGiven: h\u2080 : x = 5\nGiven: h\u2081 : y = 2\nProve: real.sqrt (x^3 - 2^y) = 11",
+  "goal": "real.sqrt (x^3 - 2^y) = 11",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_547\n\nTheorem: mathd_algebra_547\nVariables: x, y (real)\nGiven: h\u2080 : x = 5\nGiven: h\u2081 : y = 2\nProve: real.sqrt (x^3 - 2^y) = 11\n\nHypotheses:\n  h\u2080 : x = 5\n  h\u2081 : y = 2\n\nVariables: x (real), y (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Substitute the given values x = 5 and y = 2 into the expression, compute 5^3 - 2^2 = 121, and use that the real square root of 121 is 11.\",\n  \"plan\": [\n    \"Rewrite x and y using the given hypotheses.\",\n    \"Evaluate the exponentials 5^3 and 2^2.\",\n    \"Compute the difference inside the square root.\",\n    \"Use the fact that sqrt(121) = 11.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x^3 - 2^y = 121.\",\n      \"reasoning\": \"From h\u2080, x = 5, so x^3 = 5^3 = 125. From h\u2081, y = 2, so 2^y = 2^2 = 4. Therefore x^3 - 2^y = 125 - 4 = 121.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"properties of exponentiation\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"real.sqrt (x^3 - 2^y) = real.sqrt 121.\",\n      \"reasoning\": \"By step 1, the quantity inside the square root is exactly 121, so replacing it gives the stated equality.\",\n      \"facts_used\": [\"step 1\", \"congruence under equality\"]\n    },\n    {\n      \"claim\": \"real.sqrt 121 = 11.\",\n      \"reasoning\": \"Since 11 \u2265 0 and 11^2 = 121, the nonnegative square root of 121 is 11 by the definition of real square root.\",\n      \"facts_used\": [\"definition of real.sqrt\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"real.sqrt (x^3 - 2^y) = 11.\",\n      \"reasoning\": \"Combining step 2 and step 3 yields the desired result.\",\n      \"facts_used\": [\"step 2\", \"step 3\"]\n    }\n  ],\n  \"final_answer\": \"11\"\n}",
+  "english_proof": {
+    "key_observation": "Substitute the given values x = 5 and y = 2 into the expression, compute 5^3 - 2^2 = 121, and use that the real square root of 121 is 11.",
+    "plan": [
+      "Rewrite x and y using the given hypotheses.",
+      "Evaluate the exponentials 5^3 and 2^2.",
+      "Compute the difference inside the square root.",
+      "Use the fact that sqrt(121) = 11."
+    ],
+    "steps": [
+      {
+        "claim": "x^3 - 2^y = 121.",
+        "reasoning": "From h\u2080, x = 5, so x^3 = 5^3 = 125. From h\u2081, y = 2, so 2^y = 2^2 = 4. Therefore x^3 - 2^y = 125 - 4 = 121.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "properties of exponentiation",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "real.sqrt (x^3 - 2^y) = real.sqrt 121.",
+        "reasoning": "By step 1, the quantity inside the square root is exactly 121, so replacing it gives the stated equality.",
+        "facts_used": [
+          "step 1",
+          "congruence under equality"
+        ]
+      },
+      {
+        "claim": "real.sqrt 121 = 11.",
+        "reasoning": "Since 11 \u2265 0 and 11^2 = 121, the nonnegative square root of 121 is 11 by the definition of real square root.",
+        "facts_used": [
+          "definition of real.sqrt",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "real.sqrt (x^3 - 2^y) = 11.",
+        "reasoning": "Combining step 2 and step 3 yields the desired result.",
+        "facts_used": [
+          "step 2",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "11"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.812657+00:00"
+}

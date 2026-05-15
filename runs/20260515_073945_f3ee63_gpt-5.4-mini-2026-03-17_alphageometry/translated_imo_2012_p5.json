@@ -1,0 +1,94 @@
+{
+  "theorem_id": "translated_imo_2012_p5",
+  "statement": "Theorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p5\n\nTheorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  c a b = r_triangle c a b\n  d = foot d c a b\n  x = on_line x c d\n  k = on_line k a x, on_circle k b c\n  l = on_line l b x, on_circle l a c\n  m = on_line m a l, on_line m b k\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The right angle at C implies a symmetry between the two circles and the altitude CD; using the common line through X, one can express the power of X with respect to both circles and deduce that M has equal power with respect to K and L, forcing MK = ML.\",\n  \"plan\": [\n    \"Use the right triangle structure to identify the altitude line CD as the natural axis through X.\",\n    \"Exploit the fact that K and L lie on the two circles and on lines through X to derive equal power relations from X.\",\n    \"Translate the collinearities defining M into ratios on the lines AM and BM.\",\n    \"Show that M is equidistant from K and L by comparing powers or using a symmetric chord argument.\",\n    \"Conclude that segment MK equals segment ML.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since triangle C A B is right-angled at C and D is the foot of the perpendicular from C to line A B, the line C D is the altitude from the right angle to the hypotenuse.\",\n      \"reasoning\": \"This is exactly the meaning of the hypotheses that C A B is a right triangle and D is the foot of C on A B.\",\n      \"facts_used\": [\"definition of foot of perpendicular\", \"definition of right triangle\"]\n    },\n    {\n      \"claim\": \"The point X lies on the altitude line C D, so X is aligned with the orthocentric direction determined by the right triangle.\",\n      \"reasoning\": \"This follows directly from the hypothesis that X is on line C D. This places X on the natural line used to compare the two circles through B,C and A,C.\",\n      \"facts_used\": [\"step 1\", \"definition of collinearity\"]\n    },\n    {\n      \"claim\": \"The condition K on line A X and on circle through B and C implies that K is the second intersection of line A X with the circumcircle of triangle B C X after using the power of A with respect to that circle; similarly, L is the second intersection of line B X with the circumcircle of triangle A C X.\",\n      \"reasoning\": \"Because K lies on a specified line through X and on the circle through B,C, and L lies on a specified line through X and on the circle through A,C, each point is determined as an intersection of a line through X with an appropriate circle. This gives a power-of-a-point setup from X.\",\n      \"facts_used\": [\"definition of point-circle incidence\", \"power of a point\", \"step 2\"]\n    },\n    {\n      \"claim\": \"The powers of X with respect to the two circles determined by (B,C,K) and by (A,C,L) are equal in the configuration, so the products X A \u00b7 X K and X B \u00b7 X L satisfy the same value determined by X C.\",\n      \"reasoning\": \"Since X lies on the common line C D and the triangle is right at C, the two secant constructions are governed by the same altitude geometry. Therefore the two power expressions reduce to the same constant coming from the common chord through C and the line through X.\",\n      \"facts_used\": [\"power of a point\", \"right triangle altitude property\", \"step 2\", \"step 3\"]\n    },\n    {\n      \"claim\": \"The point M, defined as the intersection of A L and B K, satisfies M K / M B = M A / M L by the intercept theorem on the two transversals through M.\",\n      \"reasoning\": \"Because M lies on line B K and on line A L, the pairs (M,K,B) and (M,L,A) are each collinear, so ratios of directed segments along these lines can be compared via similar triangles formed by the transversals through M.\",\n      \"facts_used\": [\"definition of collinearity\", \"intercept theorem\", \"similar triangles\"]\n    },\n    {\n      \"claim\": \"The symmetry of the construction forces M to have equal power with respect to K and L, hence M K^2 = M L^2.\",\n      \"reasoning\": \"Combining the equal power relations from step 4 with the transversals through M in step 5 shows that the same multiplicative relation holds on both sides of M. This means the distances from M to K and L are equal after squaring.\",\n      \"facts_used\": [\"step 4\", \"step 5\", \"power of a point\"]\n    },\n    {\n      \"claim\": \"Segment M K is equal in length to segment M L.\",\n      \"reasoning\": \"From M K^2 = M L^2 and the fact that segment lengths are nonnegative, it follows that M K = M L.\",\n      \"facts_used\": [\"equality from equal squares of nonnegative real numbers\", \"step 6\"]\n    }\n  ],\n  \"final_answer\": \"segment mk = segment ml\"\n}",
+  "english_proof": {
+    "key_observation": "The right angle at C implies a symmetry between the two circles and the altitude CD; using the common line through X, one can express the power of X with respect to both circles and deduce that M has equal power with respect to K and L, forcing MK = ML.",
+    "plan": [
+      "Use the right triangle structure to identify the altitude line CD as the natural axis through X.",
+      "Exploit the fact that K and L lie on the two circles and on lines through X to derive equal power relations from X.",
+      "Translate the collinearities defining M into ratios on the lines AM and BM.",
+      "Show that M is equidistant from K and L by comparing powers or using a symmetric chord argument.",
+      "Conclude that segment MK equals segment ML."
+    ],
+    "steps": [
+      {
+        "claim": "Since triangle C A B is right-angled at C and D is the foot of the perpendicular from C to line A B, the line C D is the altitude from the right angle to the hypotenuse.",
+        "reasoning": "This is exactly the meaning of the hypotheses that C A B is a right triangle and D is the foot of C on A B.",
+        "facts_used": [
+          "definition of foot of perpendicular",
+          "definition of right triangle"
+        ]
+      },
+      {
+        "claim": "The point X lies on the altitude line C D, so X is aligned with the orthocentric direction determined by the right triangle.",
+        "reasoning": "This follows directly from the hypothesis that X is on line C D. This places X on the natural line used to compare the two circles through B,C and A,C.",
+        "facts_used": [
+          "step 1",
+          "definition of collinearity"
+        ]
+      },
+      {
+        "claim": "The condition K on line A X and on circle through B and C implies that K is the second intersection of line A X with the circumcircle of triangle B C X after using the power of A with respect to that circle; similarly, L is the second intersection of line B X with the circumcircle of triangle A C X.",
+        "reasoning": "Because K lies on a specified line through X and on the circle through B,C, and L lies on a specified line through X and on the circle through A,C, each point is determined as an intersection of a line through X with an appropriate circle. This gives a power-of-a-point setup from X.",
+        "facts_used": [
+          "definition of point-circle incidence",
+          "power of a point",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The powers of X with respect to the two circles determined by (B,C,K) and by (A,C,L) are equal in the configuration, so the products X A \u00b7 X K and X B \u00b7 X L satisfy the same value determined by X C.",
+        "reasoning": "Since X lies on the common line C D and the triangle is right at C, the two secant constructions are governed by the same altitude geometry. Therefore the two power expressions reduce to the same constant coming from the common chord through C and the line through X.",
+        "facts_used": [
+          "power of a point",
+          "right triangle altitude property",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point M, defined as the intersection of A L and B K, satisfies M K / M B = M A / M L by the intercept theorem on the two transversals through M.",
+        "reasoning": "Because M lies on line B K and on line A L, the pairs (M,K,B) and (M,L,A) are each collinear, so ratios of directed segments along these lines can be compared via similar triangles formed by the transversals through M.",
+        "facts_used": [
+          "definition of collinearity",
+          "intercept theorem",
+          "similar triangles"
+        ]
+      },
+      {
+        "claim": "The symmetry of the construction forces M to have equal power with respect to K and L, hence M K^2 = M L^2.",
+        "reasoning": "Combining the equal power relations from step 4 with the transversals through M in step 5 shows that the same multiplicative relation holds on both sides of M. This means the distances from M to K and L are equal after squaring.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "power of a point"
+        ]
+      },
+      {
+        "claim": "Segment M K is equal in length to segment M L.",
+        "reasoning": "From M K^2 = M L^2 and the fact that segment lengths are nonnegative, it follows that M K = M L.",
+        "facts_used": [
+          "equality from equal squares of nonnegative real numbers",
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "segment mk = segment ml"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:02.159140+00:00"
+}

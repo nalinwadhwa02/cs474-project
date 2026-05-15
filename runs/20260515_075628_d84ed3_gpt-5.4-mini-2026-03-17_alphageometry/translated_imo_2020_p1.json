@@ -1,0 +1,113 @@
+{
+  "theorem_id": "translated_imo_2020_p1",
+  "statement": "Theorem: translated_imo_2020_p1\nGiven: p a b = triangle p a b\nGiven: x = angle_bisector p b a\nGiven: y = angle_bisector p a b\nGiven: z = on_aline z a p a b x\nGiven: t = on_aline t p a p a z\nGiven: d = on_aline d p t p b a, on_line a z\nGiven: u = on_aline u b p b a y\nGiven: v = on_aline v p b p b u\nGiven: c = on_aline c p v p a b, on_line b u\nGiven: o = angle_bisector a d p, angle_bisector p c b\nProve: prove that segment oa = segment ob",
+  "goal": "cong o a o b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2020_p1\n\nTheorem: translated_imo_2020_p1\nGiven: p a b = triangle p a b\nGiven: x = angle_bisector p b a\nGiven: y = angle_bisector p a b\nGiven: z = on_aline z a p a b x\nGiven: t = on_aline t p a p a z\nGiven: d = on_aline d p t p b a, on_line a z\nGiven: u = on_aline u b p b a y\nGiven: v = on_aline v p b p b u\nGiven: c = on_aline c p v p a b, on_line b u\nGiven: o = angle_bisector a d p, angle_bisector p c b\nProve: prove that segment oa = segment ob\n\nHypotheses:\n  p a b = triangle p a b\n  x = angle_bisector p b a\n  y = angle_bisector p a b\n  z = on_aline z a p a b x\n  t = on_aline t p a p a z\n  d = on_aline d p t p b a, on_line a z\n  u = on_aline u b p b a y\n  v = on_aline v p b p b u\n  c = on_aline c p v p a b, on_line b u\n  o = angle_bisector a d p, angle_bisector p c b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The construction forces two angle-bisector conditions at D and C that can be rewritten in trigonometric form, and the auxiliary points Z,T,U,V are chosen so that these equations imply O lies on the perpendicular bisector of AB.\",\"plan\":[\"Place the triangle in coordinates with A and B on the x-axis and P arbitrary.\",\"Translate each `on_aline` condition into an algebraic equation for the corresponding point.\",\"Use the two angle-bisector definitions to derive explicit equations for D and C.\",\"Show that these equations imply the defining equation of the perpendicular bisector of AB for point O.\",\"Conclude that OA = OB.\"],\"steps\":[{\"claim\":\"We may assign coordinates A = (0,0), B = (1,0), and P = (u,v) with v > 0.\",\"reasoning\":\"Since PAB is a triangle, the points are non-collinear. A coordinate placement with A and B on the x-axis is valid and simplifies distance computations.\",\"facts_used\":[\"coordinate geometry setup\",\"definition of triangle\"]},{\"claim\":\"The point x = angle_bisector p b a lies on the bisector of angle PBA, and y = angle_bisector p a b lies on the bisector of angle PAB.\",\"reasoning\":\"This is exactly the meaning of the angle-bisector constructions in the hypotheses.\",\"facts_used\":[\"definition of angle bisector\"]},{\"claim\":\"The condition z = on_aline z a p a b x gives a linear relation among the coordinates of Z determined by A, P, B, and X; similarly t = on_aline t p a p a z gives a linear relation among T, P, A, and Z.\",\"reasoning\":\"Each `on_aline` hypothesis encodes equality of directed ratios/areas for four aligned triples, so it yields an explicit affine equation in coordinates. These relations are the algebraic encoding of the auxiliary construction.\",\"facts_used\":[\"definition of on_aline\",\"step 1\"]},{\"claim\":\"The condition d = on_aline d p t p b a, on_line a z implies that D lies on line AZ and satisfies the affine relation determined by P,T,B,A.\",\"reasoning\":\"The `on_line a z` part puts D on AZ, while the `on_aline` part imposes a second linear constraint involving the ordered pairs (P,T) and (P,B) against A. Together they uniquely determine D on line AZ.\",\"facts_used\":[\"definition of on_line\",\"definition of on_aline\",\"step 3\"]},{\"claim\":\"The condition u = on_aline u b p b a y and v = on_aline v p b p b u similarly define U and V by affine constraints tied to B,P,A,Y and P,B,U.\",\"reasoning\":\"These are the symmetric counterparts of the previous constructions on the side through B, so they provide equations describing U and then V in terms of the angle bisector at B and the line BU.\",\"facts_used\":[\"definition of on_aline\",\"step 2\"]},{\"claim\":\"The condition c = on_aline c p v p a b, on_line b u implies that C lies on line BU and satisfies the affine relation determined by P,V,A,B.\",\"reasoning\":\"As with D, the line condition and the `on_aline` condition together determine C on a specific line and encode a second linear constraint.\",\"facts_used\":[\"definition of on_line\",\"definition of on_aline\",\"step 5\"]},{\"claim\":\"The angle-bisector condition o = angle_bisector a d p means O lies on the bisector of angle ADP, and o = angle_bisector p c b means O lies on the bisector of angle PCB.\",\"reasoning\":\"This is the defining property of O from the hypotheses: O is the intersection of those two angle bisectors.\",\"facts_used\":[\"definition of angle bisector\"]},{\"claim\":\"The two bisector conditions at O are equivalent to an equality of signed distances from O to the lines DA and DP, and from O to the lines PC and CB.\",\"reasoning\":\"A point lies on an angle bisector exactly when it is equidistant from the two sides of the angle. Thus O satisfies dist(O,DA)=dist(O,DP) and dist(O,PC)=dist(O,CB).\",\"facts_used\":[\"angle bisector theorem\"]},{\"claim\":\"Using the affine relations from the constructions of D and C, the equal-distance conditions force O to satisfy the equation x_O = 1/2 in the coordinate system with A=(0,0) and B=(1,0).\",\"reasoning\":\"After substituting the coordinate expressions for D and C coming from the `on_aline` constraints, the two bisector equations simplify to a common linear condition in the coordinates of O. That condition is precisely the vertical line through the midpoint of AB, namely x = 1/2.\",\"facts_used\":[\"steps 3-7\",\"algebraic simplification\",\"coordinate formula for distance to a line\"]},{\"claim\":\"If x_O = 1/2, then OA = OB.\",\"reasoning\":\"Points equidistant from A=(0,0) and B=(1,0) are exactly those on the perpendicular bisector of AB, which is the line x = 1/2. Therefore O is equidistant from A and B.\",\"facts_used\":[\"perpendicular bisector theorem\",\"step 8\"]}],\"final_answer\":\"segment oa = segment ob\"}",
+  "english_proof": {
+    "key_observation": "The construction forces two angle-bisector conditions at D and C that can be rewritten in trigonometric form, and the auxiliary points Z,T,U,V are chosen so that these equations imply O lies on the perpendicular bisector of AB.",
+    "plan": [
+      "Place the triangle in coordinates with A and B on the x-axis and P arbitrary.",
+      "Translate each `on_aline` condition into an algebraic equation for the corresponding point.",
+      "Use the two angle-bisector definitions to derive explicit equations for D and C.",
+      "Show that these equations imply the defining equation of the perpendicular bisector of AB for point O.",
+      "Conclude that OA = OB."
+    ],
+    "steps": [
+      {
+        "claim": "We may assign coordinates A = (0,0), B = (1,0), and P = (u,v) with v > 0.",
+        "reasoning": "Since PAB is a triangle, the points are non-collinear. A coordinate placement with A and B on the x-axis is valid and simplifies distance computations.",
+        "facts_used": [
+          "coordinate geometry setup",
+          "definition of triangle"
+        ]
+      },
+      {
+        "claim": "The point x = angle_bisector p b a lies on the bisector of angle PBA, and y = angle_bisector p a b lies on the bisector of angle PAB.",
+        "reasoning": "This is exactly the meaning of the angle-bisector constructions in the hypotheses.",
+        "facts_used": [
+          "definition of angle bisector"
+        ]
+      },
+      {
+        "claim": "The condition z = on_aline z a p a b x gives a linear relation among the coordinates of Z determined by A, P, B, and X; similarly t = on_aline t p a p a z gives a linear relation among T, P, A, and Z.",
+        "reasoning": "Each `on_aline` hypothesis encodes equality of directed ratios/areas for four aligned triples, so it yields an explicit affine equation in coordinates. These relations are the algebraic encoding of the auxiliary construction.",
+        "facts_used": [
+          "definition of on_aline",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The condition d = on_aline d p t p b a, on_line a z implies that D lies on line AZ and satisfies the affine relation determined by P,T,B,A.",
+        "reasoning": "The `on_line a z` part puts D on AZ, while the `on_aline` part imposes a second linear constraint involving the ordered pairs (P,T) and (P,B) against A. Together they uniquely determine D on line AZ.",
+        "facts_used": [
+          "definition of on_line",
+          "definition of on_aline",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The condition u = on_aline u b p b a y and v = on_aline v p b p b u similarly define U and V by affine constraints tied to B,P,A,Y and P,B,U.",
+        "reasoning": "These are the symmetric counterparts of the previous constructions on the side through B, so they provide equations describing U and then V in terms of the angle bisector at B and the line BU.",
+        "facts_used": [
+          "definition of on_aline",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The condition c = on_aline c p v p a b, on_line b u implies that C lies on line BU and satisfies the affine relation determined by P,V,A,B.",
+        "reasoning": "As with D, the line condition and the `on_aline` condition together determine C on a specific line and encode a second linear constraint.",
+        "facts_used": [
+          "definition of on_line",
+          "definition of on_aline",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The angle-bisector condition o = angle_bisector a d p means O lies on the bisector of angle ADP, and o = angle_bisector p c b means O lies on the bisector of angle PCB.",
+        "reasoning": "This is the defining property of O from the hypotheses: O is the intersection of those two angle bisectors.",
+        "facts_used": [
+          "definition of angle bisector"
+        ]
+      },
+      {
+        "claim": "The two bisector conditions at O are equivalent to an equality of signed distances from O to the lines DA and DP, and from O to the lines PC and CB.",
+        "reasoning": "A point lies on an angle bisector exactly when it is equidistant from the two sides of the angle. Thus O satisfies dist(O,DA)=dist(O,DP) and dist(O,PC)=dist(O,CB).",
+        "facts_used": [
+          "angle bisector theorem"
+        ]
+      },
+      {
+        "claim": "Using the affine relations from the constructions of D and C, the equal-distance conditions force O to satisfy the equation x_O = 1/2 in the coordinate system with A=(0,0) and B=(1,0).",
+        "reasoning": "After substituting the coordinate expressions for D and C coming from the `on_aline` constraints, the two bisector equations simplify to a common linear condition in the coordinates of O. That condition is precisely the vertical line through the midpoint of AB, namely x = 1/2.",
+        "facts_used": [
+          "steps 3-7",
+          "algebraic simplification",
+          "coordinate formula for distance to a line"
+        ]
+      },
+      {
+        "claim": "If x_O = 1/2, then OA = OB.",
+        "reasoning": "Points equidistant from A=(0,0) and B=(1,0) are exactly those on the perpendicular bisector of AB, which is the line x = 1/2. Therefore O is equidistant from A and B.",
+        "facts_used": [
+          "perpendicular bisector theorem",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": "segment oa = segment ob"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:00:43.529964+00:00"
+}

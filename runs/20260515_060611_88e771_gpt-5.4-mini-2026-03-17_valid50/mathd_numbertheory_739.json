@@ -1,0 +1,64 @@
+{
+  "theorem_id": "mathd_numbertheory_739",
+  "statement": "Theorem: mathd_numbertheory_739\nProve: 9! % 10 = 0",
+  "goal": "9! % 10 = 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_739\n\nTheorem: mathd_numbertheory_739\nProve: 9! % 10 = 0\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The number 9! contains the factor 10 = 2\u00b75, so it is divisible by 10 and therefore leaves remainder 0 upon division by 10.\",\n  \"plan\": [\n    \"Expand 9! as a product of the integers 1 through 9.\",\n    \"Identify factors 2 and 5 among those integers.\",\n    \"Conclude that 10 divides 9! because 2\u00b75 = 10 is a factor of the product.\",\n    \"Translate divisibility by 10 into the statement that the remainder modulo 10 is 0.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"9! = 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79.\",\n      \"reasoning\": \"This is the definition of factorial.\",\n      \"facts_used\": [\"definition of factorial\"]\n    },\n    {\n      \"claim\": \"The product 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79 is divisible by 10.\",\n      \"reasoning\": \"Among the factors are 2 and 5, so the product contains the factor 2\u00b75 = 10. Therefore 10 divides the entire product.\",\n      \"facts_used\": [\"step 1\", \"definition of divisibility\", \"multiplication of factors\"]\n    },\n    {\n      \"claim\": \"10 divides 9!.\",\n      \"reasoning\": \"By step 1, 9! equals the product 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79, and by step 2 that product is divisible by 10.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"9! % 10 = 0.\",\n      \"reasoning\": \"A number has remainder 0 upon division by 10 exactly when it is divisible by 10.\",\n      \"facts_used\": [\"step 3\", \"definition of modulo\"]\n    }\n  ],\n  \"final_answer\": \"0\"\n}",
+  "english_proof": {
+    "key_observation": "The number 9! contains the factor 10 = 2\u00b75, so it is divisible by 10 and therefore leaves remainder 0 upon division by 10.",
+    "plan": [
+      "Expand 9! as a product of the integers 1 through 9.",
+      "Identify factors 2 and 5 among those integers.",
+      "Conclude that 10 divides 9! because 2\u00b75 = 10 is a factor of the product.",
+      "Translate divisibility by 10 into the statement that the remainder modulo 10 is 0."
+    ],
+    "steps": [
+      {
+        "claim": "9! = 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79.",
+        "reasoning": "This is the definition of factorial.",
+        "facts_used": [
+          "definition of factorial"
+        ]
+      },
+      {
+        "claim": "The product 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79 is divisible by 10.",
+        "reasoning": "Among the factors are 2 and 5, so the product contains the factor 2\u00b75 = 10. Therefore 10 divides the entire product.",
+        "facts_used": [
+          "step 1",
+          "definition of divisibility",
+          "multiplication of factors"
+        ]
+      },
+      {
+        "claim": "10 divides 9!.",
+        "reasoning": "By step 1, 9! equals the product 1\u00b72\u00b73\u00b74\u00b75\u00b76\u00b77\u00b78\u00b79, and by step 2 that product is divisible by 10.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "9! % 10 = 0.",
+        "reasoning": "A number has remainder 0 upon division by 10 exactly when it is divisible by 10.",
+        "facts_used": [
+          "step 3",
+          "definition of modulo"
+        ]
+      }
+    ],
+    "final_answer": "0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.807410+00:00"
+}

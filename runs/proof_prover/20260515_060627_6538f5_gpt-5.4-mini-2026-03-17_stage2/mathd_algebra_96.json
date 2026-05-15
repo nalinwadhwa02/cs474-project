@@ -1,0 +1,428 @@
+{
+  "theorem_id": "mathd_algebra_96",
+  "statement": "Theorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h₀ : 0 < x ∧ 0 < y ∧ 0 < z\nGiven: h₁ : real.log x - real.log y = a\nGiven: h₂ : real.log y - real.log z = 15\nGiven: h₃ : real.log z - real.log x = -7\nProve: a = -8",
+  "goal": "a = -8",
+  "stage1_english_proof": {
+    "key_observation": "The three logarithmic differences form a cycle whose sum must be zero, so the given values force a = 15 + (-7) = -8.",
+    "plan": [
+      "Use the positivity assumptions to justify standard logarithm identities.",
+      "Rewrite each hypothesis as an equation between logarithms.",
+      "Add the three equations to obtain a relation involving a.",
+      "Solve the resulting linear equation for a."
+    ],
+    "steps": [
+      {
+        "claim": "real.log x, real.log y, and real.log z are all well-defined real numbers.",
+        "reasoning": "From h₀ we have 0 < x, 0 < y, and 0 < z. The real logarithm is defined for positive real inputs, so each logarithm appearing in the hypotheses is meaningful.",
+        "facts_used": [
+          "h₀",
+          "definition of real.log"
+        ]
+      },
+      {
+        "claim": "real.log x - real.log y = a, real.log y - real.log z = 15, and real.log z - real.log x = -7 hold as given equations.",
+        "reasoning": "These are exactly the hypotheses h₁, h₂, and h₃.",
+        "facts_used": [
+          "h₁",
+          "h₂",
+          "h₃"
+        ]
+      },
+      {
+        "claim": "(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7).",
+        "reasoning": "Substitute the right-hand sides from h₁, h₂, and h₃ into the sum of the three left-hand sides.",
+        "facts_used": [
+          "step 2",
+          "addition of equalities"
+        ]
+      },
+      {
+        "claim": "(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = 0.",
+        "reasoning": "The terms cancel pairwise: real.log x cancels with -real.log x, real.log y cancels with -real.log y, and real.log z cancels with -real.log z.",
+        "facts_used": [
+          "algebraic cancellation"
+        ]
+      },
+      {
+        "claim": "a + 15 - 7 = 0.",
+        "reasoning": "By steps 3 and 4, the same expression equals both a + 15 + (-7) and 0, so a + 15 - 7 = 0.",
+        "facts_used": [
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "a = -8.",
+        "reasoning": "Simplify a + 15 - 7 = 0 to a + 8 = 0, then subtract 8 from both sides.",
+        "facts_used": [
+          "step 5",
+          "basic arithmetic"
+        ]
+      }
+    ],
+    "final_answer": "-8"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: mathd_algebra_96\n\nTheorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h₀ : 0 < x ∧ 0 < y ∧ 0 < z\nGiven: h₁ : real.log x - real.log y = a\nGiven: h₂ : real.log y - real.log z = 15\nGiven: h₃ : real.log z - real.log x = -7\nProve: a = -8\n\nGoal: a = -8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The three logarithmic differences form a cycle whose sum must be zero, so the given values force a = 15 + (-7) = -8.\",\n  \"plan\": [\n    \"Use the positivity assumptions to justify standard logarithm identities.\",\n    \"Rewrite each hypothesis as an equation between logarithms.\",\n    \"Add the three equations to obtain a relation involving a.\",\n    \"Solve the resulting linear equation for a.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"real.log x, real.log y, and real.log z are all well-defined real numbers.\",\n      \"reasoning\": \"From h₀ we have 0 < x, 0 < y, and 0 < z. The real logarithm is defined for positive real inputs, so each logarithm appearing in the hypotheses is meaningful.\",\n      \"facts_used\": [\n        \"h₀\",\n        \"definition of real.log\"\n      ]\n    },\n    {\n      \"claim\": \"real.log x - real.log y = a, real.log y - real.log z = 15, and real.log z - real.log x = -7 hold as given equations.\",\n      \"reasoning\": \"These are exactly the hypotheses h₁, h₂, and h₃.\",\n      \"facts_used\": [\n        \"h₁\",\n        \"h₂\",\n        \"h₃\"\n      ]\n    },\n    {\n      \"claim\": \"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7).\",\n      \"reasoning\": \"Substitute the right-hand sides from h₁, h₂, and h₃ into the sum of the three left-hand sides.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"addition of equalities\"\n      ]\n    },\n    {\n      \"claim\": \"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = 0.\",\n      \"reasoning\": \"The terms cancel pairwise: real.log x cancels with -real.log x, real.log y cancels with -real.log y, and real.log z cancels with -real.log z.\",\n      \"facts_used\": [\n        \"algebraic cancellation\"\n      ]\n    },\n    {\n      \"claim\": \"a + 15 - 7 = 0.\",\n      \"reasoning\": \"By steps 3 and 4, the same expression equals both a + 15 + (-7) and 0, so a + 15 - 7 = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"a = -8.\",\n      \"reasoning\": \"Simplify a + 15 - 7 = 0 to a + 8 = 0, then subtract 8 from both sides.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"basic arithmetic\"\n      ]\n    }\n  ],\n  \"final_answer\": \"-8\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"}],\"hypotheses\":[\"And(x > 0, y > 0, z > 0)\",\"Ln(x) - Ln(y) == a\",\"Ln(y) - Ln(z) == 15\",\"Ln(z) - Ln(x) == -7\"],\"goal\":\"a == -8\"},\"functions\":[],\"lemmas\":[{\"name\":\"ln_substitution_cycle_sum\",\"english\":\"If three logarithmic differences are given, their sum equals the sum of the right-hand sides.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(And(x > 0, y > 0, z > 0, Ln(x) - Ln(y) == a, Ln(y) - Ln(z) == 15, Ln(z) - Ln(x) == -7), (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == a + 15 + (-7))\"},{\"name\":\"log_cycle_cancels\",\"english\":\"The cyclic sum of pairwise differences cancels to zero.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"}],\"body\":\"Implies(True, (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == 0)\"},{\"name\":\"linear_arithmetic_to_constant\",\"english\":\"If a + 15 + (-7) = 0, then a = -8.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(a + 15 + (-7) == 0, a == -8)\"}],\"instantiations\":[{\"lemma\":\"ln_substitution_cycle_sum\",\"terms\":{\"x\":\"x\",\"y\":\"y\",\"z\":\"z\",\"a\":\"a\"}},{\"lemma\":\"log_cycle_cancels\",\"terms\":{\"x\":\"x\",\"y\":\"y\",\"z\":\"z\"}},{\"lemma\":\"linear_arithmetic_to_constant\",\"terms\":{\"a\":\"a\"}}]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "x",
+              "sort": "Real"
+            },
+            {
+              "name": "y",
+              "sort": "Real"
+            },
+            {
+              "name": "z",
+              "sort": "Real"
+            },
+            {
+              "name": "a",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "And(x > 0, y > 0, z > 0)",
+            "Ln(x) - Ln(y) == a",
+            "Ln(y) - Ln(z) == 15",
+            "Ln(z) - Ln(x) == -7"
+          ],
+          "goal": "a == -8"
+        },
+        "functions": [],
+        "lemmas": [
+          {
+            "name": "ln_substitution_cycle_sum",
+            "english": "If three logarithmic differences are given, their sum equals the sum of the right-hand sides.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              },
+              {
+                "name": "z",
+                "sort": "Real"
+              },
+              {
+                "name": "a",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(x > 0, y > 0, z > 0, Ln(x) - Ln(y) == a, Ln(y) - Ln(z) == 15, Ln(z) - Ln(x) == -7), (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == a + 15 + (-7))"
+          },
+          {
+            "name": "log_cycle_cancels",
+            "english": "The cyclic sum of pairwise differences cancels to zero.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              },
+              {
+                "name": "z",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(True, (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == 0)"
+          },
+          {
+            "name": "linear_arithmetic_to_constant",
+            "english": "If a + 15 + (-7) = 0, then a = -8.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(a + 15 + (-7) == 0, a == -8)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "ln_substitution_cycle_sum",
+            "terms": {
+              "x": "x",
+              "y": "y",
+              "z": "z",
+              "a": "a"
+            }
+          },
+          {
+            "lemma": "log_cycle_cancels",
+            "terms": {
+              "x": "x",
+              "y": "y",
+              "z": "z"
+            }
+          },
+          {
+            "lemma": "linear_arithmetic_to_constant",
+            "terms": {
+              "a": "a"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 17.944812774658203,
+        "instantiated": [
+          {
+            "lemma": "ln_substitution_cycle_sum",
+            "terms": {
+              "x": "x",
+              "y": "y",
+              "z": "z",
+              "a": "a"
+            },
+            "z3_form": "Implies(And(x > 0,\n            y > 0,\n            z > 0,\n            Ln(x) - Ln(y) == a,\n            Ln(y) - Ln(z) == 15,\n            Ln(z) - Ln(x) == -7),\n        Ln(x) - Ln(y) + Ln(y) - Ln(z) + Ln(z) - Ln(x) ==\n        a + 15 + -7)"
+          },
+          {
+            "lemma": "log_cycle_cancels",
+            "terms": {
+              "x": "x",
+              "y": "y",
+              "z": "z"
+            },
+            "z3_form": "Implies(True,\n        Ln(x) - Ln(y) + Ln(y) - Ln(z) + Ln(z) - Ln(x) == 0)"
+          },
+          {
+            "lemma": "linear_arithmetic_to_constant",
+            "terms": {
+              "a": "a"
+            },
+            "z3_form": "Implies(a + 15 + -7 == 0, a == -8)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "ln_substitution_cycle_sum",
+            "english": "If three logarithmic differences are given, their sum equals the sum of the right-hand sides.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "log_cycle_cancels",
+            "english": "The cyclic sum of pairwise differences cancels to zero.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "linear_arithmetic_to_constant",
+            "english": "If a + 15 + (-7) = 0, then a = -8.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 3,
+        "n_hypotheses": 4
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_96\n\nTheorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h₀ : 0 < x ∧ 0 < y ∧ 0 < z\nGiven: h₁ : real.log x - real.log y = a\nGiven: h₂ : real.log y - real.log z = 15\nGiven: h₃ : real.log z - real.log x = -7\nProve: a = -8\n\nGoal: a = -8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The three logarithmic differences form a cycle whose sum must be zero, so the given values force a = 15 + (-7) = -8.\",\n  \"plan\": [\n    \"Use the positivity assumptions to justify standard logarithm identities.\",\n    \"Rewrite each hypothesis as an equation between logarithms.\",\n    \"Add the three equations to obtain a relation involving a.\",\n    \"Solve the resulting linear equation for a.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"real.log x, real.log y, and real.log z are all well-defined real numbers.\",\n      \"reasoning\": \"From h₀ we have 0 < x, 0 < y, and 0 < z. The real logarithm is defined for positive real inputs, so each logarithm appearing in the hypotheses is meaningful.\",\n      \"facts_used\": [\n        \"h₀\",\n        \"definition of real.log\"\n      ]\n    },\n    {\n      \"claim\": \"real.log x - real.log y = a, real.log y - real.log z = 15, and real.log z - real.log x = -7 hold as given equations.\",\n      \"reasoning\": \"These are exactly the hypotheses h₁, h₂, and h₃.\",\n      \"facts_used\": [\n        \"h₁\",\n        \"h₂\",\n        \"h₃\"\n      ]\n    },\n    {\n      \"claim\": \"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7).\",\n      \"reasoning\": \"Substitute the right-hand sides from h₁, h₂, and h₃ into the sum of the three left-hand sides.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"addition of equalities\"\n      ]\n    },\n    {\n      \"claim\": \"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = 0.\",\n      \"reasoning\": \"The terms cancel pairwise: real.log x cancels with -real.log x, real.log y cancels with -real.log y, and real.log z cancels with -real.log z.\",\n      \"facts_used\": [\n        \"algebraic cancellation\"\n      ]\n    },\n    {\n      \"claim\": \"a + 15 - 7 = 0.\",\n      \"reasoning\": \"By steps 3 and 4, the same expression equals both a + 15 + (-7) and 0, so a + 15 - 7 = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"a = -8.\",\n      \"reasoning\": \"Simplify a + 15 - 7 = 0 to a + 8 = 0, then subtract 8 from both sides.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"basic arithmetic\"\n      ]\n    }\n  ],\n  \"final_answer\": \"-8\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"}],\"hypotheses\":[\"And(x > 0, y > 0, z > 0)\",\"Ln(x) - Ln(y) == a\",\"Ln(y) - Ln(z) == 15\",\"Ln(z) - Ln(x) == -7\"],\"goal\":\"a == -8\"},\"functions\":[],\"lemmas\":[{\"name\":\"ln_substitution_cycle_sum\",\"english\":\"If three logarithmic differences are given, their sum equals the sum of the right-hand sides.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(And(x > 0, y > 0, z > 0, Ln(x) - Ln(y) == a, Ln(y) - Ln(z) == 15, Ln(z) - Ln(x) == -7), (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == a + 15 + (-7))\"},{\"name\":\"log_cycle_cancels\",\"english\":\"The cyclic sum of pairwise differences cancels to zero.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"},{\"name\":\"y\",\"sort\":\"Real\"},{\"name\":\"z\",\"sort\":\"Real\"}],\"body\":\"Implies(True, (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == 0)\"},{\"name\":\"linear_arithmetic_to_constant\",\"english\":\"If a + 15 + (-7) = 0, then a = -8.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(a + 15 + (-7) == 0, a == -8)\"}],\"instantiations\":[{\"lemma\":\"ln_substitution_cycle_sum\",\"terms\":{\"x\":\"x\",\"y\":\"y\",\"z\":\"z\",\"a\":\"a\"}},{\"lemma\":\"log_cycle_cancels\",\"terms\":{\"x\":\"x\",\"y\":\"y\",\"z\":\"z\"}},{\"lemma\":\"linear_arithmetic_to_constant\",\"terms\":{\"a\":\"a\"}}]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "x",
+          "sort": "Real"
+        },
+        {
+          "name": "y",
+          "sort": "Real"
+        },
+        {
+          "name": "z",
+          "sort": "Real"
+        },
+        {
+          "name": "a",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "And(x > 0, y > 0, z > 0)",
+        "Ln(x) - Ln(y) == a",
+        "Ln(y) - Ln(z) == 15",
+        "Ln(z) - Ln(x) == -7"
+      ],
+      "goal": "a == -8"
+    },
+    "functions": [],
+    "lemmas": [
+      {
+        "name": "ln_substitution_cycle_sum",
+        "english": "If three logarithmic differences are given, their sum equals the sum of the right-hand sides.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          },
+          {
+            "name": "z",
+            "sort": "Real"
+          },
+          {
+            "name": "a",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(x > 0, y > 0, z > 0, Ln(x) - Ln(y) == a, Ln(y) - Ln(z) == 15, Ln(z) - Ln(x) == -7), (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == a + 15 + (-7))"
+      },
+      {
+        "name": "log_cycle_cancels",
+        "english": "The cyclic sum of pairwise differences cancels to zero.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          },
+          {
+            "name": "z",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(True, (Ln(x) - Ln(y)) + (Ln(y) - Ln(z)) + (Ln(z) - Ln(x)) == 0)"
+      },
+      {
+        "name": "linear_arithmetic_to_constant",
+        "english": "If a + 15 + (-7) = 0, then a = -8.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(a + 15 + (-7) == 0, a == -8)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "ln_substitution_cycle_sum",
+        "terms": {
+          "x": "x",
+          "y": "y",
+          "z": "z",
+          "a": "a"
+        }
+      },
+      {
+        "lemma": "log_cycle_cancels",
+        "terms": {
+          "x": "x",
+          "y": "y",
+          "z": "z"
+        }
+      },
+      {
+        "lemma": "linear_arithmetic_to_constant",
+        "terms": {
+          "a": "a"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 17.944812774658203,
+    "instantiated": [
+      {
+        "lemma": "ln_substitution_cycle_sum",
+        "terms": {
+          "x": "x",
+          "y": "y",
+          "z": "z",
+          "a": "a"
+        },
+        "z3_form": "Implies(And(x > 0,\n            y > 0,\n            z > 0,\n            Ln(x) - Ln(y) == a,\n            Ln(y) - Ln(z) == 15,\n            Ln(z) - Ln(x) == -7),\n        Ln(x) - Ln(y) + Ln(y) - Ln(z) + Ln(z) - Ln(x) ==\n        a + 15 + -7)"
+      },
+      {
+        "lemma": "log_cycle_cancels",
+        "terms": {
+          "x": "x",
+          "y": "y",
+          "z": "z"
+        },
+        "z3_form": "Implies(True,\n        Ln(x) - Ln(y) + Ln(y) - Ln(z) + Ln(z) - Ln(x) == 0)"
+      },
+      {
+        "lemma": "linear_arithmetic_to_constant",
+        "terms": {
+          "a": "a"
+        },
+        "z3_form": "Implies(a + 15 + -7 == 0, a == -8)"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "ln_substitution_cycle_sum",
+        "english": "If three logarithmic differences are given, their sum equals the sum of the right-hand sides.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "log_cycle_cancels",
+        "english": "The cyclic sum of pairwise differences cancels to zero.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "linear_arithmetic_to_constant",
+        "english": "If a + 15 + (-7) = 0, then a = -8.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 3,
+    "n_hypotheses": 4
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:14:45.932481+00:00"
+}

@@ -1,0 +1,87 @@
+{
+  "theorem_id": "imo_1987_p4",
+  "statement": "Theorem: imo_1987_p4\nGiven: f : \u2115 \u2192 \u2115\nProve: \u2203 n, f (f n) \u2260 n + 1987",
+  "goal": "\u2203 n, f (f n) \u2260 n + 1987",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1987_p4\n\nTheorem: imo_1987_p4\nGiven: f : \u2115 \u2192 \u2115\nProve: \u2203 n, f (f n) \u2260 n + 1987\n\nHypotheses:\n  f : \u2115 \u2192 \u2115\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Assume the contrary that f(f(n)) = n + 1987 for every natural number n; then iterating f forces a strictly increasing chain that is incompatible with the same relation applied repeatedly to a suitably chosen starting point.\",\"plan\":[\"Assume for contradiction that f(f(n)) = n + 1987 for all n.\",\"Use the relation repeatedly to derive formulas for f applied to iterates of a chosen number.\",\"Show that these formulas force an impossible equality between two natural numbers.\",\"Conclude that there must exist some n with f(f(n)) \u2260 n + 1987.\"],\"steps\":[{\"claim\":\"There is no function f : \u2115 \u2192 \u2115 such that f(f(n)) = n + 1987 for every n \u2208 \u2115.\",\"reasoning\":\"We argue by contradiction. Suppose such a function exists. Then for every n, applying f to both sides of f(f(n)) = n + 1987 gives f(f(f(n))) = f(n + 1987). But the left-hand side can also be rewritten using the original relation with input f(n), yielding f(f(f(n))) = f(n) + 1987. Hence f(n + 1987) = f(n) + 1987 for all n.\",\"facts_used\":[\"proof by contradiction\",\"substitution into an assumed functional equation\"]},{\"claim\":\"For every n \u2208 \u2115 and every k \u2265 1, f(n + 1987k) = f(n) + 1987k.\",\"reasoning\":\"This follows by induction on k. The case k = 1 is exactly the identity from step 1. If it holds for k, then applying step 1 with n + 1987k in place of n gives f(n + 1987(k+1)) = f(n + 1987k) + 1987 = f(n) + 1987(k+1).\",\"facts_used\":[\"mathematical induction\",\"step 1\"]},{\"claim\":\"For every n \u2208 \u2115 and every k \u2265 1, f(f(n) + 1987k) = f(f(n)) + 1987k = n + 1987 + 1987k.\",\"reasoning\":\"Apply step 2 with n replaced by f(n). Since step 1 gives f(f(n)) = n + 1987, the formula follows immediately.\",\"facts_used\":[\"step 2\",\"assumption of contradiction\"]},{\"claim\":\"Taking k = 1 in step 3 yields f(f(n) + 1987) = n + 3974 for every n.\",\"reasoning\":\"This is a direct substitution of k = 1 into the formula from step 3.\",\"facts_used\":[\"step 3\"]},{\"claim\":\"The value f(f(n) + 1987) is also equal to f(n) + 3974 for every n.\",\"reasoning\":\"Apply step 1 with n replaced by f(n) + 1987. Then f(f(f(n) + 1987)) = f(n) + 3974. But by step 3 with k = 1, the left side is f(n + 3974), and step 2 with k = 2 gives f(n + 3974) = f(n) + 3974. Combining these identities forces f(n) + 3974 = n + 3974, hence f(n) = n for all n.\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\"]},{\"claim\":\"The identity f(n) = n for all n contradicts the assumed relation f(f(n)) = n + 1987.\",\"reasoning\":\"If f(n) = n for all n, then f(f(n)) = n for all n, but the assumption says f(f(n)) = n + 1987 for all n. Since 1987 \u2260 0, this is impossible.\",\"facts_used\":[\"substitution\",\"arithmetic contradiction\"]},{\"claim\":\"Therefore, there exists some n \u2208 \u2115 such that f(f(n)) \u2260 n + 1987.\",\"reasoning\":\"This is the negation of the universal statement we assumed false. Since the assumption led to a contradiction, the desired existential statement must hold.\",\"facts_used\":[\"proof by contradiction\"]}],\"final_answer\":\"There exists n \u2208 \u2115 such that f(f(n)) \u2260 n + 1987.\"}",
+  "english_proof": {
+    "key_observation": "Assume the contrary that f(f(n)) = n + 1987 for every natural number n; then iterating f forces a strictly increasing chain that is incompatible with the same relation applied repeatedly to a suitably chosen starting point.",
+    "plan": [
+      "Assume for contradiction that f(f(n)) = n + 1987 for all n.",
+      "Use the relation repeatedly to derive formulas for f applied to iterates of a chosen number.",
+      "Show that these formulas force an impossible equality between two natural numbers.",
+      "Conclude that there must exist some n with f(f(n)) \u2260 n + 1987."
+    ],
+    "steps": [
+      {
+        "claim": "There is no function f : \u2115 \u2192 \u2115 such that f(f(n)) = n + 1987 for every n \u2208 \u2115.",
+        "reasoning": "We argue by contradiction. Suppose such a function exists. Then for every n, applying f to both sides of f(f(n)) = n + 1987 gives f(f(f(n))) = f(n + 1987). But the left-hand side can also be rewritten using the original relation with input f(n), yielding f(f(f(n))) = f(n) + 1987. Hence f(n + 1987) = f(n) + 1987 for all n.",
+        "facts_used": [
+          "proof by contradiction",
+          "substitution into an assumed functional equation"
+        ]
+      },
+      {
+        "claim": "For every n \u2208 \u2115 and every k \u2265 1, f(n + 1987k) = f(n) + 1987k.",
+        "reasoning": "This follows by induction on k. The case k = 1 is exactly the identity from step 1. If it holds for k, then applying step 1 with n + 1987k in place of n gives f(n + 1987(k+1)) = f(n + 1987k) + 1987 = f(n) + 1987(k+1).",
+        "facts_used": [
+          "mathematical induction",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "For every n \u2208 \u2115 and every k \u2265 1, f(f(n) + 1987k) = f(f(n)) + 1987k = n + 1987 + 1987k.",
+        "reasoning": "Apply step 2 with n replaced by f(n). Since step 1 gives f(f(n)) = n + 1987, the formula follows immediately.",
+        "facts_used": [
+          "step 2",
+          "assumption of contradiction"
+        ]
+      },
+      {
+        "claim": "Taking k = 1 in step 3 yields f(f(n) + 1987) = n + 3974 for every n.",
+        "reasoning": "This is a direct substitution of k = 1 into the formula from step 3.",
+        "facts_used": [
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The value f(f(n) + 1987) is also equal to f(n) + 3974 for every n.",
+        "reasoning": "Apply step 1 with n replaced by f(n) + 1987. Then f(f(f(n) + 1987)) = f(n) + 3974. But by step 3 with k = 1, the left side is f(n + 3974), and step 2 with k = 2 gives f(n + 3974) = f(n) + 3974. Combining these identities forces f(n) + 3974 = n + 3974, hence f(n) = n for all n.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The identity f(n) = n for all n contradicts the assumed relation f(f(n)) = n + 1987.",
+        "reasoning": "If f(n) = n for all n, then f(f(n)) = n for all n, but the assumption says f(f(n)) = n + 1987 for all n. Since 1987 \u2260 0, this is impossible.",
+        "facts_used": [
+          "substitution",
+          "arithmetic contradiction"
+        ]
+      },
+      {
+        "claim": "Therefore, there exists some n \u2208 \u2115 such that f(f(n)) \u2260 n + 1987.",
+        "reasoning": "This is the negation of the universal statement we assumed false. Since the assumption led to a contradiction, the desired existential statement must hold.",
+        "facts_used": [
+          "proof by contradiction"
+        ]
+      }
+    ],
+    "final_answer": "There exists n \u2208 \u2115 such that f(f(n)) \u2260 n + 1987."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.809088+00:00"
+}

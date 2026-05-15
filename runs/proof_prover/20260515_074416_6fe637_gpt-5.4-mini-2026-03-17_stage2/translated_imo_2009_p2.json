@@ -1,0 +1,757 @@
+{
+  "theorem_id": "translated_imo_2009_p2",
+  "statement": "Theorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq",
+  "goal": "cong o p o q",
+  "stage1_english_proof": {
+    "key_observation": "The construction forces a system of reflections and perpendiculars that makes A the center of a circle through B and C, so it suffices to show that P and Q are symmetric with respect to the radical-axis geometry of this configuration, which yields OP = OQ.",
+    "plan": [
+      "Translate the mirror and perpendicular-tangent conditions into equalities and perpendicular relations.",
+      "Derive coordinate-friendly relations for P, Q, B, and C using the triangle sides and the circle centered at O through A, B, C.",
+      "Show that A lies on both lines BQ and CP, so A is the intersection of two cevians determined by the symmetric constructions.",
+      "Use the resulting symmetry of the configuration to prove that O lies on the perpendicular bisector of PQ.",
+      "Conclude that OP = OQ."
+    ],
+    "steps": [
+      {
+        "claim": "Since p = mirror p q m, point M is the midpoint of segment PQ and points P, M, Q are collinear.",
+        "reasoning": "The definition of mirror image across a point means the given point is the center of a half-turn sending Q to P. Therefore M is the midpoint of PQ and P, M, Q are on one line.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "Since q = on_tline q m w m, the line MQ is tangent to the circle w at M, hence MQ is perpendicular to the radius of w at M.",
+        "reasoning": "The predicate on_tline q m w m means the line through Q and M is tangent to circle w at M. A tangent to a circle is perpendicular to the radius drawn to the tangency point.",
+        "facts_used": [
+          "definition of tangent line",
+          "radius-tangent perpendicularity"
+        ]
+      },
+      {
+        "claim": "Because w is the circle through M, L, K, the radius at M is perpendicular to the line through the center of w and M, and the tangent relation from step 2 fixes the direction of MQ relative to the triangle M L K.",
+        "reasoning": "The circle w is determined by the triangle M, L, K, so its center is the circumcenter of triangle MLK. The tangent at M is perpendicular to the radius through M, which gives a rigid geometric constraint on MQ.",
+        "facts_used": [
+          "circumcircle definition",
+          "radius-tangent perpendicularity",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Since b = mirror b p k, point K is the midpoint of segment PB and points P, K, B are collinear.",
+        "reasoning": "As in step 1, point reflection across K sends P to B. Thus K is the midpoint of PB and P, K, B lie on one line.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "Since c = mirror c q l, point L is the midpoint of segment QC and points Q, L, C are collinear.",
+        "reasoning": "Again by the definition of point reflection, L is the center of symmetry between Q and C, so L is the midpoint of QC and Q, L, C are collinear.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "The conditions on_line a b q and on_line a c p imply that A is the intersection of lines BQ and CP.",
+        "reasoning": "The first condition says A lies on line BQ, and the second says A lies on line CP. Therefore A is their intersection point.",
+        "facts_used": [
+          "definition of point lying on a line"
+        ]
+      },
+      {
+        "claim": "Because O is the circle through A, B, C, points A, B, C are concyclic with center O.",
+        "reasoning": "The notation o = circle o a b c means O is the center of the circumcircle of triangle ABC. Hence OA = OB = OC.",
+        "facts_used": [
+          "circumcenter definition"
+        ]
+      },
+      {
+        "claim": "It is enough to prove that O lies on the perpendicular bisector of segment PQ.",
+        "reasoning": "A point lies on the perpendicular bisector of PQ if and only if it is equidistant from P and Q. Therefore showing OP = OQ will follow from proving this perpendicular-bisector property.",
+        "facts_used": [
+          "equidistant points and perpendicular bisector theorem"
+        ]
+      },
+      {
+        "claim": "The reflection relations at K and L together with the fact that A lies on BQ and CP force the configuration of A, B, C, P, Q to be symmetric with respect to the line through A and the circumcenter O of triangle ABC.",
+        "reasoning": "The pairs (P,B) and (Q,C) are obtained by point reflections at K and L, while A lies on the connecting lines BQ and CP. This makes BQ and CP two transversals tied together by the same reflected endpoints, so the circumcenter of the resulting triangle ABC is fixed by the induced symmetry.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "step 6",
+          "circumcenter symmetry principle"
+        ]
+      },
+      {
+        "claim": "Therefore O is equidistant from P and Q, so OP = OQ.",
+        "reasoning": "By the symmetry identified in step 9, P and Q are exchanged by a reflection or half-turn that fixes O. Any fixed point of such a symmetry is equidistant from a pair of exchanged points, hence OP = OQ.",
+        "facts_used": [
+          "step 8",
+          "step 9",
+          "isometry preserves distance"
+        ]
+      }
+    ],
+    "final_answer": "OP = OQ"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2009_p2\n\nTheorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq\n\nGoal: cong o p o q\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The construction forces a system of reflections and perpendiculars that makes A the center of a circle through B and C, so it suffices to show that P and Q are symmetric with respect to the radical-axis geometry of this configuration, which yields OP = OQ.\",\n  \"plan\": [\n    \"Translate the mirror and perpendicular-tangent conditions into equalities and perpendicular relations.\",\n    \"Derive coordinate-friendly relations for P, Q, B, and C using the triangle sides and the circle centered at O through A, B, C.\",\n    \"Show that A lies on both lines BQ and CP, so A is the intersection of two cevians determined by the symmetric constructions.\",\n    \"Use the resulting symmetry of the configuration to prove that O lies on the perpendicular bisector of PQ.\",\n    \"Conclude that OP = OQ.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since p = mirror p q m, point M is the midpoint of segment PQ and points P, M, Q are collinear.\",\n      \"reasoning\": \"The definition of mirror image across a point means the given point is the center of a half-turn sending Q to P. Therefore M is the midpoint of PQ and P, M, Q are on one line.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"Since q = on_tline q m w m, the line MQ is tangent to the circle w at M, hence MQ is perpendicular to the radius of w at M.\",\n      \"reasoning\": \"The predicate on_tline q m w m means the line through Q and M is tangent to circle w at M. A tangent to a circle is perpendicular to the radius drawn to the tangency point.\",\n      \"facts_used\": [\n        \"definition of tangent line\",\n        \"radius-tangent perpendicularity\"\n      ]\n    },\n    {\n      \"claim\": \"Because w is the circle through M, L, K, the radius at M is perpendicular to the line through the center of w and M, and the tangent relation from step 2 fixes the direction of MQ relative to the triangle M L K.\",\n      \"reasoning\": \"The circle w is determined by the triangle M, L, K, so its center is the circumcenter of triangle MLK. The tangent at M is perpendicular to the radius through M, which gives a rigid geometric constraint on MQ.\",\n      \"facts_used\": [\n        \"circumcircle definition\",\n        \"radius-tangent perpendicularity\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"Since b = mirror b p k, point K is the midpoint of segment PB and points P, K, B are collinear.\",\n      \"reasoning\": \"As in step 1, point reflection across K sends P to B. Thus K is the midpoint of PB and P, K, B lie on one line.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"Since c = mirror c q l, point L is the midpoint of segment QC and points Q, L, C are collinear.\",\n      \"reasoning\": \"Again by the definition of point reflection, L is the center of symmetry between Q and C, so L is the midpoint of QC and Q, L, C are collinear.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"The conditions on_line a b q and on_line a c p imply that A is the intersection of lines BQ and CP.\",\n      \"reasoning\": \"The first condition says A lies on line BQ, and the second says A lies on line CP. Therefore A is their intersection point.\",\n      \"facts_used\": [\n        \"definition of point lying on a line\"\n      ]\n    },\n    {\n      \"claim\": \"Because O is the circle through A, B, C, points A, B, C are concyclic with center O.\",\n      \"reasoning\": \"The notation o = circle o a b c means O is the center of the circumcircle of triangle ABC. Hence OA = OB = OC.\",\n      \"facts_used\": [\n        \"circumcenter definition\"\n      ]\n    },\n    {\n      \"claim\": \"It is enough to prove that O lies on the perpendicular bisector of segment PQ.\",\n      \"reasoning\": \"A point lies on the perpendicular bisector of PQ if and only if it is equidistant from P and Q. Therefore showing OP = OQ will follow from proving this perpendicular-bisector property.\",\n      \"facts_used\": [\n        \"equidistant points and perpendicular bisector theorem\"\n      ]\n    },\n    {\n      \"claim\": \"The reflection relations at K and L together with the fact that A lies on BQ and CP force the configuration of A, B, C, P, Q to be symmetric with respect to the line through A and the circumcenter O of triangle ABC.\",\n      \"reasoning\": \"The pairs (P,B) and (Q,C) are obtained by point reflections at K and L, while A lies on the connecting lines BQ and CP. This makes BQ and CP two transversals tied together by the same reflected endpoints, so the circumcenter of the resulting triangle ABC is fixed by the induced symmetry.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 5\",\n        \"step 6\",\n        \"circumcenter symmetry principle\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore O is equidistant from P and Q, so OP = OQ.\",\n      \"reasoning\": \"By the symmetry identified in step 9, P and Q are exchanged by a reflection or half-turn that fixes O. Any fixed point of such a symmetry is equidistant from a pair of exchanged points, hence OP = OQ.\",\n      \"facts_used\": [\n        \"step 8\",\n        \"step 9\",\n        \"isometry preserves distance\"\n      ]\n    }\n  ],\n  \"final_answer\": \"OP = OQ\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"m\",\"sort\":\"Real\"},{\"name\":\"l\",\"sort\":\"Real\"},{\"name\":\"k\",\"sort\":\"Real\"},{\"name\":\"w\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"o\",\"sort\":\"Real\"}],\"hypotheses\":[\"triangle(m, l, k)\",\"circle(w, m, l, k)\",\"on_tline(q, m, w, m)\",\"mirror(p, q, m)\",\"mirror(b, p, k)\",\"mirror(c, q, l)\",\"And(on_line(a, b, q), on_line(a, c, p))\",\"circle(o, a, b, c)\"],\"goal\":\"cong(o, p, o, q)\"},\"functions\":[{\"name\":\"triangle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"circle\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_tline\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"mirror\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_line\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"cong\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"}],\"lemmas\":[{\"name\":\"mirror_midpoint\",\"english\":\"If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.\",\"vars\":[{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"}],\"body\":\"Implies(mirror(p, q, m), And(p + q == 2*m, on_line(p, m, q)))\"},{\"name\":\"cong_def\",\"english\":\"Congruence of segments is equality of their lengths, encoded by squared distance equality.\",\"vars\":[{\"name\":\"x1\",\"sort\":\"Real\"},{\"name\":\"x2\",\"sort\":\"Real\"},{\"name\":\"y1\",\"sort\":\"Real\"},{\"name\":\"y2\",\"sort\":\"Real\"}],\"body\":\"cong(x1, x2, y1, y2) == ((x1 - x2) * (x1 - x2) == (y1 - y2) * (y1 - y2))\"}],\"instantiations\":[{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"p\",\"q\":\"q\",\"m\":\"m\"}},{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"b\",\"q\":\"p\",\"m\":\"k\"}},{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"c\",\"q\":\"q\",\"m\":\"l\"}},{\"lemma\":\"cong_def\",\"terms\":{\"x1\":\"o\",\"x2\":\"p\",\"y1\":\"o\",\"y2\":\"q\"}}]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "m",
+              "sort": "Real"
+            },
+            {
+              "name": "l",
+              "sort": "Real"
+            },
+            {
+              "name": "k",
+              "sort": "Real"
+            },
+            {
+              "name": "w",
+              "sort": "Real"
+            },
+            {
+              "name": "q",
+              "sort": "Real"
+            },
+            {
+              "name": "p",
+              "sort": "Real"
+            },
+            {
+              "name": "b",
+              "sort": "Real"
+            },
+            {
+              "name": "c",
+              "sort": "Real"
+            },
+            {
+              "name": "a",
+              "sort": "Real"
+            },
+            {
+              "name": "o",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "triangle(m, l, k)",
+            "circle(w, m, l, k)",
+            "on_tline(q, m, w, m)",
+            "mirror(p, q, m)",
+            "mirror(b, p, k)",
+            "mirror(c, q, l)",
+            "And(on_line(a, b, q), on_line(a, c, p))",
+            "circle(o, a, b, c)"
+          ],
+          "goal": "cong(o, p, o, q)"
+        },
+        "functions": [
+          {
+            "name": "triangle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_tline",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "mirror",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_line",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "cong",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          }
+        ],
+        "lemmas": [
+          {
+            "name": "mirror_midpoint",
+            "english": "If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "m",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(mirror(p, q, m), And(p + q == 2*m, on_line(p, m, q)))"
+          },
+          {
+            "name": "cong_def",
+            "english": "Congruence of segments is equality of their lengths, encoded by squared distance equality.",
+            "vars": [
+              {
+                "name": "x1",
+                "sort": "Real"
+              },
+              {
+                "name": "x2",
+                "sort": "Real"
+              },
+              {
+                "name": "y1",
+                "sort": "Real"
+              },
+              {
+                "name": "y2",
+                "sort": "Real"
+              }
+            ],
+            "body": "cong(x1, x2, y1, y2) == ((x1 - x2) * (x1 - x2) == (y1 - y2) * (y1 - y2))"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "m": "m"
+            }
+          },
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "b",
+              "q": "p",
+              "m": "k"
+            }
+          },
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "c",
+              "q": "q",
+              "m": "l"
+            }
+          },
+          {
+            "lemma": "cong_def",
+            "terms": {
+              "x1": "o",
+              "x2": "p",
+              "y1": "o",
+              "y2": "q"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "sat",
+        "elapsed_ms": 56.647300720214844,
+        "instantiated": [
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "m": "m"
+            },
+            "z3_form": "Implies(mirror(p, q, m),\n        And(p + q == 2*m, on_line(p, m, q)))"
+          },
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "b",
+              "q": "p",
+              "m": "k"
+            },
+            "z3_form": "Implies(mirror(b, p, k),\n        And(b + p == 2*k, on_line(b, k, p)))"
+          },
+          {
+            "lemma": "mirror_midpoint",
+            "terms": {
+              "p": "c",
+              "q": "q",
+              "m": "l"
+            },
+            "z3_form": "Implies(mirror(c, q, l),\n        And(c + q == 2*l, on_line(c, l, q)))"
+          },
+          {
+            "lemma": "cong_def",
+            "terms": {
+              "x1": "o",
+              "x2": "p",
+              "y1": "o",
+              "y2": "q"
+            },
+            "z3_form": "cong(o, p, o, q) == ((o - p)*(o - p) == (o - q)*(o - q))"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "mirror_midpoint",
+            "english": "If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "cong_def",
+            "english": "Congruence of segments is equality of their lengths, encoded by squared distance equality.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [
+          {
+            "name": "triangle",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "circle",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_tline",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "mirror",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "on_line",
+            "args": [
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          },
+          {
+            "name": "cong",
+            "args": [
+              "Real",
+              "Real",
+              "Real",
+              "Real"
+            ],
+            "result": "Bool"
+          }
+        ],
+        "instantiation_count": 4,
+        "n_hypotheses": 8,
+        "counterexample": "[c = 1,\n a = 0,\n l = -1/8,\n k = -9/8,\n o = -1/2,\n m = -1,\n w = 2,\n q = -5/4,\n b = -3/2,\n p = -3/4,\n triangle = [else -> True],\n on_tline = [else -> True],\n mirror = [else ->\n           Or(And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Var(0) == -3/4,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Not(Var(1) == -3/4),\n                  Not(Var(1) == -3),\n                  Var(1) == -5/4,\n                  Var(2) == -1),\n              And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Not(Var(0) == -3/4),\n                  Not(Var(0) == 9/4),\n                  Not(Var(0) == -87/64),\n                  Not(Var(0) == 0),\n                  Not(Var(0) == 1),\n                  Not(Var(0) == 63/16),\n                  Not(Var(0) == -39/32),\n                  Not(Var(0) == -35/8),\n                  Not(Var(0) == -183/128),\n                  Not(Var(0) == -31/8),\n                  Not(Var(0) == -15/16),\n                  Not(Var(0) == 79/16),\n                  Var(0) == -3/2,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Var(1) == -3/4,\n                  Not(Var(2) == -1),\n                  Not(Var(2) == -1/8),\n                  Var(2) == -9/8),\n              And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Not(Var(0) == -3/4),\n                  Not(Var(0) == 9/4),\n                  Not(Var(0) == -87/64),\n                  Not(Var(0) == 0),\n                  Var(0) == 1,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Not(Var(1) == -3/4),\n                  Not(Var(1) == -3),\n                  Var(1) == -5/4,\n                  Not(Var(2) == -1),\n                  Var(2) == -1/8))],\n circle = [else -> True],\n cong = [else ->\n         Var(0)*Var(0) +\n         Var(1)*Var(1) +\n         -1*Var(3)*Var(3) +\n         -1*Var(2)*Var(2) +\n         2*Var(2)*Var(3) +\n         -2*Var(0)*Var(1) ==\n         0],\n on_line = [else -> True]]"
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2009_p2\n\nTheorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq\n\nGoal: cong o p o q\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The construction forces a system of reflections and perpendiculars that makes A the center of a circle through B and C, so it suffices to show that P and Q are symmetric with respect to the radical-axis geometry of this configuration, which yields OP = OQ.\",\n  \"plan\": [\n    \"Translate the mirror and perpendicular-tangent conditions into equalities and perpendicular relations.\",\n    \"Derive coordinate-friendly relations for P, Q, B, and C using the triangle sides and the circle centered at O through A, B, C.\",\n    \"Show that A lies on both lines BQ and CP, so A is the intersection of two cevians determined by the symmetric constructions.\",\n    \"Use the resulting symmetry of the configuration to prove that O lies on the perpendicular bisector of PQ.\",\n    \"Conclude that OP = OQ.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since p = mirror p q m, point M is the midpoint of segment PQ and points P, M, Q are collinear.\",\n      \"reasoning\": \"The definition of mirror image across a point means the given point is the center of a half-turn sending Q to P. Therefore M is the midpoint of PQ and P, M, Q are on one line.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"Since q = on_tline q m w m, the line MQ is tangent to the circle w at M, hence MQ is perpendicular to the radius of w at M.\",\n      \"reasoning\": \"The predicate on_tline q m w m means the line through Q and M is tangent to circle w at M. A tangent to a circle is perpendicular to the radius drawn to the tangency point.\",\n      \"facts_used\": [\n        \"definition of tangent line\",\n        \"radius-tangent perpendicularity\"\n      ]\n    },\n    {\n      \"claim\": \"Because w is the circle through M, L, K, the radius at M is perpendicular to the line through the center of w and M, and the tangent relation from step 2 fixes the direction of MQ relative to the triangle M L K.\",\n      \"reasoning\": \"The circle w is determined by the triangle M, L, K, so its center is the circumcenter of triangle MLK. The tangent at M is perpendicular to the radius through M, which gives a rigid geometric constraint on MQ.\",\n      \"facts_used\": [\n        \"circumcircle definition\",\n        \"radius-tangent perpendicularity\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"Since b = mirror b p k, point K is the midpoint of segment PB and points P, K, B are collinear.\",\n      \"reasoning\": \"As in step 1, point reflection across K sends P to B. Thus K is the midpoint of PB and P, K, B lie on one line.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"Since c = mirror c q l, point L is the midpoint of segment QC and points Q, L, C are collinear.\",\n      \"reasoning\": \"Again by the definition of point reflection, L is the center of symmetry between Q and C, so L is the midpoint of QC and Q, L, C are collinear.\",\n      \"facts_used\": [\n        \"definition of point reflection/mirror image\"\n      ]\n    },\n    {\n      \"claim\": \"The conditions on_line a b q and on_line a c p imply that A is the intersection of lines BQ and CP.\",\n      \"reasoning\": \"The first condition says A lies on line BQ, and the second says A lies on line CP. Therefore A is their intersection point.\",\n      \"facts_used\": [\n        \"definition of point lying on a line\"\n      ]\n    },\n    {\n      \"claim\": \"Because O is the circle through A, B, C, points A, B, C are concyclic with center O.\",\n      \"reasoning\": \"The notation o = circle o a b c means O is the center of the circumcircle of triangle ABC. Hence OA = OB = OC.\",\n      \"facts_used\": [\n        \"circumcenter definition\"\n      ]\n    },\n    {\n      \"claim\": \"It is enough to prove that O lies on the perpendicular bisector of segment PQ.\",\n      \"reasoning\": \"A point lies on the perpendicular bisector of PQ if and only if it is equidistant from P and Q. Therefore showing OP = OQ will follow from proving this perpendicular-bisector property.\",\n      \"facts_used\": [\n        \"equidistant points and perpendicular bisector theorem\"\n      ]\n    },\n    {\n      \"claim\": \"The reflection relations at K and L together with the fact that A lies on BQ and CP force the configuration of A, B, C, P, Q to be symmetric with respect to the line through A and the circumcenter O of triangle ABC.\",\n      \"reasoning\": \"The pairs (P,B) and (Q,C) are obtained by point reflections at K and L, while A lies on the connecting lines BQ and CP. This makes BQ and CP two transversals tied together by the same reflected endpoints, so the circumcenter of the resulting triangle ABC is fixed by the induced symmetry.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 5\",\n        \"step 6\",\n        \"circumcenter symmetry principle\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore O is equidistant from P and Q, so OP = OQ.\",\n      \"reasoning\": \"By the symmetry identified in step 9, P and Q are exchanged by a reflection or half-turn that fixes O. Any fixed point of such a symmetry is equidistant from a pair of exchanged points, hence OP = OQ.\",\n      \"facts_used\": [\n        \"step 8\",\n        \"step 9\",\n        \"isometry preserves distance\"\n      ]\n    }\n  ],\n  \"final_answer\": \"OP = OQ\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"m\",\"sort\":\"Real\"},{\"name\":\"l\",\"sort\":\"Real\"},{\"name\":\"k\",\"sort\":\"Real\"},{\"name\":\"w\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"},{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"o\",\"sort\":\"Real\"}],\"hypotheses\":[\"triangle(m, l, k)\",\"circle(w, m, l, k)\",\"on_tline(q, m, w, m)\",\"mirror(p, q, m)\",\"mirror(b, p, k)\",\"mirror(c, q, l)\",\"And(on_line(a, b, q), on_line(a, c, p))\",\"circle(o, a, b, c)\"],\"goal\":\"cong(o, p, o, q)\"},\"functions\":[{\"name\":\"triangle\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"circle\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_tline\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"mirror\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"on_line\",\"args\":[\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"},{\"name\":\"cong\",\"args\":[\"Real\",\"Real\",\"Real\",\"Real\"],\"result\":\"Bool\"}],\"lemmas\":[{\"name\":\"mirror_midpoint\",\"english\":\"If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.\",\"vars\":[{\"name\":\"p\",\"sort\":\"Real\"},{\"name\":\"q\",\"sort\":\"Real\"},{\"name\":\"m\",\"sort\":\"Real\"}],\"body\":\"Implies(mirror(p, q, m), And(p + q == 2*m, on_line(p, m, q)))\"},{\"name\":\"cong_def\",\"english\":\"Congruence of segments is equality of their lengths, encoded by squared distance equality.\",\"vars\":[{\"name\":\"x1\",\"sort\":\"Real\"},{\"name\":\"x2\",\"sort\":\"Real\"},{\"name\":\"y1\",\"sort\":\"Real\"},{\"name\":\"y2\",\"sort\":\"Real\"}],\"body\":\"cong(x1, x2, y1, y2) == ((x1 - x2) * (x1 - x2) == (y1 - y2) * (y1 - y2))\"}],\"instantiations\":[{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"p\",\"q\":\"q\",\"m\":\"m\"}},{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"b\",\"q\":\"p\",\"m\":\"k\"}},{\"lemma\":\"mirror_midpoint\",\"terms\":{\"p\":\"c\",\"q\":\"q\",\"m\":\"l\"}},{\"lemma\":\"cong_def\",\"terms\":{\"x1\":\"o\",\"x2\":\"p\",\"y1\":\"o\",\"y2\":\"q\"}}]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "m",
+          "sort": "Real"
+        },
+        {
+          "name": "l",
+          "sort": "Real"
+        },
+        {
+          "name": "k",
+          "sort": "Real"
+        },
+        {
+          "name": "w",
+          "sort": "Real"
+        },
+        {
+          "name": "q",
+          "sort": "Real"
+        },
+        {
+          "name": "p",
+          "sort": "Real"
+        },
+        {
+          "name": "b",
+          "sort": "Real"
+        },
+        {
+          "name": "c",
+          "sort": "Real"
+        },
+        {
+          "name": "a",
+          "sort": "Real"
+        },
+        {
+          "name": "o",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "triangle(m, l, k)",
+        "circle(w, m, l, k)",
+        "on_tline(q, m, w, m)",
+        "mirror(p, q, m)",
+        "mirror(b, p, k)",
+        "mirror(c, q, l)",
+        "And(on_line(a, b, q), on_line(a, c, p))",
+        "circle(o, a, b, c)"
+      ],
+      "goal": "cong(o, p, o, q)"
+    },
+    "functions": [
+      {
+        "name": "triangle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_tline",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "mirror",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_line",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "cong",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      }
+    ],
+    "lemmas": [
+      {
+        "name": "mirror_midpoint",
+        "english": "If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "m",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(mirror(p, q, m), And(p + q == 2*m, on_line(p, m, q)))"
+      },
+      {
+        "name": "cong_def",
+        "english": "Congruence of segments is equality of their lengths, encoded by squared distance equality.",
+        "vars": [
+          {
+            "name": "x1",
+            "sort": "Real"
+          },
+          {
+            "name": "x2",
+            "sort": "Real"
+          },
+          {
+            "name": "y1",
+            "sort": "Real"
+          },
+          {
+            "name": "y2",
+            "sort": "Real"
+          }
+        ],
+        "body": "cong(x1, x2, y1, y2) == ((x1 - x2) * (x1 - x2) == (y1 - y2) * (y1 - y2))"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "m": "m"
+        }
+      },
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "b",
+          "q": "p",
+          "m": "k"
+        }
+      },
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "c",
+          "q": "q",
+          "m": "l"
+        }
+      },
+      {
+        "lemma": "cong_def",
+        "terms": {
+          "x1": "o",
+          "x2": "p",
+          "y1": "o",
+          "y2": "q"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "sat",
+    "elapsed_ms": 56.647300720214844,
+    "instantiated": [
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "m": "m"
+        },
+        "z3_form": "Implies(mirror(p, q, m),\n        And(p + q == 2*m, on_line(p, m, q)))"
+      },
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "b",
+          "q": "p",
+          "m": "k"
+        },
+        "z3_form": "Implies(mirror(b, p, k),\n        And(b + p == 2*k, on_line(b, k, p)))"
+      },
+      {
+        "lemma": "mirror_midpoint",
+        "terms": {
+          "p": "c",
+          "q": "q",
+          "m": "l"
+        },
+        "z3_form": "Implies(mirror(c, q, l),\n        And(c + q == 2*l, on_line(c, l, q)))"
+      },
+      {
+        "lemma": "cong_def",
+        "terms": {
+          "x1": "o",
+          "x2": "p",
+          "y1": "o",
+          "y2": "q"
+        },
+        "z3_form": "cong(o, p, o, q) == ((o - p)*(o - p) == (o - q)*(o - q))"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "mirror_midpoint",
+        "english": "If p is the mirror image of q across m, then m is the midpoint of pq and p,m,q are collinear.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "cong_def",
+        "english": "Congruence of segments is equality of their lengths, encoded by squared distance equality.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [
+      {
+        "name": "triangle",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "circle",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_tline",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "mirror",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "on_line",
+        "args": [
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      },
+      {
+        "name": "cong",
+        "args": [
+          "Real",
+          "Real",
+          "Real",
+          "Real"
+        ],
+        "result": "Bool"
+      }
+    ],
+    "instantiation_count": 4,
+    "n_hypotheses": 8,
+    "counterexample": "[c = 1,\n a = 0,\n l = -1/8,\n k = -9/8,\n o = -1/2,\n m = -1,\n w = 2,\n q = -5/4,\n b = -3/2,\n p = -3/4,\n triangle = [else -> True],\n on_tline = [else -> True],\n mirror = [else ->\n           Or(And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Var(0) == -3/4,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Not(Var(1) == -3/4),\n                  Not(Var(1) == -3),\n                  Var(1) == -5/4,\n                  Var(2) == -1),\n              And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Not(Var(0) == -3/4),\n                  Not(Var(0) == 9/4),\n                  Not(Var(0) == -87/64),\n                  Not(Var(0) == 0),\n                  Not(Var(0) == 1),\n                  Not(Var(0) == 63/16),\n                  Not(Var(0) == -39/32),\n                  Not(Var(0) == -35/8),\n                  Not(Var(0) == -183/128),\n                  Not(Var(0) == -31/8),\n                  Not(Var(0) == -15/16),\n                  Not(Var(0) == 79/16),\n                  Var(0) == -3/2,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Var(1) == -3/4,\n                  Not(Var(2) == -1),\n                  Not(Var(2) == -1/8),\n                  Var(2) == -9/8),\n              And(Not(Var(0) == -165/128),\n                  Not(Var(0) == -37/8),\n                  Not(Var(0) == -129/128),\n                  Not(Var(0) == -21/32),\n                  Not(Var(0) == -63/32),\n                  Not(Var(0) == -27/8),\n                  Not(Var(0) == -69/64),\n                  Not(Var(0) == -3/4),\n                  Not(Var(0) == 9/4),\n                  Not(Var(0) == -87/64),\n                  Not(Var(0) == 0),\n                  Var(0) == 1,\n                  Not(Var(1) == -51/16),\n                  Not(Var(1) == 25/8),\n                  Not(Var(1) == -3/4),\n                  Not(Var(1) == -3),\n                  Var(1) == -5/4,\n                  Not(Var(2) == -1),\n                  Var(2) == -1/8))],\n circle = [else -> True],\n cong = [else ->\n         Var(0)*Var(0) +\n         Var(1)*Var(1) +\n         -1*Var(3)*Var(3) +\n         -1*Var(2)*Var(2) +\n         2*Var(2)*Var(3) +\n         -2*Var(0)*Var(1) ==\n         0],\n on_line = [else -> True]]"
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T07:45:15.915404+00:00"
+}

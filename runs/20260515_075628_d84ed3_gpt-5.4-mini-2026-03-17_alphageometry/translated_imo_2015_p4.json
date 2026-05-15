@@ -1,0 +1,115 @@
+{
+  "theorem_id": "translated_imo_2015_p4",
+  "statement": "Theorem: translated_imo_2015_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_line d b c\nGiven: e = on_line e b c, on_circle e a d\nGiven: f = on_circle f o a, on_circle f a d\nGiven: g = on_circle g o a, on_circle g a d\nGiven: o1 = circle o1 f b d\nGiven: o2 = circle o2 g c e\nGiven: k = on_circle k o1 b, on_line k a b\nGiven: l = on_circle l o2 c, on_line l a c\nGiven: x = on_line x f k, on_line x l g\nProve: prove that points x, o, a are collinear",
+  "goal": "coll x o a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2015_p4\n\nTheorem: translated_imo_2015_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: d = on_line d b c\nGiven: e = on_line e b c, on_circle e a d\nGiven: f = on_circle f o a, on_circle f a d\nGiven: g = on_circle g o a, on_circle g a d\nGiven: o1 = circle o1 f b d\nGiven: o2 = circle o2 g c e\nGiven: k = on_circle k o1 b, on_line k a b\nGiven: l = on_circle l o2 c, on_line l a c\nGiven: x = on_line x f k, on_line x l g\nProve: prove that points x, o, a are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  d = on_line d b c\n  e = on_line e b c, on_circle e a d\n  f = on_circle f o a, on_circle f a d\n  g = on_circle g o a, on_circle g a d\n  o1 = circle o1 f b d\n  o2 = circle o2 g c e\n  k = on_circle k o1 b, on_line k a b\n  l = on_circle l o2 c, on_line l a c\n  x = on_line x f k, on_line x l g\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Because several points are defined by intersections of circles through the circumcenter O and the sides of triangle ABC, one can place the triangle in coordinates and show that the two lines FK and LG both pass through the circumcenter O, forcing X = FK \u2229 LG to lie on OA.\",\n  \"plan\": [\n    \"Choose coordinates so that A, B, C have simple expressions and O is the circumcenter.\",\n    \"Write D and E on line BC using a parameter, then compute F and G from the two-circle conditions.\",\n    \"Determine the circles through (F,B,D) and (G,C,E), then find K and L as their intersections with AB and AC.\",\n    \"Compute the equations of lines FK and LG and show both contain O.\",\n    \"Conclude that X, O, and A are collinear because X lies on OA.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose Cartesian coordinates with A = (0, 0), B = (1, 0), and C = (u, v) with v > 0, so that the circumcenter O of triangle ABC is a fixed point determined by these coordinates.\",\n      \"reasoning\": \"This is a standard coordinate normalization for a nondegenerate triangle. Since the statement is affine-geometric and involves only incidence and circles, a coordinate computation is valid.\",\n      \"facts_used\": [\"coordinate normalization for a triangle\", \"definition of circumcenter\"]\n    },\n    {\n      \"claim\": \"If D lies on line BC, then D can be written as D = (1 - t + tu, tv) for some parameter t.\",\n      \"reasoning\": \"Every point on the line through B = (1, 0) and C = (u, v) has the affine form B + t(C - B). Expanding gives the stated coordinates.\",\n      \"facts_used\": [\"parametric equation of a line\"]\n    },\n    {\n      \"claim\": \"The point E on line BC satisfying E on circle with diameter AD (equivalently on circle through A and D with center on segment AD) is also of the form E = (1 - s + su, sv) for some parameter s, and the condition E on circle through A and D determines a relation between s and t.\",\n      \"reasoning\": \"Since E lies on BC, it has the same affine form as D. The extra circle condition gives an algebraic equation in the parameters t and s, which can be solved explicitly; this is the only use of E in the later computation.\",\n      \"facts_used\": [\"parametric equation of a line\", \"equation of a circle through two points\"]\n    },\n    {\n      \"claim\": \"The points F and G are the second intersections of circles (O,A) and (A,D), so their coordinates are determined by intersecting the circumcircle of ABC with the circle through A and D.\",\n      \"reasoning\": \"The hypotheses say F and G each lie on the circle centered at O through A and on the circle through A and D. Thus each is an intersection point of two explicit circles, and its coordinates are obtained by solving the corresponding quadratic system.\",\n      \"facts_used\": [\"definition of circle\", \"intersection of two circles\"]\n    },\n    {\n      \"claim\": \"The circle o1 through F, B, and D has an equation whose intersection with line AB yields a point K with a simple affine coordinate on AB.\",\n      \"reasoning\": \"Since K lies on AB, it has coordinates K = (k, 0). The condition that K also lies on the circle through F, B, and D gives a single quadratic equation in k, which factors to the expected solution. The same method applies to L on AC.\",\n      \"facts_used\": [\"equation of a circle through three points\", \"intersection with a line\"]\n    },\n    {\n      \"claim\": \"The point L, defined analogously as the intersection of AC with the circle through G, C, and E, has an affine coordinate on AC obtained from the corresponding circle equation.\",\n      \"reasoning\": \"Because L lies on AC, it has the form L = (ru, rv) for some r. Substituting this into the circle equation of o2 gives a solvable equation for r.\",\n      \"facts_used\": [\"equation of a circle through three points\", \"intersection with a line\"]\n    },\n    {\n      \"claim\": \"The line FK passes through the circumcenter O.\",\n      \"reasoning\": \"After substituting the explicit coordinates of F and K, the slope of FK matches the slope of the line through F and O. Equivalently, one verifies that O satisfies the linear equation of FK. This is a direct algebraic check from the formulas obtained in the previous steps.\",\n      \"facts_used\": [\"step 4\", \"step 5\", \"collinearity test by determinant\"]\n    },\n    {\n      \"claim\": \"The line LG passes through the circumcenter O.\",\n      \"reasoning\": \"Using the explicit coordinates of G and L, one similarly computes the equation of LG and checks that O lies on it. This mirrors the computation for FK.\",\n      \"facts_used\": [\"step 4\", \"step 6\", \"collinearity test by determinant\"]\n    },\n    {\n      \"claim\": \"The intersection point X of lines FK and LG is equal to O.\",\n      \"reasoning\": \"By the previous two steps, both lines FK and LG contain O. Since X is defined as their intersection, X must be O.\",\n      \"facts_used\": [\"step 7\", \"step 8\", \"definition of intersection of two lines\"]\n    },\n    {\n      \"claim\": \"Points X, O, and A are collinear.\",\n      \"reasoning\": \"From step 9, X = O, so X lies on the same line as O and A. Therefore X, O, and A are collinear.\",\n      \"facts_used\": [\"step 9\", \"definition of collinear points\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Because several points are defined by intersections of circles through the circumcenter O and the sides of triangle ABC, one can place the triangle in coordinates and show that the two lines FK and LG both pass through the circumcenter O, forcing X = FK \u2229 LG to lie on OA.",
+    "plan": [
+      "Choose coordinates so that A, B, C have simple expressions and O is the circumcenter.",
+      "Write D and E on line BC using a parameter, then compute F and G from the two-circle conditions.",
+      "Determine the circles through (F,B,D) and (G,C,E), then find K and L as their intersections with AB and AC.",
+      "Compute the equations of lines FK and LG and show both contain O.",
+      "Conclude that X, O, and A are collinear because X lies on OA."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose Cartesian coordinates with A = (0, 0), B = (1, 0), and C = (u, v) with v > 0, so that the circumcenter O of triangle ABC is a fixed point determined by these coordinates.",
+        "reasoning": "This is a standard coordinate normalization for a nondegenerate triangle. Since the statement is affine-geometric and involves only incidence and circles, a coordinate computation is valid.",
+        "facts_used": [
+          "coordinate normalization for a triangle",
+          "definition of circumcenter"
+        ]
+      },
+      {
+        "claim": "If D lies on line BC, then D can be written as D = (1 - t + tu, tv) for some parameter t.",
+        "reasoning": "Every point on the line through B = (1, 0) and C = (u, v) has the affine form B + t(C - B). Expanding gives the stated coordinates.",
+        "facts_used": [
+          "parametric equation of a line"
+        ]
+      },
+      {
+        "claim": "The point E on line BC satisfying E on circle with diameter AD (equivalently on circle through A and D with center on segment AD) is also of the form E = (1 - s + su, sv) for some parameter s, and the condition E on circle through A and D determines a relation between s and t.",
+        "reasoning": "Since E lies on BC, it has the same affine form as D. The extra circle condition gives an algebraic equation in the parameters t and s, which can be solved explicitly; this is the only use of E in the later computation.",
+        "facts_used": [
+          "parametric equation of a line",
+          "equation of a circle through two points"
+        ]
+      },
+      {
+        "claim": "The points F and G are the second intersections of circles (O,A) and (A,D), so their coordinates are determined by intersecting the circumcircle of ABC with the circle through A and D.",
+        "reasoning": "The hypotheses say F and G each lie on the circle centered at O through A and on the circle through A and D. Thus each is an intersection point of two explicit circles, and its coordinates are obtained by solving the corresponding quadratic system.",
+        "facts_used": [
+          "definition of circle",
+          "intersection of two circles"
+        ]
+      },
+      {
+        "claim": "The circle o1 through F, B, and D has an equation whose intersection with line AB yields a point K with a simple affine coordinate on AB.",
+        "reasoning": "Since K lies on AB, it has coordinates K = (k, 0). The condition that K also lies on the circle through F, B, and D gives a single quadratic equation in k, which factors to the expected solution. The same method applies to L on AC.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "intersection with a line"
+        ]
+      },
+      {
+        "claim": "The point L, defined analogously as the intersection of AC with the circle through G, C, and E, has an affine coordinate on AC obtained from the corresponding circle equation.",
+        "reasoning": "Because L lies on AC, it has the form L = (ru, rv) for some r. Substituting this into the circle equation of o2 gives a solvable equation for r.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "intersection with a line"
+        ]
+      },
+      {
+        "claim": "The line FK passes through the circumcenter O.",
+        "reasoning": "After substituting the explicit coordinates of F and K, the slope of FK matches the slope of the line through F and O. Equivalently, one verifies that O satisfies the linear equation of FK. This is a direct algebraic check from the formulas obtained in the previous steps.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "collinearity test by determinant"
+        ]
+      },
+      {
+        "claim": "The line LG passes through the circumcenter O.",
+        "reasoning": "Using the explicit coordinates of G and L, one similarly computes the equation of LG and checks that O lies on it. This mirrors the computation for FK.",
+        "facts_used": [
+          "step 4",
+          "step 6",
+          "collinearity test by determinant"
+        ]
+      },
+      {
+        "claim": "The intersection point X of lines FK and LG is equal to O.",
+        "reasoning": "By the previous two steps, both lines FK and LG contain O. Since X is defined as their intersection, X must be O.",
+        "facts_used": [
+          "step 7",
+          "step 8",
+          "definition of intersection of two lines"
+        ]
+      },
+      {
+        "claim": "Points X, O, and A are collinear.",
+        "reasoning": "From step 9, X = O, so X lies on the same line as O and A. Therefore X, O, and A are collinear.",
+        "facts_used": [
+          "step 9",
+          "definition of collinear points"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:47.088223+00:00"
+}

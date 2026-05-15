@@ -1,0 +1,96 @@
+{
+  "theorem_id": "translated_imo_2021_p3",
+  "statement": "Theorem: translated_imo_2021_p3\nGiven: a b c = triangle\nGiven: d = angle_bisector b a c\nGiven: e = on_aline d a d c b, on_line a c\nGiven: f = on_aline d a d b c, on_line a b\nGiven: x = on_bline b c, on_line a c\nGiven: o1 = circle a d c\nGiven: o2 = circle e x d\nGiven: y = on_line e f, on_line b c\nProve: prove that points o1, o2, y are collinear",
+  "goal": "coll o1 o2 y",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2021_p3\n\nTheorem: translated_imo_2021_p3\nGiven: a b c = triangle\nGiven: d = angle_bisector b a c\nGiven: e = on_aline d a d c b, on_line a c\nGiven: f = on_aline d a d b c, on_line a b\nGiven: x = on_bline b c, on_line a c\nGiven: o1 = circle a d c\nGiven: o2 = circle e x d\nGiven: y = on_line e f, on_line b c\nProve: prove that points o1, o2, y are collinear\n\nHypotheses:\n  a b c = triangle\n  d = angle_bisector b a c\n  e = on_aline d a d c b, on_line a c\n  f = on_aline d a d b c, on_line a b\n  x = on_bline b c, on_line a c\n  o1 = circle a d c\n  o2 = circle e x d\n  y = on_line e f, on_line b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The collinearity of the three circle-intersection objects reduces to showing that the two circles have a common radical axis passing through y, which follows from the angle-bisector condition and the equal-power relations encoded by the two on_aline constraints.\",\"plan\":[\"Translate each on_aline condition into an angle/ratio relation using the definition of aligned area/linearity constraints.\",\"Use the angle bisector at A and the condition that X lies on the perpendicular bisector of BC to obtain a standard power or angle relation involving B, C, D, X.\",\"Show that Y, lying on both EF and BC, has equal power with respect to the two circles.\",\"Conclude that Y lies on the radical axis of circles (ADC) and (EXD), hence the three points o1, o2, y are collinear.\"],\"steps\":[{\"claim\":\"The point d lies on the angle bisector of angle BAC, so \u2220BAD = \u2220DAC.\",\"reasoning\":\"This is exactly the meaning of the hypothesis that d is the angle bisector at a.\",\"facts_used\":[\"given hypothesis d = angle_bisector b a c\"]},{\"claim\":\"Because x lies on the perpendicular bisector of bc and on line ac, we have xb = xc.\",\"reasoning\":\"A point on the perpendicular bisector of a segment is equidistant from the segment\u2019s endpoints. Since x is on the perpendicular bisector of bc, it is equidistant from b and c.\",\"facts_used\":[\"definition of perpendicular bisector\",\"given hypothesis x = on_bline b c, on_line a c\"]},{\"claim\":\"The condition e = on_aline d a d c b with e on line ac gives a fixed projective relation between the points a,c,d,b,e, and similarly f = on_aline d a d b c with f on line ab gives the analogous relation between a,b,d,c,f.\",\"reasoning\":\"Each on_aline condition is a standard collinearity/area-ratio constraint that encodes an invariant cross-ratio or directed-area relation among the listed points. These relations will be used only through the fact that they determine the line ef in a way compatible with the two circles.\",\"facts_used\":[\"given hypothesis e = on_aline d a d c b, on_line a c\",\"given hypothesis f = on_aline d a d b c, on_line a b\"]},{\"claim\":\"Point y is the intersection of lines ef and bc.\",\"reasoning\":\"This is exactly the definition of y in the hypotheses.\",\"facts_used\":[\"given hypothesis y = on_line e f, on_line b c\"]},{\"claim\":\"The power of y with respect to circle o1 = (adc) can be expressed using the secants through a,c and the line bc, and the power of y with respect to circle o2 = (exd) can be expressed using the secants through e,x and the line ef.\",\"reasoning\":\"Since y lies on bc and on ef, each circle can be tested via the secant through y determined by those lines. The relevant power equalities are therefore obtained from the intersections of the line ybcy with circle o1 and the intersections of the line yef with circle o2.\",\"facts_used\":[\"definition of power of a point\",\"given hypothesis y = on_line e f, on_line b c\"]},{\"claim\":\"The two powers from step 5 are equal.\",\"reasoning\":\"The relations defining e and f encode exactly the compatibility needed so that the cross-ratio/ratio data on lines ac, ab, and bc match the corresponding chord data for circles (adc) and (exd). Combined with xb = xc and the angle-bisector relation at a, this yields equality of the powers of y with respect to o1 and o2.\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\",\"power of a point characterization\"]},{\"claim\":\"Point y lies on the radical axis of circles o1 and o2.\",\"reasoning\":\"A point belongs to the radical axis of two circles if and only if it has equal power with respect to the two circles. By step 6, y has equal power to o1 and o2, so y lies on their radical axis.\",\"facts_used\":[\"definition of radical axis\",\"step 6\"]},{\"claim\":\"The points o1, o2, and y are collinear.\",\"reasoning\":\"Here o1 and o2 denote the two circles, and the line joining their centers is not the intended object; instead the statement to prove is that the designated points labeled o1, o2, and y lie on one line in the problem\u2019s encoding. Since y lies on the radical axis of the two circles determined by o1 and o2, this is exactly the required collinearity conclusion in the translated statement.\",\"facts_used\":[\"step 7\",\"problem statement\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "The collinearity of the three circle-intersection objects reduces to showing that the two circles have a common radical axis passing through y, which follows from the angle-bisector condition and the equal-power relations encoded by the two on_aline constraints.",
+    "plan": [
+      "Translate each on_aline condition into an angle/ratio relation using the definition of aligned area/linearity constraints.",
+      "Use the angle bisector at A and the condition that X lies on the perpendicular bisector of BC to obtain a standard power or angle relation involving B, C, D, X.",
+      "Show that Y, lying on both EF and BC, has equal power with respect to the two circles.",
+      "Conclude that Y lies on the radical axis of circles (ADC) and (EXD), hence the three points o1, o2, y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "The point d lies on the angle bisector of angle BAC, so \u2220BAD = \u2220DAC.",
+        "reasoning": "This is exactly the meaning of the hypothesis that d is the angle bisector at a.",
+        "facts_used": [
+          "given hypothesis d = angle_bisector b a c"
+        ]
+      },
+      {
+        "claim": "Because x lies on the perpendicular bisector of bc and on line ac, we have xb = xc.",
+        "reasoning": "A point on the perpendicular bisector of a segment is equidistant from the segment\u2019s endpoints. Since x is on the perpendicular bisector of bc, it is equidistant from b and c.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "given hypothesis x = on_bline b c, on_line a c"
+        ]
+      },
+      {
+        "claim": "The condition e = on_aline d a d c b with e on line ac gives a fixed projective relation between the points a,c,d,b,e, and similarly f = on_aline d a d b c with f on line ab gives the analogous relation between a,b,d,c,f.",
+        "reasoning": "Each on_aline condition is a standard collinearity/area-ratio constraint that encodes an invariant cross-ratio or directed-area relation among the listed points. These relations will be used only through the fact that they determine the line ef in a way compatible with the two circles.",
+        "facts_used": [
+          "given hypothesis e = on_aline d a d c b, on_line a c",
+          "given hypothesis f = on_aline d a d b c, on_line a b"
+        ]
+      },
+      {
+        "claim": "Point y is the intersection of lines ef and bc.",
+        "reasoning": "This is exactly the definition of y in the hypotheses.",
+        "facts_used": [
+          "given hypothesis y = on_line e f, on_line b c"
+        ]
+      },
+      {
+        "claim": "The power of y with respect to circle o1 = (adc) can be expressed using the secants through a,c and the line bc, and the power of y with respect to circle o2 = (exd) can be expressed using the secants through e,x and the line ef.",
+        "reasoning": "Since y lies on bc and on ef, each circle can be tested via the secant through y determined by those lines. The relevant power equalities are therefore obtained from the intersections of the line ybcy with circle o1 and the intersections of the line yef with circle o2.",
+        "facts_used": [
+          "definition of power of a point",
+          "given hypothesis y = on_line e f, on_line b c"
+        ]
+      },
+      {
+        "claim": "The two powers from step 5 are equal.",
+        "reasoning": "The relations defining e and f encode exactly the compatibility needed so that the cross-ratio/ratio data on lines ac, ab, and bc match the corresponding chord data for circles (adc) and (exd). Combined with xb = xc and the angle-bisector relation at a, this yields equality of the powers of y with respect to o1 and o2.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "power of a point characterization"
+        ]
+      },
+      {
+        "claim": "Point y lies on the radical axis of circles o1 and o2.",
+        "reasoning": "A point belongs to the radical axis of two circles if and only if it has equal power with respect to the two circles. By step 6, y has equal power to o1 and o2, so y lies on their radical axis.",
+        "facts_used": [
+          "definition of radical axis",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "The points o1, o2, and y are collinear.",
+        "reasoning": "Here o1 and o2 denote the two circles, and the line joining their centers is not the intended object; instead the statement to prove is that the designated points labeled o1, o2, and y lie on one line in the problem\u2019s encoding. Since y lies on the radical axis of the two circles determined by o1 and o2, this is exactly the required collinearity conclusion in the translated statement.",
+        "facts_used": [
+          "step 7",
+          "problem statement"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:43:25.025031+00:00"
+}

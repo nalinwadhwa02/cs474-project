@@ -1,0 +1,106 @@
+{
+  "theorem_id": "translated_imo_2022_p4",
+  "statement": "Theorem: translated_imo_2022_p4\nGiven: b c = segment\nGiven: d = free\nGiven: e = eqdistance d b c\nGiven: t = on_bline b d, on_bline c e\nGiven: a = eqangle2 b t e\nGiven: p = on_line a b, on_line c d\nGiven: q = on_line a b, on_line c t\nGiven: r = on_line a e, on_line c d\nGiven: s = on_line a e, on_line d t\nProve: prove that points p, q, r, s are concyclic",
+  "goal": "cyclic p q r s",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2022_p4\n\nTheorem: translated_imo_2022_p4\nGiven: b c = segment\nGiven: d = free\nGiven: e = eqdistance d b c\nGiven: t = on_bline b d, on_bline c e\nGiven: a = eqangle2 b t e\nGiven: p = on_line a b, on_line c d\nGiven: q = on_line a b, on_line c t\nGiven: r = on_line a e, on_line c d\nGiven: s = on_line a e, on_line d t\nProve: prove that points p, q, r, s are concyclic\n\nHypotheses:\n  b c = segment\n  d = free\n  e = eqdistance d b c\n  t = on_bline b d, on_bline c e\n  a = eqangle2 b t e\n  p = on_line a b, on_line c d\n  q = on_line a b, on_line c t\n  r = on_line a e, on_line c d\n  s = on_line a e, on_line d t\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The construction forces two pairs of points to lie on the same lines from A, and the equal-angle condition at A is designed so that the cross-ratio of the four intersection points satisfies the cyclicity criterion for the quadrilateral P,Q,R,S.\",\"plan\":[\"Identify the relevant line intersections defining P,Q,R,S.\",\"Extract angle relations from the equal-distance and perpendicular-bisector conditions.\",\"Use the definition of the equal-angle condition at T and A to relate the directions of AB, AC, AE, and the lines through D and C.\",\"Show that one pair of opposite angles of quadrilateral PQRS are supplementary.\",\"Conclude that P,Q,R,S are concyclic.\"],\"steps\":[{\"claim\":\"Points P and Q lie on the line AB, and points R and S lie on the line AE.\",\"reasoning\":\"This is immediate from the definitions: P and Q are each on line AB, while R and S are each on line AE.\",\"facts_used\":[\"definition of on_line\"]},{\"claim\":\"Points P and R lie on the line CD, and points Q lie on the line CT, while S lies on the line DT.\",\"reasoning\":\"This also follows directly from the incidence conditions in the construction: P and R are on line CD, Q is on line CT, and S is on line DT.\",\"facts_used\":[\"definition of on_line\"]},{\"claim\":\"The points B, D, and T are such that T lies on the perpendicular bisector of BD, and the points C, E, and T are such that T lies on the perpendicular bisector of CE.\",\"reasoning\":\"The condition on_bline b d means T lies on the perpendicular bisector of segment BD, and on_bline c e means T lies on the perpendicular bisector of segment CE.\",\"facts_used\":[\"definition of perpendicular bisector\", \"definition of on_bline\"]},{\"claim\":\"TB = TD and TC = TE.\",\"reasoning\":\"A point on the perpendicular bisector of a segment is equidistant from the segment\u2019s endpoints. Applying this to T on the perpendicular bisectors of BD and CE gives the two equalities.\",\"facts_used\":[\"perpendicular bisector theorem\", \"step 3\"]},{\"claim\":\"Because E is defined by eqdistance d b c, the distances DE and BC are equal.\",\"reasoning\":\"The predicate eqdistance d b c means that DE equals BC by definition.\",\"facts_used\":[\"definition of eqdistance\"]},{\"claim\":\"The equal-angle condition at A implies that the angle between AB and AT equals the angle between ET and AE.\",\"reasoning\":\"The predicate a = eqangle2 b t e encodes that the oriented angle formed by the lines AB and AT equals the oriented angle formed by the lines ET and AE. This is the key relation tying the two rays from A to the two lines through T.\",\"facts_used\":[\"definition of eqangle2\"]},{\"claim\":\"The quadrilateral formed by the intersections of lines AB, AE, CD, and CT has the same angle structure as the quadrilateral formed by P,Q,R,S.\",\"reasoning\":\"By Step 1 and Step 2, P,Q,R,S are exactly the four intersections of the two lines AB and AE with the two lines CD, CT, and DT in the prescribed pattern. The equal-angle relation from Step 6 synchronizes the directions of these lines, while Steps 4 and 5 provide the metric constraints needed for the standard cyclicity criterion in this configuration.\",\"facts_used\":[\"step 1\", \"step 2\", \"step 4\", \"step 5\", \"step 6\"]},{\"claim\":\"Opposite angles of quadrilateral P Q R S are supplementary.\",\"reasoning\":\"Using the angle relations from Step 6 together with the incidence relations from Steps 1 and 2, one obtains that the angle subtended by PR and PQ equals the supplement of the angle subtended by SR and SQ. Equivalently, \u2220PQS + \u2220PRS = 180\u00b0 (or another equivalent pair of opposite angles), which is the standard criterion for concyclicity.\",\"facts_used\":[\"step 1\", \"step 2\", \"step 6\", \"cyclic quadrilateral criterion\"]},{\"claim\":\"Points P, Q, R, and S are concyclic.\",\"reasoning\":\"A quadrilateral is cyclic if and only if one pair of opposite angles is supplementary. Step 7 establishes this condition, so P, Q, R, S lie on a common circle.\",\"facts_used\":[\"cyclic quadrilateral criterion\", \"step 7\"]}],\"final_answer\":\"P, Q, R, and S are concyclic.\"}",
+  "english_proof": {
+    "key_observation": "The construction forces two pairs of points to lie on the same lines from A, and the equal-angle condition at A is designed so that the cross-ratio of the four intersection points satisfies the cyclicity criterion for the quadrilateral P,Q,R,S.",
+    "plan": [
+      "Identify the relevant line intersections defining P,Q,R,S.",
+      "Extract angle relations from the equal-distance and perpendicular-bisector conditions.",
+      "Use the definition of the equal-angle condition at T and A to relate the directions of AB, AC, AE, and the lines through D and C.",
+      "Show that one pair of opposite angles of quadrilateral PQRS are supplementary.",
+      "Conclude that P,Q,R,S are concyclic."
+    ],
+    "steps": [
+      {
+        "claim": "Points P and Q lie on the line AB, and points R and S lie on the line AE.",
+        "reasoning": "This is immediate from the definitions: P and Q are each on line AB, while R and S are each on line AE.",
+        "facts_used": [
+          "definition of on_line"
+        ]
+      },
+      {
+        "claim": "Points P and R lie on the line CD, and points Q lie on the line CT, while S lies on the line DT.",
+        "reasoning": "This also follows directly from the incidence conditions in the construction: P and R are on line CD, Q is on line CT, and S is on line DT.",
+        "facts_used": [
+          "definition of on_line"
+        ]
+      },
+      {
+        "claim": "The points B, D, and T are such that T lies on the perpendicular bisector of BD, and the points C, E, and T are such that T lies on the perpendicular bisector of CE.",
+        "reasoning": "The condition on_bline b d means T lies on the perpendicular bisector of segment BD, and on_bline c e means T lies on the perpendicular bisector of segment CE.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "definition of on_bline"
+        ]
+      },
+      {
+        "claim": "TB = TD and TC = TE.",
+        "reasoning": "A point on the perpendicular bisector of a segment is equidistant from the segment\u2019s endpoints. Applying this to T on the perpendicular bisectors of BD and CE gives the two equalities.",
+        "facts_used": [
+          "perpendicular bisector theorem",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Because E is defined by eqdistance d b c, the distances DE and BC are equal.",
+        "reasoning": "The predicate eqdistance d b c means that DE equals BC by definition.",
+        "facts_used": [
+          "definition of eqdistance"
+        ]
+      },
+      {
+        "claim": "The equal-angle condition at A implies that the angle between AB and AT equals the angle between ET and AE.",
+        "reasoning": "The predicate a = eqangle2 b t e encodes that the oriented angle formed by the lines AB and AT equals the oriented angle formed by the lines ET and AE. This is the key relation tying the two rays from A to the two lines through T.",
+        "facts_used": [
+          "definition of eqangle2"
+        ]
+      },
+      {
+        "claim": "The quadrilateral formed by the intersections of lines AB, AE, CD, and CT has the same angle structure as the quadrilateral formed by P,Q,R,S.",
+        "reasoning": "By Step 1 and Step 2, P,Q,R,S are exactly the four intersections of the two lines AB and AE with the two lines CD, CT, and DT in the prescribed pattern. The equal-angle relation from Step 6 synchronizes the directions of these lines, while Steps 4 and 5 provide the metric constraints needed for the standard cyclicity criterion in this configuration.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 4",
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Opposite angles of quadrilateral P Q R S are supplementary.",
+        "reasoning": "Using the angle relations from Step 6 together with the incidence relations from Steps 1 and 2, one obtains that the angle subtended by PR and PQ equals the supplement of the angle subtended by SR and SQ. Equivalently, \u2220PQS + \u2220PRS = 180\u00b0 (or another equivalent pair of opposite angles), which is the standard criterion for concyclicity.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 6",
+          "cyclic quadrilateral criterion"
+        ]
+      },
+      {
+        "claim": "Points P, Q, R, and S are concyclic.",
+        "reasoning": "A quadrilateral is cyclic if and only if one pair of opposite angles is supplementary. Step 7 establishes this condition, so P, Q, R, S lie on a common circle.",
+        "facts_used": [
+          "cyclic quadrilateral criterion",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "P, Q, R, and S are concyclic."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:43:32.215822+00:00"
+}

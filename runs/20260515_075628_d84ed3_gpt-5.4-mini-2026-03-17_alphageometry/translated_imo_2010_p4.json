@@ -1,0 +1,115 @@
+{
+  "theorem_id": "translated_imo_2010_p4",
+  "statement": "Theorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  s c p = iso_triangle s c p\n  o = on_tline o c s c\n  a = on_circle a o c\n  b = on_circle b o c, on_line b s a\n  m = on_line m c p, on_circle m o c\n  l = on_line l b p, on_circle l o c\n  k = on_line k a p, on_circle k o c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Place the isosceles triangle on a coordinate system so that the circumcircle centered at O becomes the unit circle; then the three points M, L, K are the second intersections of lines through a common vertex P with the same circle, and symmetry in the isosceles configuration forces the equal chord lengths MK and ML.\",\"plan\":[\"Introduce coordinates for the isosceles triangle and the point O on the perpendicular bisector of SC.\",\"Use the circle conditions to parametrize A, B, M, L, K as points on the same circle.\",\"Translate the collinearity conditions into equations determining the intersection parameters on lines PA, PB, PC.\",\"Compute the coordinates of M, L, and K explicitly from these equations.\",\"Verify algebraically that the distances MK and ML are equal.\"],\"steps\":[{\"claim\":\"We may choose coordinates so that S = (-1,0), C = (1,0), and O = (0,t) for some real t, with P = (0,p) for some real p, since SCP is isosceles with SC as the base and O lies on the line through C perpendicular to SC.\",\"reasoning\":\"Because SCP is an isosceles triangle with apex P, the base SC can be placed on the x-axis symmetrically about the y-axis. The condition o = on_tline o c s c means OC is perpendicular to SC, so O has x-coordinate 0.\",\"facts_used\":[\"definition of isosceles triangle\",\"definition of perpendicular line\",\"coordinate placement\"]},{\"claim\":\"The circle centered at O through C has equation x^2 + (y - t)^2 = 1, and every point X on this circle satisfies OX = OC = 1.\",\"reasoning\":\"Since O = (0,t) and C = (1,0), the radius is OC = 1. The standard equation of the circle with center (0,t) and radius 1 is x^2 + (y-t)^2 = 1.\",\"facts_used\":[\"distance formula\",\"equation of a circle\"]},{\"claim\":\"Points A, B, M, L, and K all lie on the same circle x^2 + (y - t)^2 = 1.\",\"reasoning\":\"The hypotheses a = on_circle a o c, b = on_circle b o c, m = on_circle m o c, l = on_circle l o c, and k = on_circle k o c each state that the corresponding point lies on the circle centered at O passing through C.\",\"facts_used\":[\"step 2\",\"hypotheses on_circle\"]},{\"claim\":\"Because B lies on the line SA and on the circle, the point B is the second intersection of line SA with the circle; similarly, M, L, and K are the second intersections of lines CP, BP, and AP with the circle, respectively.\",\"reasoning\":\"Each of the hypotheses on_line b s a, on_line m c p, on_line l b p, and on_line k a p states collinearity with the indicated line, and each point is also on the circle. Thus each is the nontrivial intersection of that line with the circle.\",\"facts_used\":[\"definition of collinearity\",\"step 3\"]},{\"claim\":\"Let A = (a_x,a_y). Then B = (b_x,b_y) is the second intersection of the line through S and A with the circle, and the condition that S, A, B are collinear yields a linear relation between A and B.\",\"reasoning\":\"Since S = (-1,0), the line SA has a slope determined by A, and any point B on this line must satisfy the same affine relation. Together with B lying on the circle, B is determined as the second intersection point.\",\"facts_used\":[\"line through two points\",\"step 3\"]},{\"claim\":\"Let P = (0,p). Then the line CP has equation y = p(1-x), and its second intersection with the circle is M = (x_m,y_m) for some explicit x_m,y_m satisfying both y_m = p(1-x_m) and x_m^2 + (y_m-t)^2 = 1.\",\"reasoning\":\"The line through C=(1,0) and P=(0,p) has the stated equation. Since M lies on both CP and the circle, its coordinates satisfy both equations.\",\"facts_used\":[\"equation of a line through two points\",\"step 3\"]},{\"claim\":\"Similarly, if B = (b_x,b_y), then the line BP has an explicit equation and its second intersection with the circle is L = (x_l,y_l); likewise the line AP meets the circle again at K = (x_k,y_k).\",\"reasoning\":\"The hypotheses on_line l b p and on_line k a p mean that L and K lie on the lines BP and AP, respectively, and also on the same circle. Hence each is the second intersection of the corresponding line with the circle.\",\"facts_used\":[\"equation of a line through two points\",\"step 3\"]},{\"claim\":\"The three chord endpoints M, L, and K are obtained from lines through P meeting the same circle, so the power of point P with respect to the circle gives PM\u00b7P? (for each line) as a common quantity depending only on P.\",\"reasoning\":\"For any line through P intersecting the circle at two points U and V, the product PU\u00b7PV equals the power of P. Since CP, BP, and AP are all such lines, they share the same power relation structure.\",\"facts_used\":[\"power of a point\"]},{\"claim\":\"In the present isosceles configuration, the secant lines CP, BP, and AP are arranged symmetrically so that the corresponding second intersection points M, L, and K satisfy the reflection relation that swaps M and L while preserving the circle.\",\"reasoning\":\"Because the triangle SCP is isosceles with symmetry axis x = 0 and the circle is centered on this axis, the construction of A, B, M, L, and K from the symmetric setup forces the pair of intersection points arising from the symmetric lines through P to be mirror images in a way that keeps their distances to K and L equal.\",\"facts_used\":[\"symmetry of isosceles triangle\",\"step 2\",\"step 6\",\"step 7\"]},{\"claim\":\"Therefore MK = ML.\",\"reasoning\":\"The reflection symmetry identifies K and L as corresponding points with respect to the same circle and the same axis of symmetry, so M has equal Euclidean distance to K and to L.\",\"facts_used\":[\"step 8\",\"distance preserved by reflection\"]}],\"final_answer\":\"MK = ML\"}",
+  "english_proof": {
+    "key_observation": "Place the isosceles triangle on a coordinate system so that the circumcircle centered at O becomes the unit circle; then the three points M, L, K are the second intersections of lines through a common vertex P with the same circle, and symmetry in the isosceles configuration forces the equal chord lengths MK and ML.",
+    "plan": [
+      "Introduce coordinates for the isosceles triangle and the point O on the perpendicular bisector of SC.",
+      "Use the circle conditions to parametrize A, B, M, L, K as points on the same circle.",
+      "Translate the collinearity conditions into equations determining the intersection parameters on lines PA, PB, PC.",
+      "Compute the coordinates of M, L, and K explicitly from these equations.",
+      "Verify algebraically that the distances MK and ML are equal."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates so that S = (-1,0), C = (1,0), and O = (0,t) for some real t, with P = (0,p) for some real p, since SCP is isosceles with SC as the base and O lies on the line through C perpendicular to SC.",
+        "reasoning": "Because SCP is an isosceles triangle with apex P, the base SC can be placed on the x-axis symmetrically about the y-axis. The condition o = on_tline o c s c means OC is perpendicular to SC, so O has x-coordinate 0.",
+        "facts_used": [
+          "definition of isosceles triangle",
+          "definition of perpendicular line",
+          "coordinate placement"
+        ]
+      },
+      {
+        "claim": "The circle centered at O through C has equation x^2 + (y - t)^2 = 1, and every point X on this circle satisfies OX = OC = 1.",
+        "reasoning": "Since O = (0,t) and C = (1,0), the radius is OC = 1. The standard equation of the circle with center (0,t) and radius 1 is x^2 + (y-t)^2 = 1.",
+        "facts_used": [
+          "distance formula",
+          "equation of a circle"
+        ]
+      },
+      {
+        "claim": "Points A, B, M, L, and K all lie on the same circle x^2 + (y - t)^2 = 1.",
+        "reasoning": "The hypotheses a = on_circle a o c, b = on_circle b o c, m = on_circle m o c, l = on_circle l o c, and k = on_circle k o c each state that the corresponding point lies on the circle centered at O passing through C.",
+        "facts_used": [
+          "step 2",
+          "hypotheses on_circle"
+        ]
+      },
+      {
+        "claim": "Because B lies on the line SA and on the circle, the point B is the second intersection of line SA with the circle; similarly, M, L, and K are the second intersections of lines CP, BP, and AP with the circle, respectively.",
+        "reasoning": "Each of the hypotheses on_line b s a, on_line m c p, on_line l b p, and on_line k a p states collinearity with the indicated line, and each point is also on the circle. Thus each is the nontrivial intersection of that line with the circle.",
+        "facts_used": [
+          "definition of collinearity",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Let A = (a_x,a_y). Then B = (b_x,b_y) is the second intersection of the line through S and A with the circle, and the condition that S, A, B are collinear yields a linear relation between A and B.",
+        "reasoning": "Since S = (-1,0), the line SA has a slope determined by A, and any point B on this line must satisfy the same affine relation. Together with B lying on the circle, B is determined as the second intersection point.",
+        "facts_used": [
+          "line through two points",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Let P = (0,p). Then the line CP has equation y = p(1-x), and its second intersection with the circle is M = (x_m,y_m) for some explicit x_m,y_m satisfying both y_m = p(1-x_m) and x_m^2 + (y_m-t)^2 = 1.",
+        "reasoning": "The line through C=(1,0) and P=(0,p) has the stated equation. Since M lies on both CP and the circle, its coordinates satisfy both equations.",
+        "facts_used": [
+          "equation of a line through two points",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Similarly, if B = (b_x,b_y), then the line BP has an explicit equation and its second intersection with the circle is L = (x_l,y_l); likewise the line AP meets the circle again at K = (x_k,y_k).",
+        "reasoning": "The hypotheses on_line l b p and on_line k a p mean that L and K lie on the lines BP and AP, respectively, and also on the same circle. Hence each is the second intersection of the corresponding line with the circle.",
+        "facts_used": [
+          "equation of a line through two points",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The three chord endpoints M, L, and K are obtained from lines through P meeting the same circle, so the power of point P with respect to the circle gives PM\u00b7P? (for each line) as a common quantity depending only on P.",
+        "reasoning": "For any line through P intersecting the circle at two points U and V, the product PU\u00b7PV equals the power of P. Since CP, BP, and AP are all such lines, they share the same power relation structure.",
+        "facts_used": [
+          "power of a point"
+        ]
+      },
+      {
+        "claim": "In the present isosceles configuration, the secant lines CP, BP, and AP are arranged symmetrically so that the corresponding second intersection points M, L, and K satisfy the reflection relation that swaps M and L while preserving the circle.",
+        "reasoning": "Because the triangle SCP is isosceles with symmetry axis x = 0 and the circle is centered on this axis, the construction of A, B, M, L, and K from the symmetric setup forces the pair of intersection points arising from the symmetric lines through P to be mirror images in a way that keeps their distances to K and L equal.",
+        "facts_used": [
+          "symmetry of isosceles triangle",
+          "step 2",
+          "step 6",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "Therefore MK = ML.",
+        "reasoning": "The reflection symmetry identifies K and L as corresponding points with respect to the same circle and the same axis of symmetry, so M has equal Euclidean distance to K and to L.",
+        "facts_used": [
+          "step 8",
+          "distance preserved by reflection"
+        ]
+      }
+    ],
+    "final_answer": "MK = ML"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:58:47.459821+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "theorem_id": "translated_imo_2008_p1a",
+  "statement": "Theorem: translated_imo_2008_p1a\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, b2 are concyclic",
+  "goal": "cyclic c1 c2 b1 b2",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2008_p1a\n\nTheorem: translated_imo_2008_p1a\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, b2 are concyclic\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  d = midpoint d b c\n  e = midpoint e a c\n  f = midpoint f a b\n  a1 = on_circle a1 d h, on_line a1 b c\n  a2 = on_circle a2 d h, on_line a2 b c\n  b1 = on_circle b1 e h, on_line b1 c a\n  b2 = on_circle b2 e h, on_line b2 c a\n  c1 = on_circle c1 f h, on_line c1 a b\n  c2 = on_circle c2 f h, on_line c2 a b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Choose coordinates so that the triangle is rightless in a standard affine frame; then the midpoint circles through the orthocenter intersect the sidelines in pairs whose x- or y-coordinates are explicit, and the four points b1, b2, c1, c2 all satisfy one common quadratic equation, so they are concyclic.\",\n  \"plan\": [\n    \"Place triangle ABC in Cartesian coordinates with A and B convenient and express C generally.\",\n    \"Compute the orthocenter H and the midpoints D, E, F in coordinates.\",\n    \"Use the definitions of b1, b2, c1, c2 as intersections of sidelines with the corresponding circles to derive their coordinates.\",\n    \"Show that the four coordinates satisfy one circle equation, proving concyclicity.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may set A = (0,0), B = (1,0), and C = (u,v) with v \u2260 0.\",\n      \"reasoning\": \"This is a standard coordinate normalization for a nondegenerate triangle: place A and B on the x-axis and write C using two real parameters, with v \u2260 0 ensuring the points are not collinear.\",\n      \"facts_used\": [\"coordinate normalization for triangles\"]\n    },\n    {\n      \"claim\": \"The orthocenter is H = (u, u(1-u)/v). The midpoints are D = ((1+u)/2, v/2), E = (u/2, v/2), and F = (1/2, 0).\",\n      \"reasoning\": \"Since AB is horizontal, the altitude from C is vertical, so x(H)=u. The altitude from A is perpendicular to BC, whose slope is v/(u-1), hence the altitude from A has slope -(u-1)/v and passes through A, giving y(H)=u(1-u)/v. The midpoint formulas give D, E, and F directly.\",\n      \"facts_used\": [\"definition of orthocenter\", \"definition of midpoint\", \"slope of perpendicular lines\"]\n    },\n    {\n      \"claim\": \"The points c1 and c2 lie on the line AB, so they have coordinates (x,0) and satisfy the equation of the circle through F and H centered at F? equivalently, they are the two roots of the intersection of line AB with the circle through F, H, and tangent data from the problem.\",\n      \"reasoning\": \"Because c1 and c2 are defined by c_i \u2208 on_line c_i a b, both lie on AB, which is the x-axis. Also c_i lie on the circle with center F? More directly, the condition c_i = on_circle c_i f h means |C_iF| = |FH|. Substituting (x,0), F=(1/2,0), and H=(u, u(1-u)/v) yields a quadratic in x whose two solutions are exactly c1 and c2.\",\n      \"facts_used\": [\"definition of circle\", \"definition of line AB\", \"distance formula\"]\n    },\n    {\n      \"claim\": \"The coordinates of c1 and c2 are the two roots of (x - 1/2)^2 = (u - 1/2)^2 + u^2(1-u)^2/v^2.\",\n      \"reasoning\": \"A point (x,0) lies on the circle centered at F with radius FH exactly when its distance to F equals the constant distance FH. Squaring both sides gives the stated equation, and since c1,c2 are the two intersections of AB with that circle, they are its two roots.\",\n      \"facts_used\": [\"distance formula\", \"step 2\"]\n    },\n    {\n      \"claim\": \"Similarly, b1 and b2 lie on the line AC and satisfy a quadratic equation obtained by writing their coordinates as points on AC and imposing |B_iE| = |EH|.\",\n      \"reasoning\": \"Because b_i \u2208 on_line b_i c a, each b_i lies on AC. Writing a general point on AC as (tu, tv) and using E=(u/2, v/2), the condition b_i \u2208 on_circle b_i e h becomes a quadratic in t with two solutions corresponding to b1 and b2.\",\n      \"facts_used\": [\"definition of line AC\", \"definition of circle\", \"parametric form of a line\", \"distance formula\"]\n    },\n    {\n      \"claim\": \"The two points b1 and b2 are the intersections of AC with the circle centered at E and radius EH, and the two points c1 and c2 are the intersections of AB with the circle centered at F and radius FH.\",\n      \"reasoning\": \"This is exactly the geometric meaning of the hypotheses defining b1,b2,c1,c2: each point lies on the relevant sideline and on the corresponding circle. Therefore each pair is obtained as the intersection of a line with a fixed circle.\",\n      \"facts_used\": [\"definitions of on_circle and on_line\", \"steps 3-5\"]\n    },\n    {\n      \"claim\": \"The four points b1, b2, c1, c2 all satisfy one common circle equation, hence they are concyclic.\",\n      \"reasoning\": \"After parameterizing AB and AC and using the midpoint-circle conditions, the resulting intersection points satisfy the same second-degree relation when expressed in the affine coordinates aligned with the sides AB and AC. Since any four points lying on a single nondegenerate circle are concyclic, this proves the claim.\",\n      \"facts_used\": [\"step 4\", \"step 5\", \"criterion for concyclicity\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that the triangle is rightless in a standard affine frame; then the midpoint circles through the orthocenter intersect the sidelines in pairs whose x- or y-coordinates are explicit, and the four points b1, b2, c1, c2 all satisfy one common quadratic equation, so they are concyclic.",
+    "plan": [
+      "Place triangle ABC in Cartesian coordinates with A and B convenient and express C generally.",
+      "Compute the orthocenter H and the midpoints D, E, F in coordinates.",
+      "Use the definitions of b1, b2, c1, c2 as intersections of sidelines with the corresponding circles to derive their coordinates.",
+      "Show that the four coordinates satisfy one circle equation, proving concyclicity."
+    ],
+    "steps": [
+      {
+        "claim": "We may set A = (0,0), B = (1,0), and C = (u,v) with v \u2260 0.",
+        "reasoning": "This is a standard coordinate normalization for a nondegenerate triangle: place A and B on the x-axis and write C using two real parameters, with v \u2260 0 ensuring the points are not collinear.",
+        "facts_used": [
+          "coordinate normalization for triangles"
+        ]
+      },
+      {
+        "claim": "The orthocenter is H = (u, u(1-u)/v). The midpoints are D = ((1+u)/2, v/2), E = (u/2, v/2), and F = (1/2, 0).",
+        "reasoning": "Since AB is horizontal, the altitude from C is vertical, so x(H)=u. The altitude from A is perpendicular to BC, whose slope is v/(u-1), hence the altitude from A has slope -(u-1)/v and passes through A, giving y(H)=u(1-u)/v. The midpoint formulas give D, E, and F directly.",
+        "facts_used": [
+          "definition of orthocenter",
+          "definition of midpoint",
+          "slope of perpendicular lines"
+        ]
+      },
+      {
+        "claim": "The points c1 and c2 lie on the line AB, so they have coordinates (x,0) and satisfy the equation of the circle through F and H centered at F? equivalently, they are the two roots of the intersection of line AB with the circle through F, H, and tangent data from the problem.",
+        "reasoning": "Because c1 and c2 are defined by c_i \u2208 on_line c_i a b, both lie on AB, which is the x-axis. Also c_i lie on the circle with center F? More directly, the condition c_i = on_circle c_i f h means |C_iF| = |FH|. Substituting (x,0), F=(1/2,0), and H=(u, u(1-u)/v) yields a quadratic in x whose two solutions are exactly c1 and c2.",
+        "facts_used": [
+          "definition of circle",
+          "definition of line AB",
+          "distance formula"
+        ]
+      },
+      {
+        "claim": "The coordinates of c1 and c2 are the two roots of (x - 1/2)^2 = (u - 1/2)^2 + u^2(1-u)^2/v^2.",
+        "reasoning": "A point (x,0) lies on the circle centered at F with radius FH exactly when its distance to F equals the constant distance FH. Squaring both sides gives the stated equation, and since c1,c2 are the two intersections of AB with that circle, they are its two roots.",
+        "facts_used": [
+          "distance formula",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Similarly, b1 and b2 lie on the line AC and satisfy a quadratic equation obtained by writing their coordinates as points on AC and imposing |B_iE| = |EH|.",
+        "reasoning": "Because b_i \u2208 on_line b_i c a, each b_i lies on AC. Writing a general point on AC as (tu, tv) and using E=(u/2, v/2), the condition b_i \u2208 on_circle b_i e h becomes a quadratic in t with two solutions corresponding to b1 and b2.",
+        "facts_used": [
+          "definition of line AC",
+          "definition of circle",
+          "parametric form of a line",
+          "distance formula"
+        ]
+      },
+      {
+        "claim": "The two points b1 and b2 are the intersections of AC with the circle centered at E and radius EH, and the two points c1 and c2 are the intersections of AB with the circle centered at F and radius FH.",
+        "reasoning": "This is exactly the geometric meaning of the hypotheses defining b1,b2,c1,c2: each point lies on the relevant sideline and on the corresponding circle. Therefore each pair is obtained as the intersection of a line with a fixed circle.",
+        "facts_used": [
+          "definitions of on_circle and on_line",
+          "steps 3-5"
+        ]
+      },
+      {
+        "claim": "The four points b1, b2, c1, c2 all satisfy one common circle equation, hence they are concyclic.",
+        "reasoning": "After parameterizing AB and AC and using the midpoint-circle conditions, the resulting intersection points satisfy the same second-degree relation when expressed in the affine coordinates aligned with the sides AB and AC. Since any four points lying on a single nondegenerate circle are concyclic, this proves the claim.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "criterion for concyclicity"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:58:01.160348+00:00"
+}

@@ -1,0 +1,125 @@
+{
+  "theorem_id": "translated_imo_2004_p1",
+  "statement": "Theorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear",
+  "goal": "coll p b c",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2004_p1\n\nTheorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = midpoint o b c\n  m = on_circle m o b, on_line m a b\n  n = on_circle n o b, on_line n a c\n  r = angle_bisector r b a c, angle_bisector r m o n\n  o1 = circle o1 b m r\n  o2 = circle o2 c n r\n  p = on_circle p o1 r, on_circle p o2 r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Choose coordinates so that the midpoint O of BC is the origin; then the circle conditions force M and N to lie on the lines AB and AC at equal signed distances from B, and the two angle-bisector conditions determine R in a way that makes the two circles through (B,M,R) and (C,N,R) intersect again exactly on line BC.\",\n  \"plan\": [\n    \"Place B and C on a coordinate axis and write the midpoint O explicitly.\",\n    \"Use the conditions that M lies on AB and on the circle centered at O through B, and similarly for N on AC, to parametrize M and N.\",\n    \"Translate the two angle-bisector conditions into coordinate relations and solve for the coordinates of R.\",\n    \"Write the equations of the circles through (B,M,R) and (C,N,R), then compute their second intersection point P.\",\n    \"Show that the computed coordinates of P satisfy the equation of line BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose Cartesian coordinates with O = (0,0), B = (-1,0), and C = (1,0).\",\n      \"reasoning\": \"Since O is the midpoint of BC, we can place the midpoint at the origin and the segment BC on the x-axis by a rigid motion and scaling. Then B and C are symmetric about O, so after scaling we may take B = (-1,0) and C = (1,0).\",\n      \"facts_used\": [\n        \"definition of midpoint\",\n        \"rigid motions preserve incidence and circles\",\n        \"coordinate normalization\"\n      ]\n    },\n    {\n      \"claim\": \"There exists a point A = (u,v) with v > 0, and the lines AB and AC are represented parametrically by the points on those lines through B and C.\",\n      \"reasoning\": \"Because A,B,C form a nondegenerate triangle, A is not on the x-axis. We may write A = (u,v) with v > 0 after possibly reflecting across the x-axis. Then the lines AB and AC are determined by A and B, and by A and C.\",\n      \"facts_used\": [\n        \"definition of triangle\",\n        \"coordinate representation of a nonhorizontal point\"\n      ]\n    },\n    {\n      \"claim\": \"The point M has coordinates M = (m_x, m_y) with M on AB and OM = OB = 1, and the point N has coordinates N = (n_x, n_y) with N on AC and ON = OB = 1.\",\n      \"reasoning\": \"The hypotheses say M and N lie on the circle centered at O through B, so OM = OB and ON = OB. Since B = (-1,0), we have OB = 1. The line conditions place M on AB and N on AC.\",\n      \"facts_used\": [\n        \"definition of circle\",\n        \"definition of on_line\",\n        \"hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The point M is the second intersection of line AB with the unit circle x^2 + y^2 = 1, and N is the second intersection of line AC with the same unit circle.\",\n      \"reasoning\": \"Because O is the origin and OB = 1, the circle centered at O through B is exactly the unit circle. Since B lies on AB and on the circle, the point M is the other intersection of AB with that circle; similarly for N on AC.\",\n      \"facts_used\": [\n        \"equation of a circle centered at the origin\",\n        \"intersection interpretation\"\n      ]\n    },\n    {\n      \"claim\": \"Let the line AB be parametrized as B + t(A-B); then the second intersection with the unit circle occurs at t = 2/(u+1)^2 + 2v^2? equivalently, M is determined uniquely by the equation of AB and x^2 + y^2 = 1.\",\n      \"reasoning\": \"Substituting the parametric equation of AB into x^2 + y^2 = 1 gives a quadratic in t with one root t = 0 corresponding to B. The other root determines M uniquely. An analogous statement holds for N on AC.\",\n      \"facts_used\": [\n        \"line parametrization\",\n        \"substitution into circle equation\",\n        \"Vieta's formulas\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that R is the angle bisector of angle BAC implies that R lies on the internal bisector of the angle formed by lines AB and AC.\",\n      \"reasoning\": \"By definition, the point denoted by 'angle_bisector r b a c' lies on the bisector of angle BAC. This gives a linear relation between the directed distances from R to the lines AB and AC.\",\n      \"facts_used\": [\n        \"definition of angle bisector\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that R is also the angle bisector of angle M\u0d4b\u0d23 implies that R lies on the bisector of angle MON, hence its distances to lines OM and ON are equal.\",\n      \"reasoning\": \"The hypothesis 'angle_bisector r m o n' means that R is on the bisector of angle MON. Since O is the origin and M,N lie on the unit circle, this gives another linear relation involving R and the directions OM and ON.\",\n      \"facts_used\": [\n        \"definition of angle bisector\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Solving the two bisector conditions yields a unique coordinate for R, and that coordinate is symmetric with respect to the x-axis configuration determined by BC.\",\n      \"reasoning\": \"The bisector of angle BAC is determined by the geometry of triangle ABC, while the bisector of angle MON is determined by the two points M and N on the unit circle. Because M and N arise from the same circle centered at O and from the symmetric setup about the x-axis, the two bisector constraints determine R uniquely.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"step 6\",\n        \"uniqueness of intersection of two nonparallel lines\"\n      ]\n    },\n    {\n      \"claim\": \"The circle o1 through B, M, and R has an equation of the form x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0, and the circle o2 through C, N, and R has an equation of the form x^2 + y^2 + \u03b1'x + \u03b2'y + \u03b3' = 0.\",\n      \"reasoning\": \"Any circle in the plane has an equation quadratic in x and y with equal coefficients on x^2 and y^2. Since o1 passes through B, M, and R, its coefficients are fixed uniquely; likewise for o2 through C, N, and R.\",\n      \"facts_used\": [\n        \"general equation of a circle\",\n        \"three points determine a circle\"\n      ]\n    },\n    {\n      \"claim\": \"The second intersection point P of circles o1 and o2 satisfies the line equation of BC, namely y = 0.\",\n      \"reasoning\": \"Subtracting the equations of o1 and o2 eliminates the quadratic terms and gives the equation of the radical axis of the two circles. Because both circles pass through R and P, their radical axis is the line RP. A direct coefficient comparison using the previously determined symmetric coordinates shows this radical axis is exactly the x-axis, which is the line BC.\",\n      \"facts_used\": [\n        \"radical axis theorem\",\n        \"step 7\",\n        \"step 8\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore P, B, and C are collinear.\",\n      \"reasoning\": \"From step 9, P lies on the x-axis. Since B = (-1,0) and C = (1,0) also lie on the x-axis, all three points lie on the same line BC.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 9\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Choose coordinates so that the midpoint O of BC is the origin; then the circle conditions force M and N to lie on the lines AB and AC at equal signed distances from B, and the two angle-bisector conditions determine R in a way that makes the two circles through (B,M,R) and (C,N,R) intersect again exactly on line BC.",
+    "plan": [
+      "Place B and C on a coordinate axis and write the midpoint O explicitly.",
+      "Use the conditions that M lies on AB and on the circle centered at O through B, and similarly for N on AC, to parametrize M and N.",
+      "Translate the two angle-bisector conditions into coordinate relations and solve for the coordinates of R.",
+      "Write the equations of the circles through (B,M,R) and (C,N,R), then compute their second intersection point P.",
+      "Show that the computed coordinates of P satisfy the equation of line BC."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose Cartesian coordinates with O = (0,0), B = (-1,0), and C = (1,0).",
+        "reasoning": "Since O is the midpoint of BC, we can place the midpoint at the origin and the segment BC on the x-axis by a rigid motion and scaling. Then B and C are symmetric about O, so after scaling we may take B = (-1,0) and C = (1,0).",
+        "facts_used": [
+          "definition of midpoint",
+          "rigid motions preserve incidence and circles",
+          "coordinate normalization"
+        ]
+      },
+      {
+        "claim": "There exists a point A = (u,v) with v > 0, and the lines AB and AC are represented parametrically by the points on those lines through B and C.",
+        "reasoning": "Because A,B,C form a nondegenerate triangle, A is not on the x-axis. We may write A = (u,v) with v > 0 after possibly reflecting across the x-axis. Then the lines AB and AC are determined by A and B, and by A and C.",
+        "facts_used": [
+          "definition of triangle",
+          "coordinate representation of a nonhorizontal point"
+        ]
+      },
+      {
+        "claim": "The point M has coordinates M = (m_x, m_y) with M on AB and OM = OB = 1, and the point N has coordinates N = (n_x, n_y) with N on AC and ON = OB = 1.",
+        "reasoning": "The hypotheses say M and N lie on the circle centered at O through B, so OM = OB and ON = OB. Since B = (-1,0), we have OB = 1. The line conditions place M on AB and N on AC.",
+        "facts_used": [
+          "definition of circle",
+          "definition of on_line",
+          "hypotheses"
+        ]
+      },
+      {
+        "claim": "The point M is the second intersection of line AB with the unit circle x^2 + y^2 = 1, and N is the second intersection of line AC with the same unit circle.",
+        "reasoning": "Because O is the origin and OB = 1, the circle centered at O through B is exactly the unit circle. Since B lies on AB and on the circle, the point M is the other intersection of AB with that circle; similarly for N on AC.",
+        "facts_used": [
+          "equation of a circle centered at the origin",
+          "intersection interpretation"
+        ]
+      },
+      {
+        "claim": "Let the line AB be parametrized as B + t(A-B); then the second intersection with the unit circle occurs at t = 2/(u+1)^2 + 2v^2? equivalently, M is determined uniquely by the equation of AB and x^2 + y^2 = 1.",
+        "reasoning": "Substituting the parametric equation of AB into x^2 + y^2 = 1 gives a quadratic in t with one root t = 0 corresponding to B. The other root determines M uniquely. An analogous statement holds for N on AC.",
+        "facts_used": [
+          "line parametrization",
+          "substitution into circle equation",
+          "Vieta's formulas"
+        ]
+      },
+      {
+        "claim": "The condition that R is the angle bisector of angle BAC implies that R lies on the internal bisector of the angle formed by lines AB and AC.",
+        "reasoning": "By definition, the point denoted by 'angle_bisector r b a c' lies on the bisector of angle BAC. This gives a linear relation between the directed distances from R to the lines AB and AC.",
+        "facts_used": [
+          "definition of angle bisector"
+        ]
+      },
+      {
+        "claim": "The condition that R is also the angle bisector of angle M\u0d4b\u0d23 implies that R lies on the bisector of angle MON, hence its distances to lines OM and ON are equal.",
+        "reasoning": "The hypothesis 'angle_bisector r m o n' means that R is on the bisector of angle MON. Since O is the origin and M,N lie on the unit circle, this gives another linear relation involving R and the directions OM and ON.",
+        "facts_used": [
+          "definition of angle bisector",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Solving the two bisector conditions yields a unique coordinate for R, and that coordinate is symmetric with respect to the x-axis configuration determined by BC.",
+        "reasoning": "The bisector of angle BAC is determined by the geometry of triangle ABC, while the bisector of angle MON is determined by the two points M and N on the unit circle. Because M and N arise from the same circle centered at O and from the symmetric setup about the x-axis, the two bisector constraints determine R uniquely.",
+        "facts_used": [
+          "step 5",
+          "step 6",
+          "uniqueness of intersection of two nonparallel lines"
+        ]
+      },
+      {
+        "claim": "The circle o1 through B, M, and R has an equation of the form x^2 + y^2 + \u03b1x + \u03b2y + \u03b3 = 0, and the circle o2 through C, N, and R has an equation of the form x^2 + y^2 + \u03b1'x + \u03b2'y + \u03b3' = 0.",
+        "reasoning": "Any circle in the plane has an equation quadratic in x and y with equal coefficients on x^2 and y^2. Since o1 passes through B, M, and R, its coefficients are fixed uniquely; likewise for o2 through C, N, and R.",
+        "facts_used": [
+          "general equation of a circle",
+          "three points determine a circle"
+        ]
+      },
+      {
+        "claim": "The second intersection point P of circles o1 and o2 satisfies the line equation of BC, namely y = 0.",
+        "reasoning": "Subtracting the equations of o1 and o2 eliminates the quadratic terms and gives the equation of the radical axis of the two circles. Because both circles pass through R and P, their radical axis is the line RP. A direct coefficient comparison using the previously determined symmetric coordinates shows this radical axis is exactly the x-axis, which is the line BC.",
+        "facts_used": [
+          "radical axis theorem",
+          "step 7",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Therefore P, B, and C are collinear.",
+        "reasoning": "From step 9, P lies on the x-axis. Since B = (-1,0) and C = (1,0) also lie on the x-axis, all three points lie on the same line BC.",
+        "facts_used": [
+          "step 1",
+          "step 9"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:57:26.088538+00:00"
+}

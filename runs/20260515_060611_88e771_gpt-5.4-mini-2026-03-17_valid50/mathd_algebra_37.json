@@ -1,0 +1,78 @@
+{
+  "theorem_id": "mathd_algebra_37",
+  "statement": "Theorem: mathd_algebra_37\nVariables: x, y (real)\nGiven: h\u2080 : x + y = 7\nGiven: h\u2081 : 3 * x + y = 45\nProve: x^2 - y^2 = 217",
+  "goal": "x^2 - y^2 = 217",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_37\n\nTheorem: mathd_algebra_37\nVariables: x, y (real)\nGiven: h\u2080 : x + y = 7\nGiven: h\u2081 : 3 * x + y = 45\nProve: x^2 - y^2 = 217\n\nHypotheses:\n  h\u2080 : x + y = 7\n  h\u2081 : 3 * x + y = 45\n\nVariables: x (real), y (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Subtracting the two linear equations determines x, and then y follows immediately; the target expression factors as (x - y)(x + y).\",\n  \"plan\": [\n    \"Use the given equations to solve for x by subtraction.\",\n    \"Substitute x into x + y = 7 to find y.\",\n    \"Compute x - y and use the factorization x^2 - y^2 = (x - y)(x + y).\",\n    \"Evaluate the product using the known values.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x = 19.\",\n      \"reasoning\": \"Subtract h\u2080 from h\u2081: (3x + y) - (x + y) = 45 - 7, so 2x = 38. Dividing by 2 gives x = 19.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"subtraction of equalities\", \"division by nonzero constant\"]\n    },\n    {\n      \"claim\": \"y = -12.\",\n      \"reasoning\": \"From h\u2080, x + y = 7. Substituting x = 19 gives 19 + y = 7, hence y = -12.\",\n      \"facts_used\": [\"h\u2080\", \"step 1\", \"substitution into an equation\", \"subtraction of equalities\"]\n    },\n    {\n      \"claim\": \"x - y = 31.\",\n      \"reasoning\": \"Using the values from steps 1 and 2, x - y = 19 - (-12) = 31.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"arithmetic with integers/reals\"]\n    },\n    {\n      \"claim\": \"x^2 - y^2 = (x - y)(x + y).\",\n      \"reasoning\": \"This is the standard difference-of-squares identity.\",\n      \"facts_used\": [\"difference of squares identity\"]\n    },\n    {\n      \"claim\": \"x^2 - y^2 = 217.\",\n      \"reasoning\": \"By step 4, x^2 - y^2 = (x - y)(x + y). Using step 3 and h\u2080, this equals 31 \u00b7 7 = 217.\",\n      \"facts_used\": [\"step 3\", \"step 4\", \"h\u2080\", \"multiplication\"]\n    }\n  ],\n  \"final_answer\": \"217\"\n}",
+  "english_proof": {
+    "key_observation": "Subtracting the two linear equations determines x, and then y follows immediately; the target expression factors as (x - y)(x + y).",
+    "plan": [
+      "Use the given equations to solve for x by subtraction.",
+      "Substitute x into x + y = 7 to find y.",
+      "Compute x - y and use the factorization x^2 - y^2 = (x - y)(x + y).",
+      "Evaluate the product using the known values."
+    ],
+    "steps": [
+      {
+        "claim": "x = 19.",
+        "reasoning": "Subtract h\u2080 from h\u2081: (3x + y) - (x + y) = 45 - 7, so 2x = 38. Dividing by 2 gives x = 19.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "subtraction of equalities",
+          "division by nonzero constant"
+        ]
+      },
+      {
+        "claim": "y = -12.",
+        "reasoning": "From h\u2080, x + y = 7. Substituting x = 19 gives 19 + y = 7, hence y = -12.",
+        "facts_used": [
+          "h\u2080",
+          "step 1",
+          "substitution into an equation",
+          "subtraction of equalities"
+        ]
+      },
+      {
+        "claim": "x - y = 31.",
+        "reasoning": "Using the values from steps 1 and 2, x - y = 19 - (-12) = 31.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "arithmetic with integers/reals"
+        ]
+      },
+      {
+        "claim": "x^2 - y^2 = (x - y)(x + y).",
+        "reasoning": "This is the standard difference-of-squares identity.",
+        "facts_used": [
+          "difference of squares identity"
+        ]
+      },
+      {
+        "claim": "x^2 - y^2 = 217.",
+        "reasoning": "By step 4, x^2 - y^2 = (x - y)(x + y). Using step 3 and h\u2080, this equals 31 \u00b7 7 = 217.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "h\u2080",
+          "multiplication"
+        ]
+      }
+    ],
+    "final_answer": "217"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.808887+00:00"
+}

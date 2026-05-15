@@ -1,0 +1,610 @@
+{
+  "theorem_id": "imo_1960_p2",
+  "statement": "Theorem: imo_1960_p2\nVariables: x (real)\nGiven: h₀ : 0 ≤ 1 + 2 * x\nGiven: h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0\nGiven: h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) ≤ x ∧ x < 45 / 8",
+  "goal": "-(1 / 2) ≤ x ∧ x < 45 / 8",
+  "stage1_english_proof": {
+    "key_observation": "Set t = sqrt(1 + 2x); then x = (t^2 - 1)/2 and the given inequality becomes a simple quadratic inequality in t after cancelling the nonzero denominator.",
+    "plan": [
+      "Introduce t = sqrt(1 + 2x) and rewrite x in terms of t.",
+      "Use the nonvanishing assumption to justify dividing by (1 - t)^2.",
+      "Convert the inequality to a polynomial inequality in t and factor it.",
+      "Deduce bounds on t, then translate them back to bounds on x."
+    ],
+    "steps": [
+      {
+        "claim": "Let t = real.sqrt (1 + 2 * x). Then t ≥ 0 and t^2 = 1 + 2 * x.",
+        "reasoning": "This is the definition of the real square root applied to the nonnegative number 1 + 2x, which is guaranteed by h₀. By the defining property of sqrt, t is nonnegative and its square is the original number.",
+        "facts_used": [
+          "h₀",
+          "definition of real.sqrt"
+        ]
+      },
+      {
+        "claim": "We have x = (t^2 - 1) / 2.",
+        "reasoning": "From t^2 = 1 + 2x, subtract 1 from both sides to get t^2 - 1 = 2x, and then divide by 2.",
+        "facts_used": [
+          "step 1",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "The denominator (1 - t)^2 is positive.",
+        "reasoning": "Hypothesis h₁ says (1 - t)^2 ≠ 0. Since a square is always nonnegative, the only possibility is that it is strictly positive.",
+        "facts_used": [
+          "h₁",
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "The inequality h₂ is equivalent to 4x^2 < (2x + 9)(1 - t)^2.",
+        "reasoning": "By step 3, the denominator is positive, so multiplying both sides of h₂ by (1 - t)^2 preserves the inequality.",
+        "facts_used": [
+          "step 3",
+          "multiplication of inequalities by a positive number"
+        ]
+      },
+      {
+        "claim": "After substituting x = (t^2 - 1)/2, the inequality in step 4 simplifies to t^2(t - 3)(t + 3) < 0.",
+        "reasoning": "Using x = (t^2 - 1)/2, we get 4x^2 = (t^2 - 1)^2 and 2x + 9 = t^2 + 8. Then the inequality becomes (t^2 - 1)^2 < (t^2 + 8)(1 - t)^2. Expanding and simplifying gives t^2(t^2 - 9) < 0, i.e. t^2(t - 3)(t + 3) < 0.",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "algebraic expansion and factorization"
+        ]
+      },
+      {
+        "claim": "We have 0 ≤ t < 3.",
+        "reasoning": "From step 1, t ≥ 0. In step 5, the factor t^2 is nonnegative and t + 3 is strictly positive, so the product can be negative only if t - 3 < 0. Therefore t < 3.",
+        "facts_used": [
+          "step 1",
+          "step 5",
+          "sign analysis"
+        ]
+      },
+      {
+        "claim": "x ≥ -1/2.",
+        "reasoning": "Since t ≥ 0, step 1 gives 1 + 2x = t^2 ≥ 0, hence 2x ≥ -1 and therefore x ≥ -1/2.",
+        "facts_used": [
+          "step 1",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "x < 45/8.",
+        "reasoning": "From step 6, t < 3, so t^2 < 9. Using step 2, x = (t^2 - 1)/2 < (9 - 1)/2 = 4. Since 4 < 45/8, it follows that x < 45/8.",
+        "facts_used": [
+          "step 2",
+          "step 6",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "-(1 / 2) ≤ x ∧ x < 45 / 8.",
+        "reasoning": "This follows immediately by combining steps 7 and 8.",
+        "facts_used": [
+          "steps 7, 8"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: imo_1960_p2\n\nTheorem: imo_1960_p2\nVariables: x (real)\nGiven: h₀ : 0 ≤ 1 + 2 * x\nGiven: h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0\nGiven: h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) ≤ x ∧ x < 45 / 8\n\nGoal: -(1 / 2) ≤ x ∧ x < 45 / 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Set t = sqrt(1 + 2x); then x = (t^2 - 1)/2 and the given inequality becomes a simple quadratic inequality in t after cancelling the nonzero denominator.\",\n  \"plan\": [\n    \"Introduce t = sqrt(1 + 2x) and rewrite x in terms of t.\",\n    \"Use the nonvanishing assumption to justify dividing by (1 - t)^2.\",\n    \"Convert the inequality to a polynomial inequality in t and factor it.\",\n    \"Deduce bounds on t, then translate them back to bounds on x.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Let t = real.sqrt (1 + 2 * x). Then t ≥ 0 and t^2 = 1 + 2 * x.\",\n      \"reasoning\": \"This is the definition of the real square root applied to the nonnegative number 1 + 2x, which is guaranteed by h₀. By the defining property of sqrt, t is nonnegative and its square is the original number.\",\n      \"facts_used\": [\n        \"h₀\",\n        \"definition of real.sqrt\"\n      ]\n    },\n    {\n      \"claim\": \"We have x = (t^2 - 1) / 2.\",\n      \"reasoning\": \"From t^2 = 1 + 2x, subtract 1 from both sides to get t^2 - 1 = 2x, and then divide by 2.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The denominator (1 - t)^2 is positive.\",\n      \"reasoning\": \"Hypothesis h₁ says (1 - t)^2 ≠ 0. Since a square is always nonnegative, the only possibility is that it is strictly positive.\",\n      \"facts_used\": [\n        \"h₁\",\n        \"nonnegativity of squares\"\n      ]\n    },\n    {\n      \"claim\": \"The inequality h₂ is equivalent to 4x^2 < (2x + 9)(1 - t)^2.\",\n      \"reasoning\": \"By step 3, the denominator is positive, so multiplying both sides of h₂ by (1 - t)^2 preserves the inequality.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"multiplication of inequalities by a positive number\"\n      ]\n    },\n    {\n      \"claim\": \"After substituting x = (t^2 - 1)/2, the inequality in step 4 simplifies to t^2(t - 3)(t + 3) < 0.\",\n      \"reasoning\": \"Using x = (t^2 - 1)/2, we get 4x^2 = (t^2 - 1)^2 and 2x + 9 = t^2 + 8. Then the inequality becomes (t^2 - 1)^2 < (t^2 + 8)(1 - t)^2. Expanding and simplifying gives t^2(t^2 - 9) < 0, i.e. t^2(t - 3)(t + 3) < 0.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebraic expansion and factorization\"\n      ]\n    },\n    {\n      \"claim\": \"We have 0 ≤ t < 3.\",\n      \"reasoning\": \"From step 1, t ≥ 0. In step 5, the factor t^2 is nonnegative and t + 3 is strictly positive, so the product can be negative only if t - 3 < 0. Therefore t < 3.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 5\",\n        \"sign analysis\"\n      ]\n    },\n    {\n      \"claim\": \"x ≥ -1/2.\",\n      \"reasoning\": \"Since t ≥ 0, step 1 gives 1 + 2x = t^2 ≥ 0, hence 2x ≥ -1 and therefore x ≥ -1/2.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"x < 45/8.\",\n      \"reasoning\": \"From step 6, t < 3, so t^2 < 9. Using step 2, x = (t^2 - 1)/2 < (9 - 1)/2 = 4. Since 4 < 45/8, it follows that x < 45/8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 6\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"-(1 / 2) ≤ x ∧ x < 45 / 8.\",\n      \"reasoning\": \"This follows immediately by combining steps 7 and 8.\",\n      \"facts_used\": [\n        \"steps 7, 8\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"x\",\"sort\":\"Real\"}],\"hypotheses\":[\"0 <= 1 + 2 * x\",\"(1 - Sqrt(1 + 2 * x))^2 != 0\",\"(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9\"],\"goal\":\"And(-(1 / 2) <= x, x < 45 / 8)\"},\"functions\":[],\"lemmas\":[{\"name\":\"sqrt_nonneg\",\"english\":\"The real square root is nonnegative.\",\"vars\":[{\"name\":\"u\",\"sort\":\"Real\"}],\"body\":\"Sqrt(u) >= 0\"},{\"name\":\"sqrt_square\",\"english\":\"If u is nonnegative, then (sqrt u)^2 = u.\",\"vars\":[{\"name\":\"u\",\"sort\":\"Real\"}],\"body\":\"Implies(u >= 0, Sqrt(u)^2 == u)\"},{\"name\":\"square_nonzero_positive\",\"english\":\"A real square that is nonzero is positive.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(a^2 != 0, a^2 > 0)\"},{\"name\":\"mul_lt_mul_right_pos\",\"english\":\"Multiplying a strict inequality by a positive real preserves the inequality.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"}],\"body\":\"Implies(c > 0, (a < b) == (a * c < b * c))\"},{\"name\":\"square_eq_expand\",\"english\":\"Expansion of a square of a difference.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"}],\"body\":\"(a - b)^2 == a^2 - 2*a*b + b^2\"},{\"name\":\"sqrt_bound_to_x_lower\",\"english\":\"If 0 <= 1+2x then x >= -1/2.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"}],\"body\":\"Implies(0 <= 1 + 2*x, -(1 / 2) <= x)\"}],\"instantiations\":[{\"lemma\":\"sqrt_nonneg\",\"terms\":{\"u\":\"1 + 2 * x\"}},{\"lemma\":\"sqrt_square\",\"terms\":{\"u\":\"1 + 2 * x\"}},{\"lemma\":\"square_nonzero_positive\",\"terms\":{\"a\":\"1 - Sqrt(1 + 2 * x)\"}},{\"lemma\":\"mul_lt_mul_right_pos\",\"terms\":{\"a\":\"(4 * x^2) / (1 - Sqrt(1 + 2*x))^2\",\"b\":\"2*x + 9\",\"c\":\"(1 - Sqrt(1 + 2*x))^2\"}},{\"lemma\":\"square_eq_expand\",\"terms\":{\"a\":\"1\",\"b\":\"Sqrt(1 + 2 * x)\"}},{\"lemma\":\"sqrt_bound_to_x_lower\",\"terms\":{\"x\":\"x\"}}]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "x",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "0 <= 1 + 2 * x",
+            "(1 - Sqrt(1 + 2 * x))^2 != 0",
+            "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9"
+          ],
+          "goal": "And(-(1 / 2) <= x, x < 45 / 8)"
+        },
+        "functions": [],
+        "lemmas": [
+          {
+            "name": "sqrt_nonneg",
+            "english": "The real square root is nonnegative.",
+            "vars": [
+              {
+                "name": "u",
+                "sort": "Real"
+              }
+            ],
+            "body": "Sqrt(u) >= 0"
+          },
+          {
+            "name": "sqrt_square",
+            "english": "If u is nonnegative, then (sqrt u)^2 = u.",
+            "vars": [
+              {
+                "name": "u",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(u >= 0, Sqrt(u)^2 == u)"
+          },
+          {
+            "name": "square_nonzero_positive",
+            "english": "A real square that is nonzero is positive.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(a^2 != 0, a^2 > 0)"
+          },
+          {
+            "name": "mul_lt_mul_right_pos",
+            "english": "Multiplying a strict inequality by a positive real preserves the inequality.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Real"
+              },
+              {
+                "name": "b",
+                "sort": "Real"
+              },
+              {
+                "name": "c",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(c > 0, (a < b) == (a * c < b * c))"
+          },
+          {
+            "name": "square_eq_expand",
+            "english": "Expansion of a square of a difference.",
+            "vars": [
+              {
+                "name": "a",
+                "sort": "Real"
+              },
+              {
+                "name": "b",
+                "sort": "Real"
+              }
+            ],
+            "body": "(a - b)^2 == a^2 - 2*a*b + b^2"
+          },
+          {
+            "name": "sqrt_bound_to_x_lower",
+            "english": "If 0 <= 1+2x then x >= -1/2.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(0 <= 1 + 2*x, -(1 / 2) <= x)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "sqrt_nonneg",
+            "terms": {
+              "u": "1 + 2 * x"
+            }
+          },
+          {
+            "lemma": "sqrt_square",
+            "terms": {
+              "u": "1 + 2 * x"
+            }
+          },
+          {
+            "lemma": "square_nonzero_positive",
+            "terms": {
+              "a": "1 - Sqrt(1 + 2 * x)"
+            }
+          },
+          {
+            "lemma": "mul_lt_mul_right_pos",
+            "terms": {
+              "a": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2",
+              "b": "2*x + 9",
+              "c": "(1 - Sqrt(1 + 2*x))^2"
+            }
+          },
+          {
+            "lemma": "square_eq_expand",
+            "terms": {
+              "a": "1",
+              "b": "Sqrt(1 + 2 * x)"
+            }
+          },
+          {
+            "lemma": "sqrt_bound_to_x_lower",
+            "terms": {
+              "x": "x"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "sat",
+        "elapsed_ms": 79.1628360748291,
+        "instantiated": [
+          {
+            "lemma": "sqrt_nonneg",
+            "terms": {
+              "u": "1 + 2 * x"
+            },
+            "z3_form": "Sqrt(1 + 2*x) >= 0"
+          },
+          {
+            "lemma": "sqrt_bound_to_x_lower",
+            "terms": {
+              "x": "x"
+            },
+            "z3_form": "Implies(1 + 2*x >= 0, x >= -1/2)"
+          }
+        ],
+        "compile_errors": [
+          {
+            "where": "hypothesis",
+            "expr": "(1 - Sqrt(1 + 2 * x))^2 != 0",
+            "error": "eval failed for '(1 - Sqrt(1 + 2 * x))^2 != 0': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9",
+            "error": "eval failed for '(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "lemma",
+            "lemma": "sqrt_square",
+            "error": "eval failed for 'Implies(u >= 0, Sqrt(u)^2 == u)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "lemma",
+            "lemma": "square_nonzero_positive",
+            "error": "eval failed for 'Implies(a^2 != 0, a^2 > 0)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "lemma",
+            "lemma": "square_eq_expand",
+            "error": "eval failed for '(a - b)^2 == a^2 - 2*a*b + b^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "instantiation",
+            "lemma": "sqrt_square",
+            "terms": {
+              "u": "1 + 2 * x"
+            },
+            "error": "eval failed for 'Implies(u >= 0, Sqrt(u)^2 == u)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "instantiation",
+            "lemma": "square_nonzero_positive",
+            "terms": {
+              "a": "1 - Sqrt(1 + 2 * x)"
+            },
+            "error": "eval failed for 'Implies(a^2 != 0, a^2 > 0)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "instantiation",
+            "lemma": "mul_lt_mul_right_pos",
+            "terms": {
+              "a": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2",
+              "b": "2*x + 9",
+              "c": "(1 - Sqrt(1 + 2*x))^2"
+            },
+            "error": "eval failed for '(4 * x^2) / (1 - Sqrt(1 + 2*x))^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          },
+          {
+            "where": "instantiation",
+            "lemma": "square_eq_expand",
+            "terms": {
+              "a": "1",
+              "b": "Sqrt(1 + 2 * x)"
+            },
+            "error": "eval failed for '(a - b)^2 == a^2 - 2*a*b + b^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+          }
+        ],
+        "lemma_audit": [
+          {
+            "name": "sqrt_nonneg",
+            "english": "The real square root is nonnegative.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "mul_lt_mul_right_pos",
+            "english": "Multiplying a strict inequality by a positive real preserves the inequality.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "sqrt_bound_to_x_lower",
+            "english": "If 0 <= 1+2x then x >= -1/2.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 2,
+        "n_hypotheses": 1,
+        "counterexample": "[x = 45/8, Sqrt = [else -> 0]]"
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1960_p2\n\nTheorem: imo_1960_p2\nVariables: x (real)\nGiven: h₀ : 0 ≤ 1 + 2 * x\nGiven: h₁ : (1 - real.sqrt (1 + 2 * x))^2 ≠ 0\nGiven: h₂ : (4 * x^2) / (1 - real.sqrt (1 + 2*x))^2 < 2*x + 9\nProve: -(1 / 2) ≤ x ∧ x < 45 / 8\n\nGoal: -(1 / 2) ≤ x ∧ x < 45 / 8\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Set t = sqrt(1 + 2x); then x = (t^2 - 1)/2 and the given inequality becomes a simple quadratic inequality in t after cancelling the nonzero denominator.\",\n  \"plan\": [\n    \"Introduce t = sqrt(1 + 2x) and rewrite x in terms of t.\",\n    \"Use the nonvanishing assumption to justify dividing by (1 - t)^2.\",\n    \"Convert the inequality to a polynomial inequality in t and factor it.\",\n    \"Deduce bounds on t, then translate them back to bounds on x.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Let t = real.sqrt (1 + 2 * x). Then t ≥ 0 and t^2 = 1 + 2 * x.\",\n      \"reasoning\": \"This is the definition of the real square root applied to the nonnegative number 1 + 2x, which is guaranteed by h₀. By the defining property of sqrt, t is nonnegative and its square is the original number.\",\n      \"facts_used\": [\n        \"h₀\",\n        \"definition of real.sqrt\"\n      ]\n    },\n    {\n      \"claim\": \"We have x = (t^2 - 1) / 2.\",\n      \"reasoning\": \"From t^2 = 1 + 2x, subtract 1 from both sides to get t^2 - 1 = 2x, and then divide by 2.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The denominator (1 - t)^2 is positive.\",\n      \"reasoning\": \"Hypothesis h₁ says (1 - t)^2 ≠ 0. Since a square is always nonnegative, the only possibility is that it is strictly positive.\",\n      \"facts_used\": [\n        \"h₁\",\n        \"nonnegativity of squares\"\n      ]\n    },\n    {\n      \"claim\": \"The inequality h₂ is equivalent to 4x^2 < (2x + 9)(1 - t)^2.\",\n      \"reasoning\": \"By step 3, the denominator is positive, so multiplying both sides of h₂ by (1 - t)^2 preserves the inequality.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"multiplication of inequalities by a positive number\"\n      ]\n    },\n    {\n      \"claim\": \"After substituting x = (t^2 - 1)/2, the inequality in step 4 simplifies to t^2(t - 3)(t + 3) < 0.\",\n      \"reasoning\": \"Using x = (t^2 - 1)/2, we get 4x^2 = (t^2 - 1)^2 and 2x + 9 = t^2 + 8. Then the inequality becomes (t^2 - 1)^2 < (t^2 + 8)(1 - t)^2. Expanding and simplifying gives t^2(t^2 - 9) < 0, i.e. t^2(t - 3)(t + 3) < 0.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"algebraic expansion and factorization\"\n      ]\n    },\n    {\n      \"claim\": \"We have 0 ≤ t < 3.\",\n      \"reasoning\": \"From step 1, t ≥ 0. In step 5, the factor t^2 is nonnegative and t + 3 is strictly positive, so the product can be negative only if t - 3 < 0. Therefore t < 3.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 5\",\n        \"sign analysis\"\n      ]\n    },\n    {\n      \"claim\": \"x ≥ -1/2.\",\n      \"reasoning\": \"Since t ≥ 0, step 1 gives 1 + 2x = t^2 ≥ 0, hence 2x ≥ -1 and therefore x ≥ -1/2.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"x < 45/8.\",\n      \"reasoning\": \"From step 6, t < 3, so t^2 < 9. Using step 2, x = (t^2 - 1)/2 < (9 - 1)/2 = 4. Since 4 < 45/8, it follows that x < 45/8.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 6\",\n        \"basic algebra\"\n      ]\n    },\n    {\n      \"claim\": \"-(1 / 2) ≤ x ∧ x < 45 / 8.\",\n      \"reasoning\": \"This follows immediately by combining steps 7 and 8.\",\n      \"facts_used\": [\n        \"steps 7, 8\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"x\",\"sort\":\"Real\"}],\"hypotheses\":[\"0 <= 1 + 2 * x\",\"(1 - Sqrt(1 + 2 * x))^2 != 0\",\"(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9\"],\"goal\":\"And(-(1 / 2) <= x, x < 45 / 8)\"},\"functions\":[],\"lemmas\":[{\"name\":\"sqrt_nonneg\",\"english\":\"The real square root is nonnegative.\",\"vars\":[{\"name\":\"u\",\"sort\":\"Real\"}],\"body\":\"Sqrt(u) >= 0\"},{\"name\":\"sqrt_square\",\"english\":\"If u is nonnegative, then (sqrt u)^2 = u.\",\"vars\":[{\"name\":\"u\",\"sort\":\"Real\"}],\"body\":\"Implies(u >= 0, Sqrt(u)^2 == u)\"},{\"name\":\"square_nonzero_positive\",\"english\":\"A real square that is nonzero is positive.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"}],\"body\":\"Implies(a^2 != 0, a^2 > 0)\"},{\"name\":\"mul_lt_mul_right_pos\",\"english\":\"Multiplying a strict inequality by a positive real preserves the inequality.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"},{\"name\":\"c\",\"sort\":\"Real\"}],\"body\":\"Implies(c > 0, (a < b) == (a * c < b * c))\"},{\"name\":\"square_eq_expand\",\"english\":\"Expansion of a square of a difference.\",\"vars\":[{\"name\":\"a\",\"sort\":\"Real\"},{\"name\":\"b\",\"sort\":\"Real\"}],\"body\":\"(a - b)^2 == a^2 - 2*a*b + b^2\"},{\"name\":\"sqrt_bound_to_x_lower\",\"english\":\"If 0 <= 1+2x then x >= -1/2.\",\"vars\":[{\"name\":\"x\",\"sort\":\"Real\"}],\"body\":\"Implies(0 <= 1 + 2*x, -(1 / 2) <= x)\"}],\"instantiations\":[{\"lemma\":\"sqrt_nonneg\",\"terms\":{\"u\":\"1 + 2 * x\"}},{\"lemma\":\"sqrt_square\",\"terms\":{\"u\":\"1 + 2 * x\"}},{\"lemma\":\"square_nonzero_positive\",\"terms\":{\"a\":\"1 - Sqrt(1 + 2 * x)\"}},{\"lemma\":\"mul_lt_mul_right_pos\",\"terms\":{\"a\":\"(4 * x^2) / (1 - Sqrt(1 + 2*x))^2\",\"b\":\"2*x + 9\",\"c\":\"(1 - Sqrt(1 + 2*x))^2\"}},{\"lemma\":\"square_eq_expand\",\"terms\":{\"a\":\"1\",\"b\":\"Sqrt(1 + 2 * x)\"}},{\"lemma\":\"sqrt_bound_to_x_lower\",\"terms\":{\"x\":\"x\"}}]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "x",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "0 <= 1 + 2 * x",
+        "(1 - Sqrt(1 + 2 * x))^2 != 0",
+        "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9"
+      ],
+      "goal": "And(-(1 / 2) <= x, x < 45 / 8)"
+    },
+    "functions": [],
+    "lemmas": [
+      {
+        "name": "sqrt_nonneg",
+        "english": "The real square root is nonnegative.",
+        "vars": [
+          {
+            "name": "u",
+            "sort": "Real"
+          }
+        ],
+        "body": "Sqrt(u) >= 0"
+      },
+      {
+        "name": "sqrt_square",
+        "english": "If u is nonnegative, then (sqrt u)^2 = u.",
+        "vars": [
+          {
+            "name": "u",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(u >= 0, Sqrt(u)^2 == u)"
+      },
+      {
+        "name": "square_nonzero_positive",
+        "english": "A real square that is nonzero is positive.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(a^2 != 0, a^2 > 0)"
+      },
+      {
+        "name": "mul_lt_mul_right_pos",
+        "english": "Multiplying a strict inequality by a positive real preserves the inequality.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Real"
+          },
+          {
+            "name": "b",
+            "sort": "Real"
+          },
+          {
+            "name": "c",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(c > 0, (a < b) == (a * c < b * c))"
+      },
+      {
+        "name": "square_eq_expand",
+        "english": "Expansion of a square of a difference.",
+        "vars": [
+          {
+            "name": "a",
+            "sort": "Real"
+          },
+          {
+            "name": "b",
+            "sort": "Real"
+          }
+        ],
+        "body": "(a - b)^2 == a^2 - 2*a*b + b^2"
+      },
+      {
+        "name": "sqrt_bound_to_x_lower",
+        "english": "If 0 <= 1+2x then x >= -1/2.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(0 <= 1 + 2*x, -(1 / 2) <= x)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "sqrt_nonneg",
+        "terms": {
+          "u": "1 + 2 * x"
+        }
+      },
+      {
+        "lemma": "sqrt_square",
+        "terms": {
+          "u": "1 + 2 * x"
+        }
+      },
+      {
+        "lemma": "square_nonzero_positive",
+        "terms": {
+          "a": "1 - Sqrt(1 + 2 * x)"
+        }
+      },
+      {
+        "lemma": "mul_lt_mul_right_pos",
+        "terms": {
+          "a": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2",
+          "b": "2*x + 9",
+          "c": "(1 - Sqrt(1 + 2*x))^2"
+        }
+      },
+      {
+        "lemma": "square_eq_expand",
+        "terms": {
+          "a": "1",
+          "b": "Sqrt(1 + 2 * x)"
+        }
+      },
+      {
+        "lemma": "sqrt_bound_to_x_lower",
+        "terms": {
+          "x": "x"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "sat",
+    "elapsed_ms": 79.1628360748291,
+    "instantiated": [
+      {
+        "lemma": "sqrt_nonneg",
+        "terms": {
+          "u": "1 + 2 * x"
+        },
+        "z3_form": "Sqrt(1 + 2*x) >= 0"
+      },
+      {
+        "lemma": "sqrt_bound_to_x_lower",
+        "terms": {
+          "x": "x"
+        },
+        "z3_form": "Implies(1 + 2*x >= 0, x >= -1/2)"
+      }
+    ],
+    "compile_errors": [
+      {
+        "where": "hypothesis",
+        "expr": "(1 - Sqrt(1 + 2 * x))^2 != 0",
+        "error": "eval failed for '(1 - Sqrt(1 + 2 * x))^2 != 0': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "hypothesis",
+        "expr": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9",
+        "error": "eval failed for '(4 * x^2) / (1 - Sqrt(1 + 2*x))^2 < 2*x + 9': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "lemma",
+        "lemma": "sqrt_square",
+        "error": "eval failed for 'Implies(u >= 0, Sqrt(u)^2 == u)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "lemma",
+        "lemma": "square_nonzero_positive",
+        "error": "eval failed for 'Implies(a^2 != 0, a^2 > 0)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "lemma",
+        "lemma": "square_eq_expand",
+        "error": "eval failed for '(a - b)^2 == a^2 - 2*a*b + b^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "instantiation",
+        "lemma": "sqrt_square",
+        "terms": {
+          "u": "1 + 2 * x"
+        },
+        "error": "eval failed for 'Implies(u >= 0, Sqrt(u)^2 == u)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "instantiation",
+        "lemma": "square_nonzero_positive",
+        "terms": {
+          "a": "1 - Sqrt(1 + 2 * x)"
+        },
+        "error": "eval failed for 'Implies(a^2 != 0, a^2 > 0)': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "instantiation",
+        "lemma": "mul_lt_mul_right_pos",
+        "terms": {
+          "a": "(4 * x^2) / (1 - Sqrt(1 + 2*x))^2",
+          "b": "2*x + 9",
+          "c": "(1 - Sqrt(1 + 2*x))^2"
+        },
+        "error": "eval failed for '(4 * x^2) / (1 - Sqrt(1 + 2*x))^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      },
+      {
+        "where": "instantiation",
+        "lemma": "square_eq_expand",
+        "terms": {
+          "a": "1",
+          "b": "Sqrt(1 + 2 * x)"
+        },
+        "error": "eval failed for '(a - b)^2 == a^2 - 2*a*b + b^2': unsupported operand type(s) for ^: 'ArithRef' and 'int'"
+      }
+    ],
+    "lemma_audit": [
+      {
+        "name": "sqrt_nonneg",
+        "english": "The real square root is nonnegative.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "mul_lt_mul_right_pos",
+        "english": "Multiplying a strict inequality by a positive real preserves the inequality.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "sqrt_bound_to_x_lower",
+        "english": "If 0 <= 1+2x then x >= -1/2.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 2,
+    "n_hypotheses": 1,
+    "counterexample": "[x = 45/8, Sqrt = [else -> 0]]"
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T08:27:22.720578+00:00"
+}

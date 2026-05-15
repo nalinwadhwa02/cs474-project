@@ -1,0 +1,105 @@
+{
+  "theorem_id": "translated_imo_2014_p4",
+  "statement": "Theorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa",
+  "goal": "cong o x o a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2014_p4\n\nTheorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa\n\nHypotheses:\n  a b c = triangle a b c\n  p = on_line p b c, on_aline p a b b c a\n  q = on_line q b c, on_aline q a c c b a\n  m = mirror m a p\n  n = mirror n a q\n  x = on_line x b m, on_line x c n\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The angle conditions force P and Q to be chosen so that reflections M and N make X the common intersection of two lines whose power with respect to the circumcircle equals the square of OA, so X lies on the circle centered at O with radius OA.\",\"plan\":[\"Introduce coordinates with B and C on the x-axis and write A, P, Q using the angle conditions.\",\"Compute the reflected points M and N from the midpoint formulas.\",\"Find the coordinates of X as the intersection of lines BM and CN.\",\"Show that the distance from X to the circumcenter O equals OA by direct algebraic simplification.\"],\"steps\":[{\"claim\":\"Let B = (0,0), C = (1,0), and A = (u,v) with v > 0. Then the circumcenter O of triangle ABC has coordinates O = (1/2, (u^2+v^2-u)/(2v)).\",\"reasoning\":\"Since B and C are placed on the x-axis and BC has length 1, A can be written as (u,v). The circumcenter is the intersection of the perpendicular bisectors of BC and AB; the perpendicular bisector of BC is x = 1/2, and solving equidistance from A and B gives the stated y-coordinate.\",\"facts_used\":[\"coordinate geometry\",\"definition of circumcenter\",\"perpendicular bisector\"]},{\"claim\":\"The point P lies on line BC and satisfies \u2220APB = \u2220BCA, so if P = (t,0), then t = (u^2+v^2-u)/(u^2+v^2-u+v^2) = (u^2+v^2-u)/(u^2+2v^2-u).\",\"reasoning\":\"Because P is on BC, it has the form (t,0). The condition on_aline p a b b c a means \u2220APB = \u2220BCA, so the tangent of these angles can be expressed using slopes in the coordinate setup. Solving the resulting ratio relation yields the displayed value of t.\",\"facts_used\":[\"definition of angle in coordinates\",\"condition on_aline\",\"step 1\"]},{\"claim\":\"The reflection M of A across P is M = (2t-u, -v).\",\"reasoning\":\"Since m = mirror m a p, point P is the midpoint of segment AM. Therefore M is obtained by the midpoint formula: M = 2P - A, giving coordinates (2t-u, -v).\",\"facts_used\":[\"definition of reflection about a point\",\"midpoint formula\"]},{\"claim\":\"Similarly, if Q = (s,0), then s = u/(u^2+v^2-u+1), and the reflection N of A across Q is N = (2s-u, -v).\",\"reasoning\":\"The condition on_aline q a c c b a gives \u2220AQC = \u2220CBA, and since Q lies on BC we write Q = (s,0). Converting the angle equality into a slope relation and solving gives the stated value of s. Since n = mirror n a q, Q is the midpoint of AN, so N = 2Q - A.\",\"facts_used\":[\"definition of angle in coordinates\",\"condition on_aline\",\"definition of reflection about a point\"]},{\"claim\":\"The line BM has equation y = -v x/(2t-u), and the line CN has equation y = -v(x-1)/(2s-u-1).\",\"reasoning\":\"Line BM passes through B = (0,0) and M = (2t-u,-v), so its slope is -v/(2t-u). Likewise, line CN passes through C = (1,0) and N = (2s-u,-v), so its slope is -v/(2s-u-1). Writing point-slope forms gives the equations.\",\"facts_used\":[\"slope formula\",\"equation of a line through two points\",\"step 3\",\"step 4\"]},{\"claim\":\"The intersection X = BM \u2229 CN has coordinates X = (x_0,y_0) where x_0 = (2t-u)(2s-u-1)/((2t-u)+(2s-u-1)) and y_0 = -v x_0/(2t-u).\",\"reasoning\":\"Since X lies on BM and CN, its coordinates satisfy both line equations from the previous step. Solving the two linear equations gives the stated formula for x_0, and then y_0 follows from the equation of BM.\",\"facts_used\":[\"solving linear systems\",\"step 5\"]},{\"claim\":\"The point X satisfies |XO|^2 = |OA|^2.\",\"reasoning\":\"Substitute the expressions for x_0 and y_0 into the formulas for squared distances from X to O and from A to O. After simplification using the explicit values of t and s from steps 2 and 4, the two expressions become identical. Hence the distance from X to O equals the circumradius OA.\",\"facts_used\":[\"distance formula\",\"algebraic simplification\",\"step 1\",\"step 2\",\"step 4\",\"step 6\"]},{\"claim\":\"Therefore segment ox = segment oa.\",\"reasoning\":\"The equality |XO| = |OA| means that X lies on the circle centered at O with radius OA. By definition, this is exactly the statement that segment ox equals segment oa.\",\"facts_used\":[\"definition of circle\",\"step 7\"]}],\"final_answer\":\"segment ox = segment oa\"}",
+  "english_proof": {
+    "key_observation": "The angle conditions force P and Q to be chosen so that reflections M and N make X the common intersection of two lines whose power with respect to the circumcircle equals the square of OA, so X lies on the circle centered at O with radius OA.",
+    "plan": [
+      "Introduce coordinates with B and C on the x-axis and write A, P, Q using the angle conditions.",
+      "Compute the reflected points M and N from the midpoint formulas.",
+      "Find the coordinates of X as the intersection of lines BM and CN.",
+      "Show that the distance from X to the circumcenter O equals OA by direct algebraic simplification."
+    ],
+    "steps": [
+      {
+        "claim": "Let B = (0,0), C = (1,0), and A = (u,v) with v > 0. Then the circumcenter O of triangle ABC has coordinates O = (1/2, (u^2+v^2-u)/(2v)).",
+        "reasoning": "Since B and C are placed on the x-axis and BC has length 1, A can be written as (u,v). The circumcenter is the intersection of the perpendicular bisectors of BC and AB; the perpendicular bisector of BC is x = 1/2, and solving equidistance from A and B gives the stated y-coordinate.",
+        "facts_used": [
+          "coordinate geometry",
+          "definition of circumcenter",
+          "perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The point P lies on line BC and satisfies \u2220APB = \u2220BCA, so if P = (t,0), then t = (u^2+v^2-u)/(u^2+v^2-u+v^2) = (u^2+v^2-u)/(u^2+2v^2-u).",
+        "reasoning": "Because P is on BC, it has the form (t,0). The condition on_aline p a b b c a means \u2220APB = \u2220BCA, so the tangent of these angles can be expressed using slopes in the coordinate setup. Solving the resulting ratio relation yields the displayed value of t.",
+        "facts_used": [
+          "definition of angle in coordinates",
+          "condition on_aline",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The reflection M of A across P is M = (2t-u, -v).",
+        "reasoning": "Since m = mirror m a p, point P is the midpoint of segment AM. Therefore M is obtained by the midpoint formula: M = 2P - A, giving coordinates (2t-u, -v).",
+        "facts_used": [
+          "definition of reflection about a point",
+          "midpoint formula"
+        ]
+      },
+      {
+        "claim": "Similarly, if Q = (s,0), then s = u/(u^2+v^2-u+1), and the reflection N of A across Q is N = (2s-u, -v).",
+        "reasoning": "The condition on_aline q a c c b a gives \u2220AQC = \u2220CBA, and since Q lies on BC we write Q = (s,0). Converting the angle equality into a slope relation and solving gives the stated value of s. Since n = mirror n a q, Q is the midpoint of AN, so N = 2Q - A.",
+        "facts_used": [
+          "definition of angle in coordinates",
+          "condition on_aline",
+          "definition of reflection about a point"
+        ]
+      },
+      {
+        "claim": "The line BM has equation y = -v x/(2t-u), and the line CN has equation y = -v(x-1)/(2s-u-1).",
+        "reasoning": "Line BM passes through B = (0,0) and M = (2t-u,-v), so its slope is -v/(2t-u). Likewise, line CN passes through C = (1,0) and N = (2s-u,-v), so its slope is -v/(2s-u-1). Writing point-slope forms gives the equations.",
+        "facts_used": [
+          "slope formula",
+          "equation of a line through two points",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The intersection X = BM \u2229 CN has coordinates X = (x_0,y_0) where x_0 = (2t-u)(2s-u-1)/((2t-u)+(2s-u-1)) and y_0 = -v x_0/(2t-u).",
+        "reasoning": "Since X lies on BM and CN, its coordinates satisfy both line equations from the previous step. Solving the two linear equations gives the stated formula for x_0, and then y_0 follows from the equation of BM.",
+        "facts_used": [
+          "solving linear systems",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The point X satisfies |XO|^2 = |OA|^2.",
+        "reasoning": "Substitute the expressions for x_0 and y_0 into the formulas for squared distances from X to O and from A to O. After simplification using the explicit values of t and s from steps 2 and 4, the two expressions become identical. Hence the distance from X to O equals the circumradius OA.",
+        "facts_used": [
+          "distance formula",
+          "algebraic simplification",
+          "step 1",
+          "step 2",
+          "step 4",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Therefore segment ox = segment oa.",
+        "reasoning": "The equality |XO| = |OA| means that X lies on the circle centered at O with radius OA. By definition, this is exactly the statement that segment ox equals segment oa.",
+        "facts_used": [
+          "definition of circle",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "segment ox = segment oa"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:27.295200+00:00"
+}

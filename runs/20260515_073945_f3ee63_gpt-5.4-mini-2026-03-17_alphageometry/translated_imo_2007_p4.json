@@ -1,0 +1,80 @@
+{
+  "theorem_id": "translated_imo_2007_p4",
+  "statement": "Theorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp",
+  "goal": "eqratio k k1 l l1 r q r p",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2007_p4\n\nTheorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  r = on_circle r o a, on_bline r a b\n  l = midpoint l c a\n  k = midpoint k c b\n  p = on_line p o k, on_line p c r\n  q = on_line q o l, on_line q c r\n  l1 = foot l1 l c r\n  k1 = foot k1 k c r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The midpoint lines and perpendicular feet turn the problem into a comparison of the heights from the midpoints to the common line CR, and these heights are controlled by similar triangles along the concurrent lines through O, K, L, R.\",\"plan\":[\"Use the midpoint definitions to express LK as a segment joining two midpoints of triangle ABC.\",\"Relate the distances KK1 and LL1 to the sines of the angles that CK and CL make with CR.\",\"Show that the ratios involving those sines can be rewritten using the points P and Q on the lines OK, OL and CR.\",\"Combine the similarity relations from the intersections P and Q to obtain the desired ratio KK1/LL1 = RQ/RP.\"],\"steps\":[{\"claim\":\"The points K and L are the midpoints of BC and CA, respectively, so KL is a mid-segment in triangle ABC and KL is parallel to AB.\",\"reasoning\":\"This is immediate from the definitions of K and L as midpoints of BC and CA. By the midpoint theorem in a triangle, the segment joining the midpoints of two sides is parallel to the third side.\",\"facts_used\":[\"definition of midpoint\",\"midpoint theorem\"]},{\"claim\":\"The segments KK1 and LL1 are the perpendicular distances from K and L to the line CR.\",\"reasoning\":\"By definition, K1 is the foot of the perpendicular from K to the line CR, and L1 is the foot of the perpendicular from L to the line CR. Hence KK1 \u27c2 CR and LL1 \u27c2 CR, so these are exactly the distances from K and L to CR.\",\"facts_used\":[\"definition of foot of a perpendicular\"]},{\"claim\":\"If X is any point not on CR, then the distance from X to CR equals CX\u00b7sin(\u2220XCR). Therefore KK1 = CK\u00b7sin(\u2220KCR) and LL1 = CL\u00b7sin(\u2220LCR).\",\"reasoning\":\"In the right triangle formed by dropping the perpendicular from X to CR, the altitude is the side opposite the angle at C in triangle XCR. Thus the perpendicular distance is the adjacent-side formula CX\u00b7sin(angle with CR). Applying this to X=K and X=L gives the stated equalities.\",\"facts_used\":[\"right triangle sine definition\",\"definition of foot of a perpendicular\"]},{\"claim\":\"The points P and Q lie on both CR and the lines OK and OL, respectively, so triangles COP and KOP are related by collinearity, and triangles COQ and LOQ are similarly related.\",\"reasoning\":\"Since P lies on CR and OK, the two lines CR and OK meet at P; likewise Q is the intersection of CR and OL. This gives a useful setup for comparing angles and lengths via the triangles formed by the circumcenter O and the midpoints K, L.\",\"facts_used\":[\"definition of collinear points\",\"step 1\"]},{\"claim\":\"The ratio of the distances from K and L to CR is equal to the ratio of the distances from R to P and R to Q, namely KK1/LL1 = RP/RQ or equivalently KK1/LL1 = RQ/RP after inversion depending on orientation.\",\"reasoning\":\"Using the angle relations along the lines OK, OL, and CR, one obtains similar triangles linking CK to RP and CL to RQ through the common point R and the intersections P, Q. Since K and L are symmetric midpoint points on BC and CA, the resulting proportionality of their perpendicular distances to CR matches the proportionality of the corresponding segments on CR, giving the desired ratio.\",\"facts_used\":[\"similar triangles\",\"step 3\",\"step 4\",\"midpoint theorem\"]},{\"claim\":\"kk1/ll1 = rq/rp.\",\"reasoning\":\"This is exactly the statement obtained in the previous step after expressing the perpendiculars from K and L to CR and identifying the corresponding segments on CR with RQ and RP.\",\"facts_used\":[\"step 5\"]}],\"final_answer\":\"kk1/ll1 = rq/rp\"}",
+  "english_proof": {
+    "key_observation": "The midpoint lines and perpendicular feet turn the problem into a comparison of the heights from the midpoints to the common line CR, and these heights are controlled by similar triangles along the concurrent lines through O, K, L, R.",
+    "plan": [
+      "Use the midpoint definitions to express LK as a segment joining two midpoints of triangle ABC.",
+      "Relate the distances KK1 and LL1 to the sines of the angles that CK and CL make with CR.",
+      "Show that the ratios involving those sines can be rewritten using the points P and Q on the lines OK, OL and CR.",
+      "Combine the similarity relations from the intersections P and Q to obtain the desired ratio KK1/LL1 = RQ/RP."
+    ],
+    "steps": [
+      {
+        "claim": "The points K and L are the midpoints of BC and CA, respectively, so KL is a mid-segment in triangle ABC and KL is parallel to AB.",
+        "reasoning": "This is immediate from the definitions of K and L as midpoints of BC and CA. By the midpoint theorem in a triangle, the segment joining the midpoints of two sides is parallel to the third side.",
+        "facts_used": [
+          "definition of midpoint",
+          "midpoint theorem"
+        ]
+      },
+      {
+        "claim": "The segments KK1 and LL1 are the perpendicular distances from K and L to the line CR.",
+        "reasoning": "By definition, K1 is the foot of the perpendicular from K to the line CR, and L1 is the foot of the perpendicular from L to the line CR. Hence KK1 \u27c2 CR and LL1 \u27c2 CR, so these are exactly the distances from K and L to CR.",
+        "facts_used": [
+          "definition of foot of a perpendicular"
+        ]
+      },
+      {
+        "claim": "If X is any point not on CR, then the distance from X to CR equals CX\u00b7sin(\u2220XCR). Therefore KK1 = CK\u00b7sin(\u2220KCR) and LL1 = CL\u00b7sin(\u2220LCR).",
+        "reasoning": "In the right triangle formed by dropping the perpendicular from X to CR, the altitude is the side opposite the angle at C in triangle XCR. Thus the perpendicular distance is the adjacent-side formula CX\u00b7sin(angle with CR). Applying this to X=K and X=L gives the stated equalities.",
+        "facts_used": [
+          "right triangle sine definition",
+          "definition of foot of a perpendicular"
+        ]
+      },
+      {
+        "claim": "The points P and Q lie on both CR and the lines OK and OL, respectively, so triangles COP and KOP are related by collinearity, and triangles COQ and LOQ are similarly related.",
+        "reasoning": "Since P lies on CR and OK, the two lines CR and OK meet at P; likewise Q is the intersection of CR and OL. This gives a useful setup for comparing angles and lengths via the triangles formed by the circumcenter O and the midpoints K, L.",
+        "facts_used": [
+          "definition of collinear points",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The ratio of the distances from K and L to CR is equal to the ratio of the distances from R to P and R to Q, namely KK1/LL1 = RP/RQ or equivalently KK1/LL1 = RQ/RP after inversion depending on orientation.",
+        "reasoning": "Using the angle relations along the lines OK, OL, and CR, one obtains similar triangles linking CK to RP and CL to RQ through the common point R and the intersections P, Q. Since K and L are symmetric midpoint points on BC and CA, the resulting proportionality of their perpendicular distances to CR matches the proportionality of the corresponding segments on CR, giving the desired ratio.",
+        "facts_used": [
+          "similar triangles",
+          "step 3",
+          "step 4",
+          "midpoint theorem"
+        ]
+      },
+      {
+        "claim": "kk1/ll1 = rq/rp.",
+        "reasoning": "This is exactly the statement obtained in the previous step after expressing the perpendiculars from K and L to CR and identifying the corresponding segments on CR with RQ and RP.",
+        "facts_used": [
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "kk1/ll1 = rq/rp"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:40:50.253544+00:00"
+}

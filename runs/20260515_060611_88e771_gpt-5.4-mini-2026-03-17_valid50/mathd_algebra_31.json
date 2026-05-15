@@ -1,0 +1,68 @@
+{
+  "theorem_id": "mathd_algebra_31",
+  "statement": "Theorem: mathd_algebra_31\nGiven: x : nnreal\nGiven: u : \u2115 \u2192 nnreal\nGiven: h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n)\nGiven: h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)\nProve: 9 = nnreal.sqrt (x + 9)",
+  "goal": "9 = nnreal.sqrt (x + 9)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_31\n\nTheorem: mathd_algebra_31\nGiven: x : nnreal\nGiven: u : \u2115 \u2192 nnreal\nGiven: h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n)\nGiven: h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)\nProve: 9 = nnreal.sqrt (x + 9)\n\nHypotheses:\n  x : nnreal\n  u : \u2115 \u2192 nnreal\n  h\u2080 : \u2200 n, u (n + 1) = nnreal.sqrt (x + u n)\n  h\u2081 : filter.tendsto u filter.at_top (\ud835\udcdd 9)\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Since u n converges to 9 and u (n+1) is defined by applying the continuous function t \u21a6 sqrt(x + t), the limit must satisfy the same fixed-point equation 9 = sqrt(x + 9).\",\"plan\":[\"Use the recurrence to rewrite u (n+1) as sqrt(x + u n).\",\"Take limits of both sides along n \u2192 \u221e.\",\"Apply continuity of addition and square root on nnreal to pass the limit through the right-hand side.\",\"Conclude that the limit 9 satisfies the same equation.\"],\"steps\":[{\"claim\":\"The sequence n \u21a6 u (n + 1) tends to 9 as n \u2192 \u221e.\",\"reasoning\":\"From h\u2081, the sequence u tends to 9. Composing with the shift n \u21a6 n + 1 preserves the same limit at_at_top, so u (n+1) also tends to 9.\",\"facts_used\":[\"h\u2081\",\"tendsto.comp\",\"tendsto_at_top_add_right\"]},{\"claim\":\"The sequence n \u21a6 nnreal.sqrt (x + u n) tends to nnreal.sqrt (x + 9) as n \u2192 \u221e.\",\"reasoning\":\"The map t \u21a6 x + t is continuous on nnreal, and nnreal.sqrt is continuous as well. Therefore the composition t \u21a6 nnreal.sqrt (x + t) sends the limit of u, namely 9, to nnreal.sqrt (x + 9).\",\"facts_used\":[\"h\u2081\",\"continuity of addition on nnreal\",\"continuity of nnreal.sqrt\",\"tendsto.comp\"]},{\"claim\":\"The sequence n \u21a6 u (n + 1) and the sequence n \u21a6 nnreal.sqrt (x + u n) are equal for all n.\",\"reasoning\":\"This is exactly the recurrence h\u2080, rewritten at index n.\",\"facts_used\":[\"h\u2080\"]},{\"claim\":\"9 = nnreal.sqrt (x + 9).\",\"reasoning\":\"By step 3, the left-hand sequence tends to 9 and the right-hand sequence tends to nnreal.sqrt (x + 9) by step 2. Since the two sequences are equal termwise, their limits are equal, so 9 = nnreal.sqrt (x + 9).\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\",\"tendsto.congr\"]}],\"final_answer\":\"9 = nnreal.sqrt (x + 9)\"}",
+  "english_proof": {
+    "key_observation": "Since u n converges to 9 and u (n+1) is defined by applying the continuous function t \u21a6 sqrt(x + t), the limit must satisfy the same fixed-point equation 9 = sqrt(x + 9).",
+    "plan": [
+      "Use the recurrence to rewrite u (n+1) as sqrt(x + u n).",
+      "Take limits of both sides along n \u2192 \u221e.",
+      "Apply continuity of addition and square root on nnreal to pass the limit through the right-hand side.",
+      "Conclude that the limit 9 satisfies the same equation."
+    ],
+    "steps": [
+      {
+        "claim": "The sequence n \u21a6 u (n + 1) tends to 9 as n \u2192 \u221e.",
+        "reasoning": "From h\u2081, the sequence u tends to 9. Composing with the shift n \u21a6 n + 1 preserves the same limit at_at_top, so u (n+1) also tends to 9.",
+        "facts_used": [
+          "h\u2081",
+          "tendsto.comp",
+          "tendsto_at_top_add_right"
+        ]
+      },
+      {
+        "claim": "The sequence n \u21a6 nnreal.sqrt (x + u n) tends to nnreal.sqrt (x + 9) as n \u2192 \u221e.",
+        "reasoning": "The map t \u21a6 x + t is continuous on nnreal, and nnreal.sqrt is continuous as well. Therefore the composition t \u21a6 nnreal.sqrt (x + t) sends the limit of u, namely 9, to nnreal.sqrt (x + 9).",
+        "facts_used": [
+          "h\u2081",
+          "continuity of addition on nnreal",
+          "continuity of nnreal.sqrt",
+          "tendsto.comp"
+        ]
+      },
+      {
+        "claim": "The sequence n \u21a6 u (n + 1) and the sequence n \u21a6 nnreal.sqrt (x + u n) are equal for all n.",
+        "reasoning": "This is exactly the recurrence h\u2080, rewritten at index n.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "9 = nnreal.sqrt (x + 9).",
+        "reasoning": "By step 3, the left-hand sequence tends to 9 and the right-hand sequence tends to nnreal.sqrt (x + 9) by step 2. Since the two sequences are equal termwise, their limits are equal, so 9 = nnreal.sqrt (x + 9).",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "tendsto.congr"
+        ]
+      }
+    ],
+    "final_answer": "9 = nnreal.sqrt (x + 9)"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.817481+00:00"
+}

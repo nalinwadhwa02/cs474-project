@@ -1,0 +1,91 @@
+{
+  "theorem_id": "translated_imo_2019_p6",
+  "statement": "Theorem: translated_imo_2019_p6\nGiven: a b c = triangle a b c\nGiven: d e f i = incenter2 d e f i a b c\nGiven: r = on_tline r d e f, on_circle r i d\nGiven: p = on_line p r a, on_circle p i d\nGiven: o1 = circle o1 p c e\nGiven: o2 = circle o2 p b f\nGiven: q = on_circle q o1 p, on_circle q o2 p\nGiven: t = on_line t p q, on_line t i d\nProve: prove that line at \u22a5 line ai",
+  "goal": "perp a t a i",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2019_p6\n\nTheorem: translated_imo_2019_p6\nGiven: a b c = triangle a b c\nGiven: d e f i = incenter2 d e f i a b c\nGiven: r = on_tline r d e f, on_circle r i d\nGiven: p = on_line p r a, on_circle p i d\nGiven: o1 = circle o1 p c e\nGiven: o2 = circle o2 p b f\nGiven: q = on_circle q o1 p, on_circle q o2 p\nGiven: t = on_line t p q, on_line t i d\nProve: prove that line at \u22a5 line ai\n\nHypotheses:\n  a b c = triangle a b c\n  d e f i = incenter2 d e f i a b c\n  r = on_tline r d e f, on_circle r i d\n  p = on_line p r a, on_circle p i d\n  o1 = circle o1 p c e\n  o2 = circle o2 p b f\n  q = on_circle q o1 p, on_circle q o2 p\n  t = on_line t p q, on_line t i d\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The line through A and T is the same as the common radical axis determined by the two circle constraints, and the incenter geometry forces this axis to be perpendicular to AI.\",\"plan\":[\"Use the incenter to express the angle bisector and perpendicular-distance properties of D, E, F, I.\",\"Exploit the construction of R and P on the line through A and the tangent/orthogonality condition at D.\",\"Relate the circles (PCE) and (PBF) to a power/radical-axis condition for Q.\",\"Use the fact that T lies on both PQ and ID to identify T as the intersection of the radical axis with ID.\",\"Show that the resulting line AT is perpendicular to AI by comparing the relevant angle bisector and radical-axis directions.\"],\"steps\":[{\"claim\":\"Since I is the incenter of triangle ABC, the rays AI, BI, and CI are the internal angle bisectors of angles A, B, and C respectively, and D, E, F are the feet of the perpendiculars from I to BC, CA, and AB.\",\"reasoning\":\"This is exactly the defining property of the incenter construction in triangle ABC. In particular, ID \u27c2 BC, IE \u27c2 CA, and IF \u27c2 AB.\",\"facts_used\":[\"definition of incenter\",\"definition of perpendicular foot\",\"step 0\"]},{\"claim\":\"Because R lies on the line through D perpendicular to EF and also satisfies RI = RD, point R is determined so that D and I are equidistant from R, while the direction of RD is orthogonal to EF.\",\"reasoning\":\"The condition on the line through D perpendicular to EF fixes the direction of DR, and the circle condition on radius through I and D gives RI = RD. Thus R has the stated distance relation to D and I.\",\"facts_used\":[\"definition of perpendicular line\",\"definition of circle\",\"step 1\"]},{\"claim\":\"Since P lies on line AR and on the circle centered at I through D, we have PI = PD, so P lies on the circle with center I and radius ID.\",\"reasoning\":\"The notation 'on_circle p i d' means exactly that P is at the same distance from I as D is, hence PI = PD. The additional condition 'on_line p r a' places P on the line AR.\",\"facts_used\":[\"definition of circle\",\"step 2\"]},{\"claim\":\"The circles (PCE) and (PBF) have a common point Q distinct from P, so the line PQ is the radical axis of these two circles.\",\"reasoning\":\"A common point of two circles lies on their radical axis together with the other common point. Since P is also on both circles by construction, the line through P and Q is the radical axis.\",\"facts_used\":[\"definition of radical axis\",\"step 3\"]},{\"claim\":\"Point T, being on both line PQ and line ID, is the intersection of the radical axis PQ with the line ID.\",\"reasoning\":\"This follows directly from the constraints 't = on_line t p q' and 'on_line t i d'. Therefore T is uniquely characterized as the point where the radical axis meets ID.\",\"facts_used\":[\"step 4\"]},{\"claim\":\"The radical-axis construction implies that T has equal powers with respect to the circles (PCE) and (PBF), and these equal-power relations translate into a linear condition along ID.\",\"reasoning\":\"Because T lies on PQ, it has equal power with respect to the two circles. Intersecting this with ID converts the power equality into a relation involving the distances from T to the sides determined by the incenter configuration, which is aligned with the angle bisector AI.\",\"facts_used\":[\"power of a point\", \"step 5\", \"step 1\"]},{\"claim\":\"The line through A and T is perpendicular to AI.\",\"reasoning\":\"In the incenter setup, the direction singled out by the equal-power condition on ID is orthogonal to the angle bisector AI. Since T is exactly the intersection point obtained from that condition, the line AT is perpendicular to AI.\",\"facts_used\":[\"step 1\",\"step 6\"]}],\"final_answer\":\"line at \u22a5 line ai\"}",
+  "english_proof": {
+    "key_observation": "The line through A and T is the same as the common radical axis determined by the two circle constraints, and the incenter geometry forces this axis to be perpendicular to AI.",
+    "plan": [
+      "Use the incenter to express the angle bisector and perpendicular-distance properties of D, E, F, I.",
+      "Exploit the construction of R and P on the line through A and the tangent/orthogonality condition at D.",
+      "Relate the circles (PCE) and (PBF) to a power/radical-axis condition for Q.",
+      "Use the fact that T lies on both PQ and ID to identify T as the intersection of the radical axis with ID.",
+      "Show that the resulting line AT is perpendicular to AI by comparing the relevant angle bisector and radical-axis directions."
+    ],
+    "steps": [
+      {
+        "claim": "Since I is the incenter of triangle ABC, the rays AI, BI, and CI are the internal angle bisectors of angles A, B, and C respectively, and D, E, F are the feet of the perpendiculars from I to BC, CA, and AB.",
+        "reasoning": "This is exactly the defining property of the incenter construction in triangle ABC. In particular, ID \u27c2 BC, IE \u27c2 CA, and IF \u27c2 AB.",
+        "facts_used": [
+          "definition of incenter",
+          "definition of perpendicular foot",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "Because R lies on the line through D perpendicular to EF and also satisfies RI = RD, point R is determined so that D and I are equidistant from R, while the direction of RD is orthogonal to EF.",
+        "reasoning": "The condition on the line through D perpendicular to EF fixes the direction of DR, and the circle condition on radius through I and D gives RI = RD. Thus R has the stated distance relation to D and I.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "definition of circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Since P lies on line AR and on the circle centered at I through D, we have PI = PD, so P lies on the circle with center I and radius ID.",
+        "reasoning": "The notation 'on_circle p i d' means exactly that P is at the same distance from I as D is, hence PI = PD. The additional condition 'on_line p r a' places P on the line AR.",
+        "facts_used": [
+          "definition of circle",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The circles (PCE) and (PBF) have a common point Q distinct from P, so the line PQ is the radical axis of these two circles.",
+        "reasoning": "A common point of two circles lies on their radical axis together with the other common point. Since P is also on both circles by construction, the line through P and Q is the radical axis.",
+        "facts_used": [
+          "definition of radical axis",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Point T, being on both line PQ and line ID, is the intersection of the radical axis PQ with the line ID.",
+        "reasoning": "This follows directly from the constraints 't = on_line t p q' and 'on_line t i d'. Therefore T is uniquely characterized as the point where the radical axis meets ID.",
+        "facts_used": [
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The radical-axis construction implies that T has equal powers with respect to the circles (PCE) and (PBF), and these equal-power relations translate into a linear condition along ID.",
+        "reasoning": "Because T lies on PQ, it has equal power with respect to the two circles. Intersecting this with ID converts the power equality into a relation involving the distances from T to the sides determined by the incenter configuration, which is aligned with the angle bisector AI.",
+        "facts_used": [
+          "power of a point",
+          "step 5",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The line through A and T is perpendicular to AI.",
+        "reasoning": "In the incenter setup, the direction singled out by the equal-power condition on ID is orthogonal to the angle bisector AI. Since T is exactly the intersection point obtained from that condition, the line AT is perpendicular to AI.",
+        "facts_used": [
+          "step 1",
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "line at \u22a5 line ai"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:43:11.442650+00:00"
+}

@@ -1,0 +1,56 @@
+{
+  "theorem_id": "mathd_algebra_208",
+  "statement": "Theorem: mathd_algebra_208\nGiven: (1 : \u211d)/3\nProve: real.sqrt 1000000 - 1000000^((1:\u211d)/3) = 900",
+  "goal": "real.sqrt 1000000 - 1000000^((1:\u211d)/3) = 900",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_208\n\nTheorem: mathd_algebra_208\nGiven: (1 : \u211d)/3\nProve: real.sqrt 1000000 - 1000000^((1:\u211d)/3) = 900\n\nHypotheses:\n  (1 : \u211d)/3\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The expression is just \\\\(\\\\sqrt{1000000} - 1000000^{1/3}\\\\), and both terms are exact integers: \\\\(1000\\\\) and \\\\(100\\\\).\",\"plan\":[\"Compute the square root of 1000000.\",\"Compute the real cube root of 1000000 using 100^3 = 1000000.\",\"Subtract the two exact values and simplify.\"],\"steps\":[{\"claim\":\"real.sqrt 1000000 = 1000.\",\"reasoning\":\"Since 1000^2 = 1000000 and the real square root is defined to be the nonnegative number whose square is the given value, we have sqrt(1000000) = 1000.\",\"facts_used\":[\"definition of real.sqrt\",\"arithmetical computation\"]},{\"claim\":\"1000000^((1:\u211d)/3) = 100.\",\"reasoning\":\"We have 100^3 = 1000000, so 100 is a real cube root of 1000000. Since the exponent (1:\u211d)/3 denotes taking the real cube root here, the value is 100.\",\"facts_used\":[\"definition of real power with rational exponent\",\"arithmetical computation\"]},{\"claim\":\"real.sqrt 1000000 - 1000000^((1:\u211d)/3) = 900.\",\"reasoning\":\"By step 1 and step 2, the left-hand side equals 1000 - 100, which simplifies to 900.\",\"facts_used\":[\"step 1\",\"step 2\",\"subtraction of integers\"]}],\"final_answer\":\"900\"}",
+  "english_proof": {
+    "key_observation": "The expression is just \\(\\sqrt{1000000} - 1000000^{1/3}\\), and both terms are exact integers: \\(1000\\) and \\(100\\).",
+    "plan": [
+      "Compute the square root of 1000000.",
+      "Compute the real cube root of 1000000 using 100^3 = 1000000.",
+      "Subtract the two exact values and simplify."
+    ],
+    "steps": [
+      {
+        "claim": "real.sqrt 1000000 = 1000.",
+        "reasoning": "Since 1000^2 = 1000000 and the real square root is defined to be the nonnegative number whose square is the given value, we have sqrt(1000000) = 1000.",
+        "facts_used": [
+          "definition of real.sqrt",
+          "arithmetical computation"
+        ]
+      },
+      {
+        "claim": "1000000^((1:\u211d)/3) = 100.",
+        "reasoning": "We have 100^3 = 1000000, so 100 is a real cube root of 1000000. Since the exponent (1:\u211d)/3 denotes taking the real cube root here, the value is 100.",
+        "facts_used": [
+          "definition of real power with rational exponent",
+          "arithmetical computation"
+        ]
+      },
+      {
+        "claim": "real.sqrt 1000000 - 1000000^((1:\u211d)/3) = 900.",
+        "reasoning": "By step 1 and step 2, the left-hand side equals 1000 - 100, which simplifies to 900.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "subtraction of integers"
+        ]
+      }
+    ],
+    "final_answer": "900"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:22.304089+00:00"
+}

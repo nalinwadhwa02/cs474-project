@@ -1,0 +1,80 @@
+{
+  "theorem_id": "mathd_algebra_96",
+  "statement": "Theorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : real.log x - real.log y = a\nGiven: h\u2082 : real.log y - real.log z = 15\nGiven: h\u2083 : real.log z - real.log x = -7\nProve: a = -8",
+  "goal": "a = -8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_96\n\nTheorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : real.log x - real.log y = a\nGiven: h\u2082 : real.log y - real.log z = 15\nGiven: h\u2083 : real.log z - real.log x = -7\nProve: a = -8\n\nHypotheses:\n  h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\n  h\u2081 : real.log x - real.log y = a\n  h\u2082 : real.log y - real.log z = 15\n  h\u2083 : real.log z - real.log x = -7\n\nVariables: x (real), y (real), z (real), a (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The three logarithmic differences form a cycle whose sum must be zero, so the given values force a = 15 + (-7) = -8.\",\"plan\":[\"Use the positivity assumptions to justify standard logarithm identities.\",\"Rewrite each hypothesis as an equation between logarithms.\",\"Add the three equations to obtain a relation involving a.\",\"Solve the resulting linear equation for a.\"],\"steps\":[{\"claim\":\"real.log x, real.log y, and real.log z are all well-defined real numbers.\",\"reasoning\":\"From h\u2080 we have 0 < x, 0 < y, and 0 < z. The real logarithm is defined for positive real inputs, so each logarithm appearing in the hypotheses is meaningful.\",\"facts_used\":[\"h\u2080\",\"definition of real.log\"]},{\"claim\":\"real.log x - real.log y = a, real.log y - real.log z = 15, and real.log z - real.log x = -7 hold as given equations.\",\"reasoning\":\"These are exactly the hypotheses h\u2081, h\u2082, and h\u2083.\",\"facts_used\":[\"h\u2081\",\"h\u2082\",\"h\u2083\"]},{\"claim\":\"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7).\",\"reasoning\":\"Substitute the right-hand sides from h\u2081, h\u2082, and h\u2083 into the sum of the three left-hand sides.\",\"facts_used\":[\"step 2\",\"addition of equalities\"]},{\"claim\":\"(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = 0.\",\"reasoning\":\"The terms cancel pairwise: real.log x cancels with -real.log x, real.log y cancels with -real.log y, and real.log z cancels with -real.log z.\",\"facts_used\":[\"algebraic cancellation\"]},{\"claim\":\"a + 15 - 7 = 0.\",\"reasoning\":\"By steps 3 and 4, the same expression equals both a + 15 + (-7) and 0, so a + 15 - 7 = 0.\",\"facts_used\":[\"step 3\",\"step 4\"]},{\"claim\":\"a = -8.\",\"reasoning\":\"Simplify a + 15 - 7 = 0 to a + 8 = 0, then subtract 8 from both sides.\",\"facts_used\":[\"step 5\",\"basic arithmetic\"]}],\"final_answer\":\"-8\"}",
+  "english_proof": {
+    "key_observation": "The three logarithmic differences form a cycle whose sum must be zero, so the given values force a = 15 + (-7) = -8.",
+    "plan": [
+      "Use the positivity assumptions to justify standard logarithm identities.",
+      "Rewrite each hypothesis as an equation between logarithms.",
+      "Add the three equations to obtain a relation involving a.",
+      "Solve the resulting linear equation for a."
+    ],
+    "steps": [
+      {
+        "claim": "real.log x, real.log y, and real.log z are all well-defined real numbers.",
+        "reasoning": "From h\u2080 we have 0 < x, 0 < y, and 0 < z. The real logarithm is defined for positive real inputs, so each logarithm appearing in the hypotheses is meaningful.",
+        "facts_used": [
+          "h\u2080",
+          "definition of real.log"
+        ]
+      },
+      {
+        "claim": "real.log x - real.log y = a, real.log y - real.log z = 15, and real.log z - real.log x = -7 hold as given equations.",
+        "reasoning": "These are exactly the hypotheses h\u2081, h\u2082, and h\u2083.",
+        "facts_used": [
+          "h\u2081",
+          "h\u2082",
+          "h\u2083"
+        ]
+      },
+      {
+        "claim": "(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7).",
+        "reasoning": "Substitute the right-hand sides from h\u2081, h\u2082, and h\u2083 into the sum of the three left-hand sides.",
+        "facts_used": [
+          "step 2",
+          "addition of equalities"
+        ]
+      },
+      {
+        "claim": "(real.log x - real.log y) + (real.log y - real.log z) + (real.log z - real.log x) = 0.",
+        "reasoning": "The terms cancel pairwise: real.log x cancels with -real.log x, real.log y cancels with -real.log y, and real.log z cancels with -real.log z.",
+        "facts_used": [
+          "algebraic cancellation"
+        ]
+      },
+      {
+        "claim": "a + 15 - 7 = 0.",
+        "reasoning": "By steps 3 and 4, the same expression equals both a + 15 + (-7) and 0, so a + 15 - 7 = 0.",
+        "facts_used": [
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "a = -8.",
+        "reasoning": "Simplify a + 15 - 7 = 0 to a + 8 = 0, then subtract 8 from both sides.",
+        "facts_used": [
+          "step 5",
+          "basic arithmetic"
+        ]
+      }
+    ],
+    "final_answer": "-8"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.809643+00:00"
+}

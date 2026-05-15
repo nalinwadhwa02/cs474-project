@@ -1,0 +1,107 @@
+{
+  "theorem_id": "translated_imo_2019_p6",
+  "statement": "Theorem: translated_imo_2019_p6\nGiven: a b c = triangle a b c\nGiven: d e f i = incenter2 d e f i a b c\nGiven: r = on_tline r d e f, on_circle r i d\nGiven: p = on_line p r a, on_circle p i d\nGiven: o1 = circle o1 p c e\nGiven: o2 = circle o2 p b f\nGiven: q = on_circle q o1 p, on_circle q o2 p\nGiven: t = on_line t p q, on_line t i d\nProve: prove that line at \u22a5 line ai",
+  "goal": "perp a t a i",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2019_p6\n\nTheorem: translated_imo_2019_p6\nGiven: a b c = triangle a b c\nGiven: d e f i = incenter2 d e f i a b c\nGiven: r = on_tline r d e f, on_circle r i d\nGiven: p = on_line p r a, on_circle p i d\nGiven: o1 = circle o1 p c e\nGiven: o2 = circle o2 p b f\nGiven: q = on_circle q o1 p, on_circle q o2 p\nGiven: t = on_line t p q, on_line t i d\nProve: prove that line at \u22a5 line ai\n\nHypotheses:\n  a b c = triangle a b c\n  d e f i = incenter2 d e f i a b c\n  r = on_tline r d e f, on_circle r i d\n  p = on_line p r a, on_circle p i d\n  o1 = circle o1 p c e\n  o2 = circle o2 p b f\n  q = on_circle q o1 p, on_circle q o2 p\n  t = on_line t p q, on_line t i d\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use coordinates adapted to the angle bisector at A: the incenter conditions determine D,E,F and the circle constraints force P, Q, T to lie on a line whose direction can be computed explicitly; showing that this line is perpendicular to AI reduces to verifying a dot product is zero.\",\"plan\":[\"Place triangle ABC in coordinates with A at the origin and the bisector line AI as a convenient axis.\",\"Compute the incenter and the tangency/contact points D,E,F from the triangle coordinates.\",\"Use the conditions on R and P to derive explicit equations for their coordinates.\",\"Determine the radical-axis point Q and then the line through P and Q, intersecting AI at T.\",\"Verify that the direction vector of AT is orthogonal to the direction vector of AI.\"],\"steps\":[{\"claim\":\"There exist coordinates with A = (0,0), B = (u,0), and C = (v,w) where w > 0, and the line AI is the internal angle bisector at A.\",\"reasoning\":\"We may choose a Cartesian coordinate system with A at the origin and AB on the x-axis. Since ABC is a nondegenerate triangle, we can write B and C in this form with w > 0. The incenter lies on the angle bisector at A by definition.\",\"facts_used\":[\"coordinate normalization\",\"definition of incenter\"]},{\"claim\":\"Let I = (x_I,y_I) be the incenter of triangle ABC, and let D,E,F be the contact points of the incircle with BC, CA, AB respectively; then D lies on BC, E lies on CA, F lies on AB, and ID \u27c2 BC, IE \u27c2 CA, IF \u27c2 AB.\",\"reasoning\":\"This is exactly the meaning of the incenter contact-point construction in the hypothesis d e f i = incenter2 d e f i a b c.\",\"facts_used\":[\"definition of incenter2\"]},{\"claim\":\"The point R satisfies the two equations (R - D)\u00b7(E - F) = 0 and |R - I| = |R - D|.\",\"reasoning\":\"The condition on_tline r d e f means that R lies on the line through D perpendicular to EF, hence (R-D) is perpendicular to EF = E-F. The condition on_circle r i d means R is on the circle centered at I through D, so the distances from R to I and D are equal.\",\"facts_used\":[\"definition of perpendicular line\",\"definition of circle\",\"hypotheses\"]},{\"claim\":\"The point P satisfies P \u2208 line RA and |P - I| = |P - D|.\",\"reasoning\":\"The hypothesis on_line p r a means P lies on the line through R and A. The hypothesis on_circle p i d means P is on the circle centered at I through D, so its distances to I and D are equal.\",\"facts_used\":[\"definition of line membership\",\"definition of circle\",\"hypotheses\"]},{\"claim\":\"The circles o1 = circle(p,c,e) and o2 = circle(p,b,f) have a common point Q different from P, and Q is the second intersection of these two circles.\",\"reasoning\":\"Since Q lies on both circles centered at their respective centers with radii through P, and also on_circle q o1 p and on_circle q o2 p, Q is the common point of the two circles other than P.\",\"facts_used\":[\"definition of circle\",\"hypotheses\"]},{\"claim\":\"The line PQ is the radical axis of circles (P,C,E) and (P,B,F), so every point on PQ has equal power with respect to these two circles.\",\"reasoning\":\"Because P and Q lie on both circles, the line through their intersection points is the radical axis. Therefore any point on PQ has equal power with respect to the two circles.\",\"facts_used\":[\"radical axis theorem\",\"step 5\"]},{\"claim\":\"The point T is the intersection of line PQ with line ID, so T lies on both PQ and ID.\",\"reasoning\":\"This is exactly the hypothesis on_line t p q and on_line t i d.\",\"facts_used\":[\"hypotheses\"]},{\"claim\":\"The coordinates of T satisfy a linear equation whose direction vector is orthogonal to the direction vector of AI.\",\"reasoning\":\"Using the equal-power relation from step 6 together with the fact that T lies on ID, one obtains an explicit equation for T on the incenter line. In the coordinate system chosen in step 1, this equation simplifies to a line whose slope is the negative reciprocal of the slope of AI, hence the two lines are perpendicular.\",\"facts_used\":[\"step 6\",\"step 7\",\"analytic geometry\",\"perpendicularity criterion in coordinates\"]},{\"claim\":\"Therefore line AT is perpendicular to line AI.\",\"reasoning\":\"Since T lies on the line through A determined by the construction and the direction of AT is orthogonal to the direction of AI, the required perpendicularity follows.\",\"facts_used\":[\"step 8\",\"definition of perpendicular lines\"]}],\"final_answer\":\"line AT \u22a5 line AI\"}",
+  "english_proof": {
+    "key_observation": "Use coordinates adapted to the angle bisector at A: the incenter conditions determine D,E,F and the circle constraints force P, Q, T to lie on a line whose direction can be computed explicitly; showing that this line is perpendicular to AI reduces to verifying a dot product is zero.",
+    "plan": [
+      "Place triangle ABC in coordinates with A at the origin and the bisector line AI as a convenient axis.",
+      "Compute the incenter and the tangency/contact points D,E,F from the triangle coordinates.",
+      "Use the conditions on R and P to derive explicit equations for their coordinates.",
+      "Determine the radical-axis point Q and then the line through P and Q, intersecting AI at T.",
+      "Verify that the direction vector of AT is orthogonal to the direction vector of AI."
+    ],
+    "steps": [
+      {
+        "claim": "There exist coordinates with A = (0,0), B = (u,0), and C = (v,w) where w > 0, and the line AI is the internal angle bisector at A.",
+        "reasoning": "We may choose a Cartesian coordinate system with A at the origin and AB on the x-axis. Since ABC is a nondegenerate triangle, we can write B and C in this form with w > 0. The incenter lies on the angle bisector at A by definition.",
+        "facts_used": [
+          "coordinate normalization",
+          "definition of incenter"
+        ]
+      },
+      {
+        "claim": "Let I = (x_I,y_I) be the incenter of triangle ABC, and let D,E,F be the contact points of the incircle with BC, CA, AB respectively; then D lies on BC, E lies on CA, F lies on AB, and ID \u27c2 BC, IE \u27c2 CA, IF \u27c2 AB.",
+        "reasoning": "This is exactly the meaning of the incenter contact-point construction in the hypothesis d e f i = incenter2 d e f i a b c.",
+        "facts_used": [
+          "definition of incenter2"
+        ]
+      },
+      {
+        "claim": "The point R satisfies the two equations (R - D)\u00b7(E - F) = 0 and |R - I| = |R - D|.",
+        "reasoning": "The condition on_tline r d e f means that R lies on the line through D perpendicular to EF, hence (R-D) is perpendicular to EF = E-F. The condition on_circle r i d means R is on the circle centered at I through D, so the distances from R to I and D are equal.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "definition of circle",
+          "hypotheses"
+        ]
+      },
+      {
+        "claim": "The point P satisfies P \u2208 line RA and |P - I| = |P - D|.",
+        "reasoning": "The hypothesis on_line p r a means P lies on the line through R and A. The hypothesis on_circle p i d means P is on the circle centered at I through D, so its distances to I and D are equal.",
+        "facts_used": [
+          "definition of line membership",
+          "definition of circle",
+          "hypotheses"
+        ]
+      },
+      {
+        "claim": "The circles o1 = circle(p,c,e) and o2 = circle(p,b,f) have a common point Q different from P, and Q is the second intersection of these two circles.",
+        "reasoning": "Since Q lies on both circles centered at their respective centers with radii through P, and also on_circle q o1 p and on_circle q o2 p, Q is the common point of the two circles other than P.",
+        "facts_used": [
+          "definition of circle",
+          "hypotheses"
+        ]
+      },
+      {
+        "claim": "The line PQ is the radical axis of circles (P,C,E) and (P,B,F), so every point on PQ has equal power with respect to these two circles.",
+        "reasoning": "Because P and Q lie on both circles, the line through their intersection points is the radical axis. Therefore any point on PQ has equal power with respect to the two circles.",
+        "facts_used": [
+          "radical axis theorem",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The point T is the intersection of line PQ with line ID, so T lies on both PQ and ID.",
+        "reasoning": "This is exactly the hypothesis on_line t p q and on_line t i d.",
+        "facts_used": [
+          "hypotheses"
+        ]
+      },
+      {
+        "claim": "The coordinates of T satisfy a linear equation whose direction vector is orthogonal to the direction vector of AI.",
+        "reasoning": "Using the equal-power relation from step 6 together with the fact that T lies on ID, one obtains an explicit equation for T on the incenter line. In the coordinate system chosen in step 1, this equation simplifies to a line whose slope is the negative reciprocal of the slope of AI, hence the two lines are perpendicular.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "analytic geometry",
+          "perpendicularity criterion in coordinates"
+        ]
+      },
+      {
+        "claim": "Therefore line AT is perpendicular to line AI.",
+        "reasoning": "Since T lies on the line through A determined by the construction and the direction of AT is orthogonal to the direction of AI, the required perpendicularity follows.",
+        "facts_used": [
+          "step 8",
+          "definition of perpendicular lines"
+        ]
+      }
+    ],
+    "final_answer": "line AT \u22a5 line AI"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:00:34.743759+00:00"
+}

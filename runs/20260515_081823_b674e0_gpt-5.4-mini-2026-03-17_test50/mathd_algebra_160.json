@@ -1,0 +1,70 @@
+{
+  "theorem_id": "mathd_algebra_160",
+  "statement": "Theorem: mathd_algebra_160\nVariables: n, x (real)\nGiven: h\u2080 : n + x = 97\nGiven: h\u2081 : n + 5 * x = 265\nProve: n + 2 * x = 139",
+  "goal": "n + 2 * x = 139",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_160\n\nTheorem: mathd_algebra_160\nVariables: n, x (real)\nGiven: h\u2080 : n + x = 97\nGiven: h\u2081 : n + 5 * x = 265\nProve: n + 2 * x = 139\n\nHypotheses:\n  h\u2080 : n + x = 97\n  h\u2081 : n + 5 * x = 265\n\nVariables: n (real), x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Subtracting the two linear equations eliminates n and determines x, after which n + 2x can be computed directly.\",\n  \"plan\": [\n    \"Use the given equations to form an equation involving only x.\",\n    \"Solve that equation for x.\",\n    \"Substitute x into one of the original equations to find n, or directly compute n + 2x from n + x.\",\n    \"Conclude the desired value.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"4 * x = 168.\",\n      \"reasoning\": \"Subtract h\u2080 from h\u2081: (n + 5x) - (n + x) = 265 - 97. The n terms cancel, leaving 4x = 168.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"subtraction of equalities\", \"distributive law\", \"simplification\"]\n    },\n    {\n      \"claim\": \"x = 42.\",\n      \"reasoning\": \"From 4x = 168, divide both sides by 4.\",\n      \"facts_used\": [\"step 1\", \"division by a nonzero real\"]\n    },\n    {\n      \"claim\": \"n = 55.\",\n      \"reasoning\": \"Using h\u2080, n + x = 97. Substitute x = 42 to get n + 42 = 97, so n = 55.\",\n      \"facts_used\": [\"h\u2080\", \"step 2\", \"substitution\", \"addition/subtraction of equalities\"]\n    },\n    {\n      \"claim\": \"n + 2 * x = 139.\",\n      \"reasoning\": \"Substitute n = 55 and x = 42: n + 2x = 55 + 2\u00b742 = 55 + 84 = 139.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"arithmetic simplification\"]\n    }\n  ],\n  \"final_answer\": \"139\"\n}",
+  "english_proof": {
+    "key_observation": "Subtracting the two linear equations eliminates n and determines x, after which n + 2x can be computed directly.",
+    "plan": [
+      "Use the given equations to form an equation involving only x.",
+      "Solve that equation for x.",
+      "Substitute x into one of the original equations to find n, or directly compute n + 2x from n + x.",
+      "Conclude the desired value."
+    ],
+    "steps": [
+      {
+        "claim": "4 * x = 168.",
+        "reasoning": "Subtract h\u2080 from h\u2081: (n + 5x) - (n + x) = 265 - 97. The n terms cancel, leaving 4x = 168.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "subtraction of equalities",
+          "distributive law",
+          "simplification"
+        ]
+      },
+      {
+        "claim": "x = 42.",
+        "reasoning": "From 4x = 168, divide both sides by 4.",
+        "facts_used": [
+          "step 1",
+          "division by a nonzero real"
+        ]
+      },
+      {
+        "claim": "n = 55.",
+        "reasoning": "Using h\u2080, n + x = 97. Substitute x = 42 to get n + 42 = 97, so n = 55.",
+        "facts_used": [
+          "h\u2080",
+          "step 2",
+          "substitution",
+          "addition/subtraction of equalities"
+        ]
+      },
+      {
+        "claim": "n + 2 * x = 139.",
+        "reasoning": "Substitute n = 55 and x = 42: n + 2x = 55 + 2\u00b742 = 55 + 84 = 139.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "arithmetic simplification"
+        ]
+      }
+    ],
+    "final_answer": "139"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:10.106676+00:00"
+}

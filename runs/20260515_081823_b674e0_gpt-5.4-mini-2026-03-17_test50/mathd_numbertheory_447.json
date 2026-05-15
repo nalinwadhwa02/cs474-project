@@ -1,0 +1,63 @@
+{
+  "theorem_id": "mathd_numbertheory_447",
+  "statement": "Theorem: mathd_numbertheory_447\nProve: \u2211 k in finset.filter (\u03bb x, 3\u2223x) (finset.Icc 1 49), (k % 10) = 78",
+  "goal": "\u2211 k in finset.filter (\u03bb x, 3\u2223x) (finset.Icc 1 49), (k % 10) = 78",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_447\n\nTheorem: mathd_numbertheory_447\nProve: \u2211 k in finset.filter (\u03bb x, 3\u2223x) (finset.Icc 1 49), (k % 10) = 78\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The numbers from 1 to 49 divisible by 3 form an arithmetic progression, and their last digits repeat in a short pattern whose sum can be computed directly.\",\"plan\":[\"List all integers in [1,49] divisible by 3.\",\"Compute the remainder mod 10 of each such integer.\",\"Add these remainders and simplify the sum.\"],\"steps\":[{\"claim\":\"The elements of the set `finset.filter (\u03bb x, 3 \u2223 x) (finset.Icc 1 49)` are exactly the integers 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, and 48.\",\"reasoning\":\"The finset `Icc 1 49` contains precisely the integers from 1 through 49, and filtering by `3 \u2223 x` keeps exactly those divisible by 3. The multiples of 3 in this interval are the listed 16 numbers.\",\"facts_used\":[\"definition of `finset.Icc`\",\"definition of `finset.filter`\",\"definition of divisibility\"]},{\"claim\":\"For the listed numbers, the residues modulo 10 are 3, 6, 9, 2, 5, 8, 1, 4, 7, 0, 3, 6, 9, 2, 5, and 8.\",\"reasoning\":\"Each residue is obtained by taking the last digit of the corresponding multiple of 3. Since adding 30 changes a number by a multiple of 10, the pattern of last digits repeats every 10 terms in the progression.\",\"facts_used\":[\"definition of modular arithmetic\"]},{\"claim\":\"The sum of these residues is 78.\",\"reasoning\":\"Adding them gives (3+6+9+2+5+8+1+4+7+0) + (3+6+9+2+5+8) = 45 + 33 = 78.\",\"facts_used\":[\"step 2\",\"arithmetic\"]},{\"claim\":\"\u2211 k in finset.filter (\u03bb x, 3\u2223x) (finset.Icc 1 49), (k % 10) = 78.\",\"reasoning\":\"By step 1, the summation is over exactly the 16 listed multiples of 3, and by step 3 their modulo-10 sum is 78. Therefore the original finite sum equals 78.\",\"facts_used\":[\"step 1\",\"step 3\"]}],\"final_answer\":\"78\"}",
+  "english_proof": {
+    "key_observation": "The numbers from 1 to 49 divisible by 3 form an arithmetic progression, and their last digits repeat in a short pattern whose sum can be computed directly.",
+    "plan": [
+      "List all integers in [1,49] divisible by 3.",
+      "Compute the remainder mod 10 of each such integer.",
+      "Add these remainders and simplify the sum."
+    ],
+    "steps": [
+      {
+        "claim": "The elements of the set `finset.filter (\u03bb x, 3 \u2223 x) (finset.Icc 1 49)` are exactly the integers 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, and 48.",
+        "reasoning": "The finset `Icc 1 49` contains precisely the integers from 1 through 49, and filtering by `3 \u2223 x` keeps exactly those divisible by 3. The multiples of 3 in this interval are the listed 16 numbers.",
+        "facts_used": [
+          "definition of `finset.Icc`",
+          "definition of `finset.filter`",
+          "definition of divisibility"
+        ]
+      },
+      {
+        "claim": "For the listed numbers, the residues modulo 10 are 3, 6, 9, 2, 5, 8, 1, 4, 7, 0, 3, 6, 9, 2, 5, and 8.",
+        "reasoning": "Each residue is obtained by taking the last digit of the corresponding multiple of 3. Since adding 30 changes a number by a multiple of 10, the pattern of last digits repeats every 10 terms in the progression.",
+        "facts_used": [
+          "definition of modular arithmetic"
+        ]
+      },
+      {
+        "claim": "The sum of these residues is 78.",
+        "reasoning": "Adding them gives (3+6+9+2+5+8+1+4+7+0) + (3+6+9+2+5+8) = 45 + 33 = 78.",
+        "facts_used": [
+          "step 2",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "\u2211 k in finset.filter (\u03bb x, 3\u2223x) (finset.Icc 1 49), (k % 10) = 78.",
+        "reasoning": "By step 1, the summation is over exactly the 16 listed multiples of 3, and by step 3 their modulo-10 sum is 78. Therefore the original finite sum equals 78.",
+        "facts_used": [
+          "step 1",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "78"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:45.854145+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "theorem_id": "induction_12dvd4expnp1p20",
+  "statement": "Theorem: induction_12dvd4expnp1p20\nVariables: n (integer)\nProve: 12 \u2223 4^(n+1) + 20",
+  "goal": "12 \u2223 4^(n+1) + 20",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: induction_12dvd4expnp1p20\n\nTheorem: induction_12dvd4expnp1p20\nVariables: n (integer)\nProve: 12 \u2223 4^(n+1) + 20\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since 4 \u2261 1 mod 3 and 4 \u2261 0 mod 4, the expression 4^(n+1) + 20 is divisible by 3 and by 4, hence by 12.\",\n  \"plan\": [\n    \"Show that 4^(n+1) is divisible by 4.\",\n    \"Deduce that 4^(n+1) + 20 is divisible by 4.\",\n    \"Check the expression modulo 3 using 4 \u2261 1 mod 3 and 20 \u2261 2 mod 3.\",\n    \"Conclude divisibility by 12 from divisibility by 3 and 4.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For every integer n, 4^(n+1) is divisible by 4.\",\n      \"reasoning\": \"Because n+1 is a nonnegative integer exponent, 4^(n+1) has a factor of 4 as soon as n+1 \u2265 1; in the remaining case n+1 = 0, the statement is not needed for the final divisibility by 4 since 20 alone is divisible by 4. More directly, for all integers n with n+1 \u2265 1, 4^(n+1) = 4\u00b74^n.\",\n      \"facts_used\": [\"definition of exponentiation\", \"divisibility of products\"]\n    },\n    {\n      \"claim\": \"4^(n+1) + 20 is divisible by 4.\",\n      \"reasoning\": \"The term 4^(n+1) is divisible by 4 by step 1, and 20 is divisible by 4 because 20 = 4\u00b75. The sum of two multiples of 4 is again a multiple of 4.\",\n      \"facts_used\": [\"step 1\", \"closure of divisibility under addition\"]\n    },\n    {\n      \"claim\": \"4^(n+1) + 20 is divisible by 3.\",\n      \"reasoning\": \"Modulo 3, we have 4 \u2261 1, so 4^(n+1) \u2261 1^(n+1) \u2261 1. Also 20 \u2261 2 mod 3. Therefore 4^(n+1) + 20 \u2261 1 + 2 \u2261 0 mod 3, so the expression is divisible by 3.\",\n      \"facts_used\": [\"modular arithmetic\", \"properties of congruences\", \"exponentiation modulo n\"]\n    },\n    {\n      \"claim\": \"12 divides 4^(n+1) + 20.\",\n      \"reasoning\": \"The integers 3 and 4 are coprime, and the expression is divisible by both 3 and 4 by steps 2 and 3. Hence it is divisible by 3\u00b74 = 12.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"coprime divisibility theorem\"]\n    }\n  ],\n  \"final_answer\": \"12 \u2223 4^(n+1) + 20\"\n}",
+  "english_proof": {
+    "key_observation": "Since 4 \u2261 1 mod 3 and 4 \u2261 0 mod 4, the expression 4^(n+1) + 20 is divisible by 3 and by 4, hence by 12.",
+    "plan": [
+      "Show that 4^(n+1) is divisible by 4.",
+      "Deduce that 4^(n+1) + 20 is divisible by 4.",
+      "Check the expression modulo 3 using 4 \u2261 1 mod 3 and 20 \u2261 2 mod 3.",
+      "Conclude divisibility by 12 from divisibility by 3 and 4."
+    ],
+    "steps": [
+      {
+        "claim": "For every integer n, 4^(n+1) is divisible by 4.",
+        "reasoning": "Because n+1 is a nonnegative integer exponent, 4^(n+1) has a factor of 4 as soon as n+1 \u2265 1; in the remaining case n+1 = 0, the statement is not needed for the final divisibility by 4 since 20 alone is divisible by 4. More directly, for all integers n with n+1 \u2265 1, 4^(n+1) = 4\u00b74^n.",
+        "facts_used": [
+          "definition of exponentiation",
+          "divisibility of products"
+        ]
+      },
+      {
+        "claim": "4^(n+1) + 20 is divisible by 4.",
+        "reasoning": "The term 4^(n+1) is divisible by 4 by step 1, and 20 is divisible by 4 because 20 = 4\u00b75. The sum of two multiples of 4 is again a multiple of 4.",
+        "facts_used": [
+          "step 1",
+          "closure of divisibility under addition"
+        ]
+      },
+      {
+        "claim": "4^(n+1) + 20 is divisible by 3.",
+        "reasoning": "Modulo 3, we have 4 \u2261 1, so 4^(n+1) \u2261 1^(n+1) \u2261 1. Also 20 \u2261 2 mod 3. Therefore 4^(n+1) + 20 \u2261 1 + 2 \u2261 0 mod 3, so the expression is divisible by 3.",
+        "facts_used": [
+          "modular arithmetic",
+          "properties of congruences",
+          "exponentiation modulo n"
+        ]
+      },
+      {
+        "claim": "12 divides 4^(n+1) + 20.",
+        "reasoning": "The integers 3 and 4 are coprime, and the expression is divisible by both 3 and 4 by steps 2 and 3. Hence it is divisible by 3\u00b74 = 12.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "coprime divisibility theorem"
+        ]
+      }
+    ],
+    "final_answer": "12 \u2223 4^(n+1) + 20"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:39.714108+00:00"
+}

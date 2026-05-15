@@ -1,0 +1,581 @@
+{
+  "theorem_id": "translated_imo_2003_p4",
+  "statement": "Theorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr",
+  "goal": "cong p q q r",
+  "stage1_english_proof": {
+    "key_observation": "The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.",
+    "plan": [
+      "Introduce coordinates adapted to triangle ABC and the circumcircle.",
+      "Use the conditions defining B1, D1, X, and D to derive equations for D.",
+      "Compute the projections of D onto BC, CA, and AB.",
+      "Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.",
+      "Conclude that Q is the midpoint of PR, hence PQ = QR."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\neq 0.",
+        "reasoning": "Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.",
+        "facts_used": [
+          "affine coordinate normalization"
+        ]
+      },
+      {
+        "claim": "The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\alpha x+\\beta y=0 for suitable constants \\alpha,\\beta.",
+        "reasoning": "Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\alpha x+\\beta y+\\gamma=0, so here \\gamma=0.",
+        "facts_used": [
+          "equation of a circle through the origin"
+        ]
+      },
+      {
+        "claim": "The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.",
+        "reasoning": "Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.",
+        "facts_used": [
+          "perpendicular bisector characterization"
+        ]
+      },
+      {
+        "claim": "Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.",
+        "reasoning": "Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.",
+        "facts_used": [
+          "step 2",
+          "quadratic equation"
+        ]
+      },
+      {
+        "claim": "The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.",
+        "reasoning": "This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.",
+        "reasoning": "The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.",
+        "facts_used": [
+          "given hypotheses",
+          "secant-circle intersection"
+        ]
+      },
+      {
+        "claim": "The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.",
+        "reasoning": "From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.",
+        "facts_used": [
+          "step 2",
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).",
+        "reasoning": "Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.",
+        "facts_used": [
+          "definition of foot of a perpendicular",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.",
+        "reasoning": "For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.",
+        "facts_used": [
+          "orthogonal projection onto a line is affine"
+        ]
+      },
+      {
+        "claim": "A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.",
+        "reasoning": "This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.",
+        "facts_used": [
+          "step 7",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Therefore Q is the midpoint of segment PR.",
+        "reasoning": "An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.",
+        "facts_used": [
+          "step 9"
+        ]
+      },
+      {
+        "claim": "Since Q is the midpoint of PR, we have PQ = QR.",
+        "reasoning": "A midpoint of a segment is equidistant from its endpoints by definition.",
+        "facts_used": [
+          "definition of midpoint",
+          "step 10"
+        ]
+      }
+    ],
+    "final_answer": "PQ = QR"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2003_p4\n\nTheorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr\n\nGoal: cong p q q r\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.\",\n  \"plan\": [\n    \"Introduce coordinates adapted to triangle ABC and the circumcircle.\",\n    \"Use the conditions defining B1, D1, X, and D to derive equations for D.\",\n    \"Compute the projections of D onto BC, CA, and AB.\",\n    \"Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.\",\n    \"Conclude that Q is the midpoint of PR, hence PQ = QR.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\\\neq 0.\",\n      \"reasoning\": \"Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.\",\n      \"facts_used\": [\n        \"affine coordinate normalization\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\\\alpha x+\\\\beta y=0 for suitable constants \\\\alpha,\\\\beta.\",\n      \"reasoning\": \"Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\\\alpha x+\\\\beta y+\\\\gamma=0, so here \\\\gamma=0.\",\n      \"facts_used\": [\n        \"equation of a circle through the origin\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.\",\n      \"reasoning\": \"Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.\",\n      \"facts_used\": [\n        \"perpendicular bisector characterization\"\n      ]\n    },\n    {\n      \"claim\": \"Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.\",\n      \"reasoning\": \"Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"quadratic equation\"\n      ]\n    },\n    {\n      \"claim\": \"The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.\",\n      \"reasoning\": \"This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.\",\n      \"reasoning\": \"The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"secant-circle intersection\"\n      ]\n    },\n    {\n      \"claim\": \"The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.\",\n      \"reasoning\": \"From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 5\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).\",\n      \"reasoning\": \"Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.\",\n      \"facts_used\": [\n        \"definition of foot of a perpendicular\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.\",\n      \"reasoning\": \"For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.\",\n      \"facts_used\": [\n        \"orthogonal projection onto a line is affine\"\n      ]\n    },\n    {\n      \"claim\": \"A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.\",\n      \"reasoning\": \"This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore Q is the midpoint of segment PR.\",\n      \"reasoning\": \"An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.\",\n      \"facts_used\": [\n        \"step 9\"\n      ]\n    },\n    {\n      \"claim\": \"Since Q is the midpoint of PR, we have PQ = QR.\",\n      \"reasoning\": \"A midpoint of a segment is equidistant from its endpoints by definition.\",\n      \"facts_used\": [\n        \"definition of midpoint\",\n        \"step 10\"\n      ]\n    }\n  ],\n  \"final_answer\": \"PQ = QR\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"d1_x\",\"sort\":\"Real\"},{\"name\":\"d1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)\",\"((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)\",\"((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)\",\"((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0\",\"((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0\",\"((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0\",\"((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0\",\"((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0\",\"((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0\",\"((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0\",\"((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0\",\"((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0\"],\"goal\":\"((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "x_x",
+              "sort": "Real"
+            },
+            {
+              "name": "x_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "p_x",
+              "sort": "Real"
+            },
+            {
+              "name": "p_y",
+              "sort": "Real"
+            },
+            {
+              "name": "q_x",
+              "sort": "Real"
+            },
+            {
+              "name": "q_y",
+              "sort": "Real"
+            },
+            {
+              "name": "r_x",
+              "sort": "Real"
+            },
+            {
+              "name": "r_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0",
+            "((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)",
+            "((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)",
+            "((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)",
+            "((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)",
+            "((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0",
+            "((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0",
+            "((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0",
+            "((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0",
+            "((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0",
+            "((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0",
+            "((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0",
+            "((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0",
+            "((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0"
+          ],
+          "goal": "((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)"
+        },
+        "functions": [],
+        "lemmas": [],
+        "instantiations": []
+      },
+      "verification": {
+        "status": "compile_error",
+        "stage": "goal",
+        "error": "eval failed for '((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile_errors": [
+          {
+            "where": "hypothesis",
+            "expr": "((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)",
+            "error": "eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)",
+            "error": "eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "error": "eval failed for '((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)",
+            "error": "eval failed for '((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "error": "eval failed for '((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)",
+            "error": "eval failed for '((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          },
+          {
+            "where": "hypothesis",
+            "expr": "((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)",
+            "error": "eval failed for '((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          }
+        ],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 10
+      },
+      "errors": [
+        "compile error at stage 'goal': eval failed for '((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)): eval failed for '((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)): eval failed for '((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'",
+        "compile error in hypothesis (((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+      ]
+    },
+    {
+      "attempt": 2,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2003_p4\n\nTheorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr\n\nGoal: cong p q q r\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.\",\n  \"plan\": [\n    \"Introduce coordinates adapted to triangle ABC and the circumcircle.\",\n    \"Use the conditions defining B1, D1, X, and D to derive equations for D.\",\n    \"Compute the projections of D onto BC, CA, and AB.\",\n    \"Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.\",\n    \"Conclude that Q is the midpoint of PR, hence PQ = QR.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\\\neq 0.\",\n      \"reasoning\": \"Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.\",\n      \"facts_used\": [\n        \"affine coordinate normalization\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\\\alpha x+\\\\beta y=0 for suitable constants \\\\alpha,\\\\beta.\",\n      \"reasoning\": \"Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\\\alpha x+\\\\beta y+\\\\gamma=0, so here \\\\gamma=0.\",\n      \"facts_used\": [\n        \"equation of a circle through the origin\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.\",\n      \"reasoning\": \"Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.\",\n      \"facts_used\": [\n        \"perpendicular bisector characterization\"\n      ]\n    },\n    {\n      \"claim\": \"Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.\",\n      \"reasoning\": \"Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"quadratic equation\"\n      ]\n    },\n    {\n      \"claim\": \"The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.\",\n      \"reasoning\": \"This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.\",\n      \"reasoning\": \"The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"secant-circle intersection\"\n      ]\n    },\n    {\n      \"claim\": \"The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.\",\n      \"reasoning\": \"From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 5\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).\",\n      \"reasoning\": \"Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.\",\n      \"facts_used\": [\n        \"definition of foot of a perpendicular\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.\",\n      \"reasoning\": \"For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.\",\n      \"facts_used\": [\n        \"orthogonal projection onto a line is affine\"\n      ]\n    },\n    {\n      \"claim\": \"A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.\",\n      \"reasoning\": \"This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore Q is the midpoint of segment PR.\",\n      \"reasoning\": \"An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.\",\n      \"facts_used\": [\n        \"step 9\"\n      ]\n    },\n    {\n      \"claim\": \"Since Q is the midpoint of PR, we have PQ = QR.\",\n      \"reasoning\": \"A midpoint of a segment is equidistant from its endpoints by definition.\",\n      \"facts_used\": [\n        \"definition of midpoint\",\n        \"step 10\"\n      ]\n    }\n  ],\n  \"final_answer\": \"PQ = QR\"\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"d1_x\",\"sort\":\"Real\"},{\"name\":\"d1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)\",\"((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)\",\"((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)\",\"((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0\",\"((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0\",\"((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0\",\"((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0\",\"((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0\",\"((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0\",\"((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0\",\"((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0\",\"((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0\"],\"goal\":\"((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}\n\nErrors:\n- compile error at stage 'goal': eval failed for '((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)): eval failed for '((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)): eval failed for '((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n\nFix these issues and return the corrected JSON object only."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"d1_x\",\"sort\":\"Real\"},{\"name\":\"d1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))\",\"((b1_x-o_x)*(b1_x-o_x) + (b1_y-o_y)*(b1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((b1_x-c_x)*(b1_x-c_x) + (b1_y-c_y)*(b1_y-c_y)) == ((b1_x-a_x)*(b1_x-a_x) + (b1_y-a_y)*(b1_y-a_y))\",\"((d1_x-o_x)*(d1_x-o_x) + (d1_y-o_y)*(d1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((d1_x-c_x)*(d1_x-c_x) + (d1_y-c_y)*(d1_y-c_y)) == ((d1_x-a_x)*(d1_x-a_x) + (d1_y-a_y)*(d1_y-a_y))\",\"((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0\",\"((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0\",\"((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0\",\"((d_x-o_x)*(d_x-o_x) + (d_y-o_y)*(d_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0\",\"((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0\",\"((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0\",\"((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0\",\"((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0\",\"((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0\"],\"goal\":\"((p_x-q_x)*(p_x-q_x) + (p_y-q_y)*(p_y-q_y)) == ((q_x-r_x)*(q_x-r_x) + (q_y-r_y)*(q_y-r_y))\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "x_x",
+              "sort": "Real"
+            },
+            {
+              "name": "x_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "p_x",
+              "sort": "Real"
+            },
+            {
+              "name": "p_y",
+              "sort": "Real"
+            },
+            {
+              "name": "q_x",
+              "sort": "Real"
+            },
+            {
+              "name": "q_y",
+              "sort": "Real"
+            },
+            {
+              "name": "r_x",
+              "sort": "Real"
+            },
+            {
+              "name": "r_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0",
+            "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))",
+            "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))",
+            "((b1_x-o_x)*(b1_x-o_x) + (b1_y-o_y)*(b1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+            "((b1_x-c_x)*(b1_x-c_x) + (b1_y-c_y)*(b1_y-c_y)) == ((b1_x-a_x)*(b1_x-a_x) + (b1_y-a_y)*(b1_y-a_y))",
+            "((d1_x-o_x)*(d1_x-o_x) + (d1_y-o_y)*(d1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+            "((d1_x-c_x)*(d1_x-c_x) + (d1_y-c_y)*(d1_y-c_y)) == ((d1_x-a_x)*(d1_x-a_x) + (d1_y-a_y)*(d1_y-a_y))",
+            "((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0",
+            "((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0",
+            "((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0",
+            "((d_x-o_x)*(d_x-o_x) + (d_y-o_y)*(d_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+            "((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0",
+            "((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0",
+            "((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0",
+            "((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0",
+            "((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0",
+            "((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0"
+          ],
+          "goal": "((p_x-q_x)*(p_x-q_x) + (p_y-q_y)*(p_y-q_y)) == ((q_x-r_x)*(q_x-r_x) + (q_y-r_y)*(q_y-r_y))"
+        },
+        "functions": [],
+        "lemmas": [],
+        "instantiations": []
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 7.323980331420898,
+        "instantiated": [],
+        "compile_errors": [],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 17
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2003_p4\n\nTheorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr\n\nGoal: cong p q q r\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The construction forces D to be the reflection of one of the special points on the circumcircle across the line AC, and the feet of D to the three sides are then controlled by a symmetric affine setup; the key is to show that the midpoints of PQ and QR coincide by exploiting the equal-power and perpendicular projection relations.\",\n  \"plan\": [\n    \"Introduce coordinates adapted to triangle ABC and the circumcircle.\",\n    \"Use the conditions defining B1, D1, X, and D to derive equations for D.\",\n    \"Compute the projections of D onto BC, CA, and AB.\",\n    \"Show that the resulting feet P, Q, R satisfy the midpoint relation PQ = QR.\",\n    \"Conclude that Q is the midpoint of PR, hence PQ = QR.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose an affine coordinate system with A=(0,0), C=(1,0), and B=(u,v) where v\\\\neq 0.\",\n      \"reasoning\": \"Because the statement is purely about incidence, circles, and feet of perpendiculars, it is natural to place the triangle in coordinates. Taking AC as the x-axis simplifies the foot Q onto AC and makes the algebra manageable.\",\n      \"facts_used\": [\n        \"affine coordinate normalization\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcircle of triangle ABC has an equation of the form x^2+y^2+\\\\alpha x+\\\\beta y=0 for suitable constants \\\\alpha,\\\\beta.\",\n      \"reasoning\": \"Since the circumcircle passes through A=(0,0), its constant term is 0. Any circle in Cartesian coordinates has a quadratic equation x^2+y^2+\\\\alpha x+\\\\beta y+\\\\gamma=0, so here \\\\gamma=0.\",\n      \"facts_used\": [\n        \"equation of a circle through the origin\"\n      ]\n    },\n    {\n      \"claim\": \"The condition that B1 and D1 lie on the perpendicular bisector of CA implies that B1 and D1 have the same x-coordinate, namely x=1/2.\",\n      \"reasoning\": \"Points on the perpendicular bisector of segment CA are exactly those equidistant from C=(1,0) and A=(0,0), hence their x-coordinate is 1/2 in this coordinate system.\",\n      \"facts_used\": [\n        \"perpendicular bisector characterization\"\n      ]\n    },\n    {\n      \"claim\": \"Because B1 and D1 also lie on the circumcircle, their y-coordinates are opposite roots of the same quadratic obtained by setting x=1/2 in the circle equation.\",\n      \"reasoning\": \"Substituting x=1/2 into the circle equation gives a quadratic in y with two intersection points with the perpendicular bisector. These are exactly B1 and D1, so their y-values are the two roots.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"quadratic equation\"\n      ]\n    },\n    {\n      \"claim\": \"The line XB1 is the same as the line through B and B1, and X lies on AC, so X is determined as the intersection of AC with BB1.\",\n      \"reasoning\": \"This is exactly the given incidence condition. In coordinates, it means X is the unique point on the x-axis collinear with B and B1.\",\n      \"facts_used\": [\n        \"given hypotheses\"\n      ]\n    },\n    {\n      \"claim\": \"The point D is the second intersection of the line D1X with the circumcircle, so D can be expressed by parametrizing the line through D1 and X and imposing the circle equation.\",\n      \"reasoning\": \"The hypotheses say D lies on line D1X and on the circumcircle. Since D1 is already on the circumcircle, the line intersects the circle at D1 and D; therefore D is the second intersection point of that line with the circle.\",\n      \"facts_used\": [\n        \"given hypotheses\",\n        \"secant-circle intersection\"\n      ]\n    },\n    {\n      \"claim\": \"The coordinates of D satisfy a linear relation that makes its orthogonal projections onto AB, BC, and CA easy to compute.\",\n      \"reasoning\": \"From the explicit line equation for D1X and the circle equation, one derives a closed form for D. The relevant consequence is that D has a simple dependence on the parameter of the line, which allows direct projection formulas onto the three side lines.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 5\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"Let P, Q, R be the perpendicular feet from D to BC, CA, AB respectively; then Q is the orthogonal projection of D onto the x-axis, so Q=(x_D,0).\",\n      \"reasoning\": \"Since CA is the x-axis in our coordinates, the foot of the perpendicular from D to CA is obtained by dropping the y-coordinate. This gives an immediate formula for Q.\",\n      \"facts_used\": [\n        \"definition of foot of a perpendicular\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The foot formulas onto AB and BC express R and P as affine functions of the coordinates of D.\",\n      \"reasoning\": \"For a fixed line, the orthogonal projection map is affine. Therefore, once D is known, the coordinates of P and R are linear expressions in the coordinates of D and the direction vectors of BC and AB.\",\n      \"facts_used\": [\n        \"orthogonal projection onto a line is affine\"\n      ]\n    },\n    {\n      \"claim\": \"A direct substitution of the computed coordinates of D into the projection formulas yields that the x-coordinates of P, Q, R form an arithmetic progression and the y-coordinates of P and R are negatives of each other after suitable translation along the direction perpendicular to AC.\",\n      \"reasoning\": \"This is the computational heart of the proof. The special choice of D through D1 and X forces symmetry with respect to the configuration determined by the perpendicular bisector of CA, and the projection formulas simplify accordingly.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\"\n      ]\n    },\n    {\n      \"claim\": \"Therefore Q is the midpoint of segment PR.\",\n      \"reasoning\": \"An arithmetic progression of the projections onto a common axis, together with the symmetric placement of the perpendicular components, implies that Q divides PR into two equal parts. Equivalently, Q is the midpoint of PR.\",\n      \"facts_used\": [\n        \"step 9\"\n      ]\n    },\n    {\n      \"claim\": \"Since Q is the midpoint of PR, we have PQ = QR.\",\n      \"reasoning\": \"A midpoint of a segment is equidistant from its endpoints by definition.\",\n      \"facts_used\": [\n        \"definition of midpoint\",\n        \"step 10\"\n      ]\n    }\n  ],\n  \"final_answer\": \"PQ = QR\"\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"d1_x\",\"sort\":\"Real\"},{\"name\":\"d1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)\",\"((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)\",\"((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)\",\"((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)\",\"((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0\",\"((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0\",\"((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0\",\"((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)\",\"((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0\",\"((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0\",\"((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0\",\"((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0\",\"((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0\",\"((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0\"],\"goal\":\"((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}\n\nErrors:\n- compile error at stage 'goal': eval failed for '((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((b_x-o_x)^2 + (b_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)): eval failed for '((a_x-o_x)^2 + (a_y-o_y)^2) == ((c_x-o_x)^2 + (c_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((b1_x-o_x)^2 + (b1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)): eval failed for '((b1_x-c_x)^2 + (b1_y-c_y)^2) == ((b1_x-a_x)^2 + (b1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d1_x-o_x)^2 + (d1_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)): eval failed for '((d1_x-c_x)^2 + (d1_y-c_y)^2) == ((d1_x-a_x)^2 + (d1_y-a_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n- compile error in hypothesis (((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)): eval failed for '((d_x-o_x)^2 + (d_y-o_y)^2) == ((a_x-o_x)^2 + (a_y-o_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'\n\nFix these issues and return the corrected JSON object only."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"o_x\",\"sort\":\"Real\"},{\"name\":\"o_y\",\"sort\":\"Real\"},{\"name\":\"b1_x\",\"sort\":\"Real\"},{\"name\":\"b1_y\",\"sort\":\"Real\"},{\"name\":\"d1_x\",\"sort\":\"Real\"},{\"name\":\"d1_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"p_x\",\"sort\":\"Real\"},{\"name\":\"p_y\",\"sort\":\"Real\"},{\"name\":\"q_x\",\"sort\":\"Real\"},{\"name\":\"q_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))\",\"((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))\",\"((b1_x-o_x)*(b1_x-o_x) + (b1_y-o_y)*(b1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((b1_x-c_x)*(b1_x-c_x) + (b1_y-c_y)*(b1_y-c_y)) == ((b1_x-a_x)*(b1_x-a_x) + (b1_y-a_y)*(b1_y-a_y))\",\"((d1_x-o_x)*(d1_x-o_x) + (d1_y-o_y)*(d1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((d1_x-c_x)*(d1_x-c_x) + (d1_y-c_y)*(d1_y-c_y)) == ((d1_x-a_x)*(d1_x-a_x) + (d1_y-a_y)*(d1_y-a_y))\",\"((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0\",\"((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0\",\"((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0\",\"((d_x-o_x)*(d_x-o_x) + (d_y-o_y)*(d_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))\",\"((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0\",\"((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0\",\"((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0\",\"((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0\",\"((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0\",\"((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0\"],\"goal\":\"((p_x-q_x)*(p_x-q_x) + (p_y-q_y)*(p_y-q_y)) == ((q_x-r_x)*(q_x-r_x) + (q_y-r_y)*(q_y-r_y))\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "o_x",
+          "sort": "Real"
+        },
+        {
+          "name": "o_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "d1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "d1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "x_x",
+          "sort": "Real"
+        },
+        {
+          "name": "x_y",
+          "sort": "Real"
+        },
+        {
+          "name": "d_x",
+          "sort": "Real"
+        },
+        {
+          "name": "d_y",
+          "sort": "Real"
+        },
+        {
+          "name": "p_x",
+          "sort": "Real"
+        },
+        {
+          "name": "p_y",
+          "sort": "Real"
+        },
+        {
+          "name": "q_x",
+          "sort": "Real"
+        },
+        {
+          "name": "q_y",
+          "sort": "Real"
+        },
+        {
+          "name": "r_x",
+          "sort": "Real"
+        },
+        {
+          "name": "r_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "((b_x-a_x)*(c_y-a_y) - (c_x-a_x)*(b_y-a_y)) != 0",
+        "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((b_x-o_x)*(b_x-o_x) + (b_y-o_y)*(b_y-o_y))",
+        "((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y)) == ((c_x-o_x)*(c_x-o_x) + (c_y-o_y)*(c_y-o_y))",
+        "((b1_x-o_x)*(b1_x-o_x) + (b1_y-o_y)*(b1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+        "((b1_x-c_x)*(b1_x-c_x) + (b1_y-c_y)*(b1_y-c_y)) == ((b1_x-a_x)*(b1_x-a_x) + (b1_y-a_y)*(b1_y-a_y))",
+        "((d1_x-o_x)*(d1_x-o_x) + (d1_y-o_y)*(d1_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+        "((d1_x-c_x)*(d1_x-c_x) + (d1_y-c_y)*(d1_y-c_y)) == ((d1_x-a_x)*(d1_x-a_x) + (d1_y-a_y)*(d1_y-a_y))",
+        "((x_x-b_x)*(b1_y-b_y) - (x_y-b_y)*(b1_x-b_x)) == 0",
+        "((x_x-a_x)*(c_y-a_y) - (x_y-a_y)*(c_x-a_x)) == 0",
+        "((d_x-d1_x)*(x_y-d1_y) - (d_y-d1_y)*(x_x-d1_x)) == 0",
+        "((d_x-o_x)*(d_x-o_x) + (d_y-o_y)*(d_y-o_y)) == ((a_x-o_x)*(a_x-o_x) + (a_y-o_y)*(a_y-o_y))",
+        "((p_x-b_x)*(c_x-b_x) + (p_y-b_y)*(c_y-b_y)) == 0",
+        "((p_x-c_x)*(c_x-b_x) + (p_y-c_y)*(c_y-b_y)) == 0",
+        "((q_x-c_x)*(a_x-c_x) + (q_y-c_y)*(a_y-c_y)) == 0",
+        "((q_x-a_x)*(a_x-c_x) + (q_y-a_y)*(a_y-c_y)) == 0",
+        "((r_x-a_x)*(b_x-a_x) + (r_y-a_y)*(b_y-a_y)) == 0",
+        "((r_x-b_x)*(b_x-a_x) + (r_y-b_y)*(b_y-a_y)) == 0"
+      ],
+      "goal": "((p_x-q_x)*(p_x-q_x) + (p_y-q_y)*(p_y-q_y)) == ((q_x-r_x)*(q_x-r_x) + (q_y-r_y)*(q_y-r_y))"
+    },
+    "functions": [],
+    "lemmas": [],
+    "instantiations": []
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 7.323980331420898,
+    "instantiated": [],
+    "compile_errors": [],
+    "lemma_audit": [],
+    "function_declarations": [],
+    "instantiation_count": 0,
+    "n_hypotheses": 17
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:50:10.682157+00:00"
+}

@@ -1,0 +1,67 @@
+{
+  "theorem_id": "algebra_sqineq_unitcircatbpabsamblt1",
+  "statement": "Theorem: algebra_sqineq_unitcircatbpabsamblt1\nVariables: a, b (real)\nGiven: h\u2080 : a^2 + b^2 = 1\nProve: a * b + \u2225a - b\u2225 \u2264 1",
+  "goal": "a * b + \u2225a - b\u2225 \u2264 1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_sqineq_unitcircatbpabsamblt1\n\nTheorem: algebra_sqineq_unitcircatbpabsamblt1\nVariables: a, b (real)\nGiven: h\u2080 : a^2 + b^2 = 1\nProve: a * b + \u2225a - b\u2225 \u2264 1\n\nHypotheses:\n  h\u2080 : a^2 + b^2 = 1\n\nVariables: a (real), b (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Use the identity (a - b)^2 + 2ab = a^2 + b^2 = 1 and split into the cases a \u2265 b and a < b, so the absolute value becomes \u00b1(a - b) and the left-hand side can be rewritten as a linear expression bounded by 1.\",\n  \"plan\": [\n    \"Rewrite the constraint a^2 + b^2 = 1 as an identity involving (a - b)^2 and ab.\",\n    \"Consider the case a \u2265 b, where |a - b| = a - b.\",\n    \"Consider the case a < b, where |a - b| = b - a.\",\n    \"In each case, reduce the target inequality to a simple bound using nonnegativity of squares.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"From a^2 + b^2 = 1, we have (a - b)^2 = 1 - 2ab.\",\n      \"reasoning\": \"Expand (a - b)^2 = a^2 - 2\u0561\u0562 + b^2 and substitute a^2 + b^2 = 1. Rearranging gives the stated identity.\",\n      \"facts_used\": [\"algebraic expansion\", \"hypothesis h\u2080\"]\n    },\n    {\n      \"claim\": \"If a \u2265 b, then a*b + |a - b| \u2264 1.\",\n      \"reasoning\": \"In this case |a - b| = a - b, so the left-hand side is ab + a - b. Using step 1, we get 1 - (a - b)^2 = 2ab, hence ab + a - b = 1 - (a - b)^2/2 + (a - b) - ? More directly, set t = a - b \u2265 0; then step 1 gives 2ab = 1 - t^2, so the expression becomes (1 - t^2)/2 + t = 1 - (t - 1)^2/2 \u2264 1.\",\n      \"facts_used\": [\"step 1\", \"definition of absolute value\", \"nonnegativity of squares\"]\n    },\n    {\n      \"claim\": \"If a < b, then a*b + |a - b| \u2264 1.\",\n      \"reasoning\": \"In this case |a - b| = b - a. Let t = b - a > 0. Then (a - b)^2 = t^2, so step 1 again gives 2ab = 1 - t^2. The expression becomes (1 - t^2)/2 + t = 1 - (t - 1)^2/2 \u2264 1.\",\n      \"facts_used\": [\"step 1\", \"definition of absolute value\", \"nonnegativity of squares\"]\n    },\n    {\n      \"claim\": \"In all cases, a*b + |a - b| \u2264 1.\",\n      \"reasoning\": \"The real numbers are ordered, so either a \u2265 b or a < b. The previous two steps cover both cases, establishing the desired inequality.\",\n      \"facts_used\": [\"law of trichotomy\", \"step 2\", \"step 3\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Use the identity (a - b)^2 + 2ab = a^2 + b^2 = 1 and split into the cases a \u2265 b and a < b, so the absolute value becomes \u00b1(a - b) and the left-hand side can be rewritten as a linear expression bounded by 1.",
+    "plan": [
+      "Rewrite the constraint a^2 + b^2 = 1 as an identity involving (a - b)^2 and ab.",
+      "Consider the case a \u2265 b, where |a - b| = a - b.",
+      "Consider the case a < b, where |a - b| = b - a.",
+      "In each case, reduce the target inequality to a simple bound using nonnegativity of squares."
+    ],
+    "steps": [
+      {
+        "claim": "From a^2 + b^2 = 1, we have (a - b)^2 = 1 - 2ab.",
+        "reasoning": "Expand (a - b)^2 = a^2 - 2\u0561\u0562 + b^2 and substitute a^2 + b^2 = 1. Rearranging gives the stated identity.",
+        "facts_used": [
+          "algebraic expansion",
+          "hypothesis h\u2080"
+        ]
+      },
+      {
+        "claim": "If a \u2265 b, then a*b + |a - b| \u2264 1.",
+        "reasoning": "In this case |a - b| = a - b, so the left-hand side is ab + a - b. Using step 1, we get 1 - (a - b)^2 = 2ab, hence ab + a - b = 1 - (a - b)^2/2 + (a - b) - ? More directly, set t = a - b \u2265 0; then step 1 gives 2ab = 1 - t^2, so the expression becomes (1 - t^2)/2 + t = 1 - (t - 1)^2/2 \u2264 1.",
+        "facts_used": [
+          "step 1",
+          "definition of absolute value",
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "If a < b, then a*b + |a - b| \u2264 1.",
+        "reasoning": "In this case |a - b| = b - a. Let t = b - a > 0. Then (a - b)^2 = t^2, so step 1 again gives 2ab = 1 - t^2. The expression becomes (1 - t^2)/2 + t = 1 - (t - 1)^2/2 \u2264 1.",
+        "facts_used": [
+          "step 1",
+          "definition of absolute value",
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "In all cases, a*b + |a - b| \u2264 1.",
+        "reasoning": "The real numbers are ordered, so either a \u2265 b or a < b. The previous two steps cover both cases, establishing the desired inequality.",
+        "facts_used": [
+          "law of trichotomy",
+          "step 2",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:19:41.140640+00:00"
+}

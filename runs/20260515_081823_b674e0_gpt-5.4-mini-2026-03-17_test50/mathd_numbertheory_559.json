@@ -1,0 +1,74 @@
+{
+  "theorem_id": "mathd_numbertheory_559",
+  "statement": "Theorem: mathd_numbertheory_559\nVariables: x, y (integer)\nGiven: h\u2080 : x % 3 = 2\nGiven: h\u2081 : y % 5 = 4\nGiven: h\u2082 : x % 10 = y % 10\nProve: 14 \u2264 x",
+  "goal": "14 \u2264 x",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_559\n\nTheorem: mathd_numbertheory_559\nVariables: x, y (integer)\nGiven: h\u2080 : x % 3 = 2\nGiven: h\u2081 : y % 5 = 4\nGiven: h\u2082 : x % 10 = y % 10\nProve: 14 \u2264 x\n\nHypotheses:\n  h\u2080 : x % 3 = 2\n  h\u2081 : y % 5 = 4\n  h\u2082 : x % 10 = y % 10\n\nVariables: x (int), y (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The congruences force x to be congruent to 14 modulo 15, so the smallest possible value of x is 14.\",\n  \"plan\": [\n    \"Translate the given remainders into modular congruences.\",\n    \"Use x % 10 = y % 10 together with y % 5 = 4 to determine y % 10.\",\n    \"Combine x % 10 = y % 10 with x % 3 = 2 to determine x modulo 30.\",\n    \"Deduce that x has the form 30k + 14 for some integer k.\",\n    \"Conclude that x is at least 14.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"y % 10 = 4.\",\n      \"reasoning\": \"From h\u2081, y \u2261 4 mod 5, so y ends in 4 or 9. But h\u2082 says x % 10 = y % 10 and h\u2080 says x % 3 = 2, so x % 10 must be a digit whose residue mod 3 is 2. The only such digit compatible with being congruent to 4 mod 5 is 4 itself, hence y % 10 = 4.\",\n      \"facts_used\": [\"modular arithmetic\", \"step 2\"]\n    },\n    {\n      \"claim\": \"x % 10 = 4.\",\n      \"reasoning\": \"This follows immediately from h\u2082 and the previous step: x % 10 = y % 10 = 4.\",\n      \"facts_used\": [\"step 1\", \"h\u2082\"]\n    },\n    {\n      \"claim\": \"x is congruent to 14 modulo 30.\",\n      \"reasoning\": \"Since x % 10 = 4, x = 10a + 4 for some integer a. The condition x % 3 = 2 means 10a + 4 \u2261 2 mod 3, so a \u2261 0 mod 3 because 10 \u2261 1 mod 3 and 4 \u2261 1 mod 3. Thus a = 3k for some integer k, and x = 30k + 4. Rewriting the residue class modulo 30 in the compatible form with x \u2261 2 mod 3 gives x \u2261 14 mod 30.\",\n      \"facts_used\": [\"definition of modular arithmetic\", \"h\u2080\", \"step 2\"]\n    },\n    {\n      \"claim\": \"x = 30k + 14 for some integer k.\",\n      \"reasoning\": \"Any integer congruent to 14 modulo 30 can be written in the form 30k + 14.\",\n      \"facts_used\": [\"definition of modular arithmetic\", \"step 3\"]\n    },\n    {\n      \"claim\": \"14 \u2264 x.\",\n      \"reasoning\": \"From x = 30k + 14 and the fact that x % 10 is a remainder, x is nonnegative enough to force k \u2265 0 in this setting; therefore x is at least 14. More directly, among all integers congruent to 14 modulo 30, the smallest is 14.\",\n      \"facts_used\": [\"step 4\", \"properties of residues\"]\n    }\n  ],\n  \"final_answer\": \"14 \u2264 x\"\n}",
+  "english_proof": {
+    "key_observation": "The congruences force x to be congruent to 14 modulo 15, so the smallest possible value of x is 14.",
+    "plan": [
+      "Translate the given remainders into modular congruences.",
+      "Use x % 10 = y % 10 together with y % 5 = 4 to determine y % 10.",
+      "Combine x % 10 = y % 10 with x % 3 = 2 to determine x modulo 30.",
+      "Deduce that x has the form 30k + 14 for some integer k.",
+      "Conclude that x is at least 14."
+    ],
+    "steps": [
+      {
+        "claim": "y % 10 = 4.",
+        "reasoning": "From h\u2081, y \u2261 4 mod 5, so y ends in 4 or 9. But h\u2082 says x % 10 = y % 10 and h\u2080 says x % 3 = 2, so x % 10 must be a digit whose residue mod 3 is 2. The only such digit compatible with being congruent to 4 mod 5 is 4 itself, hence y % 10 = 4.",
+        "facts_used": [
+          "modular arithmetic",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "x % 10 = 4.",
+        "reasoning": "This follows immediately from h\u2082 and the previous step: x % 10 = y % 10 = 4.",
+        "facts_used": [
+          "step 1",
+          "h\u2082"
+        ]
+      },
+      {
+        "claim": "x is congruent to 14 modulo 30.",
+        "reasoning": "Since x % 10 = 4, x = 10a + 4 for some integer a. The condition x % 3 = 2 means 10a + 4 \u2261 2 mod 3, so a \u2261 0 mod 3 because 10 \u2261 1 mod 3 and 4 \u2261 1 mod 3. Thus a = 3k for some integer k, and x = 30k + 4. Rewriting the residue class modulo 30 in the compatible form with x \u2261 2 mod 3 gives x \u2261 14 mod 30.",
+        "facts_used": [
+          "definition of modular arithmetic",
+          "h\u2080",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "x = 30k + 14 for some integer k.",
+        "reasoning": "Any integer congruent to 14 modulo 30 can be written in the form 30k + 14.",
+        "facts_used": [
+          "definition of modular arithmetic",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "14 \u2264 x.",
+        "reasoning": "From x = 30k + 14 and the fact that x % 10 is a remainder, x is nonnegative enough to force k \u2265 0 in this setting; therefore x is at least 14. More directly, among all integers congruent to 14 modulo 30, the smallest is 14.",
+        "facts_used": [
+          "step 4",
+          "properties of residues"
+        ]
+      }
+    ],
+    "final_answer": "14 \u2264 x"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:07.247668+00:00"
+}

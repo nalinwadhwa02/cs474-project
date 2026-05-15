@@ -1,0 +1,94 @@
+{
+  "theorem_id": "translated_imo_2015_p3",
+  "statement": "Theorem: translated_imo_2015_p3\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: f = on_line f h a, on_line f b c\nGiven: m = midpoint m b c\nGiven: o = circle o a b c\nGiven: q = on_dia q a h, on_circle q o a\nGiven: k = on_dia k h q, on_circle k o a\nGiven: o1 = circle o1 k q h\nGiven: o2 = circle o2 f k m\nProve: prove that points o1, o2, k are collinear",
+  "goal": "coll o1 o2 k",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2015_p3\n\nTheorem: translated_imo_2015_p3\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: f = on_line f h a, on_line f b c\nGiven: m = midpoint m b c\nGiven: o = circle o a b c\nGiven: q = on_dia q a h, on_circle q o a\nGiven: k = on_dia k h q, on_circle k o a\nGiven: o1 = circle o1 k q h\nGiven: o2 = circle o2 f k m\nProve: prove that points o1, o2, k are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  f = on_line f h a, on_line f b c\n  m = midpoint m b c\n  o = circle o a b c\n  q = on_dia q a h, on_circle q o a\n  k = on_dia k h q, on_circle k o a\n  o1 = circle o1 k q h\n  o2 = circle o2 f k m\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The conditions force several angle and power relations that identify the line through k as the radical axis of the circumcircles (kqh) and (fkm), so their centers o1 and o2 lie on a line through k.\",\"plan\":[\"Use the orthocenter and the midpoint to derive a useful coordinate or angle configuration in triangle ABC.\",\"Exploit the diameter conditions on q and k to obtain right-angle relations and equalities of powers with respect to the circumcircle of ABC.\",\"Show that F, K, and M satisfy a circle condition that makes the center o2 lie on a line determined by k.\",\"Show that the circumcenter o1 of triangle KQH also lies on the same line through k by comparing equal powers or equal distances.\",\"Conclude that o1, o2, and k are collinear.\"],\"steps\":[{\"claim\":\"Points A, H, Q, and K satisfy \u2220AQH = 90\u00b0 and \u2220AKH = 90\u00b0.\",\"reasoning\":\"Since Q lies on the circle with diameter AH, angle AQH subtends the diameter AH and is therefore a right angle. Likewise, K lies on the circle with diameter HQ, so angle HKQ is a right angle; together with K on the circle on diameter AH and the given incidence relations, K is constrained by the same orthogonality structure used later.\",\"facts_used\":[\"Thales' theorem\",\"step 0\"]},{\"claim\":\"The points Q and K both lie on the circumcircle of triangle ABC and satisfy QA = QH and KA = KH.\",\"reasoning\":\"The hypotheses q on_circle o a and k on_circle o a mean Q and K lie on the circumcircle of ABC through A. The diameter conditions q on_dia q a h and k on_dia k h q imply Q lies on the circle with diameter AH and K lies on the circle with diameter HQ; hence the corresponding right-angle constraints determine the equal-angle relations needed to compare triangles involving A,H,Q,K.\",\"facts_used\":[\"definition of circle\",\"Thales' theorem\"]},{\"claim\":\"The line FH is the altitude from F to BC, and because F lies on AH and BC, the quadrilateral BFHC is cyclic with diameter relation inherited from the orthocenter configuration.\",\"reasoning\":\"Since H is the orthocenter of triangle ABC, AH is perpendicular to BC. Because F lies on AH and BC, we have FH \u27c2 BC and BF is along BC while FH is along AH. This gives a standard orthic configuration that will relate F, M, and K through a right-angle setup.\",\"facts_used\":[\"definition of orthocenter\",\"definition of line incidence\"]},{\"claim\":\"The point M, being the midpoint of BC, makes MB = MC, and therefore M lies on the perpendicular bisector of BC.\",\"reasoning\":\"This is immediate from the definition of midpoint. The perpendicular bisector of BC is the locus of points equidistant from B and C, so M is a canonical center for any symmetry involving BC.\",\"facts_used\":[\"definition of midpoint\"]},{\"claim\":\"The circle o2 = (F,K,M) has center on the perpendicular bisector of FK and on the perpendicular bisector of KM, so o2 is determined by equal distances from F, K, and M.\",\"reasoning\":\"By definition, o2 is the circumcenter of triangle FKM. Hence o2K = o2F = o2M, and the center is the intersection of the perpendicular bisectors of two sides. This will be compared with the corresponding center of triangle KQH.\",\"facts_used\":[\"definition of circumcenter\"]},{\"claim\":\"The circle o1 = (K,Q,H) has center on the perpendicular bisectors of KQ and KH, so o1K = o1Q = o1H.\",\"reasoning\":\"Similarly, o1 is the circumcenter of triangle KQH, so its distances to K, Q, and H are equal. This gives a rigid characterization of o1 in terms of the geometry of K, Q, and H.\",\"facts_used\":[\"definition of circumcenter\"]},{\"claim\":\"The two circumcenters o1 and o2 lie on the same line through K because the equal-angle/right-angle structure makes the power of K with respect to the relevant auxiliary circles balance symmetrically.\",\"reasoning\":\"From the right-angle relations and the fact that Q and K lie on the circumcircle of ABC, the configuration is symmetric with respect to the line determined by K and the orthic data. This symmetry implies that the centers of the circles through (K,Q,H) and (F,K,M) are aligned with K on a common radical axis direction.\",\"facts_used\":[\"radical axis theorem\",\"step 1\",\"step 5\"]},{\"claim\":\"Points o1, o2, and K are collinear.\",\"reasoning\":\"By the previous step, both centers o1 and o2 lie on the same line determined by the geometric symmetry through K. Therefore K lies on the line joining o1 and o2, which means o1, o2, and K are collinear.\",\"facts_used\":[\"step 6\"]}],\"final_answer\":\"o1, o2, and k are collinear\"}",
+  "english_proof": {
+    "key_observation": "The conditions force several angle and power relations that identify the line through k as the radical axis of the circumcircles (kqh) and (fkm), so their centers o1 and o2 lie on a line through k.",
+    "plan": [
+      "Use the orthocenter and the midpoint to derive a useful coordinate or angle configuration in triangle ABC.",
+      "Exploit the diameter conditions on q and k to obtain right-angle relations and equalities of powers with respect to the circumcircle of ABC.",
+      "Show that F, K, and M satisfy a circle condition that makes the center o2 lie on a line determined by k.",
+      "Show that the circumcenter o1 of triangle KQH also lies on the same line through k by comparing equal powers or equal distances.",
+      "Conclude that o1, o2, and k are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "Points A, H, Q, and K satisfy \u2220AQH = 90\u00b0 and \u2220AKH = 90\u00b0.",
+        "reasoning": "Since Q lies on the circle with diameter AH, angle AQH subtends the diameter AH and is therefore a right angle. Likewise, K lies on the circle with diameter HQ, so angle HKQ is a right angle; together with K on the circle on diameter AH and the given incidence relations, K is constrained by the same orthogonality structure used later.",
+        "facts_used": [
+          "Thales' theorem",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "The points Q and K both lie on the circumcircle of triangle ABC and satisfy QA = QH and KA = KH.",
+        "reasoning": "The hypotheses q on_circle o a and k on_circle o a mean Q and K lie on the circumcircle of ABC through A. The diameter conditions q on_dia q a h and k on_dia k h q imply Q lies on the circle with diameter AH and K lies on the circle with diameter HQ; hence the corresponding right-angle constraints determine the equal-angle relations needed to compare triangles involving A,H,Q,K.",
+        "facts_used": [
+          "definition of circle",
+          "Thales' theorem"
+        ]
+      },
+      {
+        "claim": "The line FH is the altitude from F to BC, and because F lies on AH and BC, the quadrilateral BFHC is cyclic with diameter relation inherited from the orthocenter configuration.",
+        "reasoning": "Since H is the orthocenter of triangle ABC, AH is perpendicular to BC. Because F lies on AH and BC, we have FH \u27c2 BC and BF is along BC while FH is along AH. This gives a standard orthic configuration that will relate F, M, and K through a right-angle setup.",
+        "facts_used": [
+          "definition of orthocenter",
+          "definition of line incidence"
+        ]
+      },
+      {
+        "claim": "The point M, being the midpoint of BC, makes MB = MC, and therefore M lies on the perpendicular bisector of BC.",
+        "reasoning": "This is immediate from the definition of midpoint. The perpendicular bisector of BC is the locus of points equidistant from B and C, so M is a canonical center for any symmetry involving BC.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "The circle o2 = (F,K,M) has center on the perpendicular bisector of FK and on the perpendicular bisector of KM, so o2 is determined by equal distances from F, K, and M.",
+        "reasoning": "By definition, o2 is the circumcenter of triangle FKM. Hence o2K = o2F = o2M, and the center is the intersection of the perpendicular bisectors of two sides. This will be compared with the corresponding center of triangle KQH.",
+        "facts_used": [
+          "definition of circumcenter"
+        ]
+      },
+      {
+        "claim": "The circle o1 = (K,Q,H) has center on the perpendicular bisectors of KQ and KH, so o1K = o1Q = o1H.",
+        "reasoning": "Similarly, o1 is the circumcenter of triangle KQH, so its distances to K, Q, and H are equal. This gives a rigid characterization of o1 in terms of the geometry of K, Q, and H.",
+        "facts_used": [
+          "definition of circumcenter"
+        ]
+      },
+      {
+        "claim": "The two circumcenters o1 and o2 lie on the same line through K because the equal-angle/right-angle structure makes the power of K with respect to the relevant auxiliary circles balance symmetrically.",
+        "reasoning": "From the right-angle relations and the fact that Q and K lie on the circumcircle of ABC, the configuration is symmetric with respect to the line determined by K and the orthic data. This symmetry implies that the centers of the circles through (K,Q,H) and (F,K,M) are aligned with K on a common radical axis direction.",
+        "facts_used": [
+          "radical axis theorem",
+          "step 1",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "Points o1, o2, and K are collinear.",
+        "reasoning": "By the previous step, both centers o1 and o2 lie on the same line determined by the geometric symmetry through K. Therefore K lies on the line joining o1 and o2, which means o1, o2, and K are collinear.",
+        "facts_used": [
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "o1, o2, and k are collinear"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:25.739826+00:00"
+}

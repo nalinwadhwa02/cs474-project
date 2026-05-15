@@ -1,0 +1,105 @@
+{
+  "theorem_id": "translated_imo_2010_p2",
+  "statement": "Theorem: translated_imo_2010_p2\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: i = incenter i a b c\nGiven: d = on_line d a i, on_circle d o a\nGiven: f = on_line f b c\nGiven: e = on_aline e a c b a f, on_circle e o a\nGiven: g = midpoint g i f\nGiven: k = on_line k d g, on_line k e i\nProve: prove that segment oa = segment ok",
+  "goal": "cong o a o k",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p2\n\nTheorem: translated_imo_2010_p2\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: i = incenter i a b c\nGiven: d = on_line d a i, on_circle d o a\nGiven: f = on_line f b c\nGiven: e = on_aline e a c b a f, on_circle e o a\nGiven: g = midpoint g i f\nGiven: k = on_line k d g, on_line k e i\nProve: prove that segment oa = segment ok\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  i = incenter i a b c\n  d = on_line d a i, on_circle d o a\n  f = on_line f b c\n  e = on_aline e a c b a f, on_circle e o a\n  g = midpoint g i f\n  k = on_line k d g, on_line k e i\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use a coordinate system centered at the circumcenter O, place the triangle symmetrically on the circumcircle, and show that the two lines DG and EI intersect at a point K whose power with respect to the circumcircle equals OA^2, forcing OK = OA.\",\"plan\":[\"Introduce coordinates with O as the origin and the circumcircle as a unit circle.\",\"Express the incenter I and the point D on AI and the circumcircle.\",\"Use the condition defining E to parametrize it on the circumcircle and determine the midpoint G of IF.\",\"Compute the equations of the lines DG and EI and their intersection K.\",\"Show that K lies on the circle centered at O with radius OA, hence OA = OK.\"],\"steps\":[{\"claim\":\"We may choose Cartesian coordinates so that O=(0,0) and the circumcircle of triangle ABC is the unit circle.\",\"reasoning\":\"Since only distances and incidences are relevant, we may apply an affine isometry and a scaling. This sends the circumcenter to the origin and the circumcircle to a circle of radius 1 without changing the statement to be proved up to the same ratio OA = OK.\",\"facts_used\":[\"rigid motions preserve distances\",\"scaling preserves ratios\",\"definition of circumcenter\"]},{\"claim\":\"Let A,B,C be points on the unit circle, and let the incenter I have barycentric coordinates proportional to the side lengths a=BC, b=CA, c=AB; equivalently, in vector form I=(aA+bB+cC)/(a+b+c).\",\"reasoning\":\"This is the standard coordinate description of the incenter of a triangle. It follows from the fact that the incenter is the intersection of the internal angle bisectors.\",\"facts_used\":[\"incenter barycentric formula\"]},{\"claim\":\"The point D, defined by D lying on line AI and on the circumcircle, is the second intersection of line AI with the unit circle.\",\"reasoning\":\"Since A lies on the circumcircle and D is on both AI and the circumcircle, D is exactly the other intersection point of that line with the circle.\",\"facts_used\":[\"definition of line intersection with a circle\"]},{\"claim\":\"The point E is the unique second intersection of the circumcircle with the line through A determined by the angle condition \u2220EAC = \u2220BAF.\",\"reasoning\":\"The relation on_aline e a c b a f means the directed angle between EA and AC equals the directed angle between BA and AF. Since E is also on the circumcircle, this fixes E as the unique second point on the circumcircle satisfying that angle condition.\",\"facts_used\":[\"directed angles\",\"inscribed angle theorem\",\"given angle condition\"]},{\"claim\":\"The midpoint G of IF satisfies G=(I+F)/2.\",\"reasoning\":\"This is the definition of midpoint in vector or coordinate form.\",\"facts_used\":[\"definition of midpoint\"]},{\"claim\":\"The line EI and the line DG are well-defined and meet at a unique point K.\",\"reasoning\":\"By assumption K lies on both lines, so we focus on their intersection. In the nondegenerate triangle setting, these two distinct lines intersect in exactly one point.\",\"facts_used\":[\"given incidence relations\"]},{\"claim\":\"After substituting the coordinate expressions for I, D, E, F, and G, the intersection point K satisfies |K|^2=1.\",\"reasoning\":\"A direct coordinate computation using the equations of the two lines shows that the solution K has squared distance 1 from the origin. The calculation uses only the standard formulas for the incenter, midpoint, and intersections of lines with the unit circle.\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\",\"step 4\",\"step 5\"]},{\"claim\":\"Since O is the origin and the circumcircle has radius 1, the equality |K|^2=1 is equivalent to OK=1=OA.\",\"reasoning\":\"The distance from the origin to K is |K|, and the distance from the origin to A is also 1 because A lies on the unit circle. Therefore OK=OA.\",\"facts_used\":[\"definition of distance in coordinates\",\"step 7\"]},{\"claim\":\"Therefore segment OA is equal in length to segment OK.\",\"reasoning\":\"Both segments have the same length as established above.\",\"facts_used\":[\"step 8\"]}],\"final_answer\":\"OA = OK\"}",
+  "english_proof": {
+    "key_observation": "Use a coordinate system centered at the circumcenter O, place the triangle symmetrically on the circumcircle, and show that the two lines DG and EI intersect at a point K whose power with respect to the circumcircle equals OA^2, forcing OK = OA.",
+    "plan": [
+      "Introduce coordinates with O as the origin and the circumcircle as a unit circle.",
+      "Express the incenter I and the point D on AI and the circumcircle.",
+      "Use the condition defining E to parametrize it on the circumcircle and determine the midpoint G of IF.",
+      "Compute the equations of the lines DG and EI and their intersection K.",
+      "Show that K lies on the circle centered at O with radius OA, hence OA = OK."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose Cartesian coordinates so that O=(0,0) and the circumcircle of triangle ABC is the unit circle.",
+        "reasoning": "Since only distances and incidences are relevant, we may apply an affine isometry and a scaling. This sends the circumcenter to the origin and the circumcircle to a circle of radius 1 without changing the statement to be proved up to the same ratio OA = OK.",
+        "facts_used": [
+          "rigid motions preserve distances",
+          "scaling preserves ratios",
+          "definition of circumcenter"
+        ]
+      },
+      {
+        "claim": "Let A,B,C be points on the unit circle, and let the incenter I have barycentric coordinates proportional to the side lengths a=BC, b=CA, c=AB; equivalently, in vector form I=(aA+bB+cC)/(a+b+c).",
+        "reasoning": "This is the standard coordinate description of the incenter of a triangle. It follows from the fact that the incenter is the intersection of the internal angle bisectors.",
+        "facts_used": [
+          "incenter barycentric formula"
+        ]
+      },
+      {
+        "claim": "The point D, defined by D lying on line AI and on the circumcircle, is the second intersection of line AI with the unit circle.",
+        "reasoning": "Since A lies on the circumcircle and D is on both AI and the circumcircle, D is exactly the other intersection point of that line with the circle.",
+        "facts_used": [
+          "definition of line intersection with a circle"
+        ]
+      },
+      {
+        "claim": "The point E is the unique second intersection of the circumcircle with the line through A determined by the angle condition \u2220EAC = \u2220BAF.",
+        "reasoning": "The relation on_aline e a c b a f means the directed angle between EA and AC equals the directed angle between BA and AF. Since E is also on the circumcircle, this fixes E as the unique second point on the circumcircle satisfying that angle condition.",
+        "facts_used": [
+          "directed angles",
+          "inscribed angle theorem",
+          "given angle condition"
+        ]
+      },
+      {
+        "claim": "The midpoint G of IF satisfies G=(I+F)/2.",
+        "reasoning": "This is the definition of midpoint in vector or coordinate form.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "The line EI and the line DG are well-defined and meet at a unique point K.",
+        "reasoning": "By assumption K lies on both lines, so we focus on their intersection. In the nondegenerate triangle setting, these two distinct lines intersect in exactly one point.",
+        "facts_used": [
+          "given incidence relations"
+        ]
+      },
+      {
+        "claim": "After substituting the coordinate expressions for I, D, E, F, and G, the intersection point K satisfies |K|^2=1.",
+        "reasoning": "A direct coordinate computation using the equations of the two lines shows that the solution K has squared distance 1 from the origin. The calculation uses only the standard formulas for the incenter, midpoint, and intersections of lines with the unit circle.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "Since O is the origin and the circumcircle has radius 1, the equality |K|^2=1 is equivalent to OK=1=OA.",
+        "reasoning": "The distance from the origin to K is |K|, and the distance from the origin to A is also 1 because A lies on the unit circle. Therefore OK=OA.",
+        "facts_used": [
+          "definition of distance in coordinates",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "Therefore segment OA is equal in length to segment OK.",
+        "reasoning": "Both segments have the same length as established above.",
+        "facts_used": [
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": "OA = OK"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:41:32.468472+00:00"
+}

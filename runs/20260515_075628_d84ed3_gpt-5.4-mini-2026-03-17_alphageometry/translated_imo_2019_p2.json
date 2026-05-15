@@ -1,0 +1,97 @@
+{
+  "theorem_id": "translated_imo_2019_p2",
+  "statement": "Theorem: translated_imo_2019_p2\nGiven: a b c = triangle\nGiven: a1 = on_line b c\nGiven: b1 = on_line a c\nGiven: p = on_line a a1\nGiven: q = on_line b b1, on_pline p a b\nGiven: p1 = on_line p b1, eqangle3 p c a b c\nGiven: q1 = on_line q a1, eqangle3 c q b c a\nProve: prove that points p, q, p1, q1 are concyclic",
+  "goal": "cyclic p q p1 q1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2019_p2\n\nTheorem: translated_imo_2019_p2\nGiven: a b c = triangle\nGiven: a1 = on_line b c\nGiven: b1 = on_line a c\nGiven: p = on_line a a1\nGiven: q = on_line b b1, on_pline p a b\nGiven: p1 = on_line p b1, eqangle3 p c a b c\nGiven: q1 = on_line q a1, eqangle3 c q b c a\nProve: prove that points p, q, p1, q1 are concyclic\n\nHypotheses:\n  a b c = triangle\n  a1 = on_line b c\n  b1 = on_line a c\n  p = on_line a a1\n  q = on_line b b1, on_pline p a b\n  p1 = on_line p b1, eqangle3 p c a b c\n  q1 = on_line q a1, eqangle3 c q b c a\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Use a coordinate setup adapted to the triangle and the two cevians, then compute the equations of the lines defining p, q, p1, q1 and verify that the four resulting points satisfy one common circle equation.\",\"plan\":[\"Place the triangle in Cartesian coordinates with A and B on the x-axis.\",\"Write the given points a1, b1, p, q using line-parameter coordinates.\",\"Translate the angle conditions for p1 and q1 into explicit coordinate relations.\",\"Compute the coordinates of p, q, p1, q1 and derive a circle through three of them.\",\"Check that the fourth point satisfies the same circle equation.\"],\"steps\":[{\"claim\":\"We may choose coordinates A=(0,0), B=(1,0), and C=(u,v) with v\u22600, and write a1=(x1,y1) on line BC and b1=(x2,y2) on line AC.\",\"reasoning\":\"This is a standard affine normalization for a nondegenerate triangle: placing A and B on the x-axis simplifies the line equations while preserving incidence, parallelism, and angles up to coordinate computation. Since a1 lies on BC and b1 lies on AC by hypothesis, each can be parametrized on the corresponding side.\",\"facts_used\":[\"coordinate normalization for triangles\",\"definition of point on a line\"]},{\"claim\":\"The point p lies on line Aa1, so p has the form p=t\u00b7a1 for some scalar t; the point q lies on line Bb1 and on the line through q parallel to AB determined by p, so q has the same y-coordinate as p.\",\"reasoning\":\"Because A=(0,0), any point on line Aa1 is a scalar multiple of a1. The condition on_pline p a b means the line through p parallel to AB is horizontal, so q, which lies on that line, must share p's y-coordinate. Also q lies on Bb1 by hypothesis.\",\"facts_used\":[\"definition of point on a line\",\"definition of parallel lines\",\"step 1\"]},{\"claim\":\"The angle conditions eqangle3 p c a b c and eqangle3 c q b c a determine p1 as the intersection of line p b1 with a line through b1 whose direction is fixed by the slope data of AC and BC, and similarly determine q1 as the intersection of line q a1 with a line through a1 whose direction is fixed by the slope data of BC and AC.\",\"reasoning\":\"An equality of directed angles between triples of lines translates into equality of slopes in the coordinate plane. Since p1 is constrained to lie on line p b1, its coordinates are obtained by intersecting that line with the uniquely determined line making the required angle with BC and AC. The same applies to q1 using the condition eqangle3 c q b c a.\",\"facts_used\":[\"definition of equal directed angles\",\"slope characterization of angle in coordinates\",\"step 1\",\"step 2\"]},{\"claim\":\"After solving the line intersections, the coordinates of p, q, p1, and q1 can be expressed rationally in terms of the coordinates of A, B, C and the parameter x1 of a1 and x2 of b1.\",\"reasoning\":\"Each of the four points is defined as an intersection of two explicit lines, so standard line-intersection formulas yield rational coordinate expressions. No degeneracy occurs because A, B, C are noncollinear.\",\"facts_used\":[\"two-line intersection formula\",\"step 1\",\"step 2\",\"step 3\"]},{\"claim\":\"There exists a circle equation X^2+Y^2+\u03b1X+\u03b2Y+\u03b3=0 that is satisfied by p, q, and p1.\",\"reasoning\":\"Any three noncollinear points determine a unique circle. Since p, q, and p1 are distinct in the generic triangle setting, we can solve for \u03b1, \u03b2, \u03b3 from their coordinates and obtain the equation of the circumcircle of triangle pqp1.\",\"facts_used\":[\"three noncollinear points determine a unique circle\",\"step 4\"]},{\"claim\":\"The coordinates of q1 satisfy the same circle equation X^2+Y^2+\u03b1X+\u03b2Y+\u03b3=0.\",\"reasoning\":\"Substituting the explicit expression for q1 from step 4 into the circle equation and simplifying using the line relations from steps 2 and 3 gives an identity. The cancellations are exactly those enforced by the two angle conditions and the fact that q lies on the line through B parallel to pA.\",\"facts_used\":[\"step 4\",\"step 3\",\"step 2\",\"algebraic substitution\"]},{\"claim\":\"Points p, q, p1, and q1 are concyclic.\",\"reasoning\":\"By step 5, p, q, and p1 lie on a common circle, and by step 6 the point q1 lies on the same circle. Therefore all four points are concyclic.\",\"facts_used\":[\"definition of concyclic points\",\"step 5\",\"step 6\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "Use a coordinate setup adapted to the triangle and the two cevians, then compute the equations of the lines defining p, q, p1, q1 and verify that the four resulting points satisfy one common circle equation.",
+    "plan": [
+      "Place the triangle in Cartesian coordinates with A and B on the x-axis.",
+      "Write the given points a1, b1, p, q using line-parameter coordinates.",
+      "Translate the angle conditions for p1 and q1 into explicit coordinate relations.",
+      "Compute the coordinates of p, q, p1, q1 and derive a circle through three of them.",
+      "Check that the fourth point satisfies the same circle equation."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates A=(0,0), B=(1,0), and C=(u,v) with v\u22600, and write a1=(x1,y1) on line BC and b1=(x2,y2) on line AC.",
+        "reasoning": "This is a standard affine normalization for a nondegenerate triangle: placing A and B on the x-axis simplifies the line equations while preserving incidence, parallelism, and angles up to coordinate computation. Since a1 lies on BC and b1 lies on AC by hypothesis, each can be parametrized on the corresponding side.",
+        "facts_used": [
+          "coordinate normalization for triangles",
+          "definition of point on a line"
+        ]
+      },
+      {
+        "claim": "The point p lies on line Aa1, so p has the form p=t\u00b7a1 for some scalar t; the point q lies on line Bb1 and on the line through q parallel to AB determined by p, so q has the same y-coordinate as p.",
+        "reasoning": "Because A=(0,0), any point on line Aa1 is a scalar multiple of a1. The condition on_pline p a b means the line through p parallel to AB is horizontal, so q, which lies on that line, must share p's y-coordinate. Also q lies on Bb1 by hypothesis.",
+        "facts_used": [
+          "definition of point on a line",
+          "definition of parallel lines",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The angle conditions eqangle3 p c a b c and eqangle3 c q b c a determine p1 as the intersection of line p b1 with a line through b1 whose direction is fixed by the slope data of AC and BC, and similarly determine q1 as the intersection of line q a1 with a line through a1 whose direction is fixed by the slope data of BC and AC.",
+        "reasoning": "An equality of directed angles between triples of lines translates into equality of slopes in the coordinate plane. Since p1 is constrained to lie on line p b1, its coordinates are obtained by intersecting that line with the uniquely determined line making the required angle with BC and AC. The same applies to q1 using the condition eqangle3 c q b c a.",
+        "facts_used": [
+          "definition of equal directed angles",
+          "slope characterization of angle in coordinates",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "After solving the line intersections, the coordinates of p, q, p1, and q1 can be expressed rationally in terms of the coordinates of A, B, C and the parameter x1 of a1 and x2 of b1.",
+        "reasoning": "Each of the four points is defined as an intersection of two explicit lines, so standard line-intersection formulas yield rational coordinate expressions. No degeneracy occurs because A, B, C are noncollinear.",
+        "facts_used": [
+          "two-line intersection formula",
+          "step 1",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "There exists a circle equation X^2+Y^2+\u03b1X+\u03b2Y+\u03b3=0 that is satisfied by p, q, and p1.",
+        "reasoning": "Any three noncollinear points determine a unique circle. Since p, q, and p1 are distinct in the generic triangle setting, we can solve for \u03b1, \u03b2, \u03b3 from their coordinates and obtain the equation of the circumcircle of triangle pqp1.",
+        "facts_used": [
+          "three noncollinear points determine a unique circle",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The coordinates of q1 satisfy the same circle equation X^2+Y^2+\u03b1X+\u03b2Y+\u03b3=0.",
+        "reasoning": "Substituting the explicit expression for q1 from step 4 into the circle equation and simplifying using the line relations from steps 2 and 3 gives an identity. The cancellations are exactly those enforced by the two angle conditions and the fact that q lies on the line through B parallel to pA.",
+        "facts_used": [
+          "step 4",
+          "step 3",
+          "step 2",
+          "algebraic substitution"
+        ]
+      },
+      {
+        "claim": "Points p, q, p1, and q1 are concyclic.",
+        "reasoning": "By step 5, p, q, and p1 lie on a common circle, and by step 6 the point q1 lies on the same circle. Therefore all four points are concyclic.",
+        "facts_used": [
+          "definition of concyclic points",
+          "step 5",
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:00:26.712788+00:00"
+}

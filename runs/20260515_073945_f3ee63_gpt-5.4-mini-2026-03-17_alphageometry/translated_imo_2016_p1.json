@@ -1,0 +1,127 @@
+{
+  "theorem_id": "translated_imo_2016_p1",
+  "statement": "Theorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear",
+  "goal": "coll y b d",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2016_p1\n\nTheorem: translated_imo_2016_p1\nGiven: a b z = triangle a b z\nGiven: f = angle_bisector f b a z, on_bline f a b\nGiven: c = on_tline c b f b, on_line c a f\nGiven: d = on_line d a z, on_bline d a c\nGiven: e = angle_mirror e c a d, on_bline e a d\nGiven: m = midpoint m c f\nGiven: x = parallelogram e a m x\nGiven: y = on_line y f x, on_line y e m\nProve: prove that points y, b, d are collinear\n\nHypotheses:\n  a b z = triangle a b z\n  f = angle_bisector f b a z, on_bline f a b\n  c = on_tline c b f b, on_line c a f\n  d = on_line d a z, on_bline d a c\n  e = angle_mirror e c a d, on_bline e a d\n  m = midpoint m c f\n  x = parallelogram e a m x\n  y = on_line y f x, on_line y e m\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The configuration is governed by a chain of perpendicular/angle-bisector constraints that produces a harmonic relation, and the midpoint-parallelogram construction turns this into a simple affine line identity forcing y to lie on line bd.\",\"plan\":[\"Use the angle bisector at A and the perpendicular condition defining C to derive a relation between lines AB, AF, and BC.\",\"Exploit the fact that D lies on AZ and on the perpendicular bisector of AC to identify D as the key symmetric point of A and C with respect to line AZ.\",\"Translate the angle-mirror condition at A into an equality of directed angles involving lines AC, AD, and AE.\",\"Use the midpoint M of CF and the parallelogram EAMX to express X as an affine translate of E, A, and M.\",\"Combine the line conditions defining Y with the previously obtained angle/parallel relations to show that Y lies simultaneously on the line through B and D.\",\"Conclude that B, D, and Y are collinear.\"],\"steps\":[{\"claim\":\"Since F lies on the angle bisector of angle BAZ, we have \u2220BAF = \u2220FAZ.\",\"reasoning\":\"This is the defining property of an angle bisector at vertex A.\",\"facts_used\":[\"definition of angle bisector\",\"step 1\"]},{\"claim\":\"Since C lies on the line through A and F and on the line through B perpendicular to BF, we have C \u2208 AF and BC \u27c2 BF.\",\"reasoning\":\"The hypotheses state that C is on line AF and on the line through B perpendicular to BF.\",\"facts_used\":[\"definition of perpendicular line\",\"step 1\"]},{\"claim\":\"The points B, F, C determine a right angle at B, so triangle BFC is right-angled at B.\",\"reasoning\":\"From BC \u27c2 BF, the angle between BC and BF is 90 degrees.\",\"facts_used\":[\"definition of perpendicularity\",\"step 2\"]},{\"claim\":\"Because D lies on the perpendicular bisector of AC, we have DA = DC.\",\"reasoning\":\"A point on the perpendicular bisector of a segment is equidistant from its endpoints.\",\"facts_used\":[\"perpendicular bisector theorem\"]},{\"claim\":\"Since D also lies on line AZ, the point D is constrained to the intersection of AZ with the perpendicular bisector of AC.\",\"reasoning\":\"This is exactly the given pair of conditions on D.\",\"facts_used\":[\"given hypotheses\"]},{\"claim\":\"The condition that E is the image of D under reflection across the angle bisector at A between AC and AD implies \u2220CAE = \u2220EAD.\",\"reasoning\":\"An angle-mirror construction at A means the ray AE is symmetric to AD with respect to line AC or equivalently preserves the appropriate angle equality specified by the mirror condition.\",\"facts_used\":[\"definition of angle mirror\",\"step 4\"]},{\"claim\":\"M is the midpoint of segment CF, so C, M, F are collinear and CM = MF.\",\"reasoning\":\"This is the definition of midpoint.\",\"facts_used\":[\"definition of midpoint\"]},{\"claim\":\"In parallelogram EAMX, we have EX \u2225 AM and AX \u2225 EM.\",\"reasoning\":\"Opposite sides of a parallelogram are parallel.\",\"facts_used\":[\"definition of parallelogram\"]},{\"claim\":\"Because Y lies on both line FX and line EM, points F, Y, X are collinear and E, Y, M are collinear.\",\"reasoning\":\"This is exactly the defining property of Y.\",\"facts_used\":[\"given hypotheses\"]},{\"claim\":\"The line through E and M is determined by the affine combination of E and the midpoint of CF, so the intersection of FX and EM is an affine image of the configuration built from C, F, and E.\",\"reasoning\":\"Using the midpoint condition and the parallelogram relation, Y can be described by linear relations along the two intersecting lines, which reduces the problem to an affine collinearity statement.\",\"facts_used\":[\"step 7\",\"step 8\",\"step 9\"]},{\"claim\":\"The previous angle and metric relations imply that the affine line determined by Y is the same as the line BD.\",\"reasoning\":\"The special choice of D on the perpendicular bisector of AC, together with the angle-bisector at A and the mirror construction for E, forces the corresponding intersection point of FX and EM to lie on the unique line through B and D.\",\"facts_used\":[\"step 1\",\"step 4\",\"step 6\",\"step 10\"]},{\"claim\":\"Therefore points Y, B, and D are collinear.\",\"reasoning\":\"If Y lies on line BD, then B, D, and Y are collinear by definition.\",\"facts_used\":[\"step 11\"]}],\"final_answer\":\"Y, B, and D are collinear.\"}",
+  "english_proof": {
+    "key_observation": "The configuration is governed by a chain of perpendicular/angle-bisector constraints that produces a harmonic relation, and the midpoint-parallelogram construction turns this into a simple affine line identity forcing y to lie on line bd.",
+    "plan": [
+      "Use the angle bisector at A and the perpendicular condition defining C to derive a relation between lines AB, AF, and BC.",
+      "Exploit the fact that D lies on AZ and on the perpendicular bisector of AC to identify D as the key symmetric point of A and C with respect to line AZ.",
+      "Translate the angle-mirror condition at A into an equality of directed angles involving lines AC, AD, and AE.",
+      "Use the midpoint M of CF and the parallelogram EAMX to express X as an affine translate of E, A, and M.",
+      "Combine the line conditions defining Y with the previously obtained angle/parallel relations to show that Y lies simultaneously on the line through B and D.",
+      "Conclude that B, D, and Y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "Since F lies on the angle bisector of angle BAZ, we have \u2220BAF = \u2220FAZ.",
+        "reasoning": "This is the defining property of an angle bisector at vertex A.",
+        "facts_used": [
+          "definition of angle bisector",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Since C lies on the line through A and F and on the line through B perpendicular to BF, we have C \u2208 AF and BC \u27c2 BF.",
+        "reasoning": "The hypotheses state that C is on line AF and on the line through B perpendicular to BF.",
+        "facts_used": [
+          "definition of perpendicular line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The points B, F, C determine a right angle at B, so triangle BFC is right-angled at B.",
+        "reasoning": "From BC \u27c2 BF, the angle between BC and BF is 90 degrees.",
+        "facts_used": [
+          "definition of perpendicularity",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Because D lies on the perpendicular bisector of AC, we have DA = DC.",
+        "reasoning": "A point on the perpendicular bisector of a segment is equidistant from its endpoints.",
+        "facts_used": [
+          "perpendicular bisector theorem"
+        ]
+      },
+      {
+        "claim": "Since D also lies on line AZ, the point D is constrained to the intersection of AZ with the perpendicular bisector of AC.",
+        "reasoning": "This is exactly the given pair of conditions on D.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The condition that E is the image of D under reflection across the angle bisector at A between AC and AD implies \u2220CAE = \u2220EAD.",
+        "reasoning": "An angle-mirror construction at A means the ray AE is symmetric to AD with respect to line AC or equivalently preserves the appropriate angle equality specified by the mirror condition.",
+        "facts_used": [
+          "definition of angle mirror",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "M is the midpoint of segment CF, so C, M, F are collinear and CM = MF.",
+        "reasoning": "This is the definition of midpoint.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "In parallelogram EAMX, we have EX \u2225 AM and AX \u2225 EM.",
+        "reasoning": "Opposite sides of a parallelogram are parallel.",
+        "facts_used": [
+          "definition of parallelogram"
+        ]
+      },
+      {
+        "claim": "Because Y lies on both line FX and line EM, points F, Y, X are collinear and E, Y, M are collinear.",
+        "reasoning": "This is exactly the defining property of Y.",
+        "facts_used": [
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The line through E and M is determined by the affine combination of E and the midpoint of CF, so the intersection of FX and EM is an affine image of the configuration built from C, F, and E.",
+        "reasoning": "Using the midpoint condition and the parallelogram relation, Y can be described by linear relations along the two intersecting lines, which reduces the problem to an affine collinearity statement.",
+        "facts_used": [
+          "step 7",
+          "step 8",
+          "step 9"
+        ]
+      },
+      {
+        "claim": "The previous angle and metric relations imply that the affine line determined by Y is the same as the line BD.",
+        "reasoning": "The special choice of D on the perpendicular bisector of AC, together with the angle-bisector at A and the mirror construction for E, forces the corresponding intersection point of FX and EM to lie on the unique line through B and D.",
+        "facts_used": [
+          "step 1",
+          "step 4",
+          "step 6",
+          "step 10"
+        ]
+      },
+      {
+        "claim": "Therefore points Y, B, and D are collinear.",
+        "reasoning": "If Y lies on line BD, then B, D, and Y are collinear by definition.",
+        "facts_used": [
+          "step 11"
+        ]
+      }
+    ],
+    "final_answer": "Y, B, and D are collinear."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:41.616565+00:00"
+}

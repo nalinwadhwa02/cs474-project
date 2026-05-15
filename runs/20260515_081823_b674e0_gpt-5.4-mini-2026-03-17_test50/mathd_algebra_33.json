@@ -1,0 +1,67 @@
+{
+  "theorem_id": "mathd_algebra_33",
+  "statement": "Theorem: mathd_algebra_33\nVariables: x, y, z (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 2 * x = 5 * y\nGiven: h\u2082 : 7 * y = 10 * z\nProve: z / x = 7 / 25",
+  "goal": "z / x = 7 / 25",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_33\n\nTheorem: mathd_algebra_33\nVariables: x, y, z (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 2 * x = 5 * y\nGiven: h\u2082 : 7 * y = 10 * z\nProve: z / x = 7 / 25\n\nHypotheses:\n  h\u2080 : x \u2260 0\n  h\u2081 : 2 * x = 5 * y\n  h\u2082 : 7 * y = 10 * z\n\nVariables: x (real), y (real), z (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The two linear relations let us express y in terms of x and z in terms of y, so substituting gives a direct formula for z/x.\",\n  \"plan\": [\n    \"Rewrite the given equations as expressions for y and z.\",\n    \"Substitute the expression for y into the expression for z.\",\n    \"Simplify the resulting formula to isolate z/x.\",\n    \"Use x \u2260 0 to justify division by x.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"y = (2/5) * x.\",\n      \"reasoning\": \"From h\u2081, we have 2 * x = 5 * y. Since 5 is nonzero, divide both sides by 5 to solve for y, giving y = (2/5) * x.\",\n      \"facts_used\": [\"h\u2081\", \"division by a nonzero real number\"]\n    },\n    {\n      \"claim\": \"z = (7/10) * y.\",\n      \"reasoning\": \"From h\u2082, we have 7 * y = 10 * z. Since 10 is nonzero, divide both sides by 10 to solve for z, giving z = (7/10) * y.\",\n      \"facts_used\": [\"h\u2082\", \"division by a nonzero real number\"]\n    },\n    {\n      \"claim\": \"z = (7/25) * x.\",\n      \"reasoning\": \"Substitute the expression for y from step 1 into the expression from step 2: z = (7/10) * ((2/5) * x). Multiplying the constants gives (7 * 2) / (10 * 5) = 14/50 = 7/25, so z = (7/25) * x.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"associativity and commutativity of multiplication\", \"simplification of rational numbers\"]\n    },\n    {\n      \"claim\": \"z / x = 7 / 25.\",\n      \"reasoning\": \"Since h\u2080 states x \u2260 0, we may divide the identity z = (7/25) * x by x. This yields z / x = 7 / 25.\",\n      \"facts_used\": [\"step 3\", \"h\u2080\", \"division by a nonzero real number\"]\n    }\n  ],\n  \"final_answer\": \"7 / 25\"\n}",
+  "english_proof": {
+    "key_observation": "The two linear relations let us express y in terms of x and z in terms of y, so substituting gives a direct formula for z/x.",
+    "plan": [
+      "Rewrite the given equations as expressions for y and z.",
+      "Substitute the expression for y into the expression for z.",
+      "Simplify the resulting formula to isolate z/x.",
+      "Use x \u2260 0 to justify division by x."
+    ],
+    "steps": [
+      {
+        "claim": "y = (2/5) * x.",
+        "reasoning": "From h\u2081, we have 2 * x = 5 * y. Since 5 is nonzero, divide both sides by 5 to solve for y, giving y = (2/5) * x.",
+        "facts_used": [
+          "h\u2081",
+          "division by a nonzero real number"
+        ]
+      },
+      {
+        "claim": "z = (7/10) * y.",
+        "reasoning": "From h\u2082, we have 7 * y = 10 * z. Since 10 is nonzero, divide both sides by 10 to solve for z, giving z = (7/10) * y.",
+        "facts_used": [
+          "h\u2082",
+          "division by a nonzero real number"
+        ]
+      },
+      {
+        "claim": "z = (7/25) * x.",
+        "reasoning": "Substitute the expression for y from step 1 into the expression from step 2: z = (7/10) * ((2/5) * x). Multiplying the constants gives (7 * 2) / (10 * 5) = 14/50 = 7/25, so z = (7/25) * x.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "associativity and commutativity of multiplication",
+          "simplification of rational numbers"
+        ]
+      },
+      {
+        "claim": "z / x = 7 / 25.",
+        "reasoning": "Since h\u2080 states x \u2260 0, we may divide the identity z = (7/25) * x by x. This yields z / x = 7 / 25.",
+        "facts_used": [
+          "step 3",
+          "h\u2080",
+          "division by a nonzero real number"
+        ]
+      }
+    ],
+    "final_answer": "7 / 25"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:19:23.571683+00:00"
+}

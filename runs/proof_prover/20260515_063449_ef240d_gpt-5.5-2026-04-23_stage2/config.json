@@ -1,0 +1,9 @@
+{
+  "model": "gpt-5.5-2026-04-23",
+  "stage1_run": "/Users/dush/cs474-project/runs/20260515_055947_966674_gpt-5.4-mini-2026-03-17_valid50",
+  "problem_filter": null,
+  "limit": 50,
+  "max_retries": 3,
+  "n_problems": 49,
+  "started_at": "2026-05-15T06:34:49.821163+00:00"
+}

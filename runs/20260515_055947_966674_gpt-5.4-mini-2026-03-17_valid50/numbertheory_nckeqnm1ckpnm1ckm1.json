@@ -1,0 +1,55 @@
+{
+  "theorem_id": "numbertheory_nckeqnm1ckpnm1ckm1",
+  "statement": "Theorem: numbertheory_nckeqnm1ckpnm1ckm1\nVariables: n, k (integer)\nGiven: h\u2080 : 0 < n \u2227 0 < k\nGiven: h\u2081 : k \u2264 n\nProve: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+  "goal": "nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: numbertheory_nckeqnm1ckpnm1ckm1\n\nTheorem: numbertheory_nckeqnm1ckpnm1ckm1\nVariables: n, k (integer)\nGiven: h\u2080 : 0 < n \u2227 0 < k\nGiven: h\u2081 : k \u2264 n\nProve: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)\n\nHypotheses:\n  h\u2080 : 0 < n \u2227 0 < k\n  h\u2081 : k \u2264 n\n\nVariables: n (int), k (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since k \u2264 n and both n and k are positive, we can apply Pascal\u2019s identity for binomial coefficients, with the only subtlety being that the terms n - 1 and k - 1 are still valid natural-number arguments.\",\n  \"plan\": [\n    \"Use the positivity assumptions to view n and k as natural numbers with k > 0 and n > 0.\",\n    \"Apply the standard Pascal recurrence for binomial coefficients.\",\n    \"Check that the recurrence is valid under the given inequality k \u2264 n.\",\n    \"Conclude the desired equality.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"n and k are natural numbers with 0 < n and 0 < k, and k \u2264 n.\",\n      \"reasoning\": \"The theorem is stated for integers, but the binomial coefficient nat.choose is defined on natural numbers. The hypotheses already provide positivity of n and k, and h\u2081 gives the needed order relation.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"The binomial coefficient satisfies Pascal\u2019s identity: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1), provided 0 < k \u2264 n.\",\n      \"reasoning\": \"This is the standard recurrence for binomial coefficients. The condition 0 < k ensures k - 1 is a valid natural number index, and k \u2264 n ensures the identity applies in the usual range.\",\n      \"facts_used\": [\"Pascal's identity for binomial coefficients\", \"step 1\"]\n    },\n    {\n      \"claim\": \"Therefore nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1).\",\n      \"reasoning\": \"This is exactly the statement obtained by instantiating Pascal\u2019s identity with the given n and k.\",\n      \"facts_used\": [\"step 2\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Since k \u2264 n and both n and k are positive, we can apply Pascal\u2019s identity for binomial coefficients, with the only subtlety being that the terms n - 1 and k - 1 are still valid natural-number arguments.",
+    "plan": [
+      "Use the positivity assumptions to view n and k as natural numbers with k > 0 and n > 0.",
+      "Apply the standard Pascal recurrence for binomial coefficients.",
+      "Check that the recurrence is valid under the given inequality k \u2264 n.",
+      "Conclude the desired equality."
+    ],
+    "steps": [
+      {
+        "claim": "n and k are natural numbers with 0 < n and 0 < k, and k \u2264 n.",
+        "reasoning": "The theorem is stated for integers, but the binomial coefficient nat.choose is defined on natural numbers. The hypotheses already provide positivity of n and k, and h\u2081 gives the needed order relation.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "The binomial coefficient satisfies Pascal\u2019s identity: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1), provided 0 < k \u2264 n.",
+        "reasoning": "This is the standard recurrence for binomial coefficients. The condition 0 < k ensures k - 1 is a valid natural number index, and k \u2264 n ensures the identity applies in the usual range.",
+        "facts_used": [
+          "Pascal's identity for binomial coefficients",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Therefore nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1).",
+        "reasoning": "This is exactly the statement obtained by instantiating Pascal\u2019s identity with the given n and k.",
+        "facts_used": [
+          "step 2"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:02:18.140528+00:00"
+}

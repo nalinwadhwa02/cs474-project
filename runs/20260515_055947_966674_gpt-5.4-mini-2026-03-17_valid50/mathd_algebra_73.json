@@ -1,0 +1,66 @@
+{
+  "theorem_id": "mathd_algebra_73",
+  "statement": "Theorem: mathd_algebra_73\nVariables: p, q, r, x (real)\nGiven: h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\nGiven: h\u2081 : x \u2260 r\nProve: x = p + q - r",
+  "goal": "x = p + q - r",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_73\n\nTheorem: mathd_algebra_73\nVariables: p, q, r, x (real)\nGiven: h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\nGiven: h\u2081 : x \u2260 r\nProve: x = p + q - r\n\nHypotheses:\n  h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\n  h\u2081 : x \u2260 r\n\nVariables: p (real), q (real), r (real), x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Expanding both products shows the equality is a quadratic equation in x that factors as (x-r)(x-(p+q-r))=0, and the assumption x\u2260r forces the other factor to vanish.\",\"plan\":[\"Expand both sides of the given equality.\",\"Rearrange the equation into a factored form involving x-r.\",\"Use the assumption x \u2260 r to eliminate one factor.\",\"Conclude that x must equal p + q - r.\"],\"steps\":[{\"claim\":\"The hypothesis (x - p) * (x - q) = (r - p) * (r - q) is equivalent to x^2 - (p+q)x + pq = r^2 - (p+q)r + pq.\",\"reasoning\":\"Expanding both products gives (x-p)(x-q)=x^2-(p+q)x+pq and (r-p)(r-q)=r^2-(p+q)r+pq. Substituting these expansions into h\u2080 yields the stated equality.\",\"facts_used\":[\"distributive law\",\"algebraic expansion\",\"step 0\"]},{\"claim\":\"From x^2 - (p+q)x + pq = r^2 - (p+q)r + pq, we get (x-r)(x-(p+q-r)) = 0.\",\"reasoning\":\"Subtracting the right-hand side from the left-hand side cancels pq and gives x^2 - (p+q)x - r^2 + (p+q)r = 0. This expression factors as (x-r)(x-(p+q-r)) because expanding the product gives x^2 - (p+q)x - r x + r(p+q-r), which simplifies to the same polynomial.\",\"facts_used\":[\"algebraic manipulation\",\"factorization of a quadratic\",\"step 1\"]},{\"claim\":\"x = r or x = p + q - r.\",\"reasoning\":\"If a product of two real numbers is zero, then at least one factor is zero. Applying this to (x-r)(x-(p+q-r))=0 yields the disjunction.\",\"facts_used\":[\"zero product property\",\"step 2\"]},{\"claim\":\"x = p + q - r.\",\"reasoning\":\"The assumption h\u2081 says x \u2260 r, so the alternative x = r is impossible. Therefore the only remaining possibility from step 3 is x = p + q - r.\",\"facts_used\":[\"step 3\",\"h\u2081\"]}],\"final_answer\":\"x = p + q - r\"}",
+  "english_proof": {
+    "key_observation": "Expanding both products shows the equality is a quadratic equation in x that factors as (x-r)(x-(p+q-r))=0, and the assumption x\u2260r forces the other factor to vanish.",
+    "plan": [
+      "Expand both sides of the given equality.",
+      "Rearrange the equation into a factored form involving x-r.",
+      "Use the assumption x \u2260 r to eliminate one factor.",
+      "Conclude that x must equal p + q - r."
+    ],
+    "steps": [
+      {
+        "claim": "The hypothesis (x - p) * (x - q) = (r - p) * (r - q) is equivalent to x^2 - (p+q)x + pq = r^2 - (p+q)r + pq.",
+        "reasoning": "Expanding both products gives (x-p)(x-q)=x^2-(p+q)x+pq and (r-p)(r-q)=r^2-(p+q)r+pq. Substituting these expansions into h\u2080 yields the stated equality.",
+        "facts_used": [
+          "distributive law",
+          "algebraic expansion",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "From x^2 - (p+q)x + pq = r^2 - (p+q)r + pq, we get (x-r)(x-(p+q-r)) = 0.",
+        "reasoning": "Subtracting the right-hand side from the left-hand side cancels pq and gives x^2 - (p+q)x - r^2 + (p+q)r = 0. This expression factors as (x-r)(x-(p+q-r)) because expanding the product gives x^2 - (p+q)x - r x + r(p+q-r), which simplifies to the same polynomial.",
+        "facts_used": [
+          "algebraic manipulation",
+          "factorization of a quadratic",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "x = r or x = p + q - r.",
+        "reasoning": "If a product of two real numbers is zero, then at least one factor is zero. Applying this to (x-r)(x-(p+q-r))=0 yields the disjunction.",
+        "facts_used": [
+          "zero product property",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "x = p + q - r.",
+        "reasoning": "The assumption h\u2081 says x \u2260 r, so the alternative x = r is impossible. Therefore the only remaining possibility from step 3 is x = p + q - r.",
+        "facts_used": [
+          "step 3",
+          "h\u2081"
+        ]
+      }
+    ],
+    "final_answer": "x = p + q - r"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:02:46.407296+00:00"
+}

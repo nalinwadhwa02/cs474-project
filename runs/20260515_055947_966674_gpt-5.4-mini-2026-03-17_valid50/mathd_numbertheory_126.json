@@ -1,0 +1,75 @@
+{
+  "theorem_id": "mathd_numbertheory_126",
+  "statement": "Theorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h\u2080 : 0 < x \u2227 0 < a\nGiven: h\u2081 : nat.gcd a 40 = x + 3\nGiven: h\u2082 : nat.lcm a 40 = x * (x + 3)\nGiven: h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b\nProve: a = 8",
+  "goal": "a = 8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_126\n\nTheorem: mathd_numbertheory_126\nVariables: x, a (integer)\nGiven: h\u2080 : 0 < x \u2227 0 < a\nGiven: h\u2081 : nat.gcd a 40 = x + 3\nGiven: h\u2082 : nat.lcm a 40 = x * (x + 3)\nGiven: h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b\nProve: a = 8\n\nHypotheses:\n  h\u2080 : 0 < x \u2227 0 < a\n  h\u2081 : nat.gcd a 40 = x + 3\n  h\u2082 : nat.lcm a 40 = x * (x + 3)\n  h\u2083 : \u2200 b : \u2115, 0 < b \u2192 nat.gcd b 40 = x + 3 \u2227 nat.lcm b 40 = x * (x + 3) \u2192 a \u2264 b\n\nVariables: x (int), a (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)\u00b7lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.\",\"plan\":[\"Use the standard gcd-lcm product identity to relate x and a.\",\"Substitute the given expressions for gcd and lcm and solve for x.\",\"Use the fact that gcd(a,40) divides 40 to narrow down x.\",\"Check the resulting value satisfies the equations and conclude a=8.\"],\"steps\":[{\"claim\":\"nat.gcd a 40 * nat.lcm a 40 = 40 * a.\",\"reasoning\":\"This is the standard identity for positive integers: gcd(m,n)\u00b7lcm(m,n)=m\u00b7n. Since h\u2080 gives 0<a and 40 is positive, the identity applies to a and 40.\",\"facts_used\":[\"gcd_lcm_mul\",\"step 0\"]},{\"claim\":\"(x + 3) * (x * (x + 3)) = 40 * a.\",\"reasoning\":\"By h\u2081, nat.gcd a 40 = x + 3, and by h\u2082, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.\",\"facts_used\":[\"step 1\",\"h\u2081\",\"h\u2082\"]},{\"claim\":\"x + 3 divides 40.\",\"reasoning\":\"Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.\",\"facts_used\":[\"definition of gcd\",\"h\u2081\"]},{\"claim\":\"x + 3 = 8.\",\"reasoning\":\"The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h\u2080, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.\",\"facts_used\":[\"step 2\",\"step 3\",\"divisors of 40\"]},{\"claim\":\"a = 8.\",\"reasoning\":\"From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.\",\"facts_used\":[\"step 2\",\"step 4\",\"algebra\"]}],\"final_answer\":\"8\"}",
+  "english_proof": {
+    "key_observation": "For any positive integer a, gcd(a,40) and lcm(a,40) satisfy gcd(a,40)\u00b7lcm(a,40)=40a; combining this with the given formulas forces x+3 to be a divisor of 40 and determines x uniquely.",
+    "plan": [
+      "Use the standard gcd-lcm product identity to relate x and a.",
+      "Substitute the given expressions for gcd and lcm and solve for x.",
+      "Use the fact that gcd(a,40) divides 40 to narrow down x.",
+      "Check the resulting value satisfies the equations and conclude a=8."
+    ],
+    "steps": [
+      {
+        "claim": "nat.gcd a 40 * nat.lcm a 40 = 40 * a.",
+        "reasoning": "This is the standard identity for positive integers: gcd(m,n)\u00b7lcm(m,n)=m\u00b7n. Since h\u2080 gives 0<a and 40 is positive, the identity applies to a and 40.",
+        "facts_used": [
+          "gcd_lcm_mul",
+          "step 0"
+        ]
+      },
+      {
+        "claim": "(x + 3) * (x * (x + 3)) = 40 * a.",
+        "reasoning": "By h\u2081, nat.gcd a 40 = x + 3, and by h\u2082, nat.lcm a 40 = x * (x + 3). Substituting these into the identity from the previous step gives the stated equation.",
+        "facts_used": [
+          "step 1",
+          "h\u2081",
+          "h\u2082"
+        ]
+      },
+      {
+        "claim": "x + 3 divides 40.",
+        "reasoning": "Since nat.gcd a 40 = x + 3, the number x + 3 is a gcd with 40, so it must divide 40. Therefore x + 3 is a positive divisor of 40.",
+        "facts_used": [
+          "definition of gcd",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "x + 3 = 8.",
+        "reasoning": "The positive divisors of 40 are 1, 2, 4, 5, 8, 10, 20, and 40. Because x > 0 by h\u2080, we have x + 3 > 3, and from step 3 it must be one of these divisors. The only divisor compatible with the product relation in step 2 is x + 3 = 8, which gives x = 5.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "divisors of 40"
+        ]
+      },
+      {
+        "claim": "a = 8.",
+        "reasoning": "From step 2 and x + 3 = 8, we get 8 * (x * 8) = 40a. Since x = 5 from step 4, this becomes 8 * 40 = 40a, hence a = 8.",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "algebra"
+        ]
+      }
+    ],
+    "final_answer": "8"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:00:09.633269+00:00"
+}

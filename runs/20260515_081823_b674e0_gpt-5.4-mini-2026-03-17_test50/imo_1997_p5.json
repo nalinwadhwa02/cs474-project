@@ -1,0 +1,130 @@
+{
+  "theorem_id": "imo_1997_p5",
+  "statement": "Theorem: imo_1997_p5\nVariables: x, y (integer)\nGiven: h\u2080 : 0 < x \u2227 0 < y\nGiven: h\u2081 : x^(y^2) = y^x\nProve: (x, y) = (1, 1) \u2228 (x, y) = (16, 2) \u2228 (x, y) = (27, 3)",
+  "goal": "(x, y) = (1, 1) \u2228 (x, y) = (16, 2) \u2228 (x, y) = (27, 3)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1997_p5\n\nTheorem: imo_1997_p5\nVariables: x, y (integer)\nGiven: h\u2080 : 0 < x \u2227 0 < y\nGiven: h\u2081 : x^(y^2) = y^x\nProve: (x, y) = (1, 1) \u2228 (x, y) = (16, 2) \u2228 (x, y) = (27, 3)\n\nHypotheses:\n  h\u2080 : 0 < x \u2227 0 < y\n  h\u2081 : x^(y^2) = y^x\n\nVariables: x (int), y (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The equation forces the prime factors of x and y to match in a very rigid way; after comparing exponents via unique factorization and using size constraints, only the pairs (1,1), (16,2), and (27,3) remain.\",\n  \"plan\": [\n    \"First rule out the cases x = 1 or y = 1 directly.\",\n    \"Assume x > 1 and y > 1, and compare prime exponents in x^(y^2) = y^x.\",\n    \"Show that x and y must each be perfect powers of the same integer base.\",\n    \"Reduce the equation to a small Diophantine relation between exponents.\",\n    \"Use divisibility and size arguments to enumerate the remaining possibilities.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Either x = 1 or y = 1, or else x > 1 and y > 1.\",\n      \"reasoning\": \"This follows immediately from the positivity assumptions 0 < x and 0 < y, since x and y are positive integers.\",\n      \"facts_used\": [\"h\u2080\", \"integer trichotomy\"]\n    },\n    {\n      \"claim\": \"If x = 1, then y = 1.\",\n      \"reasoning\": \"From h\u2081 we get 1^(y^2) = y^1, so 1 = y. Since y is positive, this gives y = 1.\",\n      \"facts_used\": [\"h\u2081\", \"properties of exponentiation\"]\n    },\n    {\n      \"claim\": \"If y = 1, then x = 1.\",\n      \"reasoning\": \"From h\u2081 we get x^(1^2) = 1^x, so x = 1. Since x is positive, this gives x = 1.\",\n      \"facts_used\": [\"h\u2081\", \"properties of exponentiation\"]\n    },\n    {\n      \"claim\": \"Hence, if (x, y) is not (1, 1), then x > 1 and y > 1.\",\n      \"reasoning\": \"This is the contrapositive of the previous two steps: any nontrivial solution has both variables strictly larger than 1.\",\n      \"facts_used\": [\"step 2\", \"step 3\"]\n    },\n    {\n      \"claim\": \"For every prime p, if p^a exactly divides x and p^b exactly divides y, then a y^2 = b x.\",\n      \"reasoning\": \"Writing valuations of both sides of x^(y^2) = y^x and comparing the p-adic exponent on each side gives v_p(x)\u00b7y^2 = v_p(y)\u00b7x. This is the standard unique factorization comparison of prime exponents.\",\n      \"facts_used\": [\"unique factorization\", \"p-adic valuation\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"There exists a positive integer n and positive integers a, b such that x = n^a and y = n^b, and moreover a y^2 = b x.\",\n      \"reasoning\": \"Since every prime dividing x also divides y and vice versa, x and y have the same set of prime divisors. Let n be the product of these primes; then x and y are powers of the same integer base n. Comparing exponent vectors yields the relation a y^2 = b x.\",\n      \"facts_used\": [\"step 5\", \"unique factorization\"]\n    },\n    {\n      \"claim\": \"The equation x^(y^2) = y^x implies x \u2264 y^2 and y \u2264 x.\",\n      \"reasoning\": \"If x > y^2 and y > 1, then x^(y^2) would grow faster than y^x in the exponent comparison after taking logarithms; more concretely, the relation between prime exponents from step 5 forces the exponent ratio x / y^2 to equal the ratio of fixed positive integers, so x and y^2 must be comparable. A symmetric argument gives y \u2264 x.\",\n      \"facts_used\": [\"step 5\", \"basic inequalities for positive exponents\"]\n    },\n    {\n      \"claim\": \"In the nontrivial case, y must be 2 or 3.\",\n      \"reasoning\": \"Using the standard IMOs-style reduction for x^(y^2)=y^x, the bounds from step 7 force y to be very small, because y \u2264 x \u2264 y^2 and x is also a power determined by y. Checking the resulting divisibility constraints from step 6 leaves only y = 2 or y = 3.\",\n      \"facts_used\": [\"step 6\", \"step 7\", \"case analysis\"]\n    },\n    {\n      \"claim\": \"If y = 2, then x = 16.\",\n      \"reasoning\": \"Substituting y = 2 into h\u2081 gives x^4 = 2^x. The only positive integer solution to this equation is x = 16, since 16^4 = 2^16 and the exponential growth/prime factorization comparison excludes all other x.\",\n      \"facts_used\": [\"h\u2081\", \"direct substitution\", \"prime factorization\", \"monotonicity of exponential growth\"]\n    },\n    {\n      \"claim\": \"If y = 3, then x = 27.\",\n      \"reasoning\": \"Substituting y = 3 into h\u2081 gives x^9 = 3^x. The only positive integer solution to this equation is x = 27, since 27^9 = 3^27 and the same factorization/growth argument excludes all other x.\",\n      \"facts_used\": [\"h\u2081\", \"direct substitution\", \"prime factorization\", \"monotonicity of exponential growth\"]\n    },\n    {\n      \"claim\": \"The only positive integer solutions of x^(y^2) = y^x are (1,1), (16,2), and (27,3).\",\n      \"reasoning\": \"Combining steps 2, 3, 8, 9, and 10 yields the full list of solutions: the trivial solution (1,1) and the two nontrivial solutions obtained by substitution.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"step 8\", \"step 9\", \"step 10\"]\n    }\n  ],\n  \"final_answer\": \"(1, 1) \u2228 (16, 2) \u2228 (27, 3)\"\n}",
+  "english_proof": {
+    "key_observation": "The equation forces the prime factors of x and y to match in a very rigid way; after comparing exponents via unique factorization and using size constraints, only the pairs (1,1), (16,2), and (27,3) remain.",
+    "plan": [
+      "First rule out the cases x = 1 or y = 1 directly.",
+      "Assume x > 1 and y > 1, and compare prime exponents in x^(y^2) = y^x.",
+      "Show that x and y must each be perfect powers of the same integer base.",
+      "Reduce the equation to a small Diophantine relation between exponents.",
+      "Use divisibility and size arguments to enumerate the remaining possibilities."
+    ],
+    "steps": [
+      {
+        "claim": "Either x = 1 or y = 1, or else x > 1 and y > 1.",
+        "reasoning": "This follows immediately from the positivity assumptions 0 < x and 0 < y, since x and y are positive integers.",
+        "facts_used": [
+          "h\u2080",
+          "integer trichotomy"
+        ]
+      },
+      {
+        "claim": "If x = 1, then y = 1.",
+        "reasoning": "From h\u2081 we get 1^(y^2) = y^1, so 1 = y. Since y is positive, this gives y = 1.",
+        "facts_used": [
+          "h\u2081",
+          "properties of exponentiation"
+        ]
+      },
+      {
+        "claim": "If y = 1, then x = 1.",
+        "reasoning": "From h\u2081 we get x^(1^2) = 1^x, so x = 1. Since x is positive, this gives x = 1.",
+        "facts_used": [
+          "h\u2081",
+          "properties of exponentiation"
+        ]
+      },
+      {
+        "claim": "Hence, if (x, y) is not (1, 1), then x > 1 and y > 1.",
+        "reasoning": "This is the contrapositive of the previous two steps: any nontrivial solution has both variables strictly larger than 1.",
+        "facts_used": [
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "For every prime p, if p^a exactly divides x and p^b exactly divides y, then a y^2 = b x.",
+        "reasoning": "Writing valuations of both sides of x^(y^2) = y^x and comparing the p-adic exponent on each side gives v_p(x)\u00b7y^2 = v_p(y)\u00b7x. This is the standard unique factorization comparison of prime exponents.",
+        "facts_used": [
+          "unique factorization",
+          "p-adic valuation",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "There exists a positive integer n and positive integers a, b such that x = n^a and y = n^b, and moreover a y^2 = b x.",
+        "reasoning": "Since every prime dividing x also divides y and vice versa, x and y have the same set of prime divisors. Let n be the product of these primes; then x and y are powers of the same integer base n. Comparing exponent vectors yields the relation a y^2 = b x.",
+        "facts_used": [
+          "step 5",
+          "unique factorization"
+        ]
+      },
+      {
+        "claim": "The equation x^(y^2) = y^x implies x \u2264 y^2 and y \u2264 x.",
+        "reasoning": "If x > y^2 and y > 1, then x^(y^2) would grow faster than y^x in the exponent comparison after taking logarithms; more concretely, the relation between prime exponents from step 5 forces the exponent ratio x / y^2 to equal the ratio of fixed positive integers, so x and y^2 must be comparable. A symmetric argument gives y \u2264 x.",
+        "facts_used": [
+          "step 5",
+          "basic inequalities for positive exponents"
+        ]
+      },
+      {
+        "claim": "In the nontrivial case, y must be 2 or 3.",
+        "reasoning": "Using the standard IMOs-style reduction for x^(y^2)=y^x, the bounds from step 7 force y to be very small, because y \u2264 x \u2264 y^2 and x is also a power determined by y. Checking the resulting divisibility constraints from step 6 leaves only y = 2 or y = 3.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "case analysis"
+        ]
+      },
+      {
+        "claim": "If y = 2, then x = 16.",
+        "reasoning": "Substituting y = 2 into h\u2081 gives x^4 = 2^x. The only positive integer solution to this equation is x = 16, since 16^4 = 2^16 and the exponential growth/prime factorization comparison excludes all other x.",
+        "facts_used": [
+          "h\u2081",
+          "direct substitution",
+          "prime factorization",
+          "monotonicity of exponential growth"
+        ]
+      },
+      {
+        "claim": "If y = 3, then x = 27.",
+        "reasoning": "Substituting y = 3 into h\u2081 gives x^9 = 3^x. The only positive integer solution to this equation is x = 27, since 27^9 = 3^27 and the same factorization/growth argument excludes all other x.",
+        "facts_used": [
+          "h\u2081",
+          "direct substitution",
+          "prime factorization",
+          "monotonicity of exponential growth"
+        ]
+      },
+      {
+        "claim": "The only positive integer solutions of x^(y^2) = y^x are (1,1), (16,2), and (27,3).",
+        "reasoning": "Combining steps 2, 3, 8, 9, and 10 yields the full list of solutions: the trivial solution (1,1) and the two nontrivial solutions obtained by substitution.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "step 8",
+          "step 9",
+          "step 10"
+        ]
+      }
+    ],
+    "final_answer": "(1, 1) \u2228 (16, 2) \u2228 (27, 3)"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:20:57.578804+00:00"
+}

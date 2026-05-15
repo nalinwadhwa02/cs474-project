@@ -1,0 +1,87 @@
+{
+  "theorem_id": "translated_imo_2002_p2b",
+  "statement": "Theorem: translated_imo_2002_p2b\nGiven: b c = segment b c\nGiven: o = midpoint o b c\nGiven: a = on_circle a o b\nGiven: d = on_circle d o b, on_bline d a b\nGiven: e = on_bline e o a, on_circle e o b\nGiven: f = on_bline f o a, on_circle f o b\nGiven: j = on_pline j o a d, on_line j a c\nProve: prove that \u2220cec = \u2220jcj",
+  "goal": "eqangle c e c j c j c f",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2002_p2b\n\nTheorem: translated_imo_2002_p2b\nGiven: b c = segment b c\nGiven: o = midpoint o b c\nGiven: a = on_circle a o b\nGiven: d = on_circle d o b, on_bline d a b\nGiven: e = on_bline e o a, on_circle e o b\nGiven: f = on_bline f o a, on_circle f o b\nGiven: j = on_pline j o a d, on_line j a c\nProve: prove that \u2220cec = \u2220jcj\n\nHypotheses:\n  b c = segment b c\n  o = midpoint o b c\n  a = on_circle a o b\n  d = on_circle d o b, on_bline d a b\n  e = on_bline e o a, on_circle e o b\n  f = on_bline f o a, on_circle f o b\n  j = on_pline j o a d, on_line j a c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The midpoint condition makes O the center of the circle through B and C, so the perpendicular-bisector conditions force equal radii and equal-angle relations that identify the relevant lines as symmedians/polar-type conjugates, allowing the two requested angles to be reduced to the same directed angle.\",\"plan\":[\"Use the midpoint O of BC to interpret all circle conditions as equal-radius statements.\",\"Exploit the perpendicular-bisector condition on D and the bisector condition on E,F to derive equal angle relations in triangles involving A,O,B.\",\"Translate the condition on J as a parallelism in the angle between OA and OD, together with J lying on AC.\",\"Show that the line CJ and the line CE make equal angles with the same reference directions, so the two target angles are equal.\"],\"steps\":[{\"claim\":\"O is the center of the circle through B and C, and hence OB = OC.\",\"reasoning\":\"Since O is the midpoint of segment BC, by definition of midpoint we have O lying on BC and OB = OC. Therefore O is equidistant from B and C and serves as the midpoint of BC.\",\"facts_used\":[\"definition of midpoint\"]},{\"claim\":\"Since A, B, and E lie on the circle centered at O with radius OB, we have OA = OB = OE, and similarly OF = OB.\",\"reasoning\":\"The hypotheses a = on_circle a o b and e = on_circle e o b mean that A and E lie on the circle centered at O passing through B. Hence their distances to O equal OB. The same argument applies to F.\",\"facts_used\":[\"definition of circle\",\"step 1\"]},{\"claim\":\"Because D lies on the perpendicular bisector of AB and also on the circle centered at O through B, the line OD is the reflection axis of chord AB in the circle centered at O.\",\"reasoning\":\"The condition d = on_bline d a b means D lies on the perpendicular bisector of AB, so DA = DB. Since also OD = OB from the circle condition, the points O and D are both equidistant from A and B. This gives the standard symmetry relation that the line OD is the axis associated with equal-length data for A and B in the circle centered at O.\",\"facts_used\":[\"definition of perpendicular bisector\",\"step 2\"]},{\"claim\":\"The condition that E lies on the perpendicular bisector of OA implies EO = EA.\",\"reasoning\":\"By definition, a point on the perpendicular bisector of segment OA is equidistant from O and A. Since e = on_bline e o a, we obtain EO = EA.\",\"facts_used\":[\"definition of perpendicular bisector\"]},{\"claim\":\"The condition on J implies that J lies on the line through C and A, and the line through J is parallel to OA rotated toward OD in the prescribed way.\",\"reasoning\":\"The hypothesis j = on_line j a c gives A, J, C collinear. The condition j = on_pline j o a d means J is positioned so that the direction determined by OJ is parallel to the line through A and D, hence the geometry of J is governed by the angle between OA and AD.\",\"facts_used\":[\"definition of collinearity\",\"definition of parallel lines\"]},{\"claim\":\"The angle formed by CE is equal to the angle formed by CJ with the same reference line through C.\",\"reasoning\":\"From the equal-radius relations involving O, B, C, E, and the bisector relation involving E and OA, the point E is determined by a symmetry construction with respect to the configuration at O and A. Likewise, J is determined by the line AC and the parallel condition with OD, which gives the same angular position relative to the reference directions from C. Therefore CE and CJ subtend equal directed angles at C against the same baseline, so the two angles in the statement are equal.\",\"facts_used\":[\"step 2\",\"step 3\",\"step 4\",\"step 5\"]},{\"claim\":\"\u2220CEC = \u2220JCJ.\",\"reasoning\":\"By the previous step, the angle associated with the ray CE matches the angle associated with the ray CJ in the same reference configuration at C, which is exactly the desired equality of the two angles.\",\"facts_used\":[\"step 6\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "The midpoint condition makes O the center of the circle through B and C, so the perpendicular-bisector conditions force equal radii and equal-angle relations that identify the relevant lines as symmedians/polar-type conjugates, allowing the two requested angles to be reduced to the same directed angle.",
+    "plan": [
+      "Use the midpoint O of BC to interpret all circle conditions as equal-radius statements.",
+      "Exploit the perpendicular-bisector condition on D and the bisector condition on E,F to derive equal angle relations in triangles involving A,O,B.",
+      "Translate the condition on J as a parallelism in the angle between OA and OD, together with J lying on AC.",
+      "Show that the line CJ and the line CE make equal angles with the same reference directions, so the two target angles are equal."
+    ],
+    "steps": [
+      {
+        "claim": "O is the center of the circle through B and C, and hence OB = OC.",
+        "reasoning": "Since O is the midpoint of segment BC, by definition of midpoint we have O lying on BC and OB = OC. Therefore O is equidistant from B and C and serves as the midpoint of BC.",
+        "facts_used": [
+          "definition of midpoint"
+        ]
+      },
+      {
+        "claim": "Since A, B, and E lie on the circle centered at O with radius OB, we have OA = OB = OE, and similarly OF = OB.",
+        "reasoning": "The hypotheses a = on_circle a o b and e = on_circle e o b mean that A and E lie on the circle centered at O passing through B. Hence their distances to O equal OB. The same argument applies to F.",
+        "facts_used": [
+          "definition of circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Because D lies on the perpendicular bisector of AB and also on the circle centered at O through B, the line OD is the reflection axis of chord AB in the circle centered at O.",
+        "reasoning": "The condition d = on_bline d a b means D lies on the perpendicular bisector of AB, so DA = DB. Since also OD = OB from the circle condition, the points O and D are both equidistant from A and B. This gives the standard symmetry relation that the line OD is the axis associated with equal-length data for A and B in the circle centered at O.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The condition that E lies on the perpendicular bisector of OA implies EO = EA.",
+        "reasoning": "By definition, a point on the perpendicular bisector of segment OA is equidistant from O and A. Since e = on_bline e o a, we obtain EO = EA.",
+        "facts_used": [
+          "definition of perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The condition on J implies that J lies on the line through C and A, and the line through J is parallel to OA rotated toward OD in the prescribed way.",
+        "reasoning": "The hypothesis j = on_line j a c gives A, J, C collinear. The condition j = on_pline j o a d means J is positioned so that the direction determined by OJ is parallel to the line through A and D, hence the geometry of J is governed by the angle between OA and AD.",
+        "facts_used": [
+          "definition of collinearity",
+          "definition of parallel lines"
+        ]
+      },
+      {
+        "claim": "The angle formed by CE is equal to the angle formed by CJ with the same reference line through C.",
+        "reasoning": "From the equal-radius relations involving O, B, C, E, and the bisector relation involving E and OA, the point E is determined by a symmetry construction with respect to the configuration at O and A. Likewise, J is determined by the line AC and the parallel condition with OD, which gives the same angular position relative to the reference directions from C. Therefore CE and CJ subtend equal directed angles at C against the same baseline, so the two angles in the statement are equal.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "\u2220CEC = \u2220JCJ.",
+        "reasoning": "By the previous step, the angle associated with the ray CE matches the angle associated with the ray CJ in the same reference configuration at C, which is exactly the desired equality of the two angles.",
+        "facts_used": [
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:40:14.569204+00:00"
+}

@@ -1,0 +1,402 @@
+{
+  "theorem_id": "algebra_apb4leq8ta4pb4",
+  "statement": "Theorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h₀ : 0 < a ∧ 0 < b\nProve: (a + b)^4 ≤ 8 * (a^4 + b^4)",
+  "goal": "(a + b)^4 ≤ 8 * (a^4 + b^4)",
+  "stage1_english_proof": {
+    "key_observation": "Expand (a+b)^4 and compare it to 8(a^4+b^4) using the nonnegativity of a and b, then reduce the inequality to a standard sum-of-squares bound.",
+    "plan": [
+      "Expand both sides and rewrite the target inequality in a simpler equivalent form.",
+      "Use the positivity of a and b to justify nonnegativity of the relevant terms.",
+      "Apply a standard inequality such as AM-GM or the binomial estimate to bound the mixed terms.",
+      "Conclude the desired fourth-power inequality."
+    ],
+    "steps": [
+      {
+        "claim": "It suffices to prove that 4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.",
+        "reasoning": "Expanding (a+b)^4 gives a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4. The target inequality (a+b)^4 ≤ 8(a^4+b^4) is therefore equivalent to moving the a^4 and b^4 terms to the right-hand side, which yields the stated inequality.",
+        "facts_used": [
+          "binomial expansion",
+          "algebraic rearrangement"
+        ]
+      },
+      {
+        "claim": "We have a^3b ≤ (3a^4 + b^4)/4 and ab^3 ≤ (a^4 + 3b^4)/4.",
+        "reasoning": "By AM-GM applied to the nonnegative numbers a^4, a^4, a^4, b^4, we get (3a^4 + b^4)/4 ≥ (a^4·a^4·a^4·b^4)^{1/4} = a^3b. Similarly, applying AM-GM to a^4, b^4, b^4, b^4 gives (a^4 + 3b^4)/4 ≥ ab^3.",
+        "facts_used": [
+          "AM-GM inequality",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "6a^2b^2 ≤ 3a^4 + 3b^4.",
+        "reasoning": "By AM-GM on a^4 and b^4, we have a^4 + b^4 ≥ 2a^2b^2. Multiplying by 3 gives 3a^4 + 3b^4 ≥ 6a^2b^2.",
+        "facts_used": [
+          "AM-GM inequality"
+        ]
+      },
+      {
+        "claim": "4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.",
+        "reasoning": "Using step 2, 4a^3b ≤ 3a^4 + b^4 and 4ab^3 ≤ a^4 + 3b^4. Using step 3, 6a^2b^2 ≤ 3a^4 + 3b^4. Adding these three inequalities yields the desired bound.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "addition of inequalities"
+        ]
+      },
+      {
+        "claim": "(a+b)^4 ≤ 8(a^4+b^4).",
+        "reasoning": "By step 1, it is enough to prove the inequality in step 4, and step 4 establishes exactly that equivalent bound. Therefore the original inequality holds.",
+        "facts_used": [
+          "step 1",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: algebra_apb4leq8ta4pb4\n\nTheorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h₀ : 0 < a ∧ 0 < b\nProve: (a + b)^4 ≤ 8 * (a^4 + b^4)\n\nGoal: (a + b)^4 ≤ 8 * (a^4 + b^4)\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Expand (a+b)^4 and compare it to 8(a^4+b^4) using the nonnegativity of a and b, then reduce the inequality to a standard sum-of-squares bound.\",\n  \"plan\": [\n    \"Expand both sides and rewrite the target inequality in a simpler equivalent form.\",\n    \"Use the positivity of a and b to justify nonnegativity of the relevant terms.\",\n    \"Apply a standard inequality such as AM-GM or the binomial estimate to bound the mixed terms.\",\n    \"Conclude the desired fourth-power inequality.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"It suffices to prove that 4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.\",\n      \"reasoning\": \"Expanding (a+b)^4 gives a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4. The target inequality (a+b)^4 ≤ 8(a^4+b^4) is therefore equivalent to moving the a^4 and b^4 terms to the right-hand side, which yields the stated inequality.\",\n      \"facts_used\": [\n        \"binomial expansion\",\n        \"algebraic rearrangement\"\n      ]\n    },\n    {\n      \"claim\": \"We have a^3b ≤ (3a^4 + b^4)/4 and ab^3 ≤ (a^4 + 3b^4)/4.\",\n      \"reasoning\": \"By AM-GM applied to the nonnegative numbers a^4, a^4, a^4, b^4, we get (3a^4 + b^4)/4 ≥ (a^4·a^4·a^4·b^4)^{1/4} = a^3b. Similarly, applying AM-GM to a^4, b^4, b^4, b^4 gives (a^4 + 3b^4)/4 ≥ ab^3.\",\n      \"facts_used\": [\n        \"AM-GM inequality\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"6a^2b^2 ≤ 3a^4 + 3b^4.\",\n      \"reasoning\": \"By AM-GM on a^4 and b^4, we have a^4 + b^4 ≥ 2a^2b^2. Multiplying by 3 gives 3a^4 + 3b^4 ≥ 6a^2b^2.\",\n      \"facts_used\": [\n        \"AM-GM inequality\"\n      ]\n    },\n    {\n      \"claim\": \"4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.\",\n      \"reasoning\": \"Using step 2, 4a^3b ≤ 3a^4 + b^4 and 4ab^3 ≤ a^4 + 3b^4. Using step 3, 6a^2b^2 ≤ 3a^4 + 3b^4. Adding these three inequalities yields the desired bound.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"addition of inequalities\"\n      ]\n    },\n    {\n      \"claim\": \"(a+b)^4 ≤ 8(a^4+b^4).\",\n      \"reasoning\": \"By step 1, it is enough to prove the inequality in step 4, and step 4 establishes exactly that equivalent bound. Therefore the original inequality holds.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"a\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < a, 0 < b)\"\n    ],\n    \"goal\": \"(a + b)**4 <= 8 * (a**4 + b**4)\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"binomial_fourth_power\",\n      \"english\": \"The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"(x + y)**4 == x**4 + 4*x**3*y + 6*x**2*y**2 + 4*x*y**3 + y**4\"\n    },\n    {\n      \"name\": \"amgm_fourth_weighted\",\n      \"english\": \"For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(0 <= x, 0 <= y), 4*x**3*y <= 3*x**4 + y**4)\"\n    },\n    {\n      \"name\": \"amgm_two_fourth_powers\",\n      \"english\": \"For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(0 <= x, 0 <= y), 2*x**2*y**2 <= x**4 + y**4)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"binomial_fourth_power\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_fourth_weighted\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_fourth_weighted\",\n      \"terms\": {\n        \"x\": \"b\",\n        \"y\": \"a\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_two_fourth_powers\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a",
+              "sort": "Real"
+            },
+            {
+              "name": "b",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "And(0 < a, 0 < b)"
+          ],
+          "goal": "(a + b)**4 <= 8 * (a**4 + b**4)"
+        },
+        "lemmas": [
+          {
+            "name": "binomial_fourth_power",
+            "english": "The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              }
+            ],
+            "body": "(x + y)**4 == x**4 + 4*x**3*y + 6*x**2*y**2 + 4*x*y**3 + y**4"
+          },
+          {
+            "name": "amgm_fourth_weighted",
+            "english": "For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(0 <= x, 0 <= y), 4*x**3*y <= 3*x**4 + y**4)"
+          },
+          {
+            "name": "amgm_two_fourth_powers",
+            "english": "For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.",
+            "vars": [
+              {
+                "name": "x",
+                "sort": "Real"
+              },
+              {
+                "name": "y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(0 <= x, 0 <= y), 2*x**2*y**2 <= x**4 + y**4)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "binomial_fourth_power",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            }
+          },
+          {
+            "lemma": "amgm_fourth_weighted",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            }
+          },
+          {
+            "lemma": "amgm_fourth_weighted",
+            "terms": {
+              "x": "b",
+              "y": "a"
+            }
+          },
+          {
+            "lemma": "amgm_two_fourth_powers",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 3.512144088745117,
+        "instantiated": [
+          {
+            "lemma": "binomial_fourth_power",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            },
+            "z3_form": "(a + b)**4 ==\na**4 + 4*a**3*b + 6*a**2*b**2 + 4*a*b**3 + b**4"
+          },
+          {
+            "lemma": "amgm_fourth_weighted",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            },
+            "z3_form": "Implies(And(a >= 0, b >= 0), 4*a**3*b <= 3*a**4 + b**4)"
+          },
+          {
+            "lemma": "amgm_fourth_weighted",
+            "terms": {
+              "x": "b",
+              "y": "a"
+            },
+            "z3_form": "Implies(And(b >= 0, a >= 0), 4*b**3*a <= 3*b**4 + a**4)"
+          },
+          {
+            "lemma": "amgm_two_fourth_powers",
+            "terms": {
+              "x": "a",
+              "y": "b"
+            },
+            "z3_form": "Implies(And(a >= 0, b >= 0), 2*a**2*b**2 <= a**4 + b**4)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "binomial_fourth_power",
+            "english": "The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "amgm_fourth_weighted",
+            "english": "For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "amgm_two_fourth_powers",
+            "english": "For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 4,
+        "n_hypotheses": 1
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_apb4leq8ta4pb4\n\nTheorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h₀ : 0 < a ∧ 0 < b\nProve: (a + b)^4 ≤ 8 * (a^4 + b^4)\n\nGoal: (a + b)^4 ≤ 8 * (a^4 + b^4)\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"Expand (a+b)^4 and compare it to 8(a^4+b^4) using the nonnegativity of a and b, then reduce the inequality to a standard sum-of-squares bound.\",\n  \"plan\": [\n    \"Expand both sides and rewrite the target inequality in a simpler equivalent form.\",\n    \"Use the positivity of a and b to justify nonnegativity of the relevant terms.\",\n    \"Apply a standard inequality such as AM-GM or the binomial estimate to bound the mixed terms.\",\n    \"Conclude the desired fourth-power inequality.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"It suffices to prove that 4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.\",\n      \"reasoning\": \"Expanding (a+b)^4 gives a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4. The target inequality (a+b)^4 ≤ 8(a^4+b^4) is therefore equivalent to moving the a^4 and b^4 terms to the right-hand side, which yields the stated inequality.\",\n      \"facts_used\": [\n        \"binomial expansion\",\n        \"algebraic rearrangement\"\n      ]\n    },\n    {\n      \"claim\": \"We have a^3b ≤ (3a^4 + b^4)/4 and ab^3 ≤ (a^4 + 3b^4)/4.\",\n      \"reasoning\": \"By AM-GM applied to the nonnegative numbers a^4, a^4, a^4, b^4, we get (3a^4 + b^4)/4 ≥ (a^4·a^4·a^4·b^4)^{1/4} = a^3b. Similarly, applying AM-GM to a^4, b^4, b^4, b^4 gives (a^4 + 3b^4)/4 ≥ ab^3.\",\n      \"facts_used\": [\n        \"AM-GM inequality\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"6a^2b^2 ≤ 3a^4 + 3b^4.\",\n      \"reasoning\": \"By AM-GM on a^4 and b^4, we have a^4 + b^4 ≥ 2a^2b^2. Multiplying by 3 gives 3a^4 + 3b^4 ≥ 6a^2b^2.\",\n      \"facts_used\": [\n        \"AM-GM inequality\"\n      ]\n    },\n    {\n      \"claim\": \"4a^3b + 6a^2b^2 + 4ab^3 ≤ 7a^4 + 7b^4.\",\n      \"reasoning\": \"Using step 2, 4a^3b ≤ 3a^4 + b^4 and 4ab^3 ≤ a^4 + 3b^4. Using step 3, 6a^2b^2 ≤ 3a^4 + 3b^4. Adding these three inequalities yields the desired bound.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 3\",\n        \"addition of inequalities\"\n      ]\n    },\n    {\n      \"claim\": \"(a+b)^4 ≤ 8(a^4+b^4).\",\n      \"reasoning\": \"By step 1, it is enough to prove the inequality in step 4, and step 4 establishes exactly that equivalent bound. Therefore the original inequality holds.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 4\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"a\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"And(0 < a, 0 < b)\"\n    ],\n    \"goal\": \"(a + b)**4 <= 8 * (a**4 + b**4)\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"binomial_fourth_power\",\n      \"english\": \"The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"(x + y)**4 == x**4 + 4*x**3*y + 6*x**2*y**2 + 4*x*y**3 + y**4\"\n    },\n    {\n      \"name\": \"amgm_fourth_weighted\",\n      \"english\": \"For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(0 <= x, 0 <= y), 4*x**3*y <= 3*x**4 + y**4)\"\n    },\n    {\n      \"name\": \"amgm_two_fourth_powers\",\n      \"english\": \"For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.\",\n      \"vars\": [\n        {\n          \"name\": \"x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(0 <= x, 0 <= y), 2*x**2*y**2 <= x**4 + y**4)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"binomial_fourth_power\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_fourth_weighted\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_fourth_weighted\",\n      \"terms\": {\n        \"x\": \"b\",\n        \"y\": \"a\"\n      }\n    },\n    {\n      \"lemma\": \"amgm_two_fourth_powers\",\n      \"terms\": {\n        \"x\": \"a\",\n        \"y\": \"b\"\n      }\n    }\n  ]\n}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a",
+          "sort": "Real"
+        },
+        {
+          "name": "b",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "And(0 < a, 0 < b)"
+      ],
+      "goal": "(a + b)**4 <= 8 * (a**4 + b**4)"
+    },
+    "lemmas": [
+      {
+        "name": "binomial_fourth_power",
+        "english": "The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          }
+        ],
+        "body": "(x + y)**4 == x**4 + 4*x**3*y + 6*x**2*y**2 + 4*x*y**3 + y**4"
+      },
+      {
+        "name": "amgm_fourth_weighted",
+        "english": "For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(0 <= x, 0 <= y), 4*x**3*y <= 3*x**4 + y**4)"
+      },
+      {
+        "name": "amgm_two_fourth_powers",
+        "english": "For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.",
+        "vars": [
+          {
+            "name": "x",
+            "sort": "Real"
+          },
+          {
+            "name": "y",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(0 <= x, 0 <= y), 2*x**2*y**2 <= x**4 + y**4)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "binomial_fourth_power",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        }
+      },
+      {
+        "lemma": "amgm_fourth_weighted",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        }
+      },
+      {
+        "lemma": "amgm_fourth_weighted",
+        "terms": {
+          "x": "b",
+          "y": "a"
+        }
+      },
+      {
+        "lemma": "amgm_two_fourth_powers",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 3.512144088745117,
+    "instantiated": [
+      {
+        "lemma": "binomial_fourth_power",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        },
+        "z3_form": "(a + b)**4 ==\na**4 + 4*a**3*b + 6*a**2*b**2 + 4*a*b**3 + b**4"
+      },
+      {
+        "lemma": "amgm_fourth_weighted",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        },
+        "z3_form": "Implies(And(a >= 0, b >= 0), 4*a**3*b <= 3*a**4 + b**4)"
+      },
+      {
+        "lemma": "amgm_fourth_weighted",
+        "terms": {
+          "x": "b",
+          "y": "a"
+        },
+        "z3_form": "Implies(And(b >= 0, a >= 0), 4*b**3*a <= 3*b**4 + a**4)"
+      },
+      {
+        "lemma": "amgm_two_fourth_powers",
+        "terms": {
+          "x": "a",
+          "y": "b"
+        },
+        "z3_form": "Implies(And(a >= 0, b >= 0), 2*a**2*b**2 <= a**4 + b**4)"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "binomial_fourth_power",
+        "english": "The fourth power of a sum expands as (x+y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "amgm_fourth_weighted",
+        "english": "For nonnegative x and y, AM-GM gives 4*x^3*y <= 3*x^4 + y^4.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "amgm_two_fourth_powers",
+        "english": "For nonnegative x and y, AM-GM gives 2*x^2*y^2 <= x^4 + y^4.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 4,
+    "n_hypotheses": 1
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:43:45.195590+00:00"
+}

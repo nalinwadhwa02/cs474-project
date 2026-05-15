@@ -1,0 +1,62 @@
+{
+  "theorem_id": "algebra_sqineq_at2malt1",
+  "statement": "Theorem: algebra_sqineq_at2malt1\nVariables: a (real)\nProve: a * (2 - a) \u2264 1",
+  "goal": "a * (2 - a) \u2264 1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_sqineq_at2malt1\n\nTheorem: algebra_sqineq_at2malt1\nVariables: a (real)\nProve: a * (2 - a) \u2264 1\n\nVariables: a (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The expression can be rewritten as a negative square: a(2-a) = 1 - (a-1)^2, so the desired inequality follows because a square is always nonnegative.\",\n  \"plan\": [\n    \"Rewrite a(2-a) in a form involving (a-1)^2.\",\n    \"Use the fact that (a-1)^2 \u2265 0 for every real a.\",\n    \"Deduce that 1 - (a-1)^2 \u2264 1, which is exactly the target inequality.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For every real a, a(2-a) = 1 - (a-1)^2.\",\n      \"reasoning\": \"Expand both sides: a(2-a) = 2a - a^2, while 1 - (a-1)^2 = 1 - (a^2 - 2a + 1) = 2a - a^2. Since the expressions are equal after simplification, the identity holds.\",\n      \"facts_used\": [\"algebraic expansion\", \"distributive law\"]\n    },\n    {\n      \"claim\": \"For every real a, (a-1)^2 \u2265 0.\",\n      \"reasoning\": \"The square of any real number is nonnegative by the basic order properties of the real numbers.\",\n      \"facts_used\": [\"nonnegativity of squares\"]\n    },\n    {\n      \"claim\": \"For every real a, 1 - (a-1)^2 \u2264 1.\",\n      \"reasoning\": \"From step 2, (a-1)^2 \u2265 0. Subtracting a nonnegative quantity from 1 cannot increase the result, so 1 - (a-1)^2 \u2264 1.\",\n      \"facts_used\": [\"step 2\", \"order properties of real numbers\"]\n    },\n    {\n      \"claim\": \"For every real a, a(2-a) \u2264 1.\",\n      \"reasoning\": \"By step 1, a(2-a) = 1 - (a-1)^2. Combining this with step 3 gives a(2-a) \u2264 1.\",\n      \"facts_used\": [\"step 1\", \"step 3\"]\n    }\n  ],\n  \"final_answer\": \"a(2-a) \u2264 1\"\n}",
+  "english_proof": {
+    "key_observation": "The expression can be rewritten as a negative square: a(2-a) = 1 - (a-1)^2, so the desired inequality follows because a square is always nonnegative.",
+    "plan": [
+      "Rewrite a(2-a) in a form involving (a-1)^2.",
+      "Use the fact that (a-1)^2 \u2265 0 for every real a.",
+      "Deduce that 1 - (a-1)^2 \u2264 1, which is exactly the target inequality."
+    ],
+    "steps": [
+      {
+        "claim": "For every real a, a(2-a) = 1 - (a-1)^2.",
+        "reasoning": "Expand both sides: a(2-a) = 2a - a^2, while 1 - (a-1)^2 = 1 - (a^2 - 2a + 1) = 2a - a^2. Since the expressions are equal after simplification, the identity holds.",
+        "facts_used": [
+          "algebraic expansion",
+          "distributive law"
+        ]
+      },
+      {
+        "claim": "For every real a, (a-1)^2 \u2265 0.",
+        "reasoning": "The square of any real number is nonnegative by the basic order properties of the real numbers.",
+        "facts_used": [
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "For every real a, 1 - (a-1)^2 \u2264 1.",
+        "reasoning": "From step 2, (a-1)^2 \u2265 0. Subtracting a nonnegative quantity from 1 cannot increase the result, so 1 - (a-1)^2 \u2264 1.",
+        "facts_used": [
+          "step 2",
+          "order properties of real numbers"
+        ]
+      },
+      {
+        "claim": "For every real a, a(2-a) \u2264 1.",
+        "reasoning": "By step 1, a(2-a) = 1 - (a-1)^2. Combining this with step 3 gives a(2-a) \u2264 1.",
+        "facts_used": [
+          "step 1",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "a(2-a) \u2264 1"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:22:08.787382+00:00"
+}

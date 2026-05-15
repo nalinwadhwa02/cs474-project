@@ -1,0 +1,48 @@
+{
+  "theorem_id": "mathd_numbertheory_12",
+  "statement": "Theorem: mathd_numbertheory_12\nProve: finset.card (finset.filter (\u03bb x, 20\u2223x) (finset.Icc 15 85)) = 4",
+  "goal": "finset.card (finset.filter (\u03bb x, 20\u2223x) (finset.Icc 15 85)) = 4",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_12\n\nTheorem: mathd_numbertheory_12\nProve: finset.card (finset.filter (\u03bb x, 20\u2223x) (finset.Icc 15 85)) = 4\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The numbers between 15 and 85 divisible by 20 are exactly 20, 40, 60, and 80.\",\n  \"plan\": [\n    \"Characterize all multiples of 20 in the interval [15, 85].\",\n    \"Show there are exactly four such numbers.\",\n    \"Conclude that the filtered finite set has cardinality 4.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The set of integers x satisfying 15 \u2264 x \u2264 85 and 20 \u2223 x is exactly {20, 40, 60, 80}.\",\n      \"reasoning\": \"If 20 \u2223 x, then x = 20k for some integer k. The bounds 15 \u2264 x \u2264 85 become 15 \u2264 20k \u2264 85, so k must be 1, 2, 3, or 4. This gives x \u2208 {20, 40, 60, 80}. Conversely, each of these four numbers is divisible by 20 and lies between 15 and 85.\",\n      \"facts_used\": [\n        \"definition of divisibility\",\n        \"properties of integer inequalities\"\n      ]\n    },\n    {\n      \"claim\": \"The finite set finset.filter (\u03bb x, 20 \u2223 x) (finset.Icc 15 85) has exactly four elements.\",\n      \"reasoning\": \"The finset Icc 15 85 contains precisely the integers from 15 to 85 inclusive, and filtering by the predicate 20 \u2223 x keeps exactly the elements identified in step 1. Since that set has four distinct elements, its cardinality is 4.\",\n      \"facts_used\": [\n        \"definition of finset.filter\",\n        \"definition of finset.Icc\",\n        \"step 1\"\n      ]\n    }\n  ],\n  \"final_answer\": \"4\"\n}",
+  "english_proof": {
+    "key_observation": "The numbers between 15 and 85 divisible by 20 are exactly 20, 40, 60, and 80.",
+    "plan": [
+      "Characterize all multiples of 20 in the interval [15, 85].",
+      "Show there are exactly four such numbers.",
+      "Conclude that the filtered finite set has cardinality 4."
+    ],
+    "steps": [
+      {
+        "claim": "The set of integers x satisfying 15 \u2264 x \u2264 85 and 20 \u2223 x is exactly {20, 40, 60, 80}.",
+        "reasoning": "If 20 \u2223 x, then x = 20k for some integer k. The bounds 15 \u2264 x \u2264 85 become 15 \u2264 20k \u2264 85, so k must be 1, 2, 3, or 4. This gives x \u2208 {20, 40, 60, 80}. Conversely, each of these four numbers is divisible by 20 and lies between 15 and 85.",
+        "facts_used": [
+          "definition of divisibility",
+          "properties of integer inequalities"
+        ]
+      },
+      {
+        "claim": "The finite set finset.filter (\u03bb x, 20 \u2223 x) (finset.Icc 15 85) has exactly four elements.",
+        "reasoning": "The finset Icc 15 85 contains precisely the integers from 15 to 85 inclusive, and filtering by the predicate 20 \u2223 x keeps exactly the elements identified in step 1. Since that set has four distinct elements, its cardinality is 4.",
+        "facts_used": [
+          "definition of finset.filter",
+          "definition of finset.Icc",
+          "step 1"
+        ]
+      }
+    ],
+    "final_answer": "4"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:38.120808+00:00"
+}

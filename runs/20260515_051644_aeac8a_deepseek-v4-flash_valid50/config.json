@@ -1,0 +1,8 @@
+{
+  "model": "deepseek-ai/deepseek-v4-flash",
+  "split": "valid50",
+  "problem_filter": null,
+  "limit": null,
+  "n_problems": 50,
+  "started_at": "2026-05-15T05:16:44.786252+00:00"
+}

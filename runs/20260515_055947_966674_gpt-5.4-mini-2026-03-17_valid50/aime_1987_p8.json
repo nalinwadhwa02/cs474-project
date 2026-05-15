@@ -1,0 +1,88 @@
+{
+  "theorem_id": "aime_1987_p8",
+  "statement": "Theorem: aime_1987_p8\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\nProve: n \u2264 112",
+  "goal": "n \u2264 112",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: aime_1987_p8\n\nTheorem: aime_1987_p8\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\nProve: n \u2264 112\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The two strict inequalities force k to lie in a very narrow interval determined by n; uniqueness of such an integer k means that interval contains exactly one integer, which can only happen when n is at most 112.\",\"plan\":[\"Rewrite both inequalities as bounds on k.\",\"Use the uniqueness hypothesis to show the interval contains exactly one integer.\",\"Convert the interval length condition into an inequality involving n.\",\"Solve the resulting inequality to obtain the bound n \u2264 112.\"],\"steps\":[{\"claim\":\"For any integer k satisfying (8 : \u211d) / 15 < n / (n + k) and (n : \u211d) / (n + k) < 7 / 13, we have 13n/7 < n + k < 15n/8.\",\"reasoning\":\"Since n > 0 and n + k must be positive for the displayed fractions to be positive, we may cross-multiply without changing the direction of the inequalities. The first inequality gives 8(n+k) < 15n, hence n+k < 15n/8. The second gives 13n < 7(n+k), hence 13n/7 < n+k.\",\"facts_used\":[\"h\u2080\",\"basic algebraic manipulation of inequalities\"]},{\"claim\":\"Equivalently, any such k must satisfy 6n/7 < k < 7n/8.\",\"reasoning\":\"Subtract n from each part of the inequalities in step 1: 13n/7 - n < k and k < 15n/8 - n. Simplifying gives 6n/7 < k < 7n/8.\",\"facts_used\":[\"step 1\",\"simplification of fractions\"]},{\"claim\":\"The interval (6n/7, 7n/8) contains exactly one integer k.\",\"reasoning\":\"This is exactly the content of the uniqueness hypothesis h\u2081: there exists a unique integer k satisfying the two inequalities. By step 2, those inequalities are equivalent to k lying in the open interval (6n/7, 7n/8).\",\"facts_used\":[\"h\u2081\",\"step 2\"]},{\"claim\":\"The length of the interval (6n/7, 7n/8) is n/56.\",\"reasoning\":\"Its length is 7n/8 - 6n/7 = (49n - 48n)/56 = n/56.\",\"facts_used\":[\"arithmetic with fractions\"]},{\"claim\":\"If an open interval contains exactly one integer, then its length is less than 2, and in this specific situation this forces n/56 < 2.\",\"reasoning\":\"An open interval of length at least 2 must contain at least two integers, because any interval of length 2 contains two consecutive integers or more. Since step 3 says there is exactly one integer in the interval, its length must be less than 2. Therefore n/56 < 2.\",\"facts_used\":[\"pigeonhole principle for integers in intervals\",\"step 3\",\"step 4\"]},{\"claim\":\"n < 112.\",\"reasoning\":\"From n/56 < 2, multiply both sides by 56 > 0 to get n < 112.\",\"facts_used\":[\"step 5\",\"positivity of 56\"]},{\"claim\":\"Therefore n \u2264 112.\",\"reasoning\":\"Since n is an integer and n < 112, it follows that n \u2264 111, hence certainly n \u2264 112.\",\"facts_used\":[\"step 6\",\"integrality of n\"]}],\"final_answer\":\"n \u2264 112\"}",
+  "english_proof": {
+    "key_observation": "The two strict inequalities force k to lie in a very narrow interval determined by n; uniqueness of such an integer k means that interval contains exactly one integer, which can only happen when n is at most 112.",
+    "plan": [
+      "Rewrite both inequalities as bounds on k.",
+      "Use the uniqueness hypothesis to show the interval contains exactly one integer.",
+      "Convert the interval length condition into an inequality involving n.",
+      "Solve the resulting inequality to obtain the bound n \u2264 112."
+    ],
+    "steps": [
+      {
+        "claim": "For any integer k satisfying (8 : \u211d) / 15 < n / (n + k) and (n : \u211d) / (n + k) < 7 / 13, we have 13n/7 < n + k < 15n/8.",
+        "reasoning": "Since n > 0 and n + k must be positive for the displayed fractions to be positive, we may cross-multiply without changing the direction of the inequalities. The first inequality gives 8(n+k) < 15n, hence n+k < 15n/8. The second gives 13n < 7(n+k), hence 13n/7 < n+k.",
+        "facts_used": [
+          "h\u2080",
+          "basic algebraic manipulation of inequalities"
+        ]
+      },
+      {
+        "claim": "Equivalently, any such k must satisfy 6n/7 < k < 7n/8.",
+        "reasoning": "Subtract n from each part of the inequalities in step 1: 13n/7 - n < k and k < 15n/8 - n. Simplifying gives 6n/7 < k < 7n/8.",
+        "facts_used": [
+          "step 1",
+          "simplification of fractions"
+        ]
+      },
+      {
+        "claim": "The interval (6n/7, 7n/8) contains exactly one integer k.",
+        "reasoning": "This is exactly the content of the uniqueness hypothesis h\u2081: there exists a unique integer k satisfying the two inequalities. By step 2, those inequalities are equivalent to k lying in the open interval (6n/7, 7n/8).",
+        "facts_used": [
+          "h\u2081",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The length of the interval (6n/7, 7n/8) is n/56.",
+        "reasoning": "Its length is 7n/8 - 6n/7 = (49n - 48n)/56 = n/56.",
+        "facts_used": [
+          "arithmetic with fractions"
+        ]
+      },
+      {
+        "claim": "If an open interval contains exactly one integer, then its length is less than 2, and in this specific situation this forces n/56 < 2.",
+        "reasoning": "An open interval of length at least 2 must contain at least two integers, because any interval of length 2 contains two consecutive integers or more. Since step 3 says there is exactly one integer in the interval, its length must be less than 2. Therefore n/56 < 2.",
+        "facts_used": [
+          "pigeonhole principle for integers in intervals",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "n < 112.",
+        "reasoning": "From n/56 < 2, multiply both sides by 56 > 0 to get n < 112.",
+        "facts_used": [
+          "step 5",
+          "positivity of 56"
+        ]
+      },
+      {
+        "claim": "Therefore n \u2264 112.",
+        "reasoning": "Since n is an integer and n < 112, it follows that n \u2264 111, hence certainly n \u2264 112.",
+        "facts_used": [
+          "step 6",
+          "integrality of n"
+        ]
+      }
+    ],
+    "final_answer": "n \u2264 112"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:01:24.957213+00:00"
+}

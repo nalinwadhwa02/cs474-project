@@ -1,0 +1,98 @@
+{
+  "theorem_id": "aime_1983_p1",
+  "statement": "Theorem: aime_1983_p1\nVariables: x, y, z, w (integer)\nGiven: ht : 1 < x \u2227 1 < y \u2227 1 < z\nGiven: hw : 0 \u2264 w\nGiven: h0 : real.log w / real.log x = 24\nGiven: h1 : real.log w / real.log y = 40\nGiven: h2 : real.log w / real.log (x * y * z) = 12\nProve: real.log w / real.log z = 60",
+  "goal": "real.log w / real.log z = 60",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: aime_1983_p1\n\nTheorem: aime_1983_p1\nVariables: x, y, z, w (integer)\nGiven: ht : 1 < x \u2227 1 < y \u2227 1 < z\nGiven: hw : 0 \u2264 w\nGiven: h0 : real.log w / real.log x = 24\nGiven: h1 : real.log w / real.log y = 40\nGiven: h2 : real.log w / real.log (x * y * z) = 12\nProve: real.log w / real.log z = 60\n\nHypotheses:\n  ht : 1 < x \u2227 1 < y \u2227 1 < z\n  hw : 0 \u2264 w\n  h0 : real.log w / real.log x = 24\n  h1 : real.log w / real.log y = 40\n  h2 : real.log w / real.log (x * y * z) = 12\n\nVariables: x (int), y (int), z (int), w (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The three given logarithmic ratios let us express log w as a common multiple of log x, log y, and log(xyz), and comparing these expressions forces a specific value for log w / log z.\",\"plan\":[\"Rewrite each ratio equation as an equality involving log w.\",\"Use the first two equalities to relate log x and log y.\",\"Substitute into the third equality to obtain a linear equation in log z.\",\"Solve that equation to get the desired ratio.\"],\"steps\":[{\"claim\":\"We have \\\\(\\\\log w = 24\\\\log x\\\\), \\\\(\\\\log w = 40\\\\log y\\\\), and \\\\(\\\\log w = 12\\\\log(xyz)\\\\).\",\"reasoning\":\"Each given ratio equation can be multiplied by the corresponding denominator, provided the logarithms are defined. Since the ratios are stated as real numbers, the equations are interpreted in the usual way.\",\"facts_used\":[\"definition of division in equations\",\"h0\",\"h1\",\"h2\"]},{\"claim\":\"\\\\(24\\\\log x = 40\\\\log y\\\\).\",\"reasoning\":\"Both expressions are equal to \\\\(\\\\log w\\\\) by the first two equalities, so they are equal to each other.\",\"facts_used\":[\"step 1\"]},{\"claim\":\"\\\\(3\\\\log x = 5\\\\log y\\\\).\",\"reasoning\":\"Dividing the equation \\\\(24\\\\log x = 40\\\\log y\\\\) by 8 gives the simplified relation.\",\"facts_used\":[\"step 2\"]},{\"claim\":\"\\\\(12\\\\log(xyz) = 12(\\\\log x + \\\\log y + \\\\log z)\\\\).\",\"reasoning\":\"Using the product rule for logarithms, \\\\(\\\\log(xyz)=\\\\log x+\\\\log y+\\\\log z\\\\), and then multiplying by 12 gives the stated expression.\",\"facts_used\":[\"logarithm product rule\",\"step 1\"]},{\"claim\":\"\\\\(\\\\log w = 12\\\\log x + 12\\\\log y + 12\\\\log z\\\\).\",\"reasoning\":\"This is just the third equality from step 1 combined with the expansion in step 4.\",\"facts_used\":[\"step 1\",\"step 4\"]},{\"claim\":\"\\\\(12\\\\log x + 12\\\\log y + 12\\\\log z = 24\\\\log x\\\\).\",\"reasoning\":\"Since \\\\(\\\\log w = 24\\\\log x\\\\) from step 1, the expression for \\\\(\\\\log w\\\\) in step 5 must equal \\\\(24\\\\log x\\\\).\",\"facts_used\":[\"step 1\",\"step 5\"]},{\"claim\":\"\\\\(\\\\log y + \\\\log z = \\\\log x\\\\).\",\"reasoning\":\"Subtracting \\\\(12\\\\log x\\\\) from both sides of the equation in step 6 and dividing by 12 yields \\\\(\\\\log y + \\\\log z = \\\\log x\\\\).\",\"facts_used\":[\"step 6\",\"algebra\"]},{\"claim\":\"\\\\(\\\\log z = 60^{-1}\\\\log w\\\\), equivalently \\\\(\\\\log w / \\\\log z = 60\\\\).\",\"reasoning\":\"From step 1, \\\\(\\\\log w = 40\\\\log y\\\\) and from step 3, \\\\(\\\\log x = \\\\tfrac{5}{3}\\\\log y\\\\). Substituting into \\\\(\\\\log y + \\\\log z = \\\\log x\\\\) gives \\\\(\\\\log z = \\\\tfrac{2}{3}\\\\log y\\\\). Then \\\\(\\\\log w = 40\\\\log y = 60\\\\log z\\\\), so \\\\(\\\\log w / \\\\log z = 60\\\\).\",\"facts_used\":[\"step 3\",\"step 7\",\"step 1\",\"algebra\"]}],\"final_answer\":\"60\"}",
+  "english_proof": {
+    "key_observation": "The three given logarithmic ratios let us express log w as a common multiple of log x, log y, and log(xyz), and comparing these expressions forces a specific value for log w / log z.",
+    "plan": [
+      "Rewrite each ratio equation as an equality involving log w.",
+      "Use the first two equalities to relate log x and log y.",
+      "Substitute into the third equality to obtain a linear equation in log z.",
+      "Solve that equation to get the desired ratio."
+    ],
+    "steps": [
+      {
+        "claim": "We have \\(\\log w = 24\\log x\\), \\(\\log w = 40\\log y\\), and \\(\\log w = 12\\log(xyz)\\).",
+        "reasoning": "Each given ratio equation can be multiplied by the corresponding denominator, provided the logarithms are defined. Since the ratios are stated as real numbers, the equations are interpreted in the usual way.",
+        "facts_used": [
+          "definition of division in equations",
+          "h0",
+          "h1",
+          "h2"
+        ]
+      },
+      {
+        "claim": "\\(24\\log x = 40\\log y\\).",
+        "reasoning": "Both expressions are equal to \\(\\log w\\) by the first two equalities, so they are equal to each other.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "\\(3\\log x = 5\\log y\\).",
+        "reasoning": "Dividing the equation \\(24\\log x = 40\\log y\\) by 8 gives the simplified relation.",
+        "facts_used": [
+          "step 2"
+        ]
+      },
+      {
+        "claim": "\\(12\\log(xyz) = 12(\\log x + \\log y + \\log z)\\).",
+        "reasoning": "Using the product rule for logarithms, \\(\\log(xyz)=\\log x+\\log y+\\log z\\), and then multiplying by 12 gives the stated expression.",
+        "facts_used": [
+          "logarithm product rule",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "\\(\\log w = 12\\log x + 12\\log y + 12\\log z\\).",
+        "reasoning": "This is just the third equality from step 1 combined with the expansion in step 4.",
+        "facts_used": [
+          "step 1",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "\\(12\\log x + 12\\log y + 12\\log z = 24\\log x\\).",
+        "reasoning": "Since \\(\\log w = 24\\log x\\) from step 1, the expression for \\(\\log w\\) in step 5 must equal \\(24\\log x\\).",
+        "facts_used": [
+          "step 1",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "\\(\\log y + \\log z = \\log x\\).",
+        "reasoning": "Subtracting \\(12\\log x\\) from both sides of the equation in step 6 and dividing by 12 yields \\(\\log y + \\log z = \\log x\\).",
+        "facts_used": [
+          "step 6",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "\\(\\log z = 60^{-1}\\log w\\), equivalently \\(\\log w / \\log z = 60\\).",
+        "reasoning": "From step 1, \\(\\log w = 40\\log y\\) and from step 3, \\(\\log x = \\tfrac{5}{3}\\log y\\). Substituting into \\(\\log y + \\log z = \\log x\\) gives \\(\\log z = \\tfrac{2}{3}\\log y\\). Then \\(\\log w = 40\\log y = 60\\log z\\), so \\(\\log w / \\log z = 60\\).",
+        "facts_used": [
+          "step 3",
+          "step 7",
+          "step 1",
+          "algebra"
+        ]
+      }
+    ],
+    "final_answer": "60"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:18:39.362887+00:00"
+}

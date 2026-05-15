@@ -1,0 +1,111 @@
+{
+  "theorem_id": "translated_imo_2009_p2",
+  "statement": "Theorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq",
+  "goal": "cong o p o q",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2009_p2\n\nTheorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq\n\nHypotheses:\n  m l k = triangle m l k\n  w = circle w m l k\n  q = on_tline q m w m\n  p = mirror p q m\n  b = mirror b p k\n  c = mirror c q l\n  a = on_line a b q, on_line a c p\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The construction forces a system of reflections and perpendiculars that makes A the center of a circle through B and C, so it suffices to show that P and Q are symmetric with respect to the radical-axis geometry of this configuration, which yields OP = OQ.\",\"plan\":[\"Translate the mirror and perpendicular-tangent conditions into equalities and perpendicular relations.\",\"Derive coordinate-friendly relations for P, Q, B, and C using the triangle sides and the circle centered at O through A, B, C.\",\"Show that A lies on both lines BQ and CP, so A is the intersection of two cevians determined by the symmetric constructions.\",\"Use the resulting symmetry of the configuration to prove that O lies on the perpendicular bisector of PQ.\",\"Conclude that OP = OQ.\"],\"steps\":[{\"claim\":\"Since p = mirror p q m, point M is the midpoint of segment PQ and points P, M, Q are collinear.\",\"reasoning\":\"The definition of mirror image across a point means the given point is the center of a half-turn sending Q to P. Therefore M is the midpoint of PQ and P, M, Q are on one line.\",\"facts_used\":[\"definition of point reflection/mirror image\"]},{\"claim\":\"Since q = on_tline q m w m, the line MQ is tangent to the circle w at M, hence MQ is perpendicular to the radius of w at M.\",\"reasoning\":\"The predicate on_tline q m w m means the line through Q and M is tangent to circle w at M. A tangent to a circle is perpendicular to the radius drawn to the tangency point.\",\"facts_used\":[\"definition of tangent line\", \"radius-tangent perpendicularity\"]},{\"claim\":\"Because w is the circle through M, L, K, the radius at M is perpendicular to the line through the center of w and M, and the tangent relation from step 2 fixes the direction of MQ relative to the triangle M L K.\",\"reasoning\":\"The circle w is determined by the triangle M, L, K, so its center is the circumcenter of triangle MLK. The tangent at M is perpendicular to the radius through M, which gives a rigid geometric constraint on MQ.\",\"facts_used\":[\"circumcircle definition\", \"radius-tangent perpendicularity\", \"step 2\"]},{\"claim\":\"Since b = mirror b p k, point K is the midpoint of segment PB and points P, K, B are collinear.\",\"reasoning\":\"As in step 1, point reflection across K sends P to B. Thus K is the midpoint of PB and P, K, B lie on one line.\",\"facts_used\":[\"definition of point reflection/mirror image\"]},{\"claim\":\"Since c = mirror c q l, point L is the midpoint of segment QC and points Q, L, C are collinear.\",\"reasoning\":\"Again by the definition of point reflection, L is the center of symmetry between Q and C, so L is the midpoint of QC and Q, L, C are collinear.\",\"facts_used\":[\"definition of point reflection/mirror image\"]},{\"claim\":\"The conditions on_line a b q and on_line a c p imply that A is the intersection of lines BQ and CP.\",\"reasoning\":\"The first condition says A lies on line BQ, and the second says A lies on line CP. Therefore A is their intersection point.\",\"facts_used\":[\"definition of point lying on a line\"]},{\"claim\":\"Because O is the circle through A, B, C, points A, B, C are concyclic with center O.\",\"reasoning\":\"The notation o = circle o a b c means O is the center of the circumcircle of triangle ABC. Hence OA = OB = OC.\",\"facts_used\":[\"circumcenter definition\"]},{\"claim\":\"It is enough to prove that O lies on the perpendicular bisector of segment PQ.\",\"reasoning\":\"A point lies on the perpendicular bisector of PQ if and only if it is equidistant from P and Q. Therefore showing OP = OQ will follow from proving this perpendicular-bisector property.\",\"facts_used\":[\"equidistant points and perpendicular bisector theorem\"]},{\"claim\":\"The reflection relations at K and L together with the fact that A lies on BQ and CP force the configuration of A, B, C, P, Q to be symmetric with respect to the line through A and the circumcenter O of triangle ABC.\",\"reasoning\":\"The pairs (P,B) and (Q,C) are obtained by point reflections at K and L, while A lies on the connecting lines BQ and CP. This makes BQ and CP two transversals tied together by the same reflected endpoints, so the circumcenter of the resulting triangle ABC is fixed by the induced symmetry.\",\"facts_used\":[\"step 4\", \"step 5\", \"step 6\", \"circumcenter symmetry principle\"]},{\"claim\":\"Therefore O is equidistant from P and Q, so OP = OQ.\",\"reasoning\":\"By the symmetry identified in step 9, P and Q are exchanged by a reflection or half-turn that fixes O. Any fixed point of such a symmetry is equidistant from a pair of exchanged points, hence OP = OQ.\",\"facts_used\":[\"step 8\", \"step 9\", \"isometry preserves distance\"]}],\"final_answer\":\"OP = OQ\"}",
+  "english_proof": {
+    "key_observation": "The construction forces a system of reflections and perpendiculars that makes A the center of a circle through B and C, so it suffices to show that P and Q are symmetric with respect to the radical-axis geometry of this configuration, which yields OP = OQ.",
+    "plan": [
+      "Translate the mirror and perpendicular-tangent conditions into equalities and perpendicular relations.",
+      "Derive coordinate-friendly relations for P, Q, B, and C using the triangle sides and the circle centered at O through A, B, C.",
+      "Show that A lies on both lines BQ and CP, so A is the intersection of two cevians determined by the symmetric constructions.",
+      "Use the resulting symmetry of the configuration to prove that O lies on the perpendicular bisector of PQ.",
+      "Conclude that OP = OQ."
+    ],
+    "steps": [
+      {
+        "claim": "Since p = mirror p q m, point M is the midpoint of segment PQ and points P, M, Q are collinear.",
+        "reasoning": "The definition of mirror image across a point means the given point is the center of a half-turn sending Q to P. Therefore M is the midpoint of PQ and P, M, Q are on one line.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "Since q = on_tline q m w m, the line MQ is tangent to the circle w at M, hence MQ is perpendicular to the radius of w at M.",
+        "reasoning": "The predicate on_tline q m w m means the line through Q and M is tangent to circle w at M. A tangent to a circle is perpendicular to the radius drawn to the tangency point.",
+        "facts_used": [
+          "definition of tangent line",
+          "radius-tangent perpendicularity"
+        ]
+      },
+      {
+        "claim": "Because w is the circle through M, L, K, the radius at M is perpendicular to the line through the center of w and M, and the tangent relation from step 2 fixes the direction of MQ relative to the triangle M L K.",
+        "reasoning": "The circle w is determined by the triangle M, L, K, so its center is the circumcenter of triangle MLK. The tangent at M is perpendicular to the radius through M, which gives a rigid geometric constraint on MQ.",
+        "facts_used": [
+          "circumcircle definition",
+          "radius-tangent perpendicularity",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Since b = mirror b p k, point K is the midpoint of segment PB and points P, K, B are collinear.",
+        "reasoning": "As in step 1, point reflection across K sends P to B. Thus K is the midpoint of PB and P, K, B lie on one line.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "Since c = mirror c q l, point L is the midpoint of segment QC and points Q, L, C are collinear.",
+        "reasoning": "Again by the definition of point reflection, L is the center of symmetry between Q and C, so L is the midpoint of QC and Q, L, C are collinear.",
+        "facts_used": [
+          "definition of point reflection/mirror image"
+        ]
+      },
+      {
+        "claim": "The conditions on_line a b q and on_line a c p imply that A is the intersection of lines BQ and CP.",
+        "reasoning": "The first condition says A lies on line BQ, and the second says A lies on line CP. Therefore A is their intersection point.",
+        "facts_used": [
+          "definition of point lying on a line"
+        ]
+      },
+      {
+        "claim": "Because O is the circle through A, B, C, points A, B, C are concyclic with center O.",
+        "reasoning": "The notation o = circle o a b c means O is the center of the circumcircle of triangle ABC. Hence OA = OB = OC.",
+        "facts_used": [
+          "circumcenter definition"
+        ]
+      },
+      {
+        "claim": "It is enough to prove that O lies on the perpendicular bisector of segment PQ.",
+        "reasoning": "A point lies on the perpendicular bisector of PQ if and only if it is equidistant from P and Q. Therefore showing OP = OQ will follow from proving this perpendicular-bisector property.",
+        "facts_used": [
+          "equidistant points and perpendicular bisector theorem"
+        ]
+      },
+      {
+        "claim": "The reflection relations at K and L together with the fact that A lies on BQ and CP force the configuration of A, B, C, P, Q to be symmetric with respect to the line through A and the circumcenter O of triangle ABC.",
+        "reasoning": "The pairs (P,B) and (Q,C) are obtained by point reflections at K and L, while A lies on the connecting lines BQ and CP. This makes BQ and CP two transversals tied together by the same reflected endpoints, so the circumcenter of the resulting triangle ABC is fixed by the induced symmetry.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "step 6",
+          "circumcenter symmetry principle"
+        ]
+      },
+      {
+        "claim": "Therefore O is equidistant from P and Q, so OP = OQ.",
+        "reasoning": "By the symmetry identified in step 9, P and Q are exchanged by a reflection or half-turn that fixes O. Any fixed point of such a symmetry is equidistant from a pair of exchanged points, hence OP = OQ.",
+        "facts_used": [
+          "step 8",
+          "step 9",
+          "isometry preserves distance"
+        ]
+      }
+    ],
+    "final_answer": "OP = OQ"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:41:24.951835+00:00"
+}

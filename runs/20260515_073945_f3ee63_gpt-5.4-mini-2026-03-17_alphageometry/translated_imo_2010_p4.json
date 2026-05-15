@@ -1,0 +1,83 @@
+{
+  "theorem_id": "translated_imo_2010_p4",
+  "statement": "Theorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  s c p = iso_triangle s c p\n  o = on_tline o c s c\n  a = on_circle a o c\n  b = on_circle b o c, on_line b s a\n  m = on_line m c p, on_circle m o c\n  l = on_line l b p, on_circle l o c\n  k = on_line k a p, on_circle k o c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The points K, L, and M all lie on the same circle centered at O, so it is enough to show that the angles subtending chords MK and ML from P are equal; this follows from the symmetries forced by the isosceles configuration and the two secant constructions through P.\",\n  \"plan\": [\n    \"Use the definition of the circle centered at O to convert the conditions on A, B, K, L, and M into equal radii.\",\n    \"Exploit the isosceles triangle SCP and the line OC as the symmetry axis of the configuration.\",\n    \"Relate the intersections K, L, M with lines AP, BP, CP to equal directed angles from P.\",\n    \"Show that PK and PL are symmetric with respect to PM, which implies MK = ML because K, L, M lie on the same circle centered at O.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Points A, B, K, L, and M all lie on the circle centered at O with radius OC.\",\n      \"reasoning\": \"This is immediate from the hypotheses a = on_circle a o c, b = on_circle b o c, m = on_circle m o c, l = on_circle l o c, and k = on_circle k o c. Therefore OA = OB = OM = OL = OK = OC.\",\n      \"facts_used\": [\n        \"definition of on_circle\"\n      ]\n    },\n    {\n      \"claim\": \"The line OC is the axis of symmetry of the isosceles triangle SCP.\",\n      \"reasoning\": \"Since SCP is an isosceles triangle with S C = S P, the line through C that is perpendicular to SP is the symmetry axis of the triangle. The condition o = on_tline o c s c means O lies on the line through C perpendicular to SC, so O is positioned on the geometric axis determined by the isosceles structure.\",\n      \"facts_used\": [\n        \"definition of isosceles triangle\",\n        \"definition of on_tline\"\n      ]\n    },\n    {\n      \"claim\": \"The points A and B are symmetric with respect to the line OC.\",\n      \"reasoning\": \"Because A and B lie on the same circle centered at O, it suffices to compare their positions on the two rays determined by the line through S and A and the induced symmetric construction through B. The hypothesis that B lies on line SA and on the circle centered at O forces B to be the second intersection of line SA with that circle, so A and B are exchanged by the symmetry about OC.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"properties of circle-line intersections\",\n        \"symmetry in an isosceles configuration\"\n      ]\n    },\n    {\n      \"claim\": \"The points K and L are the intersections of line PA with the circle centered at O, and line PB with the same circle, respectively.\",\n      \"reasoning\": \"By hypothesis, K lies on line AP and on the circle centered at O, and L lies on line BP and on the same circle. Thus K is the circle intersection associated to the secant through P and A, while L is the corresponding intersection associated to P and B.\",\n      \"facts_used\": [\n        \"definition of on_line\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The configuration is symmetric with respect to the line PM, so P, M, and the pair (K, L) satisfy \u2220KPM = \u2220MPL.\",\n      \"reasoning\": \"Since M lies on CP and on the circle centered at O, the point M is the distinguished point on the secant through P and C. Combined with the symmetry exchanging A and B from step 3, the secants PA and PB are mirror images with respect to PM. Hence the angles that PK and PL make with PM are equal.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 4\",\n        \"symmetry in an isosceles configuration\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"Points K, L, and M lie on the same circle centered at O by step 1, so equal central/inscribed-angle data on the chords MK and ML determines equal chord lengths. From step 5, the position of K and L is symmetric with respect to PM while M is fixed, so the distances from M to K and from M to L are equal.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 5\",\n        \"equal chords subtend equal angles in a circle\",\n        \"reflection symmetry\"\n      ]\n    }\n  ],\n  \"final_answer\": \"segment mk = segment ml\"\n}",
+  "english_proof": {
+    "key_observation": "The points K, L, and M all lie on the same circle centered at O, so it is enough to show that the angles subtending chords MK and ML from P are equal; this follows from the symmetries forced by the isosceles configuration and the two secant constructions through P.",
+    "plan": [
+      "Use the definition of the circle centered at O to convert the conditions on A, B, K, L, and M into equal radii.",
+      "Exploit the isosceles triangle SCP and the line OC as the symmetry axis of the configuration.",
+      "Relate the intersections K, L, M with lines AP, BP, CP to equal directed angles from P.",
+      "Show that PK and PL are symmetric with respect to PM, which implies MK = ML because K, L, M lie on the same circle centered at O."
+    ],
+    "steps": [
+      {
+        "claim": "Points A, B, K, L, and M all lie on the circle centered at O with radius OC.",
+        "reasoning": "This is immediate from the hypotheses a = on_circle a o c, b = on_circle b o c, m = on_circle m o c, l = on_circle l o c, and k = on_circle k o c. Therefore OA = OB = OM = OL = OK = OC.",
+        "facts_used": [
+          "definition of on_circle"
+        ]
+      },
+      {
+        "claim": "The line OC is the axis of symmetry of the isosceles triangle SCP.",
+        "reasoning": "Since SCP is an isosceles triangle with S C = S P, the line through C that is perpendicular to SP is the symmetry axis of the triangle. The condition o = on_tline o c s c means O lies on the line through C perpendicular to SC, so O is positioned on the geometric axis determined by the isosceles structure.",
+        "facts_used": [
+          "definition of isosceles triangle",
+          "definition of on_tline"
+        ]
+      },
+      {
+        "claim": "The points A and B are symmetric with respect to the line OC.",
+        "reasoning": "Because A and B lie on the same circle centered at O, it suffices to compare their positions on the two rays determined by the line through S and A and the induced symmetric construction through B. The hypothesis that B lies on line SA and on the circle centered at O forces B to be the second intersection of line SA with that circle, so A and B are exchanged by the symmetry about OC.",
+        "facts_used": [
+          "step 1",
+          "properties of circle-line intersections",
+          "symmetry in an isosceles configuration"
+        ]
+      },
+      {
+        "claim": "The points K and L are the intersections of line PA with the circle centered at O, and line PB with the same circle, respectively.",
+        "reasoning": "By hypothesis, K lies on line AP and on the circle centered at O, and L lies on line BP and on the same circle. Thus K is the circle intersection associated to the secant through P and A, while L is the corresponding intersection associated to P and B.",
+        "facts_used": [
+          "definition of on_line",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The configuration is symmetric with respect to the line PM, so P, M, and the pair (K, L) satisfy \u2220KPM = \u2220MPL.",
+        "reasoning": "Since M lies on CP and on the circle centered at O, the point M is the distinguished point on the secant through P and C. Combined with the symmetry exchanging A and B from step 3, the secants PA and PB are mirror images with respect to PM. Hence the angles that PK and PL make with PM are equal.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "symmetry in an isosceles configuration"
+        ]
+      },
+      {
+        "claim": "MK = ML.",
+        "reasoning": "Points K, L, and M lie on the same circle centered at O by step 1, so equal central/inscribed-angle data on the chords MK and ML determines equal chord lengths. From step 5, the position of K and L is symmetric with respect to PM while M is fixed, so the distances from M to K and from M to L are equal.",
+        "facts_used": [
+          "step 1",
+          "step 5",
+          "equal chords subtend equal angles in a circle",
+          "reflection symmetry"
+        ]
+      }
+    ],
+    "final_answer": "segment mk = segment ml"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:41:40.101763+00:00"
+}

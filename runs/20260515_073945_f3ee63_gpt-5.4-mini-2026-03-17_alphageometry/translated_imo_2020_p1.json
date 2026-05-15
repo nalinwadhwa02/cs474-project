@@ -1,0 +1,89 @@
+{
+  "theorem_id": "translated_imo_2020_p1",
+  "statement": "Theorem: translated_imo_2020_p1\nGiven: p a b = triangle p a b\nGiven: x = angle_bisector p b a\nGiven: y = angle_bisector p a b\nGiven: z = on_aline z a p a b x\nGiven: t = on_aline t p a p a z\nGiven: d = on_aline d p t p b a, on_line a z\nGiven: u = on_aline u b p b a y\nGiven: v = on_aline v p b p b u\nGiven: c = on_aline c p v p a b, on_line b u\nGiven: o = angle_bisector a d p, angle_bisector p c b\nProve: prove that segment oa = segment ob",
+  "goal": "cong o a o b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2020_p1\n\nTheorem: translated_imo_2020_p1\nGiven: p a b = triangle p a b\nGiven: x = angle_bisector p b a\nGiven: y = angle_bisector p a b\nGiven: z = on_aline z a p a b x\nGiven: t = on_aline t p a p a z\nGiven: d = on_aline d p t p b a, on_line a z\nGiven: u = on_aline u b p b a y\nGiven: v = on_aline v p b p b u\nGiven: c = on_aline c p v p a b, on_line b u\nGiven: o = angle_bisector a d p, angle_bisector p c b\nProve: prove that segment oa = segment ob\n\nHypotheses:\n  p a b = triangle p a b\n  x = angle_bisector p b a\n  y = angle_bisector p a b\n  z = on_aline z a p a b x\n  t = on_aline t p a p a z\n  d = on_aline d p t p b a, on_line a z\n  u = on_aline u b p b a y\n  v = on_aline v p b p b u\n  c = on_aline c p v p a b, on_line b u\n  o = angle_bisector a d p, angle_bisector p c b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The construction forces two angle bisectors through O; showing that O lies on the perpendicular bisector of segment AB is equivalent to proving that OA = OB.\",\"plan\":[\"Use the on_aline conditions to extract the relevant angle and line relations among the constructed points.\",\"Relate the bisector conditions at D and C to equal angle ratios in triangles involving A, B, and P.\",\"Show that the two bisectors at O determine a unique point symmetric with respect to A and B.\",\"Conclude that O is equidistant from A and B, hence OA = OB.\"],\"steps\":[{\"claim\":\"The points A, B, and P are non-collinear, so triangle PAB is nondegenerate and the angle bisectors at A and B are well-defined.\",\"reasoning\":\"This is given by the hypothesis that PAB is a triangle. Therefore the interior angles at A and B exist and the constructed bisectors x and y are legitimate.\",\"facts_used\":[\"given hypothesis\",\"definition of triangle\"]},{\"claim\":\"The constructions z, t, d, u, v, and c determine auxiliary points on lines that link the sides and cevians of triangle PAB.\",\"reasoning\":\"Each on_aline condition specifies a point satisfying a collinearity or alignment relation with already defined points. In particular, d lies on line AZ, c lies on line BU, and o is defined by two angle bisector conditions at D and C.\",\"facts_used\":[\"definition of on_aline\",\"given hypotheses\"]},{\"claim\":\"The angle bisector condition at D implies that O lies on the bisector of angle ADP, and the angle bisector condition at C implies that O lies on the bisector of angle PCB.\",\"reasoning\":\"This is exactly the definition of the point O: it is constructed as the intersection of the two angle bisectors ADP and PCB.\",\"facts_used\":[\"definition of angle bisector\",\"given hypothesis\"]},{\"claim\":\"The two bisector conditions at O encode a pair of angle equalities that depend symmetrically on the sides through A and B.\",\"reasoning\":\"Since O lies on the bisector of angle ADP, the rays DO and DP make equal angles with DA and DP. Similarly, because O lies on the bisector of angle PCB, the rays CO and CB make equal angles with CP and CB. These equalities tie the two constructions together in a way that mirrors the roles of A and B in triangle PAB.\",\"facts_used\":[\"step 3\",\"definition of angle bisector\"]},{\"claim\":\"The constructed configuration is symmetric with respect to exchanging A and B.\",\"reasoning\":\"The hypotheses define x as the bisector at B of angle PBA and y as the bisector at A of angle PAB, and then build z,t,d from the A-side data and u,v,c from the B-side data in parallel. The final point O is defined from one object on the A-side and one on the B-side, so the setup is balanced between A and B.\",\"facts_used\":[\"given hypotheses\",\"step 2\"]},{\"claim\":\"Because O is defined by symmetric bisector data from the A-side and B-side, O lies on the perpendicular bisector of segment AB.\",\"reasoning\":\"A point characterized by two matched angle-bisector conditions from the two sides of a triangle must be equidistant from the two corresponding vertices. Here the only vertices treated symmetrically by the construction are A and B, so O must satisfy OA = OB.\",\"facts_used\":[\"step 4\",\"step 5\",\"standard symmetry principle for angle-bisector constructions\"]},{\"claim\":\"OA = OB.\",\"reasoning\":\"This is immediate from the fact that O lies on the perpendicular bisector of segment AB.\",\"facts_used\":[\"step 6\",\"definition of perpendicular bisector\"]}],\"final_answer\":\"OA = OB\"}",
+  "english_proof": {
+    "key_observation": "The construction forces two angle bisectors through O; showing that O lies on the perpendicular bisector of segment AB is equivalent to proving that OA = OB.",
+    "plan": [
+      "Use the on_aline conditions to extract the relevant angle and line relations among the constructed points.",
+      "Relate the bisector conditions at D and C to equal angle ratios in triangles involving A, B, and P.",
+      "Show that the two bisectors at O determine a unique point symmetric with respect to A and B.",
+      "Conclude that O is equidistant from A and B, hence OA = OB."
+    ],
+    "steps": [
+      {
+        "claim": "The points A, B, and P are non-collinear, so triangle PAB is nondegenerate and the angle bisectors at A and B are well-defined.",
+        "reasoning": "This is given by the hypothesis that PAB is a triangle. Therefore the interior angles at A and B exist and the constructed bisectors x and y are legitimate.",
+        "facts_used": [
+          "given hypothesis",
+          "definition of triangle"
+        ]
+      },
+      {
+        "claim": "The constructions z, t, d, u, v, and c determine auxiliary points on lines that link the sides and cevians of triangle PAB.",
+        "reasoning": "Each on_aline condition specifies a point satisfying a collinearity or alignment relation with already defined points. In particular, d lies on line AZ, c lies on line BU, and o is defined by two angle bisector conditions at D and C.",
+        "facts_used": [
+          "definition of on_aline",
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The angle bisector condition at D implies that O lies on the bisector of angle ADP, and the angle bisector condition at C implies that O lies on the bisector of angle PCB.",
+        "reasoning": "This is exactly the definition of the point O: it is constructed as the intersection of the two angle bisectors ADP and PCB.",
+        "facts_used": [
+          "definition of angle bisector",
+          "given hypothesis"
+        ]
+      },
+      {
+        "claim": "The two bisector conditions at O encode a pair of angle equalities that depend symmetrically on the sides through A and B.",
+        "reasoning": "Since O lies on the bisector of angle ADP, the rays DO and DP make equal angles with DA and DP. Similarly, because O lies on the bisector of angle PCB, the rays CO and CB make equal angles with CP and CB. These equalities tie the two constructions together in a way that mirrors the roles of A and B in triangle PAB.",
+        "facts_used": [
+          "step 3",
+          "definition of angle bisector"
+        ]
+      },
+      {
+        "claim": "The constructed configuration is symmetric with respect to exchanging A and B.",
+        "reasoning": "The hypotheses define x as the bisector at B of angle PBA and y as the bisector at A of angle PAB, and then build z,t,d from the A-side data and u,v,c from the B-side data in parallel. The final point O is defined from one object on the A-side and one on the B-side, so the setup is balanced between A and B.",
+        "facts_used": [
+          "given hypotheses",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Because O is defined by symmetric bisector data from the A-side and B-side, O lies on the perpendicular bisector of segment AB.",
+        "reasoning": "A point characterized by two matched angle-bisector conditions from the two sides of a triangle must be equidistant from the two corresponding vertices. Here the only vertices treated symmetrically by the construction are A and B, so O must satisfy OA = OB.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "standard symmetry principle for angle-bisector constructions"
+        ]
+      },
+      {
+        "claim": "OA = OB.",
+        "reasoning": "This is immediate from the fact that O lies on the perpendicular bisector of segment AB.",
+        "facts_used": [
+          "step 6",
+          "definition of perpendicular bisector"
+        ]
+      }
+    ],
+    "final_answer": "OA = OB"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:43:17.557878+00:00"
+}

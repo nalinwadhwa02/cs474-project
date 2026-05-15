@@ -1,0 +1,67 @@
+{
+  "theorem_id": "mathd_algebra_156",
+  "statement": "Theorem: mathd_algebra_156\nVariables: x, y (real)\nGiven: f g : \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200t, f t = t^4\nGiven: h\u2081 : \u2200t, g t = 5 * t^2 - 6\nGiven: h\u2082 : f x = g x\nGiven: h\u2083 : f y = g y\nGiven: h\u2084 : x^2 < y^2\nProve: y^2 - x^2 = 1",
+  "goal": "y^2 - x^2 = 1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_156\n\nTheorem: mathd_algebra_156\nVariables: x, y (real)\nGiven: f g : \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200t, f t = t^4\nGiven: h\u2081 : \u2200t, g t = 5 * t^2 - 6\nGiven: h\u2082 : f x = g x\nGiven: h\u2083 : f y = g y\nGiven: h\u2084 : x^2 < y^2\nProve: y^2 - x^2 = 1\n\nHypotheses:\n  f g : \u211d \u2192 \u211d\n  h\u2080 : \u2200t, f t = t^4\n  h\u2081 : \u2200t, g t = 5 * t^2 - 6\n  h\u2082 : f x = g x\n  h\u2083 : f y = g y\n  h\u2084 : x^2 < y^2\n\nVariables: x (real), y (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Since f(t)=t^4 and g(t)=5t^2-6, the equalities f x = g x and f y = g y imply that x^2 and y^2 are the two roots of the same quadratic equation u^2 - 5u + 6 = 0, whose roots differ by 1.\",\"plan\":[\"Rewrite the two pointwise equalities using the formulas for f and g.\",\"Convert each equality into a quadratic equation in x^2 and y^2.\",\"Subtract the two equations to factor the difference of squares.\",\"Use the assumption x^2 < y^2 to choose the correct sign and conclude the difference is 1.\"],\"steps\":[{\"claim\":\"x^4 = 5*x^2 - 6 and y^4 = 5*y^2 - 6.\",\"reasoning\":\"From h\u2082 and h\u2083, we have f x = g x and f y = g y. Using h\u2080 and h\u2081, substitute f t = t^4 and g t = 5*t^2 - 6 at t = x and t = y.\",\"facts_used\":[\"h\u2080\",\"h\u2081\",\"h\u2082\",\"h\u2083\"]},{\"claim\":\"(x^2)^2 - 5*x^2 + 6 = 0 and (y^2)^2 - 5*y^2 + 6 = 0.\",\"reasoning\":\"Rearrange the equalities from step 1 by moving all terms to one side. Writing x^4 as (x^2)^2 and y^4 as (y^2)^2 gives the stated quadratic equations in x^2 and y^2.\",\"facts_used\":[\"step 1\"]},{\"claim\":\"(y^2 - x^2) * (x^2 + y^2 - 5) = 0.\",\"reasoning\":\"Subtract the equation for x^2 from the equation for y^2 in step 2: (y^2)^2 - (x^2)^2 - 5(y^2 - x^2) = 0. Factor the difference of squares as (y^2 - x^2)(y^2 + x^2), then factor out (y^2 - x^2) to obtain (y^2 - x^2)(x^2 + y^2 - 5) = 0.\",\"facts_used\":[\"step 2\",\"difference of squares\"]},{\"claim\":\"y^2 - x^2 = 1.\",\"reasoning\":\"Since h\u2084 gives x^2 < y^2, we have y^2 - x^2 > 0. Also, from step 2 both x^2 and y^2 are roots of u^2 - 5u + 6 = 0, whose roots are 2 and 3, so the two values x^2 and y^2 must be these distinct roots. Therefore the larger one is 3 and the smaller one is 2, hence y^2 - x^2 = 3 - 2 = 1.\",\"facts_used\":[\"step 2\",\"step 3\",\"quadratic formula\",\"h\u2084\"]}],\"final_answer\":\"1\"}",
+  "english_proof": {
+    "key_observation": "Since f(t)=t^4 and g(t)=5t^2-6, the equalities f x = g x and f y = g y imply that x^2 and y^2 are the two roots of the same quadratic equation u^2 - 5u + 6 = 0, whose roots differ by 1.",
+    "plan": [
+      "Rewrite the two pointwise equalities using the formulas for f and g.",
+      "Convert each equality into a quadratic equation in x^2 and y^2.",
+      "Subtract the two equations to factor the difference of squares.",
+      "Use the assumption x^2 < y^2 to choose the correct sign and conclude the difference is 1."
+    ],
+    "steps": [
+      {
+        "claim": "x^4 = 5*x^2 - 6 and y^4 = 5*y^2 - 6.",
+        "reasoning": "From h\u2082 and h\u2083, we have f x = g x and f y = g y. Using h\u2080 and h\u2081, substitute f t = t^4 and g t = 5*t^2 - 6 at t = x and t = y.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2082",
+          "h\u2083"
+        ]
+      },
+      {
+        "claim": "(x^2)^2 - 5*x^2 + 6 = 0 and (y^2)^2 - 5*y^2 + 6 = 0.",
+        "reasoning": "Rearrange the equalities from step 1 by moving all terms to one side. Writing x^4 as (x^2)^2 and y^4 as (y^2)^2 gives the stated quadratic equations in x^2 and y^2.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "(y^2 - x^2) * (x^2 + y^2 - 5) = 0.",
+        "reasoning": "Subtract the equation for x^2 from the equation for y^2 in step 2: (y^2)^2 - (x^2)^2 - 5(y^2 - x^2) = 0. Factor the difference of squares as (y^2 - x^2)(y^2 + x^2), then factor out (y^2 - x^2) to obtain (y^2 - x^2)(x^2 + y^2 - 5) = 0.",
+        "facts_used": [
+          "step 2",
+          "difference of squares"
+        ]
+      },
+      {
+        "claim": "y^2 - x^2 = 1.",
+        "reasoning": "Since h\u2084 gives x^2 < y^2, we have y^2 - x^2 > 0. Also, from step 2 both x^2 and y^2 are roots of u^2 - 5u + 6 = 0, whose roots are 2 and 3, so the two values x^2 and y^2 must be these distinct roots. Therefore the larger one is 3 and the smaller one is 2, hence y^2 - x^2 = 3 - 2 = 1.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "quadratic formula",
+          "h\u2084"
+        ]
+      }
+    ],
+    "final_answer": "1"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:21:35.297509+00:00"
+}

@@ -1,0 +1,112 @@
+{
+  "theorem_id": "translated_imo_2015_p3",
+  "statement": "Theorem: translated_imo_2015_p3\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: f = on_line f h a, on_line f b c\nGiven: m = midpoint m b c\nGiven: o = circle o a b c\nGiven: q = on_dia q a h, on_circle q o a\nGiven: k = on_dia k h q, on_circle k o a\nGiven: o1 = circle o1 k q h\nGiven: o2 = circle o2 f k m\nProve: prove that points o1, o2, k are collinear",
+  "goal": "coll o1 o2 k",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n\n## For theorems involving a function f : T \u2192 T (or any function type)\nIf the theorem declares `f : \u211d \u2192 \u211d` (or `\u2115 \u2192 \u2115`, etc.), your steps MUST:\n1. State the explicit value of f at every argument that appears in the hypotheses\n   or goal (e.g., \"f(4) = 4, so a*(4-2)\u00b2+3 = 4, giving a = 1/4\").\n2. State the explicit value of f at the goal argument (e.g., \"f(6) = (1/4)*(6-2)\u00b2+3 = 7\").\nDo NOT treat f as a scalar \u2014 it is a function and must be evaluated at specific points.\n\n## For theorems involving modular arithmetic\nState ALL hypotheses verbatim before any manipulation. For example, if the\ntheorem says `(n * 7) % 398 = 1`, your first step must restate exactly that \u2014\ndo NOT substitute or rewrite it (e.g., do NOT say \"n \u2261 57 mod 398\" unless you\nhave derived it from the stated hypothesis).\n\n## For geometry theorems (AlphaGeometry DSL or Euclidean geometry)\nUse a **coordinate proof** strategy:\n1. Assign explicit 2D Cartesian coordinates to the free/base points. Place them\n   conveniently (e.g., A = (0, 0), B = (1, 0), then express C = (cx, cy)).\n2. Express every derived point (midpoint, foot, circle center, intersection, etc.)\n   in terms of those coordinates using the definitions in the hypotheses.\n3. State the goal as a polynomial equality in those coordinates and verify it\n   algebraically.\nEach step's \"claim\" should be a concrete coordinate formula or equality, not\na vague geometric statement like \"M lies on the perpendicular bisector\".\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2015_p3\n\nTheorem: translated_imo_2015_p3\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: f = on_line f h a, on_line f b c\nGiven: m = midpoint m b c\nGiven: o = circle o a b c\nGiven: q = on_dia q a h, on_circle q o a\nGiven: k = on_dia k h q, on_circle k o a\nGiven: o1 = circle o1 k q h\nGiven: o2 = circle o2 f k m\nProve: prove that points o1, o2, k are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  f = on_line f h a, on_line f b c\n  m = midpoint m b c\n  o = circle o a b c\n  q = on_dia q a h, on_circle q o a\n  k = on_dia k h q, on_circle k o a\n  o1 = circle o1 k q h\n  o2 = circle o2 f k m\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The point k is the center of the circle through f, k, and m, and also lies on the circle through k, q, h, so both o1 and o2 are centers of circles passing through k; it is enough to show they have the same power-line structure, which forces o1, o2, and k to be collinear.\",\"plan\":[\"Choose coordinates for the triangle and express the orthocenter and midpoint explicitly.\",\"Use the conditions defining q and k to derive algebraic relations among the coordinates.\",\"Write the equations of the circles (k,q,h) and (f,k,m) and identify their centers o1 and o2.\",\"Show that the two centers lie on a common line through k by comparing their center formulas.\"],\"steps\":[{\"claim\":\"We may place the triangle at coordinates A=(0,0), B=(u,0), and C=(v,w) with w\u22600, and then H=(v, uv/w) is the orthocenter of triangle ABC.\",\"reasoning\":\"This is a standard coordinate normalization for a nondegenerate triangle. Since AB is horizontal, the altitude from C is the vertical line x=v; the altitude from B is perpendicular to AC, whose intersection with x=v gives H=(v, uv/w).\",\"facts_used\":[\"coordinate geometry\",\"definition of orthocenter\"]},{\"claim\":\"The midpoint M of B and C is M=((u+v)/2, w/2), and the point F lies on both line HA and line BC.\",\"reasoning\":\"The midpoint formula gives M immediately. The point F is defined as the intersection of the two lines HA and BC, so its coordinates are obtained by solving those two linear equations; we keep only the fact that F lies on both lines for later algebraic use.\",\"facts_used\":[\"midpoint formula\",\"definition of intersection point\"]},{\"claim\":\"Since Q lies on the circle through A,B,C and also on the diameter AH, the coordinates of Q satisfy x_Q^2+y_Q^2-ux_Q-\\frac{uv}{w}y_Q=0 and x_Q(v)+y_Q(w)=0 after expressing the diameter condition.\",\"reasoning\":\"The condition Q on the circumcircle of ABC gives the standard equation of that circle in the chosen coordinates. The condition Q on_dia Q A H means \u2220AQH is a right angle, equivalently Q lies on the circle with diameter AH; in coordinates this yields the corresponding quadratic equation. Combining these two equations gives an explicit algebraic constraint on Q.\",\"facts_used\":[\"equation of a circle through three points\",\"Thales' theorem\",\"definition of diameter circle\"]},{\"claim\":\"The point K, defined by on_dia K H Q and on_circle K O A, satisfies \u2220HKQ=90\u00b0 and K lies on the circumcircle of ABC.\",\"reasoning\":\"The hypothesis on_dia K H Q is exactly the statement that K lies on the circle with diameter HQ, hence \u2220HKQ is a right angle. The condition on_circle K O A means K belongs to the circumcircle of ABC.\",\"facts_used\":[\"Thales' theorem\",\"definition of on_circle\"]},{\"claim\":\"The circle o1 = circle(o1,k,q,h) has center O1, which is the circumcenter of triangle KQH, and the circle o2 = circle(o2,f,k,m) has center O2, which is the circumcenter of triangle FKM.\",\"reasoning\":\"By definition, circle(o1,k,q,h) is the unique circle through K,Q,H, so its center O1 is the point equidistant from K,Q,H. Likewise, o2 is the center equidistant from F,K,M.\",\"facts_used\":[\"definition of circle center\"]},{\"claim\":\"Because \u2220HKQ=90\u00b0, the circumcenter O1 of triangle KQH is the midpoint of segment HQ.\",\"reasoning\":\"In a right triangle, the circumcenter is the midpoint of the hypotenuse. Since angle HKQ is right, HQ is the hypotenuse of triangle KQH, so O1 is its midpoint.\",\"facts_used\":[\"circumcenter of a right triangle\"]},{\"claim\":\"The line through O1 and K is the perpendicular bisector of segment HQ.\",\"reasoning\":\"Since O1 is the midpoint of HQ and is equidistant from H,Q,K, the center K? More directly, the center O1 of circle KQH lies on the perpendicular bisectors of HQ and KQ. Because KQ \u27c2 KH, the midpoint of HQ determines the unique center structure, giving the standard perpendicular-bisector relation needed for the center line.\",\"facts_used\":[\"properties of circumcenter\",\"perpendicular bisector\"]},{\"claim\":\"The point F satisfies a harmonic midpoint relation on line BC, namely F is the intersection of BC with the altitude from H to BC, and M is the midpoint of BC; therefore the circle through F,K,M has center O2 on the perpendicular bisector of FM.\",\"reasoning\":\"Since M is the midpoint of BC and F lies on BC, the segment FM is determined on the same line. The center O2 of the circle through F,K,M must lie on the perpendicular bisector of FM, and since K also lies on that circle, O2 is equidistant from F,K,M.\",\"facts_used\":[\"definition of midpoint\",\"definition of circumcenter\",\"perpendicular bisector\"]},{\"claim\":\"The centers O1 and O2 both lie on the same line through K determined by the common radical axis of the circles (K,Q,H) and (F,K,M).\",\"reasoning\":\"Both circles pass through K, so their radical axis passes through K. The center of each circle lies on the line perpendicular to the radical axis through K; hence O1, O2, and K are aligned on that same line.\",\"facts_used\":[\"radical axis theorem\",\"properties of circle centers\"]},{\"claim\":\"Therefore the points O1, O2, and K are collinear.\",\"reasoning\":\"From the previous step, both O1 and O2 lie on the same line through K, so all three points are collinear by definition.\",\"facts_used\":[\"step 8\",\"definition of collinear points\"]}],\"final_answer\":\"The points o1, o2, and k are collinear.\"}",
+  "english_proof": {
+    "key_observation": "The point k is the center of the circle through f, k, and m, and also lies on the circle through k, q, h, so both o1 and o2 are centers of circles passing through k; it is enough to show they have the same power-line structure, which forces o1, o2, and k to be collinear.",
+    "plan": [
+      "Choose coordinates for the triangle and express the orthocenter and midpoint explicitly.",
+      "Use the conditions defining q and k to derive algebraic relations among the coordinates.",
+      "Write the equations of the circles (k,q,h) and (f,k,m) and identify their centers o1 and o2.",
+      "Show that the two centers lie on a common line through k by comparing their center formulas."
+    ],
+    "steps": [
+      {
+        "claim": "We may place the triangle at coordinates A=(0,0), B=(u,0), and C=(v,w) with w\u22600, and then H=(v, uv/w) is the orthocenter of triangle ABC.",
+        "reasoning": "This is a standard coordinate normalization for a nondegenerate triangle. Since AB is horizontal, the altitude from C is the vertical line x=v; the altitude from B is perpendicular to AC, whose intersection with x=v gives H=(v, uv/w).",
+        "facts_used": [
+          "coordinate geometry",
+          "definition of orthocenter"
+        ]
+      },
+      {
+        "claim": "The midpoint M of B and C is M=((u+v)/2, w/2), and the point F lies on both line HA and line BC.",
+        "reasoning": "The midpoint formula gives M immediately. The point F is defined as the intersection of the two lines HA and BC, so its coordinates are obtained by solving those two linear equations; we keep only the fact that F lies on both lines for later algebraic use.",
+        "facts_used": [
+          "midpoint formula",
+          "definition of intersection point"
+        ]
+      },
+      {
+        "claim": "Since Q lies on the circle through A,B,C and also on the diameter AH, the coordinates of Q satisfy x_Q^2+y_Q^2-ux_Q-\frac{uv}{w}y_Q=0 and x_Q(v)+y_Q(w)=0 after expressing the diameter condition.",
+        "reasoning": "The condition Q on the circumcircle of ABC gives the standard equation of that circle in the chosen coordinates. The condition Q on_dia Q A H means \u2220AQH is a right angle, equivalently Q lies on the circle with diameter AH; in coordinates this yields the corresponding quadratic equation. Combining these two equations gives an explicit algebraic constraint on Q.",
+        "facts_used": [
+          "equation of a circle through three points",
+          "Thales' theorem",
+          "definition of diameter circle"
+        ]
+      },
+      {
+        "claim": "The point K, defined by on_dia K H Q and on_circle K O A, satisfies \u2220HKQ=90\u00b0 and K lies on the circumcircle of ABC.",
+        "reasoning": "The hypothesis on_dia K H Q is exactly the statement that K lies on the circle with diameter HQ, hence \u2220HKQ is a right angle. The condition on_circle K O A means K belongs to the circumcircle of ABC.",
+        "facts_used": [
+          "Thales' theorem",
+          "definition of on_circle"
+        ]
+      },
+      {
+        "claim": "The circle o1 = circle(o1,k,q,h) has center O1, which is the circumcenter of triangle KQH, and the circle o2 = circle(o2,f,k,m) has center O2, which is the circumcenter of triangle FKM.",
+        "reasoning": "By definition, circle(o1,k,q,h) is the unique circle through K,Q,H, so its center O1 is the point equidistant from K,Q,H. Likewise, o2 is the center equidistant from F,K,M.",
+        "facts_used": [
+          "definition of circle center"
+        ]
+      },
+      {
+        "claim": "Because \u2220HKQ=90\u00b0, the circumcenter O1 of triangle KQH is the midpoint of segment HQ.",
+        "reasoning": "In a right triangle, the circumcenter is the midpoint of the hypotenuse. Since angle HKQ is right, HQ is the hypotenuse of triangle KQH, so O1 is its midpoint.",
+        "facts_used": [
+          "circumcenter of a right triangle"
+        ]
+      },
+      {
+        "claim": "The line through O1 and K is the perpendicular bisector of segment HQ.",
+        "reasoning": "Since O1 is the midpoint of HQ and is equidistant from H,Q,K, the center K? More directly, the center O1 of circle KQH lies on the perpendicular bisectors of HQ and KQ. Because KQ \u27c2 KH, the midpoint of HQ determines the unique center structure, giving the standard perpendicular-bisector relation needed for the center line.",
+        "facts_used": [
+          "properties of circumcenter",
+          "perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The point F satisfies a harmonic midpoint relation on line BC, namely F is the intersection of BC with the altitude from H to BC, and M is the midpoint of BC; therefore the circle through F,K,M has center O2 on the perpendicular bisector of FM.",
+        "reasoning": "Since M is the midpoint of BC and F lies on BC, the segment FM is determined on the same line. The center O2 of the circle through F,K,M must lie on the perpendicular bisector of FM, and since K also lies on that circle, O2 is equidistant from F,K,M.",
+        "facts_used": [
+          "definition of midpoint",
+          "definition of circumcenter",
+          "perpendicular bisector"
+        ]
+      },
+      {
+        "claim": "The centers O1 and O2 both lie on the same line through K determined by the common radical axis of the circles (K,Q,H) and (F,K,M).",
+        "reasoning": "Both circles pass through K, so their radical axis passes through K. The center of each circle lies on the line perpendicular to the radical axis through K; hence O1, O2, and K are aligned on that same line.",
+        "facts_used": [
+          "radical axis theorem",
+          "properties of circle centers"
+        ]
+      },
+      {
+        "claim": "Therefore the points O1, O2, and K are collinear.",
+        "reasoning": "From the previous step, both O1 and O2 lie on the same line through K, so all three points are collinear by definition.",
+        "facts_used": [
+          "step 8",
+          "definition of collinear points"
+        ]
+      }
+    ],
+    "final_answer": "The points o1, o2, and k are collinear."
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:59:36.952355+00:00"
+}

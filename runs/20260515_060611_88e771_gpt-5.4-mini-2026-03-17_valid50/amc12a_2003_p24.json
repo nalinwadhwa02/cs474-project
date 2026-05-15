@@ -1,0 +1,81 @@
+{
+  "theorem_id": "amc12a_2003_p24",
+  "statement": "Theorem: amc12a_2003_p24\nVariables: a, b (real)\nProve: is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0",
+  "goal": "is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2003_p24\n\nTheorem: amc12a_2003_p24\nVariables: a, b (real)\nProve: is_greatest {y : \u211d | \u2203 (a b : \u211d), 1 < b \u2227 b \u2264 a \u2227 y = real.logb a (a/b) + real.logb b (b/a)} 0\n\nVariables: a (real), b (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Rewrite the logarithms using change-of-base so the expression becomes a simple function of x = log_a b, which reduces the problem to showing x + 1/x \u2265 2 for x > 0.\",\"plan\":[\"Convert the given logarithmic expression into a form involving only one variable.\",\"Use the condition 1 < b \u2264 a to determine the sign and range of that variable.\",\"Apply AM-GM (or an equivalent inequality) to bound the expression from below by 0.\",\"Exhibit equality at a=b to show the bound is sharp and hence the greatest value is 0.\"],\"steps\":[{\"claim\":\"For any real numbers a,b with 1 < b \u2264 a, the expression y = log_a(a/b) + log_b(b/a) is well-defined and can be rewritten as y = 1/log_b(a) - log_b(a).\",\"reasoning\":\"Since 1 < b \u2264 a, both a and b are positive and not equal to 1, so the logarithms are defined. Using the change-of-base identity, log_a(a/b) = 1 - log_a(b) and log_b(b/a) = -log_b(a); also log_a(b) = 1/log_b(a). Combining these gives the stated form.\",\"facts_used\":[\"change-of-base formula for logarithms\",\"properties of logarithms\",\"step 1\"]},{\"claim\":\"If x = log_b(a), then x \u2265 1.\",\"reasoning\":\"Because 1 < b \u2264 a and b > 1, the logarithm base b is increasing on positive reals. Since a \u2265 b, we get log_b(a) \u2265 log_b(b) = 1.\",\"facts_used\":[\"monotonicity of logarithm for base greater than 1\"]},{\"claim\":\"For x \u2265 1, the quantity 1/x - x is at most 0.\",\"reasoning\":\"Since x \u2265 1, we have 1/x \u2264 1 \u2264 x, hence 1/x - x \u2264 0. Equivalently, x - 1/x \u2265 0.\",\"facts_used\":[\"order properties of real numbers\",\"step 2\"]},{\"claim\":\"Therefore every admissible value y satisfies y \u2264 0.\",\"reasoning\":\"By step 1, y = 1/x - x with x = log_b(a). By step 2, x \u2265 1, and step 3 then gives y \u2264 0.\",\"facts_used\":[\"step 1\",\"step 2\",\"step 3\"]},{\"claim\":\"The value y = 0 is attainable.\",\"reasoning\":\"Take a = b > 1. Then log_a(a/b) = log_a(1) = 0 and log_b(b/a) = log_a(1) = 0, so y = 0.\",\"facts_used\":[\"properties of logarithms\",\"existence of admissible example\"]},{\"claim\":\"The greatest possible value of y is 0.\",\"reasoning\":\"Step 4 shows no admissible pair can produce y > 0, and step 5 shows y = 0 is achieved. Hence 0 is the greatest value in the set.\",\"facts_used\":[\"step 4\",\"step 5\"]}],\"final_answer\":\"0\"}",
+  "english_proof": {
+    "key_observation": "Rewrite the logarithms using change-of-base so the expression becomes a simple function of x = log_a b, which reduces the problem to showing x + 1/x \u2265 2 for x > 0.",
+    "plan": [
+      "Convert the given logarithmic expression into a form involving only one variable.",
+      "Use the condition 1 < b \u2264 a to determine the sign and range of that variable.",
+      "Apply AM-GM (or an equivalent inequality) to bound the expression from below by 0.",
+      "Exhibit equality at a=b to show the bound is sharp and hence the greatest value is 0."
+    ],
+    "steps": [
+      {
+        "claim": "For any real numbers a,b with 1 < b \u2264 a, the expression y = log_a(a/b) + log_b(b/a) is well-defined and can be rewritten as y = 1/log_b(a) - log_b(a).",
+        "reasoning": "Since 1 < b \u2264 a, both a and b are positive and not equal to 1, so the logarithms are defined. Using the change-of-base identity, log_a(a/b) = 1 - log_a(b) and log_b(b/a) = -log_b(a); also log_a(b) = 1/log_b(a). Combining these gives the stated form.",
+        "facts_used": [
+          "change-of-base formula for logarithms",
+          "properties of logarithms",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "If x = log_b(a), then x \u2265 1.",
+        "reasoning": "Because 1 < b \u2264 a and b > 1, the logarithm base b is increasing on positive reals. Since a \u2265 b, we get log_b(a) \u2265 log_b(b) = 1.",
+        "facts_used": [
+          "monotonicity of logarithm for base greater than 1"
+        ]
+      },
+      {
+        "claim": "For x \u2265 1, the quantity 1/x - x is at most 0.",
+        "reasoning": "Since x \u2265 1, we have 1/x \u2264 1 \u2264 x, hence 1/x - x \u2264 0. Equivalently, x - 1/x \u2265 0.",
+        "facts_used": [
+          "order properties of real numbers",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "Therefore every admissible value y satisfies y \u2264 0.",
+        "reasoning": "By step 1, y = 1/x - x with x = log_b(a). By step 2, x \u2265 1, and step 3 then gives y \u2264 0.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The value y = 0 is attainable.",
+        "reasoning": "Take a = b > 1. Then log_a(a/b) = log_a(1) = 0 and log_b(b/a) = log_a(1) = 0, so y = 0.",
+        "facts_used": [
+          "properties of logarithms",
+          "existence of admissible example"
+        ]
+      },
+      {
+        "claim": "The greatest possible value of y is 0.",
+        "reasoning": "Step 4 shows no admissible pair can produce y > 0, and step 5 shows y = 0 is achieved. Hence 0 is the greatest value in the set.",
+        "facts_used": [
+          "step 4",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T06:06:11.817298+00:00"
+}

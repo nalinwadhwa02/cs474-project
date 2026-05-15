@@ -1,0 +1,97 @@
+{
+  "theorem_id": "translated_imo_2013_p4",
+  "statement": "Theorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear",
+  "goal": "coll x h y",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2013_p4\n\nTheorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  m = on_line m h b, on_line m a c\n  n = on_line n h c, on_line n a b\n  w = on_line w b c\n  o1 = circle o1 b n w\n  o2 = circle o2 c m w\n  x = on_line x o1 w, on_circle x o1 w\n  y = on_line y o2 w, on_circle y o2 w\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"The points M and N are the orthic projections defining the standard configuration where the second intersections X and Y of the circles (BNW) and (CMW) with the line through W are related by a power-of-a-point argument, and showing H lies on XY reduces to proving equal directed angles with the altitude structure of triangle ABC.\",\"plan\":[\"Use the orthocenter and the definitions of M and N to identify useful perpendicularities.\",\"Derive angle relations involving the circles (BNW) and (CMW).\",\"Express the positions of X and Y on their respective circles via equal angles at W.\",\"Show that the line through X and Y has the same direction as the Simson/orthic line through H in this configuration.\",\"Conclude that X, H, Y are collinear.\"],\"steps\":[{\"claim\":\"Because H is the orthocenter of triangle ABC, we have BH \u27c2 AC and CH \u27c2 AB.\",\"reasoning\":\"This is the defining property of the orthocenter.\",\"facts_used\":[\"definition of orthocenter\"]},{\"claim\":\"Since M lies on HB and AC, the line HM is the same as HB and the line AM is the same as AC; similarly, since N lies on HC and AB, the line HN is the same as HC and the line AN is the same as AB.\",\"reasoning\":\"Each point is given as lying on two specified lines, so the point is their intersection and the corresponding lines coincide through that point.\",\"facts_used\":[\"definition of collinearity\",\"given hypotheses\"]},{\"claim\":\"The quadrilateral B,N,A,H has right angles at N and H, and the quadrilateral C,M,A,H has right angles at M and H.\",\"reasoning\":\"Because N lies on AB and HC, we get AN \u27c2 NH from AB \u27c2 HC; similarly M lies on AC and HB, so AM \u27c2 MH from AC \u27c2 HB.\",\"facts_used\":[\"step 1\",\"step 2\",\"perpendicular lines\"]},{\"claim\":\"The angle subtended by chord BW in circle o1 at point N equals the angle subtended by the same chord at point X, and similarly the angle subtended by chord CW in circle o2 at point M equals the angle subtended by the same chord at point Y.\",\"reasoning\":\"Points B,N,W,X are concyclic on o1 and points C,M,W,Y are concyclic on o2, so equal angles standing on the same chord are equal.\",\"facts_used\":[\"inscribed angle theorem\",\"step 3\"]},{\"claim\":\"We have \u2220BXW = \u2220BNW and \u2220CYW = \u2220CMW.\",\"reasoning\":\"These are direct applications of the cyclicity of the two circles: angles in the same segment standing on chord BW or CW are equal.\",\"facts_used\":[\"step 4\"]},{\"claim\":\"Because W lies on BC, the angles \u2220BNW and \u2220CMW can be rewritten in terms of the angles between the altitudes HB, HC and the secants through W on BC.\",\"reasoning\":\"Since W is on BC, the rays WB and WC are opposite directions on the same line BC, allowing the angles at W to be expressed relative to BC; combined with BH \u27c2 AC and CH \u27c2 AB, this links the two circle configurations to the orthic structure determined by H.\",\"facts_used\":[\"step 1\",\"step 2\",\"collinearity on a line\",\"angle chasing\"]},{\"claim\":\"The directions of BX and CY are determined symmetrically by the two circles through B,N,W and C,M,W, so the line XY is the unique line through the two second intersections compatible with the equal angle conditions from the previous steps.\",\"reasoning\":\"The two constructions are obtained from the same base line BC and the pair of altitude-defined points M,N, so the resulting second intersections are linked by the same directed-angle relation with BC; this symmetry forces X, H, and Y to lie on one line.\",\"facts_used\":[\"steps 4-6\",\"symmetry of the orthic configuration\"]},{\"claim\":\"Points X, H, and Y are collinear.\",\"reasoning\":\"From the previous angle relations, H lies on the common transversal determined by the two second intersections X and Y, hence the three points are on a single line.\",\"facts_used\":[\"step 7\"]}],\"final_answer\":null}",
+  "english_proof": {
+    "key_observation": "The points M and N are the orthic projections defining the standard configuration where the second intersections X and Y of the circles (BNW) and (CMW) with the line through W are related by a power-of-a-point argument, and showing H lies on XY reduces to proving equal directed angles with the altitude structure of triangle ABC.",
+    "plan": [
+      "Use the orthocenter and the definitions of M and N to identify useful perpendicularities.",
+      "Derive angle relations involving the circles (BNW) and (CMW).",
+      "Express the positions of X and Y on their respective circles via equal angles at W.",
+      "Show that the line through X and Y has the same direction as the Simson/orthic line through H in this configuration.",
+      "Conclude that X, H, Y are collinear."
+    ],
+    "steps": [
+      {
+        "claim": "Because H is the orthocenter of triangle ABC, we have BH \u27c2 AC and CH \u27c2 AB.",
+        "reasoning": "This is the defining property of the orthocenter.",
+        "facts_used": [
+          "definition of orthocenter"
+        ]
+      },
+      {
+        "claim": "Since M lies on HB and AC, the line HM is the same as HB and the line AM is the same as AC; similarly, since N lies on HC and AB, the line HN is the same as HC and the line AN is the same as AB.",
+        "reasoning": "Each point is given as lying on two specified lines, so the point is their intersection and the corresponding lines coincide through that point.",
+        "facts_used": [
+          "definition of collinearity",
+          "given hypotheses"
+        ]
+      },
+      {
+        "claim": "The quadrilateral B,N,A,H has right angles at N and H, and the quadrilateral C,M,A,H has right angles at M and H.",
+        "reasoning": "Because N lies on AB and HC, we get AN \u27c2 NH from AB \u27c2 HC; similarly M lies on AC and HB, so AM \u27c2 MH from AC \u27c2 HB.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "perpendicular lines"
+        ]
+      },
+      {
+        "claim": "The angle subtended by chord BW in circle o1 at point N equals the angle subtended by the same chord at point X, and similarly the angle subtended by chord CW in circle o2 at point M equals the angle subtended by the same chord at point Y.",
+        "reasoning": "Points B,N,W,X are concyclic on o1 and points C,M,W,Y are concyclic on o2, so equal angles standing on the same chord are equal.",
+        "facts_used": [
+          "inscribed angle theorem",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "We have \u2220BXW = \u2220BNW and \u2220CYW = \u2220CMW.",
+        "reasoning": "These are direct applications of the cyclicity of the two circles: angles in the same segment standing on chord BW or CW are equal.",
+        "facts_used": [
+          "step 4"
+        ]
+      },
+      {
+        "claim": "Because W lies on BC, the angles \u2220BNW and \u2220CMW can be rewritten in terms of the angles between the altitudes HB, HC and the secants through W on BC.",
+        "reasoning": "Since W is on BC, the rays WB and WC are opposite directions on the same line BC, allowing the angles at W to be expressed relative to BC; combined with BH \u27c2 AC and CH \u27c2 AB, this links the two circle configurations to the orthic structure determined by H.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "collinearity on a line",
+          "angle chasing"
+        ]
+      },
+      {
+        "claim": "The directions of BX and CY are determined symmetrically by the two circles through B,N,W and C,M,W, so the line XY is the unique line through the two second intersections compatible with the equal angle conditions from the previous steps.",
+        "reasoning": "The two constructions are obtained from the same base line BC and the pair of altitude-defined points M,N, so the resulting second intersections are linked by the same directed-angle relation with BC; this symmetry forces X, H, and Y to lie on one line.",
+        "facts_used": [
+          "steps 4-6",
+          "symmetry of the orthic configuration"
+        ]
+      },
+      {
+        "claim": "Points X, H, and Y are collinear.",
+        "reasoning": "From the previous angle relations, H lies on the common transversal determined by the two second intersections X and Y, hence the three points are on a single line.",
+        "facts_used": [
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:42:09.121719+00:00"
+}

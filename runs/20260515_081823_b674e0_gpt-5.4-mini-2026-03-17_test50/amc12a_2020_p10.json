@@ -1,0 +1,92 @@
+{
+  "theorem_id": "amc12a_2020_p10",
+  "statement": "Theorem: amc12a_2020_p10\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)\nProve: (nat.digits 10 n).sum = 13",
+  "goal": "(nat.digits 10 n).sum = 13",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2020_p10\n\nTheorem: amc12a_2020_p10\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)\nProve: (nat.digits 10 n).sum = 13\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2081 : real.logb 2 (real.logb 16 n) = real.logb 4 (real.logb 4 n)\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The equation in iterated logarithms forces a simple relation between the two base-4 logarithms of n, and solving that relation gives n = 256, whose decimal digits sum to 13.\",\n  \"plan\": [\n    \"Rewrite all logarithms in terms of base 2 using change-of-base identities.\",\n    \"Let x = log_2(n) and convert the given equation into an algebraic equation in x.\",\n    \"Solve the resulting equation for x and determine n.\",\n    \"Compute the decimal digits of n and their sum.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since 0 < n and the logarithms in the hypothesis are defined, we have n > 0 and the expressions may be rewritten using base-2 logarithms.\",\n      \"reasoning\": \"The hypothesis already gives 0 < n, so logarithm identities apply to positive arguments. In particular, log_16(n) and log_4(n) can be converted to base 2 because 16 = 2^4 and 4 = 2^2.\",\n      \"facts_used\": [\"h\u2080\", \"change-of-base formula for logarithms\", \"logarithm of powers\"]\n    },\n    {\n      \"claim\": \"If x = real.logb 2 n, then real.logb 16 n = x / 4 and real.logb 4 n = x / 2.\",\n      \"reasoning\": \"Using log_b(a) = log_2(a) / log_2(b), we get log_16(n) = log_2(n) / log_2(16) = x/4 and log_4(n) = log_2(n) / log_2(4) = x/2.\",\n      \"facts_used\": [\"change-of-base formula for logarithms\", \"log_2(16) = 4\", \"log_2(4) = 2\"]\n    },\n    {\n      \"claim\": \"The given equation becomes log_2(x/4) = log_4(x/2).\",\n      \"reasoning\": \"Substituting the expressions from step 2 into h\u2081 yields log_2(log_16 n) = log_4(log_4 n), which is exactly log_2(x/4) = log_4(x/2).\",\n      \"facts_used\": [\"h\u2081\", \"step 2\"]\n    },\n    {\n      \"claim\": \"The equation simplifies to log_2(x/4) = (1/2) log_2(x/2).\",\n      \"reasoning\": \"Because log_4(y) = log_2(y) / log_2(4) = (1/2) log_2(y) for positive y, the right-hand side becomes (1/2) log_2(x/2).\",\n      \"facts_used\": [\"change-of-base formula for logarithms\", \"log_2(4) = 2\", \"step 3\"]\n    },\n    {\n      \"claim\": \"x = 8.\",\n      \"reasoning\": \"Let u = log_2(x). Then log_2(x/4) = u - 2 and log_2(x/2) = u - 1, so the equation from step 4 becomes u - 2 = (1/2)(u - 1). Solving gives 2u - 4 = u - 1, hence u = 3, so x = 2^3 = 8.\",\n      \"facts_used\": [\"step 4\", \"properties of logarithms\", \"algebra\"]\n    },\n    {\n      \"claim\": \"n = 256.\",\n      \"reasoning\": \"Since x = log_2(n) by definition and x = 8 from step 5, we have n = 2^8 = 256.\",\n      \"facts_used\": [\"definition of logarithm\", \"step 5\"]\n    },\n    {\n      \"claim\": \"The sum of the decimal digits of n is 13.\",\n      \"reasoning\": \"The decimal expansion of 256 has digits 2, 5, and 6, whose sum is 2 + 5 + 6 = 13.\",\n      \"facts_used\": [\"step 6\", \"decimal representation\"]\n    }\n  ],\n  \"final_answer\": \"13\"\n}",
+  "english_proof": {
+    "key_observation": "The equation in iterated logarithms forces a simple relation between the two base-4 logarithms of n, and solving that relation gives n = 256, whose decimal digits sum to 13.",
+    "plan": [
+      "Rewrite all logarithms in terms of base 2 using change-of-base identities.",
+      "Let x = log_2(n) and convert the given equation into an algebraic equation in x.",
+      "Solve the resulting equation for x and determine n.",
+      "Compute the decimal digits of n and their sum."
+    ],
+    "steps": [
+      {
+        "claim": "Since 0 < n and the logarithms in the hypothesis are defined, we have n > 0 and the expressions may be rewritten using base-2 logarithms.",
+        "reasoning": "The hypothesis already gives 0 < n, so logarithm identities apply to positive arguments. In particular, log_16(n) and log_4(n) can be converted to base 2 because 16 = 2^4 and 4 = 2^2.",
+        "facts_used": [
+          "h\u2080",
+          "change-of-base formula for logarithms",
+          "logarithm of powers"
+        ]
+      },
+      {
+        "claim": "If x = real.logb 2 n, then real.logb 16 n = x / 4 and real.logb 4 n = x / 2.",
+        "reasoning": "Using log_b(a) = log_2(a) / log_2(b), we get log_16(n) = log_2(n) / log_2(16) = x/4 and log_4(n) = log_2(n) / log_2(4) = x/2.",
+        "facts_used": [
+          "change-of-base formula for logarithms",
+          "log_2(16) = 4",
+          "log_2(4) = 2"
+        ]
+      },
+      {
+        "claim": "The given equation becomes log_2(x/4) = log_4(x/2).",
+        "reasoning": "Substituting the expressions from step 2 into h\u2081 yields log_2(log_16 n) = log_4(log_4 n), which is exactly log_2(x/4) = log_4(x/2).",
+        "facts_used": [
+          "h\u2081",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The equation simplifies to log_2(x/4) = (1/2) log_2(x/2).",
+        "reasoning": "Because log_4(y) = log_2(y) / log_2(4) = (1/2) log_2(y) for positive y, the right-hand side becomes (1/2) log_2(x/2).",
+        "facts_used": [
+          "change-of-base formula for logarithms",
+          "log_2(4) = 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "x = 8.",
+        "reasoning": "Let u = log_2(x). Then log_2(x/4) = u - 2 and log_2(x/2) = u - 1, so the equation from step 4 becomes u - 2 = (1/2)(u - 1). Solving gives 2u - 4 = u - 1, hence u = 3, so x = 2^3 = 8.",
+        "facts_used": [
+          "step 4",
+          "properties of logarithms",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "n = 256.",
+        "reasoning": "Since x = log_2(n) by definition and x = 8 from step 5, we have n = 2^8 = 256.",
+        "facts_used": [
+          "definition of logarithm",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The sum of the decimal digits of n is 13.",
+        "reasoning": "The decimal expansion of 256 has digits 2, 5, and 6, whose sum is 2 + 5 + 6 = 13.",
+        "facts_used": [
+          "step 6",
+          "decimal representation"
+        ]
+      }
+    ],
+    "final_answer": "13"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:19:55.465023+00:00"
+}

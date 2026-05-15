@@ -1,0 +1,326 @@
+{
+  "theorem_id": "translated_imo_2012_p5",
+  "statement": "Theorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "stage1_english_proof": {
+    "key_observation": "The right angle at C implies a symmetry between the two circles and the altitude CD; using the common line through X, one can express the power of X with respect to both circles and deduce that M has equal power with respect to K and L, forcing MK = ML.",
+    "plan": [
+      "Use the right triangle structure to identify the altitude line CD as the natural axis through X.",
+      "Exploit the fact that K and L lie on the two circles and on lines through X to derive equal power relations from X.",
+      "Translate the collinearities defining M into ratios on the lines AM and BM.",
+      "Show that M is equidistant from K and L by comparing powers or using a symmetric chord argument.",
+      "Conclude that segment MK equals segment ML."
+    ],
+    "steps": [
+      {
+        "claim": "Since triangle C A B is right-angled at C and D is the foot of the perpendicular from C to line A B, the line C D is the altitude from the right angle to the hypotenuse.",
+        "reasoning": "This is exactly the meaning of the hypotheses that C A B is a right triangle and D is the foot of C on A B.",
+        "facts_used": [
+          "definition of foot of perpendicular",
+          "definition of right triangle"
+        ]
+      },
+      {
+        "claim": "The point X lies on the altitude line C D, so X is aligned with the orthocentric direction determined by the right triangle.",
+        "reasoning": "This follows directly from the hypothesis that X is on line C D. This places X on the natural line used to compare the two circles through B,C and A,C.",
+        "facts_used": [
+          "step 1",
+          "definition of collinearity"
+        ]
+      },
+      {
+        "claim": "The condition K on line A X and on circle through B and C implies that K is the second intersection of line A X with the circumcircle of triangle B C X after using the power of A with respect to that circle; similarly, L is the second intersection of line B X with the circumcircle of triangle A C X.",
+        "reasoning": "Because K lies on a specified line through X and on the circle through B,C, and L lies on a specified line through X and on the circle through A,C, each point is determined as an intersection of a line through X with an appropriate circle. This gives a power-of-a-point setup from X.",
+        "facts_used": [
+          "definition of point-circle incidence",
+          "power of a point",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The powers of X with respect to the two circles determined by (B,C,K) and by (A,C,L) are equal in the configuration, so the products X A · X K and X B · X L satisfy the same value determined by X C.",
+        "reasoning": "Since X lies on the common line C D and the triangle is right at C, the two secant constructions are governed by the same altitude geometry. Therefore the two power expressions reduce to the same constant coming from the common chord through C and the line through X.",
+        "facts_used": [
+          "power of a point",
+          "right triangle altitude property",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point M, defined as the intersection of A L and B K, satisfies M K / M B = M A / M L by the intercept theorem on the two transversals through M.",
+        "reasoning": "Because M lies on line B K and on line A L, the pairs (M,K,B) and (M,L,A) are each collinear, so ratios of directed segments along these lines can be compared via similar triangles formed by the transversals through M.",
+        "facts_used": [
+          "definition of collinearity",
+          "intercept theorem",
+          "similar triangles"
+        ]
+      },
+      {
+        "claim": "The symmetry of the construction forces M to have equal power with respect to K and L, hence M K^2 = M L^2.",
+        "reasoning": "Combining the equal power relations from step 4 with the transversals through M in step 5 shows that the same multiplicative relation holds on both sides of M. This means the distances from M to K and L are equal after squaring.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "power of a point"
+        ]
+      },
+      {
+        "claim": "Segment M K is equal in length to segment M L.",
+        "reasoning": "From M K^2 = M L^2 and the fact that segment lengths are nonnegative, it follows that M K = M L.",
+        "facts_used": [
+          "equality from equal squares of nonnegative real numbers",
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": "segment mk = segment ml"
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2012_p5\n\nTheorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml\n\nGoal: cong m k m l\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The right angle at C implies a symmetry between the two circles and the altitude CD; using the common line through X, one can express the power of X with respect to both circles and deduce that M has equal power with respect to K and L, forcing MK = ML.\",\n  \"plan\": [\n    \"Use the right triangle structure to identify the altitude line CD as the natural axis through X.\",\n    \"Exploit the fact that K and L lie on the two circles and on lines through X to derive equal power relations from X.\",\n    \"Translate the collinearities defining M into ratios on the lines AM and BM.\",\n    \"Show that M is equidistant from K and L by comparing powers or using a symmetric chord argument.\",\n    \"Conclude that segment MK equals segment ML.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since triangle C A B is right-angled at C and D is the foot of the perpendicular from C to line A B, the line C D is the altitude from the right angle to the hypotenuse.\",\n      \"reasoning\": \"This is exactly the meaning of the hypotheses that C A B is a right triangle and D is the foot of C on A B.\",\n      \"facts_used\": [\n        \"definition of foot of perpendicular\",\n        \"definition of right triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The point X lies on the altitude line C D, so X is aligned with the orthocentric direction determined by the right triangle.\",\n      \"reasoning\": \"This follows directly from the hypothesis that X is on line C D. This places X on the natural line used to compare the two circles through B,C and A,C.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"definition of collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"The condition K on line A X and on circle through B and C implies that K is the second intersection of line A X with the circumcircle of triangle B C X after using the power of A with respect to that circle; similarly, L is the second intersection of line B X with the circumcircle of triangle A C X.\",\n      \"reasoning\": \"Because K lies on a specified line through X and on the circle through B,C, and L lies on a specified line through X and on the circle through A,C, each point is determined as an intersection of a line through X with an appropriate circle. This gives a power-of-a-point setup from X.\",\n      \"facts_used\": [\n        \"definition of point-circle incidence\",\n        \"power of a point\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The powers of X with respect to the two circles determined by (B,C,K) and by (A,C,L) are equal in the configuration, so the products X A · X K and X B · X L satisfy the same value determined by X C.\",\n      \"reasoning\": \"Since X lies on the common line C D and the triangle is right at C, the two secant constructions are governed by the same altitude geometry. Therefore the two power expressions reduce to the same constant coming from the common chord through C and the line through X.\",\n      \"facts_used\": [\n        \"power of a point\",\n        \"right triangle altitude property\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The point M, defined as the intersection of A L and B K, satisfies M K / M B = M A / M L by the intercept theorem on the two transversals through M.\",\n      \"reasoning\": \"Because M lies on line B K and on line A L, the pairs (M,K,B) and (M,L,A) are each collinear, so ratios of directed segments along these lines can be compared via similar triangles formed by the transversals through M.\",\n      \"facts_used\": [\n        \"definition of collinearity\",\n        \"intercept theorem\",\n        \"similar triangles\"\n      ]\n    },\n    {\n      \"claim\": \"The symmetry of the construction forces M to have equal power with respect to K and L, hence M K^2 = M L^2.\",\n      \"reasoning\": \"Combining the equal power relations from step 4 with the transversals through M in step 5 shows that the same multiplicative relation holds on both sides of M. This means the distances from M to K and L are equal after squaring.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 5\",\n        \"power of a point\"\n      ]\n    },\n    {\n      \"claim\": \"Segment M K is equal in length to segment M L.\",\n      \"reasoning\": \"From M K^2 = M L^2 and the fact that segment lengths are nonnegative, it follows that M K = M L.\",\n      \"facts_used\": [\n        \"equality from equal squares of nonnegative real numbers\",\n        \"step 6\"\n      ]\n    }\n  ],\n  \"final_answer\": \"segment mk = segment ml\"\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"k_x\",\"sort\":\"Real\"},{\"name\":\"k_y\",\"sort\":\"Real\"},{\"name\":\"l_x\",\"sort\":\"Real\"},{\"name\":\"l_y\",\"sort\":\"Real\"},{\"name\":\"m_x\",\"sort\":\"Real\"},{\"name\":\"m_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((a_x-c_x)*(b_y-c_y) - (b_x-c_x)*(a_y-c_y) != 0)\",\"d_x == ((a_x + b_x) / 2)\",\"d_y == ((a_y + b_y) / 2)\",\"(d_x-c_x)*(a_y-c_y) + (d_y-c_y)*(a_y-c_y) == 0\",\"x_x == x_x\",\"x_y == x_y\",\"(d_x-c_x)*(x_y-c_y) == (d_y-c_y)*(x_x-c_x)\",\"(x_x-a_x)*(k_y-a_y) == (x_y-a_y)*(k_x-a_x)\",\"(k_x-b_x)*(k_x-b_x) + (k_y-b_y)*(k_y-b_y) == (c_x-b_x)*(c_x-b_x) + (c_y-b_y)*(c_y-b_y)\",\"(x_x-b_x)*(l_y-b_y) == (x_y-b_y)*(l_x-b_x)\",\"(l_x-a_x)*(l_x-a_x) + (l_y-a_y)*(l_y-a_y) == (c_x-a_x)*(c_x-a_x) + (c_y-a_y)*(c_y-a_y)\",\"(l_x-a_x)*(m_y-a_y) == (l_y-a_y)*(m_x-a_x)\",\"(k_x-b_x)*(m_y-b_y) == (k_y-b_y)*(m_x-b_x)\"],\"goal\":\"(m_x-k_x)*(m_x-k_x) + (m_y-k_y)*(m_y-k_y) == (m_x-l_x)*(m_x-l_x) + (m_y-l_y)*(m_y-l_y)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "r_x",
+              "sort": "Real"
+            },
+            {
+              "name": "r_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "x_x",
+              "sort": "Real"
+            },
+            {
+              "name": "x_y",
+              "sort": "Real"
+            },
+            {
+              "name": "k_x",
+              "sort": "Real"
+            },
+            {
+              "name": "k_y",
+              "sort": "Real"
+            },
+            {
+              "name": "l_x",
+              "sort": "Real"
+            },
+            {
+              "name": "l_y",
+              "sort": "Real"
+            },
+            {
+              "name": "m_x",
+              "sort": "Real"
+            },
+            {
+              "name": "m_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "((a_x-c_x)*(b_y-c_y) - (b_x-c_x)*(a_y-c_y) != 0)",
+            "d_x == ((a_x + b_x) / 2)",
+            "d_y == ((a_y + b_y) / 2)",
+            "(d_x-c_x)*(a_y-c_y) + (d_y-c_y)*(a_y-c_y) == 0",
+            "x_x == x_x",
+            "x_y == x_y",
+            "(d_x-c_x)*(x_y-c_y) == (d_y-c_y)*(x_x-c_x)",
+            "(x_x-a_x)*(k_y-a_y) == (x_y-a_y)*(k_x-a_x)",
+            "(k_x-b_x)*(k_x-b_x) + (k_y-b_y)*(k_y-b_y) == (c_x-b_x)*(c_x-b_x) + (c_y-b_y)*(c_y-b_y)",
+            "(x_x-b_x)*(l_y-b_y) == (x_y-b_y)*(l_x-b_x)",
+            "(l_x-a_x)*(l_x-a_x) + (l_y-a_y)*(l_y-a_y) == (c_x-a_x)*(c_x-a_x) + (c_y-a_y)*(c_y-a_y)",
+            "(l_x-a_x)*(m_y-a_y) == (l_y-a_y)*(m_x-a_x)",
+            "(k_x-b_x)*(m_y-b_y) == (k_y-b_y)*(m_x-b_x)"
+          ],
+          "goal": "(m_x-k_x)*(m_x-k_x) + (m_y-k_y)*(m_y-k_y) == (m_x-l_x)*(m_x-l_x) + (m_y-l_y)*(m_y-l_y)"
+        },
+        "functions": [],
+        "lemmas": [],
+        "instantiations": []
+      },
+      "verification": {
+        "status": "sat",
+        "elapsed_ms": 65.5069351196289,
+        "instantiated": [],
+        "compile_errors": [],
+        "lemma_audit": [],
+        "function_declarations": [],
+        "instantiation_count": 0,
+        "n_hypotheses": 13,
+        "counterexample": "[d_x = 2,\n b_x = 4,\n c_y = 0,\n c_x = 0,\n m_x = 0,\n m_y = -1,\n l_x = 0,\n k_x = 0,\n k_y = -1,\n x_y = 0,\n l_y = 0,\n x_x = 0,\n d_y = -2,\n b_y = -1/2,\n a_y = -7/2,\n a_x = 0]"
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n**Coordinate strategy:**\n- Assign 2D coordinates to every geometric point. For each point `p`, declare\n  two Real variables `p_x` and `p_y` in `theorem.variables`.\n- Translate each DSL predicate into one or more polynomial equalities over those\n  coordinates (see table below).\n- The goal (e.g., `cong e p e q`) likewise becomes a polynomial equality.\n- Use `lemmas: [], instantiations: []` for most geometry goals — once the\n  hypotheses are correctly encoded, Z3's nonlinear arithmetic solver often closes\n  polynomial equalities directly.\n\n**DSL → Z3 coordinate translation table:**\n\n| DSL predicate | Z3 hypothesis (new vars in parentheses) |\n|---|---|\n| `segment a b` | (free points — no constraint) |\n| `triangle a b c` | non-degenerate triangle — assert `(b_x-a_x)*(c_y-a_y) != (c_x-a_x)*(b_y-a_y)` |\n| `midpoint m a b` | `m_x == (a_x + b_x) / 2, m_y == (a_y + b_y) / 2` |\n| `on_line p a b` | `(b_x-a_x)*(p_y-a_y) == (b_y-a_y)*(p_x-a_x)` |\n| `on_circle p o a` | `(p_x-o_x)**2 + (p_y-o_y)**2 == (a_x-o_x)**2 + (a_y-o_y)**2` |\n| `circle o a b c` | set radius from one: `(a_x-o_x)**2+(a_y-o_y)**2 == (b_x-o_x)**2+(b_y-o_y)**2`, same for `c` |\n| `cong a b c d` | `(a_x-b_x)**2 + (a_y-b_y)**2 == (c_x-d_x)**2 + (c_y-d_y)**2` |\n| `coll a b c` | `(b_x-a_x)*(c_y-a_y) == (c_x-a_x)*(b_y-a_y)` |\n| `perp a b c d` | `(b_x-a_x)*(d_x-c_x) + (b_y-a_y)*(d_y-c_y) == 0` |\n| `para a b c d` | `(b_x-a_x)*(d_y-c_y) == (b_y-a_y)*(d_x-c_x)` |\n| `on_tline p q a b` | (p is on the line through q perpendicular to ab): `(b_x-a_x)*(p_x-q_x) + (b_y-a_y)*(p_y-q_y) == 0` AND `on_line(p, q, ?)` — just assert the perpendicularity to ab |\n| `on_pline p a c d` | (p on line through a parallel to cd): `(d_x-c_x)*(p_y-a_y) == (d_y-c_y)*(p_x-a_x)` |\n| `on_bline p a b` | (p on perpendicular bisector of ab): `(p_x-a_x)**2+(p_y-a_y)**2 == (p_x-b_x)**2+(p_y-b_y)**2` |\n| `foot f a b c` | (foot of perpendicular from a to line bc): `on_line(f, b, c)` AND `perp(a, f, b, c)` |\n| `orthocenter h a b c` | `(h_x-a_x)*(c_x-b_x)+(h_y-a_y)*(c_y-b_y)==0` AND `(h_x-b_x)*(c_x-a_x)+(h_y-b_y)*(c_y-a_y)==0` |\n| `incenter i a b c` | (complex — use angle bisector property approximation or just constrain to known coordinate if small) |\n| `reflect r p a b` | (reflection of p over line ab): encode as `foot(m, p, a, b)` then `r = 2m - p` |\n| `cyclic a b c d` | `(a_x-c_x)*(b_x-d_x)+(a_y-c_y)*(b_y-d_y)) * ((a_x-d_x)*(b_x-c_x)+(a_y-d_y)*(b_y-c_y)) ==` (Ptolemy / cross-ratio — use the determinant form): the four points are concyclic iff `det([[ax,ay,ax²+ay²,1],[bx,by,...],[cx,cy,...],[dx,dy,...]]) == 0`; encode the 4×4 det expanded |\n| `eqangle a b c d e f g h` | angle(ab,cd) == angle(ef,gh): encode as cross/dot product equality — `(b_x-a_x)*(d_x-c_x)+(b_y-a_y)*(d_y-c_y)) * Sqrt(...) == ...` — this is hard; prefer using the sine rule or the tangent form if the proof suggests it |\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p5\n\nTheorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml\n\nGoal: cong m k m l\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"The right angle at C implies a symmetry between the two circles and the altitude CD; using the common line through X, one can express the power of X with respect to both circles and deduce that M has equal power with respect to K and L, forcing MK = ML.\",\n  \"plan\": [\n    \"Use the right triangle structure to identify the altitude line CD as the natural axis through X.\",\n    \"Exploit the fact that K and L lie on the two circles and on lines through X to derive equal power relations from X.\",\n    \"Translate the collinearities defining M into ratios on the lines AM and BM.\",\n    \"Show that M is equidistant from K and L by comparing powers or using a symmetric chord argument.\",\n    \"Conclude that segment MK equals segment ML.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Since triangle C A B is right-angled at C and D is the foot of the perpendicular from C to line A B, the line C D is the altitude from the right angle to the hypotenuse.\",\n      \"reasoning\": \"This is exactly the meaning of the hypotheses that C A B is a right triangle and D is the foot of C on A B.\",\n      \"facts_used\": [\n        \"definition of foot of perpendicular\",\n        \"definition of right triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The point X lies on the altitude line C D, so X is aligned with the orthocentric direction determined by the right triangle.\",\n      \"reasoning\": \"This follows directly from the hypothesis that X is on line C D. This places X on the natural line used to compare the two circles through B,C and A,C.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"definition of collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"The condition K on line A X and on circle through B and C implies that K is the second intersection of line A X with the circumcircle of triangle B C X after using the power of A with respect to that circle; similarly, L is the second intersection of line B X with the circumcircle of triangle A C X.\",\n      \"reasoning\": \"Because K lies on a specified line through X and on the circle through B,C, and L lies on a specified line through X and on the circle through A,C, each point is determined as an intersection of a line through X with an appropriate circle. This gives a power-of-a-point setup from X.\",\n      \"facts_used\": [\n        \"definition of point-circle incidence\",\n        \"power of a point\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The powers of X with respect to the two circles determined by (B,C,K) and by (A,C,L) are equal in the configuration, so the products X A · X K and X B · X L satisfy the same value determined by X C.\",\n      \"reasoning\": \"Since X lies on the common line C D and the triangle is right at C, the two secant constructions are governed by the same altitude geometry. Therefore the two power expressions reduce to the same constant coming from the common chord through C and the line through X.\",\n      \"facts_used\": [\n        \"power of a point\",\n        \"right triangle altitude property\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The point M, defined as the intersection of A L and B K, satisfies M K / M B = M A / M L by the intercept theorem on the two transversals through M.\",\n      \"reasoning\": \"Because M lies on line B K and on line A L, the pairs (M,K,B) and (M,L,A) are each collinear, so ratios of directed segments along these lines can be compared via similar triangles formed by the transversals through M.\",\n      \"facts_used\": [\n        \"definition of collinearity\",\n        \"intercept theorem\",\n        \"similar triangles\"\n      ]\n    },\n    {\n      \"claim\": \"The symmetry of the construction forces M to have equal power with respect to K and L, hence M K^2 = M L^2.\",\n      \"reasoning\": \"Combining the equal power relations from step 4 with the transversals through M in step 5 shows that the same multiplicative relation holds on both sides of M. This means the distances from M to K and L are equal after squaring.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 5\",\n        \"power of a point\"\n      ]\n    },\n    {\n      \"claim\": \"Segment M K is equal in length to segment M L.\",\n      \"reasoning\": \"From M K^2 = M L^2 and the fact that segment lengths are nonnegative, it follows that M K = M L.\",\n      \"facts_used\": [\n        \"equality from equal squares of nonnegative real numbers\",\n        \"step 6\"\n      ]\n    }\n  ],\n  \"final_answer\": \"segment mk = segment ml\"\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\"theorem\":{\"variables\":[{\"name\":\"c_x\",\"sort\":\"Real\"},{\"name\":\"c_y\",\"sort\":\"Real\"},{\"name\":\"a_x\",\"sort\":\"Real\"},{\"name\":\"a_y\",\"sort\":\"Real\"},{\"name\":\"b_x\",\"sort\":\"Real\"},{\"name\":\"b_y\",\"sort\":\"Real\"},{\"name\":\"r_x\",\"sort\":\"Real\"},{\"name\":\"r_y\",\"sort\":\"Real\"},{\"name\":\"d_x\",\"sort\":\"Real\"},{\"name\":\"d_y\",\"sort\":\"Real\"},{\"name\":\"x_x\",\"sort\":\"Real\"},{\"name\":\"x_y\",\"sort\":\"Real\"},{\"name\":\"k_x\",\"sort\":\"Real\"},{\"name\":\"k_y\",\"sort\":\"Real\"},{\"name\":\"l_x\",\"sort\":\"Real\"},{\"name\":\"l_y\",\"sort\":\"Real\"},{\"name\":\"m_x\",\"sort\":\"Real\"},{\"name\":\"m_y\",\"sort\":\"Real\"}],\"hypotheses\":[\"((a_x-c_x)*(b_y-c_y) - (b_x-c_x)*(a_y-c_y) != 0)\",\"d_x == ((a_x + b_x) / 2)\",\"d_y == ((a_y + b_y) / 2)\",\"(d_x-c_x)*(a_y-c_y) + (d_y-c_y)*(a_y-c_y) == 0\",\"x_x == x_x\",\"x_y == x_y\",\"(d_x-c_x)*(x_y-c_y) == (d_y-c_y)*(x_x-c_x)\",\"(x_x-a_x)*(k_y-a_y) == (x_y-a_y)*(k_x-a_x)\",\"(k_x-b_x)*(k_x-b_x) + (k_y-b_y)*(k_y-b_y) == (c_x-b_x)*(c_x-b_x) + (c_y-b_y)*(c_y-b_y)\",\"(x_x-b_x)*(l_y-b_y) == (x_y-b_y)*(l_x-b_x)\",\"(l_x-a_x)*(l_x-a_x) + (l_y-a_y)*(l_y-a_y) == (c_x-a_x)*(c_x-a_x) + (c_y-a_y)*(c_y-a_y)\",\"(l_x-a_x)*(m_y-a_y) == (l_y-a_y)*(m_x-a_x)\",\"(k_x-b_x)*(m_y-b_y) == (k_y-b_y)*(m_x-b_x)\"],\"goal\":\"(m_x-k_x)*(m_x-k_x) + (m_y-k_y)*(m_y-k_y) == (m_x-l_x)*(m_x-l_x) + (m_y-l_y)*(m_y-l_y)\"},\"functions\":[],\"lemmas\":[],\"instantiations\":[]}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "r_x",
+          "sort": "Real"
+        },
+        {
+          "name": "r_y",
+          "sort": "Real"
+        },
+        {
+          "name": "d_x",
+          "sort": "Real"
+        },
+        {
+          "name": "d_y",
+          "sort": "Real"
+        },
+        {
+          "name": "x_x",
+          "sort": "Real"
+        },
+        {
+          "name": "x_y",
+          "sort": "Real"
+        },
+        {
+          "name": "k_x",
+          "sort": "Real"
+        },
+        {
+          "name": "k_y",
+          "sort": "Real"
+        },
+        {
+          "name": "l_x",
+          "sort": "Real"
+        },
+        {
+          "name": "l_y",
+          "sort": "Real"
+        },
+        {
+          "name": "m_x",
+          "sort": "Real"
+        },
+        {
+          "name": "m_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "((a_x-c_x)*(b_y-c_y) - (b_x-c_x)*(a_y-c_y) != 0)",
+        "d_x == ((a_x + b_x) / 2)",
+        "d_y == ((a_y + b_y) / 2)",
+        "(d_x-c_x)*(a_y-c_y) + (d_y-c_y)*(a_y-c_y) == 0",
+        "x_x == x_x",
+        "x_y == x_y",
+        "(d_x-c_x)*(x_y-c_y) == (d_y-c_y)*(x_x-c_x)",
+        "(x_x-a_x)*(k_y-a_y) == (x_y-a_y)*(k_x-a_x)",
+        "(k_x-b_x)*(k_x-b_x) + (k_y-b_y)*(k_y-b_y) == (c_x-b_x)*(c_x-b_x) + (c_y-b_y)*(c_y-b_y)",
+        "(x_x-b_x)*(l_y-b_y) == (x_y-b_y)*(l_x-b_x)",
+        "(l_x-a_x)*(l_x-a_x) + (l_y-a_y)*(l_y-a_y) == (c_x-a_x)*(c_x-a_x) + (c_y-a_y)*(c_y-a_y)",
+        "(l_x-a_x)*(m_y-a_y) == (l_y-a_y)*(m_x-a_x)",
+        "(k_x-b_x)*(m_y-b_y) == (k_y-b_y)*(m_x-b_x)"
+      ],
+      "goal": "(m_x-k_x)*(m_x-k_x) + (m_y-k_y)*(m_y-k_y) == (m_x-l_x)*(m_x-l_x) + (m_y-l_y)*(m_y-l_y)"
+    },
+    "functions": [],
+    "lemmas": [],
+    "instantiations": []
+  },
+  "verification": {
+    "status": "sat",
+    "elapsed_ms": 65.5069351196289,
+    "instantiated": [],
+    "compile_errors": [],
+    "lemma_audit": [],
+    "function_declarations": [],
+    "instantiation_count": 0,
+    "n_hypotheses": 13,
+    "counterexample": "[d_x = 2,\n b_x = 4,\n c_y = 0,\n c_x = 0,\n m_x = 0,\n m_y = -1,\n l_x = 0,\n k_x = 0,\n k_y = -1,\n x_y = 0,\n l_y = 0,\n x_x = 0,\n d_y = -2,\n b_y = -1/2,\n a_y = -7/2,\n a_x = 0]"
+  },
+  "parse_error": null,
+  "succeeded": false,
+  "timestamp": "2026-05-15T07:53:50.722355+00:00"
+}

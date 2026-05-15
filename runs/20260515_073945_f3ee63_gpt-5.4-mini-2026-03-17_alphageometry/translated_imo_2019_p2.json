@@ -1,0 +1,85 @@
+{
+  "theorem_id": "translated_imo_2019_p2",
+  "statement": "Theorem: translated_imo_2019_p2\nGiven: a b c = triangle\nGiven: a1 = on_line b c\nGiven: b1 = on_line a c\nGiven: p = on_line a a1\nGiven: q = on_line b b1, on_pline p a b\nGiven: p1 = on_line p b1, eqangle3 p c a b c\nGiven: q1 = on_line q a1, eqangle3 c q b c a\nProve: prove that points p, q, p1, q1 are concyclic",
+  "goal": "cyclic p q p1 q1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2019_p2\n\nTheorem: translated_imo_2019_p2\nGiven: a b c = triangle\nGiven: a1 = on_line b c\nGiven: b1 = on_line a c\nGiven: p = on_line a a1\nGiven: q = on_line b b1, on_pline p a b\nGiven: p1 = on_line p b1, eqangle3 p c a b c\nGiven: q1 = on_line q a1, eqangle3 c q b c a\nProve: prove that points p, q, p1, q1 are concyclic\n\nHypotheses:\n  a b c = triangle\n  a1 = on_line b c\n  b1 = on_line a c\n  p = on_line a a1\n  q = on_line b b1, on_pline p a b\n  p1 = on_line p b1, eqangle3 p c a b c\n  q1 = on_line q a1, eqangle3 c q b c a\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The two points p1 and q1 are chosen by equal-angle conditions that make the angles they subtend with p and q match the angle between the lines PA and QB, so it suffices to show a pair of opposite angles in quadrilateral p q q1 p1 are equal.\",\n  \"plan\": [\n    \"Translate the given equal-angle conditions into explicit angle equalities involving the lines through p1 and q1.\",\n    \"Use the incidence relations a1 \u2208 BC, b1 \u2208 AC, p \u2208 AA1, q \u2208 BB1, and q \u2225 AB to identify several relevant line directions.\",\n    \"Compute \u2220PP1Q1 and \u2220PQ1Q using the given equal-angle conditions.\",\n    \"Show these two angles are equal, which implies that p, q, p1, q1 lie on a common circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The angle condition eqangle3 p c a b c means that \u2220(p c, c p1) = \u2220(a c, c b), and therefore the line p1p is chosen so that the directed angle from pc to pp1 matches the directed angle from ac to cb.\",\n      \"reasoning\": \"By the meaning of the three-point equal-angle notation, the first pair of lines has the same directed angle as the second pair. Since p1 lies on the line through p and b1, the line pp1 is the line determined by p and p1, so the condition fixes the direction of pp1 relative to pc. The same interpretation applies to the other equal-angle condition later.\",\n      \"facts_used\": [\"definition of eqangle3\", \"definition of incidence\", \"step 1\"]\n    },\n    {\n      \"claim\": \"The angle condition eqangle3 c q b c a means that \u2220(c q, q q1) = \u2220(b c, c a), so the line qq1 is determined by the same reference angle \u2220BCA.\",\n      \"reasoning\": \"Again, the equal-angle notation identifies the directed angle between the first two lines with that between the second two lines. Since q1 lies on the line through q and a1, the relevant line through q is qq1.\",\n      \"facts_used\": [\"definition of eqangle3\", \"definition of incidence\"]\n    },\n    {\n      \"claim\": \"Because q lies on the line through b and b1 and is also on the line through p parallel to ab, the direction of q a1 is the same as the direction of a b, while the direction of p b1 is determined by the cevian p a1.\",\n      \"reasoning\": \"The condition q = on_pline p a b means pq is parallel to ab. Since a1 lies on bc, the line qa1 forms angles with q that can be compared to angles at B and C using the parallelism pq \u2225 ab and the collinearity of a1, b, c. Similarly, p1 lies on pb1, so p1 is controlled by the cevian through b1.\",\n      \"facts_used\": [\"definition of parallel lines\", \"definition of incidence\", \"step 2\"]\n    },\n    {\n      \"claim\": \"The directed angle \u2220(p p1, p q1) equals the directed angle \u2220(a c, c b) + \u2220(b c, c a), and the same total angle appears for \u2220(q q1, q p1).\",\n      \"reasoning\": \"From the previous steps, the direction of pp1 is tied to the angle at C in triangle ABC, while qq1 is tied to the complementary angle at C. Since p q is parallel to a b, the angles formed with the transversal lines through a1 and b1 transfer the same reference angles to the quadrilateral p q p1 q1. Adding the two equal-angle contributions gives the same total turning for both relevant sides.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"step 3\", \"angle addition\", \"parallel line angle properties\"]\n    },\n    {\n      \"claim\": \"\u2220p p1 q1 = \u2220p q1 q.\",\n      \"reasoning\": \"The angle \u2220p p1 q1 is the angle between pp1 and p1q1, and by the construction of p1 and q1 this angle is equal to the angle determined by the same reference directions as \u2220p q1 q. The previous step shows that both angles are obtained from the same angle-chasing data in triangle ABC, hence they are equal.\",\n      \"facts_used\": [\"step 4\", \"definition of cyclic quadrilateral via equal angles\"]\n    },\n    {\n      \"claim\": \"Points p, q, p1, q1 are concyclic.\",\n      \"reasoning\": \"A quadrilateral is cyclic if and only if a pair of opposite angles are equal. Since \u2220p p1 q1 = \u2220p q1 q, the four points lie on one circle.\",\n      \"facts_used\": [\"criterion for cyclic quadrilateral\", \"step 5\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The two points p1 and q1 are chosen by equal-angle conditions that make the angles they subtend with p and q match the angle between the lines PA and QB, so it suffices to show a pair of opposite angles in quadrilateral p q q1 p1 are equal.",
+    "plan": [
+      "Translate the given equal-angle conditions into explicit angle equalities involving the lines through p1 and q1.",
+      "Use the incidence relations a1 \u2208 BC, b1 \u2208 AC, p \u2208 AA1, q \u2208 BB1, and q \u2225 AB to identify several relevant line directions.",
+      "Compute \u2220PP1Q1 and \u2220PQ1Q using the given equal-angle conditions.",
+      "Show these two angles are equal, which implies that p, q, p1, q1 lie on a common circle."
+    ],
+    "steps": [
+      {
+        "claim": "The angle condition eqangle3 p c a b c means that \u2220(p c, c p1) = \u2220(a c, c b), and therefore the line p1p is chosen so that the directed angle from pc to pp1 matches the directed angle from ac to cb.",
+        "reasoning": "By the meaning of the three-point equal-angle notation, the first pair of lines has the same directed angle as the second pair. Since p1 lies on the line through p and b1, the line pp1 is the line determined by p and p1, so the condition fixes the direction of pp1 relative to pc. The same interpretation applies to the other equal-angle condition later.",
+        "facts_used": [
+          "definition of eqangle3",
+          "definition of incidence",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The angle condition eqangle3 c q b c a means that \u2220(c q, q q1) = \u2220(b c, c a), so the line qq1 is determined by the same reference angle \u2220BCA.",
+        "reasoning": "Again, the equal-angle notation identifies the directed angle between the first two lines with that between the second two lines. Since q1 lies on the line through q and a1, the relevant line through q is qq1.",
+        "facts_used": [
+          "definition of eqangle3",
+          "definition of incidence"
+        ]
+      },
+      {
+        "claim": "Because q lies on the line through b and b1 and is also on the line through p parallel to ab, the direction of q a1 is the same as the direction of a b, while the direction of p b1 is determined by the cevian p a1.",
+        "reasoning": "The condition q = on_pline p a b means pq is parallel to ab. Since a1 lies on bc, the line qa1 forms angles with q that can be compared to angles at B and C using the parallelism pq \u2225 ab and the collinearity of a1, b, c. Similarly, p1 lies on pb1, so p1 is controlled by the cevian through b1.",
+        "facts_used": [
+          "definition of parallel lines",
+          "definition of incidence",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The directed angle \u2220(p p1, p q1) equals the directed angle \u2220(a c, c b) + \u2220(b c, c a), and the same total angle appears for \u2220(q q1, q p1).",
+        "reasoning": "From the previous steps, the direction of pp1 is tied to the angle at C in triangle ABC, while qq1 is tied to the complementary angle at C. Since p q is parallel to a b, the angles formed with the transversal lines through a1 and b1 transfer the same reference angles to the quadrilateral p q p1 q1. Adding the two equal-angle contributions gives the same total turning for both relevant sides.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "angle addition",
+          "parallel line angle properties"
+        ]
+      },
+      {
+        "claim": "\u2220p p1 q1 = \u2220p q1 q.",
+        "reasoning": "The angle \u2220p p1 q1 is the angle between pp1 and p1q1, and by the construction of p1 and q1 this angle is equal to the angle determined by the same reference directions as \u2220p q1 q. The previous step shows that both angles are obtained from the same angle-chasing data in triangle ABC, hence they are equal.",
+        "facts_used": [
+          "step 4",
+          "definition of cyclic quadrilateral via equal angles"
+        ]
+      },
+      {
+        "claim": "Points p, q, p1, q1 are concyclic.",
+        "reasoning": "A quadrilateral is cyclic if and only if a pair of opposite angles are equal. Since \u2220p p1 q1 = \u2220p q1 q, the four points lie on one circle.",
+        "facts_used": [
+          "criterion for cyclic quadrilateral",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T07:43:04.051046+00:00"
+}

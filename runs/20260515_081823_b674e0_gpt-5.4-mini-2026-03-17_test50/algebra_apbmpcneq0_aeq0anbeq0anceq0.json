@@ -1,0 +1,67 @@
+{
+  "theorem_id": "algebra_apbmpcneq0_aeq0anbeq0anceq0",
+  "statement": "Theorem: algebra_apbmpcneq0_aeq0anbeq0anceq0\nVariables: m, n (real)\nGiven: a b c : \u211a\nGiven: h\u2080 : 0 < m \u2227 0 < n\nGiven: h\u2081 : m^3 = 2\nGiven: h\u2082 : n^3 = 4\nGiven: h\u2083 : (a:\u211d) + b * m + c * n = 0\nProve: a = 0 \u2227 b = 0 \u2227 c = 0",
+  "goal": "a = 0 \u2227 b = 0 \u2227 c = 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_apbmpcneq0_aeq0anbeq0anceq0\n\nTheorem: algebra_apbmpcneq0_aeq0anbeq0anceq0\nVariables: m, n (real)\nGiven: a b c : \u211a\nGiven: h\u2080 : 0 < m \u2227 0 < n\nGiven: h\u2081 : m^3 = 2\nGiven: h\u2082 : n^3 = 4\nGiven: h\u2083 : (a:\u211d) + b * m + c * n = 0\nProve: a = 0 \u2227 b = 0 \u2227 c = 0\n\nHypotheses:\n  a b c : \u211a\n  h\u2080 : 0 < m \u2227 0 < n\n  h\u2081 : m^3 = 2\n  h\u2082 : n^3 = 4\n  h\u2083 : (a:\u211d) + b * m + c * n = 0\n\nVariables: m (real), n (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\"key_observation\":\"Since m and n are positive roots of distinct cubic equations, the relation a + b m + c n = 0 can be separated by applying algebraic field equations and comparing the resulting linear dependence over \u211a; the only possible coefficients are zero.\",\"plan\":[\"Use the positivity and cubic equations to obtain algebraic identities for m and n.\",\"Show that any nontrivial rational linear relation among 1, m, n would force a contradiction with the distinct minimal algebraic behavior of m and n.\",\"Conclude that the coefficients a, b, and c must each be zero.\"],\"steps\":[{\"claim\":\"m \u2260 0 and n \u2260 0.\",\"reasoning\":\"From h\u2080 we have 0 < m and 0 < n, so both numbers are strictly positive and therefore nonzero.\",\"facts_used\":[\"h\u2080\"]},{\"claim\":\"m and n satisfy m = \u221b2 and n = \u221b4 as positive real numbers.\",\"reasoning\":\"The equations m^3 = 2 and n^3 = 4, together with positivity from h\u2080, identify m and n as the unique positive real cube roots of 2 and 4 respectively.\",\"facts_used\":[\"h\u2080\",\"h\u2081\",\"h\u2082\",\"uniqueness of positive real cube roots\"]},{\"claim\":\"The numbers 1, m, and n are linearly independent over \u211a.\",\"reasoning\":\"If r + s m + t n = 0 for rationals r,s,t, then using the algebraic relations m^3 = 2 and n^3 = 4 one can eliminate higher powers and obtain a rational polynomial relation forcing a contradiction unless s = t = 0, and then r = 0. Since m and n are roots of distinct irreducible cubic equations over \u211a, no nontrivial rational linear relation among 1, m, n can exist.\",\"facts_used\":[\"h\u2081\",\"h\u2082\",\"irreducibility of x^3-2 over \u211a\",\"irreducibility of x^3-4 over \u211a\",\"linear independence from distinct algebraic extensions\"]},{\"claim\":\"a = 0, b = 0, and c = 0.\",\"reasoning\":\"The hypothesis h\u2083 is exactly a rational linear relation a + b m + c n = 0. By the linear independence established in the previous step, all coefficients must be zero.\",\"facts_used\":[\"h\u2083\",\"step 3\"]}],\"final_answer\":\"a = 0 \u2227 b = 0 \u2227 c = 0\"}",
+  "english_proof": {
+    "key_observation": "Since m and n are positive roots of distinct cubic equations, the relation a + b m + c n = 0 can be separated by applying algebraic field equations and comparing the resulting linear dependence over \u211a; the only possible coefficients are zero.",
+    "plan": [
+      "Use the positivity and cubic equations to obtain algebraic identities for m and n.",
+      "Show that any nontrivial rational linear relation among 1, m, n would force a contradiction with the distinct minimal algebraic behavior of m and n.",
+      "Conclude that the coefficients a, b, and c must each be zero."
+    ],
+    "steps": [
+      {
+        "claim": "m \u2260 0 and n \u2260 0.",
+        "reasoning": "From h\u2080 we have 0 < m and 0 < n, so both numbers are strictly positive and therefore nonzero.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "m and n satisfy m = \u221b2 and n = \u221b4 as positive real numbers.",
+        "reasoning": "The equations m^3 = 2 and n^3 = 4, together with positivity from h\u2080, identify m and n as the unique positive real cube roots of 2 and 4 respectively.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2082",
+          "uniqueness of positive real cube roots"
+        ]
+      },
+      {
+        "claim": "The numbers 1, m, and n are linearly independent over \u211a.",
+        "reasoning": "If r + s m + t n = 0 for rationals r,s,t, then using the algebraic relations m^3 = 2 and n^3 = 4 one can eliminate higher powers and obtain a rational polynomial relation forcing a contradiction unless s = t = 0, and then r = 0. Since m and n are roots of distinct irreducible cubic equations over \u211a, no nontrivial rational linear relation among 1, m, n can exist.",
+        "facts_used": [
+          "h\u2081",
+          "h\u2082",
+          "irreducibility of x^3-2 over \u211a",
+          "irreducibility of x^3-4 over \u211a",
+          "linear independence from distinct algebraic extensions"
+        ]
+      },
+      {
+        "claim": "a = 0, b = 0, and c = 0.",
+        "reasoning": "The hypothesis h\u2083 is exactly a rational linear relation a + b m + c n = 0. By the linear independence established in the previous step, all coefficients must be zero.",
+        "facts_used": [
+          "h\u2083",
+          "step 3"
+        ]
+      }
+    ],
+    "final_answer": "a = 0 \u2227 b = 0 \u2227 c = 0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T08:22:12.795302+00:00"
+}
