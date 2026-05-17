@@ -2,7 +2,7 @@
   "model": "deepseek-ai/deepseek-v4-flash",
   "split": "valid50",
   "problem_filter": null,
-  "limit": 1,
-  "n_problems": 1,
-  "started_at": "2026-05-15T05:25:36.424764+00:00"
+  "limit": null,
+  "n_problems": 50,
+  "started_at": "2026-05-10T22:18:04.902361+00:00"
 }

@@ -1,0 +1,72 @@
+{
+  "theorem_id": "numbertheory_nckeqnm1ckpnm1ckm1",
+  "statement": "Theorem: numbertheory_nckeqnm1ckpnm1ckm1\nVariables: n, k (integer)\nGiven: h\u2080 : 0 < n \u2227 0 < k\nGiven: h\u2081 : k \u2264 n\nProve: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+  "goal": "nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: numbertheory_nckeqnm1ckpnm1ckm1\n\nTheorem: numbertheory_nckeqnm1ckpnm1ckm1\nVariables: n, k (integer)\nGiven: h\u2080 : 0 < n \u2227 0 < k\nGiven: h\u2081 : k \u2264 n\nProve: nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1)\n\nHypotheses:\n  h\u2080 : 0 < n \u2227 0 < k\n  h\u2081 : k \u2264 n\n\nVariables: n (int), k (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The identity is Pascal's rule, which can be proven by considering whether a specific element is included in a k-element subset of an n-element set.\",\n  \"plan\": [\n    \"Interpret the combinatorial meaning of each term.\",\n    \"Fix a distinguished element and partition subsets based on its inclusion.\",\n    \"Count the subsets in each partition and sum them.\",\n    \"Conclude the identity.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The number of k-element subsets of an n-element set is nat.choose n k.\",\n      \"reasoning\": \"By definition, nat.choose n k counts the number of k-element subsets of an n-element set.\",\n      \"facts_used\": [\"definition of nat.choose\"]\n    },\n    {\n      \"claim\": \"Fix a distinguished element a in the n-element set. The k-element subsets can be partitioned into those that contain a and those that do not contain a.\",\n      \"reasoning\": \"Every k-element subset either includes a or excludes a, and these two categories are disjoint and cover all subsets.\",\n      \"facts_used\": [\"set partition principle\"]\n    },\n    {\n      \"claim\": \"The number of k-element subsets that do not contain a is nat.choose (n - 1) k.\",\n      \"reasoning\": \"If a is excluded, we choose k elements from the remaining n-1 elements.\",\n      \"facts_used\": [\"definition of nat.choose\", \"step 1\"]\n    },\n    {\n      \"claim\": \"The number of k-element subsets that contain a is nat.choose (n - 1) (k - 1).\",\n      \"reasoning\": \"If a is included, we need to choose the remaining k-1 elements from the other n-1 elements.\",\n      \"facts_used\": [\"definition of nat.choose\", \"step 1\"]\n    },\n    {\n      \"claim\": \"Therefore, nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1).\",\n      \"reasoning\": \"The total number of k-element subsets equals the sum of the counts from the two disjoint partitions.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"step 4\", \"addition principle\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The identity is Pascal's rule, which can be proven by considering whether a specific element is included in a k-element subset of an n-element set.",
+    "plan": [
+      "Interpret the combinatorial meaning of each term.",
+      "Fix a distinguished element and partition subsets based on its inclusion.",
+      "Count the subsets in each partition and sum them.",
+      "Conclude the identity."
+    ],
+    "steps": [
+      {
+        "claim": "The number of k-element subsets of an n-element set is nat.choose n k.",
+        "reasoning": "By definition, nat.choose n k counts the number of k-element subsets of an n-element set.",
+        "facts_used": [
+          "definition of nat.choose"
+        ]
+      },
+      {
+        "claim": "Fix a distinguished element a in the n-element set. The k-element subsets can be partitioned into those that contain a and those that do not contain a.",
+        "reasoning": "Every k-element subset either includes a or excludes a, and these two categories are disjoint and cover all subsets.",
+        "facts_used": [
+          "set partition principle"
+        ]
+      },
+      {
+        "claim": "The number of k-element subsets that do not contain a is nat.choose (n - 1) k.",
+        "reasoning": "If a is excluded, we choose k elements from the remaining n-1 elements.",
+        "facts_used": [
+          "definition of nat.choose",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The number of k-element subsets that contain a is nat.choose (n - 1) (k - 1).",
+        "reasoning": "If a is included, we need to choose the remaining k-1 elements from the other n-1 elements.",
+        "facts_used": [
+          "definition of nat.choose",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "Therefore, nat.choose n k = nat.choose (n - 1) k + nat.choose (n - 1) (k - 1).",
+        "reasoning": "The total number of k-element subsets equals the sum of the counts from the two disjoint partitions.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "step 4",
+          "addition principle"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:23:02.829634+00:00"
+}

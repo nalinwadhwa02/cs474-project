@@ -1,0 +1,1060 @@
+{
+  "run_folder": "/home/nalin/cs474-project/runs/proof_prover/20260515_074416_6fe637_gpt-5.4-mini-2026-03-17_stage2",
+  "config": {
+    "model": "gpt-5.4-mini-2026-03-17",
+    "stage1_run": "/Users/dush/cs474-project/runs/20260515_073945_f3ee63_gpt-5.4-mini-2026-03-17_alphageometry",
+    "problem_filter": null,
+    "limit": 50,
+    "max_retries": 3,
+    "n_problems": 30,
+    "started_at": "2026-05-15T07:44:16.205366+00:00"
+  },
+  "rerun": false,
+  "stats": {
+    "n_problems": 30,
+    "n_solved": 6,
+    "solve_rate": 0.2,
+    "category_stats": {
+      "translated": {
+        "solved": 6,
+        "total": 30,
+        "rate": 0.2
+      }
+    },
+    "final_bucket_counts": {
+      "sat_counterexample": 21,
+      "compile_error:lemma": 1,
+      "compile_error:hypothesis": 2
+    },
+    "all_attempt_bucket_counts": {
+      "success": 6,
+      "sat_counterexample": 21,
+      "compile_error:goal": 12,
+      "compile_error:lemma": 1,
+      "compile_error:hypothesis": 2,
+      "z3_unknown": 1
+    },
+    "pass_at_k": {
+      "1": 0.13333333333333333,
+      "2": 0.2,
+      "3": 0.2
+    },
+    "transitions": {
+      "compile_error:goal -> sat_counterexample": 8,
+      "compile_error:goal -> success": 2,
+      "compile_error:goal -> compile_error:lemma": 1,
+      "compile_error:goal -> compile_error:goal": 1,
+      "z3_unknown -> sat_counterexample": 1
+    },
+    "fixed_by_retry": {
+      "compile_error:goal": 2
+    },
+    "persistent_errors": {
+      "compile_error:goal": 1
+    },
+    "failures_by_bucket": {
+      "sat_counterexample": [
+        {
+          "theorem_id": "translated_imo_2000_p6",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[t2 = 7,\n y2 = 15,\n y3 = 16,\n z = 17,\n b = 3,\n x1 = 13,\n t1 = 6,\n c = 4,\n a = 2,\n h2 = 11,\n h1 = 10,\n i = 9,\n h = 5,\n h3 = 12,\n x2 = 14,\n t3 = 8,\n triangle = [else -> True],\n orthocenter = [else -> True],\n incenter2 = [else ->\n            \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2002_p2a",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 3,\n a = 5,\n e = 7,\n o = 4,\n b = 2,\n j = 9,\n d = 6,\n f = 8,\n on_circle = [else -> True],\n on_bline = [else -> True],\n on_pline = [else -> True],\n eqangle = [else ->\n            And(Not(And(Var(1) == 9,\n                        Not(Var(3\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2002_p2b",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 3,\n a = 5,\n e = 7,\n o = 4,\n b = 2,\n j = 9,\n d = 6,\n f = 8,\n segment = [else -> True],\n eqangle = [else -> False],\n on_line = [else -> True],\n midpoint = [else -> True],\n on_circle = [else -> True],\n on_bline = [else -> True],\n on_plin\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2003_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n b1 = 6,\n d1 = 7,\n o = 5,\n p = 10,\n b = 3,\n d = 9,\n x = 8,\n r = 12,\n q = 11,\n on_line = [else -> True],\n cong = [else -> False],\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n on_bline = [\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2005_p5",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n e = 6,\n f = 7,\n p = 8,\n o2 = 12,\n o1 = 11,\n m = 13,\n b = 3,\n d = 5,\n r = 10,\n q = 9,\n cyclic = [else ->\n           And(Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) =\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2007_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n k1 = 12,\n p = 9,\n o = 5,\n l1 = 11,\n b = 3,\n l = 7,\n k = 8,\n r = 6,\n q = 10,\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n on_bline = [else -> True],\n on_line = \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2008_p1b",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[e = 7,\n c = 4,\n f = 8,\n a = 2,\n b1 = 11,\n b2 = 12,\n c1 = 13,\n h = 5,\n b = 3,\n c2 = 14,\n d = 6,\n a1 = 9,\n a2 = 10,\n cyclic = [else ->\n           Not(And(Not(Var(0) == 10),\n                   Not(Var(0) == 12),\n                   Var(0) == \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2008_p6",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[q = 15,\n y = 3,\n o = 5,\n z = 4,\n b = 8,\n d = 10,\n x = 2,\n k = 19,\n w = 6,\n f2 = 14,\n c = 9,\n a = 7,\n f1 = 13,\n i1 = 11,\n t = 16,\n i2 = 12,\n p = 17,\n s = 18,\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2009_p2",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 1,\n a = 0,\n l = -1/8,\n k = -9/8,\n o = -1/2,\n m = -1,\n w = 2,\n q = -5/4,\n b = -3/2,\n p = -3/4,\n triangle = [else -> True],\n on_tline = [else -> True],\n mirror = [else ->\n           Or(And(Not(Var(0) == -165/128),\n                  Not(\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2010_p2",
+          "category": "translated",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n e = 9,\n o = 5,\n i = 6,\n b = 3,\n g = 10,\n d = 7,\n k = 11,\n f = 8,\n triangle = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n cong = [else -> False],\n on_line = [else -> True],\n midpoint = [else -> T\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2011_p6",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[qc = 13,\n o = 5,\n b = 3,\n pb = 9,\n qa = 11,\n x = 18,\n qb = 12,\n c = 4,\n a = 2,\n b1 = 15,\n p = 6,\n pa = 8,\n c1 = 16,\n pc = 10,\n o1 = 17,\n a1 = 14,\n q = 7,\n triangle = [else -> True],\n on_circle = [else -> True],\n reflect = [else -> True],\n\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2012_p5",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 2,\n a = 3,\n m = 9,\n b = 4,\n d = 5,\n x = 6,\n k = 7,\n l = 8,\n cong = [else -> False],\n r_triangle = [else -> True],\n foot = [else -> True],\n on_line = [else -> True],\n on_circle = [else -> True]]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2014_p4",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 3,\n a = -5900,\n q = 5,\n n = 7,\n o = 0,\n m = 6,\n b = 2,\n x = 5899,\n p = 4,\n cong = [else ->\n         If(Var(1) + -1*Var(0) >= 0,\n            Var(1) + -1*Var(0),\n            -1*Var(1) + Var(0)) ==\n         If(Var(3) + -1*Var(2) >= 0,\n  \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2015_p3",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n f = 6,\n o = 8,\n m = 7,\n o1 = 11,\n h = 5,\n b = 3,\n o2 = 12,\n k = 10,\n q = 9,\n on_circle = [else -> True],\n triangle = [else -> True],\n orthocenter = [else -> True],\n coll = [else -> False],\n circle = [else -> True],\n midpoi\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2015_p4",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[e = 7,\n c = 4,\n a = 2,\n o = 5,\n o2 = 11,\n o1 = 10,\n b = 3,\n g = 9,\n d = 6,\n k = 12,\n x = 14,\n l = 13,\n f = 8,\n triangle = [else -> True],\n on_line = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n coll = [else -> F\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2016_p1",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 6,\n a = 2,\n e = 8,\n y = 11,\n m = 9,\n z = 4,\n b = 3,\n d = 7,\n x = 10,\n f = 5,\n on_bline = [else -> True],\n triangle = [else -> True],\n on_tline = [else -> True],\n parallelogram = [else -> True],\n coll = [else ->\n         Not(And(Not(Va\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2017_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[t = 4,\n a = 8,\n o = 5,\n o1 = 7,\n b = 9,\n j = 6,\n k = 10,\n r = 2,\n s = 3,\n on_tline = [else -> True],\n mirror = [else -> True],\n on_bline = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n on_line = [else -> True],\n \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2018_p1",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = -17/16,\n a = 2,\n e = -11/8,\n o = 3,\n b = -5/4,\n g = -39/32,\n d = -5/4,\n f = -4,\n para = [else ->\n         Not(And(Not(Var(0) == -4),\n                 Not(Var(1) == -39/32),\n                 Var(2) == -4,\n                 Var(3) == -39\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2019_p6",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[e = 6,\n c = 4,\n a = 2,\n f = 7,\n t = 11,\n o2 = 10,\n i = 8,\n o1 = 9,\n b = 3,\n q = 5,\n d = 5,\n r = 5,\n p = 5,\n triangle = [else -> True],\n on_circle = [else ->\n              Or(And(Not(Var(0) == 7),\n                     Not(Var(0) == 12),\n  \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2021_p3",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[c = 4,\n a = 2,\n e = 6,\n y = 11,\n b = 3,\n x = 9,\n f = 7,\n o1 = 8,\n o2 = 10,\n d = 5,\n circle = [(6, 9, 5) -> 10, else -> 8],\n on_line = [else -> True],\n coll = [else -> False],\n triangle = [else -> True],\n angle_bisector = [else -> 5],\n on_\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2022_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[r = False,\n a = False,\n e = False,\n b = False,\n t = False,\n c = False,\n d = False,\n p = False,\n q = False,\n s = False,\n on_line = [(False, False, False) -> True, else -> False],\n on_bline = [(False, False, False) -> True, else -> False],\n\u2026"
+            }
+          }
+        }
+      ],
+      "compile_error:lemma": [
+        {
+          "theorem_id": "translated_imo_2004_p1",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "compile_error:lemma",
+            "status": "sat",
+            "sub": {
+              "where": "lemma",
+              "what": "eval failed for 'Implies(angle_bisector(r, b, a, c), ang(b, a, r) == ang(r, a, c))': name 'ang' is not defined",
+              "lemma_name": "angle_bisector_equal_angles",
+              "n_compile_errors": 1,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ],
+      "compile_error:hypothesis": [
+        {
+          "theorem_id": "translated_imo_2013_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'on_circle(x, o1, w)': b'Wrong number of arguments (3) passed to function (declare-fun on_circle (Real Real Real Real) Bool) \\narg: x\\n\\narg: o1\\n\\narg: w\\n'",
+              "lemma_name": null,
+              "n_compile_errors": 5,
+              "downstream_status": "sat"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2020_p1",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'And(angle_bisector(a, d, p), angle_bisector(p, c, b))': b'Sort mismatch at argument #1 for function (declare-fun and (Bool Bool) Bool) supplied sort is Real'",
+              "lemma_name": null,
+              "n_compile_errors": 3,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "per_problem": [
+    {
+      "theorem_id": "translated_imo_2000_p1",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2000_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[t2 = 7,\n y2 = 15,\n y3 = 16,\n z = 17,\n b = 3,\n x1 = 13,\n t1 = 6,\n c = 4,\n a = 2,\n h2 = 11,\n h1 = 10,\n i = 9,\n h = 5,\n h3 = 12,\n x2 = 14,\n t3 = 8,\n triangle = [else -> True],\n orthocenter = [else -> True],\n incenter2 = [else ->\n            \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2002_p2a",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 3,\n a = 5,\n e = 7,\n o = 4,\n b = 2,\n j = 9,\n d = 6,\n f = 8,\n on_circle = [else -> True],\n on_bline = [else -> True],\n on_pline = [else -> True],\n eqangle = [else ->\n            And(Not(And(Var(1) == 9,\n                        Not(Var(3\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2002_p2b",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'eqangle(c, e, c, j, c, j, c, f)': name 'eqangle' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 3,\n a = 5,\n e = 7,\n o = 4,\n b = 2,\n j = 9,\n d = 6,\n f = 8,\n segment = [else -> True],\n eqangle = [else -> False],\n on_line = [else -> True],\n midpoint = [else -> True],\n on_circle = [else -> True],\n on_bline = [else -> True],\n on_plin\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2003_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n b1 = 6,\n d1 = 7,\n o = 5,\n p = 10,\n b = 3,\n d = 9,\n x = 8,\n r = 12,\n q = 11,\n on_line = [else -> True],\n cong = [else -> False],\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n on_bline = [\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2004_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'coll(p, b, c)': name 'coll' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:lemma",
+          "status": "sat",
+          "sub": {
+            "where": "lemma",
+            "what": "eval failed for 'Implies(angle_bisector(r, b, a, c), ang(b, a, r) == ang(r, a, c))': name 'ang' is not defined",
+            "lemma_name": "angle_bisector_equal_angles",
+            "n_compile_errors": 1,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:lemma"
+    },
+    {
+      "theorem_id": "translated_imo_2004_p5",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2005_p5",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n e = 6,\n f = 7,\n p = 8,\n o2 = 12,\n o1 = 11,\n m = 13,\n b = 3,\n d = 5,\n r = 10,\n q = 9,\n cyclic = [else ->\n           And(Not(And(Not(Var(0) == 9),\n                       Not(Var(0) == 10),\n                       Not(Var(0) =\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2007_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n k1 = 12,\n p = 9,\n o = 5,\n l1 = 11,\n b = 3,\n l = 7,\n k = 8,\n r = 6,\n q = 10,\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n on_bline = [else -> True],\n on_line = \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p1a",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cyclic(c1, c2, b1, b2)': name 'cyclic' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p1b",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cyclic(c1, c2, b1, a1)': name 'cyclic' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[e = 7,\n c = 4,\n f = 8,\n a = 2,\n b1 = 11,\n b2 = 12,\n c1 = 13,\n h = 5,\n b = 3,\n c2 = 14,\n d = 6,\n a1 = 9,\n a2 = 10,\n cyclic = [else ->\n           Not(And(Not(Var(0) == 10),\n                   Not(Var(0) == 12),\n                   Var(0) == \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[q = 15,\n y = 3,\n o = 5,\n z = 4,\n b = 8,\n d = 10,\n x = 2,\n k = 19,\n w = 6,\n f2 = 14,\n c = 9,\n a = 7,\n f1 = 13,\n i1 = 11,\n t = 16,\n i2 = 12,\n p = 17,\n s = 18,\n foot = [else -> True],\n triangle = [else -> True],\n on_circle = [else -> True],\n\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2009_p2",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 1,\n a = 0,\n l = -1/8,\n k = -9/8,\n o = -1/2,\n m = -1,\n w = 2,\n q = -5/4,\n b = -3/2,\n p = -3/4,\n triangle = [else -> True],\n on_tline = [else -> True],\n mirror = [else ->\n           Or(And(Not(Var(0) == -165/128),\n                  Not(\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2010_p2",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cong(o, a, o, k)': name 'cong' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cong(o, a, o, k)': name 'cong' is not defined"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n e = 9,\n o = 5,\n i = 6,\n b = 3,\n g = 10,\n d = 7,\n k = 11,\n f = 8,\n triangle = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n cong = [else -> False],\n on_line = [else -> True],\n midpoint = [else -> T\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2010_p4",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2011_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'coll(x, o, o1)': name 'coll' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[qc = 13,\n o = 5,\n b = 3,\n pb = 9,\n qa = 11,\n x = 18,\n qb = 12,\n c = 4,\n a = 2,\n b1 = 15,\n p = 6,\n pa = 8,\n c1 = 16,\n pc = 10,\n o1 = 17,\n a1 = 14,\n q = 7,\n triangle = [else -> True],\n on_circle = [else -> True],\n reflect = [else -> True],\n\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2012_p1",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2012_p5",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 2,\n a = 3,\n m = 9,\n b = 4,\n d = 5,\n x = 6,\n k = 7,\n l = 8,\n cong = [else -> False],\n r_triangle = [else -> True],\n foot = [else -> True],\n on_line = [else -> True],\n on_circle = [else -> True]]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2013_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'on_circle(x, o1, w)': b'Wrong number of arguments (3) passed to function (declare-fun on_circle (Real Real Real Real) Bool) \\narg: x\\n\\narg: o1\\n\\narg: w\\n'",
+            "lemma_name": null,
+            "n_compile_errors": 5,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "translated_imo_2014_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cong(o, x, o, a)': name 'cong' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 3,\n a = -5900,\n q = 5,\n n = 7,\n o = 0,\n m = 6,\n b = 2,\n x = 5899,\n p = 4,\n cong = [else ->\n         If(Var(1) + -1*Var(0) >= 0,\n            Var(1) + -1*Var(0),\n            -1*Var(1) + Var(0)) ==\n         If(Var(3) + -1*Var(2) >= 0,\n  \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2015_p3",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n f = 6,\n o = 8,\n m = 7,\n o1 = 11,\n h = 5,\n b = 3,\n o2 = 12,\n k = 10,\n q = 9,\n on_circle = [else -> True],\n triangle = [else -> True],\n orthocenter = [else -> True],\n coll = [else -> False],\n circle = [else -> True],\n midpoi\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2015_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'coll(x, o, a)': name 'coll' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[e = 7,\n c = 4,\n a = 2,\n o = 5,\n o2 = 11,\n o1 = 10,\n b = 3,\n g = 9,\n d = 6,\n k = 12,\n x = 14,\n l = 13,\n f = 8,\n triangle = [else -> True],\n on_line = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n coll = [else -> F\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2016_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'coll(y, b, d)': name 'coll' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 6,\n a = 2,\n e = 8,\n y = 11,\n m = 9,\n z = 4,\n b = 3,\n d = 7,\n x = 10,\n f = 5,\n on_bline = [else -> True],\n triangle = [else -> True],\n on_tline = [else -> True],\n parallelogram = [else -> True],\n coll = [else ->\n         Not(And(Not(Va\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2017_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[t = 4,\n a = 8,\n o = 5,\n o1 = 7,\n b = 9,\n j = 6,\n k = 10,\n r = 2,\n s = 3,\n on_tline = [else -> True],\n mirror = [else -> True],\n on_bline = [else -> True],\n on_circle = [else -> True],\n circle = [else -> True],\n on_line = [else -> True],\n \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2018_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 30016.50881767273,
+            "n_hyp": 6,
+            "n_inst": 3
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = -17/16,\n a = 2,\n e = -11/8,\n o = 3,\n b = -5/4,\n g = -39/32,\n d = -5/4,\n f = -4,\n para = [else ->\n         Not(And(Not(Var(0) == -4),\n                 Not(Var(1) == -39/32),\n                 Var(2) == -4,\n                 Var(3) == -39\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2019_p2",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'cyclic(p, q, p1, q1)': name 'cyclic' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2019_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'perp(a, t, a, i)': name 'perp' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[e = 6,\n c = 4,\n a = 2,\n f = 7,\n t = 11,\n o2 = 10,\n i = 8,\n o1 = 9,\n b = 3,\n q = 5,\n d = 5,\n r = 5,\n p = 5,\n triangle = [else -> True],\n on_circle = [else ->\n              Or(And(Not(Var(0) == 7),\n                     Not(Var(0) == 12),\n  \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2020_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'And(angle_bisector(a, d, p), angle_bisector(p, c, b))': b'Sort mismatch at argument #1 for function (declare-fun and (Bool Bool) Bool) supplied sort is Real'",
+            "lemma_name": null,
+            "n_compile_errors": 3,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "translated_imo_2021_p3",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[c = 4,\n a = 2,\n e = 6,\n y = 11,\n b = 3,\n x = 9,\n f = 7,\n o1 = 8,\n o2 = 10,\n d = 5,\n circle = [(6, 9, 5) -> 10, else -> 8],\n on_line = [else -> True],\n coll = [else -> False],\n triangle = [else -> True],\n angle_bisector = [else -> 5],\n on_\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2022_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[r = False,\n a = False,\n e = False,\n b = False,\n t = False,\n c = False,\n d = False,\n p = False,\n q = False,\n s = False,\n on_line = [(False, False, False) -> True, else -> False],\n on_bline = [(False, False, False) -> True, else -> False],\n\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    }
+  ]
+}

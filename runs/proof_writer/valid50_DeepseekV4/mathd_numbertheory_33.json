@@ -1,0 +1,87 @@
+{
+  "theorem_id": "mathd_numbertheory_33",
+  "statement": "Theorem: mathd_numbertheory_33\nVariables: n (integer)\nGiven: h\u2080 : n < 398\nGiven: h\u2081 : (n * 7) % 398 = 1\nProve: n = 57",
+  "goal": "n = 57",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_33\n\nTheorem: mathd_numbertheory_33\nVariables: n (integer)\nGiven: h\u2080 : n < 398\nGiven: h\u2081 : (n * 7) % 398 = 1\nProve: n = 57\n\nHypotheses:\n  h\u2080 : n < 398\n  h\u2081 : (n * 7) % 398 = 1\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since 7 and 398 are coprime, the equation (n * 7) % 398 = 1 means n is the modular inverse of 7 modulo 398, which can be found by solving the linear congruence 7n \u2261 1 (mod 398).\",\n  \"plan\": [\n    \"Rewrite the congruence condition as 7n \u2261 1 (mod 398).\",\n    \"Find the modular inverse of 7 modulo 398 using the extended Euclidean algorithm.\",\n    \"Compute the unique solution n modulo 398.\",\n    \"Use the bound n < 398 to determine the exact value of n.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"7n \u2261 1 (mod 398).\",\n      \"reasoning\": \"By definition of the modulo operation, (n * 7) % 398 = 1 means that 398 divides (7n - 1), i.e., 7n \u2261 1 (mod 398).\",\n      \"facts_used\": [\"definition of modular arithmetic\"]\n    },\n    {\n      \"claim\": \"gcd(7, 398) = 1.\",\n      \"reasoning\": \"398 = 2 * 199, and 7 is not divisible by 2 or 199, so 7 and 398 are coprime.\",\n      \"facts_used\": [\"definition of gcd\", \"prime factorization\"]\n    },\n    {\n      \"claim\": \"There exists an integer x such that 7x \u2261 1 (mod 398).\",\n      \"reasoning\": \"Since gcd(7, 398) = 1, 7 has a multiplicative inverse modulo 398.\",\n      \"facts_used\": [\"step 2\", \"existence of modular inverses for coprime numbers\"]\n    },\n    {\n      \"claim\": \"The extended Euclidean algorithm gives 7 * 57 - 398 * 1 = 1.\",\n      \"reasoning\": \"Compute: 398 = 7*56 + 6, 7 = 6*1 + 1, 6 = 1*6 + 0. Back-substituting: 1 = 7 - 6*1 = 7 - (398 - 7*56) = 7*57 - 398*1.\",\n      \"facts_used\": [\"extended Euclidean algorithm\"]\n    },\n    {\n      \"claim\": \"7 * 57 \u2261 1 (mod 398).\",\n      \"reasoning\": \"From step 4, 7*57 - 398*1 = 1, so 7*57 = 1 + 398, which means 7*57 \u2261 1 (mod 398).\",\n      \"facts_used\": [\"step 4\", \"definition of congruence\"]\n    },\n    {\n      \"claim\": \"n \u2261 57 (mod 398).\",\n      \"reasoning\": \"From step 1, 7n \u2261 1 (mod 398). From step 5, 7*57 \u2261 1 (mod 398). Multiplying both sides of step 1 by the inverse of 7 modulo 398 (which is 57) gives n \u2261 57 (mod 398).\",\n      \"facts_used\": [\"step 1\", \"step 5\", \"modular arithmetic properties\"]\n    },\n    {\n      \"claim\": \"n = 57.\",\n      \"reasoning\": \"From step 6, n = 57 + 398k for some integer k. Given h\u2080: n < 398, the only possibility is k = 0, so n = 57.\",\n      \"facts_used\": [\"step 6\", \"h\u2080\"]\n    }\n  ],\n  \"final_answer\": \"57\"\n}",
+  "english_proof": {
+    "key_observation": "Since 7 and 398 are coprime, the equation (n * 7) % 398 = 1 means n is the modular inverse of 7 modulo 398, which can be found by solving the linear congruence 7n \u2261 1 (mod 398).",
+    "plan": [
+      "Rewrite the congruence condition as 7n \u2261 1 (mod 398).",
+      "Find the modular inverse of 7 modulo 398 using the extended Euclidean algorithm.",
+      "Compute the unique solution n modulo 398.",
+      "Use the bound n < 398 to determine the exact value of n."
+    ],
+    "steps": [
+      {
+        "claim": "7n \u2261 1 (mod 398).",
+        "reasoning": "By definition of the modulo operation, (n * 7) % 398 = 1 means that 398 divides (7n - 1), i.e., 7n \u2261 1 (mod 398).",
+        "facts_used": [
+          "definition of modular arithmetic"
+        ]
+      },
+      {
+        "claim": "gcd(7, 398) = 1.",
+        "reasoning": "398 = 2 * 199, and 7 is not divisible by 2 or 199, so 7 and 398 are coprime.",
+        "facts_used": [
+          "definition of gcd",
+          "prime factorization"
+        ]
+      },
+      {
+        "claim": "There exists an integer x such that 7x \u2261 1 (mod 398).",
+        "reasoning": "Since gcd(7, 398) = 1, 7 has a multiplicative inverse modulo 398.",
+        "facts_used": [
+          "step 2",
+          "existence of modular inverses for coprime numbers"
+        ]
+      },
+      {
+        "claim": "The extended Euclidean algorithm gives 7 * 57 - 398 * 1 = 1.",
+        "reasoning": "Compute: 398 = 7*56 + 6, 7 = 6*1 + 1, 6 = 1*6 + 0. Back-substituting: 1 = 7 - 6*1 = 7 - (398 - 7*56) = 7*57 - 398*1.",
+        "facts_used": [
+          "extended Euclidean algorithm"
+        ]
+      },
+      {
+        "claim": "7 * 57 \u2261 1 (mod 398).",
+        "reasoning": "From step 4, 7*57 - 398*1 = 1, so 7*57 = 1 + 398, which means 7*57 \u2261 1 (mod 398).",
+        "facts_used": [
+          "step 4",
+          "definition of congruence"
+        ]
+      },
+      {
+        "claim": "n \u2261 57 (mod 398).",
+        "reasoning": "From step 1, 7n \u2261 1 (mod 398). From step 5, 7*57 \u2261 1 (mod 398). Multiplying both sides of step 1 by the inverse of 7 modulo 398 (which is 57) gives n \u2261 57 (mod 398).",
+        "facts_used": [
+          "step 1",
+          "step 5",
+          "modular arithmetic properties"
+        ]
+      },
+      {
+        "claim": "n = 57.",
+        "reasoning": "From step 6, n = 57 + 398k for some integer k. Given h\u2080: n < 398, the only possibility is k = 0, so n = 57.",
+        "facts_used": [
+          "step 6",
+          "h\u2080"
+        ]
+      }
+    ],
+    "final_answer": "57"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:45:03.345688+00:00"
+}

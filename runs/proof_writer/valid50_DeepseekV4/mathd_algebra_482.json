@@ -1,0 +1,84 @@
+{
+  "theorem_id": "mathd_algebra_482",
+  "statement": "Theorem: mathd_algebra_482\nVariables: m, n (integer), k (real)\nGiven: f : \u211d \u2192 \u211d\nGiven: h\u2080 : nat.prime m\nGiven: h\u2081 : nat.prime n\nGiven: h\u2082 : \u2200 x, f x = x^2 - 12 * x + k\nGiven: h\u2083 : f m = 0\nGiven: h\u2084 : f n = 0\nGiven: h\u2085 : m \u2260 n\nProve: k = 35",
+  "goal": "k = 35",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_482\n\nTheorem: mathd_algebra_482\nVariables: m, n (integer), k (real)\nGiven: f : \u211d \u2192 \u211d\nGiven: h\u2080 : nat.prime m\nGiven: h\u2081 : nat.prime n\nGiven: h\u2082 : \u2200 x, f x = x^2 - 12 * x + k\nGiven: h\u2083 : f m = 0\nGiven: h\u2084 : f n = 0\nGiven: h\u2085 : m \u2260 n\nProve: k = 35\n\nHypotheses:\n  f : \u211d \u2192 \u211d\n  h\u2080 : nat.prime m\n  h\u2081 : nat.prime n\n  h\u2082 : \u2200 x, f x = x^2 - 12 * x + k\n  h\u2083 : f m = 0\n  h\u2084 : f n = 0\n  h\u2085 : m \u2260 n\n\nVariables: m (int), n (int), k (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since m and n are distinct roots of the quadratic x^2 - 12x + k = 0, their sum is 12 and their product is k, and being distinct primes forces them to be 5 and 7.\",\n  \"plan\": [\n    \"Express the quadratic in terms of its roots.\",\n    \"Use Vieta's formulas to relate m, n, and k.\",\n    \"Find the two distinct primes that sum to 12.\",\n    \"Compute k as the product of those primes.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"m and n are roots of the quadratic equation x^2 - 12x + k = 0.\",\n      \"reasoning\": \"From h\u2082, f(x) = x^2 - 12x + k. From h\u2083 and h\u2084, f(m) = 0 and f(n) = 0, so m and n satisfy the equation.\",\n      \"facts_used\": [\"h\u2082\", \"h\u2083\", \"h\u2084\", \"definition of a root\"]\n    },\n    {\n      \"claim\": \"The sum of the roots m + n = 12.\",\n      \"reasoning\": \"For a quadratic x^2 - 12x + k = 0, the sum of the roots equals the coefficient of x with opposite sign, which is 12.\",\n      \"facts_used\": [\"Vieta's formulas\", \"step 1\"]\n    },\n    {\n      \"claim\": \"The product of the roots m * n = k.\",\n      \"reasoning\": \"For the same quadratic, the product of the roots equals the constant term k.\",\n      \"facts_used\": [\"Vieta's formulas\", \"step 1\"]\n    },\n    {\n      \"claim\": \"m and n are distinct prime numbers that sum to 12.\",\n      \"reasoning\": \"From h\u2080 and h\u2081, m and n are primes. From h\u2085, m \u2260 n. From step 2, m + n = 12.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"h\u2085\", \"step 2\"]\n    },\n    {\n      \"claim\": \"The only pair of distinct primes summing to 12 is {5, 7}.\",\n      \"reasoning\": \"The primes less than 12 are 2, 3, 5, 7, 11. Pairs summing to 12: (5,7) is the only pair of distinct primes. (2,10) and (3,9) are not both prime; (11,1) includes 1 which is not prime.\",\n      \"facts_used\": [\"definition of prime numbers\", \"step 4\"]\n    },\n    {\n      \"claim\": \"k = 35.\",\n      \"reasoning\": \"From step 3, k = m * n. From step 5, {m, n} = {5, 7}, so k = 5 * 7 = 35.\",\n      \"facts_used\": [\"step 3\", \"step 5\"]\n    }\n  ],\n  \"final_answer\": \"35\"\n}",
+  "english_proof": {
+    "key_observation": "Since m and n are distinct roots of the quadratic x^2 - 12x + k = 0, their sum is 12 and their product is k, and being distinct primes forces them to be 5 and 7.",
+    "plan": [
+      "Express the quadratic in terms of its roots.",
+      "Use Vieta's formulas to relate m, n, and k.",
+      "Find the two distinct primes that sum to 12.",
+      "Compute k as the product of those primes."
+    ],
+    "steps": [
+      {
+        "claim": "m and n are roots of the quadratic equation x^2 - 12x + k = 0.",
+        "reasoning": "From h\u2082, f(x) = x^2 - 12x + k. From h\u2083 and h\u2084, f(m) = 0 and f(n) = 0, so m and n satisfy the equation.",
+        "facts_used": [
+          "h\u2082",
+          "h\u2083",
+          "h\u2084",
+          "definition of a root"
+        ]
+      },
+      {
+        "claim": "The sum of the roots m + n = 12.",
+        "reasoning": "For a quadratic x^2 - 12x + k = 0, the sum of the roots equals the coefficient of x with opposite sign, which is 12.",
+        "facts_used": [
+          "Vieta's formulas",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The product of the roots m * n = k.",
+        "reasoning": "For the same quadratic, the product of the roots equals the constant term k.",
+        "facts_used": [
+          "Vieta's formulas",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "m and n are distinct prime numbers that sum to 12.",
+        "reasoning": "From h\u2080 and h\u2081, m and n are primes. From h\u2085, m \u2260 n. From step 2, m + n = 12.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2085",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The only pair of distinct primes summing to 12 is {5, 7}.",
+        "reasoning": "The primes less than 12 are 2, 3, 5, 7, 11. Pairs summing to 12: (5,7) is the only pair of distinct primes. (2,10) and (3,9) are not both prime; (11,1) includes 1 which is not prime.",
+        "facts_used": [
+          "definition of prime numbers",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "k = 35.",
+        "reasoning": "From step 3, k = m * n. From step 5, {m, n} = {5, 7}, so k = 5 * 7 = 35.",
+        "facts_used": [
+          "step 3",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "35"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:30:15.132231+00:00"
+}

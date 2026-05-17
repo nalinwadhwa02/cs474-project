@@ -1,0 +1,80 @@
+{
+  "theorem_id": "mathd_algebra_110",
+  "statement": "Theorem: mathd_algebra_110\nVariables: q, e (real)\nGiven: h\u2080 : q = 2 - 2 * complex.I\nGiven: h\u2081 : e = 5 + 5 * complex.I\nProve: q * e = 20",
+  "goal": "q * e = 20",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_110\n\nTheorem: mathd_algebra_110\nVariables: q, e (real)\nGiven: h\u2080 : q = 2 - 2 * complex.I\nGiven: h\u2081 : e = 5 + 5 * complex.I\nProve: q * e = 20\n\nHypotheses:\n  h\u2080 : q = 2 - 2 * complex.I\n  h\u2081 : e = 5 + 5 * complex.I\n\nVariables: q (real), e (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The product of two complex numbers can be computed by direct algebraic expansion using the distributive law and the fact that i^2 = -1.\",\n  \"plan\": [\n    \"Substitute the given expressions for q and e.\",\n    \"Expand the product using the distributive law.\",\n    \"Simplify the real and imaginary parts using i^2 = -1.\",\n    \"Combine terms to obtain the final real number.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"q * e = (2 - 2i) * (5 + 5i)\",\n      \"reasoning\": \"Substitute the given expressions for q and e from h\u2080 and h\u2081.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"(2 - 2i) * (5 + 5i) = 2*5 + 2*5i - 2i*5 - 2i*5i\",\n      \"reasoning\": \"Apply the distributive law (FOIL) to expand the product.\",\n      \"facts_used\": [\"distributive law\", \"step 1\"]\n    },\n    {\n      \"claim\": \"2*5 + 2*5i - 2i*5 - 2i*5i = 10 + 10i - 10i - 10i^2\",\n      \"reasoning\": \"Perform the multiplications: 2*5=10, 2*5i=10i, -2i*5=-10i, -2i*5i=-10i^2.\",\n      \"facts_used\": [\"arithmetic\", \"step 2\"]\n    },\n    {\n      \"claim\": \"10 + 10i - 10i - 10i^2 = 10 + 10i - 10i - 10*(-1)\",\n      \"reasoning\": \"Since i^2 = -1, substitute -1 for i^2.\",\n      \"facts_used\": [\"definition of i\", \"step 3\"]\n    },\n    {\n      \"claim\": \"10 + 10i - 10i - 10*(-1) = 10 + 10i - 10i + 10\",\n      \"reasoning\": \"Simplify -10*(-1) to +10.\",\n      \"facts_used\": [\"arithmetic\", \"step 4\"]\n    },\n    {\n      \"claim\": \"10 + 10i - 10i + 10 = 20\",\n      \"reasoning\": \"Combine like terms: 10+10=20, and 10i-10i=0.\",\n      \"facts_used\": [\"arithmetic\", \"step 5\"]\n    }\n  ],\n  \"final_answer\": \"20\"\n}",
+  "english_proof": {
+    "key_observation": "The product of two complex numbers can be computed by direct algebraic expansion using the distributive law and the fact that i^2 = -1.",
+    "plan": [
+      "Substitute the given expressions for q and e.",
+      "Expand the product using the distributive law.",
+      "Simplify the real and imaginary parts using i^2 = -1.",
+      "Combine terms to obtain the final real number."
+    ],
+    "steps": [
+      {
+        "claim": "q * e = (2 - 2i) * (5 + 5i)",
+        "reasoning": "Substitute the given expressions for q and e from h\u2080 and h\u2081.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "(2 - 2i) * (5 + 5i) = 2*5 + 2*5i - 2i*5 - 2i*5i",
+        "reasoning": "Apply the distributive law (FOIL) to expand the product.",
+        "facts_used": [
+          "distributive law",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "2*5 + 2*5i - 2i*5 - 2i*5i = 10 + 10i - 10i - 10i^2",
+        "reasoning": "Perform the multiplications: 2*5=10, 2*5i=10i, -2i*5=-10i, -2i*5i=-10i^2.",
+        "facts_used": [
+          "arithmetic",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "10 + 10i - 10i - 10i^2 = 10 + 10i - 10i - 10*(-1)",
+        "reasoning": "Since i^2 = -1, substitute -1 for i^2.",
+        "facts_used": [
+          "definition of i",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "10 + 10i - 10i - 10*(-1) = 10 + 10i - 10i + 10",
+        "reasoning": "Simplify -10*(-1) to +10.",
+        "facts_used": [
+          "arithmetic",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "10 + 10i - 10i + 10 = 20",
+        "reasoning": "Combine like terms: 10+10=20, and 10i-10i=0.",
+        "facts_used": [
+          "arithmetic",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": "20"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:48:10.393802+00:00"
+}

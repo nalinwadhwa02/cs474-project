@@ -1,0 +1,76 @@
+{
+  "theorem_id": "induction_divisibility_3divnto3m2n",
+  "statement": "Theorem: induction_divisibility_3divnto3m2n\nVariables: n (integer)\nProve: 3 \u2223 n^3 + 2 * n",
+  "goal": "3 \u2223 n^3 + 2 * n",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: induction_divisibility_3divnto3m2n\n\nTheorem: induction_divisibility_3divnto3m2n\nVariables: n (integer)\nProve: 3 \u2223 n^3 + 2 * n\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The expression n^3 + 2n can be factored as n(n^2 + 2), and we can use induction by showing that if the statement holds for n, then it holds for n+1 by expanding (n+1)^3 + 2(n+1) and relating it to the inductive hypothesis.\",\n  \"plan\": [\n    \"Base case: verify for n = 0\",\n    \"Inductive hypothesis: assume 3 divides k^3 + 2k for some integer k\",\n    \"Inductive step: show 3 divides (k+1)^3 + 2(k+1) using the hypothesis\",\n    \"Conclude by induction that the statement holds for all integers n\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For n = 0, 0^3 + 2*0 = 0, and 3 divides 0.\",\n      \"reasoning\": \"0 is divisible by any non-zero integer, so 3 | 0.\",\n      \"facts_used\": [\"definition of divisibility\"]\n    },\n    {\n      \"claim\": \"Assume for some integer k, 3 divides k^3 + 2k.\",\n      \"reasoning\": \"This is the inductive hypothesis.\",\n      \"facts_used\": []\n    },\n    {\n      \"claim\": \"Consider (k+1)^3 + 2(k+1). Expand: (k+1)^3 = k^3 + 3k^2 + 3k + 1, so (k+1)^3 + 2(k+1) = k^3 + 3k^2 + 3k + 1 + 2k + 2 = (k^3 + 2k) + 3k^2 + 3k + 3.\",\n      \"reasoning\": \"Algebraic expansion and simplification.\",\n      \"facts_used\": [\"algebraic expansion\"]\n    },\n    {\n      \"claim\": \"The expression (k^3 + 2k) + 3k^2 + 3k + 3 is divisible by 3.\",\n      \"reasoning\": \"By the inductive hypothesis, 3 divides (k^3 + 2k). Also, 3 divides 3k^2, 3k, and 3 individually. The sum of multiples of 3 is a multiple of 3.\",\n      \"facts_used\": [\"step 2\", \"definition of divisibility\", \"sum of multiples property\"]\n    },\n    {\n      \"claim\": \"Therefore, 3 divides (k+1)^3 + 2(k+1).\",\n      \"reasoning\": \"This follows directly from step 4.\",\n      \"facts_used\": [\"step 4\"]\n    },\n    {\n      \"claim\": \"By mathematical induction, for all integers n, 3 divides n^3 + 2n.\",\n      \"reasoning\": \"Base case n=0 holds, and the inductive step shows that if it holds for k, it holds for k+1. Since the statement is for all integers, we can also note that if it holds for n, it holds for -n by similar reasoning, but induction on non-negative integers suffices and then extends to negatives by symmetry.\",\n      \"facts_used\": [\"principle of mathematical induction\", \"step 1\", \"step 5\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The expression n^3 + 2n can be factored as n(n^2 + 2), and we can use induction by showing that if the statement holds for n, then it holds for n+1 by expanding (n+1)^3 + 2(n+1) and relating it to the inductive hypothesis.",
+    "plan": [
+      "Base case: verify for n = 0",
+      "Inductive hypothesis: assume 3 divides k^3 + 2k for some integer k",
+      "Inductive step: show 3 divides (k+1)^3 + 2(k+1) using the hypothesis",
+      "Conclude by induction that the statement holds for all integers n"
+    ],
+    "steps": [
+      {
+        "claim": "For n = 0, 0^3 + 2*0 = 0, and 3 divides 0.",
+        "reasoning": "0 is divisible by any non-zero integer, so 3 | 0.",
+        "facts_used": [
+          "definition of divisibility"
+        ]
+      },
+      {
+        "claim": "Assume for some integer k, 3 divides k^3 + 2k.",
+        "reasoning": "This is the inductive hypothesis.",
+        "facts_used": []
+      },
+      {
+        "claim": "Consider (k+1)^3 + 2(k+1). Expand: (k+1)^3 = k^3 + 3k^2 + 3k + 1, so (k+1)^3 + 2(k+1) = k^3 + 3k^2 + 3k + 1 + 2k + 2 = (k^3 + 2k) + 3k^2 + 3k + 3.",
+        "reasoning": "Algebraic expansion and simplification.",
+        "facts_used": [
+          "algebraic expansion"
+        ]
+      },
+      {
+        "claim": "The expression (k^3 + 2k) + 3k^2 + 3k + 3 is divisible by 3.",
+        "reasoning": "By the inductive hypothesis, 3 divides (k^3 + 2k). Also, 3 divides 3k^2, 3k, and 3 individually. The sum of multiples of 3 is a multiple of 3.",
+        "facts_used": [
+          "step 2",
+          "definition of divisibility",
+          "sum of multiples property"
+        ]
+      },
+      {
+        "claim": "Therefore, 3 divides (k+1)^3 + 2(k+1).",
+        "reasoning": "This follows directly from step 4.",
+        "facts_used": [
+          "step 4"
+        ]
+      },
+      {
+        "claim": "By mathematical induction, for all integers n, 3 divides n^3 + 2n.",
+        "reasoning": "Base case n=0 holds, and the inductive step shows that if it holds for k, it holds for k+1. Since the statement is for all integers, we can also note that if it holds for n, it holds for -n by similar reasoning, but induction on non-negative integers suffices and then extends to negatives by symmetry.",
+        "facts_used": [
+          "principle of mathematical induction",
+          "step 1",
+          "step 5"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:27:21.038586+00:00"
+}

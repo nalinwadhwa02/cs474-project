@@ -1,0 +1,64 @@
+{
+  "theorem_id": "mathd_algebra_96",
+  "statement": "Theorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : real.log x - real.log y = a\nGiven: h\u2082 : real.log y - real.log z = 15\nGiven: h\u2083 : real.log z - real.log x = -7\nProve: a = -8",
+  "goal": "a = -8",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_96\n\nTheorem: mathd_algebra_96\nVariables: x, y, z, a (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : real.log x - real.log y = a\nGiven: h\u2082 : real.log y - real.log z = 15\nGiven: h\u2083 : real.log z - real.log x = -7\nProve: a = -8\n\nHypotheses:\n  h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\n  h\u2081 : real.log x - real.log y = a\n  h\u2082 : real.log y - real.log z = 15\n  h\u2083 : real.log z - real.log x = -7\n\nVariables: x (real), y (real), z (real), a (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Adding the three given logarithmic equations yields a telescoping sum that directly determines a.\",\n  \"plan\": [\n    \"Add the three given equations to obtain a relation among the logs.\",\n    \"Simplify the sum using the fact that the logs cancel pairwise.\",\n    \"Solve the resulting equation for a.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"real.log x - real.log y + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7)\",\n      \"reasoning\": \"Add the three given equations h\u2081, h\u2082, and h\u2083 together.\",\n      \"facts_used\": [\"h\u2081\", \"h\u2082\", \"h\u2083\"]\n    },\n    {\n      \"claim\": \"real.log x - real.log y + real.log y - real.log z + real.log z - real.log x = a + 8\",\n      \"reasoning\": \"Simplify the right-hand side: a + 15 + (-7) = a + 8.\",\n      \"facts_used\": [\"step 1\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"0 = a + 8\",\n      \"reasoning\": \"On the left-hand side, the terms cancel pairwise: real.log x - real.log x = 0, -real.log y + real.log y = 0, -real.log z + real.log z = 0, so the sum is 0.\",\n      \"facts_used\": [\"step 2\", \"commutativity and associativity of addition\"]\n    },\n    {\n      \"claim\": \"a = -8\",\n      \"reasoning\": \"Subtract 8 from both sides of the equation 0 = a + 8.\",\n      \"facts_used\": [\"step 3\", \"algebra\"]\n    }\n  ],\n  \"final_answer\": \"-8\"\n}",
+  "english_proof": {
+    "key_observation": "Adding the three given logarithmic equations yields a telescoping sum that directly determines a.",
+    "plan": [
+      "Add the three given equations to obtain a relation among the logs.",
+      "Simplify the sum using the fact that the logs cancel pairwise.",
+      "Solve the resulting equation for a."
+    ],
+    "steps": [
+      {
+        "claim": "real.log x - real.log y + (real.log y - real.log z) + (real.log z - real.log x) = a + 15 + (-7)",
+        "reasoning": "Add the three given equations h\u2081, h\u2082, and h\u2083 together.",
+        "facts_used": [
+          "h\u2081",
+          "h\u2082",
+          "h\u2083"
+        ]
+      },
+      {
+        "claim": "real.log x - real.log y + real.log y - real.log z + real.log z - real.log x = a + 8",
+        "reasoning": "Simplify the right-hand side: a + 15 + (-7) = a + 8.",
+        "facts_used": [
+          "step 1",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "0 = a + 8",
+        "reasoning": "On the left-hand side, the terms cancel pairwise: real.log x - real.log x = 0, -real.log y + real.log y = 0, -real.log z + real.log z = 0, so the sum is 0.",
+        "facts_used": [
+          "step 2",
+          "commutativity and associativity of addition"
+        ]
+      },
+      {
+        "claim": "a = -8",
+        "reasoning": "Subtract 8 from both sides of the equation 0 = a + 8.",
+        "facts_used": [
+          "step 3",
+          "algebra"
+        ]
+      }
+    ],
+    "final_answer": "-8"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:39:09.899449+00:00"
+}

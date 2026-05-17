@@ -1,0 +1,96 @@
+{
+  "theorem_id": "amc12a_2015_p10",
+  "statement": "Theorem: amc12a_2015_p10\nVariables: x, y (integer)\nGiven: h\u2080 : 0 < y\nGiven: h\u2081 : y < x\nGiven: h\u2082 : x + y + (x * y) = 80\nProve: x = 26",
+  "goal": "x = 26",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2015_p10\n\nTheorem: amc12a_2015_p10\nVariables: x, y (integer)\nGiven: h\u2080 : 0 < y\nGiven: h\u2081 : y < x\nGiven: h\u2082 : x + y + (x * y) = 80\nProve: x = 26\n\nHypotheses:\n  h\u2080 : 0 < y\n  h\u2081 : y < x\n  h\u2082 : x + y + (x * y) = 80\n\nVariables: x (int), y (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Rewrite x + y + xy = 80 as (x+1)(y+1) = 81, then factor 81 to find integer pairs (x+1, y+1) satisfying the positivity and ordering constraints.\",\n  \"plan\": [\n    \"Rewrite the equation as (x+1)(y+1) = 81.\",\n    \"List all positive integer factor pairs of 81.\",\n    \"Use the constraints 0 < y < x to select the correct factor pair.\",\n    \"Solve for x and y from the chosen factor pair.\",\n    \"Conclude that x = 26.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x + y + xy = 80 implies (x+1)(y+1) = 81.\",\n      \"reasoning\": \"Add 1 to both sides: x + y + xy + 1 = 81. Factor the left side as (x+1)(y+1).\",\n      \"facts_used\": [\"algebraic manipulation\", \"factoring\"]\n    },\n    {\n      \"claim\": \"x+1 and y+1 are positive integers.\",\n      \"reasoning\": \"Since 0 < y < x, both x and y are positive integers, so x+1 \u2265 2 and y+1 \u2265 2.\",\n      \"facts_used\": [\"h\u2080: 0 < y\", \"h\u2081: y < x\", \"definition of positive integer\"]\n    },\n    {\n      \"claim\": \"The positive integer factor pairs of 81 are (1,81), (3,27), (9,9), (27,3), (81,1).\",\n      \"reasoning\": \"81 = 3^4, so its positive divisors are 1, 3, 9, 27, 81. Each pair multiplies to 81.\",\n      \"facts_used\": [\"prime factorization\"]\n    },\n    {\n      \"claim\": \"Since y < x, we have y+1 < x+1.\",\n      \"reasoning\": \"Adding 1 to both sides of y < x preserves the inequality.\",\n      \"facts_used\": [\"h\u2081: y < x\", \"order properties of integers\"]\n    },\n    {\n      \"claim\": \"The only factor pair (a,b) with a < b and both a,b \u2265 2 is (3,27).\",\n      \"reasoning\": \"From the list, (1,81) has a=1 which is not \u22652; (9,9) has a=b; (27,3) and (81,1) have a>b. Only (3,27) satisfies 2 \u2264 a < b.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"step 4\"]\n    },\n    {\n      \"claim\": \"Therefore y+1 = 3 and x+1 = 27.\",\n      \"reasoning\": \"Set the smaller factor to y+1 and the larger to x+1.\",\n      \"facts_used\": [\"step 5\"]\n    },\n    {\n      \"claim\": \"Thus y = 2 and x = 26.\",\n      \"reasoning\": \"Subtract 1 from each: y = 3-1 = 2, x = 27-1 = 26.\",\n      \"facts_used\": [\"step 6\", \"basic arithmetic\"]\n    },\n    {\n      \"claim\": \"x = 26.\",\n      \"reasoning\": \"Directly from the previous step.\",\n      \"facts_used\": [\"step 7\"]\n    }\n  ],\n  \"final_answer\": \"26\"\n}",
+  "english_proof": {
+    "key_observation": "Rewrite x + y + xy = 80 as (x+1)(y+1) = 81, then factor 81 to find integer pairs (x+1, y+1) satisfying the positivity and ordering constraints.",
+    "plan": [
+      "Rewrite the equation as (x+1)(y+1) = 81.",
+      "List all positive integer factor pairs of 81.",
+      "Use the constraints 0 < y < x to select the correct factor pair.",
+      "Solve for x and y from the chosen factor pair.",
+      "Conclude that x = 26."
+    ],
+    "steps": [
+      {
+        "claim": "x + y + xy = 80 implies (x+1)(y+1) = 81.",
+        "reasoning": "Add 1 to both sides: x + y + xy + 1 = 81. Factor the left side as (x+1)(y+1).",
+        "facts_used": [
+          "algebraic manipulation",
+          "factoring"
+        ]
+      },
+      {
+        "claim": "x+1 and y+1 are positive integers.",
+        "reasoning": "Since 0 < y < x, both x and y are positive integers, so x+1 \u2265 2 and y+1 \u2265 2.",
+        "facts_used": [
+          "h\u2080: 0 < y",
+          "h\u2081: y < x",
+          "definition of positive integer"
+        ]
+      },
+      {
+        "claim": "The positive integer factor pairs of 81 are (1,81), (3,27), (9,9), (27,3), (81,1).",
+        "reasoning": "81 = 3^4, so its positive divisors are 1, 3, 9, 27, 81. Each pair multiplies to 81.",
+        "facts_used": [
+          "prime factorization"
+        ]
+      },
+      {
+        "claim": "Since y < x, we have y+1 < x+1.",
+        "reasoning": "Adding 1 to both sides of y < x preserves the inequality.",
+        "facts_used": [
+          "h\u2081: y < x",
+          "order properties of integers"
+        ]
+      },
+      {
+        "claim": "The only factor pair (a,b) with a < b and both a,b \u2265 2 is (3,27).",
+        "reasoning": "From the list, (1,81) has a=1 which is not \u22652; (9,9) has a=b; (27,3) and (81,1) have a>b. Only (3,27) satisfies 2 \u2264 a < b.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "Therefore y+1 = 3 and x+1 = 27.",
+        "reasoning": "Set the smaller factor to y+1 and the larger to x+1.",
+        "facts_used": [
+          "step 5"
+        ]
+      },
+      {
+        "claim": "Thus y = 2 and x = 26.",
+        "reasoning": "Subtract 1 from each: y = 3-1 = 2, x = 27-1 = 26.",
+        "facts_used": [
+          "step 6",
+          "basic arithmetic"
+        ]
+      },
+      {
+        "claim": "x = 26.",
+        "reasoning": "Directly from the previous step.",
+        "facts_used": [
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": "26"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:26:38.435675+00:00"
+}

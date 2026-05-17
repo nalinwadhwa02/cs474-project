@@ -1,0 +1,85 @@
+{
+  "theorem_id": "aime_1987_p8",
+  "statement": "Theorem: aime_1987_p8\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\nProve: n \u2264 112",
+  "goal": "n \u2264 112",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: aime_1987_p8\n\nTheorem: aime_1987_p8\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\nProve: n \u2264 112\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2081 : \u2203! k, (8 : \u211d) / 15 < n / (n + k) \u2227 (n : \u211d) / (n + k) < 7 / 13\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The inequalities (8/15) < n/(n+k) < (7/13) can be rearranged to bound k in terms of n, and the uniqueness condition forces n to be small enough that the interval for k contains exactly one integer.\",\n  \"plan\": [\n    \"Rewrite the inequalities to isolate k.\",\n    \"Derive lower and upper bounds for k as functions of n.\",\n    \"Use the uniqueness condition to deduce that the interval for k has length less than 1.\",\n    \"Solve the length inequality to obtain an upper bound on n.\",\n    \"Conclude that n \u2264 112.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For real numbers n > 0 and integer k, the inequality (8/15) < n/(n+k) < (7/13) is equivalent to (6n/7) - n < k < (7n/8) - n.\",\n      \"reasoning\": \"Starting from (8/15) < n/(n+k), multiply both sides by (n+k) (positive since n>0 and k is such that n+k>0 from the inequalities) to get (8/15)(n+k) < n, then rearrange to (8/15)k < n - (8/15)n = (7/15)n, so k < (7/8)n. Similarly, from n/(n+k) < (7/13) we get n < (7/13)(n+k), so (7/13)k > n - (7/13)n = (6/13)n, hence k > (6/7)n. Thus (6/7)n < k < (7/8)n.\",\n      \"facts_used\": [\"algebraic manipulation\", \"positivity of n+k\"]\n    },\n    {\n      \"claim\": \"The integer k must satisfy (6/7)n < k < (7/8)n.\",\n      \"reasoning\": \"This is a direct restatement of step 1, noting that k is an integer but the bounds are real.\",\n      \"facts_used\": [\"step 1\"]\n    },\n    {\n      \"claim\": \"The length of the interval ((6/7)n, (7/8)n) is (7/8)n - (6/7)n = n/56.\",\n      \"reasoning\": \"Compute (7/8 - 6/7) = (49/56 - 48/56) = 1/56, so the length is n/56.\",\n      \"facts_used\": [\"arithmetic\"]\n    },\n    {\n      \"claim\": \"Since there exists exactly one integer k satisfying the inequalities, the length of the interval must be less than 1.\",\n      \"reasoning\": \"If the interval length were at least 1, it could contain two or more integers, contradicting uniqueness. More precisely, for a unique integer to exist, the interval must have length < 1, otherwise there would be at least two integers (by the pigeonhole principle for intervals).\",\n      \"facts_used\": [\"uniqueness condition h\u2081\", \"step 3\"]\n    },\n    {\n      \"claim\": \"Therefore, n/56 < 1, so n < 56.\",\n      \"reasoning\": \"From step 4, n/56 < 1 implies n < 56.\",\n      \"facts_used\": [\"step 4\"]\n    },\n    {\n      \"claim\": \"Since n is a positive integer, n \u2264 55.\",\n      \"reasoning\": \"n < 56 and n integer implies n \u2264 55.\",\n      \"facts_used\": [\"step 5\", \"h\u2080\"]\n    },\n    {\n      \"claim\": \"Thus n \u2264 112.\",\n      \"reasoning\": \"Since n \u2264 55, certainly n \u2264 112.\",\n      \"facts_used\": [\"step 6\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The inequalities (8/15) < n/(n+k) < (7/13) can be rearranged to bound k in terms of n, and the uniqueness condition forces n to be small enough that the interval for k contains exactly one integer.",
+    "plan": [
+      "Rewrite the inequalities to isolate k.",
+      "Derive lower and upper bounds for k as functions of n.",
+      "Use the uniqueness condition to deduce that the interval for k has length less than 1.",
+      "Solve the length inequality to obtain an upper bound on n.",
+      "Conclude that n \u2264 112."
+    ],
+    "steps": [
+      {
+        "claim": "For real numbers n > 0 and integer k, the inequality (8/15) < n/(n+k) < (7/13) is equivalent to (6n/7) - n < k < (7n/8) - n.",
+        "reasoning": "Starting from (8/15) < n/(n+k), multiply both sides by (n+k) (positive since n>0 and k is such that n+k>0 from the inequalities) to get (8/15)(n+k) < n, then rearrange to (8/15)k < n - (8/15)n = (7/15)n, so k < (7/8)n. Similarly, from n/(n+k) < (7/13) we get n < (7/13)(n+k), so (7/13)k > n - (7/13)n = (6/13)n, hence k > (6/7)n. Thus (6/7)n < k < (7/8)n.",
+        "facts_used": [
+          "algebraic manipulation",
+          "positivity of n+k"
+        ]
+      },
+      {
+        "claim": "The integer k must satisfy (6/7)n < k < (7/8)n.",
+        "reasoning": "This is a direct restatement of step 1, noting that k is an integer but the bounds are real.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The length of the interval ((6/7)n, (7/8)n) is (7/8)n - (6/7)n = n/56.",
+        "reasoning": "Compute (7/8 - 6/7) = (49/56 - 48/56) = 1/56, so the length is n/56.",
+        "facts_used": [
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "Since there exists exactly one integer k satisfying the inequalities, the length of the interval must be less than 1.",
+        "reasoning": "If the interval length were at least 1, it could contain two or more integers, contradicting uniqueness. More precisely, for a unique integer to exist, the interval must have length < 1, otherwise there would be at least two integers (by the pigeonhole principle for intervals).",
+        "facts_used": [
+          "uniqueness condition h\u2081",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Therefore, n/56 < 1, so n < 56.",
+        "reasoning": "From step 4, n/56 < 1 implies n < 56.",
+        "facts_used": [
+          "step 4"
+        ]
+      },
+      {
+        "claim": "Since n is a positive integer, n \u2264 55.",
+        "reasoning": "n < 56 and n integer implies n \u2264 55.",
+        "facts_used": [
+          "step 5",
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "Thus n \u2264 112.",
+        "reasoning": "Since n \u2264 55, certainly n \u2264 112.",
+        "facts_used": [
+          "step 6"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:47:26.885347+00:00"
+}

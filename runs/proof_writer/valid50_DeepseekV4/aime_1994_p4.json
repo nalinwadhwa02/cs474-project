@@ -1,0 +1,105 @@
+{
+  "theorem_id": "aime_1994_p4",
+  "statement": "Theorem: aime_1994_p4\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994\nProve: n = 312",
+  "goal": "n = 312",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: aime_1994_p4\n\nTheorem: aime_1994_p4\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994\nProve: n = 312\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2080 : \u2211 k in finset.Icc 1 n, int.floor (real.logb 2 k) = 1994\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The sum of floor(log2(k)) from 1 to n counts how many integers in that range have each power of two as a lower bound, which can be expressed as \u2211_{i=1}^{\u230alog2 n\u230b} i * (number of k with floor(log2(k)) = i).\",\n  \"plan\": [\n    \"Interpret the sum as counting contributions from each power-of-two interval.\",\n    \"Express the sum in terms of the largest integer m such that 2^m \u2264 n.\",\n    \"Compute the sum formula: \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).\",\n    \"Set the sum equal to 1994 and solve for n by testing possible m values.\",\n    \"Find that m = 8 gives the correct sum, leading to n = 312.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For any integer k \u2265 1, floor(log2(k)) = i if and only if 2^i \u2264 k \u2264 2^{i+1} - 1.\",\n      \"reasoning\": \"By definition of floor and log base 2, floor(log2(k)) = i means 2^i \u2264 k < 2^{i+1}, and since k is integer, k \u2264 2^{i+1} - 1.\",\n      \"facts_used\": [\"definition of floor\", \"definition of log base 2\"]\n    },\n    {\n      \"claim\": \"Let m = floor(log2(n)). Then the sum S = \u2211_{k=1}^n floor(log2(k)) can be written as \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).\",\n      \"reasoning\": \"For i from 1 to m-1, there are exactly 2^i integers k with floor(log2(k)) = i (from 2^i to 2^{i+1}-1). For i = m, there are n - 2^m + 1 integers (from 2^m to n).\",\n      \"facts_used\": [\"step 1\", \"counting integers in intervals\"]\n    },\n    {\n      \"claim\": \"The sum S = \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).\",\n      \"reasoning\": \"This is a direct restatement of step 2.\",\n      \"facts_used\": [\"step 2\"]\n    },\n    {\n      \"claim\": \"We have S = 1994, so \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1) = 1994.\",\n      \"reasoning\": \"This follows from the given hypothesis h\u2080.\",\n      \"facts_used\": [\"hypothesis h\u2080\", \"step 3\"]\n    },\n    {\n      \"claim\": \"For m = 8, \u2211_{i=1}^{7} i * 2^i = 2 + 8 + 24 + 64 + 160 + 384 + 896 = 1538.\",\n      \"reasoning\": \"Compute each term: 1*2=2, 2*4=8, 3*8=24, 4*16=64, 5*32=160, 6*64=384, 7*128=896. Sum = 1538.\",\n      \"facts_used\": [\"arithmetic\"]\n    },\n    {\n      \"claim\": \"If m = 8, then 1538 + 8 * (n - 256 + 1) = 1994, so 8 * (n - 255) = 456, hence n - 255 = 57, so n = 312.\",\n      \"reasoning\": \"Substitute m=8 and 2^8=256 into the equation from step 4. Simplify: 1538 + 8(n - 255) = 1994 \u2192 8(n-255) = 456 \u2192 n-255 = 57 \u2192 n = 312.\",\n      \"facts_used\": [\"step 4\", \"step 5\", \"algebra\"]\n    },\n    {\n      \"claim\": \"For m < 8, the sum \u2211_{i=1}^{m-1} i * 2^i is at most 1538, and adding m*(n-2^m+1) with n < 2^{m+1} gives a total less than 1994.\",\n      \"reasoning\": \"The maximum possible sum for m=7 is \u2211_{i=1}^{6} i*2^i + 7*(2^8-1 - 2^7 + 1) = 2+8+24+64+160+384 + 7*(255-128+1) = 642 + 7*128 = 642 + 896 = 1538, which is less than 1994.\",\n      \"facts_used\": [\"step 5\", \"inequality\"]\n    },\n    {\n      \"claim\": \"For m > 8, the sum \u2211_{i=1}^{m-1} i * 2^i alone exceeds 1994.\",\n      \"reasoning\": \"For m=9, \u2211_{i=1}^{8} i*2^i = 1538 + 8*256 = 1538 + 2048 = 3586 > 1994.\",\n      \"facts_used\": [\"step 5\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"Therefore, m must be 8 and n = 312.\",\n      \"reasoning\": \"Steps 7 and 8 show m cannot be less than or greater than 8, so m=8. Step 6 then gives n=312.\",\n      \"facts_used\": [\"step 6\", \"step 7\", \"step 8\"]\n    }\n  ],\n  \"final_answer\": \"312\"\n}",
+  "english_proof": {
+    "key_observation": "The sum of floor(log2(k)) from 1 to n counts how many integers in that range have each power of two as a lower bound, which can be expressed as \u2211_{i=1}^{\u230alog2 n\u230b} i * (number of k with floor(log2(k)) = i).",
+    "plan": [
+      "Interpret the sum as counting contributions from each power-of-two interval.",
+      "Express the sum in terms of the largest integer m such that 2^m \u2264 n.",
+      "Compute the sum formula: \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).",
+      "Set the sum equal to 1994 and solve for n by testing possible m values.",
+      "Find that m = 8 gives the correct sum, leading to n = 312."
+    ],
+    "steps": [
+      {
+        "claim": "For any integer k \u2265 1, floor(log2(k)) = i if and only if 2^i \u2264 k \u2264 2^{i+1} - 1.",
+        "reasoning": "By definition of floor and log base 2, floor(log2(k)) = i means 2^i \u2264 k < 2^{i+1}, and since k is integer, k \u2264 2^{i+1} - 1.",
+        "facts_used": [
+          "definition of floor",
+          "definition of log base 2"
+        ]
+      },
+      {
+        "claim": "Let m = floor(log2(n)). Then the sum S = \u2211_{k=1}^n floor(log2(k)) can be written as \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).",
+        "reasoning": "For i from 1 to m-1, there are exactly 2^i integers k with floor(log2(k)) = i (from 2^i to 2^{i+1}-1). For i = m, there are n - 2^m + 1 integers (from 2^m to n).",
+        "facts_used": [
+          "step 1",
+          "counting integers in intervals"
+        ]
+      },
+      {
+        "claim": "The sum S = \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1).",
+        "reasoning": "This is a direct restatement of step 2.",
+        "facts_used": [
+          "step 2"
+        ]
+      },
+      {
+        "claim": "We have S = 1994, so \u2211_{i=1}^{m-1} i * 2^i + m * (n - 2^m + 1) = 1994.",
+        "reasoning": "This follows from the given hypothesis h\u2080.",
+        "facts_used": [
+          "hypothesis h\u2080",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "For m = 8, \u2211_{i=1}^{7} i * 2^i = 2 + 8 + 24 + 64 + 160 + 384 + 896 = 1538.",
+        "reasoning": "Compute each term: 1*2=2, 2*4=8, 3*8=24, 4*16=64, 5*32=160, 6*64=384, 7*128=896. Sum = 1538.",
+        "facts_used": [
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "If m = 8, then 1538 + 8 * (n - 256 + 1) = 1994, so 8 * (n - 255) = 456, hence n - 255 = 57, so n = 312.",
+        "reasoning": "Substitute m=8 and 2^8=256 into the equation from step 4. Simplify: 1538 + 8(n - 255) = 1994 \u2192 8(n-255) = 456 \u2192 n-255 = 57 \u2192 n = 312.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "For m < 8, the sum \u2211_{i=1}^{m-1} i * 2^i is at most 1538, and adding m*(n-2^m+1) with n < 2^{m+1} gives a total less than 1994.",
+        "reasoning": "The maximum possible sum for m=7 is \u2211_{i=1}^{6} i*2^i + 7*(2^8-1 - 2^7 + 1) = 2+8+24+64+160+384 + 7*(255-128+1) = 642 + 7*128 = 642 + 896 = 1538, which is less than 1994.",
+        "facts_used": [
+          "step 5",
+          "inequality"
+        ]
+      },
+      {
+        "claim": "For m > 8, the sum \u2211_{i=1}^{m-1} i * 2^i alone exceeds 1994.",
+        "reasoning": "For m=9, \u2211_{i=1}^{8} i*2^i = 1538 + 8*256 = 1538 + 2048 = 3586 > 1994.",
+        "facts_used": [
+          "step 5",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "Therefore, m must be 8 and n = 312.",
+        "reasoning": "Steps 7 and 8 show m cannot be less than or greater than 8, so m=8. Step 6 then gives n=312.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": "312"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:21:25.969027+00:00"
+}

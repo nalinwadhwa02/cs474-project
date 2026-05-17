@@ -1,0 +1,147 @@
+{
+  "theorem_id": "mathd_algebra_116",
+  "statement": "Theorem: mathd_algebra_116\nVariables: k, x (real)\nGiven: h\u2080 : x = (13 - real.sqrt 131) / 4\nGiven: h\u2081 : 2 * x^2 - 13 * x + k = 0\nProve: k = 19/4",
+  "goal": "k = 19/4",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_116\n\nTheorem: mathd_algebra_116\nVariables: k, x (real)\nGiven: h\u2080 : x = (13 - real.sqrt 131) / 4\nGiven: h\u2081 : 2 * x^2 - 13 * x + k = 0\nProve: k = 19/4\n\nHypotheses:\n  h\u2080 : x = (13 - real.sqrt 131) / 4\n  h\u2081 : 2 * x^2 - 13 * x + k = 0\n\nVariables: k (real), x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Substitute the given expression for x into the quadratic equation and solve for k.\",\n  \"plan\": [\n    \"Substitute x into the quadratic equation.\",\n    \"Simplify the expression step by step.\",\n    \"Isolate k and compute its value.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x = (13 - \u221a131)/4\",\n      \"reasoning\": \"This is given by hypothesis h\u2080.\",\n      \"facts_used\": [\"h\u2080\"]\n    },\n    {\n      \"claim\": \"2x\u00b2 - 13x + k = 0\",\n      \"reasoning\": \"This is given by hypothesis h\u2081.\",\n      \"facts_used\": [\"h\u2081\"]\n    },\n    {\n      \"claim\": \"2 * ((13 - \u221a131)/4)\u00b2 - 13 * ((13 - \u221a131)/4) + k = 0\",\n      \"reasoning\": \"Substitute the expression for x from step 1 into the equation from step 2.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"((13 - \u221a131)/4)\u00b2 = (13 - \u221a131)\u00b2 / 16\",\n      \"reasoning\": \"Square the fraction: (a/b)\u00b2 = a\u00b2/b\u00b2.\",\n      \"facts_used\": [\"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(13 - \u221a131)\u00b2 = 169 - 26\u221a131 + 131 = 300 - 26\u221a131\",\n      \"reasoning\": \"Expand (a - b)\u00b2 = a\u00b2 - 2ab + b\u00b2, where a=13, b=\u221a131.\",\n      \"facts_used\": [\"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"2 * ((13 - \u221a131)/4)\u00b2 = 2 * (300 - 26\u221a131) / 16 = (600 - 52\u221a131) / 16\",\n      \"reasoning\": \"Multiply numerator: 2 * (300 - 26\u221a131) = 600 - 52\u221a131, denominator remains 16.\",\n      \"facts_used\": [\"step 4\", \"step 5\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"13 * ((13 - \u221a131)/4) = (169 - 13\u221a131) / 4\",\n      \"reasoning\": \"Multiply 13 by the numerator: 13*(13 - \u221a131) = 169 - 13\u221a131, denominator remains 4.\",\n      \"facts_used\": [\"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(600 - 52\u221a131)/16 - (169 - 13\u221a131)/4 + k = 0\",\n      \"reasoning\": \"Substitute the simplified expressions from steps 6 and 7 into step 3.\",\n      \"facts_used\": [\"step 3\", \"step 6\", \"step 7\"]\n    },\n    {\n      \"claim\": \"(169 - 13\u221a131)/4 = (676 - 52\u221a131)/16\",\n      \"reasoning\": \"Multiply numerator and denominator by 4 to get common denominator 16.\",\n      \"facts_used\": [\"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(600 - 52\u221a131)/16 - (676 - 52\u221a131)/16 + k = 0\",\n      \"reasoning\": \"Rewrite the second term with denominator 16 using step 9.\",\n      \"facts_used\": [\"step 8\", \"step 9\"]\n    },\n    {\n      \"claim\": \"((600 - 52\u221a131) - (676 - 52\u221a131)) / 16 + k = 0\",\n      \"reasoning\": \"Combine the two fractions over the common denominator 16.\",\n      \"facts_used\": [\"step 10\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(600 - 52\u221a131 - 676 + 52\u221a131) / 16 + k = 0\",\n      \"reasoning\": \"Distribute the minus sign: -(676 - 52\u221a131) = -676 + 52\u221a131.\",\n      \"facts_used\": [\"step 11\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(-76) / 16 + k = 0\",\n      \"reasoning\": \"Combine like terms: 600 - 676 = -76, and -52\u221a131 + 52\u221a131 = 0.\",\n      \"facts_used\": [\"step 12\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"-19/4 + k = 0\",\n      \"reasoning\": \"Simplify -76/16 by dividing numerator and denominator by 4: -76/16 = -19/4.\",\n      \"facts_used\": [\"step 13\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"k = 19/4\",\n      \"reasoning\": \"Add 19/4 to both sides of the equation from step 14.\",\n      \"facts_used\": [\"step 14\", \"algebraic manipulation\"]\n    }\n  ],\n  \"final_answer\": \"19/4\"\n}",
+  "english_proof": {
+    "key_observation": "Substitute the given expression for x into the quadratic equation and solve for k.",
+    "plan": [
+      "Substitute x into the quadratic equation.",
+      "Simplify the expression step by step.",
+      "Isolate k and compute its value."
+    ],
+    "steps": [
+      {
+        "claim": "x = (13 - \u221a131)/4",
+        "reasoning": "This is given by hypothesis h\u2080.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "2x\u00b2 - 13x + k = 0",
+        "reasoning": "This is given by hypothesis h\u2081.",
+        "facts_used": [
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "2 * ((13 - \u221a131)/4)\u00b2 - 13 * ((13 - \u221a131)/4) + k = 0",
+        "reasoning": "Substitute the expression for x from step 1 into the equation from step 2.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "((13 - \u221a131)/4)\u00b2 = (13 - \u221a131)\u00b2 / 16",
+        "reasoning": "Square the fraction: (a/b)\u00b2 = a\u00b2/b\u00b2.",
+        "facts_used": [
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(13 - \u221a131)\u00b2 = 169 - 26\u221a131 + 131 = 300 - 26\u221a131",
+        "reasoning": "Expand (a - b)\u00b2 = a\u00b2 - 2ab + b\u00b2, where a=13, b=\u221a131.",
+        "facts_used": [
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "2 * ((13 - \u221a131)/4)\u00b2 = 2 * (300 - 26\u221a131) / 16 = (600 - 52\u221a131) / 16",
+        "reasoning": "Multiply numerator: 2 * (300 - 26\u221a131) = 600 - 52\u221a131, denominator remains 16.",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "13 * ((13 - \u221a131)/4) = (169 - 13\u221a131) / 4",
+        "reasoning": "Multiply 13 by the numerator: 13*(13 - \u221a131) = 169 - 13\u221a131, denominator remains 4.",
+        "facts_used": [
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(600 - 52\u221a131)/16 - (169 - 13\u221a131)/4 + k = 0",
+        "reasoning": "Substitute the simplified expressions from steps 6 and 7 into step 3.",
+        "facts_used": [
+          "step 3",
+          "step 6",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "(169 - 13\u221a131)/4 = (676 - 52\u221a131)/16",
+        "reasoning": "Multiply numerator and denominator by 4 to get common denominator 16.",
+        "facts_used": [
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(600 - 52\u221a131)/16 - (676 - 52\u221a131)/16 + k = 0",
+        "reasoning": "Rewrite the second term with denominator 16 using step 9.",
+        "facts_used": [
+          "step 8",
+          "step 9"
+        ]
+      },
+      {
+        "claim": "((600 - 52\u221a131) - (676 - 52\u221a131)) / 16 + k = 0",
+        "reasoning": "Combine the two fractions over the common denominator 16.",
+        "facts_used": [
+          "step 10",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(600 - 52\u221a131 - 676 + 52\u221a131) / 16 + k = 0",
+        "reasoning": "Distribute the minus sign: -(676 - 52\u221a131) = -676 + 52\u221a131.",
+        "facts_used": [
+          "step 11",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(-76) / 16 + k = 0",
+        "reasoning": "Combine like terms: 600 - 676 = -76, and -52\u221a131 + 52\u221a131 = 0.",
+        "facts_used": [
+          "step 12",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "-19/4 + k = 0",
+        "reasoning": "Simplify -76/16 by dividing numerator and denominator by 4: -76/16 = -19/4.",
+        "facts_used": [
+          "step 13",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "k = 19/4",
+        "reasoning": "Add 19/4 to both sides of the equation from step 14.",
+        "facts_used": [
+          "step 14",
+          "algebraic manipulation"
+        ]
+      }
+    ],
+    "final_answer": "19/4"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:19:33.788224+00:00"
+}

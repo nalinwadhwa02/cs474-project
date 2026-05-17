@@ -1,0 +1,56 @@
+{
+  "theorem_id": "mathd_algebra_251",
+  "statement": "Theorem: mathd_algebra_251\nVariables: x (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 3 + 1 / x = 7 / x\nProve: x = 2",
+  "goal": "x = 2",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_251\n\nTheorem: mathd_algebra_251\nVariables: x (real)\nGiven: h\u2080 : x \u2260 0\nGiven: h\u2081 : 3 + 1 / x = 7 / x\nProve: x = 2\n\nHypotheses:\n  h\u2080 : x \u2260 0\n  h\u2081 : 3 + 1 / x = 7 / x\n\nVariables: x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Multiplying both sides of the equation by x (which is nonzero) eliminates the denominators and yields a linear equation in x.\",\n  \"plan\": [\n    \"Multiply both sides of the equation by x to clear denominators.\",\n    \"Simplify the resulting equation.\",\n    \"Solve for x.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"3x + 1 = 7\",\n      \"reasoning\": \"Multiply both sides of h\u2081 by x. Since h\u2080 says x \u2260 0, multiplication by x is valid and yields (3 + 1/x) * x = (7/x) * x, which simplifies to 3x + 1 = 7.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"3x = 6\",\n      \"reasoning\": \"Subtract 1 from both sides of the equation 3x + 1 = 7.\",\n      \"facts_used\": [\"step 1\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"x = 2\",\n      \"reasoning\": \"Divide both sides of 3x = 6 by 3.\",\n      \"facts_used\": [\"step 2\", \"algebraic manipulation\"]\n    }\n  ],\n  \"final_answer\": \"2\"\n}",
+  "english_proof": {
+    "key_observation": "Multiplying both sides of the equation by x (which is nonzero) eliminates the denominators and yields a linear equation in x.",
+    "plan": [
+      "Multiply both sides of the equation by x to clear denominators.",
+      "Simplify the resulting equation.",
+      "Solve for x."
+    ],
+    "steps": [
+      {
+        "claim": "3x + 1 = 7",
+        "reasoning": "Multiply both sides of h\u2081 by x. Since h\u2080 says x \u2260 0, multiplication by x is valid and yields (3 + 1/x) * x = (7/x) * x, which simplifies to 3x + 1 = 7.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "3x = 6",
+        "reasoning": "Subtract 1 from both sides of the equation 3x + 1 = 7.",
+        "facts_used": [
+          "step 1",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "x = 2",
+        "reasoning": "Divide both sides of 3x = 6 by 3.",
+        "facts_used": [
+          "step 2",
+          "algebraic manipulation"
+        ]
+      }
+    ],
+    "final_answer": "2"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:18:25.099072+00:00"
+}

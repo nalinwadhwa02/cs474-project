@@ -7,4 +7,3 @@ venv/
 results/
 *.jsonl
 temp/
-runs/

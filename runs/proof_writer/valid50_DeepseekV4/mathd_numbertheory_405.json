@@ -1,0 +1,91 @@
+{
+  "theorem_id": "mathd_numbertheory_405",
+  "statement": "Theorem: mathd_numbertheory_405\nVariables: a, b, c (integer)\nGiven: t : \u2115 \u2192 \u2115\nGiven: h\u2080 : t 0 = 0\nGiven: h\u2081 : t 1 = 1\nGiven: h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1)\nGiven: h\u2083 : a \u2261 5 [MOD 16]\nGiven: h\u2084 : b \u2261 10 [MOD 16]\nGiven: h\u2085 : c \u2261 15 [MOD 16]\nProve: (t a + t b + t c) % 7 = 5",
+  "goal": "(t a + t b + t c) % 7 = 5",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_405\n\nTheorem: mathd_numbertheory_405\nVariables: a, b, c (integer)\nGiven: t : \u2115 \u2192 \u2115\nGiven: h\u2080 : t 0 = 0\nGiven: h\u2081 : t 1 = 1\nGiven: h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1)\nGiven: h\u2083 : a \u2261 5 [MOD 16]\nGiven: h\u2084 : b \u2261 10 [MOD 16]\nGiven: h\u2085 : c \u2261 15 [MOD 16]\nProve: (t a + t b + t c) % 7 = 5\n\nHypotheses:\n  t : \u2115 \u2192 \u2115\n  h\u2080 : t 0 = 0\n  h\u2081 : t 1 = 1\n  h\u2082 : \u2200 n > 1, t n = t (n - 2) + t (n - 1)\n  h\u2083 : a \u2261 5 [MOD 16]\n  h\u2084 : b \u2261 10 [MOD 16]\n  h\u2085 : c \u2261 15 [MOD 16]\n\nVariables: a (int), b (int), c (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The sequence t(n) is the Fibonacci sequence, and its values modulo 7 repeat with period 16, so we can reduce a, b, c modulo 16 to compute t(a), t(b), t(c) modulo 7.\",\n  \"plan\": [\n    \"Identify t(n) as the Fibonacci sequence.\",\n    \"Compute the Fibonacci sequence modulo 7 for n from 0 to 16 to find the period.\",\n    \"Reduce a, b, c modulo 16 using given congruences.\",\n    \"Compute t(a) mod 7, t(b) mod 7, t(c) mod 7 from the computed values.\",\n    \"Sum the residues modulo 7 and verify the result is 5.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"t(n) is the Fibonacci sequence: t(0)=0, t(1)=1, and for n>1, t(n)=t(n-1)+t(n-2).\",\n      \"reasoning\": \"This follows directly from the given definitions h\u2080, h\u2081, and h\u2082.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"h\u2082\"]\n    },\n    {\n      \"claim\": \"The Fibonacci sequence modulo 7 has period 16.\",\n      \"reasoning\": \"Compute the sequence modulo 7: 0,1,1,2,3,5,1,6,0,6,6,5,4,2,6,1,0,... and observe that the pair (0,1) repeats after 16 terms, so the period divides 16. Checking shows the period is exactly 16.\",\n      \"facts_used\": [\"definition of Fibonacci sequence\", \"modular arithmetic\"]\n    },\n    {\n      \"claim\": \"The values of t(n) modulo 7 for n = 0 to 15 are: n:0\u21920, 1\u21921, 2\u21921, 3\u21922, 4\u21923, 5\u21925, 6\u21921, 7\u21926, 8\u21920, 9\u21926, 10\u21926, 11\u21925, 12\u21924, 13\u21922, 14\u21926, 15\u21921.\",\n      \"reasoning\": \"Starting from t(0)=0, t(1)=1, repeatedly apply t(n)=t(n-1)+t(n-2) modulo 7.\",\n      \"facts_used\": [\"step 1\", \"modular arithmetic\"]\n    },\n    {\n      \"claim\": \"a \u2261 5 (mod 16), b \u2261 10 (mod 16), c \u2261 15 (mod 16).\",\n      \"reasoning\": \"These are given as h\u2083, h\u2084, h\u2085.\",\n      \"facts_used\": [\"h\u2083\", \"h\u2084\", \"h\u2085\"]\n    },\n    {\n      \"claim\": \"t(a) \u2261 t(5) (mod 7), t(b) \u2261 t(10) (mod 7), t(c) \u2261 t(15) (mod 7).\",\n      \"reasoning\": \"Since the Fibonacci sequence modulo 7 has period 16, and a, b, c are congruent to 5, 10, 15 modulo 16 respectively, the values of t at those indices are congruent modulo 7.\",\n      \"facts_used\": [\"step 2\", \"step 4\"]\n    },\n    {\n      \"claim\": \"t(5) \u2261 5 (mod 7), t(10) \u2261 6 (mod 7), t(15) \u2261 1 (mod 7).\",\n      \"reasoning\": \"From the computed values in step 3, t(5)=5, t(10)=6, t(15)=1 modulo 7.\",\n      \"facts_used\": [\"step 3\"]\n    },\n    {\n      \"claim\": \"(t(a) + t(b) + t(c)) \u2261 5 + 6 + 1 \u2261 12 \u2261 5 (mod 7).\",\n      \"reasoning\": \"Add the residues from step 6: 5+6+1=12, and 12 mod 7 equals 5.\",\n      \"facts_used\": [\"step 5\", \"step 6\", \"modular arithmetic\"]\n    }\n  ],\n  \"final_answer\": \"5\"\n}",
+  "english_proof": {
+    "key_observation": "The sequence t(n) is the Fibonacci sequence, and its values modulo 7 repeat with period 16, so we can reduce a, b, c modulo 16 to compute t(a), t(b), t(c) modulo 7.",
+    "plan": [
+      "Identify t(n) as the Fibonacci sequence.",
+      "Compute the Fibonacci sequence modulo 7 for n from 0 to 16 to find the period.",
+      "Reduce a, b, c modulo 16 using given congruences.",
+      "Compute t(a) mod 7, t(b) mod 7, t(c) mod 7 from the computed values.",
+      "Sum the residues modulo 7 and verify the result is 5."
+    ],
+    "steps": [
+      {
+        "claim": "t(n) is the Fibonacci sequence: t(0)=0, t(1)=1, and for n>1, t(n)=t(n-1)+t(n-2).",
+        "reasoning": "This follows directly from the given definitions h\u2080, h\u2081, and h\u2082.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2082"
+        ]
+      },
+      {
+        "claim": "The Fibonacci sequence modulo 7 has period 16.",
+        "reasoning": "Compute the sequence modulo 7: 0,1,1,2,3,5,1,6,0,6,6,5,4,2,6,1,0,... and observe that the pair (0,1) repeats after 16 terms, so the period divides 16. Checking shows the period is exactly 16.",
+        "facts_used": [
+          "definition of Fibonacci sequence",
+          "modular arithmetic"
+        ]
+      },
+      {
+        "claim": "The values of t(n) modulo 7 for n = 0 to 15 are: n:0\u21920, 1\u21921, 2\u21921, 3\u21922, 4\u21923, 5\u21925, 6\u21921, 7\u21926, 8\u21920, 9\u21926, 10\u21926, 11\u21925, 12\u21924, 13\u21922, 14\u21926, 15\u21921.",
+        "reasoning": "Starting from t(0)=0, t(1)=1, repeatedly apply t(n)=t(n-1)+t(n-2) modulo 7.",
+        "facts_used": [
+          "step 1",
+          "modular arithmetic"
+        ]
+      },
+      {
+        "claim": "a \u2261 5 (mod 16), b \u2261 10 (mod 16), c \u2261 15 (mod 16).",
+        "reasoning": "These are given as h\u2083, h\u2084, h\u2085.",
+        "facts_used": [
+          "h\u2083",
+          "h\u2084",
+          "h\u2085"
+        ]
+      },
+      {
+        "claim": "t(a) \u2261 t(5) (mod 7), t(b) \u2261 t(10) (mod 7), t(c) \u2261 t(15) (mod 7).",
+        "reasoning": "Since the Fibonacci sequence modulo 7 has period 16, and a, b, c are congruent to 5, 10, 15 modulo 16 respectively, the values of t at those indices are congruent modulo 7.",
+        "facts_used": [
+          "step 2",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "t(5) \u2261 5 (mod 7), t(10) \u2261 6 (mod 7), t(15) \u2261 1 (mod 7).",
+        "reasoning": "From the computed values in step 3, t(5)=5, t(10)=6, t(15)=1 modulo 7.",
+        "facts_used": [
+          "step 3"
+        ]
+      },
+      {
+        "claim": "(t(a) + t(b) + t(c)) \u2261 5 + 6 + 1 \u2261 12 \u2261 5 (mod 7).",
+        "reasoning": "Add the residues from step 6: 5+6+1=12, and 12 mod 7 equals 5.",
+        "facts_used": [
+          "step 5",
+          "step 6",
+          "modular arithmetic"
+        ]
+      }
+    ],
+    "final_answer": "5"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:17:11.052209+00:00"
+}

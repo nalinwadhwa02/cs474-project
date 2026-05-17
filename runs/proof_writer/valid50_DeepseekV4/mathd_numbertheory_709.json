@@ -1,0 +1,125 @@
+{
+  "theorem_id": "mathd_numbertheory_709",
+  "statement": "Theorem: mathd_numbertheory_709\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : finset.card (nat.divisors (2 * n)) = 28\nGiven: h\u2082 : finset.card (nat.divisors (3 * n)) = 30\nProve: finset.card (nat.divisors (6 * n)) = 35",
+  "goal": "finset.card (nat.divisors (6 * n)) = 35",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_709\n\nTheorem: mathd_numbertheory_709\nVariables: n (integer)\nGiven: h\u2080 : 0 < n\nGiven: h\u2081 : finset.card (nat.divisors (2 * n)) = 28\nGiven: h\u2082 : finset.card (nat.divisors (3 * n)) = 30\nProve: finset.card (nat.divisors (6 * n)) = 35\n\nHypotheses:\n  h\u2080 : 0 < n\n  h\u2081 : finset.card (nat.divisors (2 * n)) = 28\n  h\u2082 : finset.card (nat.divisors (3 * n)) = 30\n\nVariables: n (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The divisor count function is multiplicative for coprime numbers, so we can relate the divisor counts of 2n, 3n, and 6n by considering the prime factorization of n and the exponents of 2 and 3.\",\n  \"plan\": [\n    \"Express n in terms of its prime factorization, separating the powers of 2 and 3.\",\n    \"Write formulas for the divisor counts of 2n, 3n, and 6n in terms of the exponents.\",\n    \"Set up equations from the given divisor counts and solve for the exponents.\",\n    \"Compute the divisor count of 6n using the found exponents.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Let n = 2^a * 3^b * m, where m is coprime to 6, and a, b are nonnegative integers.\",\n      \"reasoning\": \"Every positive integer has a unique prime factorization; we separate the primes 2 and 3 from the rest.\",\n      \"facts_used\": [\"Fundamental theorem of arithmetic\"]\n    },\n    {\n      \"claim\": \"Then 2n = 2^(a+1) * 3^b * m, 3n = 2^a * 3^(b+1) * m, and 6n = 2^(a+1) * 3^(b+1) * m.\",\n      \"reasoning\": \"Multiplying by 2 increases the exponent of 2 by 1; multiplying by 3 increases the exponent of 3 by 1.\",\n      \"facts_used\": [\"step 1\"]\n    },\n    {\n      \"claim\": \"The divisor count function d(k) is multiplicative: for coprime numbers, d(xy) = d(x) * d(y).\",\n      \"reasoning\": \"This is a standard property of the divisor function.\",\n      \"facts_used\": [\"Multiplicativity of divisor function\"]\n    },\n    {\n      \"claim\": \"d(2n) = (a+2) * (b+1) * d(m) = 28.\",\n      \"reasoning\": \"Since 2^(a+1) has a+2 divisors (exponents 0 to a+1), 3^b has b+1 divisors, and m is coprime to 6, the divisor count multiplies. Given d(2n)=28.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"d(3n) = (a+1) * (b+2) * d(m) = 30.\",\n      \"reasoning\": \"Similarly, 2^a has a+1 divisors, 3^(b+1) has b+2 divisors, and m contributes d(m). Given d(3n)=30.\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"h\u2082\"]\n    },\n    {\n      \"claim\": \"Let x = a+1, y = b+1, and D = d(m). Then the equations become (x+1)*y*D = 28 and x*(y+1)*D = 30.\",\n      \"reasoning\": \"Substitute a+1 = x, b+1 = y, so a+2 = x+1 and b+2 = y+1.\",\n      \"facts_used\": [\"step 4\", \"step 5\"]\n    },\n    {\n      \"claim\": \"Subtracting the two equations gives (x+1)yD - x(y+1)D = 28 - 30, which simplifies to (y - x)D = -2, so (x - y)D = 2.\",\n      \"reasoning\": \"Expand: (x+1)y = xy + y, x(y+1) = xy + x, difference is y - x. Multiply by D: (y-x)D = -2, so (x-y)D = 2.\",\n      \"facts_used\": [\"step 6\"]\n    },\n    {\n      \"claim\": \"Since D = d(m) is a positive integer, the possible factor pairs for 2 are (x-y, D) = (1,2) or (2,1).\",\n      \"reasoning\": \"x-y and D are positive integers whose product is 2.\",\n      \"facts_used\": [\"step 7\"]\n    },\n    {\n      \"claim\": \"If x-y = 1 and D = 2, then from (x+1)y*2 = 28 we get (x+1)y = 14. Since x = y+1, substitute: (y+2)y = 14, so y^2 + 2y - 14 = 0, which has no integer solution.\",\n      \"reasoning\": \"Check integer roots: discriminant 4+56=60, not a perfect square.\",\n      \"facts_used\": [\"step 6\", \"step 8\"]\n    },\n    {\n      \"claim\": \"If x-y = 2 and D = 1, then from (x+1)y*1 = 28 we get (x+1)y = 28. Since x = y+2, substitute: (y+3)y = 28, so y^2 + 3y - 28 = 0, giving y = 4 (positive root). Then x = 6.\",\n      \"reasoning\": \"Solve quadratic: y = [-3 \u00b1 sqrt(9+112)]/2 = [-3 \u00b1 11]/2, positive root is 4. Then x = 4+2 = 6.\",\n      \"facts_used\": [\"step 6\", \"step 8\"]\n    },\n    {\n      \"claim\": \"Thus a = x-1 = 5, b = y-1 = 3, and d(m) = 1, so m = 1.\",\n      \"reasoning\": \"Since d(m)=1, m must be 1 (the only positive integer with exactly one divisor).\",\n      \"facts_used\": [\"step 10\"]\n    },\n    {\n      \"claim\": \"Therefore, d(6n) = (a+2)*(b+2)*d(m) = (5+2)*(3+2)*1 = 7*5 = 35.\",\n      \"reasoning\": \"Using the factorization of 6n: 2^(a+1)*3^(b+1)*m, divisor count is (a+2)(b+2)d(m).\",\n      \"facts_used\": [\"step 2\", \"step 3\", \"step 11\"]\n    }\n  ],\n  \"final_answer\": \"35\"\n}",
+  "english_proof": {
+    "key_observation": "The divisor count function is multiplicative for coprime numbers, so we can relate the divisor counts of 2n, 3n, and 6n by considering the prime factorization of n and the exponents of 2 and 3.",
+    "plan": [
+      "Express n in terms of its prime factorization, separating the powers of 2 and 3.",
+      "Write formulas for the divisor counts of 2n, 3n, and 6n in terms of the exponents.",
+      "Set up equations from the given divisor counts and solve for the exponents.",
+      "Compute the divisor count of 6n using the found exponents."
+    ],
+    "steps": [
+      {
+        "claim": "Let n = 2^a * 3^b * m, where m is coprime to 6, and a, b are nonnegative integers.",
+        "reasoning": "Every positive integer has a unique prime factorization; we separate the primes 2 and 3 from the rest.",
+        "facts_used": [
+          "Fundamental theorem of arithmetic"
+        ]
+      },
+      {
+        "claim": "Then 2n = 2^(a+1) * 3^b * m, 3n = 2^a * 3^(b+1) * m, and 6n = 2^(a+1) * 3^(b+1) * m.",
+        "reasoning": "Multiplying by 2 increases the exponent of 2 by 1; multiplying by 3 increases the exponent of 3 by 1.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The divisor count function d(k) is multiplicative: for coprime numbers, d(xy) = d(x) * d(y).",
+        "reasoning": "This is a standard property of the divisor function.",
+        "facts_used": [
+          "Multiplicativity of divisor function"
+        ]
+      },
+      {
+        "claim": "d(2n) = (a+2) * (b+1) * d(m) = 28.",
+        "reasoning": "Since 2^(a+1) has a+2 divisors (exponents 0 to a+1), 3^b has b+1 divisors, and m is coprime to 6, the divisor count multiplies. Given d(2n)=28.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "d(3n) = (a+1) * (b+2) * d(m) = 30.",
+        "reasoning": "Similarly, 2^a has a+1 divisors, 3^(b+1) has b+2 divisors, and m contributes d(m). Given d(3n)=30.",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "h\u2082"
+        ]
+      },
+      {
+        "claim": "Let x = a+1, y = b+1, and D = d(m). Then the equations become (x+1)*y*D = 28 and x*(y+1)*D = 30.",
+        "reasoning": "Substitute a+1 = x, b+1 = y, so a+2 = x+1 and b+2 = y+1.",
+        "facts_used": [
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "Subtracting the two equations gives (x+1)yD - x(y+1)D = 28 - 30, which simplifies to (y - x)D = -2, so (x - y)D = 2.",
+        "reasoning": "Expand: (x+1)y = xy + y, x(y+1) = xy + x, difference is y - x. Multiply by D: (y-x)D = -2, so (x-y)D = 2.",
+        "facts_used": [
+          "step 6"
+        ]
+      },
+      {
+        "claim": "Since D = d(m) is a positive integer, the possible factor pairs for 2 are (x-y, D) = (1,2) or (2,1).",
+        "reasoning": "x-y and D are positive integers whose product is 2.",
+        "facts_used": [
+          "step 7"
+        ]
+      },
+      {
+        "claim": "If x-y = 1 and D = 2, then from (x+1)y*2 = 28 we get (x+1)y = 14. Since x = y+1, substitute: (y+2)y = 14, so y^2 + 2y - 14 = 0, which has no integer solution.",
+        "reasoning": "Check integer roots: discriminant 4+56=60, not a perfect square.",
+        "facts_used": [
+          "step 6",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "If x-y = 2 and D = 1, then from (x+1)y*1 = 28 we get (x+1)y = 28. Since x = y+2, substitute: (y+3)y = 28, so y^2 + 3y - 28 = 0, giving y = 4 (positive root). Then x = 6.",
+        "reasoning": "Solve quadratic: y = [-3 \u00b1 sqrt(9+112)]/2 = [-3 \u00b1 11]/2, positive root is 4. Then x = 4+2 = 6.",
+        "facts_used": [
+          "step 6",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "Thus a = x-1 = 5, b = y-1 = 3, and d(m) = 1, so m = 1.",
+        "reasoning": "Since d(m)=1, m must be 1 (the only positive integer with exactly one divisor).",
+        "facts_used": [
+          "step 10"
+        ]
+      },
+      {
+        "claim": "Therefore, d(6n) = (a+2)*(b+2)*d(m) = (5+2)*(3+2)*1 = 7*5 = 35.",
+        "reasoning": "Using the factorization of 6n: 2^(a+1)*3^(b+1)*m, divisor count is (a+2)(b+2)d(m).",
+        "facts_used": [
+          "step 2",
+          "step 3",
+          "step 11"
+        ]
+      }
+    ],
+    "final_answer": "35"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:22:26.485447+00:00"
+}

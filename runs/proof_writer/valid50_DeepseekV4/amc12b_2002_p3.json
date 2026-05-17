@@ -1,0 +1,99 @@
+{
+  "theorem_id": "amc12b_2002_p3",
+  "statement": "Theorem: amc12b_2002_p3\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\nProve: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+  "goal": "we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12b_2002_p3\n\nTheorem: amc12b_2002_p3\nGiven: S : finset \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\nProve: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)) :\n  S.card = 1\n\nHypotheses:\n  S : finset \u2115\n  h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 nat.prime (n^2 + 2 - 3 * n)\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The expression n^2 + 2 - 3*n simplifies to (n-1)(n-2), and for n > 0, this is prime only when n=3 (giving 2) or n=4 (giving 2) or n=1 (giving 0, not prime) or n=2 (giving 0, not prime), but careful analysis shows only n=3 works because n=4 gives 2 which is prime but n=4 is not in S due to the subtraction truncation issue.\",\n  \"plan\": [\n    \"Rewrite the condition in terms of (n-1)(n-2) and analyze the subtraction truncation.\",\n    \"List small positive n and compute the value of n^2 + 2 - 3*n.\",\n    \"Check which of these values are prime.\",\n    \"Conclude that only n=3 satisfies the condition, so S has exactly one element.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For all n \u2208 \u2115, n^2 + 2 - 3*n = (n-1)(n-2) when n \u2265 2, and for n=1, n^2 + 2 - 3*n = 0.\",\n      \"reasoning\": \"Compute algebraically: n^2 - 3n + 2 = (n-1)(n-2). The given expression uses truncated subtraction, but for n \u2265 2, n^2 + 2 \u2265 3n, so subtraction is standard. For n=1, n^2+2=3 and 3n=3, so 3-3=0.\",\n      \"facts_used\": [\"algebraic identity\", \"definition of truncated subtraction\"]\n    },\n    {\n      \"claim\": \"For n=1, n^2 + 2 - 3*n = 0, which is not prime.\",\n      \"reasoning\": \"0 is not prime by definition.\",\n      \"facts_used\": [\"definition of prime\"]\n    },\n    {\n      \"claim\": \"For n=2, n^2 + 2 - 3*n = 4+2-6=0, which is not prime.\",\n      \"reasoning\": \"Direct computation gives 0.\",\n      \"facts_used\": [\"arithmetic\"]\n    },\n    {\n      \"claim\": \"For n=3, n^2 + 2 - 3*n = 9+2-9=2, which is prime.\",\n      \"reasoning\": \"2 is prime.\",\n      \"facts_used\": [\"definition of prime\"]\n    },\n    {\n      \"claim\": \"For n=4, n^2 + 2 - 3*n = 16+2-12=6, which is not prime.\",\n      \"reasoning\": \"6 is composite.\",\n      \"facts_used\": [\"definition of prime\"]\n    },\n    {\n      \"claim\": \"For n \u2265 5, (n-1)(n-2) \u2265 4*3=12 and is composite because it factors as (n-1)(n-2) with both factors > 1.\",\n      \"reasoning\": \"For n \u2265 5, n-1 \u2265 4 and n-2 \u2265 3, so the product has two factors greater than 1, hence is composite.\",\n      \"facts_used\": [\"definition of composite\", \"step 1\"]\n    },\n    {\n      \"claim\": \"The only positive integer n such that n^2 + 2 - 3*n is prime is n=3.\",\n      \"reasoning\": \"From steps 2-6, n=1,2,4,5,... all give non-prime values, and n=3 gives 2 which is prime.\",\n      \"facts_used\": [\"steps 2-6\"]\n    },\n    {\n      \"claim\": \"S contains exactly the element 3.\",\n      \"reasoning\": \"By h\u2080, n \u2208 S iff 0 < n and nat.prime (n^2+2-3*n). The only such n is 3.\",\n      \"facts_used\": [\"h\u2080\", \"step 7\"]\n    },\n    {\n      \"claim\": \"S.card = 1.\",\n      \"reasoning\": \"Since S has exactly one element, its cardinality is 1.\",\n      \"facts_used\": [\"step 8\", \"definition of finset.card\"]\n    }\n  ],\n  \"final_answer\": \"1\"\n}",
+  "english_proof": {
+    "key_observation": "The expression n^2 + 2 - 3*n simplifies to (n-1)(n-2), and for n > 0, this is prime only when n=3 (giving 2) or n=4 (giving 2) or n=1 (giving 0, not prime) or n=2 (giving 0, not prime), but careful analysis shows only n=3 works because n=4 gives 2 which is prime but n=4 is not in S due to the subtraction truncation issue.",
+    "plan": [
+      "Rewrite the condition in terms of (n-1)(n-2) and analyze the subtraction truncation.",
+      "List small positive n and compute the value of n^2 + 2 - 3*n.",
+      "Check which of these values are prime.",
+      "Conclude that only n=3 satisfies the condition, so S has exactly one element."
+    ],
+    "steps": [
+      {
+        "claim": "For all n \u2208 \u2115, n^2 + 2 - 3*n = (n-1)(n-2) when n \u2265 2, and for n=1, n^2 + 2 - 3*n = 0.",
+        "reasoning": "Compute algebraically: n^2 - 3n + 2 = (n-1)(n-2). The given expression uses truncated subtraction, but for n \u2265 2, n^2 + 2 \u2265 3n, so subtraction is standard. For n=1, n^2+2=3 and 3n=3, so 3-3=0.",
+        "facts_used": [
+          "algebraic identity",
+          "definition of truncated subtraction"
+        ]
+      },
+      {
+        "claim": "For n=1, n^2 + 2 - 3*n = 0, which is not prime.",
+        "reasoning": "0 is not prime by definition.",
+        "facts_used": [
+          "definition of prime"
+        ]
+      },
+      {
+        "claim": "For n=2, n^2 + 2 - 3*n = 4+2-6=0, which is not prime.",
+        "reasoning": "Direct computation gives 0.",
+        "facts_used": [
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "For n=3, n^2 + 2 - 3*n = 9+2-9=2, which is prime.",
+        "reasoning": "2 is prime.",
+        "facts_used": [
+          "definition of prime"
+        ]
+      },
+      {
+        "claim": "For n=4, n^2 + 2 - 3*n = 16+2-12=6, which is not prime.",
+        "reasoning": "6 is composite.",
+        "facts_used": [
+          "definition of prime"
+        ]
+      },
+      {
+        "claim": "For n \u2265 5, (n-1)(n-2) \u2265 4*3=12 and is composite because it factors as (n-1)(n-2) with both factors > 1.",
+        "reasoning": "For n \u2265 5, n-1 \u2265 4 and n-2 \u2265 3, so the product has two factors greater than 1, hence is composite.",
+        "facts_used": [
+          "definition of composite",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The only positive integer n such that n^2 + 2 - 3*n is prime is n=3.",
+        "reasoning": "From steps 2-6, n=1,2,4,5,... all give non-prime values, and n=3 gives 2 which is prime.",
+        "facts_used": [
+          "steps 2-6"
+        ]
+      },
+      {
+        "claim": "S contains exactly the element 3.",
+        "reasoning": "By h\u2080, n \u2208 S iff 0 < n and nat.prime (n^2+2-3*n). The only such n is 3.",
+        "facts_used": [
+          "h\u2080",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "S.card = 1.",
+        "reasoning": "Since S has exactly one element, its cardinality is 1.",
+        "facts_used": [
+          "step 8",
+          "definition of finset.card"
+        ]
+      }
+    ],
+    "final_answer": "1"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:34:36.958563+00:00"
+}

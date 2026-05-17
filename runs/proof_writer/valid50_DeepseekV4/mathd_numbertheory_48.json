@@ -1,0 +1,63 @@
+{
+  "theorem_id": "mathd_numbertheory_48",
+  "statement": "Theorem: mathd_numbertheory_48\nVariables: b (integer)\nGiven: h\u2080 : 0 < b\nGiven: h\u2081 : 3 * b^2 + 2 * b + 1 = 57\nProve: b = 4",
+  "goal": "b = 4",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_48\n\nTheorem: mathd_numbertheory_48\nVariables: b (integer)\nGiven: h\u2080 : 0 < b\nGiven: h\u2081 : 3 * b^2 + 2 * b + 1 = 57\nProve: b = 4\n\nHypotheses:\n  h\u2080 : 0 < b\n  h\u2081 : 3 * b^2 + 2 * b + 1 = 57\n\nVariables: b (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The equation 3b^2 + 2b + 1 = 57 simplifies to a quadratic equation that factors nicely, and the positive integer solution is b = 4.\",\n  \"plan\": [\n    \"Simplify the given equation to standard quadratic form.\",\n    \"Solve the quadratic equation by factoring.\",\n    \"Select the positive root consistent with h\u2080.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"3b^2 + 2b + 1 = 57 implies 3b^2 + 2b - 56 = 0.\",\n      \"reasoning\": \"Subtract 57 from both sides of the equation h\u2081.\",\n      \"facts_used\": [\"h\u2081\", \"basic algebra\"]\n    },\n    {\n      \"claim\": \"3b^2 + 2b - 56 = 0 factors as (3b + 14)(b - 4) = 0.\",\n      \"reasoning\": \"Multiply (3b + 14)(b - 4) to get 3b^2 - 12b + 14b - 56 = 3b^2 + 2b - 56, confirming the factorization.\",\n      \"facts_used\": [\"step 1\", \"factoring quadratic polynomials\"]\n    },\n    {\n      \"claim\": \"The solutions to (3b + 14)(b - 4) = 0 are b = -14/3 and b = 4.\",\n      \"reasoning\": \"Set each factor equal to zero: 3b + 14 = 0 gives b = -14/3, and b - 4 = 0 gives b = 4.\",\n      \"facts_used\": [\"step 2\", \"zero product property\"]\n    },\n    {\n      \"claim\": \"Since 0 < b, the only possible solution is b = 4.\",\n      \"reasoning\": \"b = -14/3 is negative and does not satisfy h\u2080, so it is discarded. b = 4 is positive and satisfies h\u2080.\",\n      \"facts_used\": [\"step 3\", \"h\u2080\"]\n    }\n  ],\n  \"final_answer\": \"4\"\n}",
+  "english_proof": {
+    "key_observation": "The equation 3b^2 + 2b + 1 = 57 simplifies to a quadratic equation that factors nicely, and the positive integer solution is b = 4.",
+    "plan": [
+      "Simplify the given equation to standard quadratic form.",
+      "Solve the quadratic equation by factoring.",
+      "Select the positive root consistent with h\u2080."
+    ],
+    "steps": [
+      {
+        "claim": "3b^2 + 2b + 1 = 57 implies 3b^2 + 2b - 56 = 0.",
+        "reasoning": "Subtract 57 from both sides of the equation h\u2081.",
+        "facts_used": [
+          "h\u2081",
+          "basic algebra"
+        ]
+      },
+      {
+        "claim": "3b^2 + 2b - 56 = 0 factors as (3b + 14)(b - 4) = 0.",
+        "reasoning": "Multiply (3b + 14)(b - 4) to get 3b^2 - 12b + 14b - 56 = 3b^2 + 2b - 56, confirming the factorization.",
+        "facts_used": [
+          "step 1",
+          "factoring quadratic polynomials"
+        ]
+      },
+      {
+        "claim": "The solutions to (3b + 14)(b - 4) = 0 are b = -14/3 and b = 4.",
+        "reasoning": "Set each factor equal to zero: 3b + 14 = 0 gives b = -14/3, and b - 4 = 0 gives b = 4.",
+        "facts_used": [
+          "step 2",
+          "zero product property"
+        ]
+      },
+      {
+        "claim": "Since 0 < b, the only possible solution is b = 4.",
+        "reasoning": "b = -14/3 is negative and does not satisfy h\u2080, so it is discarded. b = 4 is positive and satisfies h\u2080.",
+        "facts_used": [
+          "step 3",
+          "h\u2080"
+        ]
+      }
+    ],
+    "final_answer": "4"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:29:16.337488+00:00"
+}

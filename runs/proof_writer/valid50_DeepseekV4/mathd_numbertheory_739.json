@@ -1,0 +1,71 @@
+{
+  "theorem_id": "mathd_numbertheory_739",
+  "statement": "Theorem: mathd_numbertheory_739\nProve: 9! % 10 = 0",
+  "goal": "9! % 10 = 0",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_739\n\nTheorem: mathd_numbertheory_739\nProve: 9! % 10 = 0\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"9! includes both 2 and 5 as factors, so it is divisible by 10.\",\n  \"plan\": [\n    \"Compute the prime factorization of 9!\",\n    \"Show that 9! contains factors 2 and 5\",\n    \"Conclude that 9! is divisible by 10, hence 9! % 10 = 0\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"9! = 1 \u00d7 2 \u00d7 3 \u00d7 4 \u00d7 5 \u00d7 6 \u00d7 7 \u00d7 8 \u00d7 9\",\n      \"reasoning\": \"By definition of factorial.\",\n      \"facts_used\": [\"definition of factorial\"]\n    },\n    {\n      \"claim\": \"9! contains the factor 2.\",\n      \"reasoning\": \"The product includes the number 2, so 2 divides 9!.\",\n      \"facts_used\": [\"definition of divisibility\", \"step 1\"]\n    },\n    {\n      \"claim\": \"9! contains the factor 5.\",\n      \"reasoning\": \"The product includes the number 5, so 5 divides 9!.\",\n      \"facts_used\": [\"definition of divisibility\", \"step 1\"]\n    },\n    {\n      \"claim\": \"9! is divisible by 10.\",\n      \"reasoning\": \"Since 9! is divisible by both 2 and 5, and 2 and 5 are coprime, 9! is divisible by their product 10.\",\n      \"facts_used\": [\"property of divisibility by coprime factors\", \"step 2\", \"step 3\"]\n    },\n    {\n      \"claim\": \"9! % 10 = 0.\",\n      \"reasoning\": \"If a number is divisible by 10, its remainder upon division by 10 is 0.\",\n      \"facts_used\": [\"definition of modulo\", \"step 4\"]\n    }\n  ],\n  \"final_answer\": \"0\"\n}",
+  "english_proof": {
+    "key_observation": "9! includes both 2 and 5 as factors, so it is divisible by 10.",
+    "plan": [
+      "Compute the prime factorization of 9!",
+      "Show that 9! contains factors 2 and 5",
+      "Conclude that 9! is divisible by 10, hence 9! % 10 = 0"
+    ],
+    "steps": [
+      {
+        "claim": "9! = 1 \u00d7 2 \u00d7 3 \u00d7 4 \u00d7 5 \u00d7 6 \u00d7 7 \u00d7 8 \u00d7 9",
+        "reasoning": "By definition of factorial.",
+        "facts_used": [
+          "definition of factorial"
+        ]
+      },
+      {
+        "claim": "9! contains the factor 2.",
+        "reasoning": "The product includes the number 2, so 2 divides 9!.",
+        "facts_used": [
+          "definition of divisibility",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "9! contains the factor 5.",
+        "reasoning": "The product includes the number 5, so 5 divides 9!.",
+        "facts_used": [
+          "definition of divisibility",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "9! is divisible by 10.",
+        "reasoning": "Since 9! is divisible by both 2 and 5, and 2 and 5 are coprime, 9! is divisible by their product 10.",
+        "facts_used": [
+          "property of divisibility by coprime factors",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "9! % 10 = 0.",
+        "reasoning": "If a number is divisible by 10, its remainder upon division by 10 is 0.",
+        "facts_used": [
+          "definition of modulo",
+          "step 4"
+        ]
+      }
+    ],
+    "final_answer": "0"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:26:18.306355+00:00"
+}

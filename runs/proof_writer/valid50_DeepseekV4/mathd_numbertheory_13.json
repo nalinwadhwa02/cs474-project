@@ -1,0 +1,97 @@
+{
+  "theorem_id": "mathd_numbertheory_13",
+  "statement": "Theorem: mathd_numbertheory_13\nVariables: u, v (integer)\nGiven: S : set \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46\nGiven: h\u2081 : is_least S u\nGiven: h\u2082 : is_least (S \\ {u}) v\nGiven: (u + v) : \u211a\nProve: ((u + v) : \u211a) / 2 = 64",
+  "goal": "((u + v) : \u211a) / 2 = 64",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_13\n\nTheorem: mathd_numbertheory_13\nVariables: u, v (integer)\nGiven: S : set \u2115\nGiven: h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46\nGiven: h\u2081 : is_least S u\nGiven: h\u2082 : is_least (S \\ {u}) v\nGiven: (u + v) : \u211a\nProve: ((u + v) : \u211a) / 2 = 64\n\nHypotheses:\n  S : set \u2115\n  h\u2080 : \u2200 (n : \u2115), n \u2208 S \u2194 0 < n \u2227 (14 * n) % 100 = 46\n  h\u2081 : is_least S u\n  h\u2082 : is_least (S \\ {u}) v\n  (u + v) : \u211a\n\nVariables: u (int), v (int)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The condition (14*n) % 100 = 46 means 14*n \u2261 46 (mod 100), which simplifies to 7*n \u2261 23 (mod 50) after dividing by 2, and solving this congruence yields n \u2261 39 (mod 50), so the set S consists of positive integers congruent to 39 modulo 50.\",\n  \"plan\": [\n    \"Solve the congruence 14*n \u2261 46 (mod 100) to find the general form of n in S.\",\n    \"Determine the least element u of S.\",\n    \"Determine the second least element v of S (the least element of S \\\\ {u}).\",\n    \"Compute (u+v)/2 and verify it equals 64.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"For any integer n, (14*n) % 100 = 46 if and only if 14*n \u2261 46 (mod 100).\",\n      \"reasoning\": \"This is the definition of the modulo operation: a % 100 = r means a \u2261 r (mod 100) with 0 \u2264 r < 100.\",\n      \"facts_used\": [\"definition of modular arithmetic\"]\n    },\n    {\n      \"claim\": \"The congruence 14*n \u2261 46 (mod 100) is equivalent to 7*n \u2261 23 (mod 50).\",\n      \"reasoning\": \"Divide both sides of the congruence and the modulus by their greatest common divisor gcd(14,100)=2. Since 2 divides 46, we can divide the entire congruence by 2.\",\n      \"facts_used\": [\"property of congruences: if d divides a, b, and m, then a \u2261 b (mod m) implies a/d \u2261 b/d (mod m/d)\"]\n    },\n    {\n      \"claim\": \"The congruence 7*n \u2261 23 (mod 50) has a unique solution modulo 50, and it is n \u2261 39 (mod 50).\",\n      \"reasoning\": \"Since gcd(7,50)=1, 7 has a multiplicative inverse modulo 50. The inverse of 7 modulo 50 is 43 because 7*43=301\u22611 (mod 50). Multiply both sides by 43: n \u2261 43*23 (mod 50). Compute 43*23 = 989 \u2261 39 (mod 50) because 989 = 19*50 + 39.\",\n      \"facts_used\": [\"existence of modular inverse when gcd=1\", \"modular arithmetic\"]\n    },\n    {\n      \"claim\": \"The set S = { n \u2208 \u2115 : n > 0 and n \u2261 39 (mod 50) }.\",\n      \"reasoning\": \"From h\u2080, n \u2208 S iff n > 0 and (14*n)%100=46. By steps 1-3, (14*n)%100=46 iff n \u2261 39 (mod 50). So S consists of positive integers congruent to 39 modulo 50.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"step 3\", \"definition of S from h\u2080\"]\n    },\n    {\n      \"claim\": \"The least element u of S is 39.\",\n      \"reasoning\": \"The smallest positive integer congruent to 39 modulo 50 is 39 itself (since 39 > 0 and 39 \u2261 39 mod 50). Any other element is at least 39+50=89, so 39 is the least.\",\n      \"facts_used\": [\"step 4\", \"definition of least element\"]\n    },\n    {\n      \"claim\": \"The set S \\\\ {u} = { n \u2208 \u2115 : n > 0, n \u2261 39 (mod 50), n \u2260 39 }.\",\n      \"reasoning\": \"Removing u=39 from S leaves all other positive integers congruent to 39 modulo 50.\",\n      \"facts_used\": [\"step 4\", \"step 5\"]\n    },\n    {\n      \"claim\": \"The least element v of S \\\\ {u} is 89.\",\n      \"reasoning\": \"The next smallest positive integer congruent to 39 modulo 50 after 39 is 39+50=89. Since 89 > 0 and 89 \u2261 39 (mod 50), it belongs to S \\\\ {u}, and any other element is at least 89+50=139, so 89 is the least.\",\n      \"facts_used\": [\"step 6\", \"definition of least element\"]\n    },\n    {\n      \"claim\": \"(u + v) / 2 = 64.\",\n      \"reasoning\": \"Compute u+v = 39+89 = 128. Then (u+v)/2 = 128/2 = 64. Since u and v are integers, the rational division yields 64.\",\n      \"facts_used\": [\"step 5\", \"step 7\", \"arithmetic\"]\n    }\n  ],\n  \"final_answer\": \"64\"\n}",
+  "english_proof": {
+    "key_observation": "The condition (14*n) % 100 = 46 means 14*n \u2261 46 (mod 100), which simplifies to 7*n \u2261 23 (mod 50) after dividing by 2, and solving this congruence yields n \u2261 39 (mod 50), so the set S consists of positive integers congruent to 39 modulo 50.",
+    "plan": [
+      "Solve the congruence 14*n \u2261 46 (mod 100) to find the general form of n in S.",
+      "Determine the least element u of S.",
+      "Determine the second least element v of S (the least element of S \\ {u}).",
+      "Compute (u+v)/2 and verify it equals 64."
+    ],
+    "steps": [
+      {
+        "claim": "For any integer n, (14*n) % 100 = 46 if and only if 14*n \u2261 46 (mod 100).",
+        "reasoning": "This is the definition of the modulo operation: a % 100 = r means a \u2261 r (mod 100) with 0 \u2264 r < 100.",
+        "facts_used": [
+          "definition of modular arithmetic"
+        ]
+      },
+      {
+        "claim": "The congruence 14*n \u2261 46 (mod 100) is equivalent to 7*n \u2261 23 (mod 50).",
+        "reasoning": "Divide both sides of the congruence and the modulus by their greatest common divisor gcd(14,100)=2. Since 2 divides 46, we can divide the entire congruence by 2.",
+        "facts_used": [
+          "property of congruences: if d divides a, b, and m, then a \u2261 b (mod m) implies a/d \u2261 b/d (mod m/d)"
+        ]
+      },
+      {
+        "claim": "The congruence 7*n \u2261 23 (mod 50) has a unique solution modulo 50, and it is n \u2261 39 (mod 50).",
+        "reasoning": "Since gcd(7,50)=1, 7 has a multiplicative inverse modulo 50. The inverse of 7 modulo 50 is 43 because 7*43=301\u22611 (mod 50). Multiply both sides by 43: n \u2261 43*23 (mod 50). Compute 43*23 = 989 \u2261 39 (mod 50) because 989 = 19*50 + 39.",
+        "facts_used": [
+          "existence of modular inverse when gcd=1",
+          "modular arithmetic"
+        ]
+      },
+      {
+        "claim": "The set S = { n \u2208 \u2115 : n > 0 and n \u2261 39 (mod 50) }.",
+        "reasoning": "From h\u2080, n \u2208 S iff n > 0 and (14*n)%100=46. By steps 1-3, (14*n)%100=46 iff n \u2261 39 (mod 50). So S consists of positive integers congruent to 39 modulo 50.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "step 3",
+          "definition of S from h\u2080"
+        ]
+      },
+      {
+        "claim": "The least element u of S is 39.",
+        "reasoning": "The smallest positive integer congruent to 39 modulo 50 is 39 itself (since 39 > 0 and 39 \u2261 39 mod 50). Any other element is at least 39+50=89, so 39 is the least.",
+        "facts_used": [
+          "step 4",
+          "definition of least element"
+        ]
+      },
+      {
+        "claim": "The set S \\ {u} = { n \u2208 \u2115 : n > 0, n \u2261 39 (mod 50), n \u2260 39 }.",
+        "reasoning": "Removing u=39 from S leaves all other positive integers congruent to 39 modulo 50.",
+        "facts_used": [
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "The least element v of S \\ {u} is 89.",
+        "reasoning": "The next smallest positive integer congruent to 39 modulo 50 after 39 is 39+50=89. Since 89 > 0 and 89 \u2261 39 (mod 50), it belongs to S \\ {u}, and any other element is at least 89+50=139, so 89 is the least.",
+        "facts_used": [
+          "step 6",
+          "definition of least element"
+        ]
+      },
+      {
+        "claim": "(u + v) / 2 = 64.",
+        "reasoning": "Compute u+v = 39+89 = 128. Then (u+v)/2 = 128/2 = 64. Since u and v are integers, the rational division yields 64.",
+        "facts_used": [
+          "step 5",
+          "step 7",
+          "arithmetic"
+        ]
+      }
+    ],
+    "final_answer": "64"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:43:22.034680+00:00"
+}

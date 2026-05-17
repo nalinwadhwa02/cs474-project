@@ -1,0 +1,103 @@
+{
+  "theorem_id": "imo_1961_p1",
+  "statement": "Theorem: imo_1961_p1\nVariables: x, y, z, a, b (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : x \u2260 y\nGiven: h\u2082 : y \u2260 z\nGiven: h\u2083 : z \u2260 x\nGiven: h\u2084 : x + y + z = a\nGiven: h\u2085 : x^2 + y^2 + z^2 = b^2\nGiven: h\u2086 : x * y = z^2\nProve: 0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2",
+  "goal": "0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: imo_1961_p1\n\nTheorem: imo_1961_p1\nVariables: x, y, z, a, b (real)\nGiven: h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\nGiven: h\u2081 : x \u2260 y\nGiven: h\u2082 : y \u2260 z\nGiven: h\u2083 : z \u2260 x\nGiven: h\u2084 : x + y + z = a\nGiven: h\u2085 : x^2 + y^2 + z^2 = b^2\nGiven: h\u2086 : x * y = z^2\nProve: 0 < a \u2227 b^2 < a^2 \u2227 a^2 < 3 * b^2\n\nHypotheses:\n  h\u2080 : 0 < x \u2227 0 < y \u2227 0 < z\n  h\u2081 : x \u2260 y\n  h\u2082 : y \u2260 z\n  h\u2083 : z \u2260 x\n  h\u2084 : x + y + z = a\n  h\u2085 : x^2 + y^2 + z^2 = b^2\n  h\u2086 : x * y = z^2\n\nVariables: x (real), y (real), z (real), a (real), b (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The condition xy = z\u00b2 allows us to express (x+y)\u00b2 in terms of x\u00b2+y\u00b2+z\u00b2 and then relate a\u00b2 and b\u00b2 via the identity (x+y+z)\u00b2 = x\u00b2+y\u00b2+z\u00b2+2(xy+yz+zx).\",\n  \"plan\": [\n    \"Show that a > 0 using positivity of x, y, z.\",\n    \"Express a\u00b2 in terms of b\u00b2 and 2(xy+yz+zx).\",\n    \"Use xy = z\u00b2 to simplify yz+zx and relate a\u00b2 and b\u00b2.\",\n    \"Prove b\u00b2 < a\u00b2 by showing 2(xy+yz+zx) > 0.\",\n    \"Prove a\u00b2 < 3b\u00b2 by showing 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2).\",\n    \"Combine inequalities to obtain the final result.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"a > 0\",\n      \"reasoning\": \"Since x, y, z are all positive (h\u2080), their sum a = x + y + z is positive.\",\n      \"facts_used\": [\"h\u2080\", \"h\u2084\"]\n    },\n    {\n      \"claim\": \"a\u00b2 = b\u00b2 + 2(xy + yz + zx)\",\n      \"reasoning\": \"Expand (x+y+z)\u00b2 = x\u00b2+y\u00b2+z\u00b2 + 2(xy+yz+zx). By h\u2084 and h\u2085, a\u00b2 = b\u00b2 + 2(xy+yz+zx).\",\n      \"facts_used\": [\"h\u2084\", \"h\u2085\", \"algebraic identity\"]\n    },\n    {\n      \"claim\": \"xy + yz + zx = z\u00b2 + z(x + y)\",\n      \"reasoning\": \"From h\u2086, xy = z\u00b2. Then yz + zx = z(y + x). So xy + yz + zx = z\u00b2 + z(x + y).\",\n      \"facts_used\": [\"h\u2086\", \"algebra\"]\n    },\n    {\n      \"claim\": \"xy + yz + zx > 0\",\n      \"reasoning\": \"Since x, y, z > 0 (h\u2080), each term xy, yz, zx is positive, so their sum is positive.\",\n      \"facts_used\": [\"h\u2080\"]\n    },\n    {\n      \"claim\": \"b\u00b2 < a\u00b2\",\n      \"reasoning\": \"From step 2, a\u00b2 = b\u00b2 + 2(xy+yz+zx). Since xy+yz+zx > 0 (step 4), we have a\u00b2 > b\u00b2.\",\n      \"facts_used\": [\"step 2\", \"step 4\"]\n    },\n    {\n      \"claim\": \"2(xy + yz + zx) < 2(x\u00b2 + y\u00b2 + z\u00b2)\",\n      \"reasoning\": \"Since x, y, z are positive and distinct (h\u2081, h\u2082, h\u2083), we have (x-y)\u00b2 > 0, (y-z)\u00b2 > 0, (z-x)\u00b2 > 0. Summing these gives 2(x\u00b2+y\u00b2+z\u00b2) - 2(xy+yz+zx) > 0, so 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2).\",\n      \"facts_used\": [\"h\u2080\", \"h\u2081\", \"h\u2082\", \"h\u2083\", \"algebraic inequality\"]\n    },\n    {\n      \"claim\": \"a\u00b2 < 3b\u00b2\",\n      \"reasoning\": \"From step 2, a\u00b2 = b\u00b2 + 2(xy+yz+zx). From step 6, 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2) = 2b\u00b2. Hence a\u00b2 < b\u00b2 + 2b\u00b2 = 3b\u00b2.\",\n      \"facts_used\": [\"step 2\", \"step 6\", \"h\u2085\"]\n    },\n    {\n      \"claim\": \"0 < a \u2227 b\u00b2 < a\u00b2 \u2227 a\u00b2 < 3b\u00b2\",\n      \"reasoning\": \"Combine step 1, step 5, and step 7.\",\n      \"facts_used\": [\"step 1\", \"step 5\", \"step 7\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The condition xy = z\u00b2 allows us to express (x+y)\u00b2 in terms of x\u00b2+y\u00b2+z\u00b2 and then relate a\u00b2 and b\u00b2 via the identity (x+y+z)\u00b2 = x\u00b2+y\u00b2+z\u00b2+2(xy+yz+zx).",
+    "plan": [
+      "Show that a > 0 using positivity of x, y, z.",
+      "Express a\u00b2 in terms of b\u00b2 and 2(xy+yz+zx).",
+      "Use xy = z\u00b2 to simplify yz+zx and relate a\u00b2 and b\u00b2.",
+      "Prove b\u00b2 < a\u00b2 by showing 2(xy+yz+zx) > 0.",
+      "Prove a\u00b2 < 3b\u00b2 by showing 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2).",
+      "Combine inequalities to obtain the final result."
+    ],
+    "steps": [
+      {
+        "claim": "a > 0",
+        "reasoning": "Since x, y, z are all positive (h\u2080), their sum a = x + y + z is positive.",
+        "facts_used": [
+          "h\u2080",
+          "h\u2084"
+        ]
+      },
+      {
+        "claim": "a\u00b2 = b\u00b2 + 2(xy + yz + zx)",
+        "reasoning": "Expand (x+y+z)\u00b2 = x\u00b2+y\u00b2+z\u00b2 + 2(xy+yz+zx). By h\u2084 and h\u2085, a\u00b2 = b\u00b2 + 2(xy+yz+zx).",
+        "facts_used": [
+          "h\u2084",
+          "h\u2085",
+          "algebraic identity"
+        ]
+      },
+      {
+        "claim": "xy + yz + zx = z\u00b2 + z(x + y)",
+        "reasoning": "From h\u2086, xy = z\u00b2. Then yz + zx = z(y + x). So xy + yz + zx = z\u00b2 + z(x + y).",
+        "facts_used": [
+          "h\u2086",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "xy + yz + zx > 0",
+        "reasoning": "Since x, y, z > 0 (h\u2080), each term xy, yz, zx is positive, so their sum is positive.",
+        "facts_used": [
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "b\u00b2 < a\u00b2",
+        "reasoning": "From step 2, a\u00b2 = b\u00b2 + 2(xy+yz+zx). Since xy+yz+zx > 0 (step 4), we have a\u00b2 > b\u00b2.",
+        "facts_used": [
+          "step 2",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "2(xy + yz + zx) < 2(x\u00b2 + y\u00b2 + z\u00b2)",
+        "reasoning": "Since x, y, z are positive and distinct (h\u2081, h\u2082, h\u2083), we have (x-y)\u00b2 > 0, (y-z)\u00b2 > 0, (z-x)\u00b2 > 0. Summing these gives 2(x\u00b2+y\u00b2+z\u00b2) - 2(xy+yz+zx) > 0, so 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2).",
+        "facts_used": [
+          "h\u2080",
+          "h\u2081",
+          "h\u2082",
+          "h\u2083",
+          "algebraic inequality"
+        ]
+      },
+      {
+        "claim": "a\u00b2 < 3b\u00b2",
+        "reasoning": "From step 2, a\u00b2 = b\u00b2 + 2(xy+yz+zx). From step 6, 2(xy+yz+zx) < 2(x\u00b2+y\u00b2+z\u00b2) = 2b\u00b2. Hence a\u00b2 < b\u00b2 + 2b\u00b2 = 3b\u00b2.",
+        "facts_used": [
+          "step 2",
+          "step 6",
+          "h\u2085"
+        ]
+      },
+      {
+        "claim": "0 < a \u2227 b\u00b2 < a\u00b2 \u2227 a\u00b2 < 3b\u00b2",
+        "reasoning": "Combine step 1, step 5, and step 7.",
+        "facts_used": [
+          "step 1",
+          "step 5",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:27:14.526218+00:00"
+}

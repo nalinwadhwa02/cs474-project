@@ -1,0 +1,90 @@
+{
+  "theorem_id": "mathd_algebra_73",
+  "statement": "Theorem: mathd_algebra_73\nVariables: p, q, r, x (real)\nGiven: h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\nGiven: h\u2081 : x \u2260 r\nProve: x = p + q - r",
+  "goal": "x = p + q - r",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_73\n\nTheorem: mathd_algebra_73\nVariables: p, q, r, x (real)\nGiven: h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\nGiven: h\u2081 : x \u2260 r\nProve: x = p + q - r\n\nHypotheses:\n  h\u2080 : (x - p) * (x - q) = (r - p) * (r - q)\n  h\u2081 : x \u2260 r\n\nVariables: p (real), q (real), r (real), x (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The equation (x-p)(x-q) = (r-p)(r-q) can be rearranged into a quadratic in x that factors to (x-r)(x-(p+q-r)) = 0, and since x \u2260 r, we must have x = p+q-r.\",\n  \"plan\": [\n    \"Expand both sides of the given equation.\",\n    \"Bring all terms to one side to form a quadratic equation in x.\",\n    \"Factor the quadratic expression.\",\n    \"Use the condition x \u2260 r to deduce the other factor equals zero.\",\n    \"Solve for x to obtain the desired result.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"(x - p)(x - q) = (r - p)(r - q) implies x^2 - (p+q)x + pq = r^2 - (p+q)r + pq.\",\n      \"reasoning\": \"Expand both products: (x-p)(x-q) = x^2 - (p+q)x + pq and (r-p)(r-q) = r^2 - (p+q)r + pq.\",\n      \"facts_used\": [\"distributive law\"]\n    },\n    {\n      \"claim\": \"x^2 - (p+q)x + pq - (r^2 - (p+q)r + pq) = 0.\",\n      \"reasoning\": \"Subtract the right-hand side from the left-hand side using the equality from step 1.\",\n      \"facts_used\": [\"step 1\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"x^2 - (p+q)x - r^2 + (p+q)r = 0.\",\n      \"reasoning\": \"Simplify the expression from step 2: the pq terms cancel, leaving x^2 - (p+q)x - r^2 + (p+q)r = 0.\",\n      \"facts_used\": [\"step 2\", \"cancellation\"]\n    },\n    {\n      \"claim\": \"x^2 - r^2 - (p+q)(x - r) = 0.\",\n      \"reasoning\": \"Group terms: x^2 - r^2 = (x-r)(x+r) and -(p+q)x + (p+q)r = -(p+q)(x-r). So the equation becomes (x-r)(x+r) - (p+q)(x-r) = 0.\",\n      \"facts_used\": [\"step 3\", \"difference of squares\", \"factoring by grouping\"]\n    },\n    {\n      \"claim\": \"(x - r)(x + r - (p+q)) = 0.\",\n      \"reasoning\": \"Factor out the common factor (x-r) from the expression in step 4: (x-r)(x+r) - (p+q)(x-r) = (x-r)[(x+r) - (p+q)] = (x-r)(x + r - p - q).\",\n      \"facts_used\": [\"step 4\", \"distributive law\"]\n    },\n    {\n      \"claim\": \"x + r - p - q = 0.\",\n      \"reasoning\": \"From step 5, (x-r)(x+r-p-q) = 0. Since h\u2081 states x \u2260 r, the factor (x-r) is nonzero, so the other factor must be zero.\",\n      \"facts_used\": [\"step 5\", \"h\u2081\", \"zero product property\"]\n    },\n    {\n      \"claim\": \"x = p + q - r.\",\n      \"reasoning\": \"Rearrange the equation from step 6: x + r - p - q = 0 implies x = p + q - r.\",\n      \"facts_used\": [\"step 6\", \"algebraic manipulation\"]\n    }\n  ],\n  \"final_answer\": \"x = p + q - r\"\n}",
+  "english_proof": {
+    "key_observation": "The equation (x-p)(x-q) = (r-p)(r-q) can be rearranged into a quadratic in x that factors to (x-r)(x-(p+q-r)) = 0, and since x \u2260 r, we must have x = p+q-r.",
+    "plan": [
+      "Expand both sides of the given equation.",
+      "Bring all terms to one side to form a quadratic equation in x.",
+      "Factor the quadratic expression.",
+      "Use the condition x \u2260 r to deduce the other factor equals zero.",
+      "Solve for x to obtain the desired result."
+    ],
+    "steps": [
+      {
+        "claim": "(x - p)(x - q) = (r - p)(r - q) implies x^2 - (p+q)x + pq = r^2 - (p+q)r + pq.",
+        "reasoning": "Expand both products: (x-p)(x-q) = x^2 - (p+q)x + pq and (r-p)(r-q) = r^2 - (p+q)r + pq.",
+        "facts_used": [
+          "distributive law"
+        ]
+      },
+      {
+        "claim": "x^2 - (p+q)x + pq - (r^2 - (p+q)r + pq) = 0.",
+        "reasoning": "Subtract the right-hand side from the left-hand side using the equality from step 1.",
+        "facts_used": [
+          "step 1",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "x^2 - (p+q)x - r^2 + (p+q)r = 0.",
+        "reasoning": "Simplify the expression from step 2: the pq terms cancel, leaving x^2 - (p+q)x - r^2 + (p+q)r = 0.",
+        "facts_used": [
+          "step 2",
+          "cancellation"
+        ]
+      },
+      {
+        "claim": "x^2 - r^2 - (p+q)(x - r) = 0.",
+        "reasoning": "Group terms: x^2 - r^2 = (x-r)(x+r) and -(p+q)x + (p+q)r = -(p+q)(x-r). So the equation becomes (x-r)(x+r) - (p+q)(x-r) = 0.",
+        "facts_used": [
+          "step 3",
+          "difference of squares",
+          "factoring by grouping"
+        ]
+      },
+      {
+        "claim": "(x - r)(x + r - (p+q)) = 0.",
+        "reasoning": "Factor out the common factor (x-r) from the expression in step 4: (x-r)(x+r) - (p+q)(x-r) = (x-r)[(x+r) - (p+q)] = (x-r)(x + r - p - q).",
+        "facts_used": [
+          "step 4",
+          "distributive law"
+        ]
+      },
+      {
+        "claim": "x + r - p - q = 0.",
+        "reasoning": "From step 5, (x-r)(x+r-p-q) = 0. Since h\u2081 states x \u2260 r, the factor (x-r) is nonzero, so the other factor must be zero.",
+        "facts_used": [
+          "step 5",
+          "h\u2081",
+          "zero product property"
+        ]
+      },
+      {
+        "claim": "x = p + q - r.",
+        "reasoning": "Rearrange the equation from step 6: x + r - p - q = 0 implies x = p + q - r.",
+        "facts_used": [
+          "step 6",
+          "algebraic manipulation"
+        ]
+      }
+    ],
+    "final_answer": "x = p + q - r"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:28:15.521175+00:00"
+}

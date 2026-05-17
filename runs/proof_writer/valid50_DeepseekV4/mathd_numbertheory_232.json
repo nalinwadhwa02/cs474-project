@@ -1,0 +1,67 @@
+{
+  "theorem_id": "mathd_numbertheory_232",
+  "statement": "Theorem: mathd_numbertheory_232\nGiven: x y z : zmod 31\nGiven: h\u2080 : x = 3\u207b\u00b9\nGiven: h\u2081 : y = 5\u207b\u00b9\nGiven: h\u2082 : z = (x + y)\u207b\u00b9\nProve: z = 29",
+  "goal": "z = 29",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_232\n\nTheorem: mathd_numbertheory_232\nGiven: x y z : zmod 31\nGiven: h\u2080 : x = 3\u207b\u00b9\nGiven: h\u2081 : y = 5\u207b\u00b9\nGiven: h\u2082 : z = (x + y)\u207b\u00b9\nProve: z = 29\n\nHypotheses:\n  x y z : zmod 31\n  h\u2080 : x = 3\u207b\u00b9\n  h\u2081 : y = 5\u207b\u00b9\n  h\u2082 : z = (x + y)\u207b\u00b9\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"In \u2124/31\u2124, the inverses of 3 and 5 are 21 and 25 respectively, and their sum is 15, whose inverse is 29.\",\n  \"plan\": [\n    \"Compute the inverse of 3 modulo 31.\",\n    \"Compute the inverse of 5 modulo 31.\",\n    \"Compute the sum x + y.\",\n    \"Compute the inverse of that sum to obtain z.\",\n    \"Verify that the result equals 29.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x = 21 in \u2124/31\u2124\",\n      \"reasoning\": \"Since 3 * 21 = 63 \u2261 1 (mod 31), the inverse of 3 modulo 31 is 21. By h\u2080, x = 3\u207b\u00b9, so x = 21.\",\n      \"facts_used\": [\"definition of modular inverse\", \"h\u2080\"]\n    },\n    {\n      \"claim\": \"y = 25 in \u2124/31\u2124\",\n      \"reasoning\": \"Since 5 * 25 = 125 \u2261 1 (mod 31) because 125 = 4*31 + 1, the inverse of 5 modulo 31 is 25. By h\u2081, y = 5\u207b\u00b9, so y = 25.\",\n      \"facts_used\": [\"definition of modular inverse\", \"h\u2081\"]\n    },\n    {\n      \"claim\": \"x + y = 15 in \u2124/31\u2124\",\n      \"reasoning\": \"From steps 1 and 2, x = 21 and y = 25. Their sum is 21 + 25 = 46 \u2261 15 (mod 31) because 46 - 31 = 15.\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"modular arithmetic\"]\n    },\n    {\n      \"claim\": \"z = 29 in \u2124/31\u2124\",\n      \"reasoning\": \"By h\u2082, z = (x + y)\u207b\u00b9. From step 3, x + y = 15. The inverse of 15 modulo 31 is 29 because 15 * 29 = 435 \u2261 1 (mod 31) since 435 = 14*31 + 1. Therefore z = 29.\",\n      \"facts_used\": [\"step 3\", \"h\u2082\", \"definition of modular inverse\"]\n    }\n  ],\n  \"final_answer\": \"29\"\n}",
+  "english_proof": {
+    "key_observation": "In \u2124/31\u2124, the inverses of 3 and 5 are 21 and 25 respectively, and their sum is 15, whose inverse is 29.",
+    "plan": [
+      "Compute the inverse of 3 modulo 31.",
+      "Compute the inverse of 5 modulo 31.",
+      "Compute the sum x + y.",
+      "Compute the inverse of that sum to obtain z.",
+      "Verify that the result equals 29."
+    ],
+    "steps": [
+      {
+        "claim": "x = 21 in \u2124/31\u2124",
+        "reasoning": "Since 3 * 21 = 63 \u2261 1 (mod 31), the inverse of 3 modulo 31 is 21. By h\u2080, x = 3\u207b\u00b9, so x = 21.",
+        "facts_used": [
+          "definition of modular inverse",
+          "h\u2080"
+        ]
+      },
+      {
+        "claim": "y = 25 in \u2124/31\u2124",
+        "reasoning": "Since 5 * 25 = 125 \u2261 1 (mod 31) because 125 = 4*31 + 1, the inverse of 5 modulo 31 is 25. By h\u2081, y = 5\u207b\u00b9, so y = 25.",
+        "facts_used": [
+          "definition of modular inverse",
+          "h\u2081"
+        ]
+      },
+      {
+        "claim": "x + y = 15 in \u2124/31\u2124",
+        "reasoning": "From steps 1 and 2, x = 21 and y = 25. Their sum is 21 + 25 = 46 \u2261 15 (mod 31) because 46 - 31 = 15.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "modular arithmetic"
+        ]
+      },
+      {
+        "claim": "z = 29 in \u2124/31\u2124",
+        "reasoning": "By h\u2082, z = (x + y)\u207b\u00b9. From step 3, x + y = 15. The inverse of 15 modulo 31 is 29 because 15 * 29 = 435 \u2261 1 (mod 31) since 435 = 14*31 + 1. Therefore z = 29.",
+        "facts_used": [
+          "step 3",
+          "h\u2082",
+          "definition of modular inverse"
+        ]
+      }
+    ],
+    "final_answer": "29"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:18:04.907532+00:00"
+}

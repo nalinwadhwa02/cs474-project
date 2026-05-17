@@ -1,0 +1,87 @@
+{
+  "theorem_id": "algebra_apb4leq8ta4pb4",
+  "statement": "Theorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h\u2080 : 0 < a \u2227 0 < b\nProve: (a + b)^4 \u2264 8 * (a^4 + b^4)",
+  "goal": "(a + b)^4 \u2264 8 * (a^4 + b^4)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: algebra_apb4leq8ta4pb4\n\nTheorem: algebra_apb4leq8ta4pb4\nVariables: a, b (real)\nGiven: h\u2080 : 0 < a \u2227 0 < b\nProve: (a + b)^4 \u2264 8 * (a^4 + b^4)\n\nHypotheses:\n  h\u2080 : 0 < a \u2227 0 < b\n\nVariables: a (real), b (real)\n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The inequality can be proved by applying the power mean inequality or by expanding both sides and using the fact that (a-b)^4 \u2265 0.\",\n  \"plan\": [\n    \"Expand both sides of the inequality.\",\n    \"Bring all terms to one side and simplify.\",\n    \"Factor the resulting expression as a sum of nonnegative terms.\",\n    \"Conclude the inequality holds.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"(a + b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4\",\n      \"reasoning\": \"Expand (a+b)^4 using the binomial theorem.\",\n      \"facts_used\": [\"binomial theorem\"]\n    },\n    {\n      \"claim\": \"8(a^4 + b^4) = 8a^4 + 8b^4\",\n      \"reasoning\": \"Distribute 8 over the sum.\",\n      \"facts_used\": [\"distributive property\"]\n    },\n    {\n      \"claim\": \"8(a^4 + b^4) - (a + b)^4 = 7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4\",\n      \"reasoning\": \"Subtract the expansion of (a+b)^4 from 8(a^4+b^4).\",\n      \"facts_used\": [\"step 1\", \"step 2\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4 = (a-b)^4 + 6(a^2 - b^2)^2\",\n      \"reasoning\": \"Expand (a-b)^4 = a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4 and 6(a^2 - b^2)^2 = 6a^4 - 12a^2b^2 + 6b^4. Adding them gives 7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4.\",\n      \"facts_used\": [\"binomial theorem\", \"algebraic manipulation\"]\n    },\n    {\n      \"claim\": \"(a-b)^4 + 6(a^2 - b^2)^2 \u2265 0 for all real a, b\",\n      \"reasoning\": \"Both (a-b)^4 and (a^2 - b^2)^2 are squares, hence nonnegative. Their sum is nonnegative.\",\n      \"facts_used\": [\"nonnegativity of squares\"]\n    },\n    {\n      \"claim\": \"8(a^4 + b^4) - (a + b)^4 \u2265 0\",\n      \"reasoning\": \"From steps 3, 4, and 5, the difference equals a sum of nonnegative terms.\",\n      \"facts_used\": [\"step 3\", \"step 4\", \"step 5\"]\n    },\n    {\n      \"claim\": \"(a + b)^4 \u2264 8(a^4 + b^4)\",\n      \"reasoning\": \"Rearrange the inequality from step 6.\",\n      \"facts_used\": [\"step 6\", \"algebraic manipulation\"]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The inequality can be proved by applying the power mean inequality or by expanding both sides and using the fact that (a-b)^4 \u2265 0.",
+    "plan": [
+      "Expand both sides of the inequality.",
+      "Bring all terms to one side and simplify.",
+      "Factor the resulting expression as a sum of nonnegative terms.",
+      "Conclude the inequality holds."
+    ],
+    "steps": [
+      {
+        "claim": "(a + b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4",
+        "reasoning": "Expand (a+b)^4 using the binomial theorem.",
+        "facts_used": [
+          "binomial theorem"
+        ]
+      },
+      {
+        "claim": "8(a^4 + b^4) = 8a^4 + 8b^4",
+        "reasoning": "Distribute 8 over the sum.",
+        "facts_used": [
+          "distributive property"
+        ]
+      },
+      {
+        "claim": "8(a^4 + b^4) - (a + b)^4 = 7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4",
+        "reasoning": "Subtract the expansion of (a+b)^4 from 8(a^4+b^4).",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4 = (a-b)^4 + 6(a^2 - b^2)^2",
+        "reasoning": "Expand (a-b)^4 = a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4 and 6(a^2 - b^2)^2 = 6a^4 - 12a^2b^2 + 6b^4. Adding them gives 7a^4 - 4a^3b - 6a^2b^2 - 4ab^3 + 7b^4.",
+        "facts_used": [
+          "binomial theorem",
+          "algebraic manipulation"
+        ]
+      },
+      {
+        "claim": "(a-b)^4 + 6(a^2 - b^2)^2 \u2265 0 for all real a, b",
+        "reasoning": "Both (a-b)^4 and (a^2 - b^2)^2 are squares, hence nonnegative. Their sum is nonnegative.",
+        "facts_used": [
+          "nonnegativity of squares"
+        ]
+      },
+      {
+        "claim": "8(a^4 + b^4) - (a + b)^4 \u2265 0",
+        "reasoning": "From steps 3, 4, and 5, the difference equals a sum of nonnegative terms.",
+        "facts_used": [
+          "step 3",
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "(a + b)^4 \u2264 8(a^4 + b^4)",
+        "reasoning": "Rearrange the inequality from step 6.",
+        "facts_used": [
+          "step 6",
+          "algebraic manipulation"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:46:50.622916+00:00"
+}

@@ -1,6 +1,0 @@
-00:16:44  INFO      Run dir : /Users/dush/cs474-project/runs/20260515_051644_aeac8a_deepseek-v4-flash_valid50
-00:16:44  INFO      Model   : deepseek-ai/deepseek-v4-flash
-00:16:44  INFO      Server  : None
-00:16:44  INFO      Loaded 50 problems from miniF2F (valid50)
-00:16:44  INFO      Running 50 problems — logs in /Users/dush/cs474-project/runs/20260515_051644_aeac8a_deepseek-v4-flash_valid50
-00:16:44  DEBUG     mathd_numbertheory_232  calling model ...

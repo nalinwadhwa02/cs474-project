@@ -1,0 +1,177 @@
+{
+  "theorem_id": "mathd_numbertheory_45",
+  "statement": "Theorem: mathd_numbertheory_45\nProve: (nat.gcd 6432 132) + 11 = 23",
+  "goal": "(nat.gcd 6432 132) + 11 = 23",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_numbertheory_45\n\nTheorem: mathd_numbertheory_45\nProve: (nat.gcd 6432 132) + 11 = 23\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The Euclidean algorithm efficiently computes the gcd of 6432 and 132, yielding 12, and then adding 11 gives 23.\",\n  \"plan\": [\n    \"Apply the Euclidean algorithm to compute gcd(6432, 132).\",\n    \"Perform the division steps to find the gcd.\",\n    \"Add 11 to the gcd and verify the result equals 23.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"gcd(6432, 132) = gcd(132, 6432 mod 132).\",\n      \"reasoning\": \"By the Euclidean algorithm, gcd(a, b) = gcd(b, a mod b) for positive integers a and b.\",\n      \"facts_used\": [\"Euclidean algorithm\"]\n    },\n    {\n      \"claim\": \"6432 mod 132 = 96.\",\n      \"reasoning\": \"132 * 48 = 6336, and 6432 - 6336 = 96.\",\n      \"facts_used\": [\"integer division\", \"step 1\"]\n    },\n    {\n      \"claim\": \"gcd(6432, 132) = gcd(132, 96).\",\n      \"reasoning\": \"Substitute the result from step 2 into step 1.\",\n      \"facts_used\": [\"step 1\", \"step 2\"]\n    },\n    {\n      \"claim\": \"gcd(132, 96) = gcd(96, 132 mod 96).\",\n      \"reasoning\": \"Apply the Euclidean algorithm again.\",\n      \"facts_used\": [\"Euclidean algorithm\", \"step 3\"]\n    },\n    {\n      \"claim\": \"132 mod 96 = 36.\",\n      \"reasoning\": \"96 * 1 = 96, and 132 - 96 = 36.\",\n      \"facts_used\": [\"integer division\", \"step 4\"]\n    },\n    {\n      \"claim\": \"gcd(132, 96) = gcd(96, 36).\",\n      \"reasoning\": \"Substitute the result from step 5 into step 4.\",\n      \"facts_used\": [\"step 4\", \"step 5\"]\n    },\n    {\n      \"claim\": \"gcd(96, 36) = gcd(36, 96 mod 36).\",\n      \"reasoning\": \"Apply the Euclidean algorithm again.\",\n      \"facts_used\": [\"Euclidean algorithm\", \"step 6\"]\n    },\n    {\n      \"claim\": \"96 mod 36 = 24.\",\n      \"reasoning\": \"36 * 2 = 72, and 96 - 72 = 24.\",\n      \"facts_used\": [\"integer division\", \"step 7\"]\n    },\n    {\n      \"claim\": \"gcd(96, 36) = gcd(36, 24).\",\n      \"reasoning\": \"Substitute the result from step 8 into step 7.\",\n      \"facts_used\": [\"step 7\", \"step 8\"]\n    },\n    {\n      \"claim\": \"gcd(36, 24) = gcd(24, 36 mod 24).\",\n      \"reasoning\": \"Apply the Euclidean algorithm again.\",\n      \"facts_used\": [\"Euclidean algorithm\", \"step 9\"]\n    },\n    {\n      \"claim\": \"36 mod 24 = 12.\",\n      \"reasoning\": \"24 * 1 = 24, and 36 - 24 = 12.\",\n      \"facts_used\": [\"integer division\", \"step 10\"]\n    },\n    {\n      \"claim\": \"gcd(36, 24) = gcd(24, 12).\",\n      \"reasoning\": \"Substitute the result from step 11 into step 10.\",\n      \"facts_used\": [\"step 10\", \"step 11\"]\n    },\n    {\n      \"claim\": \"gcd(24, 12) = gcd(12, 24 mod 12).\",\n      \"reasoning\": \"Apply the Euclidean algorithm again.\",\n      \"facts_used\": [\"Euclidean algorithm\", \"step 12\"]\n    },\n    {\n      \"claim\": \"24 mod 12 = 0.\",\n      \"reasoning\": \"12 * 2 = 24, so the remainder is 0.\",\n      \"facts_used\": [\"integer division\", \"step 13\"]\n    },\n    {\n      \"claim\": \"gcd(24, 12) = gcd(12, 0) = 12.\",\n      \"reasoning\": \"Substitute the result from step 14 into step 13, and note that gcd(n, 0) = n.\",\n      \"facts_used\": [\"step 13\", \"step 14\", \"definition of gcd\"]\n    },\n    {\n      \"claim\": \"gcd(6432, 132) = 12.\",\n      \"reasoning\": \"Tracing back through the chain of equalities from steps 3, 6, 9, 12, and 15.\",\n      \"facts_used\": [\"step 3\", \"step 6\", \"step 9\", \"step 12\", \"step 15\"]\n    },\n    {\n      \"claim\": \"12 + 11 = 23.\",\n      \"reasoning\": \"Simple arithmetic.\",\n      \"facts_used\": [\"arithmetic\"]\n    },\n    {\n      \"claim\": \"gcd(6432, 132) + 11 = 23.\",\n      \"reasoning\": \"Substitute the value from step 16 into the expression and use step 17.\",\n      \"facts_used\": [\"step 16\", \"step 17\"]\n    }\n  ],\n  \"final_answer\": \"23\"\n}",
+  "english_proof": {
+    "key_observation": "The Euclidean algorithm efficiently computes the gcd of 6432 and 132, yielding 12, and then adding 11 gives 23.",
+    "plan": [
+      "Apply the Euclidean algorithm to compute gcd(6432, 132).",
+      "Perform the division steps to find the gcd.",
+      "Add 11 to the gcd and verify the result equals 23."
+    ],
+    "steps": [
+      {
+        "claim": "gcd(6432, 132) = gcd(132, 6432 mod 132).",
+        "reasoning": "By the Euclidean algorithm, gcd(a, b) = gcd(b, a mod b) for positive integers a and b.",
+        "facts_used": [
+          "Euclidean algorithm"
+        ]
+      },
+      {
+        "claim": "6432 mod 132 = 96.",
+        "reasoning": "132 * 48 = 6336, and 6432 - 6336 = 96.",
+        "facts_used": [
+          "integer division",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "gcd(6432, 132) = gcd(132, 96).",
+        "reasoning": "Substitute the result from step 2 into step 1.",
+        "facts_used": [
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "gcd(132, 96) = gcd(96, 132 mod 96).",
+        "reasoning": "Apply the Euclidean algorithm again.",
+        "facts_used": [
+          "Euclidean algorithm",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "132 mod 96 = 36.",
+        "reasoning": "96 * 1 = 96, and 132 - 96 = 36.",
+        "facts_used": [
+          "integer division",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "gcd(132, 96) = gcd(96, 36).",
+        "reasoning": "Substitute the result from step 5 into step 4.",
+        "facts_used": [
+          "step 4",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "gcd(96, 36) = gcd(36, 96 mod 36).",
+        "reasoning": "Apply the Euclidean algorithm again.",
+        "facts_used": [
+          "Euclidean algorithm",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "96 mod 36 = 24.",
+        "reasoning": "36 * 2 = 72, and 96 - 72 = 24.",
+        "facts_used": [
+          "integer division",
+          "step 7"
+        ]
+      },
+      {
+        "claim": "gcd(96, 36) = gcd(36, 24).",
+        "reasoning": "Substitute the result from step 8 into step 7.",
+        "facts_used": [
+          "step 7",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "gcd(36, 24) = gcd(24, 36 mod 24).",
+        "reasoning": "Apply the Euclidean algorithm again.",
+        "facts_used": [
+          "Euclidean algorithm",
+          "step 9"
+        ]
+      },
+      {
+        "claim": "36 mod 24 = 12.",
+        "reasoning": "24 * 1 = 24, and 36 - 24 = 12.",
+        "facts_used": [
+          "integer division",
+          "step 10"
+        ]
+      },
+      {
+        "claim": "gcd(36, 24) = gcd(24, 12).",
+        "reasoning": "Substitute the result from step 11 into step 10.",
+        "facts_used": [
+          "step 10",
+          "step 11"
+        ]
+      },
+      {
+        "claim": "gcd(24, 12) = gcd(12, 24 mod 12).",
+        "reasoning": "Apply the Euclidean algorithm again.",
+        "facts_used": [
+          "Euclidean algorithm",
+          "step 12"
+        ]
+      },
+      {
+        "claim": "24 mod 12 = 0.",
+        "reasoning": "12 * 2 = 24, so the remainder is 0.",
+        "facts_used": [
+          "integer division",
+          "step 13"
+        ]
+      },
+      {
+        "claim": "gcd(24, 12) = gcd(12, 0) = 12.",
+        "reasoning": "Substitute the result from step 14 into step 13, and note that gcd(n, 0) = n.",
+        "facts_used": [
+          "step 13",
+          "step 14",
+          "definition of gcd"
+        ]
+      },
+      {
+        "claim": "gcd(6432, 132) = 12.",
+        "reasoning": "Tracing back through the chain of equalities from steps 3, 6, 9, 12, and 15.",
+        "facts_used": [
+          "step 3",
+          "step 6",
+          "step 9",
+          "step 12",
+          "step 15"
+        ]
+      },
+      {
+        "claim": "12 + 11 = 23.",
+        "reasoning": "Simple arithmetic.",
+        "facts_used": [
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "gcd(6432, 132) + 11 = 23.",
+        "reasoning": "Substitute the value from step 16 into the expression and use step 17.",
+        "facts_used": [
+          "step 16",
+          "step 17"
+        ]
+      }
+    ],
+    "final_answer": "23"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T22:46:07.697631+00:00"
+}

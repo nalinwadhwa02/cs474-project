@@ -1,0 +1,99 @@
+{
+  "theorem_id": "amc12a_2016_p3",
+  "statement": "Theorem: amc12a_2016_p3\nGiven: f : \u211d \u2192 \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)\nProve: f (3 / 8) (-(2 / 5)) = -(1 / 40)",
+  "goal": "f (3 / 8) (-(2 / 5)) = -(1 / 40)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: amc12a_2016_p3\n\nTheorem: amc12a_2016_p3\nGiven: f : \u211d \u2192 \u211d \u2192 \u211d\nGiven: h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)\nProve: f (3 / 8) (-(2 / 5)) = -(1 / 40)\n\nHypotheses:\n  f : \u211d \u2192 \u211d \u2192 \u211d\n  h\u2080 : \u2200 x, \u2200 y \u2260 0, f x y = x - y * int.floor (x / y)\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The function f is the remainder when x is divided by y, and since y is negative, the floor division must be handled carefully to compute the correct remainder.\",\n  \"plan\": [\n    \"Compute x / y with the given values.\",\n    \"Determine int.floor(x / y) for the negative divisor.\",\n    \"Substitute into the definition of f.\",\n    \"Simplify the expression to obtain the final result.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"x = 3/8 and y = -2/5, and y \u2260 0.\",\n      \"reasoning\": \"These are the given values in the problem statement; -2/5 is nonzero.\",\n      \"facts_used\": [\"Given values\"]\n    },\n    {\n      \"claim\": \"x / y = (3/8) / (-2/5) = (3/8) * (-5/2) = -15/16.\",\n      \"reasoning\": \"Dividing by a fraction is multiplication by its reciprocal; the negative sign is carried through.\",\n      \"facts_used\": [\"Arithmetic of fractions\"]\n    },\n    {\n      \"claim\": \"int.floor(-15/16) = -1.\",\n      \"reasoning\": \"Since -15/16 is between -1 and 0, the greatest integer less than or equal to it is -1.\",\n      \"facts_used\": [\"Definition of floor function\"]\n    },\n    {\n      \"claim\": \"f (3/8) (-(2/5)) = (3/8) - (-(2/5)) * int.floor((3/8) / (-(2/5))).\",\n      \"reasoning\": \"Substitute x = 3/8 and y = -(2/5) into the definition h\u2080, noting that y \u2260 0.\",\n      \"facts_used\": [\"h\u2080\", \"step 1\"]\n    },\n    {\n      \"claim\": \"f (3/8) (-(2/5)) = (3/8) - (-(2/5)) * (-1).\",\n      \"reasoning\": \"Replace int.floor((3/8) / (-(2/5))) with -1 from step 3.\",\n      \"facts_used\": [\"step 3\", \"step 4\"]\n    },\n    {\n      \"claim\": \"(-(2/5)) * (-1) = 2/5.\",\n      \"reasoning\": \"The product of two negatives is positive.\",\n      \"facts_used\": [\"Multiplication of signed numbers\"]\n    },\n    {\n      \"claim\": \"f (3/8) (-(2/5)) = (3/8) - (2/5).\",\n      \"reasoning\": \"Substitute the result from step 6 into step 5.\",\n      \"facts_used\": [\"step 5\", \"step 6\"]\n    },\n    {\n      \"claim\": \"(3/8) - (2/5) = (15/40) - (16/40) = -1/40.\",\n      \"reasoning\": \"Convert to common denominator 40 and subtract.\",\n      \"facts_used\": [\"Arithmetic of fractions\"]\n    },\n    {\n      \"claim\": \"f (3/8) (-(2/5)) = -(1/40).\",\n      \"reasoning\": \"This follows directly from steps 7 and 8.\",\n      \"facts_used\": [\"step 7\", \"step 8\"]\n    }\n  ],\n  \"final_answer\": \"-(1/40)\"\n}",
+  "english_proof": {
+    "key_observation": "The function f is the remainder when x is divided by y, and since y is negative, the floor division must be handled carefully to compute the correct remainder.",
+    "plan": [
+      "Compute x / y with the given values.",
+      "Determine int.floor(x / y) for the negative divisor.",
+      "Substitute into the definition of f.",
+      "Simplify the expression to obtain the final result."
+    ],
+    "steps": [
+      {
+        "claim": "x = 3/8 and y = -2/5, and y \u2260 0.",
+        "reasoning": "These are the given values in the problem statement; -2/5 is nonzero.",
+        "facts_used": [
+          "Given values"
+        ]
+      },
+      {
+        "claim": "x / y = (3/8) / (-2/5) = (3/8) * (-5/2) = -15/16.",
+        "reasoning": "Dividing by a fraction is multiplication by its reciprocal; the negative sign is carried through.",
+        "facts_used": [
+          "Arithmetic of fractions"
+        ]
+      },
+      {
+        "claim": "int.floor(-15/16) = -1.",
+        "reasoning": "Since -15/16 is between -1 and 0, the greatest integer less than or equal to it is -1.",
+        "facts_used": [
+          "Definition of floor function"
+        ]
+      },
+      {
+        "claim": "f (3/8) (-(2/5)) = (3/8) - (-(2/5)) * int.floor((3/8) / (-(2/5))).",
+        "reasoning": "Substitute x = 3/8 and y = -(2/5) into the definition h\u2080, noting that y \u2260 0.",
+        "facts_used": [
+          "h\u2080",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "f (3/8) (-(2/5)) = (3/8) - (-(2/5)) * (-1).",
+        "reasoning": "Replace int.floor((3/8) / (-(2/5))) with -1 from step 3.",
+        "facts_used": [
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "(-(2/5)) * (-1) = 2/5.",
+        "reasoning": "The product of two negatives is positive.",
+        "facts_used": [
+          "Multiplication of signed numbers"
+        ]
+      },
+      {
+        "claim": "f (3/8) (-(2/5)) = (3/8) - (2/5).",
+        "reasoning": "Substitute the result from step 6 into step 5.",
+        "facts_used": [
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "(3/8) - (2/5) = (15/40) - (16/40) = -1/40.",
+        "reasoning": "Convert to common denominator 40 and subtract.",
+        "facts_used": [
+          "Arithmetic of fractions"
+        ]
+      },
+      {
+        "claim": "f (3/8) (-(2/5)) = -(1/40).",
+        "reasoning": "This follows directly from steps 7 and 8.",
+        "facts_used": [
+          "step 7",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": "-(1/40)"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:48:41.972167+00:00"
+}

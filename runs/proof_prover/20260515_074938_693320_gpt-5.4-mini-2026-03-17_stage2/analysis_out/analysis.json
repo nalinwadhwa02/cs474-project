@@ -1,0 +1,963 @@
+{
+  "run_folder": "/home/nalin/cs474-project/runs/proof_prover/20260515_074938_693320_gpt-5.4-mini-2026-03-17_stage2",
+  "config": {
+    "model": "gpt-5.4-mini-2026-03-17",
+    "stage1_run": "/Users/dush/cs474-project/runs/20260515_073945_f3ee63_gpt-5.4-mini-2026-03-17_alphageometry",
+    "problem_filter": null,
+    "limit": 50,
+    "max_retries": 3,
+    "n_problems": 30,
+    "started_at": "2026-05-15T07:49:38.751230+00:00"
+  },
+  "rerun": false,
+  "stats": {
+    "n_problems": 28,
+    "n_solved": 6,
+    "solve_rate": 0.21428571428571427,
+    "category_stats": {
+      "translated": {
+        "solved": 6,
+        "total": 28,
+        "rate": 0.21428571428571427
+      }
+    },
+    "final_bucket_counts": {
+      "sat_counterexample": 18,
+      "z3_unknown": 1,
+      "compile_error:lemma": 1,
+      "compile_error:hypothesis": 1,
+      "compile_error:goal": 1
+    },
+    "all_attempt_bucket_counts": {
+      "sat_counterexample": 18,
+      "success": 6,
+      "compile_error:goal": 4,
+      "z3_unknown": 4,
+      "compile_error:lemma": 1,
+      "compile_error:hypothesis": 1,
+      "unsound_lemma": 1,
+      "parse_error": 1
+    },
+    "pass_at_k": {
+      "1": 0.17857142857142858,
+      "2": 0.21428571428571427,
+      "3": 0.21428571428571427
+    },
+    "transitions": {
+      "compile_error:goal -> sat_counterexample": 2,
+      "z3_unknown -> z3_unknown": 2,
+      "compile_error:goal -> success": 1,
+      "z3_unknown -> compile_error:lemma": 1,
+      "unsound_lemma -> parse_error": 1,
+      "parse_error -> compile_error:goal": 1
+    },
+    "fixed_by_retry": {
+      "compile_error:goal": 1
+    },
+    "persistent_errors": {
+      "z3_unknown": 2
+    },
+    "failures_by_bucket": {
+      "sat_counterexample": [
+        {
+          "theorem_id": "translated_imo_2000_p1",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[d_y = 0,\n g1_x = 0,\n d_x = 0,\n b_x = 0,\n g2_x = 0,\n e_y = 0,\n q_y = 0,\n a_x = 0,\n n_x = 0,\n a_y = 0,\n p_y = 0,\n c_y = 0,\n p_x = -1,\n c_x = 0,\n m_x = 0,\n m_y = 0,\n n_y = 0,\n g1_y = 0,\n e_x = 0,\n q_x = 0,\n g2_y = 0,\n b_y = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2002_p2a",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[d_x = 0,\n e_y = 0,\n a_x = -1,\n a_y = 0,\n f_x = 0,\n c_y = 0,\n j_x = 0,\n f_y = -1,\n o_y = 0,\n c_x = -1,\n j_y = 0,\n o_x = 0,\n e_x = -1,\n d_y = -1,\n b_y = 0,\n b_x = 1]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2004_p5",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[b_y = 1,\n o_y = 1,\n d_y = 1,\n p_y = 0,\n b_x = -1,\n o_x = 0,\n a_x = 0,\n d_x = -1,\n a_y = 0,\n p_x = 0,\n c_y = 2,\n c_x = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2005_p5",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[r_y = 0,\n r_x = 0,\n o2_y = -1/2,\n d_x = 0,\n b_x = 0,\n e_y = -1,\n q_y = -1,\n p_y = 0,\n a_x = 0,\n f_x = 0,\n p_x = 0,\n c_x = -1,\n f_y = -3/4,\n c_y = 0,\n m_x = -1,\n m_y = 0,\n a_y = 0,\n o1_y = -1/4,\n o1_x = -1/2,\n e_x = 0,\n q_x = 0,\n o2_x = -1\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2007_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[r_x = -1.4142135623?,\n o_x = 0,\n q_y = -0.4142135623?,\n a_x = -1,\n l1_y = 4.8284271247?,\n a_y = 0,\n o_y = -1,\n p_y = 0,\n p_x = 1,\n l_x = 0,\n k_x = 0,\n l_y = 0,\n k_y = -1,\n l1_x = -1,\n q_x = 0,\n k1_x = 1,\n k1_y = 0,\n r_y = -1,\n c_x = 1,\n c\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2008_p1a",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[b1_x = 1,\n a1_y = -2,\n d_x = 0,\n e_y = 0,\n a2_x = -1,\n a2_y = -2,\n b2_y = 0,\n a_x = -1,\n h_y = 0,\n a_y = 0,\n c1_y = -2,\n c2_y = 0,\n c2_x = -1,\n b2_x = -1,\n a1_x = -1,\n c1_x = -1,\n b1_y = 0,\n e_x = 0,\n h_x = -1,\n d_y = -1,\n c_x = 1,\n f_x =\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2008_p6",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[d_x = 0,\n a_x = 0,\n y_x = -1,\n y_y = 0,\n f1_y = 0,\n f2_x = 0,\n c_y = 0,\n c_x = 0,\n o_y = 0,\n i1_x = 0,\n i1_y = 0,\n z_x = 0,\n d_y = 0,\n b_y = 0,\n k_x = -1,\n w_y = 0,\n b_x = 0,\n k_y = 0,\n a_y = 0,\n i2_x = 0,\n i2_y = 0,\n z_y = -1,\n f1_x = 0,\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2010_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[b_x = 0,\n s_x = 0,\n a_x = 0,\n a_y = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = 0,\n s_y = 0,\n o_y = 0,\n m_x = 0,\n m_y = 0,\n l_x = 0,\n k_x = -1,\n l_y = 0,\n o_x = -1/2,\n k_y = 0,\n b_y = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2011_p6",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[pa_y = 0,\n o_y = -1/2,\n pb_x = 0,\n a_x = 0,\n pa_x = 0,\n p_y = 0,\n q_x = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n qa_x = 0,\n q_y = 0,\n o1_y = -1,\n pc_x = 0,\n qb_y = 0,\n b_y = -1,\n qc_x = 0,\n b1_x = 0,\n pb_y = 0,\n a1_y = 0,\n b_x = 0,\n qc_y = 0,\n \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2012_p1",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[g_y = 0,\n b_x = 0,\n a_x = 0,\n a_y = -1,\n s_y = 0,\n c_y = 0,\n f_x = 0,\n j_x = 0,\n c_x = -1,\n m_x = 0,\n m_y = 0,\n f_y = -1,\n l_x = 0,\n k_x = 0,\n j_y = 0,\n s_x = -1,\n l_y = 0,\n k_y = 0,\n t_x = 0,\n t_y = 0,\n g_x = 0,\n b_y = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2012_p5",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[d_x = 2,\n b_x = 4,\n c_y = 0,\n c_x = 0,\n m_x = 0,\n m_y = -1,\n l_x = 0,\n k_x = 0,\n k_y = -1,\n x_y = 0,\n l_y = 0,\n x_x = 0,\n d_y = -2,\n b_y = -1/2,\n a_y = -7/2,\n a_x = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2013_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[o2_x = -1/2,\n w_y = 0,\n b_x = 0,\n a_y = 1,\n h_y = 0,\n n_x = 0,\n y_x = 0,\n o2_y = 0,\n y_y = 0,\n c_y = 0,\n c_x = -1,\n o1_x = 0,\n m_x = -1,\n m_y = 0,\n n_y = 0,\n o1_y = -1/2,\n x_y = -1,\n h_x = -1,\n w_x = 0,\n x_x = 0,\n a_x = -1,\n b_y = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2014_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[b_x = 0,\n q_y = 0,\n n_x = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n o_y = 1/2,\n n_y = -1,\n x_y = -1,\n o_x = -1/2,\n q_x = 0,\n x_x = 0,\n b_y = 0,\n m_y = -1,\n a_y = 1,\n m_x = 0,\n a_x = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2015_p3",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[o_y = -1,\n o2_y = -1/2,\n q_y = -2.1180339887?,\n a_x = -1,\n h_y = 0,\n a_y = 0,\n c_y = 0,\n f_x = 0,\n c_x = 0,\n f_y = 0,\n m_x = 0,\n m_y = -1,\n k_x = -1.5881254497?,\n o1_y = -1,\n o_x = -1/2,\n k_y = -0.7431284258?,\n o1_x = -1/2,\n q_x = -1/2,\n \u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2015_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[o2_y = -1/2,\n d_x = 0,\n e_y = -1,\n a_x = 0,\n o_x = -1/2,\n f_x = -1,\n c_y = 0,\n c_x = -1,\n o_y = -1/2,\n k_x = 0,\n o1_y = 0,\n d_y = -1,\n b_y = -1,\n g_y = -1,\n b_x = 0,\n a_y = 0,\n f_y = 0,\n l_x = 0,\n k_y = -1,\n o1_x = 0,\n e_x = 0,\n l_y = 0,\n\u2026"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2017_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[b_x = 0,\n a_x = 0,\n a_y = 0,\n s_y = 0,\n j_x = 0,\n o_y = -1/4,\n s_x = 0,\n j_y = -1/2,\n t_y = 0,\n o1_y = -1,\n k_x = 0,\n k_y = -1/2,\n t_x = 0,\n o_x = 0,\n o1_x = 0,\n b_y = 0,\n r_y = 0,\n r_x = 0]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2018_p1",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[g_x = 0,\n g_y = 0,\n d_x = 0,\n b_x = 0,\n o_y = -1/2,\n e_y = 0,\n a_x = 0,\n a_y = 0,\n f_x = -1,\n c_y = 0,\n c_x = -1,\n f_y = 0,\n e_x = -1,\n o_x = -1/2,\n d_y = -1,\n b_y = -1]"
+            }
+          }
+        },
+        {
+          "theorem_id": "translated_imo_2022_p4",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[r_y = -1,\n r_x = -1,\n c_y = 0,\n d_x = 0,\n b_x = 0,\n e_y = 0,\n q_y = 0,\n a_x = 0,\n a_y = 0,\n p_y = 0,\n s_y = -1,\n p_x = 0,\n s_x = 0,\n t_y = 0,\n t_x = 0,\n c_x = 0,\n e_x = 0,\n q_x = -1,\n d_y = 0,\n b_y = 0]"
+            }
+          }
+        }
+      ],
+      "z3_unknown": [
+        {
+          "theorem_id": "translated_imo_2004_p1",
+          "category": "translated",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "z3_unknown",
+            "status": "unknown",
+            "sub": {
+              "elapsed_ms": 30123.719930648804,
+              "n_hyp": 15,
+              "n_inst": 0
+            }
+          }
+        }
+      ],
+      "compile_error:lemma": [
+        {
+          "theorem_id": "translated_imo_2008_p1b",
+          "category": "translated",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "compile_error:lemma",
+            "status": "sat",
+            "sub": {
+              "where": "lemma",
+              "what": "syntax error in 'Implies((x1*x1 + y1*y1)*(x2*(y3 - y4) + x3*(y4 - y2) + x4*(y2 - y3)) - (x2*x2 + y2*y2)*(x1*(y3 - y4) + x3*(y4 - y1) + x4*(y1 - y3)) + (x3*x3 + y3*y3)*(x1*(y2 - y4) + x2*(y4 - y1) + x4*(y1 - y2)) - (x4*x4 + y4*y4)*(x1*(y2 -\u2026",
+              "lemma_name": "cyclic_determinant",
+              "n_compile_errors": 2,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ],
+      "compile_error:hypothesis": [
+        {
+          "theorem_id": "translated_imo_2009_p2",
+          "category": "translated",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for '(m_l_x - m_x)*(k_y - m_y) != (k_x - m_x)*(l_y - m_y)': name 'm_l_x' is not defined",
+              "lemma_name": null,
+              "n_compile_errors": 1,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ],
+      "compile_error:goal": [
+        {
+          "theorem_id": "translated_imo_2019_p2",
+          "category": "translated",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "compile_error:goal",
+            "status": "compile_error",
+            "sub": {
+              "where": "goal",
+              "what": "eval failed for '((((p_x-q_x)*(p1_x-q1_x) + (p_y-q_y)*(p1_y-q1_y))^2) * (((p_x-p1_x)*(q_x-q1_x) + (p_y-p1_y)*(q_y-q1_y))^2) - (((p_x-q1_x)*(p1_x-q_x) + (p_y-q1_y)*(p1_y-q_y))^2) * (((p_x-p1_x)*(q_x-q1_x) + (p_y-p1_y)*(q_y-q1_y))^2)) == 0':\u2026"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "per_problem": [
+    {
+      "theorem_id": "translated_imo_2000_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[d_y = 0,\n g1_x = 0,\n d_x = 0,\n b_x = 0,\n g2_x = 0,\n e_y = 0,\n q_y = 0,\n a_x = 0,\n n_x = 0,\n a_y = 0,\n p_y = 0,\n c_y = 0,\n p_x = -1,\n c_x = 0,\n m_x = 0,\n m_y = 0,\n n_y = 0,\n g1_y = 0,\n e_x = 0,\n q_x = 0,\n g2_y = 0,\n b_y = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2000_p6",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2002_p2a",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "syntax error in '((e_y - c_y) * (e_x - j_x) == (e_x - c_x) * (e_y - j_y)) && ((e_y - j_y) * (e_x - f_x) == (e_x - j_x) * (e_y - f_y))': invalid syntax (<llm_expr>, line 1)"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[d_x = 0,\n e_y = 0,\n a_x = -1,\n a_y = 0,\n f_x = 0,\n c_y = 0,\n j_x = 0,\n f_y = -1,\n o_y = 0,\n c_x = -1,\n j_y = 0,\n o_x = 0,\n e_x = -1,\n d_y = -1,\n b_y = 0,\n b_x = 1]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2002_p2b",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2003_p4",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for '((p_x-q_x)^2 + (p_y-q_y)^2) == ((q_x-r_x)^2 + (q_y-r_y)^2)': unsupported operand type(s) for ^: 'ArithRef' and 'ArithRef'"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2004_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 30094.280004501343,
+            "n_hyp": 15,
+            "n_inst": 0
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 30092.710733413696,
+            "n_hyp": 15,
+            "n_inst": 0
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 30123.719930648804,
+            "n_hyp": 15,
+            "n_inst": 0
+          }
+        }
+      ],
+      "final_bucket": "z3_unknown"
+    },
+    {
+      "theorem_id": "translated_imo_2004_p5",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[b_y = 1,\n o_y = 1,\n d_y = 1,\n p_y = 0,\n b_x = -1,\n o_x = 0,\n a_x = 0,\n d_x = -1,\n a_y = 0,\n p_x = 0,\n c_y = 2,\n c_x = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2005_p5",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "syntax error in '(p_x-r_x)*(q_y-r_y) - (q_x-r_x)*(p_y-r_y) == 0 && (p_x-r_x)*(m_y-r_y) - (m_x-r_x)*(p_y-r_y) == 0': invalid syntax (<llm_expr>, line 1)"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[r_y = 0,\n r_x = 0,\n o2_y = -1/2,\n d_x = 0,\n b_x = 0,\n e_y = -1,\n q_y = -1,\n p_y = 0,\n a_x = 0,\n f_x = 0,\n p_x = 0,\n c_x = -1,\n f_y = -3/4,\n c_y = 0,\n m_x = -1,\n m_y = 0,\n a_y = 0,\n o1_y = -1/4,\n o1_x = -1/2,\n e_x = 0,\n q_x = 0,\n o2_x = -1\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2007_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[r_x = -1.4142135623?,\n o_x = 0,\n q_y = -0.4142135623?,\n a_x = -1,\n l1_y = 4.8284271247?,\n a_y = 0,\n o_y = -1,\n p_y = 0,\n p_x = 1,\n l_x = 0,\n k_x = 0,\n l_y = 0,\n k_y = -1,\n l1_x = -1,\n q_x = 0,\n k1_x = 1,\n k1_y = 0,\n r_y = -1,\n c_x = 1,\n c\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p1a",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[b1_x = 1,\n a1_y = -2,\n d_x = 0,\n e_y = 0,\n a2_x = -1,\n a2_y = -2,\n b2_y = 0,\n a_x = -1,\n h_y = 0,\n a_y = 0,\n c1_y = -2,\n c2_y = 0,\n c2_x = -1,\n b2_x = -1,\n a1_x = -1,\n c1_x = -1,\n b1_y = 0,\n e_x = 0,\n h_x = -1,\n d_y = -1,\n c_x = 1,\n f_x =\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p1b",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 30103.56569290161,
+            "n_hyp": 21,
+            "n_inst": 0
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:lemma",
+          "status": "sat",
+          "sub": {
+            "where": "lemma",
+            "what": "syntax error in 'Implies((x1*x1 + y1*y1)*(x2*(y3 - y4) + x3*(y4 - y2) + x4*(y2 - y3)) - (x2*x2 + y2*y2)*(x1*(y3 - y4) + x3*(y4 - y1) + x4*(y1 - y3)) + (x3*x3 + y3*y3)*(x1*(y2 - y4) + x2*(y4 - y1) + x4*(y1 - y2)) - (x4*x4 + y4*y4)*(x1*(y2 -\u2026",
+            "lemma_name": "cyclic_determinant",
+            "n_compile_errors": 2,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:lemma"
+    },
+    {
+      "theorem_id": "translated_imo_2008_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[d_x = 0,\n a_x = 0,\n y_x = -1,\n y_y = 0,\n f1_y = 0,\n f2_x = 0,\n c_y = 0,\n c_x = 0,\n o_y = 0,\n i1_x = 0,\n i1_y = 0,\n z_x = 0,\n d_y = 0,\n b_y = 0,\n k_x = -1,\n w_y = 0,\n b_x = 0,\n k_y = 0,\n a_y = 0,\n i2_x = 0,\n i2_y = 0,\n z_y = -1,\n f1_x = 0,\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2009_p2",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for '(m_l_x - m_x)*(k_y - m_y) != (k_x - m_x)*(l_y - m_y)': name 'm_l_x' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 1,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "translated_imo_2010_p2",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2010_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[b_x = 0,\n s_x = 0,\n a_x = 0,\n a_y = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = 0,\n s_y = 0,\n o_y = 0,\n m_x = 0,\n m_y = 0,\n l_x = 0,\n k_x = -1,\n l_y = 0,\n o_x = -1/2,\n k_y = 0,\n b_y = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2011_p6",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[pa_y = 0,\n o_y = -1/2,\n pb_x = 0,\n a_x = 0,\n pa_x = 0,\n p_y = 0,\n q_x = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n qa_x = 0,\n q_y = 0,\n o1_y = -1,\n pc_x = 0,\n qb_y = 0,\n b_y = -1,\n qc_x = 0,\n b1_x = 0,\n pb_y = 0,\n a1_y = 0,\n b_x = 0,\n qc_y = 0,\n \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2012_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[g_y = 0,\n b_x = 0,\n a_x = 0,\n a_y = -1,\n s_y = 0,\n c_y = 0,\n f_x = 0,\n j_x = 0,\n c_x = -1,\n m_x = 0,\n m_y = 0,\n f_y = -1,\n l_x = 0,\n k_x = 0,\n j_y = 0,\n s_x = -1,\n l_y = 0,\n k_y = 0,\n t_x = 0,\n t_y = 0,\n g_x = 0,\n b_y = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2012_p5",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[d_x = 2,\n b_x = 4,\n c_y = 0,\n c_x = 0,\n m_x = 0,\n m_y = -1,\n l_x = 0,\n k_x = 0,\n k_y = -1,\n x_y = 0,\n l_y = 0,\n x_x = 0,\n d_y = -2,\n b_y = -1/2,\n a_y = -7/2,\n a_x = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2013_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[o2_x = -1/2,\n w_y = 0,\n b_x = 0,\n a_y = 1,\n h_y = 0,\n n_x = 0,\n y_x = 0,\n o2_y = 0,\n y_y = 0,\n c_y = 0,\n c_x = -1,\n o1_x = 0,\n m_x = -1,\n m_y = 0,\n n_y = 0,\n o1_y = -1/2,\n x_y = -1,\n h_x = -1,\n w_x = 0,\n x_x = 0,\n a_x = -1,\n b_y = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2014_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[b_x = 0,\n q_y = 0,\n n_x = 0,\n p_y = 0,\n c_y = 0,\n p_x = 0,\n c_x = -1,\n o_y = 1/2,\n n_y = -1,\n x_y = -1,\n o_x = -1/2,\n q_x = 0,\n x_x = 0,\n b_y = 0,\n m_y = -1,\n a_y = 1,\n m_x = 0,\n a_x = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2015_p3",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[o_y = -1,\n o2_y = -1/2,\n q_y = -2.1180339887?,\n a_x = -1,\n h_y = 0,\n a_y = 0,\n c_y = 0,\n f_x = 0,\n c_x = 0,\n f_y = 0,\n m_x = 0,\n m_y = -1,\n k_x = -1.5881254497?,\n o1_y = -1,\n o_x = -1/2,\n k_y = -0.7431284258?,\n o1_x = -1/2,\n q_x = -1/2,\n \u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2015_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[o2_y = -1/2,\n d_x = 0,\n e_y = -1,\n a_x = 0,\n o_x = -1/2,\n f_x = -1,\n c_y = 0,\n c_x = -1,\n o_y = -1/2,\n k_x = 0,\n o1_y = 0,\n d_y = -1,\n b_y = -1,\n g_y = -1,\n b_x = 0,\n a_y = 0,\n f_y = 0,\n l_x = 0,\n k_y = -1,\n o1_x = 0,\n e_x = 0,\n l_y = 0,\n\u2026"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2016_p1",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2017_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[b_x = 0,\n a_x = 0,\n a_y = 0,\n s_y = 0,\n j_x = 0,\n o_y = -1/4,\n s_x = 0,\n j_y = -1/2,\n t_y = 0,\n o1_y = -1,\n k_x = 0,\n k_y = -1/2,\n t_x = 0,\n o_x = 0,\n o1_x = 0,\n b_y = 0,\n r_y = 0,\n r_x = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2018_p1",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[g_x = 0,\n g_y = 0,\n d_x = 0,\n b_x = 0,\n o_y = -1/2,\n e_y = 0,\n a_x = 0,\n a_y = 0,\n f_x = -1,\n c_y = 0,\n c_x = -1,\n f_y = 0,\n e_x = -1,\n o_x = -1/2,\n d_y = -1,\n b_y = -1]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "translated_imo_2019_p2",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "cyclic_quadrilateral_distance_form"
+            ],
+            "what": "lemma(s) ['cyclic_quadrilateral_distance_form'] are contradictory; refusing to certify"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "parse_error",
+          "status": null,
+          "sub": {
+            "what": "no formalization"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for '((((p_x-q_x)*(p1_x-q1_x) + (p_y-q_y)*(p1_y-q1_y))^2) * (((p_x-p1_x)*(q_x-q1_x) + (p_y-p1_y)*(q_y-q1_y))^2) - (((p_x-q1_x)*(p1_x-q_x) + (p_y-q1_y)*(p1_y-q_y))^2) * (((p_x-p1_x)*(q_x-q1_x) + (p_y-p1_y)*(q_y-q1_y))^2)) == 0':\u2026"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:goal"
+    },
+    {
+      "theorem_id": "translated_imo_2020_p1",
+      "category": "translated",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "translated_imo_2022_p4",
+      "category": "translated",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[r_y = -1,\n r_x = -1,\n c_y = 0,\n d_x = 0,\n b_x = 0,\n e_y = 0,\n q_y = 0,\n a_x = 0,\n a_y = 0,\n p_y = 0,\n s_y = -1,\n p_x = 0,\n s_x = 0,\n t_y = 0,\n t_x = 0,\n c_x = 0,\n e_x = 0,\n q_x = -1,\n d_y = 0,\n b_y = 0]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    }
+  ]
+}

@@ -86,7 +86,10 @@ class LLM:
             from dotenv import load_dotenv
 
             load_dotenv()
-            api_key = "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"
+            api_key = os.environ["NVIDIA-NIM-API-KEY"]
+            # api_key = (
+            #     "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"
+            # )
             if api_key is None:
                 raise ValueError("No NVIDIA-NIM-API-KEY set!")
             self.client = OpenAI(
@@ -139,3 +142,191 @@ class LLM:
         if verbose:
             print(f"Response: {result}")
         return result
+
+    def call_with_retry(
+        self,
+        build_messages_fn,
+        parse_fn,
+        verify_fn=None,
+        max_retries: int = 3,
+        logger=None,
+        log_prefix: str = "",
+    ) -> dict:
+        """Retry loop: build messages → call API → parse → verify (optional).
+
+        Args:
+            build_messages_fn: (prior_attempts: list[dict]) -> list[dict]
+            parse_fn:          (raw: str) -> dict | None
+            verify_fn:         (parsed: dict) -> {"done": bool, "succeeded": bool,
+                                                   "errors": list[str], "result": dict | None}
+                               If None, a successful parse is treated as success.
+
+        Returns dict with keys:
+            raw, parsed, verification, succeeded, attempt_log, parse_error,
+            messages (last attempt's messages), aborted
+        """
+
+        def _log(level, msg, *args):
+            if logger:
+                full = f"{log_prefix}  {msg}" if log_prefix else msg
+                getattr(logger, level)(full, *args)
+
+        prior_attempts: list[dict] = []
+        attempt_log: list[dict] = []
+        last_raw = ""
+        last_parsed = None
+        last_verification = None
+        last_messages: list[dict] = []
+
+        for attempt_num in range(max_retries):
+            label = f"attempt {attempt_num + 1}/{max_retries}"
+            rec: dict = {"attempt": attempt_num + 1}
+
+            last_messages = build_messages_fn(prior_attempts)
+            rec["messages"] = last_messages
+
+            _log("info", "%s  calling model ...", label)
+            _log(
+                "debug",
+                "%s  messages:\n%s",
+                label,
+                json.dumps(last_messages, indent=2, ensure_ascii=False),
+            )
+
+            api = self.call(last_messages)
+            breakpoint()
+            if api["error"]:
+                _log("warning", "%s  %s", label, api["error"])
+                rec.update(
+                    {
+                        "raw_response": "",
+                        "parsed": None,
+                        "verification": None,
+                        "errors": [api["error"]],
+                    }
+                )
+                attempt_log.append(rec)
+                if not api["retryable"]:
+                    _log("error", "non-retryable API error, aborting")
+                    return {
+                        "raw": "",
+                        "parsed": None,
+                        "verification": None,
+                        "succeeded": False,
+                        "attempt_log": attempt_log,
+                        "parse_error": api["error"],
+                        "messages": last_messages,
+                        "aborted": True,
+                    }
+                prior_attempts.append({"raw_response": "", "errors": [api["error"]]})
+                continue
+
+            last_raw = api["content"]
+            rec["raw_response"] = last_raw
+            _log("info", "%s  response received, parsing ...", label)
+            _log("debug", "%s  raw response:\n%s", label, last_raw)
+
+            last_parsed = parse_fn(last_raw)
+            if last_parsed is None:
+                errors = ["could not parse a JSON object from the response"]
+                _log("warning", "%s  JSON parse failed", label)
+                rec.update({"parsed": None, "verification": None, "errors": errors})
+                attempt_log.append(rec)
+                prior_attempts.append({"raw_response": last_raw, "errors": errors})
+                last_verification = None
+                continue
+
+            rec["parsed"] = last_parsed
+            _log(
+                "debug",
+                "%s  parsed:\n%s",
+                label,
+                json.dumps(last_parsed, indent=2, ensure_ascii=False),
+            )
+
+            if verify_fn is None:
+                rec.update({"verification": None, "errors": []})
+                attempt_log.append(rec)
+                return {
+                    "raw": last_raw,
+                    "parsed": last_parsed,
+                    "verification": None,
+                    "succeeded": True,
+                    "attempt_log": attempt_log,
+                    "parse_error": None,
+                    "messages": last_messages,
+                    "aborted": False,
+                }
+
+            vresult = verify_fn(last_parsed)
+            last_verification = vresult["result"]
+            rec.update({"verification": last_verification, "errors": vresult["errors"]})
+
+            breakpoint()
+            if vresult["done"]:
+                attempt_log.append(rec)
+                return {
+                    "raw": last_raw,
+                    "parsed": last_parsed,
+                    "verification": last_verification,
+                    "succeeded": vresult["succeeded"],
+                    "attempt_log": attempt_log,
+                    "parse_error": None,
+                    "messages": last_messages,
+                    "aborted": False,
+                }
+
+            for e in vresult["errors"]:
+                _log("warning", "%s  verification error: %s", label, e)
+            attempt_log.append(rec)
+            prior_attempts.append(
+                {"raw_response": last_raw, "errors": vresult["errors"]}
+            )
+
+        _log("warning", "all %d attempts exhausted", max_retries)
+        return {
+            "raw": last_raw,
+            "parsed": last_parsed,
+            "verification": last_verification,
+            "succeeded": False,
+            "attempt_log": attempt_log,
+            "parse_error": (
+                "could not extract JSON object" if last_parsed is None else None
+            ),
+            "messages": last_messages,
+            "aborted": False,
+        }
+
+    def call(self, messages: list[dict]) -> dict:
+        """Call the model and return a result dict with content, error, and retryable flag.
+
+        Returns:
+            {"content": str, "error": None, "retryable": False}  on success
+            {"content": None, "error": str, "retryable": bool}   on failure
+        """
+        try:
+            response = self.get_chat_completions(messages, verbose=True)
+            breakpoint()
+            if response is None:
+                return {
+                    "content": None,
+                    "error": "model API returned no response",
+                    "retryable": True,
+                }
+            return {
+                "content": response["choices"][0]["message"]["content"].strip(),
+                "error": None,
+                "retryable": False,
+            }
+        except APIStatusError as exc:
+            return {
+                "content": None,
+                "error": f"API error {exc.status_code}: {exc.message}",
+                "retryable": exc.status_code in (429, 500, 502, 503, 504),
+            }
+        except (APIConnectionError, APITimeoutError) as exc:
+            return {
+                "content": None,
+                "error": f"API connection/timeout error: {exc}",
+                "retryable": True,
+            }

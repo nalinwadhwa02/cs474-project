@@ -1,0 +1,1532 @@
+{
+  "run_folder": "/home/nalin/cs474-project/runs/proof_prover/20260515_060627_6538f5_gpt-5.4-mini-2026-03-17_stage2",
+  "config": {
+    "model": "gpt-5.4-mini-2026-03-17",
+    "stage1_run": "/Users/dush/cs474-project/runs/20260515_055947_966674_gpt-5.4-mini-2026-03-17_valid50",
+    "problem_filter": null,
+    "limit": 50,
+    "max_retries": 3,
+    "n_problems": 49,
+    "started_at": "2026-05-15T06:06:27.672068+00:00"
+  },
+  "rerun": false,
+  "stats": {
+    "n_problems": 49,
+    "n_solved": 32,
+    "solve_rate": 0.6530612244897959,
+    "category_stats": {
+      "aime": {
+        "solved": 1,
+        "total": 3,
+        "rate": 0.3333333333333333
+      },
+      "algebra": {
+        "solved": 3,
+        "total": 3,
+        "rate": 1.0
+      },
+      "amc12a": {
+        "solved": 3,
+        "total": 5,
+        "rate": 0.6
+      },
+      "amc12b": {
+        "solved": 1,
+        "total": 3,
+        "rate": 0.3333333333333333
+      },
+      "imo": {
+        "solved": 1,
+        "total": 4,
+        "rate": 0.25
+      },
+      "induction": {
+        "solved": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "mathd_algebra": {
+        "solved": 9,
+        "total": 12,
+        "rate": 0.75
+      },
+      "mathd_numbertheory": {
+        "solved": 12,
+        "total": 15,
+        "rate": 0.8
+      },
+      "numbertheory": {
+        "solved": 1,
+        "total": 2,
+        "rate": 0.5
+      }
+    },
+    "final_bucket_counts": {
+      "unsound_lemma": 3,
+      "compile_error:hypothesis": 4,
+      "z3_unknown": 1,
+      "compile_error:function": 1,
+      "sat_counterexample": 5,
+      "compile_error:goal": 1,
+      "compile_error:instantiation": 2
+    },
+    "all_attempt_bucket_counts": {
+      "compile_error:hypothesis": 6,
+      "unsound_lemma": 7,
+      "z3_unknown": 6,
+      "success": 32,
+      "compile_error:lemma": 1,
+      "compile_error:function": 1,
+      "sat_counterexample": 5,
+      "compile_error:goal": 8,
+      "compile_error:instantiation": 3
+    },
+    "pass_at_k": {
+      "1": 0.5714285714285714,
+      "2": 0.6326530612244898,
+      "3": 0.6530612244897959
+    },
+    "transitions": {
+      "compile_error:goal -> compile_error:goal": 3,
+      "z3_unknown -> success": 2,
+      "compile_error:hypothesis -> unsound_lemma": 1,
+      "unsound_lemma -> unsound_lemma": 1,
+      "z3_unknown -> z3_unknown": 1,
+      "z3_unknown -> compile_error:lemma": 1,
+      "compile_error:lemma -> z3_unknown": 1,
+      "unsound_lemma -> sat_counterexample": 1,
+      "compile_error:goal -> sat_counterexample": 1,
+      "unsound_lemma -> compile_error:instantiation": 1,
+      "compile_error:goal -> success": 1,
+      "compile_error:goal -> compile_error:instantiation": 1,
+      "compile_error:instantiation -> compile_error:instantiation": 1,
+      "compile_error:hypothesis -> z3_unknown": 1,
+      "z3_unknown -> unsound_lemma": 1,
+      "unsound_lemma -> success": 1,
+      "compile_error:goal -> unsound_lemma": 1
+    },
+    "fixed_by_retry": {
+      "z3_unknown": 2,
+      "compile_error:goal": 1,
+      "unsound_lemma": 1
+    },
+    "persistent_errors": {
+      "compile_error:goal": 3,
+      "unsound_lemma": 1,
+      "z3_unknown": 1,
+      "compile_error:instantiation": 1
+    },
+    "failures_by_bucket": {
+      "unsound_lemma": [
+        {
+          "theorem_id": "aime_1987_p8",
+          "category": "aime",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "unsound_lemma",
+            "status": "rejected_unsound_lemma",
+            "sub": {
+              "unsound_lemmas": [
+                "fraction_inequalities_to_interval",
+                "interval_length_n_over_56",
+                "one_integer_in_interval_implies_length_lt_2"
+              ],
+              "what": "lemma(s) ['fraction_inequalities_to_interval', 'interval_length_n_over_56', 'one_integer_in_interval_implies_length_lt_2'] are contradictory; refusing to certify"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_numbertheory_126",
+          "category": "mathd_numbertheory",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "unsound_lemma",
+            "status": "rejected_unsound_lemma",
+            "sub": {
+              "unsound_lemmas": [
+                "x_plus_3_eq_8_from_divisor_and_product"
+              ],
+              "what": "lemma(s) ['x_plus_3_eq_8_from_divisor_and_product'] are contradictory; refusing to certify"
+            }
+          }
+        },
+        {
+          "theorem_id": "numbertheory_prmdvsneqnsqmodpeq0",
+          "category": "numbertheory",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "unsound_lemma",
+            "status": "rejected_unsound_lemma",
+            "sub": {
+              "unsound_lemmas": [
+                "prime_divides_square_implies_divides"
+              ],
+              "what": "lemma(s) ['prime_divides_square_implies_divides'] are contradictory; refusing to certify"
+            }
+          }
+        }
+      ],
+      "compile_error:hypothesis": [
+        {
+          "theorem_id": "aime_1994_p4",
+          "category": "aime",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'Sum([If(And(k >= 1, k <= n), Floor(Log(2, ToReal(k))), 0)]) == 1994': name 'Sum' is not defined",
+              "lemma_name": null,
+              "n_compile_errors": 8,
+              "downstream_status": "sat"
+            }
+          }
+        },
+        {
+          "theorem_id": "imo_1979_p1",
+          "category": "imo",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'ToReal(p) / ToReal(q) == Sum([k], If(And(k >= 1, k <= 1319), (If((k + 1) % 2 == 0, IntVal(1), IntVal(-1)) * (ToReal(1) / ToReal(k))), 0))': name 'Sum' is not defined",
+              "lemma_name": null,
+              "n_compile_errors": 1,
+              "downstream_status": "sat"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_algebra_110",
+          "category": "mathd_algebra",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'q == 2 - 2 * complex.I': name 'complex' is not defined",
+              "lemma_name": null,
+              "n_compile_errors": 5,
+              "downstream_status": "sat"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_algebra_214",
+          "category": "mathd_algebra",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:hypothesis",
+            "status": "sat",
+            "sub": {
+              "where": "hypothesis",
+              "what": "eval failed for 'ForAll([x], f == a * (x - 2) * (x - 2) + 3)': name 'x' is not defined",
+              "lemma_name": null,
+              "n_compile_errors": 1,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ],
+      "z3_unknown": [
+        {
+          "theorem_id": "amc12a_2003_p24",
+          "category": "amc12a",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "z3_unknown",
+            "status": "unknown",
+            "sub": {
+              "elapsed_ms": 34292.304277420044,
+              "n_hyp": 1,
+              "n_inst": 9
+            }
+          }
+        }
+      ],
+      "compile_error:function": [
+        {
+          "theorem_id": "amc12a_2009_p15",
+          "category": "amc12a",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "compile_error:function",
+            "status": "sat",
+            "sub": {
+              "where": "function",
+              "what": "unsupported sort 'Complex'",
+              "lemma_name": null,
+              "n_compile_errors": 6,
+              "downstream_status": "sat"
+            }
+          }
+        }
+      ],
+      "sat_counterexample": [
+        {
+          "theorem_id": "amc12b_2002_p3",
+          "category": "amc12b",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[S = 2]"
+            }
+          }
+        },
+        {
+          "theorem_id": "amc12b_2021_p21",
+          "category": "amc12b",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[SumS = 2,\n s = 0,\n Sqrt = [else -> 1/2],\n InS = [else ->\n        And(Not(Var(0) <= 0),\n            Var(0)**(2**Sqrt(2)) + -1*Sqrt(2)**(2**Var(0)) ==\n            0)]]"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_algebra_482",
+          "category": "mathd_algebra",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[n = 0,\n k = 0,\n m = 12,\n f = [else -> -12*Var(0) + Var(0)*Var(0)]]"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_numbertheory_33",
+          "category": "mathd_numbertheory",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[n = -341]"
+            }
+          }
+        },
+        {
+          "theorem_id": "mathd_numbertheory_709",
+          "category": "mathd_numbertheory",
+          "n_attempts": 1,
+          "last_attempt": {
+            "attempt": 1,
+            "bucket": "sat_counterexample",
+            "status": "sat",
+            "sub": {
+              "what": "[n = 8856,\n DivisorsCount = [17712 -> 28, 26568 -> 30, else -> 1]]"
+            }
+          }
+        }
+      ],
+      "compile_error:goal": [
+        {
+          "theorem_id": "imo_1987_p4",
+          "category": "imo",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "compile_error:goal",
+            "status": "compile_error",
+            "sub": {
+              "where": "goal",
+              "what": "eval failed for 'Exists([n], f(n) != n + 1987)': 'ArithRef' object is not callable"
+            }
+          }
+        }
+      ],
+      "compile_error:instantiation": [
+        {
+          "theorem_id": "imo_1993_p5",
+          "category": "imo",
+          "n_attempts": 2,
+          "last_attempt": {
+            "attempt": 2,
+            "bucket": "compile_error:instantiation",
+            "status": "sat",
+            "sub": {
+              "where": "instantiation",
+              "what": "eval failed for 'Exists([f], And(f == 2, ForAll([n], f == f), ForAll([n], f < f + 1)))': b'invalid argument'",
+              "lemma_name": "nat_witness_trivial",
+              "n_compile_errors": 1,
+              "downstream_status": "sat"
+            }
+          }
+        },
+        {
+          "theorem_id": "induction_divisibility_9div10tonm1",
+          "category": "induction",
+          "n_attempts": 3,
+          "last_attempt": {
+            "attempt": 3,
+            "bucket": "compile_error:instantiation",
+            "status": "rejected_unsound_lemma",
+            "sub": {
+              "where": "instantiation",
+              "what": "eval failed for 'Implies(a == 9*k, Exists([k], a == 9*k))': Z3 expression expected",
+              "lemma_name": "divides_def",
+              "n_compile_errors": 1,
+              "downstream_status": "rejected_unsound_lemma"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "per_problem": [
+    {
+      "theorem_id": "aime_1987_p8",
+      "category": "aime",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'Exists([k], And((8.0/15.0) < ToReal(n) / (ToReal(n) + ToReal(k)), ToReal(n) / (ToReal(n) + ToReal(k)) < (7.0/13.0), ForAll([y], Implies(And(y != k, And((8.0/15.0) < ToReal(n) / (ToReal(n) + ToReal(y)), ToReal(n) / (ToReal(\u2026",
+            "lemma_name": null,
+            "n_compile_errors": 3,
+            "downstream_status": "rejected_unsound_lemma"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "fraction_inequalities_to_interval",
+              "interval_length_n_over_56",
+              "open_interval_one_integer_length_lt_2"
+            ],
+            "what": "lemma(s) ['fraction_inequalities_to_interval', 'interval_length_n_over_56', 'open_interval_one_integer_length_lt_2'] are contradictory; refusing to certify"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "fraction_inequalities_to_interval",
+              "interval_length_n_over_56",
+              "one_integer_in_interval_implies_length_lt_2"
+            ],
+            "what": "lemma(s) ['fraction_inequalities_to_interval', 'interval_length_n_over_56', 'one_integer_in_interval_implies_length_lt_2'] are contradictory; refusing to certify"
+          }
+        }
+      ],
+      "final_bucket": "unsound_lemma"
+    },
+    {
+      "theorem_id": "aime_1988_p3",
+      "category": "aime",
+      "succeeded": true,
+      "first_success_attempt": 3,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 33052.28805541992,
+            "n_hyp": 2,
+            "n_inst": 5
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 32372.899055480957,
+            "n_hyp": 2,
+            "n_inst": 5
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "aime_1994_p4",
+      "category": "aime",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'Sum([If(And(k >= 1, k <= n), Floor(Log(2, ToReal(k))), 0)]) == 1994': name 'Sum' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 8,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "algebra_2rootspoly_apatapbeq2asqp2ab",
+      "category": "algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta",
+      "category": "algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "algebra_apb4leq8ta4pb4",
+      "category": "algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "amc12a_2002_p1",
+      "category": "amc12a",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "amc12a_2003_p24",
+      "category": "amc12a",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 38334.157943725586,
+            "n_hyp": 1,
+            "n_inst": 8
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:lemma",
+          "status": "unknown",
+          "sub": {
+            "where": "lemma",
+            "what": "eval failed for 'Implies(b > 1, Exists([a], And(a == b, 0 == Log(a, a/b) + Log(b, b/a))))': name 'a' is not defined",
+            "lemma_name": "existence_of_equality_case",
+            "n_compile_errors": 2,
+            "downstream_status": "unknown"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 34292.304277420044,
+            "n_hyp": 1,
+            "n_inst": 9
+          }
+        }
+      ],
+      "final_bucket": "z3_unknown"
+    },
+    {
+      "theorem_id": "amc12a_2009_p15",
+      "category": "amc12a",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:function",
+          "status": "sat",
+          "sub": {
+            "where": "function",
+            "what": "unsupported sort 'Complex'",
+            "lemma_name": null,
+            "n_compile_errors": 6,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:function"
+    },
+    {
+      "theorem_id": "amc12a_2015_p10",
+      "category": "amc12a",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "amc12a_2016_p2",
+      "category": "amc12a",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "amc12b_2002_p11",
+      "category": "amc12b",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "amc12b_2002_p3",
+      "category": "amc12b",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "membership_only_at_three"
+            ],
+            "what": "lemma(s) ['membership_only_at_three'] are contradictory; refusing to certify"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[S = 2]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "amc12b_2021_p21",
+      "category": "amc12b",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'And(ToReal(2) <= Sum(S), Sum(S) < 6)': 'int' object has no attribute 'ctx'"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[SumS = 2,\n s = 0,\n Sqrt = [else -> 1/2],\n InS = [else ->\n        And(Not(Var(0) <= 0),\n            Var(0)**(2**Sqrt(2)) + -1*Sqrt(2)**(2**Var(0)) ==\n            0)]]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "imo_1961_p1",
+      "category": "imo",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "imo_1979_p1",
+      "category": "imo",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'ToReal(p) / ToReal(q) == Sum([k], If(And(k >= 1, k <= 1319), (If((k + 1) % 2 == 0, IntVal(1), IntVal(-1)) * (ToReal(1) / ToReal(k))), 0))': name 'Sum' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 1,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "imo_1987_p4",
+      "category": "imo",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'Exists([n], f(f(n)) != n + 1987)': 'ArithRef' object is not callable"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'Exists([n], f[n] != n + 1987)': 'ArithRef' object is not subscriptable"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'Exists([n], f(n) != n + 1987)': 'ArithRef' object is not callable"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:goal"
+    },
+    {
+      "theorem_id": "imo_1993_p5",
+      "category": "imo",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "recursive_witness_exists"
+            ],
+            "what": "lemma(s) ['recursive_witness_exists'] are contradictory; refusing to certify"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:instantiation",
+          "status": "sat",
+          "sub": {
+            "where": "instantiation",
+            "what": "eval failed for 'Exists([f], And(f == 2, ForAll([n], f == f), ForAll([n], f < f + 1)))': b'invalid argument'",
+            "lemma_name": "nat_witness_trivial",
+            "n_compile_errors": 1,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:instantiation"
+    },
+    {
+      "theorem_id": "induction_divisibility_3divnto3m2n",
+      "category": "induction",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'Exists([k], n*n*n + 2*n == 3*k)': name 'k' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "induction_divisibility_9div10tonm1",
+      "category": "induction",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for 'Exists([k], 10**n - 1 == 9*k)': name 'k' is not defined"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:instantiation",
+          "status": "unknown",
+          "sub": {
+            "where": "instantiation",
+            "what": "instantiation of 'nine_divides_nine' missing term for 'k'",
+            "lemma_name": "nine_divides_nine",
+            "n_compile_errors": 1,
+            "downstream_status": "unknown"
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "compile_error:instantiation",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "where": "instantiation",
+            "what": "eval failed for 'Implies(a == 9*k, Exists([k], a == 9*k))': Z3 expression expected",
+            "lemma_name": "divides_def",
+            "n_compile_errors": 1,
+            "downstream_status": "rejected_unsound_lemma"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:instantiation"
+    },
+    {
+      "theorem_id": "mathd_algebra_110",
+      "category": "mathd_algebra",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'q == 2 - 2 * complex.I': name 'complex' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 5,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "mathd_algebra_116",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_214",
+      "category": "mathd_algebra",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "sat",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'ForAll([x], f == a * (x - 2) * (x - 2) + 3)': name 'x' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 1,
+            "downstream_status": "sat"
+          }
+        }
+      ],
+      "final_bucket": "compile_error:hypothesis"
+    },
+    {
+      "theorem_id": "mathd_algebra_251",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_31",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_37",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_480",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_482",
+      "category": "mathd_algebra",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[n = 0,\n k = 0,\n m = 12,\n f = [else -> -12*Var(0) + Var(0)*Var(0)]]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "mathd_algebra_509",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 35185.00113487244,
+            "n_hyp": 0,
+            "n_inst": 6
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_547",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_73",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_algebra_96",
+      "category": "mathd_algebra",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_126",
+      "category": "mathd_numbertheory",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:hypothesis",
+          "status": "unknown",
+          "sub": {
+            "where": "hypothesis",
+            "what": "eval failed for 'ForAll([b], Implies(And(0 < b, GCD(b, 40) == x + 3, LCM(b, 40) == x * (x + 3)), a <= b))': name 'b' is not defined",
+            "lemma_name": null,
+            "n_compile_errors": 1,
+            "downstream_status": "unknown"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "z3_unknown",
+          "status": "unknown",
+          "sub": {
+            "elapsed_ms": 3854.631185531616,
+            "n_hyp": 4,
+            "n_inst": 6
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "x_plus_3_eq_8_from_divisor_and_product"
+            ],
+            "what": "lemma(s) ['x_plus_3_eq_8_from_divisor_and_product'] are contradictory; refusing to certify"
+          }
+        }
+      ],
+      "final_bucket": "unsound_lemma"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_13",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_169",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_202",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_232",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_269",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_33",
+      "category": "mathd_numbertheory",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[n = -341]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_335",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_35",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 2,
+      "n_attempts": 2,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "divisors_of_14"
+            ],
+            "what": "lemma(s) ['divisors_of_14'] are contradictory; refusing to certify"
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_405",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_45",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_466",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": true
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_48",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_709",
+      "category": "mathd_numbertheory",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "sat_counterexample",
+          "status": "sat",
+          "sub": {
+            "what": "[n = 8856,\n DivisorsCount = [17712 -> 28, 26568 -> 30, else -> 1]]"
+          }
+        }
+      ],
+      "final_bucket": "sat_counterexample"
+    },
+    {
+      "theorem_id": "mathd_numbertheory_739",
+      "category": "mathd_numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "numbertheory_nckeqnm1ckpnm1ckm1",
+      "category": "numbertheory",
+      "succeeded": true,
+      "first_success_attempt": 1,
+      "n_attempts": 1,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "success",
+          "status": "unsat",
+          "sub": {
+            "partial_compile_errors": false
+          }
+        }
+      ],
+      "final_bucket": "success"
+    },
+    {
+      "theorem_id": "numbertheory_prmdvsneqnsqmodpeq0",
+      "category": "numbertheory",
+      "succeeded": false,
+      "first_success_attempt": null,
+      "n_attempts": 3,
+      "attempt_diags": [
+        {
+          "attempt": 1,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for '(p != 0) and ((n % p == 0) == (((n * n) % p) == 0))': Symbolic expressions cannot be cast to concrete Boolean values."
+          }
+        },
+        {
+          "attempt": 2,
+          "bucket": "compile_error:goal",
+          "status": "compile_error",
+          "sub": {
+            "where": "goal",
+            "what": "eval failed for '((p != 0) and (((n % p) == 0) == (((n * n) % p) == 0)))': Symbolic expressions cannot be cast to concrete Boolean values."
+          }
+        },
+        {
+          "attempt": 3,
+          "bucket": "unsound_lemma",
+          "status": "rejected_unsound_lemma",
+          "sub": {
+            "unsound_lemmas": [
+              "prime_divides_square_implies_divides"
+            ],
+            "what": "lemma(s) ['prime_divides_square_implies_divides'] are contradictory; refusing to certify"
+          }
+        }
+      ],
+      "final_bucket": "unsound_lemma"
+    }
+  ]
+}

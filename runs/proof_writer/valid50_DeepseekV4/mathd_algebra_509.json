@@ -1,0 +1,102 @@
+{
+  "theorem_id": "mathd_algebra_509",
+  "statement": "Theorem: mathd_algebra_509\nProve: real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6",
+  "goal": "real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: mathd_algebra_509\n\nTheorem: mathd_algebra_509\nProve: real.sqrt ((5 / real.sqrt 80 + real.sqrt 845 / 9 + real.sqrt 45) / real.sqrt 5) = 13 / 6\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Simplify each term inside the square root by expressing the radicands as multiples of \u221a5, then combine and simplify the fraction.\",\n  \"plan\": [\n    \"Simplify \u221a80, \u221a845, and \u221a45 in terms of \u221a5.\",\n    \"Rewrite each term in the numerator as a multiple of 1/\u221a5.\",\n    \"Combine the terms in the numerator over a common denominator.\",\n    \"Divide by \u221a5 and simplify the fraction inside the outer square root.\",\n    \"Take the square root to obtain the final result.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"\u221a80 = 4\u221a5, \u221a845 = 13\u221a5, \u221a45 = 3\u221a5.\",\n      \"reasoning\": \"Since 80 = 16\u00b75, \u221a80 = \u221a16\u00b7\u221a5 = 4\u221a5. Since 845 = 169\u00b75, \u221a845 = \u221a169\u00b7\u221a5 = 13\u221a5. Since 45 = 9\u00b75, \u221a45 = \u221a9\u00b7\u221a5 = 3\u221a5.\",\n      \"facts_used\": [\"definition of square root\", \"simplification of radicals\"]\n    },\n    {\n      \"claim\": \"5/\u221a80 = 5/(4\u221a5) = 5/(4\u221a5), \u221a845/9 = (13\u221a5)/9, \u221a45 = 3\u221a5.\",\n      \"reasoning\": \"Substitute the simplified forms from step 1.\",\n      \"facts_used\": [\"step 1\"]\n    },\n    {\n      \"claim\": \"5/(4\u221a5) = (5\u221a5)/(4\u00b75) = \u221a5/4.\",\n      \"reasoning\": \"Rationalize the denominator: multiply numerator and denominator by \u221a5 to get (5\u221a5)/(4\u00b75) = \u221a5/4.\",\n      \"facts_used\": [\"rationalizing denominator\"]\n    },\n    {\n      \"claim\": \"The numerator (5/\u221a80 + \u221a845/9 + \u221a45) equals \u221a5/4 + (13\u221a5)/9 + 3\u221a5.\",\n      \"reasoning\": \"Substitute the expressions from steps 2 and 3.\",\n      \"facts_used\": [\"step 2\", \"step 3\"]\n    },\n    {\n      \"claim\": \"\u221a5/4 + (13\u221a5)/9 + 3\u221a5 = \u221a5(1/4 + 13/9 + 3).\",\n      \"reasoning\": \"Factor out \u221a5 from each term.\",\n      \"facts_used\": [\"factoring\"]\n    },\n    {\n      \"claim\": \"1/4 + 13/9 + 3 = 1/4 + 13/9 + 27/9 = 1/4 + 40/9 = (9/36) + (160/36) = 169/36.\",\n      \"reasoning\": \"Write 3 as 27/9, add 13/9 to get 40/9. Then convert 1/4 to 9/36 and 40/9 to 160/36, sum to 169/36.\",\n      \"facts_used\": [\"common denominator\", \"arithmetic\"]\n    },\n    {\n      \"claim\": \"The numerator equals \u221a5 \u00b7 (169/36) = (169\u221a5)/36.\",\n      \"reasoning\": \"Multiply the factored \u221a5 by the sum from step 6.\",\n      \"facts_used\": [\"step 5\", \"step 6\"]\n    },\n    {\n      \"claim\": \"( (5/\u221a80 + \u221a845/9 + \u221a45) / \u221a5 ) = ( (169\u221a5)/36 ) / \u221a5 = 169/36.\",\n      \"reasoning\": \"Divide the numerator from step 7 by \u221a5; the \u221a5 cancels.\",\n      \"facts_used\": [\"step 7\", \"division\"]\n    },\n    {\n      \"claim\": \"\u221a(169/36) = 13/6.\",\n      \"reasoning\": \"Since 169 = 13\u00b2 and 36 = 6\u00b2, the square root is 13/6.\",\n      \"facts_used\": [\"square root of a fraction\", \"perfect squares\"]\n    }\n  ],\n  \"final_answer\": \"13/6\"\n}",
+  "english_proof": {
+    "key_observation": "Simplify each term inside the square root by expressing the radicands as multiples of \u221a5, then combine and simplify the fraction.",
+    "plan": [
+      "Simplify \u221a80, \u221a845, and \u221a45 in terms of \u221a5.",
+      "Rewrite each term in the numerator as a multiple of 1/\u221a5.",
+      "Combine the terms in the numerator over a common denominator.",
+      "Divide by \u221a5 and simplify the fraction inside the outer square root.",
+      "Take the square root to obtain the final result."
+    ],
+    "steps": [
+      {
+        "claim": "\u221a80 = 4\u221a5, \u221a845 = 13\u221a5, \u221a45 = 3\u221a5.",
+        "reasoning": "Since 80 = 16\u00b75, \u221a80 = \u221a16\u00b7\u221a5 = 4\u221a5. Since 845 = 169\u00b75, \u221a845 = \u221a169\u00b7\u221a5 = 13\u221a5. Since 45 = 9\u00b75, \u221a45 = \u221a9\u00b7\u221a5 = 3\u221a5.",
+        "facts_used": [
+          "definition of square root",
+          "simplification of radicals"
+        ]
+      },
+      {
+        "claim": "5/\u221a80 = 5/(4\u221a5) = 5/(4\u221a5), \u221a845/9 = (13\u221a5)/9, \u221a45 = 3\u221a5.",
+        "reasoning": "Substitute the simplified forms from step 1.",
+        "facts_used": [
+          "step 1"
+        ]
+      },
+      {
+        "claim": "5/(4\u221a5) = (5\u221a5)/(4\u00b75) = \u221a5/4.",
+        "reasoning": "Rationalize the denominator: multiply numerator and denominator by \u221a5 to get (5\u221a5)/(4\u00b75) = \u221a5/4.",
+        "facts_used": [
+          "rationalizing denominator"
+        ]
+      },
+      {
+        "claim": "The numerator (5/\u221a80 + \u221a845/9 + \u221a45) equals \u221a5/4 + (13\u221a5)/9 + 3\u221a5.",
+        "reasoning": "Substitute the expressions from steps 2 and 3.",
+        "facts_used": [
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "\u221a5/4 + (13\u221a5)/9 + 3\u221a5 = \u221a5(1/4 + 13/9 + 3).",
+        "reasoning": "Factor out \u221a5 from each term.",
+        "facts_used": [
+          "factoring"
+        ]
+      },
+      {
+        "claim": "1/4 + 13/9 + 3 = 1/4 + 13/9 + 27/9 = 1/4 + 40/9 = (9/36) + (160/36) = 169/36.",
+        "reasoning": "Write 3 as 27/9, add 13/9 to get 40/9. Then convert 1/4 to 9/36 and 40/9 to 160/36, sum to 169/36.",
+        "facts_used": [
+          "common denominator",
+          "arithmetic"
+        ]
+      },
+      {
+        "claim": "The numerator equals \u221a5 \u00b7 (169/36) = (169\u221a5)/36.",
+        "reasoning": "Multiply the factored \u221a5 by the sum from step 6.",
+        "facts_used": [
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "( (5/\u221a80 + \u221a845/9 + \u221a45) / \u221a5 ) = ( (169\u221a5)/36 ) / \u221a5 = 169/36.",
+        "reasoning": "Divide the numerator from step 7 by \u221a5; the \u221a5 cancels.",
+        "facts_used": [
+          "step 7",
+          "division"
+        ]
+      },
+      {
+        "claim": "\u221a(169/36) = 13/6.",
+        "reasoning": "Since 169 = 13\u00b2 and 36 = 6\u00b2, the square root is 13/6.",
+        "facts_used": [
+          "square root of a fraction",
+          "perfect squares"
+        ]
+      }
+    ],
+    "final_answer": "13/6"
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-10T23:05:55.577119+00:00"
+}

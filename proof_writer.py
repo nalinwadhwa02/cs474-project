@@ -2,145 +2,53 @@ import argparse
 import traceback
 import json
 import logging
-import re
-import secrets
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from tqdm import tqdm
 
-# from lemmas import LIBRARY, library_prompt_block
-# from verifier import make_vars, verify_chain
 from models import LLM
 from problems import load_problems
 from english_prompts import build_english_messages
-
-# from lemma_prompts import build_messages, SYSTEM_PROMPT
+from utils import extract_json_object, setup_logging, setup_run_dir
 
 RUNS_DIR = Path(__file__).parent / "runs"
 
 
-def extract_json_object(raw: str) -> dict | None:
-    """Try hard to pull a JSON object out of a model response."""
-    s = raw.strip()
-
-    # Direct parse
-    try:
-        return json.loads(s)
-    except json.JSONDecodeError:
-        pass
-
-    # Strip markdown fences
-    if s.startswith("```"):
-        body = s.split("```", 2)
-        if len(body) >= 2:
-            inner = body[1]
-            if inner.lstrip().startswith("json"):
-                inner = inner.lstrip()[4:]
-            try:
-                return json.loads(inner.strip())
-            except json.JSONDecodeError:
-                pass
-
-    # Find first balanced { ... }
-    start = s.find("{")
-    if start < 0:
-        return None
-    depth, in_str, esc = 0, False, False
-    for i in range(start, len(s)):
-        c = s[i]
-        if esc:
-            esc = False
-            continue
-        if c == "\\":
-            esc = True
-            continue
-        if c == '"':
-            in_str = not in_str
-            continue
-        if in_str:
-            continue
-        if c == "{":
-            depth += 1
-        elif c == "}":
-            depth -= 1
-            if depth == 0:
-                try:
-                    return json.loads(s[start : i + 1])
-                except json.JSONDecodeError:
-                    return None
-    return None
-
-
 def run_proof(theorem: dict, model: LLM) -> dict:
-    messages = build_english_messages(theorem)
-    # messages = build_messages(theorem)
-    response = model.get_chat_completions(messages)
-    raw = response["choices"][0]["message"]["content"].strip()
-    parsed = extract_json_object(raw)
+    def build_msgs(prior_attempts):
+        return build_english_messages(theorem)
 
-    if parsed is None:
+    def verify_schema(parsed):
+        expected = {"key_observation", "plan", "steps"}
+        missing = expected - set(parsed.keys())
         return {
-            "theorem_id": theorem["id"],
-            "stage": "english",
-            "succeeded": False,
-            "messages": messages,
-            "raw_response": raw,
-            "parse_error": "could not extract JSON object",
-            "english_proof": None,
+            "done": True,
+            "succeeded": not bool(missing),
+            "errors": [f"missing fields: {sorted(missing)}"] if missing else [],
+            "result": {"schema_missing": sorted(missing)},
         }
 
-    # Light schema check — don't be strict, log what's missing
-    expected = {"key_observation", "plan", "steps"}
-    missing = expected - set(parsed.keys())
+    r = model.call_with_retry(
+        build_msgs, extract_json_object, verify_schema, max_retries=1
+    )
+
+    schema_missing = r["verification"]["schema_missing"] if r["verification"] else []
     return {
         "theorem_id": theorem["id"],
         "stage": "english",
-        "succeeded": not missing,
-        "messages": messages,
-        "raw_response": raw,
-        "parse_error": None,
-        "schema_missing": sorted(missing) if missing else [],
-        "english_proof": parsed,
+        "succeeded": r["succeeded"],
+        "messages": r["messages"],
+        "raw_response": r["raw"],
+        "parse_error": r["parse_error"],
+        "schema_missing": schema_missing,
+        "english_proof": r["parsed"],
     }
 
 
 # ---------------------------------------------------------------------------
 # Logging / output
 # ---------------------------------------------------------------------------
-
-
-def setup_run_dir(args: argparse.Namespace) -> Path:
-    """Create a timestamped run directory and return its path."""
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    rand = secrets.token_hex(3)  # 6 hex chars
-    model_slug = re.sub(r"[^\w.-]", "-", args.model.split("/")[-1])[:30]
-    folder = RUNS_DIR / f"{ts}_{rand}_{model_slug}_{args.split}"
-    folder.mkdir(parents=True, exist_ok=True)
-    return folder
-
-
-def setup_logging(run_dir: Path) -> logging.Logger:
-    logger = logging.getLogger("prover")
-    logger.setLevel(logging.DEBUG)
-
-    fmt = logging.Formatter(
-        "%(asctime)s  %(levelname)-8s  %(message)s", datefmt="%H:%M:%S"
-    )
-
-    # File handler — full debug log
-    fh = logging.FileHandler(run_dir / "run.log", encoding="utf-8")
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(fmt)
-
-    # Console handler — INFO and above
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(logging.INFO)
-    ch.setFormatter(fmt)
-
-    logger.addHandler(fh)
-    logger.addHandler(ch)
-    return logger
 
 
 def save_config(run_dir: Path, args: argparse.Namespace, n_problems: int) -> None:
@@ -199,7 +107,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         help="Model name as served by the endpoint",
-        default="gpt-5.4-mini-2026-03-17",
+        default="deepseek-ai/deepseek-v4-pro",
     )
 
     parser.add_argument(
@@ -221,8 +129,8 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    run_dir = setup_run_dir(args)
-    logger = setup_logging(run_dir)
+    run_dir = setup_run_dir(RUNS_DIR, args.model, args.split)
+    logger = setup_logging(run_dir, name="writer")
 
     logger.info("Run dir : %s", run_dir)
     logger.info("Model   : %s", args.model)
