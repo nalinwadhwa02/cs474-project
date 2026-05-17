@@ -223,6 +223,22 @@ without any user-supplied lemmas.
 `p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`
 is prime, and Z3 integer arithmetic has no built-in notion of primality.
 Return ONLY the JSON object.
+
+
+## CRITICAL: Non-Degeneracy and Distinctness Constraints
+Z3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:
+
+1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.
+   - Example for points A and B: "Not(And(a_x == b_x, a_y == b_y))"
+   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert "Not(And(m_x == n_x, m_y == n_y))".
+
+2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:
+   - "Not(And(a_x == b_x, a_y == b_y))"
+
+3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:
+   - "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)"
+
+4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.
 """
 
 

@@ -1,0 +1,106 @@
+{
+  "theorem_id": "translated_imo_2004_p1",
+  "statement": "Theorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear",
+  "goal": "coll p b c",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2004_p1\n\nTheorem: translated_imo_2004_p1\nGiven: a b c = triangle a b c\nGiven: o = midpoint o b c\nGiven: m = on_circle m o b, on_line m a b\nGiven: n = on_circle n o b, on_line n a c\nGiven: r = angle_bisector r b a c, angle_bisector r m o n\nGiven: o1 = circle o1 b m r\nGiven: o2 = circle o2 c n r\nGiven: p = on_circle p o1 r, on_circle p o2 r\nProve: prove that points p, b, c are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  o = midpoint o b c\n  m = on_circle m o b, on_line m a b\n  n = on_circle n o b, on_line n a c\n  r = angle_bisector r b a c, angle_bisector r m o n\n  o1 = circle o1 b m r\n  o2 = circle o2 c n r\n  p = on_circle p o1 r, on_circle p o2 r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"In coordinates along the two sides of angle BAC, the point where the A-angle bisector meets BC lies on both circumcircles, so it is the second common point of the two circles.\",\n  \"plan\": [\n    \"Use oblique coordinates with axes AB and AC.\",\n    \"Compute the coordinates of M and N from the circle with center O through B and C.\",\n    \"Use the two angle-bisector conditions to determine the coordinate of R.\",\n    \"Let S be the intersection of the A-angle bisector with BC.\",\n    \"Show by direct substitution that S lies on both circles (BMR) and (CNR).\",\n    \"Conclude that the second common point P of the two circles is S, hence lies on BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may write A=(0,0), B=(u,0), C=(0,v) in oblique coordinates whose coordinate axes are the rays AB and AC, where u=AB, v=AC, and the metric is given by |(x,y)|^2=x^2+y^2+2kxy with k=cos angle BAC.\",\n      \"reasoning\": \"Take unit vectors e_1 and e_2 along AB and AC. Then a point with oblique coordinates (x,y) represents xe_1+ye_2, so the squared length formula follows from e_1 dot e_2=cos angle BAC=k.\",\n      \"facts_used\": [\n        \"coordinate representation in a basis\",\n        \"dot product formula\"\n      ]\n    },\n    {\n      \"claim\": \"The circle with center O through B and C is the circle with diameter BC, and its intersections with AB and AC other than B and C are M=(vk,0) and N=(0,uk), respectively.\",\n      \"reasoning\": \"Since O is the midpoint of BC, a point X lies on the circle centered at O through B exactly when (X-B) dot (X-C)=0. For X=(t,0) on AB, this equation becomes (t-u)(t-vk)=0, so the second intersection is M=(vk,0). Similarly, for X=(0,t) on AC, the equation becomes (t-v)(t-uk)=0, so N=(0,uk).\",\n      \"facts_used\": [\n        \"midpoint property\",\n        \"circle with diameter criterion\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"If R=(w,w) lies on the internal angle bisectors of angle BAC and angle MON, then w=k(u+v)/(2(1+k)) in the nondegenerate case.\",\n      \"reasoning\": \"The internal angle bisector of angle BAC is the line x=y, so R=(w,w). Since M and N lie on the circle centered at O, we have OM=ON; hence in triangle MON, the internal angle bisector from O is also the perpendicular bisector of MN, so RM=RN. Using M=(vk,0), N=(0,uk), and the metric from step 1, the equality RM^2=RN^2 simplifies to k(u-v)(2(1+k)w-k(u+v))=0; in the nondegenerate case this gives w=k(u+v)/(2(1+k)).\",\n      \"facts_used\": [\n        \"internal angle bisector in an isosceles triangle\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The intersection S of the angle bisector of angle BAC with the line BC has coordinates S=(s,s), where s=uv/(u+v).\",\n      \"reasoning\": \"The angle bisector of angle BAC is x=y. The line through B=(u,0) and C=(0,v) has equation x/u+y/v=1. Substituting x=y=s gives s/u+s/v=1, hence s=uv/(u+v).\",\n      \"facts_used\": [\n        \"equation of a line through two intercepts\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The point S lies on the circle through B, M, and R.\",\n      \"reasoning\": \"In these coordinates, any circle has equation x^2+y^2+2kxy+alpha x+beta y+gamma=0. Since the circle through B=(u,0) and M=(vk,0) meets the x-axis at x=u and x=vk, its equation has alpha=-(u+vk) and gamma=uvk. Substituting R=(w,w) gives beta=u+vk-2(1+k)w-uvk/w; substituting S=(s,s) then gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk, which equals 0 because s=uv/(u+v) and w=k(u+v)/(2(1+k)).\",\n      \"facts_used\": [\n        \"general equation of a circle\",\n        \"step 2\",\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The point S lies on the circle through C, N, and R.\",\n      \"reasoning\": \"By the same calculation with the roles of the two coordinate axes interchanged, the circle through C=(0,v), N=(0,uk), and R=(w,w) has equation x^2+y^2+2kxy+alpha' x-(v+uk)y+uvk=0, where alpha'=v+uk-2(1+k)w-uvk/w. Substituting S=(s,s) again gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk=0, so S lies on this circle.\",\n      \"facts_used\": [\n        \"general equation of a circle\",\n        \"step 2\",\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The second common point P of the two circles is S.\",\n      \"reasoning\": \"The two circles both pass through R by construction, and steps 5 and 6 show that they also both pass through S. Two distinct circles have at most two common points, so their common point other than R is S.\",\n      \"facts_used\": [\n        \"two distinct circles intersect in at most two points\",\n        \"step 5\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"The points P, B, and C are collinear.\",\n      \"reasoning\": \"By step 7, P=S. By step 4, S lies on the line BC. Therefore P lies on BC, so P, B, and C are collinear.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 7\",\n        \"definition of collinearity\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "In coordinates along the two sides of angle BAC, the point where the A-angle bisector meets BC lies on both circumcircles, so it is the second common point of the two circles.",
+    "plan": [
+      "Use oblique coordinates with axes AB and AC.",
+      "Compute the coordinates of M and N from the circle with center O through B and C.",
+      "Use the two angle-bisector conditions to determine the coordinate of R.",
+      "Let S be the intersection of the A-angle bisector with BC.",
+      "Show by direct substitution that S lies on both circles (BMR) and (CNR).",
+      "Conclude that the second common point P of the two circles is S, hence lies on BC."
+    ],
+    "steps": [
+      {
+        "claim": "We may write A=(0,0), B=(u,0), C=(0,v) in oblique coordinates whose coordinate axes are the rays AB and AC, where u=AB, v=AC, and the metric is given by |(x,y)|^2=x^2+y^2+2kxy with k=cos angle BAC.",
+        "reasoning": "Take unit vectors e_1 and e_2 along AB and AC. Then a point with oblique coordinates (x,y) represents xe_1+ye_2, so the squared length formula follows from e_1 dot e_2=cos angle BAC=k.",
+        "facts_used": [
+          "coordinate representation in a basis",
+          "dot product formula"
+        ]
+      },
+      {
+        "claim": "The circle with center O through B and C is the circle with diameter BC, and its intersections with AB and AC other than B and C are M=(vk,0) and N=(0,uk), respectively.",
+        "reasoning": "Since O is the midpoint of BC, a point X lies on the circle centered at O through B exactly when (X-B) dot (X-C)=0. For X=(t,0) on AB, this equation becomes (t-u)(t-vk)=0, so the second intersection is M=(vk,0). Similarly, for X=(0,t) on AC, the equation becomes (t-v)(t-uk)=0, so N=(0,uk).",
+        "facts_used": [
+          "midpoint property",
+          "circle with diameter criterion",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "If R=(w,w) lies on the internal angle bisectors of angle BAC and angle MON, then w=k(u+v)/(2(1+k)) in the nondegenerate case.",
+        "reasoning": "The internal angle bisector of angle BAC is the line x=y, so R=(w,w). Since M and N lie on the circle centered at O, we have OM=ON; hence in triangle MON, the internal angle bisector from O is also the perpendicular bisector of MN, so RM=RN. Using M=(vk,0), N=(0,uk), and the metric from step 1, the equality RM^2=RN^2 simplifies to k(u-v)(2(1+k)w-k(u+v))=0; in the nondegenerate case this gives w=k(u+v)/(2(1+k)).",
+        "facts_used": [
+          "internal angle bisector in an isosceles triangle",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The intersection S of the angle bisector of angle BAC with the line BC has coordinates S=(s,s), where s=uv/(u+v).",
+        "reasoning": "The angle bisector of angle BAC is x=y. The line through B=(u,0) and C=(0,v) has equation x/u+y/v=1. Substituting x=y=s gives s/u+s/v=1, hence s=uv/(u+v).",
+        "facts_used": [
+          "equation of a line through two intercepts",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The point S lies on the circle through B, M, and R.",
+        "reasoning": "In these coordinates, any circle has equation x^2+y^2+2kxy+alpha x+beta y+gamma=0. Since the circle through B=(u,0) and M=(vk,0) meets the x-axis at x=u and x=vk, its equation has alpha=-(u+vk) and gamma=uvk. Substituting R=(w,w) gives beta=u+vk-2(1+k)w-uvk/w; substituting S=(s,s) then gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk, which equals 0 because s=uv/(u+v) and w=k(u+v)/(2(1+k)).",
+        "facts_used": [
+          "general equation of a circle",
+          "step 2",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point S lies on the circle through C, N, and R.",
+        "reasoning": "By the same calculation with the roles of the two coordinate axes interchanged, the circle through C=(0,v), N=(0,uk), and R=(w,w) has equation x^2+y^2+2kxy+alpha' x-(v+uk)y+uvk=0, where alpha'=v+uk-2(1+k)w-uvk/w. Substituting S=(s,s) again gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk=0, so S lies on this circle.",
+        "facts_used": [
+          "general equation of a circle",
+          "step 2",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The second common point P of the two circles is S.",
+        "reasoning": "The two circles both pass through R by construction, and steps 5 and 6 show that they also both pass through S. Two distinct circles have at most two common points, so their common point other than R is S.",
+        "facts_used": [
+          "two distinct circles intersect in at most two points",
+          "step 5",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "The points P, B, and C are collinear.",
+        "reasoning": "By step 7, P=S. By step 4, S lies on the line BC. Therefore P lies on BC, so P, B, and C are collinear.",
+        "facts_used": [
+          "step 4",
+          "step 7",
+          "definition of collinearity"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:08:19.351317+00:00"
+}

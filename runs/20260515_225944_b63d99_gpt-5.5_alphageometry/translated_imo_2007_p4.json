@@ -1,0 +1,132 @@
+{
+  "theorem_id": "translated_imo_2007_p4",
+  "statement": "Theorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp",
+  "goal": "eqratio k k1 l l1 r q r p",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2007_p4\n\nTheorem: translated_imo_2007_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: r = on_circle r o a, on_bline r a b\nGiven: l = midpoint l c a\nGiven: k = midpoint k c b\nGiven: p = on_line p o k, on_line p c r\nGiven: q = on_line q o l, on_line q c r\nGiven: l1 = foot l1 l c r\nGiven: k1 = foot k1 k c r\nProve: prove that kk1/ll1 = rq/rp\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  r = on_circle r o a, on_bline r a b\n  l = midpoint l c a\n  k = midpoint k c b\n  p = on_line p o k, on_line p c r\n  q = on_line q o l, on_line q c r\n  l1 = foot l1 l c r\n  k1 = foot k1 k c r\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Since R is the midpoint of arc AB, the line CR is the angle bisector at C, so a coordinate system with CR as the x-axis makes all needed lengths elementary to compute.\",\n  \"plan\": [\n    \"Show that CR bisects angle ACB.\",\n    \"Place coordinates with C at the origin and CR as the x-axis.\",\n    \"Compute the midpoint coordinates of K and L and hence KK1/LL1.\",\n    \"Use the circumcircle equation to compute the circumcenter O.\",\n    \"Find the intersections P = OK \u2229 CR and Q = OL \u2229 CR.\",\n    \"Compare the resulting expressions for RQ/RP and KK1/LL1.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The line CR bisects angle ACB, so \u2220ACR = \u2220RCB.\",\n      \"reasoning\": \"Because R lies on the perpendicular bisector of AB, we have RA = RB. Equal chords RA and RB in the circumcircle subtend equal inscribed angles at C, hence \u2220ACR = \u2220RCB.\",\n      \"facts_used\": [\n        \"definition of perpendicular bisector\",\n        \"equal chords subtend equal angles in a circle\"\n      ]\n    },\n    {\n      \"claim\": \"We may choose coordinates C = (0,0), R = (rho,0), A = (u cos theta, u sin theta), and B = (v cos theta, -v sin theta), where u = CA, v = CB, and 0 < theta < pi/2.\",\n      \"reasoning\": \"Take the x-axis to be the line CR. Since CR bisects angle ACB, the rays CA and CB make equal angles theta with CR on opposite sides of the x-axis. The distances from C to A and B are u and v, respectively.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"coordinate representation using polar coordinates\"\n      ]\n    },\n    {\n      \"claim\": \"The midpoints are L = ((u cos theta)/2, (u sin theta)/2) and K = ((v cos theta)/2, -(v sin theta)/2).\",\n      \"reasoning\": \"Since C = (0,0), the midpoint of C and A is obtained by halving the coordinates of A, and the midpoint of C and B is obtained by halving the coordinates of B.\",\n      \"facts_used\": [\n        \"midpoint formula\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"KK1 = (v sin theta)/2 and LL1 = (u sin theta)/2, hence KK1/LL1 = v/u.\",\n      \"reasoning\": \"The line CR is the x-axis, so the perpendicular distance from a point to CR is the absolute value of its y-coordinate. Thus KK1 is the absolute value of the y-coordinate of K, and LL1 is the absolute value of the y-coordinate of L.\",\n      \"facts_used\": [\n        \"distance from a point to the x-axis\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcircle of A, B, C, R has equation x^2 + y^2 - rho x + mu y = 0 for some real number mu.\",\n      \"reasoning\": \"Since the circle passes through C = (0,0), its equation has no constant term. Since it also passes through R = (rho,0), substituting R gives rho^2 + D rho = 0, so the coefficient of x is D = -rho.\",\n      \"facts_used\": [\n        \"general equation of a circle\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"rho = (u + v)/(2 cos theta) and mu = (v - u)/(2 sin theta).\",\n      \"reasoning\": \"Substituting A into the circle equation gives u^2 - rho u cos theta + mu u sin theta = 0, so u - rho cos theta + mu sin theta = 0. Substituting B gives v^2 - rho v cos theta - mu v sin theta = 0, so v - rho cos theta - mu sin theta = 0. Adding these two equations yields rho = (u + v)/(2 cos theta), and subtracting yields mu = (v - u)/(2 sin theta).\",\n      \"facts_used\": [\n        \"step 5\",\n        \"step 2\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcenter is O = ((u + v)/(4 cos theta), (u - v)/(4 sin theta)).\",\n      \"reasoning\": \"For the circle x^2 + y^2 - rho x + mu y = 0, the center is (rho/2, -mu/2). Substituting the values of rho and mu from the previous step gives the stated coordinates.\",\n      \"facts_used\": [\n        \"center of a circle from its equation\",\n        \"step 6\"\n      ]\n    },\n    {\n      \"claim\": \"The point P = OK \u2229 CR has coordinates P = (v/(2 cos theta), 0).\",\n      \"reasoning\": \"Parametrize the line OK as O + t(K - O). Its y-coordinate is zero when t = -O_y/(K_y - O_y). Using O_y = (u - v)/(4 sin theta), K_y = -v sin theta/2, O_x = (u + v)/(4 cos theta), and K_x = v cos theta/2, this gives t = (v - u)/(v cos 2theta - u). Also K_x - O_x = (v cos 2theta - u)/(4 cos theta), so the x-coordinate is (u + v)/(4 cos theta) + (v - u)/(4 cos theta) = v/(2 cos theta).\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 7\",\n        \"parametric equation of a line\",\n        \"trigonometric identity 2cos^2 theta - 1 = cos 2theta\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The point Q = OL \u2229 CR has coordinates Q = (u/(2 cos theta), 0).\",\n      \"reasoning\": \"Parametrize the line OL as O + t(L - O). Its y-coordinate is zero when t = -O_y/(L_y - O_y). Using O_y = (u - v)/(4 sin theta), L_y = u sin theta/2, O_x = (u + v)/(4 cos theta), and L_x = u cos theta/2, one obtains t = (v - u)/(v - u cos 2theta). Since L_x - O_x = (u cos 2theta - v)/(4 cos theta), the x-coordinate is (u + v)/(4 cos theta) + (u - v)/(4 cos theta) = u/(2 cos theta).\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 7\",\n        \"parametric equation of a line\",\n        \"trigonometric identity 2cos^2 theta - 1 = cos 2theta\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"RQ = v/(2 cos theta) and RP = u/(2 cos theta).\",\n      \"reasoning\": \"From step 6, R = (rho,0) with rho = (u + v)/(2 cos theta). Since P and Q lie on the x-axis, RQ = rho - u/(2 cos theta) = v/(2 cos theta), and RP = rho - v/(2 cos theta) = u/(2 cos theta).\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 8\",\n        \"step 9\",\n        \"distance on a coordinate line\"\n      ]\n    },\n    {\n      \"claim\": \"KK1/LL1 = RQ/RP.\",\n      \"reasoning\": \"By step 4, KK1/LL1 = v/u. By step 10, RQ/RP = [v/(2 cos theta)]/[u/(2 cos theta)] = v/u. Therefore the two ratios are equal.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 10\",\n        \"algebra\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Since R is the midpoint of arc AB, the line CR is the angle bisector at C, so a coordinate system with CR as the x-axis makes all needed lengths elementary to compute.",
+    "plan": [
+      "Show that CR bisects angle ACB.",
+      "Place coordinates with C at the origin and CR as the x-axis.",
+      "Compute the midpoint coordinates of K and L and hence KK1/LL1.",
+      "Use the circumcircle equation to compute the circumcenter O.",
+      "Find the intersections P = OK \u2229 CR and Q = OL \u2229 CR.",
+      "Compare the resulting expressions for RQ/RP and KK1/LL1."
+    ],
+    "steps": [
+      {
+        "claim": "The line CR bisects angle ACB, so \u2220ACR = \u2220RCB.",
+        "reasoning": "Because R lies on the perpendicular bisector of AB, we have RA = RB. Equal chords RA and RB in the circumcircle subtend equal inscribed angles at C, hence \u2220ACR = \u2220RCB.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "equal chords subtend equal angles in a circle"
+        ]
+      },
+      {
+        "claim": "We may choose coordinates C = (0,0), R = (rho,0), A = (u cos theta, u sin theta), and B = (v cos theta, -v sin theta), where u = CA, v = CB, and 0 < theta < pi/2.",
+        "reasoning": "Take the x-axis to be the line CR. Since CR bisects angle ACB, the rays CA and CB make equal angles theta with CR on opposite sides of the x-axis. The distances from C to A and B are u and v, respectively.",
+        "facts_used": [
+          "step 1",
+          "coordinate representation using polar coordinates"
+        ]
+      },
+      {
+        "claim": "The midpoints are L = ((u cos theta)/2, (u sin theta)/2) and K = ((v cos theta)/2, -(v sin theta)/2).",
+        "reasoning": "Since C = (0,0), the midpoint of C and A is obtained by halving the coordinates of A, and the midpoint of C and B is obtained by halving the coordinates of B.",
+        "facts_used": [
+          "midpoint formula",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "KK1 = (v sin theta)/2 and LL1 = (u sin theta)/2, hence KK1/LL1 = v/u.",
+        "reasoning": "The line CR is the x-axis, so the perpendicular distance from a point to CR is the absolute value of its y-coordinate. Thus KK1 is the absolute value of the y-coordinate of K, and LL1 is the absolute value of the y-coordinate of L.",
+        "facts_used": [
+          "distance from a point to the x-axis",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The circumcircle of A, B, C, R has equation x^2 + y^2 - rho x + mu y = 0 for some real number mu.",
+        "reasoning": "Since the circle passes through C = (0,0), its equation has no constant term. Since it also passes through R = (rho,0), substituting R gives rho^2 + D rho = 0, so the coefficient of x is D = -rho.",
+        "facts_used": [
+          "general equation of a circle",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "rho = (u + v)/(2 cos theta) and mu = (v - u)/(2 sin theta).",
+        "reasoning": "Substituting A into the circle equation gives u^2 - rho u cos theta + mu u sin theta = 0, so u - rho cos theta + mu sin theta = 0. Substituting B gives v^2 - rho v cos theta - mu v sin theta = 0, so v - rho cos theta - mu sin theta = 0. Adding these two equations yields rho = (u + v)/(2 cos theta), and subtracting yields mu = (v - u)/(2 sin theta).",
+        "facts_used": [
+          "step 5",
+          "step 2",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "The circumcenter is O = ((u + v)/(4 cos theta), (u - v)/(4 sin theta)).",
+        "reasoning": "For the circle x^2 + y^2 - rho x + mu y = 0, the center is (rho/2, -mu/2). Substituting the values of rho and mu from the previous step gives the stated coordinates.",
+        "facts_used": [
+          "center of a circle from its equation",
+          "step 6"
+        ]
+      },
+      {
+        "claim": "The point P = OK \u2229 CR has coordinates P = (v/(2 cos theta), 0).",
+        "reasoning": "Parametrize the line OK as O + t(K - O). Its y-coordinate is zero when t = -O_y/(K_y - O_y). Using O_y = (u - v)/(4 sin theta), K_y = -v sin theta/2, O_x = (u + v)/(4 cos theta), and K_x = v cos theta/2, this gives t = (v - u)/(v cos 2theta - u). Also K_x - O_x = (v cos 2theta - u)/(4 cos theta), so the x-coordinate is (u + v)/(4 cos theta) + (v - u)/(4 cos theta) = v/(2 cos theta).",
+        "facts_used": [
+          "step 3",
+          "step 7",
+          "parametric equation of a line",
+          "trigonometric identity 2cos^2 theta - 1 = cos 2theta",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "The point Q = OL \u2229 CR has coordinates Q = (u/(2 cos theta), 0).",
+        "reasoning": "Parametrize the line OL as O + t(L - O). Its y-coordinate is zero when t = -O_y/(L_y - O_y). Using O_y = (u - v)/(4 sin theta), L_y = u sin theta/2, O_x = (u + v)/(4 cos theta), and L_x = u cos theta/2, one obtains t = (v - u)/(v - u cos 2theta). Since L_x - O_x = (u cos 2theta - v)/(4 cos theta), the x-coordinate is (u + v)/(4 cos theta) + (u - v)/(4 cos theta) = u/(2 cos theta).",
+        "facts_used": [
+          "step 3",
+          "step 7",
+          "parametric equation of a line",
+          "trigonometric identity 2cos^2 theta - 1 = cos 2theta",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "RQ = v/(2 cos theta) and RP = u/(2 cos theta).",
+        "reasoning": "From step 6, R = (rho,0) with rho = (u + v)/(2 cos theta). Since P and Q lie on the x-axis, RQ = rho - u/(2 cos theta) = v/(2 cos theta), and RP = rho - v/(2 cos theta) = u/(2 cos theta).",
+        "facts_used": [
+          "step 6",
+          "step 8",
+          "step 9",
+          "distance on a coordinate line"
+        ]
+      },
+      {
+        "claim": "KK1/LL1 = RQ/RP.",
+        "reasoning": "By step 4, KK1/LL1 = v/u. By step 10, RQ/RP = [v/(2 cos theta)]/[u/(2 cos theta)] = v/u. Therefore the two ratios are equal.",
+        "facts_used": [
+          "step 4",
+          "step 10",
+          "algebra"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:16:10.463935+00:00"
+}

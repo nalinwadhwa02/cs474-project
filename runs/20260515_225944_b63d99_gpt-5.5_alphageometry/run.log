@@ -1,0 +1,1883 @@
+17:59:44  INFO      Run dir : /Users/dush/cs474-project/runs/20260515_225944_b63d99_gpt-5.5_alphageometry
+17:59:44  INFO      Model   : gpt-5.5
+17:59:44  INFO      Server  : https://api.openai.com/v1
+17:59:44  INFO      Loaded 30 problems from miniF2F (alphageometry)
+17:59:44  INFO      Running 30 problems — logs in /Users/dush/cs474-project/runs/20260515_225944_b63d99_gpt-5.5_alphageometry
+17:59:44  DEBUG     translated_imo_2000_p1  calling model ...
+18:00:36  WARNING   translated_imo_2000_p1  PARSE ERROR: could not extract JSON object
+18:00:36  DEBUG     translated_imo_2000_p1  raw response: {
+  "key_observation": "In coordinates with AB horizontal and length 1, the construction gives E=(t,-s) while P and Q lie on y=s with x-coordinates symmetric about x=t, so EP=EQ.",
+  "plan": [
+    "Normalize the configuration by placing A=(0,0) and B=(1,0).",
+    "Write equations of the two tangent circles and determine C and D.",
+    "Compute the intersection point E of AC and BD.",
+    "Use the radical axis of the two circles to obtain a relation for the coordinates of N.",
+    "Compute P and Q as intersections with the horizontal line CD and prove they are symmetric about the vertical line through E."
+  ],
+  "steps": [
+    {
+      "claim": "We may assume A=(0,0), B=(1,0), and AB is the x-axis.",
+      "reasoning": "A similarity transformation preserves incidence, tangency, parallelism, circles, and equality of lengths. Since AB is a nonzero segment, we can translate, rotate, and scale so that A=(0,0) and B=(1,0).",
+      "facts_used": [
+        "similarity transformations preserve distances up to common scale",
+        "similarity transformations preserve incidence and parallelism"
+      ]
+    },
+    {
+      "claim": "The center of the first circle has coordinates G_1=(0,r_1), and the center of the second circle has coordinates G_2=(1,r_2) for some real numbers r_1,r_2.",
+      "reasoning": "The line AB is tangent to the first circle at A, so the radius G_1A is perpendicular to AB; hence G_1 lies on the vertical line through A. Similarly, G_2 lies on the vertical line through B.",
+      "facts_used": [
+        "radius to a tangent point is perpendicular to the tangent line",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "If M=(t,s), then s≠0 and the two circle equations are x^2+y^2-2r_1y=0 and (x-1)^2+y^2-2r_2y=0.",
+      "reasoning": "The first circle has center (0,r_1) and passes through A=(0,0), so its equation is x^2+(y-r_1)^2=r_1^2, equivalently x^2+y^2-2r_1y=0. The second circle has center (1,r_2) and passes through B=(1,0), giving (x-1)^2+y^2-2r_2y=0. Since AB is tangent to the circles at A and B, the second intersection point M is not on AB, so s≠0.",
+      "facts_used": [
+        "equation of a circle with given center and radius",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The coordinates of C and D are C=(-t,s) and D=(2-t,s).",
+      "reasoning": "Since M=(t,s) lies on the first circle, t^2+s^2-2r_1s=0. Intersecting the first circle with the line through M parallel to AB, namely y=s, gives x^2+s^2-2r_1s=0, so x^2=t^2; the point different from M is C=(-t,s). Similarly, because M lies on the second circle, (t-1)^2+s^2-2r_2s=0, and intersecting the second circle with y=s gives (x-1)^2=(t-1)^2; the point different from M is D=(2-t,s).",
+      "facts_used": [
+        "definition of parallel lines",
+        "step 1",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The intersection point E of AC and BD is E=(t,-s).",
+      "reasoning": "Parametrize AC as A+\lambda(C-A)=(-\lambda t,\lambda s). Parametrize BD as B+\mu(D-B)=(1+\mu(1-t),\mu s). Equality of y-coordinates gives \lambda=\mu, and equality of x-coordinates gives -\lambda t=1+\lambda(1-t), hence \lambda=-1. Therefore E=(t,-s).",
+      "facts_used": [
+        "parametric equation of a line",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "For N=(X,Y), the relation s(2X-1)=(2t-1)Y holds.",
+      "reasoning": "Since M lies on both circles, substituting M into their equations gives 2r_1s=t^2+s^2 and 2r_2s=(t-1)^2+s^2. Hence r_2-r_1=((t-1)^2-t^2)/(2s)=(1-2t)/(2s). Any common point (x,y) of the two circles satisfies the difference of their equations: 2x-1+2(r_2-r_1)y=0. Applying this to N=(X,Y) gives 2X-1+(1-2t)Y/s=0, equivalently s(2X-1)=(2t-1)Y.",
+      "facts_used": [
+        "radical axis equation",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The point P has coordinates P=(sX/Y,s), and the point Q has coordinates Q=(1+s(X-1)/Y,s).",
+      "reasoning": "The line AN is parametrized by (\lambda X,\lambda Y). Its intersection with CD, which is the line y=s, occurs when \lambda=s/Y, giving P=(sX/Y,s). Similarly, the line BN is parametrized by (1+\mu(X-1),\mu Y), and y=s gives \mu=s/Y, so Q=(1+s(X-1)/Y,s).",
+      "facts_used": [
+        "parametric equation of a line",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "The x-coordinates of P and Q sum to 2t.",
+      "reasoning": "Using the coordinates from step 7, we have x_P+x_Q=sX/Y+1+s(X-1)/Y=1+s(2X-1)/Y. By step 6, s(2X-1)/Y=2t-1, so x_P+x_Q=2t.",
+      "facts_used": [
+        "step 6",
+        "step 7"
+      ]
+    },
+    {
+      "claim": "EP=EQ.",
+      "reasoning": "By step 8, the points P and Q lie on the horizontal line y=s and have x-coordinates symmetric about x=t. Since E=(t,-s), we get EP^2=(x_P-t)^2+(2s)^2 and EQ^2=(x_Q-t)^2+(2s)^2. Because x_Q-t=-(x_P-t), these squared distances are equal, hence EP=EQ.",
+      "facts_used": [
+        "distance formula",
+        "step 5",
+        "step 7",
+        "step 8"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:00:36  DEBUG     translated_imo_2000_p6  calling model ...
+18:03:16  INFO      translated_imo_2000_p6  OK
+18:03:16  DEBUG     translated_imo_2000_p6  english_proof: {
+  "key_observation": "After normalizing the incircle to the unit circle, each reflected line is a chord of the incircle with an explicitly computable equation, and the two such chords meet at a point on the incircle.",
+  "plan": [
+    "Normalize the incircle to be the unit circle centered at the incenter.",
+    "Parametrize the tangency points by angles on the unit circle.",
+    "Prove an analytic lemma describing the line obtained by reflecting two altitude feet across a chord of the contact triangle.",
+    "Apply the lemma to the two reflected lines x1x2 and y2y3.",
+    "Identify their common point as a point of the incircle and rescale."
+  ],
+  "steps": [
+    {
+      "claim": "It is enough to prove the result when the incircle has center I=(0,0) and radius 1.",
+      "reasoning": "A similarity transformation preserves incidences, perpendicularity, reflection, and ratios of distances. Under such a transformation, the desired equality IZ=IT1 becomes the statement that the normalized point z has distance 1 from the origin.",
+      "facts_used": [
+        "similarity transformations preserve angles and reflections",
+        "definition of incircle radius"
+      ]
+    },
+    {
+      "claim": "In the normalized coordinates, write T(\u03b8)=(cos \u03b8,sin \u03b8). The tangent to the incircle at T(\u03b8) has equation x cos \u03b8+y sin \u03b8=1.",
+      "reasoning": "For the unit circle centered at the origin, the radius to T(\u03b8) is perpendicular to the tangent line. Therefore the tangent line consists of all points X satisfying T(\u03b8)\u00b7X=1.",
+      "facts_used": [
+        "equation of tangent to the unit circle",
+        "dot product"
+      ]
+    },
+    {
+      "claim": "Let three tangency points be T(-\u03c6), T(\u03c6), and T(\u03c8). Let the corresponding tangent lines form a triangle. If F_{-\u03c6} is the foot from the vertex opposite the tangent at T(-\u03c6) to that tangent, and F_\u03c6 is the analogous foot to the tangent at T(\u03c6), then after reflecting F_{-\u03c6} and F_\u03c6 across the chord T(-\u03c6)T(\u03c6), the image points both lie on the line T(\u03c8)\u00b7X=cos 2\u03c6.",
+      "reasoning": "Put c=cos \u03c6 and s=sin \u03c6. The chord T(-\u03c6)T(\u03c6) has equation x=c, so reflection in it sends (x,y) to (2c-x,y). The vertex on the tangents at T(\u03c6) and T(\u03c8) is A=(T(\u03c6)+T(\u03c8))/(1+T(\u03c6)\u00b7T(\u03c8)); hence the foot on the tangent at T(-\u03c6) has the form F_{-\u03c6}=T(-\u03c6)+\u03bb(s,c), where \u03bb=(sin 2\u03c6+sin(\u03c8+\u03c6))/(1+cos(\u03c8-\u03c6))=(cos 2\u03c6-cos(\u03c8+\u03c6))/sin(\u03c8-\u03c6). Its reflection is X=(c-\u03bb s,-s+\u03bb c), and then T(\u03c8)\u00b7X=cos(\u03c8+\u03c6)+\u03bb sin(\u03c8-\u03c6)=cos 2\u03c6. Similarly, for the foot on the tangent at T(\u03c6), one obtains F_\u03c6=T(\u03c6)+\u03bc(-s,c), where \u03bc=(sin(\u03c8-\u03c6)-sin 2\u03c6)/(1+cos(\u03c8+\u03c6))=(cos 2\u03c6-cos(\u03c8-\u03c6))/sin(\u03c8+\u03c6). Its reflection is Y=(c+\u03bc s,s+\u03bc c), and T(\u03c8)\u00b7Y=cos(\u03c8-\u03c6)+\u03bc sin(\u03c8+\u03c6)=cos 2\u03c6.",
+      "facts_used": [
+        "step 2",
+        "formula for intersection of two tangents to the unit circle",
+        "orthogonal projection onto a line",
+        "reflection across a vertical line",
+        "trigonometric identities"
+      ]
+    },
+    {
+      "claim": "With the notation of step 3, the reflected line is the chord of the unit circle through T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6).",
+      "reasoning": "By step 3, both reflected points lie on the line T(\u03c8)\u00b7X=cos 2\u03c6. For any \u03b7, one has T(\u03c8)\u00b7T(\u03b7)=cos(\u03b7-\u03c8). Therefore T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6) both satisfy the same line equation, since cos(\u00b12\u03c6)=cos 2\u03c6.",
+      "facts_used": [
+        "step 3",
+        "dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)"
+      ]
+    },
+    {
+      "claim": "For arbitrary contact angles \u03b81, \u03b82, \u03b83 of t1,t2,t3, respectively, the line x1x2 has equation T(\u03b83)\u00b7X=cos(\u03b82-\u03b81), and the line y2y3 has equation T(\u03b81)\u00b7X=cos(\u03b83-\u03b82).",
+      "reasoning": "Apply step 4 after rotating the coordinate system so that the two reflected contact points are symmetric about the x-axis. For the pair t1,t2, the third contact point is t3, so the reflected line x1x2 is the chord whose normal direction is T(\u03b83) and whose distance from the origin is cos(\u03b82-\u03b81). For the pair t2,t3, the third contact point is t1, giving the equation for y2y3.",
+      "facts_used": [
+        "step 4",
+        "rotation invariance of dot products",
+        "definition of x1,x2,y2,y3"
+      ]
+    },
+    {
+      "claim": "The point P=T(\u03b81+\u03b83-\u03b82) lies on both lines x1x2 and y2y3.",
+      "reasoning": "Using step 5, we compute T(\u03b83)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b83)=cos(\u03b81-\u03b82)=cos(\u03b82-\u03b81), so P lies on x1x2. Also T(\u03b81)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b81)=cos(\u03b83-\u03b82), so P lies on y2y3.",
+      "facts_used": [
+        "step 5",
+        "dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)",
+        "cosine is even"
+      ]
+    },
+    {
+      "claim": "The intersection point z of the lines x1x2 and y2y3 is P, and hence |Iz|=1 in the normalized coordinates.",
+      "reasoning": "The tangency points t1 and t3 are distinct and not antipodal in a nondegenerate triangle, so the normals T(\u03b81) and T(\u03b83) are not parallel; hence the two lines in step 5 are distinct and have a unique intersection. Since P lies on both lines by step 6, z=P. Because P lies on the unit circle, |Iz|=1.",
+      "facts_used": [
+        "step 6",
+        "uniqueness of intersection of nonparallel lines",
+        "definition of unit circle"
+      ]
+    },
+    {
+      "claim": "In the original triangle, IZ=IT1.",
+      "reasoning": "Undoing the initial similarity transformation multiplies both IZ and IT1 by the same positive scale factor. Since in normalized coordinates IZ=1 and IT1=1, the equality holds in the original configuration.",
+      "facts_used": [
+        "step 1",
+        "step 7",
+        "similarities scale all distances by the same factor"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:03:16  DEBUG     translated_imo_2002_p2a  calling model ...
+18:03:53  INFO      translated_imo_2002_p2a  OK
+18:03:53  DEBUG     translated_imo_2002_p2a  english_proof: {
+  "key_observation": "Both angles are degenerate angles because each is formed by two identical rays.",
+  "plan": [
+    "Identify the two rays forming \u2220ECE.",
+    "Identify the two rays forming \u2220JEJ.",
+    "Use the fact that an angle between identical rays has measure 0.",
+    "Conclude the two angle measures are equal."
+  ],
+  "steps": [
+    {
+      "claim": "The angle \u2220ECE is the angle between the ray CE and the ray CE.",
+      "reasoning": "By definition, \u2220ECE has vertex C and its two sides are the rays from C to E and from C to E, which are the same ray.",
+      "facts_used": [
+        "definition of angle"
+      ]
+    },
+    {
+      "claim": "The measure of \u2220ECE is 0.",
+      "reasoning": "An angle whose two sides are the same ray has measure 0.",
+      "facts_used": [
+        "step 1",
+        "zero angle property"
+      ]
+    },
+    {
+      "claim": "The angle \u2220JEJ is the angle between the ray EJ and the ray EJ.",
+      "reasoning": "By definition, \u2220JEJ has vertex E and its two sides are the rays from E to J and from E to J, which are the same ray.",
+      "facts_used": [
+        "definition of angle"
+      ]
+    },
+    {
+      "claim": "The measure of \u2220JEJ is 0.",
+      "reasoning": "An angle whose two sides are the same ray has measure 0.",
+      "facts_used": [
+        "step 3",
+        "zero angle property"
+      ]
+    },
+    {
+      "claim": "\u2220ECE = \u2220JEJ.",
+      "reasoning": "Both angles have measure 0, so their measures are equal.",
+      "facts_used": [
+        "step 2",
+        "step 4",
+        "transitivity of equality"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:03:53  DEBUG     translated_imo_2002_p2b  calling model ...
+18:04:23  INFO      translated_imo_2002_p2b  OK
+18:04:23  DEBUG     translated_imo_2002_p2b  english_proof: {
+  "key_observation": "Both angles in the conclusion are degenerate angles formed by a ray with itself, so each has measure 0.",
+  "plan": [
+    "Identify the two angles appearing in the conclusion.",
+    "Observe that each angle has identical initial and terminal rays.",
+    "Conclude that both angles have measure 0 and hence are equal."
+  ],
+  "steps": [
+    {
+      "claim": "The angle \u2220CEC is the angle between the ray EC and the ray EC.",
+      "reasoning": "By the definition of an angle \u2220XYZ, its sides are the rays YX and YZ. For \u2220CEC, both sides are the same ray EC.",
+      "facts_used": [
+        "definition of angle"
+      ]
+    },
+    {
+      "claim": "The measure of \u2220CEC is 0.",
+      "reasoning": "An angle whose two sides are the same ray is a degenerate angle of measure 0.",
+      "facts_used": [
+        "step 1",
+        "degenerate angle property"
+      ]
+    },
+    {
+      "claim": "The angle \u2220JCJ is the angle between the ray CJ and the ray CJ.",
+      "reasoning": "By the definition of an angle \u2220XYZ, its sides are the rays YX and YZ. For \u2220JCJ, both sides are the same ray CJ.",
+      "facts_used": [
+        "definition of angle"
+      ]
+    },
+    {
+      "claim": "The measure of \u2220JCJ is 0.",
+      "reasoning": "An angle whose two sides are the same ray is a degenerate angle of measure 0.",
+      "facts_used": [
+        "step 3",
+        "degenerate angle property"
+      ]
+    },
+    {
+      "claim": "\u2220CEC = \u2220JCJ.",
+      "reasoning": "Both angles have measure 0, so they are equal.",
+      "facts_used": [
+        "step 2",
+        "step 4",
+        "transitivity of equality"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:04:23  DEBUG     translated_imo_2003_p4  calling model ...
+18:05:41  INFO      translated_imo_2003_p4  OK
+18:05:41  DEBUG     translated_imo_2003_p4  english_proof: {
+  "key_observation": "The points b1 and d1 are arc midpoints of AC on the circumcircle, so BB1 and DD1 are angle bisectors; this gives AD/DC = AB/BC, which together with the projection-distance formula gives PQ = QR.",
+  "plan": [
+    "Show that BB1 and DD1 are angle bisectors of the relevant angles.",
+    "Use the angle-bisector theorem to relate AB/BC and AD/DC.",
+    "Use the sine rule in triangle ABC to rewrite AB/BC in terms of sin C and sin A.",
+    "Compute PQ and QR using the standard distance formula for orthogonal projections onto two intersecting lines.",
+    "Combine the equalities to conclude PQ = QR."
+  ],
+  "steps": [
+    {
+      "claim": "The line BB1 is an angle bisector of angle ABC.",
+      "reasoning": "Since b1 lies on the perpendicular bisector of CA, we have b1A = b1C. Since b1, A, B, C lie on the same circle, equal chords b1A and b1C subtend equal angles at B, so \u2220ABb1 = \u2220b1BC. Therefore BB1 bisects angle ABC, possibly as an internal or external angle bisector depending on the position of b1.",
+      "facts_used": [
+        "definition of perpendicular bisector",
+        "equal chords subtend equal inscribed angles"
+      ]
+    },
+    {
+      "claim": "The line DD1 is an angle bisector of angle ADC.",
+      "reasoning": "Since d1 lies on the perpendicular bisector of CA, we have d1A = d1C. Since d1, A, D, C lie on the same circle, equal chords d1A and d1C subtend equal angles at D, so \u2220ADd1 = \u2220d1DC. Thus DD1 bisects angle ADC, possibly internally or externally.",
+      "facts_used": [
+        "definition of perpendicular bisector",
+        "equal chords subtend equal inscribed angles"
+      ]
+    },
+    {
+      "claim": "AB/BC = AD/DC.",
+      "reasoning": "Because X lies on BB1 and on AC, step 1 and the angle-bisector theorem in triangle ABC give AX/XC = AB/BC, with directed lengths if X lies outside segment AC. Because X lies on DD1 and on AC, step 2 and the angle-bisector theorem in triangle ADC give AX/XC = AD/DC. Hence AB/BC = AD/DC.",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "angle-bisector theorem"
+      ]
+    },
+    {
+      "claim": "AD sin\u2220BAC = DC sin\u2220BCA.",
+      "reasoning": "By the sine rule in triangle ABC, AB/BC = sin\u2220BCA/sin\u2220BAC. Combining this with step 3 gives AD/DC = sin\u2220BCA/sin\u2220BAC. Multiplying both sides by DC sin\u2220BAC gives AD sin\u2220BAC = DC sin\u2220BCA.",
+      "facts_used": [
+        "step 3",
+        "sine rule"
+      ]
+    },
+    {
+      "claim": "For any point Y and two lines through a point V making angle \u03b8, if F1 and F2 are the perpendicular projections of Y onto the two lines, then F1F2 = VY \u00b7 sin \u03b8.",
+      "reasoning": "Choose coordinates with V as the origin, the first line as the x-axis, and the second line making angle \u03b8 with the x-axis. If Y = \u03c1(cos \u03c6, sin \u03c6), then the projections are F1 = \u03c1 cos \u03c6 \u00b7 e1 and F2 = \u03c1 cos(\u03c6 - \u03b8) \u00b7 e2, where e1 and e2 are unit vectors along the two lines. A direct calculation gives |F1F2|^2 = \u03c1^2 sin^2 \u03b8, so F1F2 = VY \u00b7 sin \u03b8.",
+      "facts_used": [
+        "orthogonal projection formula",
+        "coordinate distance formula",
+        "trigonometric identities"
+      ]
+    },
+    {
+      "claim": "PQ = DC sin\u2220BCA.",
+      "reasoning": "Apply step 5 with V = C, Y = D, and the two lines CA and CB. The perpendicular projections of D onto CA and CB are Q and P respectively, so PQ = DC sin\u2220BCA.",
+      "facts_used": [
+        "step 5",
+        "definition of foot of perpendicular"
+      ]
+    },
+    {
+      "claim": "QR = AD sin\u2220BAC.",
+      "reasoning": "Apply step 5 with V = A, Y = D, and the two lines AC and AB. The perpendicular projections of D onto AC and AB are Q and R respectively, so QR = AD sin\u2220BAC.",
+      "facts_used": [
+        "step 5",
+        "definition of foot of perpendicular"
+      ]
+    },
+    {
+      "claim": "PQ = QR.",
+      "reasoning": "By step 6, PQ = DC sin\u2220BCA. By step 7, QR = AD sin\u2220BAC. Step 4 states that these two quantities are equal, hence PQ = QR.",
+      "facts_used": [
+        "step 4",
+        "step 6",
+        "step 7"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:05:41  DEBUG     translated_imo_2004_p1  calling model ...
+18:08:19  INFO      translated_imo_2004_p1  OK
+18:08:19  DEBUG     translated_imo_2004_p1  english_proof: {
+  "key_observation": "In coordinates along the two sides of angle BAC, the point where the A-angle bisector meets BC lies on both circumcircles, so it is the second common point of the two circles.",
+  "plan": [
+    "Use oblique coordinates with axes AB and AC.",
+    "Compute the coordinates of M and N from the circle with center O through B and C.",
+    "Use the two angle-bisector conditions to determine the coordinate of R.",
+    "Let S be the intersection of the A-angle bisector with BC.",
+    "Show by direct substitution that S lies on both circles (BMR) and (CNR).",
+    "Conclude that the second common point P of the two circles is S, hence lies on BC."
+  ],
+  "steps": [
+    {
+      "claim": "We may write A=(0,0), B=(u,0), C=(0,v) in oblique coordinates whose coordinate axes are the rays AB and AC, where u=AB, v=AC, and the metric is given by |(x,y)|^2=x^2+y^2+2kxy with k=cos angle BAC.",
+      "reasoning": "Take unit vectors e_1 and e_2 along AB and AC. Then a point with oblique coordinates (x,y) represents xe_1+ye_2, so the squared length formula follows from e_1 dot e_2=cos angle BAC=k.",
+      "facts_used": [
+        "coordinate representation in a basis",
+        "dot product formula"
+      ]
+    },
+    {
+      "claim": "The circle with center O through B and C is the circle with diameter BC, and its intersections with AB and AC other than B and C are M=(vk,0) and N=(0,uk), respectively.",
+      "reasoning": "Since O is the midpoint of BC, a point X lies on the circle centered at O through B exactly when (X-B) dot (X-C)=0. For X=(t,0) on AB, this equation becomes (t-u)(t-vk)=0, so the second intersection is M=(vk,0). Similarly, for X=(0,t) on AC, the equation becomes (t-v)(t-uk)=0, so N=(0,uk).",
+      "facts_used": [
+        "midpoint property",
+        "circle with diameter criterion",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "If R=(w,w) lies on the internal angle bisectors of angle BAC and angle MON, then w=k(u+v)/(2(1+k)) in the nondegenerate case.",
+      "reasoning": "The internal angle bisector of angle BAC is the line x=y, so R=(w,w). Since M and N lie on the circle centered at O, we have OM=ON; hence in triangle MON, the internal angle bisector from O is also the perpendicular bisector of MN, so RM=RN. Using M=(vk,0), N=(0,uk), and the metric from step 1, the equality RM^2=RN^2 simplifies to k(u-v)(2(1+k)w-k(u+v))=0; in the nondegenerate case this gives w=k(u+v)/(2(1+k)).",
+      "facts_used": [
+        "internal angle bisector in an isosceles triangle",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The intersection S of the angle bisector of angle BAC with the line BC has coordinates S=(s,s), where s=uv/(u+v).",
+      "reasoning": "The angle bisector of angle BAC is x=y. The line through B=(u,0) and C=(0,v) has equation x/u+y/v=1. Substituting x=y=s gives s/u+s/v=1, hence s=uv/(u+v).",
+      "facts_used": [
+        "equation of a line through two intercepts",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The point S lies on the circle through B, M, and R.",
+      "reasoning": "In these coordinates, any circle has equation x^2+y^2+2kxy+alpha x+beta y+gamma=0. Since the circle through B=(u,0) and M=(vk,0) meets the x-axis at x=u and x=vk, its equation has alpha=-(u+vk) and gamma=uvk. Substituting R=(w,w) gives beta=u+vk-2(1+k)w-uvk/w; substituting S=(s,s) then gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk, which equals 0 because s=uv/(u+v) and w=k(u+v)/(2(1+k)).",
+      "facts_used": [
+        "general equation of a circle",
+        "step 2",
+        "step 3",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "The point S lies on the circle through C, N, and R.",
+      "reasoning": "By the same calculation with the roles of the two coordinate axes interchanged, the circle through C=(0,v), N=(0,uk), and R=(w,w) has equation x^2+y^2+2kxy+alpha' x-(v+uk)y+uvk=0, where alpha'=v+uk-2(1+k)w-uvk/w. Substituting S=(s,s) again gives 2(1+k)s^2-2(1+k)ws-uvks/w+uvk=0, so S lies on this circle.",
+      "facts_used": [
+        "general equation of a circle",
+        "step 2",
+        "step 3",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "The second common point P of the two circles is S.",
+      "reasoning": "The two circles both pass through R by construction, and steps 5 and 6 show that they also both pass through S. Two distinct circles have at most two common points, so their common point other than R is S.",
+      "facts_used": [
+        "two distinct circles intersect in at most two points",
+        "step 5",
+        "step 6"
+      ]
+    },
+    {
+      "claim": "The points P, B, and C are collinear.",
+      "reasoning": "By step 7, P=S. By step 4, S lies on the line BC. Therefore P lies on BC, so P, B, and C are collinear.",
+      "facts_used": [
+        "step 4",
+        "step 7",
+        "definition of collinearity"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:08:19  DEBUG     translated_imo_2004_p5  calling model ...
+18:11:42  INFO      translated_imo_2004_p5  OK
+18:11:42  DEBUG     translated_imo_2004_p5  english_proof: {
+  "key_observation": "Because A, B, C, D are concyclic, the angle conditions defining P can be rewritten as angle conditions involving the chord AC, and these force P to lie on the perpendicular bisector of AC.",
+  "plan": [
+    "Use the fact that D lies on the circumcircle of triangle ABC to obtain cyclic angle equalities.",
+    "Rewrite the two defining angle-line conditions for P using those cyclic angle equalities.",
+    "Apply the standard cyclic angle-line lemma showing that such a point P lies on the perpendicular bisector of AC.",
+    "Conclude that PA = PC."
+  ],
+  "steps": [
+    {
+      "claim": "The four points A, B, C, D are concyclic.",
+      "reasoning": "The circle o passes through A, B, and C by the hypothesis that o is the circumcircle of triangle ABC. The point D also lies on o, so A, B, C, D all lie on the same circle.",
+      "facts_used": [
+        "definition of circumcircle",
+        "definition of on_circle"
+      ]
+    },
+    {
+      "claim": "\u2220ABD = \u2220ACD and \u2220ADB = \u2220ACB.",
+      "reasoning": "In a cyclic quadrilateral, inscribed angles subtending the same chord are equal. The angles \u2220ABD and \u2220ACD both subtend chord AD, while \u2220ADB and \u2220ACB both subtend chord AB.",
+      "facts_used": [
+        "inscribed angle theorem",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The defining conditions for P imply \u2220PBC = \u2220ACD and \u2220PDC = \u2220ACB.",
+      "reasoning": "By the meaning of the two angle-line conditions, P satisfies \u2220PBC = \u2220ABD and \u2220PDC = \u2220ADB. Substituting the cyclic angle equalities from step 2 gives \u2220PBC = \u2220ACD and \u2220PDC = \u2220ACB.",
+      "facts_used": [
+        "definition of on_aline",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "If A, B, C, D are concyclic and a point P satisfies \u2220PBC = \u2220ACD and \u2220PDC = \u2220ACB, then P lies on the perpendicular bisector of AC.",
+      "reasoning": "This is the standard cyclic angle-line lemma. One proof is to normalize by a similarity so that A = (-1,0) and C = (1,0). Then the common circle has equation x^2 + y^2 - 2ty = 1. Writing B = (u,v), D = (r,s), and P = (x,y), the two angle equalities translate into two linear equations in x and y via the tangent formula for the angle between two lines. Using the circle equations for B and D, subtracting the two resulting linear relations cancels the y-terms and gives x = 0. Thus P lies on the line x = 0, which is exactly the perpendicular bisector of AC.",
+      "facts_used": [
+        "standard cyclic angle-line lemma",
+        "analytic geometry",
+        "tangent formula for angle between two lines"
+      ]
+    },
+    {
+      "claim": "PA = PC.",
+      "reasoning": "Every point on the perpendicular bisector of a segment is equidistant from the endpoints of that segment. Since P lies on the perpendicular bisector of AC, it follows that PA = PC.",
+      "facts_used": [
+        "perpendicular bisector theorem",
+        "step 4"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:11:42  DEBUG     translated_imo_2005_p5  calling model ...
+18:15:02  INFO      translated_imo_2005_p5  OK
+18:15:02  DEBUG     translated_imo_2005_p5  english_proof: {
+  "key_observation": "Use affine coordinates with origin at P and coordinate axes along AC and BD; although these axes need not be perpendicular, every circle through P has the same quadratic part, so the proof reduces to comparing the intercepts of EF with the two axes.",
+  "plan": [
+    "Introduce oblique coordinates adapted to the two lines AC and BD.",
+    "Parametrize E and F by the same parameter using AD = BC and DF = EB.",
+    "Compute the intercepts Q and R of EF with BD and AC.",
+    "Derive a linear relation between those intercepts.",
+    "Write the equations of the relevant circles in the oblique coordinate system.",
+    "Use the intercept relation and the radical axis of the two given circles to prove that M lies on the circle through P, Q, R."
+  ],
+  "steps": [
+    {
+      "claim": "We may choose coordinates with P = (0,0), A = (a,0), C = (c,0), B = (0,b), and D = (0,d), where the x-axis is AC and the y-axis is BD.",
+      "reasoning": "The point P lies on both AC and BD. Taking P as the origin and taking the two lines AC and BD as coordinate axes gives such coordinates. The axes are not assumed perpendicular.",
+      "facts_used": [
+        "definition of affine coordinates",
+        "P lies on AC",
+        "P lies on BD"
+      ]
+    },
+    {
+      "claim": "In these coordinates, the squared Euclidean length of a vector (x,y) has the form S(x,y) = alpha x^2 + 2 gamma xy + beta y^2 for constants alpha, beta, gamma with alpha beta - gamma^2 > 0.",
+      "reasoning": "Any Euclidean metric expressed in an arbitrary affine basis is a positive definite quadratic form. Since the basis vectors lie along AC and BD, the same quadratic form S measures all squared distances in these coordinates.",
+      "facts_used": [
+        "Euclidean metric in affine coordinates",
+        "positive definite quadratic forms"
+      ]
+    },
+    {
+      "claim": "There exists a parameter t such that E = (tc, (1-t)b) and F = (ta, (1-t)d).",
+      "reasoning": "Since E lies on BC, we can write E = (1-t)B + tC, hence E = (tc,(1-t)b). Since AD = BC and DF = EB, the point F on AD is the corresponding point satisfying F = (1-t)D + tA, hence F = (ta,(1-t)d).",
+      "facts_used": [
+        "E lies on BC",
+        "F lies on AD",
+        "AD = BC",
+        "DF = EB",
+        "affine parametrization of a line"
+      ]
+    },
+    {
+      "claim": "If Q = (0,q) and R = (r,0), then q = ((1-t)(ab - cd))/(a-c) and r = (t(ab - cd))/(b-d).",
+      "reasoning": "The line EF is parametrized by F + lambda(E-F). Its x-coordinate is t(a + lambda(c-a)); setting this equal to 0 gives lambda = a/(a-c), and substituting into the y-coordinate gives q = ((1-t)(ab-cd))/(a-c). Similarly, setting the y-coordinate equal to 0 gives lambda = d/(d-b), and substituting into the x-coordinate gives r = t(ab-cd)/(b-d).",
+      "facts_used": [
+        "step 3",
+        "equation of a line through two points",
+        "coordinate computation"
+      ]
+    },
+    {
+      "claim": "(b-d)(r-a) = (c-a)(q-d).",
+      "reasoning": "Using the formulas from step 4 and writing K = ab - cd, we have (b-d)(r-a) = tK - a(b-d). Also, (c-a)(q-d) = (c-a)((1-t)K/(a-c) - d) = -(1-t)K - d(c-a). Since K = ab - cd, these two expressions are equal.",
+      "facts_used": [
+        "step 4",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "The circle through P, A, D has equation S(x,y) - alpha a x - beta d y = 0, and the circle through P, B, C has equation S(x,y) - alpha c x - beta b y = 0.",
+      "reasoning": "Every circle through P = (0,0) has equation S(x,y) + ux + vy = 0. Substituting A = (a,0) and D = (0,d) gives u = -alpha a and v = -beta d. Similarly, substituting C = (c,0) and B = (0,b) gives u = -alpha c and v = -beta b.",
+      "facts_used": [
+        "step 2",
+        "equation of a circle in affine coordinates",
+        "P, A, D lie on the first circle",
+        "P, B, C lie on the second circle"
+      ]
+    },
+    {
+      "claim": "If M = (x_M,y_M), then alpha(c-a)x_M + beta(b-d)y_M = 0.",
+      "reasoning": "The point M lies on both circles from step 6. Subtracting their equations gives alpha(c-a)x + beta(b-d)y = 0, so M satisfies this equation.",
+      "facts_used": [
+        "step 6",
+        "M lies on both given circles",
+        "subtraction of equations"
+      ]
+    },
+    {
+      "claim": "The circle through P, Q, R has equation S(x,y) - alpha r x - beta q y = 0.",
+      "reasoning": "A circle through P has equation S(x,y) + ux + vy = 0. Substituting R = (r,0) gives u = -alpha r, and substituting Q = (0,q) gives v = -beta q.",
+      "facts_used": [
+        "step 2",
+        "Q = (0,q)",
+        "R = (r,0)",
+        "equation of a circle in affine coordinates"
+      ]
+    },
+    {
+      "claim": "M lies on the circle through P, Q, R.",
+      "reasoning": "From step 5, there is a scalar lambda such that r-a = lambda(c-a) and q-d = lambda(b-d). Hence alpha(r-a)x_M + beta(q-d)y_M = lambda[alpha(c-a)x_M + beta(b-d)y_M] = 0 by step 7. Since M lies on the circle through P, A, D, we also have S(M) = alpha a x_M + beta d y_M, and therefore S(M) = alpha r x_M + beta q y_M. By step 8, this means M lies on the circle through P, Q, R.",
+      "facts_used": [
+        "step 5",
+        "step 7",
+        "step 6",
+        "step 8"
+      ]
+    },
+    {
+      "claim": "The points P, Q, R, M are concyclic.",
+      "reasoning": "The circle through P, Q, R also contains M by step 9. Therefore the four points P, Q, R, M lie on one circle.",
+      "facts_used": [
+        "step 9",
+        "definition of concyclic points"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:15:02  DEBUG     translated_imo_2007_p4  calling model ...
+18:16:10  INFO      translated_imo_2007_p4  OK
+18:16:10  DEBUG     translated_imo_2007_p4  english_proof: {
+  "key_observation": "Since R is the midpoint of arc AB, the line CR is the angle bisector at C, so a coordinate system with CR as the x-axis makes all needed lengths elementary to compute.",
+  "plan": [
+    "Show that CR bisects angle ACB.",
+    "Place coordinates with C at the origin and CR as the x-axis.",
+    "Compute the midpoint coordinates of K and L and hence KK1/LL1.",
+    "Use the circumcircle equation to compute the circumcenter O.",
+    "Find the intersections P = OK \u2229 CR and Q = OL \u2229 CR.",
+    "Compare the resulting expressions for RQ/RP and KK1/LL1."
+  ],
+  "steps": [
+    {
+      "claim": "The line CR bisects angle ACB, so \u2220ACR = \u2220RCB.",
+      "reasoning": "Because R lies on the perpendicular bisector of AB, we have RA = RB. Equal chords RA and RB in the circumcircle subtend equal inscribed angles at C, hence \u2220ACR = \u2220RCB.",
+      "facts_used": [
+        "definition of perpendicular bisector",
+        "equal chords subtend equal angles in a circle"
+      ]
+    },
+    {
+      "claim": "We may choose coordinates C = (0,0), R = (rho,0), A = (u cos theta, u sin theta), and B = (v cos theta, -v sin theta), where u = CA, v = CB, and 0 < theta < pi/2.",
+      "reasoning": "Take the x-axis to be the line CR. Since CR bisects angle ACB, the rays CA and CB make equal angles theta with CR on opposite sides of the x-axis. The distances from C to A and B are u and v, respectively.",
+      "facts_used": [
+        "step 1",
+        "coordinate representation using polar coordinates"
+      ]
+    },
+    {
+      "claim": "The midpoints are L = ((u cos theta)/2, (u sin theta)/2) and K = ((v cos theta)/2, -(v sin theta)/2).",
+      "reasoning": "Since C = (0,0), the midpoint of C and A is obtained by halving the coordinates of A, and the midpoint of C and B is obtained by halving the coordinates of B.",
+      "facts_used": [
+        "midpoint formula",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "KK1 = (v sin theta)/2 and LL1 = (u sin theta)/2, hence KK1/LL1 = v/u.",
+      "reasoning": "The line CR is the x-axis, so the perpendicular distance from a point to CR is the absolute value of its y-coordinate. Thus KK1 is the absolute value of the y-coordinate of K, and LL1 is the absolute value of the y-coordinate of L.",
+      "facts_used": [
+        "distance from a point to the x-axis",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The circumcircle of A, B, C, R has equation x^2 + y^2 - rho x + mu y = 0 for some real number mu.",
+      "reasoning": "Since the circle passes through C = (0,0), its equation has no constant term. Since it also passes through R = (rho,0), substituting R gives rho^2 + D rho = 0, so the coefficient of x is D = -rho.",
+      "facts_used": [
+        "general equation of a circle",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "rho = (u + v)/(2 cos theta) and mu = (v - u)/(2 sin theta).",
+      "reasoning": "Substituting A into the circle equation gives u^2 - rho u cos theta + mu u sin theta = 0, so u - rho cos theta + mu sin theta = 0. Substituting B gives v^2 - rho v cos theta - mu v sin theta = 0, so v - rho cos theta - mu sin theta = 0. Adding these two equations yields rho = (u + v)/(2 cos theta), and subtracting yields mu = (v - u)/(2 sin theta).",
+      "facts_used": [
+        "step 5",
+        "step 2",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "The circumcenter is O = ((u + v)/(4 cos theta), (u - v)/(4 sin theta)).",
+      "reasoning": "For the circle x^2 + y^2 - rho x + mu y = 0, the center is (rho/2, -mu/2). Substituting the values of rho and mu from the previous step gives the stated coordinates.",
+      "facts_used": [
+        "center of a circle from its equation",
+        "step 6"
+      ]
+    },
+    {
+      "claim": "The point P = OK \u2229 CR has coordinates P = (v/(2 cos theta), 0).",
+      "reasoning": "Parametrize the line OK as O + t(K - O). Its y-coordinate is zero when t = -O_y/(K_y - O_y). Using O_y = (u - v)/(4 sin theta), K_y = -v sin theta/2, O_x = (u + v)/(4 cos theta), and K_x = v cos theta/2, this gives t = (v - u)/(v cos 2theta - u). Also K_x - O_x = (v cos 2theta - u)/(4 cos theta), so the x-coordinate is (u + v)/(4 cos theta) + (v - u)/(4 cos theta) = v/(2 cos theta).",
+      "facts_used": [
+        "step 3",
+        "step 7",
+        "parametric equation of a line",
+        "trigonometric identity 2cos^2 theta - 1 = cos 2theta",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "The point Q = OL \u2229 CR has coordinates Q = (u/(2 cos theta), 0).",
+      "reasoning": "Parametrize the line OL as O + t(L - O). Its y-coordinate is zero when t = -O_y/(L_y - O_y). Using O_y = (u - v)/(4 sin theta), L_y = u sin theta/2, O_x = (u + v)/(4 cos theta), and L_x = u cos theta/2, one obtains t = (v - u)/(v - u cos 2theta). Since L_x - O_x = (u cos 2theta - v)/(4 cos theta), the x-coordinate is (u + v)/(4 cos theta) + (u - v)/(4 cos theta) = u/(2 cos theta).",
+      "facts_used": [
+        "step 3",
+        "step 7",
+        "parametric equation of a line",
+        "trigonometric identity 2cos^2 theta - 1 = cos 2theta",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "RQ = v/(2 cos theta) and RP = u/(2 cos theta).",
+      "reasoning": "From step 6, R = (rho,0) with rho = (u + v)/(2 cos theta). Since P and Q lie on the x-axis, RQ = rho - u/(2 cos theta) = v/(2 cos theta), and RP = rho - v/(2 cos theta) = u/(2 cos theta).",
+      "facts_used": [
+        "step 6",
+        "step 8",
+        "step 9",
+        "distance on a coordinate line"
+      ]
+    },
+    {
+      "claim": "KK1/LL1 = RQ/RP.",
+      "reasoning": "By step 4, KK1/LL1 = v/u. By step 10, RQ/RP = [v/(2 cos theta)]/[u/(2 cos theta)] = v/u. Therefore the two ratios are equal.",
+      "facts_used": [
+        "step 4",
+        "step 10",
+        "algebra"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:16:10  DEBUG     translated_imo_2008_p1a  calling model ...
+18:17:06  INFO      translated_imo_2008_p1a  OK
+18:17:06  DEBUG     translated_imo_2008_p1a  english_proof: {
+  "key_observation": "Using coordinates with A as the origin, the two intersection parameters on AB have sum 1 and scaled product |AB|^2 x_1x_2 = H\\cdot AB - |H|^2, and the analogous two parameters on AC have the same scaled product because H is the orthocenter.",
+  "plan": [
+    "Place the triangle in vector coordinates with A as the origin.",
+    "Use the orthocenter condition to compute dot products involving H.",
+    "Parametrize c1,c2 on AB and derive their quadratic equation from the circle centered at F through H.",
+    "Parametrize b1,b2 on AC and derive the analogous quadratic equation from the circle centered at E through H.",
+    "Construct one circle equation containing both pairs of points."
+  ],
+  "steps": [
+    {
+      "claim": "Let A be the origin, let B have position vector u, let C have position vector v, and let H have position vector h. Then u and v are linearly independent.",
+      "reasoning": "Since ABC is a triangle, A, B, C are not collinear. Therefore the vectors AB = u and AC = v are linearly independent.",
+      "facts_used": [
+        "definition of triangle",
+        "linear independence criterion for non-collinear points"
+      ]
+    },
+    {
+      "claim": "The orthocenter condition gives h \\cdot u = u \\cdot v and h \\cdot v = u \\cdot v.",
+      "reasoning": "Because H lies on the altitude from C, the vector H - C is perpendicular to AB, so (h - v) \\cdot u = 0, hence h \\cdot u = v \\cdot u. Because H lies on the altitude from B, the vector H - B is perpendicular to AC, so (h - u) \\cdot v = 0, hence h \\cdot v = u \\cdot v.",
+      "facts_used": [
+        "definition of orthocenter",
+        "perpendicular vectors have zero dot product",
+        "symmetry of dot product"
+      ]
+    },
+    {
+      "claim": "The midpoint F of AB has position vector u/2, and the midpoint E of AC has position vector v/2.",
+      "reasoning": "A is the origin, B has vector u, and C has vector v. Therefore the midpoint of AB is (0 + u)/2 = u/2, and the midpoint of AC is (0 + v)/2 = v/2.",
+      "facts_used": [
+        "midpoint formula"
+      ]
+    },
+    {
+      "claim": "There exist real numbers x_1,x_2 such that c_1 = x_1u and c_2 = x_2u.",
+      "reasoning": "Both c1 and c2 lie on the line AB. Since A is the origin and B has position vector u, every point on line AB has position vector xu for some real number x.",
+      "facts_used": [
+        "definition of line through two points",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The numbers x_1,x_2 satisfy x_1 + x_2 = 1 and |u|^2 x_1x_2 = u \\cdot v - |h|^2.",
+      "reasoning": "Since c_i lies on the circle centered at F through H, we have |x_i u - u/2|^2 = |h - u/2|^2. Thus x_i is a root of |u|^2(x - 1/2)^2 - |h - u/2|^2 = 0, equivalently |u|^2x^2 - |u|^2x + |u|^2/4 - |h - u/2|^2 = 0. By Vieta's formulas, x_1+x_2=1 and |u|^2x_1x_2 = |u|^2/4 - |h-u/2|^2 = h\\cdot u - |h|^2 = u\\cdot v - |h|^2.",
+      "facts_used": [
+        "definition of circle with center F through H",
+        "step 2",
+        "step 3",
+        "Vieta's formulas",
+        "dot product expansion"
+      ]
+    },
+    {
+      "claim": "There exist real numbers y_1,y_2 such that b_1 = y_1v and b_2 = y_2v.",
+      "reasoning": "Both b1 and b2 lie on the line AC. Since A is the origin and C has position vector v, every point on line AC has position vector yv for some real number y.",
+      "facts_used": [
+        "definition of line through two points",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The numbers y_1,y_2 satisfy y_1 + y_2 = 1 and |v|^2 y_1y_2 = u \\cdot v - |h|^2.",
+      "reasoning": "Since b_i lies on the circle centered at E through H, we have |y_i v - v/2|^2 = |h - v/2|^2. Thus y_i is a root of |v|^2(y - 1/2)^2 - |h - v/2|^2 = 0, equivalently |v|^2y^2 - |v|^2y + |v|^2/4 - |h - v/2|^2 = 0. By Vieta's formulas, y_1+y_2=1 and |v|^2y_1y_2 = |v|^2/4 - |h-v/2|^2 = h\\cdot v - |h|^2 = u\\cdot v - |h|^2.",
+      "facts_used": [
+        "definition of circle with center E through H",
+        "step 2",
+        "step 3",
+        "Vieta's formulas",
+        "dot product expansion"
+      ]
+    },
+    {
+      "claim": "There exists a vector L such that L \\cdot u = -|u|^2 and L \\cdot v = -|v|^2.",
+      "reasoning": "Because u and v are linearly independent, they form a basis of the plane. The two linear equations on the dot products with u and v therefore determine a unique vector L.",
+      "facts_used": [
+        "step 1",
+        "nondegeneracy of Euclidean dot product",
+        "linear algebra basis theorem"
+      ]
+    },
+    {
+      "claim": "Let k = u \\cdot v - |h|^2. The equation |X|^2 + L \\cdot X + k = 0 defines a circle.",
+      "reasoning": "Completing the square gives |X + L/2|^2 = |L|^2/4 - k. This is the standard equation of a circle; since the equation will contain the real points c1 and c2, its radius squared is nonnegative.",
+      "facts_used": [
+        "completion of squares",
+        "standard equation of a circle"
+      ]
+    },
+    {
+      "claim": "Both c_1 and c_2 lie on the circle |X|^2 + L \\cdot X + k = 0.",
+      "reasoning": "For X = x_i u, we have |X|^2 + L \\cdot X + k = |u|^2x_i^2 - |u|^2x_i + k. By step 5, x_1+x_2=1 and k=|u|^2x_1x_2, so the expression equals |u|^2(x_i-x_1)(x_i-x_2), which is 0 for i=1,2.",
+      "facts_used": [
+        "step 5",
+        "step 8",
+        "step 9",
+        "factorization of quadratic polynomials"
+      ]
+    },
+    {
+      "claim": "Both b_1 and b_2 lie on the circle |X|^2 + L \\cdot X + k = 0.",
+      "reasoning": "For X = y_i v, we have |X|^2 + L \\cdot X + k = |v|^2y_i^2 - |v|^2y_i + k. By step 7, y_1+y_2=1 and k=|v|^2y_1y_2, so the expression equals |v|^2(y_i-y_1)(y_i-y_2), which is 0 for i=1,2.",
+      "facts_used": [
+        "step 7",
+        "step 8",
+        "step 9",
+        "factorization of quadratic polynomials"
+      ]
+    },
+    {
+      "claim": "The points c_1,c_2,b_1,b_2 are concyclic.",
+      "reasoning": "Steps 10 and 11 show that all four points lie on the same circle defined by |X|^2 + L \\cdot X + k = 0. Therefore c1, c2, b1, and b2 are concyclic.",
+      "facts_used": [
+        "step 10",
+        "step 11",
+        "definition of concyclic points"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:17:06  DEBUG     translated_imo_2008_p1b  calling model ...
+18:18:10  INFO      translated_imo_2008_p1b  OK
+18:18:10  DEBUG     translated_imo_2008_p1b  english_proof: {
+  "key_observation": "With the orthocenter chosen as the origin, the three vertex vectors have equal pairwise dot products, and each of the diameter-circle conditions reduces to the same circle equation.",
+  "plan": [
+    "Put the origin at the orthocenter and translate the geometric conditions into vector equations.",
+    "Use the orthocenter property to prove that the pairwise dot products of the vertex vectors are equal.",
+    "Define a candidate common circle by a single quadratic equation.",
+    "Show that any relevant intersection point on each side satisfies this same equation.",
+    "Conclude that c1, c2, b1, and a1 lie on one circle."
+  ],
+  "steps": [
+    {
+      "claim": "Choose vector coordinates with H as the origin. Let the position vectors of A, B, C be a, b, c respectively, and let D, E, F have vectors d = (b + c)/2, e = (c + a)/2, f = (a + b)/2.",
+      "reasoning": "A translation of coordinates does not affect incidence, perpendicularity, midpoint relations, or concyclicity. Since D, E, F are midpoints of BC, CA, AB, their position vectors are the corresponding averages.",
+      "facts_used": [
+        "translation invariance of Euclidean geometry",
+        "midpoint formula"
+      ]
+    },
+    {
+      "claim": "There is a real number k such that a \u00b7 b = a \u00b7 c = b \u00b7 c = k.",
+      "reasoning": "Because H is the orthocenter and H is the origin, AH is perpendicular to BC, so a \u00b7 (b - c) = 0, hence a \u00b7 b = a \u00b7 c. Similarly, BH is perpendicular to CA, so b \u00b7 (c - a) = 0, hence b \u00b7 c = b \u00b7 a. Therefore all three pairwise dot products are equal.",
+      "facts_used": [
+        "definition of orthocenter",
+        "perpendicularity and dot product"
+      ]
+    },
+    {
+      "claim": "The equation 2|x|^2 - (a + b + c) \u00b7 x + k = 0 defines a nondegenerate circle \u0393.",
+      "reasoning": "Let s = a + b + c. Dividing by 2 gives |x|^2 - (s/2) \u00b7 x + k/2 = 0, whose center is s/4 and whose squared radius is |s|^2/16 - k/2. Since |s|^2 = |a|^2 + |b|^2 + |c|^2 + 6k, the squared radius is (|a|^2 + |b|^2 + |c|^2 - 2k)/16 = (|a|^2 + |b - c|^2)/16 > 0 because B \u2260 C in a triangle.",
+      "facts_used": [
+        "standard equation of a circle",
+        "step 2",
+        "triangle nondegeneracy"
+      ]
+    },
+    {
+      "claim": "Every point x on line BC and on the circle with diameter DH satisfies 2|x|^2 - (a + b + c) \u00b7 x + k = 0.",
+      "reasoning": "Since x lies on BC, we have a \u00b7 x = k, because a \u00b7 b = a \u00b7 c = k. Since x lies on the circle with diameter DH and H is the origin, the diameter-circle condition gives x \u00b7 (x - d) = 0, so |x|^2 = x \u00b7 d. As d = (b + c)/2, we get |x|^2 = x \u00b7 (b + c)/2 = ((a + b + c) \u00b7 x - a \u00b7 x)/2 = ((a + b + c) \u00b7 x - k)/2, which rearranges to the claimed equation.",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "circle with diameter characterization",
+        "line parametrization"
+      ]
+    },
+    {
+      "claim": "The point a1 lies on \u0393.",
+      "reasoning": "By hypothesis, a1 lies on line BC and on the circle with diameter DH. Therefore step 4 applies to x = a1, so a1 satisfies the defining equation of \u0393.",
+      "facts_used": [
+        "hypothesis on a1",
+        "step 4",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "Every point y on line CA and on the circle with diameter EH satisfies 2|y|^2 - (a + b + c) \u00b7 y + k = 0.",
+      "reasoning": "Since y lies on CA, we have b \u00b7 y = k, because b \u00b7 c = b \u00b7 a = k. Since y lies on the circle with diameter EH and H is the origin, |y|^2 = y \u00b7 e. As e = (c + a)/2, this gives |y|^2 = y \u00b7 (c + a)/2 = ((a + b + c) \u00b7 y - b \u00b7 y)/2 = ((a + b + c) \u00b7 y - k)/2, which is equivalent to the defining equation of \u0393.",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "circle with diameter characterization",
+        "line parametrization"
+      ]
+    },
+    {
+      "claim": "The point b1 lies on \u0393.",
+      "reasoning": "By hypothesis, b1 lies on line CA and on the circle with diameter EH. Therefore step 6 applies to y = b1, so b1 satisfies the defining equation of \u0393.",
+      "facts_used": [
+        "hypothesis on b1",
+        "step 6",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "Every point z on line AB and on the circle with diameter FH satisfies 2|z|^2 - (a + b + c) \u00b7 z + k = 0.",
+      "reasoning": "Since z lies on AB, we have c \u00b7 z = k, because c \u00b7 a = c \u00b7 b = k. Since z lies on the circle with diameter FH and H is the origin, |z|^2 = z \u00b7 f. As f = (a + b)/2, this gives |z|^2 = z \u00b7 (a + b)/2 = ((a + b + c) \u00b7 z - c \u00b7 z)/2 = ((a + b + c) \u00b7 z - k)/2, which is equivalent to the defining equation of \u0393.",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "circle with diameter characterization",
+        "line parametrization"
+      ]
+    },
+    {
+      "claim": "The points c1 and c2 lie on \u0393.",
+      "reasoning": "By hypothesis, both c1 and c2 lie on line AB and on the circle with diameter FH. Therefore step 8 applies to z = c1 and z = c2, so both points satisfy the defining equation of \u0393.",
+      "facts_used": [
+        "hypotheses on c1 and c2",
+        "step 8",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The points c1, c2, b1, and a1 are concyclic.",
+      "reasoning": "Steps 5, 7, and 9 show that a1, b1, c1, and c2 all lie on the same nondegenerate circle \u0393. Hence these four points are concyclic.",
+      "facts_used": [
+        "step 3",
+        "step 5",
+        "step 7",
+        "step 9",
+        "definition of concyclic points"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:18:10  DEBUG     translated_imo_2008_p6  calling model ...
+18:21:17  INFO      translated_imo_2008_p6  OK
+18:21:17  DEBUG     translated_imo_2008_p6  english_proof: {
+  "key_observation": "After placing the diagonal AC on the x-axis, the tangency condition with the given circle forces the two incircle contact points on AC to be complementary, and then the external homothety center of the two incircles differs from the given circle's center by exactly its radius.",
+  "plan": [
+    "Relabel the configuration as a tangential quadrilateral ABCD with diagonal AC.",
+    "Use tangent-length relations to locate the two incircle touchpoints on AC.",
+    "Choose coordinates adapted to AC and write the two incenters explicitly.",
+    "Compute the center and radius of the given tangent circle from angle-bisector equations.",
+    "Compute the intersection K of the common external tangents as the external homothety center of the two incircles.",
+    "Compare the coordinates of O and K to prove OK equals the radius OX."
+  ],
+  "steps": [
+    {
+      "claim": "Let A=a, B=b, C=c, D=d, and let \u0393 be the circle with center O=o and radius R=OX. The lines AB, BC, CD, DA are tangent to \u0393.",
+      "reasoning": "By construction, A and B lie on the tangent to \u0393 at z, B and C lie on the tangent to \u0393 at w, C and D lie on the tangent to \u0393 at y, and D and A lie on the tangent to \u0393 at x. Hence each side-line of quadrilateral ABCD is tangent to \u0393.",
+      "facts_used": [
+        "definition of tangent line",
+        "given construction of a,b,c,d"
+      ]
+    },
+    {
+      "claim": "If E=f1 is the touchpoint of the incircle of triangle ABC with AC and F=f2 is the touchpoint of the incircle of triangle ACD with AC, then AE=CF and CE=AF.",
+      "reasoning": "For triangle ABC, tangent lengths to its incircle give AB-BC=AE-CE. For triangle ACD, tangent lengths to its incircle give AD-CD=AF-CF. The circle \u0393 is tangent to the four side-lines in the stated configuration, so directed tangent-length relations give AB-BC=CD-AD. Hence AE-CE=CF-AF. Together with AE+CE=AF+CF=AC, this implies AE=CF and CE=AF.",
+      "facts_used": [
+        "equal tangent segments from a point",
+        "directed tangent lengths",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "Choose coordinates with A=(0,0), C=(m+n,0), E=(m,0), F=(n,0), where m=AE and n=CE. If the radii of the incircles of ABC and ACD are \u03c1 and \u03c3 respectively, then I1=(m,\u03c1) and I2=(n,-\u03c3).",
+      "reasoning": "The feet E and F are the perpendicular projections of the incenters onto AC. The two triangles lie on opposite sides of AC, so after choosing the upper side for triangle ABC, the centers have coordinates I1=(m,\u03c1) and I2=(n,-\u03c3).",
+      "facts_used": [
+        "definition of incenter",
+        "definition of foot of perpendicular",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The external angle bisector at A on which O lies has equation y=((mn+\u03c1\u03c3)/(\u03c3m-\u03c1n))x, and the corresponding external angle bisector at C has equation y=((mn+\u03c1\u03c3)/(\u03c1m-\u03c3n))(x-m-n).",
+      "reasoning": "The line AB is the non-horizontal tangent from A to the circle centered at (m,\u03c1) with radius \u03c1, so its angle with AC is 2 arctan(\u03c1/m). Similarly, AD has angle -2 arctan(\u03c3/n) with AC. The relevant center O is on the external angle bisector of these two tangent lines, whose slope is -1/tan(arctan(\u03c1/m)-arctan(\u03c3/n))=(mn+\u03c1\u03c3)/(\u03c3m-\u03c1n). The computation at C is identical, using the distances n and m from C to E and F respectively.",
+      "facts_used": [
+        "tangent from an external point to a circle",
+        "angle-bisector theorem for centers of tangent circles",
+        "tangent subtraction formula",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The center O of \u0393 has coordinates O=((\u03c1n-\u03c3m)/(\u03c1-\u03c3), -(mn+\u03c1\u03c3)/(\u03c1-\u03c3)).",
+      "reasoning": "Since \u0393 is tangent to AB and AD, its center lies on the external angle bisector at A. Since \u0393 is tangent to BC and CD, its center also lies on the corresponding external angle bisector at C. Solving the two linear equations from step 4 gives the stated coordinates.",
+      "facts_used": [
+        "step 4",
+        "intersection of two nonparallel lines"
+      ]
+    },
+    {
+      "claim": "The radius of \u0393 is R=|mn-\u03c1\u03c3|/|\u03c1-\u03c3|.",
+      "reasoning": "The radius is the perpendicular distance from O to AB. Using the tangent-line equation for AB, namely y=(2\u03c1m/(m^2-\u03c1^2))x, and substituting the coordinates of O from step 5, the distance formula simplifies to |mn-\u03c1\u03c3|/|\u03c1-\u03c3|.",
+      "facts_used": [
+        "point-to-line distance formula",
+        "step 5"
+      ]
+    },
+    {
+      "claim": "The point K, the intersection of the two common external tangents to the incircles, has coordinates K=((\u03c1n-\u03c3m)/(\u03c1-\u03c3), -2\u03c1\u03c3/(\u03c1-\u03c3)).",
+      "reasoning": "The intersection of the common external tangents of two circles is their external center of similitude. Therefore K lies on I1I2 and satisfies the directed ratio KI1:KI2=\u03c1:\u03c3, giving K=(\u03c1I2-\u03c3I1)/(\u03c1-\u03c3). Substituting I1=(m,\u03c1) and I2=(n,-\u03c3) yields the stated coordinates.",
+      "facts_used": [
+        "external homothety center of two circles",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The points O and K have the same x-coordinate, and OK=|mn-\u03c1\u03c3|/|\u03c1-\u03c3|.",
+      "reasoning": "Comparing steps 5 and 7, both O and K have x-coordinate (\u03c1n-\u03c3m)/(\u03c1-\u03c3). Their vertical separation is |-(mn+\u03c1\u03c3)/(\u03c1-\u03c3)+2\u03c1\u03c3/(\u03c1-\u03c3)|=|mn-\u03c1\u03c3|/|\u03c1-\u03c3|.",
+      "facts_used": [
+        "step 5",
+        "step 7"
+      ]
+    },
+    {
+      "claim": "OK=OX.",
+      "reasoning": "By step 6, OX=R=|mn-\u03c1\u03c3|/|\u03c1-\u03c3|. By step 8, OK has the same value. Hence OK=OX.",
+      "facts_used": [
+        "step 6",
+        "step 8",
+        "definition of radius"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:21:17  DEBUG     translated_imo_2009_p2  calling model ...
+18:23:06  INFO      translated_imo_2009_p2  OK
+18:23:06  DEBUG     translated_imo_2009_p2  english_proof: {
+  "key_observation": "After placing the tangent at M as the x-axis, P and Q become symmetric points (-r,0) and (r,0), so it suffices to prove that the circumcenter of triangle ABC lies on the y-axis.",
+  "plan": [
+    "Normalize coordinates using the tangent line and circumcircle.",
+    "Parametrize K and L on the normalized circumcircle.",
+    "Compute the coordinates of B, C, and A from the reflection and incidence conditions.",
+    "Construct an explicit point O* on the y-axis and show it is equidistant from A, B, and C.",
+    "Conclude that O = O*, hence OP = OQ."
+  ],
+  "steps": [
+    {
+      "claim": "If Q = M, then P = Q and the desired conclusion OP = OQ is immediate.",
+      "reasoning": "Since P is the reflection of Q in M, when Q = M we also have P = M. Thus P and Q are the same point, so every point O has OP = OQ.",
+      "facts_used": [
+        "definition of reflection",
+        "identity of distances"
+      ]
+    },
+    {
+      "claim": "Assume Q != M. We may choose Cartesian coordinates such that M = (0,0), the tangent line at M is the x-axis, the circumcircle of triangle MLK has equation x^2 + y^2 = y, Q = (r,0), and P = (-r,0) for some nonzero real number r.",
+      "reasoning": "Translate M to the origin, rotate so that the tangent line is the x-axis, and scale so that the circle tangent at M has equation x^2 + y^2 = y. Since Q lies on the tangent line, Q = (r,0); since P is the reflection of Q in M, P = (-r,0).",
+      "facts_used": [
+        "coordinate normalization by translation, rotation, and scaling",
+        "definition of tangent line",
+        "definition of reflection"
+      ]
+    },
+    {
+      "claim": "There exist real numbers u and v with u != v such that K = (u/(1 + u^2), 1/(1 + u^2)) and L = (v/(1 + v^2), 1/(1 + v^2)).",
+      "reasoning": "Every point (x,y) != (0,0) on x^2 + y^2 = y has y != 0, so setting u = x/y gives x = uy. Substituting into the circle equation gives (u^2 + 1)y^2 = y, hence y = 1/(1 + u^2) and x = u/(1 + u^2). The same parametrization applies to L; nondegeneracy of triangle MLK gives u != v.",
+      "facts_used": [
+        "parametrization of a circle through the origin",
+        "nondegeneracy of a triangle"
+      ]
+    },
+    {
+      "claim": "The reflected points B and C have coordinates B = (r + 2u/(1 + u^2), 2/(1 + u^2)) and C = (-r + 2v/(1 + v^2), 2/(1 + v^2)).",
+      "reasoning": "Because B is the reflection of P in K, the point K is the midpoint of PB, so B = 2K - P. Similarly, since C is the reflection of Q in L, we have C = 2L - Q.",
+      "facts_used": [
+        "definition of reflection",
+        "step 2",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "The point A has coordinates A = (r(u + v)/(v - u), 2r/(v - u)).",
+      "reasoning": "The line BQ has direction B - Q = 2K, hence direction (u,1). The line CP has direction C - P = 2L, hence direction (v,1). Thus A = Q + lambda(u,1) = P + lambda(v,1), so comparing x-coordinates gives r + lambda u = -r + lambda v, hence lambda = 2r/(v - u).",
+      "facts_used": [
+        "step 2",
+        "step 4",
+        "definition of collinearity"
+      ]
+    },
+    {
+      "claim": "Let O* = (0,z), where z = 1 + r(1 + uv)/(v - u), and define F(x,y) = x^2 + y^2 - 2zy. Then F(B) = r^2 - 4r/(v - u).",
+      "reasoning": "Using the coordinates of B, we get B_x^2 + B_y^2 = r^2 + 4ru/(1 + u^2) + 4/(1 + u^2). Therefore F(B) = r^2 + [4ru + 4 - 4z]/(1 + u^2). Since 1 - z = -r(1 + uv)/(v - u), this simplifies to r^2 + 4r[u(v - u) - (1 + uv)]/((v - u)(1 + u^2)) = r^2 - 4r/(v - u).",
+      "facts_used": [
+        "step 4",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "With the same O* and F, one has F(C) = r^2 - 4r/(v - u).",
+      "reasoning": "Using the coordinates of C, we get C_x^2 + C_y^2 = r^2 - 4rv/(1 + v^2) + 4/(1 + v^2). Hence F(C) = r^2 + [-4rv + 4 - 4z]/(1 + v^2). Since 1 - z = -r(1 + uv)/(v - u), this becomes r^2 - 4r[v(v - u) + (1 + uv)]/((v - u)(1 + v^2)) = r^2 - 4r/(v - u).",
+      "facts_used": [
+        "step 4",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "With the same O* and F, one has F(A) = r^2 - 4r/(v - u).",
+      "reasoning": "From the coordinates of A, A_x^2 + A_y^2 = r^2((u + v)^2 + 4)/(v - u)^2 and A_y = 2r/(v - u). Thus F(A) = r^2((u + v)^2 + 4)/(v - u)^2 - 4rz/(v - u). Substituting z = 1 + r(1 + uv)/(v - u), we obtain F(A) = r^2((u + v)^2 + 4 - 4(1 + uv))/(v - u)^2 - 4r/(v - u) = r^2 - 4r/(v - u).",
+      "facts_used": [
+        "step 5",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "The point O* is the circumcenter of triangle ABC, so O = O*.",
+      "reasoning": "The equation F(x,y) = constant is equivalent to x^2 + (y - z)^2 = constant + z^2, which is a circle centered at O* = (0,z). Steps 6, 7, and 8 show that A, B, and C lie on this circle. Since O is defined as the circumcenter of A, B, C, uniqueness of the circumcenter gives O = O*.",
+      "facts_used": [
+        "steps 6",
+        "step 7",
+        "step 8",
+        "equation of a circle",
+        "uniqueness of circumcenter"
+      ]
+    },
+    {
+      "claim": "OP = OQ.",
+      "reasoning": "Since O = O* = (0,z), P = (-r,0), and Q = (r,0), we have OP^2 = r^2 + z^2 and OQ^2 = r^2 + z^2. Hence OP = OQ.",
+      "facts_used": [
+        "step 2",
+        "step 9",
+        "distance formula"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:23:06  DEBUG     translated_imo_2010_p2  calling model ...
+18:25:34  WARNING   translated_imo_2010_p2  PARSE ERROR: could not extract JSON object
+18:25:34  DEBUG     translated_imo_2010_p2  raw response: {
+  "key_observation": "After placing A=(0,0) and D=(1,0), the arc-midpoint property gives DI=DB=DC, so the side BC has the simple equation x+uy=1-h^2, which makes the midpoint condition algebraic.",
+  "plan": [
+    "Normalize the configuration by coordinates with AD as the x-axis.",
+    "Use the incenter and arc-midpoint lemma to express BC in a simple form.",
+    "Write explicit coordinates for E, F, and G using the equal-angle condition.",
+    "Let K' be the second intersection of EI with the circumcircle and parametrize it.",
+    "Show by direct slope computation that D, G, and K' are collinear.",
+    "Conclude that the given point K equals K' and hence lies on the circumcircle."
+  ],
+  "steps": [
+    {
+      "claim": "We may assume A=(0,0), D=(1,0), and the line AI is the x-axis.",
+      "reasoning": "A similarity transformation preserves collinearity, midpoints, angle equalities, circles, and equality of lengths up to the same scale factor. Since D lies on AI and D≠A, we scale so that AD=1.",
+      "facts_used": [
+        "similarity transformations preserve incidence and ratios",
+        "definition of coordinate normalization"
+      ]
+    },
+    {
+      "claim": "The circumcircle Γ of ABC has equation x^2+y^2-x+uy=0 for some real number u.",
+      "reasoning": "A circle through A=(0,0) has equation x^2+y^2+\alpha x+\beta y=0. Since it also passes through D=(1,0), we get 1+\alpha=0, hence \u03b1=-1; writing \u03b2=u gives the equation.",
+      "facts_used": [
+        "general equation of a circle",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "If I=(1-h,0), then h=DI=DB=DC.",
+      "reasoning": "Because I is the incenter, AI is the internal angle bisector of ∠A. Therefore D, the second intersection of AI with Γ, is the midpoint of the arc BC not containing A. The standard arc-midpoint lemma gives DB=DC=DI; since AD=1 and I lies between A and D, writing I=(1-h,0) gives h=DI.",
+      "facts_used": [
+        "incenter lies on the internal angle bisector",
+        "arc-midpoint lemma: the midpoint of arc BC not containing A is equidistant from B, C, and I",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The line BC has equation x+uy=1-h^2.",
+      "reasoning": "The points B and C lie both on Γ and on the circle centered at D=(1,0) with radius h, whose equation is (x-1)^2+y^2=h^2. Subtracting this equation from x^2+y^2-x+uy=0 gives x+uy=1-h^2, so the common chord BC has that equation.",
+      "facts_used": [
+        "step 2",
+        "step 3",
+        "radical axis of two circles"
+      ]
+    },
+    {
+      "claim": "There is a real number q such that AF has equation y=qx and AE has equation y=-qx.",
+      "reasoning": "The x-axis is the angle bisector AI of ∠A. The hypothesis ∠BAF=∠CAE means that the rays AF and AE are symmetric with respect to AI, so their slopes are opposite; denote the slope of AF by q.",
+      "facts_used": [
+        "definition of angle bisector",
+        "given equal-angle condition",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The point E has coordinates E=(a,-qa), where a=(1+uq)/(1+q^2).",
+      "reasoning": "Since E lies on AE, write E=(x,-qx). Substituting into Γ gives x^2+q^2x^2-x-uqx=0, so x((1+q^2)x-(1+uq))=0. The nonzero intersection is E, hence x=a=(1+uq)/(1+q^2).",
+      "facts_used": [
+        "step 2",
+        "step 5",
+        "E lies on Γ"
+      ]
+    },
+    {
+      "claim": "The point F has coordinates F=(f,qf), where f=(1-h^2)/(1+uq).",
+      "reasoning": "Since F lies on AF, write F=(x,qx). Since F also lies on BC, we substitute into x+uy=1-h^2 and obtain x(1+uq)=1-h^2. Thus x=f=(1-h^2)/(1+uq).",
+      "facts_used": [
+        "step 4",
+        "step 5",
+        "F lies on BC"
+      ]
+    },
+    {
+      "claim": "The midpoint G of I and F is G=((1-h+f)/2,qf/2).",
+      "reasoning": "We have I=(1-h,0) and F=(f,qf). Taking the coordinatewise average gives the stated midpoint.",
+      "facts_used": [
+        "definition of midpoint",
+        "step 3",
+        "step 7"
+      ]
+    },
+    {
+      "claim": "For any real parameter t, the second intersection of the line y=tx with Γ is P(t)=((1-ut)/(1+t^2),t(1-ut)/(1+t^2)).",
+      "reasoning": "Substitute y=tx into x^2+y^2-x+uy=0. This gives x((1+t^2)x-1+ut)=0, so the nonzero intersection has x=(1-ut)/(1+t^2) and y=t x.",
+      "facts_used": [
+        "step 2",
+        "substitution into a circle equation"
+      ]
+    },
+    {
+      "claim": "Let K'=P(r) be the second intersection of EI with Γ. Then r=h(1+uq)/(uh+q(u^2+1-h)).",
+      "reasoning": "Write s=1-h and E=P(-q)=(a,-qa). For P(r)=(X,rX), where X=(1-ur)/(1+r^2), collinearity of I=(s,0), E=(a,-qa), and P(r) is equivalent to X(r(a-s)+qa)-qas=0. This quadratic in r has one root r=-q, corresponding to E; using the product of roots gives the other root r=a h/(u(a-s)+qas). Substituting a=(1+uq)/(1+q^2) and s=1-h simplifies this to r=h(1+uq)/(uh+q(u^2+1-h)).",
+      "facts_used": [
+        "step 6",
+        "step 8",
+        "step 9",
+        "collinearity determinant criterion",
+        "product of roots of a quadratic"
+      ]
+    },
+    {
+      "claim": "The slope of DG is -q(1-h)/(h+uq).",
+      "reasoning": "Using G=((1-h+f)/2,qf/2), the slope of DG is (qf/2)/((1-h+f)/2-1)=qf/(1-h+f-2). Since f=(1-h^2)/(1+uq), the denominator becomes -(1+h)(h+uq)/(1+uq), while qf=q(1-h)(1+h)/(1+uq). Therefore the slope is -q(1-h)/(h+uq).",
+      "facts_used": [
+        "step 7",
+        "step 8",
+        "slope formula"
+      ]
+    },
+    {
+      "claim": "The slope of DK' is also -q(1-h)/(h+uq).",
+      "reasoning": "For K'=P(r), the slope of DK' is y_{K'}/(x_{K'}-1)=(ur-1)/(r+u). Substituting r=h(1+uq)/(uh+q(u^2+1-h)) gives ur-1=-q(1-h)(1+u^2)/(uh+q(u^2+1-h)) and r+u=(1+u^2)(h+uq)/(uh+q(u^2+1-h)). Dividing these two expressions gives -q(1-h)/(h+uq).",
+      "facts_used": [
+        "step 9",
+        "step 10",
+        "slope formula",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "The points D, G, and K' are collinear.",
+      "reasoning": "Both lines DG and DK' pass through D, and steps 11 and 12 show that they have the same slope. Hence they are the same line.",
+      "facts_used": [
+        "step 11",
+        "step 12",
+        "two lines through one point with equal slope coincide"
+      ]
+    },
+    {
+      "claim": "The given point K equals K'.",
+      "reasoning": "By construction, K lies on EI and DG. The point K' lies on EI by definition and lies on DG by step 13. Thus K and K' are the same intersection point of the two lines EI and DG.",
+      "facts_used": [
+        "given definition of K",
+        "step 10",
+        "step 13",
+        "uniqueness of intersection of two nonparallel lines"
+      ]
+    },
+    {
+      "claim": "OK=OA.",
+      "reasoning": "The point K' lies on Γ by construction, and Γ is the circle with center O passing through A. Since K=K', K lies on Γ, so its distance from O equals the radius OA.",
+      "facts_used": [
+        "step 10",
+        "step 14",
+        "definition of circle"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:25:34  DEBUG     translated_imo_2010_p4  calling model ...
+18:27:55  INFO      translated_imo_2010_p4  OK
+18:27:55  DEBUG     translated_imo_2010_p4  english_proof: {
+  "key_observation": "After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.",
+  "plan": [
+    "Normalize the circle and introduce a rational parameter for points on it.",
+    "Derive the equation of a chord in terms of the parameters of its endpoints.",
+    "Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.",
+    "Use collinearity with P to relate the parameters of A, B, K, L, M.",
+    "Prove the algebraic identity equivalent to MK = ML.",
+    "Conclude equality of the two chord lengths from the distance formula on the unit circle."
+  ],
+  "steps": [
+    {
+      "claim": "We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.",
+      "reasoning": "A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.",
+      "facts_used": [
+        "similarity transformations preserve incidence and length equality",
+        "radius is perpendicular to tangent at point of tangency"
+      ]
+    },
+    {
+      "claim": "For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.",
+      "reasoning": "Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.",
+      "facts_used": [
+        "rational parametrization of the unit circle",
+        "equation of a line through two points"
+      ]
+    },
+    {
+      "claim": "If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).",
+      "reasoning": "Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "collinearity"
+      ]
+    },
+    {
+      "claim": "If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).",
+      "reasoning": "Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.",
+      "facts_used": [
+        "step 1",
+        "step 2",
+        "definition of distance",
+        "hypothesis SC = SP"
+      ]
+    },
+    {
+      "claim": "Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).",
+      "reasoning": "Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).",
+      "facts_used": [
+        "step 2",
+        "step 4",
+        "collinearity",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.",
+      "reasoning": "Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.",
+      "facts_used": [
+        "step 3",
+        "step 5",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).",
+      "reasoning": "Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.",
+      "facts_used": [
+        "step 2",
+        "Euclidean distance formula",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "MK = ML.",
+      "reasoning": "By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.",
+      "facts_used": [
+        "step 6",
+        "step 7",
+        "algebra",
+        "nonnegativity of segment lengths"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:27:55  DEBUG     translated_imo_2011_p6  calling model ...
+18:30:57  INFO      translated_imo_2011_p6  OK
+18:30:57  DEBUG     translated_imo_2011_p6  english_proof: {
+  "key_observation": "In complex coordinates with the circumcircle as the unit circle, the three vertices of the reflected-line triangle are the images of a, b, c under one M\u00f6bius transformation, and the image circle meets the unit circle in a double point.",
+  "plan": [
+    "Normalize the circumcircle to the unit circle in the complex plane.",
+    "Write the tangent at p and compute the equations of its reflections in the sides of ABC.",
+    "Solve for the three intersection points a1, b1, c1 and recognize them as values of one M\u00f6bius map.",
+    "Compute the image circle of the unit circle under this M\u00f6bius map.",
+    "Show that its intersection with the original unit circle is a double point.",
+    "Conclude that the two circles are tangent, hence their centers and their common point are collinear."
+  ],
+  "steps": [
+    {
+      "claim": "We may assume that the circumcircle o of ABC is the unit circle in the complex plane, with complex coordinates a, b, c, p satisfying |a|=|b|=|c|=|p|=1.",
+      "reasoning": "A direct similarity transformation preserves reflections, tangencies, circles, and collinearity of centers. Thus it is enough to prove the result after sending o to the unit circle.",
+      "facts_used": [
+        "similarity transformations preserve circles",
+        "similarity transformations preserve reflections",
+        "similarity transformations preserve collinearity"
+      ]
+    },
+    {
+      "claim": "The tangent line to the unit circle at p has equation z+p^2\\overline z=2p.",
+      "reasoning": "The usual tangent equation at a point p on the unit circle is \\overline p z+p\\overline z=2. Since |p|=1, multiplying by p gives z+p^2\\overline z=2p.",
+      "facts_used": [
+        "tangent line equation to the unit circle",
+        "|p|=1"
+      ]
+    },
+    {
+      "claim": "If u and v are two points of the unit circle, then the reflection of the tangent line z+p^2\\overline z=2p across the chord uv has equation p^2z+u^2v^2\\overline z=(u+v)(uv+p^2)-2puv.",
+      "reasoning": "Reflection in the line through unit points u and v sends a point z to u+v-uv\\overline z. Substituting z=u+v-uv\\overline w into the tangent equation and then renaming w as z gives the displayed equation.",
+      "facts_used": [
+        "reflection formula across a chord of the unit circle",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "Let s=a+b+c, t=ab+bc+ca, and u=abc. Then the intersection point a1 of the two reflected tangent lines across CA and AB has complex coordinate \u03b1=f(a), where f(r)=\\frac{t-2u/p+(u/p^2)r}{s-r}. Similarly, b1 and c1 have coordinates \u03b2=f(b) and \u03b3=f(c).",
+      "reasoning": "For a1, use the equations from step 3 with (u,v)=(c,a) and (u,v)=(a,b). Subtracting them gives \\overline \u03b1=\\frac{a(s-2p)+p^2}{a^2(s-a)}, and conjugating, using |a|=|b|=|c|=|p|=1, gives \u03b1=\\frac{t-2abc/p+(abc/p^2)a}{s-a}. The formulas for \u03b2 and \u03b3 follow cyclically.",
+      "facts_used": [
+        "step 3",
+        "|a|=|b|=|c|=|p|=1",
+        "cyclic symmetry"
+      ]
+    },
+    {
+      "claim": "The circle o1 through a1, b1, c1 is the image of the unit circle under the M\u00f6bius transformation f(r)=\\frac{t-2u/p+(u/p^2)r}{s-r}.",
+      "reasoning": "By step 4, the three points a1, b1, c1 are f(a), f(b), f(c). A M\u00f6bius transformation sends a circle or line to a circle or line; since a1, b1, c1 determine the circle o1, that image circle is precisely o1.",
+      "facts_used": [
+        "step 4",
+        "M\u00f6bius transformations send generalized circles to generalized circles"
+      ]
+    },
+    {
+      "claim": "A point z lies on o1 if and only if |sz-(t-2u/p)|=|z+u/p^2|.",
+      "reasoning": "Solving z=f(r) for r gives r=\\frac{sz-(t-2u/p)}{z+u/p^2}. Since o1 is the image of the unit circle under f, z lies on o1 exactly when the corresponding r satisfies |r|=1, which is equivalent to the displayed equation.",
+      "facts_used": [
+        "step 5",
+        "definition of the unit circle",
+        "inverse of a M\u00f6bius transformation"
+      ]
+    },
+    {
+      "claim": "The intersection of o1 with the original unit circle is a double point.",
+      "reasoning": "Assume |z|=1, so \\overline z=1/z. Squaring out the equation from step 6 gives (sz-(t-2u/p))(\\overline s-\\overline{t-2u/p}\\,z)=(z+u/p^2)(1+\\overline{u/p^2}\\,z). Using \\overline s=t/u, \\overline t=s/u, \\overline u=1/u, and \\overline p=1/p, this reduces to -\\frac{1}{u}\\left((s-p)z-u\\left(\\overline s-\\frac1p\\right)\\right)^2=0. Hence the intersection equation has one double root.",
+      "facts_used": [
+        "step 6",
+        "|z|=1 implies \\overline z=1/z",
+        "|a|=|b|=|c|=|p|=1",
+        "algebraic expansion"
+      ]
+    },
+    {
+      "claim": "The circles o and o1 are tangent at their unique common point x.",
+      "reasoning": "Two circles meet tangentially exactly when their intersection equation has a double root. By step 7, o and o1 have one common point counted with multiplicity two, so they are tangent there. Therefore every point x lying on both circles is this tangency point.",
+      "facts_used": [
+        "step 7",
+        "criterion for tangency of two circles by double intersection"
+      ]
+    },
+    {
+      "claim": "The points x, o, and o1 are collinear.",
+      "reasoning": "For two tangent circles, the point of tangency and the two centers lie on one line. Since x is the tangency point of o and o1 by step 8, x, o, and o1 are collinear.",
+      "facts_used": [
+        "step 8",
+        "centers of tangent circles and tangency point are collinear"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:30:57  DEBUG     translated_imo_2012_p1  calling model ...
+18:32:38  INFO      translated_imo_2012_p1  OK
+18:32:38  DEBUG     translated_imo_2012_p1  english_proof: {
+  "key_observation": "After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.",
+  "plan": [
+    "Normalize the configuration by coordinates with M at the origin and BC as the x-axis.",
+    "Compute the tangency points K and L of the excircle with AB and AC.",
+    "Compute the coordinates of A, F, and G.",
+    "Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.",
+    "Show that S and T are symmetric about M on line BC."
+  ],
+  "steps": [
+    {
+      "claim": "We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.",
+      "reasoning": "Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.",
+      "facts_used": [
+        "coordinate normalization by similarity",
+        "radius to tangent line is perpendicular",
+        "definition of excircle tangency"
+      ]
+    },
+    {
+      "claim": "The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.",
+      "reasoning": "For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)\u00b7(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).",
+      "facts_used": [
+        "equation of a circle",
+        "radius to tangent line is perpendicular",
+        "dot product criterion for perpendicularity",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).",
+      "reasoning": "Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.",
+      "facts_used": [
+        "two-point equation of a line",
+        "solving simultaneous linear equations",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The point F=ML\u2229BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+      "reasoning": "Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).",
+      "facts_used": [
+        "two-point equation of a line",
+        "solving simultaneous linear equations",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The point G=MK\u2229CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+      "reasoning": "Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).",
+      "facts_used": [
+        "two-point equation of a line",
+        "solving simultaneous linear equations",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The point S=AF\u2229BC has coordinates S=(-(p+q)/(1-pq),0).",
+      "reasoning": "Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).",
+      "facts_used": [
+        "collinearity",
+        "affine coordinates on a line",
+        "step 3",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "The point T=AG\u2229BC has coordinates T=((p+q)/(1-pq),0).",
+      "reasoning": "Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).",
+      "facts_used": [
+        "collinearity",
+        "affine coordinates on a line",
+        "step 3",
+        "step 5"
+      ]
+    },
+    {
+      "claim": "MS=MT.",
+      "reasoning": "By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.",
+      "facts_used": [
+        "distance formula on a coordinate line",
+        "definition of midpoint",
+        "step 1",
+        "step 6",
+        "step 7"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:32:38  DEBUG     translated_imo_2012_p5  calling model ...
+18:34:04  INFO      translated_imo_2012_p5  OK
+18:34:04  DEBUG     translated_imo_2012_p5  english_proof: {
+  "key_observation": "Using coordinates with the right angle at C, the condition X lies on the altitude CD makes the algebra symmetric enough to show that the intersection parameters of M on BK and AL differ exactly by the circle-radius relation.",
+  "plan": [
+    "Place the right triangle in coordinates with C at the origin and the legs on the coordinate axes.",
+    "Parametrize X on the altitude CD and parametrize K and L on AX and BX.",
+    "Use BK = BC and AL = AC to derive a relation between the parameters of K and L.",
+    "Parametrize M as the intersection of BK and AL and compute its two line parameters.",
+    "Use the parameter relation to prove MK = ML."
+  ],
+  "steps": [
+    {
+      "claim": "We may choose coordinates C = (0, 0), A = (a, 0), and B = (0, b), where a = CA > 0 and b = CB > 0.",
+      "reasoning": "The triangle CAB is right-angled at C. A rigid motion and scaling of axes preserve collinearity, circle membership, and segment lengths, so this coordinate placement is valid.",
+      "facts_used": [
+        "Euclidean coordinate normalization",
+        "right triangle hypothesis"
+      ]
+    },
+    {
+      "claim": "There is a real number p such that X = (pb, pa).",
+      "reasoning": "The line AB has direction vector (-a, b). A perpendicular direction is (b, a), since (-a, b) \u00b7 (b, a) = -ab + ab = 0. Because D is the foot from C to AB, the line CD is the line through C in direction (b, a), and X lies on this line.",
+      "facts_used": [
+        "definition of foot of perpendicular",
+        "dot product criterion for perpendicular lines",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "There exist real parameters s and t such that K = A + s(X - A) and L = B + t(X - B). Hence K = (a + s(pb - a), spa) and L = (tpb, b + t(pa - b)).",
+      "reasoning": "Since K lies on line AX, it is an affine combination of A and X. Since L lies on line BX, it is an affine combination of B and X. Substituting the coordinates of A, B, and X gives the stated formulas.",
+      "facts_used": [
+        "definition of collinearity",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The condition BK = BC = b gives a^2(1 - s)^2 = E s^2, where E = 2pab - p^2(a^2 + b^2).",
+      "reasoning": "Using K = (a + s(pb - a), spa), the equation BK^2 = b^2 becomes (a + s(pb - a))^2 + (spa - b)^2 = b^2. Expanding and simplifying gives ((pb - a)^2 + p^2a^2)s^2 - 2a^2s + a^2 = 0. Rearranging this equation yields a^2(1 - s)^2 = (a^2 - ((pb - a)^2 + p^2a^2))s^2 = (2pab - p^2(a^2 + b^2))s^2.",
+      "facts_used": [
+        "distance formula",
+        "step 3",
+        "definition of circle centered at B through C"
+      ]
+    },
+    {
+      "claim": "The condition AL = AC = a gives b^2(1 - t)^2 = E t^2, with the same E = 2pab - p^2(a^2 + b^2).",
+      "reasoning": "Using L = (tpb, b + t(pa - b)), the equation AL^2 = a^2 becomes (tpb - a)^2 + (b + t(pa - b))^2 = a^2. Expanding and simplifying gives (p^2b^2 + (pa - b)^2)t^2 - 2b^2t + b^2 = 0. Rearranging gives b^2(1 - t)^2 = (b^2 - (p^2b^2 + (pa - b)^2))t^2 = (2pab - p^2(a^2 + b^2))t^2.",
+      "facts_used": [
+        "distance formula",
+        "step 3",
+        "definition of circle centered at A through C"
+      ]
+    },
+    {
+      "claim": "The parameters s and t satisfy b s(1 - t) = a t(1 - s).",
+      "reasoning": "From steps 4 and 5, we have a^2(1 - s)^2/s^2 = b^2(1 - t)^2/t^2 = E. For the chosen points K and L on the corresponding segments, s, t, 1 - s, and 1 - t are positive, so taking positive square roots gives a(1 - s)/s = b(1 - t)/t. Cross-multiplying gives b s(1 - t) = a t(1 - s).",
+      "facts_used": [
+        "step 4",
+        "step 5",
+        "positive square root property",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "If M = B + u(K - B) = A + v(L - A), then u = t/(s + t - st) and v = s/(s + t - st).",
+      "reasoning": "Let P = K - B and Q = L - A. The equality B + uP = A + vQ is equivalent to uP - vQ = A - B. A direct determinant computation gives det(P, Q) = H(s + t - st), det(A - B, Q) = tH, and det(P, A - B) = -sH, where H = p(a^2 + b^2) - ab. Solving the two-by-two linear system by determinants yields u = t/(s + t - st) and v = s/(s + t - st).",
+      "facts_used": [
+        "Cramer's rule",
+        "step 3",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "MK = b(1 - u) = b s(1 - t)/(s + t - st), and ML = a(1 - v) = a t(1 - s)/(s + t - st).",
+      "reasoning": "Since M = B + u(K - B), K corresponds to parameter 1 on line BK, so MK = |1 - u| \u00b7 BK. Similarly, since M = A + v(L - A), L corresponds to parameter 1 on line AL, so ML = |1 - v| \u00b7 AL. Using BK = b, AL = a, and the formulas for u and v from step 7 gives the stated expressions.",
+      "facts_used": [
+        "affine parameterization of a line",
+        "step 7",
+        "BK = BC",
+        "AL = AC"
+      ]
+    },
+    {
+      "claim": "MK = ML.",
+      "reasoning": "By step 8, MK = b s(1 - t)/(s + t - st) and ML = a t(1 - s)/(s + t - st). Step 6 states exactly that the two numerators are equal, so the two segment lengths are equal.",
+      "facts_used": [
+        "step 6",
+        "step 8"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:34:04  DEBUG     translated_imo_2013_p4  calling model ...
+18:35:17  INFO      translated_imo_2013_p4  OK
+18:35:17  DEBUG     translated_imo_2013_p4  english_proof: {
+  "key_observation": "After placing B and C on the x-axis, the point X is the antipode of W on the circle through B,N,W and hence lies on the vertical line through B, while Y similarly lies on the vertical line through C; their heights can then be computed directly.",
+  "plan": [
+    "Choose coordinates with B=(0,0), C=(1,0), A=(u,v), and W=(s,0).",
+    "Compute the orthocenter H and the altitude-foot points N and M.",
+    "Write equations for the two circles through B,N,W and C,M,W.",
+    "Use the fact that X and Y are antipodes of W on their respective circles to find their coordinates.",
+    "Verify directly that H lies on the line XY."
+  ],
+  "steps": [
+    {
+      "claim": "We may assume B=(0,0), C=(1,0), A=(u,v) with v != 0, and W=(s,0).",
+      "reasoning": "A similarity transformation preserves collinearity, perpendicularity, circles, orthocenters, and antipodal points on a circle. Since W lies on line BC, after translating, rotating, and scaling we may put BC on the x-axis with B=(0,0) and C=(1,0).",
+      "facts_used": [
+        "invariance under similarity transformations",
+        "definition of collinearity"
+      ]
+    },
+    {
+      "claim": "The orthocenter is H=(u, u(1-u)/v).",
+      "reasoning": "Since BC is horizontal, the altitude from A is the vertical line x=u. The slope of AC is v/(u-1), so the altitude from B has slope -(u-1)/v=(1-u)/v and equation y=((1-u)/v)x. Substituting x=u gives H=(u,u(1-u)/v).",
+      "facts_used": [
+        "definition of orthocenter",
+        "perpendicular slopes",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The point N is N=(u^2/(u^2+v^2), uv/(u^2+v^2)).",
+      "reasoning": "The point N lies on AB and on HC. Since HC is an altitude, HC is perpendicular to AB, so N is the foot of the perpendicular from C to line AB. The projection of C=(1,0) onto the line through the origin in direction A=(u,v) is ((C dot A)/(A dot A))A = (u/(u^2+v^2))(u,v).",
+      "facts_used": [
+        "definition of altitude",
+        "orthogonal projection formula",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "The point M is M=(v^2/((1-u)^2+v^2), v(1-u)/((1-u)^2+v^2)).",
+      "reasoning": "The point M lies on AC and on HB. Since HB is an altitude, HB is perpendicular to AC, so M is the foot of the perpendicular from B to line AC. Writing AC with base C=(1,0) and direction A-C=(u-1,v), the projection parameter of B-C=(-1,0) onto A-C is (1-u)/((1-u)^2+v^2), giving the stated coordinates.",
+      "facts_used": [
+        "definition of altitude",
+        "orthogonal projection formula",
+        "step 1",
+        "step 2"
+      ]
+    },
+    {
+      "claim": "If the circle through B,N,W has equation x^2+y^2-sx+Ey=0, then X=(0,-E).",
+      "reasoning": "Because the circle passes through B=(0,0), its constant term is 0. Because it passes through W=(s,0), the coefficient of x is -s. Its center is therefore O1=(s/2,-E/2). Since X lies on line O1W and on the circle as the point opposite W, X is the reflection of W in O1, hence X=2O1-W=(0,-E).",
+      "facts_used": [
+        "standard equation of a circle",
+        "center of a circle from its equation",
+        "diameter endpoints are collinear with the center",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The coordinate of X is X=(0, u(1-s)/v).",
+      "reasoning": "Substituting N=(n_x,n_y) into x^2+y^2-sx+Ey=0 gives -E=(n_x^2+n_y^2-sn_x)/n_y. From step 3, n_x=u^2/(u^2+v^2), n_y=uv/(u^2+v^2), and n_x^2+n_y^2=u^2/(u^2+v^2). Therefore -E=(u^2(1-s)/(u^2+v^2))/(uv/(u^2+v^2))=u(1-s)/v.",
+      "facts_used": [
+        "step 3",
+        "step 5",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "If the circle through C,M,W has equation x^2+y^2-(s+1)x+E'y+s=0, then Y=(1,-E').",
+      "reasoning": "For y=0, the circle meets the x-axis at x=s and x=1, so the quadratic part on the x-axis is (x-s)(x-1)=x^2-(s+1)x+s. Thus the center is O2=((s+1)/2,-E'/2). Since Y is the point opposite W on this circle, Y=2O2-W=(1,-E').",
+      "facts_used": [
+        "standard equation of a circle",
+        "center of a circle from its equation",
+        "diameter endpoints are collinear with the center",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The coordinate of Y is Y=(1, s(1-u)/v).",
+      "reasoning": "Substituting M=(m_x,m_y) into x^2+y^2-(s+1)x+E'y+s=0 gives -E'=(m_x^2+m_y^2-(s+1)m_x+s)/m_y. From step 4, with T=(1-u)^2+v^2, we have m_x=v^2/T, m_y=v(1-u)/T, and m_x^2+m_y^2=v^2/T. Hence -E'=(v^2/T-(s+1)v^2/T+s)/(v(1-u)/T)=s(1-u)/v.",
+      "facts_used": [
+        "step 4",
+        "step 7",
+        "algebraic simplification"
+      ]
+    },
+    {
+      "claim": "The points X,H,Y are collinear.",
+      "reasoning": "From steps 6 and 8, X=(0,u(1-s)/v) and Y=(1,s(1-u)/v). The point on line XY with x-coordinate u has y-coordinate (1-u)(u(1-s)/v)+u(s(1-u)/v)=u(1-u)/v. By step 2, this is exactly the y-coordinate of H, so H lies on line XY.",
+      "facts_used": [
+        "two-point equation of a line",
+        "step 2",
+        "step 6",
+        "step 8",
+        "algebraic simplification"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:35:17  DEBUG     translated_imo_2014_p4  calling model ...
+18:36:21  INFO      translated_imo_2014_p4  OK
+18:36:21  DEBUG     translated_imo_2014_p4  english_proof: {
+  "key_observation": "Using coordinates on the line BC, the angle conditions give explicit positions for P and Q, and after reflecting A in P and Q the intersection X can be checked directly to satisfy the circumcircle equation of ABC.",
+  "plan": [
+    "Place B and C on the x-axis and write A in coordinates.",
+    "Use the sine rule and the given angle equalities to determine the coordinates of P and Q.",
+    "Use point reflection to determine M and N.",
+    "Compute the intersection X of BM and CN.",
+    "Substitute the coordinates of X into the circumcircle equation of ABC.",
+    "Conclude that X lies on the circumcircle, hence OX = OA."
+  ],
+  "steps": [
+    {
+      "claim": "We may choose coordinates B = (0,0), C = (a,0), and A = (u,v), where v != 0, AB = c, AC = b, and u = (a^2 + c^2 - b^2)/(2a).",
+      "reasoning": "A nondegenerate triangle can be placed in the plane with BC on the x-axis. Since AB^2 = u^2 + v^2 = c^2 and AC^2 = (u-a)^2 + v^2 = b^2, subtracting the two equations gives 2au = a^2 + c^2 - b^2.",
+      "facts_used": [
+        "coordinate placement",
+        "distance formula",
+        "nondegeneracy of a triangle"
+      ]
+    },
+    {
+      "claim": "The point P has coordinates P = (c^2/a,0).",
+      "reasoning": "Since P lies on line BC and angle PAB equals angle BCA, triangle ABP has angles angle BAP = angle BCA and angle ABP = angle ABC. Hence its third angle equals angle BAC. By the sine rule in triangle ABP, BP/sin(angle BAP) = AB/sin(angle APB), so BP/sin C = c/sin A. Using the sine rule in triangle ABC, c/sin C = a/sin A, hence BP = c^2/a.",
+      "facts_used": [
+        "given angle equality for P",
+        "P lies on line BC",
+        "angle sum in a triangle",
+        "sine rule"
+      ]
+    },
+    {
+      "claim": "The point Q has coordinates Q = ((a^2 - b^2)/a,0).",
+      "reasoning": "Since Q lies on line BC and angle CAQ equals angle CBA, triangle ACQ has angles angle CAQ = angle CBA and angle ACQ = angle ACB. Hence its third angle equals angle BAC. By the sine rule in triangle ACQ, CQ/sin(angle CAQ) = AC/sin(angle AQC), so CQ/sin B = b/sin A. Using the sine rule in triangle ABC, b/sin B = a/sin A, hence CQ = b^2/a. Therefore BQ = BC - CQ = a - b^2/a = (a^2 - b^2)/a.",
+      "facts_used": [
+        "given angle equality for Q",
+        "Q lies on line BC",
+        "angle sum in a triangle",
+        "sine rule"
+      ]
+    },
+    {
+      "claim": "The reflected points are M = (2c^2/a - u,-v) and N = (2(a^2-b^2)/a - u,-v).",
+      "reasoning": "Because M is the reflection of A in P, the point P is the midpoint of AM, so M = 2P - A. Similarly, because N is the reflection of A in Q, the point Q is the midpoint of AN, so N = 2Q - A.",
+      "facts_used": [
+        "definition of reflection in a point",
+        "step 1",
+        "step 2",
+        "step 3"
+      ]
+    },
+    {
+      "claim": "If X = BM intersect CN, then X = tM with t = a^2/(2b^2 + 2c^2 - a^2).",
+      "reasoning": "Since B = (0,0), every point on BM has the form tM. Write M = (m,-v), where m = 2c^2/a - u. Since C = (a,0), every point on CN has the form C + s(N-C). Comparing y-coordinates gives s = t. Comparing x-coordinates gives tm = a + t(N_x-a), so t(m - N_x + a) = a. Now m - N_x + a = 2c^2/a - 2(a^2-b^2)/a + a = (2b^2 + 2c^2 - a^2)/a, hence t = a^2/(2b^2 + 2c^2 - a^2).",
+      "facts_used": [
+        "equation of a line through two points",
+        "step 4"
+      ]
+    },
+    {
+      "claim": "The circumcircle of ABC has equation x^2 + y^2 - ax + lambda y = 0, where lambda = (au - c^2)/v.",
+      "reasoning": "Any circle through B = (0,0) has equation x^2 + y^2 + Dx + Ey = 0. Since it also passes through C = (a,0), we get a^2 + Da = 0, hence D = -a. Since it passes through A = (u,v), we have u^2 + v^2 - au + lambda v = 0. Because u^2 + v^2 = c^2, this gives lambda = (au - c^2)/v.",
+      "facts_used": [
+        "general equation of a circle",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "For m = 2c^2/a - u, one has m^2 + v^2 = c^2(2b^2 + 2c^2 - a^2)/a^2.",
+      "reasoning": "Using u^2 + v^2 = c^2, we compute m^2 + v^2 = (2c^2/a - u)^2 + v^2 = 4c^4/a^2 - 4c^2u/a + c^2. Substituting u = (a^2 + c^2 - b^2)/(2a), this becomes c^2(4c^2/a^2 - 2(a^2+c^2-b^2)/a^2 + 1) = c^2(2b^2 + 2c^2 - a^2)/a^2.",
+      "facts_used": [
+        "algebra",
+        "step 1"
+      ]
+    },
+    {
+      "claim": "The point X lies on the circumcircle of ABC.",
+      "reasoning": "By step 5, X = (tm,-tv), where t = a^2/(2b^2+2c^2-a^2). Substituting X into the circle equation from step 6 gives t^2(m^2+v^2) - atm - lambda tv = t(t(m^2+v^2) - am - lambda v). Since lambda v = au - c^2 and m = 2c^2/a - u, we have am + lambda v = a(2c^2/a-u) + au - c^2 = c^2. Thus the circle expression equals t(t(m^2+v^2)-c^2). By step 7 and the value of t, t(m^2+v^2) = c^2, so the expression is 0.",
+      "facts_used": [
+        "step 5",
+        "step 6",
+        "step 7",
+        "algebra"
+      ]
+    },
+    {
+      "claim": "OX = OA.",
+      "reasoning": "The point O is the circumcenter of triangle ABC. Since X lies on the circumcircle of ABC, its distance from O equals the common radius of the circumcircle, which is also OA.",
+      "facts_used": [
+        "definition of circumcenter",
+        "step 8"
+      ]
+    }
+  ],
+  "final_answer": null
+}
+18:36:21  DEBUG     translated_imo_2015_p3  calling model ...

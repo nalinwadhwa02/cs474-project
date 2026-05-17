@@ -1,0 +1,9 @@
+{
+  "model": "gpt-5.4-mini-2026-03-17",
+  "stage1_run": "/Users/dush/cs474-project/runs/proof_prover/alphaGo_run_6outof30_gpt-5.4-mini-2026-03-17_stage2",
+  "problem_filter": null,
+  "limit": 50,
+  "max_retries": 3,
+  "n_problems": 0,
+  "started_at": "2026-05-15T22:45:40.641595+00:00"
+}

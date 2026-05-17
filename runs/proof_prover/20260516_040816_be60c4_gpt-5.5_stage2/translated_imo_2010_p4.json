@@ -1,0 +1,2039 @@
+{
+  "theorem_id": "translated_imo_2010_p4",
+  "statement": "Theorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "stage1_english_proof": {
+    "key_observation": "After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.",
+    "plan": [
+      "Normalize the circle and introduce a rational parameter for points on it.",
+      "Derive the equation of a chord in terms of the parameters of its endpoints.",
+      "Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.",
+      "Use collinearity with P to relate the parameters of A, B, K, L, M.",
+      "Prove the algebraic identity equivalent to MK = ML.",
+      "Conclude equality of the two chord lengths from the distance formula on the unit circle."
+    ],
+    "steps": [
+      {
+        "claim": "We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.",
+        "reasoning": "A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.",
+        "facts_used": [
+          "similarity transformations preserve incidence and length equality",
+          "radius is perpendicular to tangent at point of tangency"
+        ]
+      },
+      {
+        "claim": "For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.",
+        "reasoning": "Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.",
+        "facts_used": [
+          "rational parametrization of the unit circle",
+          "equation of a line through two points"
+        ]
+      },
+      {
+        "claim": "If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).",
+        "reasoning": "Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "collinearity"
+        ]
+      },
+      {
+        "claim": "If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).",
+        "reasoning": "Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "definition of distance",
+          "hypothesis SC = SP"
+        ]
+      },
+      {
+        "claim": "Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).",
+        "reasoning": "Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "collinearity",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.",
+        "reasoning": "Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.",
+        "facts_used": [
+          "step 3",
+          "step 5",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).",
+        "reasoning": "Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.",
+        "facts_used": [
+          "step 2",
+          "Euclidean distance formula",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "MK = ML.",
+        "reasoning": "By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "algebra",
+          "nonnegativity of segment lengths"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nGoal: cong m k m l\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.\",\n  \"plan\": [\n    \"Normalize the circle and introduce a rational parameter for points on it.\",\n    \"Derive the equation of a chord in terms of the parameters of its endpoints.\",\n    \"Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.\",\n    \"Use collinearity with P to relate the parameters of A, B, K, L, M.\",\n    \"Prove the algebraic identity equivalent to MK = ML.\",\n    \"Conclude equality of the two chord lengths from the distance formula on the unit circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.\",\n      \"reasoning\": \"A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.\",\n      \"facts_used\": [\n        \"similarity transformations preserve incidence and length equality\",\n        \"radius is perpendicular to tangent at point of tangency\"\n      ]\n    },\n    {\n      \"claim\": \"For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.\",\n      \"reasoning\": \"Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.\",\n      \"facts_used\": [\n        \"rational parametrization of the unit circle\",\n        \"equation of a line through two points\"\n      ]\n    },\n    {\n      \"claim\": \"If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).\",\n      \"reasoning\": \"Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).\",\n      \"reasoning\": \"Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"definition of distance\",\n        \"hypothesis SC = SP\"\n      ]\n    },\n    {\n      \"claim\": \"Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).\",\n      \"reasoning\": \"Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"collinearity\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.\",\n      \"reasoning\": \"Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).\",\n      \"reasoning\": \"Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"Euclidean distance formula\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\",\n        \"algebra\",\n        \"nonnegativity of segment lengths\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"s_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"s_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"t\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"alpha\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"beta\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"mpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"kpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"lpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"D\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"o_x == 0\",\n      \"o_y == 0\",\n      \"c_x == 1\",\n      \"c_y == 0\",\n      \"s_x == 1\",\n      \"s_y == t\",\n      \"t != 0\",\n      \"a_x == (1 - alpha**2) / (1 + alpha**2)\",\n      \"a_y == (2 * alpha) / (1 + alpha**2)\",\n      \"b_x == (1 - beta**2) / (1 + beta**2)\",\n      \"b_y == (2 * beta) / (1 + beta**2)\",\n      \"m_x == (1 - mpar**2) / (1 + mpar**2)\",\n      \"m_y == (2 * mpar) / (1 + mpar**2)\",\n      \"k_x == (1 - kpar**2) / (1 + kpar**2)\",\n      \"k_y == (2 * kpar) / (1 + kpar**2)\",\n      \"l_x == (1 - lpar**2) / (1 + lpar**2)\",\n      \"l_y == (2 * lpar) / (1 + lpar**2)\",\n      \"D == 1 + mpar**2 - mpar * t\",\n      \"D * alpha - t != 0\",\n      \"D * beta - t != 0\",\n      \"(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2\",\n      \"(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0\",\n      \"(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)\",\n      \"(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)\",\n      \"(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)\",\n      \"(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)\",\n      \"(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)\",\n      \"Not(And(s_x == c_x, s_y == c_y))\",\n      \"Not(And(s_x == p_x, s_y == p_y))\",\n      \"Not(And(s_x == o_x, s_y == o_y))\",\n      \"Not(And(s_x == a_x, s_y == a_y))\",\n      \"Not(And(s_x == b_x, s_y == b_y))\",\n      \"Not(And(s_x == m_x, s_y == m_y))\",\n      \"Not(And(s_x == l_x, s_y == l_y))\",\n      \"Not(And(s_x == k_x, s_y == k_y))\",\n      \"Not(And(c_x == p_x, c_y == p_y))\",\n      \"Not(And(c_x == o_x, c_y == o_y))\",\n      \"Not(And(c_x == a_x, c_y == a_y))\",\n      \"Not(And(c_x == b_x, c_y == b_y))\",\n      \"Not(And(c_x == m_x, c_y == m_y))\",\n      \"Not(And(c_x == l_x, c_y == l_y))\",\n      \"Not(And(c_x == k_x, c_y == k_y))\",\n      \"Not(And(p_x == o_x, p_y == o_y))\",\n      \"Not(And(p_x == a_x, p_y == a_y))\",\n      \"Not(And(p_x == b_x, p_y == b_y))\",\n      \"Not(And(p_x == m_x, p_y == m_y))\",\n      \"Not(And(p_x == l_x, p_y == l_y))\",\n      \"Not(And(p_x == k_x, p_y == k_y))\",\n      \"Not(And(o_x == a_x, o_y == a_y))\",\n      \"Not(And(o_x == b_x, o_y == b_y))\",\n      \"Not(And(o_x == m_x, o_y == m_y))\",\n      \"Not(And(o_x == l_x, o_y == l_y))\",\n      \"Not(And(o_x == k_x, o_y == k_y))\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == m_x, a_y == m_y))\",\n      \"Not(And(a_x == l_x, a_y == l_y))\",\n      \"Not(And(a_x == k_x, a_y == k_y))\",\n      \"Not(And(b_x == m_x, b_y == m_y))\",\n      \"Not(And(b_x == l_x, b_y == l_y))\",\n      \"Not(And(b_x == k_x, b_y == k_y))\",\n      \"Not(And(m_x == l_x, m_y == l_y))\",\n      \"Not(And(m_x == k_x, m_y == k_y))\",\n      \"Not(And(l_x == k_x, l_y == k_y))\"\n    ],\n    \"goal\": \"(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"tangent_chord_relation\",\n      \"english\": \"For two unit-circle parameter points A=T(alpha), B=T(beta) collinear with S=(1,t) on the tangent at C=(1,0), the parameters satisfy 2 alpha beta = t(alpha+beta).\",\n      \"vars\": [\n        {\n          \"name\": \"t\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"alpha\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"beta\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"s_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"s_y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"a_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"a_y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"b_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"b_y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(s_x == 1, s_y == t, a_x == (1 - alpha**2) / (1 + alpha**2), a_y == (2 * alpha) / (1 + alpha**2), b_x == (1 - beta**2) / (1 + beta**2), b_y == (2 * beta) / (1 + beta**2), (b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)), 2 * alpha * beta == t * (alpha + beta))\"\n    },\n    {\n      \"name\": \"p_coordinate_from_cm_iso\",\n      \"english\": \"If C=(1,0), S=(1,t), M=T(mpar), P lies on CM, SP=SC, and P is not C, then P has coordinates (1-2*mpar*t/(1+mpar^2), 2*t/(1+mpar^2)).\",\n      \"vars\": [\n        {\n          \"name\": \"t\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"mpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"m_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"m_y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p_y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(t != 0, mpar != 0, m_x == (1 - mpar**2) / (1 + mpar**2), m_y == (2 * mpar) / (1 + mpar**2), (m_x - 1) * p_y == (p_x - 1) * m_y, t**2 == (p_x - 1)**2 + (p_y - t)**2, Not(And(p_x == 1, p_y == 0))), And(p_x == 1 - (2 * mpar * t) / (1 + mpar**2), p_y == (2 * t) / (1 + mpar**2)))\"\n    },\n    {\n      \"name\": \"akp_param_relation\",\n      \"english\": \"If P has the coordinates derived from M and S, D=1+mpar^2-mpar*t, and T(u), T(v), P are collinear, then v*(D*u-t)=t*(u-mpar).\",\n      \"vars\": [\n        {\n          \"name\": \"t\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"mpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"D\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"u\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"v\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"u_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"u_y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"v_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"v_y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p_x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p_y\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(D == 1 + mpar**2 - mpar * t, p_x == 1 - (2 * mpar * t) / (1 + mpar**2), p_y == (2 * t) / (1 + mpar**2), u_x == (1 - u**2) / (1 + u**2), u_y == (2 * u) / (1 + u**2), v_x == (1 - v**2) / (1 + v**2), v_y == (2 * v) / (1 + v**2), (v_x - u_x) * (p_y - u_y) == (p_x - u_x) * (v_y - u_y)), v * (D * u - t) == t * (u - mpar))\"\n    },\n    {\n      \"name\": \"parameter_identity\",\n      \"english\": \"From the parameter equations for A,B,K,L,M, the key identity (1-m^2)(k+l)+2m(kl-1)=0 follows.\",\n      \"vars\": [\n        {\n          \"name\": \"t\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"alpha\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"beta\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"mpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"kpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"lpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"D\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(t != 0, 2 * alpha * beta == t * (alpha + beta), D == 1 + mpar**2 - mpar * t, D * alpha - t != 0, D * beta - t != 0, kpar * (D * alpha - t) == t * (alpha - mpar), lpar * (D * beta - t) == t * (beta - mpar)), (1 - mpar**2) * (kpar + lpar) + 2 * mpar * (kpar * lpar - 1) == 0)\"\n    },\n    {\n      \"name\": \"unit_circle_parameter_distance\",\n      \"english\": \"For T(u)=((1-u^2)/(1+u^2),2u/(1+u^2)), the squared chord length between T(u) and T(v) is 4(u-v)^2/((1+u^2)(1+v^2)).\",\n      \"vars\": [\n        {\n          \"name\": \"u\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"v\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"x1\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y1\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"x2\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"y2\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(x1 == (1 - u**2) / (1 + u**2), y1 == (2 * u) / (1 + u**2), x2 == (1 - v**2) / (1 + v**2), y2 == (2 * v) / (1 + v**2)), (x1 - x2)**2 + (y1 - y2)**2 == (4 * (u - v)**2) / ((1 + u**2) * (1 + v**2)))\"\n    },\n    {\n      \"name\": \"final_distance_parameter_identity\",\n      \"english\": \"The key parameter identity implies equality of the squared chord lengths from T(m) to T(k) and from T(m) to T(l).\",\n      \"vars\": [\n        {\n          \"name\": \"mpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"kpar\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"lpar\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies((1 - mpar**2) * (kpar + lpar) + 2 * mpar * (kpar * lpar - 1) == 0, (4 * (mpar - kpar)**2) / ((1 + mpar**2) * (1 + kpar**2)) == (4 * (mpar - lpar)**2) / ((1 + mpar**2) * (1 + lpar**2)))\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"tangent_chord_relation\",\n      \"terms\": {\n        \"t\": \"t\",\n        \"alpha\": \"alpha\",\n        \"beta\": \"beta\",\n        \"s_x\": \"s_x\",\n        \"s_y\": \"s_y\",\n        \"a_x\": \"a_x\",\n        \"a_y\": \"a_y\",\n        \"b_x\": \"b_x\",\n        \"b_y\": \"b_y\"\n      }\n    },\n    {\n      \"lemma\": \"p_coordinate_from_cm_iso\",\n      \"terms\": {\n        \"t\": \"t\",\n        \"mpar\": \"mpar\",\n        \"m_x\": \"m_x\",\n        \"m_y\": \"m_y\",\n        \"p_x\": \"p_x\",\n        \"p_y\": \"p_y\"\n      }\n    },\n    {\n      \"lemma\": \"akp_param_relation\",\n      \"terms\": {\n        \"t\": \"t\",\n        \"mpar\": \"mpar\",\n        \"D\": \"D\",\n        \"u\": \"alpha\",\n        \"v\": \"kpar\",\n        \"u_x\": \"a_x\",\n        \"u_y\": \"a_y\",\n        \"v_x\": \"k_x\",\n        \"v_y\": \"k_y\",\n        \"p_x\": \"p_x\",\n        \"p_y\": \"p_y\"\n      }\n    },\n    {\n      \"lemma\": \"akp_param_relation\",\n      \"terms\": {\n        \"t\": \"t\",\n        \"mpar\": \"mpar\",\n        \"D\": \"D\",\n        \"u\": \"beta\",\n        \"v\": \"lpar\",\n        \"u_x\": \"b_x\",\n        \"u_y\": \"b_y\",\n        \"v_x\": \"l_x\",\n        \"v_y\": \"l_y\",\n        \"p_x\": \"p_x\",\n        \"p_y\": \"p_y\"\n      }\n    },\n    {\n      \"lemma\": \"parameter_identity\",\n      \"terms\": {\n        \"t\": \"t\",\n        \"alpha\": \"alpha\",\n        \"beta\": \"beta\",\n        \"mpar\": \"mpar\",\n        \"kpar\": \"kpar\",\n        \"lpar\": \"lpar\",\n        \"D\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"unit_circle_parameter_distance\",\n      \"terms\": {\n        \"u\": \"mpar\",\n        \"v\": \"kpar\",\n        \"x1\": \"m_x\",\n        \"y1\": \"m_y\",\n        \"x2\": \"k_x\",\n        \"y2\": \"k_y\"\n      }\n    },\n    {\n      \"lemma\": \"unit_circle_parameter_distance\",\n      \"terms\": {\n        \"u\": \"mpar\",\n        \"v\": \"lpar\",\n        \"x1\": \"m_x\",\n        \"y1\": \"m_y\",\n        \"x2\": \"l_x\",\n        \"y2\": \"l_y\"\n      }\n    },\n    {\n      \"lemma\": \"final_distance_parameter_identity\",\n      \"terms\": {\n        \"mpar\": \"mpar\",\n        \"kpar\": \"kpar\",\n        \"lpar\": \"lpar\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "s_x",
+              "sort": "Real"
+            },
+            {
+              "name": "s_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "p_x",
+              "sort": "Real"
+            },
+            {
+              "name": "p_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "m_x",
+              "sort": "Real"
+            },
+            {
+              "name": "m_y",
+              "sort": "Real"
+            },
+            {
+              "name": "l_x",
+              "sort": "Real"
+            },
+            {
+              "name": "l_y",
+              "sort": "Real"
+            },
+            {
+              "name": "k_x",
+              "sort": "Real"
+            },
+            {
+              "name": "k_y",
+              "sort": "Real"
+            },
+            {
+              "name": "t",
+              "sort": "Real"
+            },
+            {
+              "name": "alpha",
+              "sort": "Real"
+            },
+            {
+              "name": "beta",
+              "sort": "Real"
+            },
+            {
+              "name": "mpar",
+              "sort": "Real"
+            },
+            {
+              "name": "kpar",
+              "sort": "Real"
+            },
+            {
+              "name": "lpar",
+              "sort": "Real"
+            },
+            {
+              "name": "D",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "o_x == 0",
+            "o_y == 0",
+            "c_x == 1",
+            "c_y == 0",
+            "s_x == 1",
+            "s_y == t",
+            "t != 0",
+            "a_x == (1 - alpha**2) / (1 + alpha**2)",
+            "a_y == (2 * alpha) / (1 + alpha**2)",
+            "b_x == (1 - beta**2) / (1 + beta**2)",
+            "b_y == (2 * beta) / (1 + beta**2)",
+            "m_x == (1 - mpar**2) / (1 + mpar**2)",
+            "m_y == (2 * mpar) / (1 + mpar**2)",
+            "k_x == (1 - kpar**2) / (1 + kpar**2)",
+            "k_y == (2 * kpar) / (1 + kpar**2)",
+            "l_x == (1 - lpar**2) / (1 + lpar**2)",
+            "l_y == (2 * lpar) / (1 + lpar**2)",
+            "D == 1 + mpar**2 - mpar * t",
+            "D * alpha - t != 0",
+            "D * beta - t != 0",
+            "(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2",
+            "(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0",
+            "(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)",
+            "(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)",
+            "(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)",
+            "(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)",
+            "(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)",
+            "Not(And(s_x == c_x, s_y == c_y))",
+            "Not(And(s_x == p_x, s_y == p_y))",
+            "Not(And(s_x == o_x, s_y == o_y))",
+            "Not(And(s_x == a_x, s_y == a_y))",
+            "Not(And(s_x == b_x, s_y == b_y))",
+            "Not(And(s_x == m_x, s_y == m_y))",
+            "Not(And(s_x == l_x, s_y == l_y))",
+            "Not(And(s_x == k_x, s_y == k_y))",
+            "Not(And(c_x == p_x, c_y == p_y))",
+            "Not(And(c_x == o_x, c_y == o_y))",
+            "Not(And(c_x == a_x, c_y == a_y))",
+            "Not(And(c_x == b_x, c_y == b_y))",
+            "Not(And(c_x == m_x, c_y == m_y))",
+            "Not(And(c_x == l_x, c_y == l_y))",
+            "Not(And(c_x == k_x, c_y == k_y))",
+            "Not(And(p_x == o_x, p_y == o_y))",
+            "Not(And(p_x == a_x, p_y == a_y))",
+            "Not(And(p_x == b_x, p_y == b_y))",
+            "Not(And(p_x == m_x, p_y == m_y))",
+            "Not(And(p_x == l_x, p_y == l_y))",
+            "Not(And(p_x == k_x, p_y == k_y))",
+            "Not(And(o_x == a_x, o_y == a_y))",
+            "Not(And(o_x == b_x, o_y == b_y))",
+            "Not(And(o_x == m_x, o_y == m_y))",
+            "Not(And(o_x == l_x, o_y == l_y))",
+            "Not(And(o_x == k_x, o_y == k_y))",
+            "Not(And(a_x == b_x, a_y == b_y))",
+            "Not(And(a_x == m_x, a_y == m_y))",
+            "Not(And(a_x == l_x, a_y == l_y))",
+            "Not(And(a_x == k_x, a_y == k_y))",
+            "Not(And(b_x == m_x, b_y == m_y))",
+            "Not(And(b_x == l_x, b_y == l_y))",
+            "Not(And(b_x == k_x, b_y == k_y))",
+            "Not(And(m_x == l_x, m_y == l_y))",
+            "Not(And(m_x == k_x, m_y == k_y))",
+            "Not(And(l_x == k_x, l_y == k_y))"
+          ],
+          "goal": "(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2"
+        },
+        "lemmas": [
+          {
+            "name": "tangent_chord_relation",
+            "english": "For two unit-circle parameter points A=T(alpha), B=T(beta) collinear with S=(1,t) on the tangent at C=(1,0), the parameters satisfy 2 alpha beta = t(alpha+beta).",
+            "vars": [
+              {
+                "name": "t",
+                "sort": "Real"
+              },
+              {
+                "name": "alpha",
+                "sort": "Real"
+              },
+              {
+                "name": "beta",
+                "sort": "Real"
+              },
+              {
+                "name": "s_x",
+                "sort": "Real"
+              },
+              {
+                "name": "s_y",
+                "sort": "Real"
+              },
+              {
+                "name": "a_x",
+                "sort": "Real"
+              },
+              {
+                "name": "a_y",
+                "sort": "Real"
+              },
+              {
+                "name": "b_x",
+                "sort": "Real"
+              },
+              {
+                "name": "b_y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(s_x == 1, s_y == t, a_x == (1 - alpha**2) / (1 + alpha**2), a_y == (2 * alpha) / (1 + alpha**2), b_x == (1 - beta**2) / (1 + beta**2), b_y == (2 * beta) / (1 + beta**2), (b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)), 2 * alpha * beta == t * (alpha + beta))"
+          },
+          {
+            "name": "p_coordinate_from_cm_iso",
+            "english": "If C=(1,0), S=(1,t), M=T(mpar), P lies on CM, SP=SC, and P is not C, then P has coordinates (1-2*mpar*t/(1+mpar^2), 2*t/(1+mpar^2)).",
+            "vars": [
+              {
+                "name": "t",
+                "sort": "Real"
+              },
+              {
+                "name": "mpar",
+                "sort": "Real"
+              },
+              {
+                "name": "m_x",
+                "sort": "Real"
+              },
+              {
+                "name": "m_y",
+                "sort": "Real"
+              },
+              {
+                "name": "p_x",
+                "sort": "Real"
+              },
+              {
+                "name": "p_y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(t != 0, mpar != 0, m_x == (1 - mpar**2) / (1 + mpar**2), m_y == (2 * mpar) / (1 + mpar**2), (m_x - 1) * p_y == (p_x - 1) * m_y, t**2 == (p_x - 1)**2 + (p_y - t)**2, Not(And(p_x == 1, p_y == 0))), And(p_x == 1 - (2 * mpar * t) / (1 + mpar**2), p_y == (2 * t) / (1 + mpar**2)))"
+          },
+          {
+            "name": "akp_param_relation",
+            "english": "If P has the coordinates derived from M and S, D=1+mpar^2-mpar*t, and T(u), T(v), P are collinear, then v*(D*u-t)=t*(u-mpar).",
+            "vars": [
+              {
+                "name": "t",
+                "sort": "Real"
+              },
+              {
+                "name": "mpar",
+                "sort": "Real"
+              },
+              {
+                "name": "D",
+                "sort": "Real"
+              },
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "v",
+                "sort": "Real"
+              },
+              {
+                "name": "u_x",
+                "sort": "Real"
+              },
+              {
+                "name": "u_y",
+                "sort": "Real"
+              },
+              {
+                "name": "v_x",
+                "sort": "Real"
+              },
+              {
+                "name": "v_y",
+                "sort": "Real"
+              },
+              {
+                "name": "p_x",
+                "sort": "Real"
+              },
+              {
+                "name": "p_y",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(D == 1 + mpar**2 - mpar * t, p_x == 1 - (2 * mpar * t) / (1 + mpar**2), p_y == (2 * t) / (1 + mpar**2), u_x == (1 - u**2) / (1 + u**2), u_y == (2 * u) / (1 + u**2), v_x == (1 - v**2) / (1 + v**2), v_y == (2 * v) / (1 + v**2), (v_x - u_x) * (p_y - u_y) == (p_x - u_x) * (v_y - u_y)), v * (D * u - t) == t * (u - mpar))"
+          },
+          {
+            "name": "parameter_identity",
+            "english": "From the parameter equations for A,B,K,L,M, the key identity (1-m^2)(k+l)+2m(kl-1)=0 follows.",
+            "vars": [
+              {
+                "name": "t",
+                "sort": "Real"
+              },
+              {
+                "name": "alpha",
+                "sort": "Real"
+              },
+              {
+                "name": "beta",
+                "sort": "Real"
+              },
+              {
+                "name": "mpar",
+                "sort": "Real"
+              },
+              {
+                "name": "kpar",
+                "sort": "Real"
+              },
+              {
+                "name": "lpar",
+                "sort": "Real"
+              },
+              {
+                "name": "D",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(t != 0, 2 * alpha * beta == t * (alpha + beta), D == 1 + mpar**2 - mpar * t, D * alpha - t != 0, D * beta - t != 0, kpar * (D * alpha - t) == t * (alpha - mpar), lpar * (D * beta - t) == t * (beta - mpar)), (1 - mpar**2) * (kpar + lpar) + 2 * mpar * (kpar * lpar - 1) == 0)"
+          },
+          {
+            "name": "unit_circle_parameter_distance",
+            "english": "For T(u)=((1-u^2)/(1+u^2),2u/(1+u^2)), the squared chord length between T(u) and T(v) is 4(u-v)^2/((1+u^2)(1+v^2)).",
+            "vars": [
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "v",
+                "sort": "Real"
+              },
+              {
+                "name": "x1",
+                "sort": "Real"
+              },
+              {
+                "name": "y1",
+                "sort": "Real"
+              },
+              {
+                "name": "x2",
+                "sort": "Real"
+              },
+              {
+                "name": "y2",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(x1 == (1 - u**2) / (1 + u**2), y1 == (2 * u) / (1 + u**2), x2 == (1 - v**2) / (1 + v**2), y2 == (2 * v) / (1 + v**2)), (x1 - x2)**2 + (y1 - y2)**2 == (4 * (u - v)**2) / ((1 + u**2) * (1 + v**2)))"
+          },
+          {
+            "name": "final_distance_parameter_identity",
+            "english": "The key parameter identity implies equality of the squared chord lengths from T(m) to T(k) and from T(m) to T(l).",
+            "vars": [
+              {
+                "name": "mpar",
+                "sort": "Real"
+              },
+              {
+                "name": "kpar",
+                "sort": "Real"
+              },
+              {
+                "name": "lpar",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies((1 - mpar**2) * (kpar + lpar) + 2 * mpar * (kpar * lpar - 1) == 0, (4 * (mpar - kpar)**2) / ((1 + mpar**2) * (1 + kpar**2)) == (4 * (mpar - lpar)**2) / ((1 + mpar**2) * (1 + lpar**2)))"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "tangent_chord_relation",
+            "terms": {
+              "t": "t",
+              "alpha": "alpha",
+              "beta": "beta",
+              "s_x": "s_x",
+              "s_y": "s_y",
+              "a_x": "a_x",
+              "a_y": "a_y",
+              "b_x": "b_x",
+              "b_y": "b_y"
+            }
+          },
+          {
+            "lemma": "p_coordinate_from_cm_iso",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "m_x": "m_x",
+              "m_y": "m_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            }
+          },
+          {
+            "lemma": "akp_param_relation",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "D": "D",
+              "u": "alpha",
+              "v": "kpar",
+              "u_x": "a_x",
+              "u_y": "a_y",
+              "v_x": "k_x",
+              "v_y": "k_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            }
+          },
+          {
+            "lemma": "akp_param_relation",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "D": "D",
+              "u": "beta",
+              "v": "lpar",
+              "u_x": "b_x",
+              "u_y": "b_y",
+              "v_x": "l_x",
+              "v_y": "l_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            }
+          },
+          {
+            "lemma": "parameter_identity",
+            "terms": {
+              "t": "t",
+              "alpha": "alpha",
+              "beta": "beta",
+              "mpar": "mpar",
+              "kpar": "kpar",
+              "lpar": "lpar",
+              "D": "D"
+            }
+          },
+          {
+            "lemma": "unit_circle_parameter_distance",
+            "terms": {
+              "u": "mpar",
+              "v": "kpar",
+              "x1": "m_x",
+              "y1": "m_y",
+              "x2": "k_x",
+              "y2": "k_y"
+            }
+          },
+          {
+            "lemma": "unit_circle_parameter_distance",
+            "terms": {
+              "u": "mpar",
+              "v": "lpar",
+              "x1": "m_x",
+              "y1": "m_y",
+              "x2": "l_x",
+              "y2": "l_y"
+            }
+          },
+          {
+            "lemma": "final_distance_parameter_identity",
+            "terms": {
+              "mpar": "mpar",
+              "kpar": "kpar",
+              "lpar": "lpar"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "rejected_unsound_lemma",
+        "error": "lemma(s) ['tangent_chord_relation'] are contradictory; refusing to certify",
+        "instantiated": [
+          {
+            "lemma": "tangent_chord_relation",
+            "terms": {
+              "t": "t",
+              "alpha": "alpha",
+              "beta": "beta",
+              "s_x": "s_x",
+              "s_y": "s_y",
+              "a_x": "a_x",
+              "a_y": "a_y",
+              "b_x": "b_x",
+              "b_y": "b_y"
+            },
+            "z3_form": "Implies(And(s_x == 1,\n            s_y == t,\n            a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            (b_x - s_x)*(a_y - s_y) ==\n            (a_x - s_x)*(b_y - s_y)),\n        2*alpha*beta == t*(alpha + beta))"
+          },
+          {
+            "lemma": "p_coordinate_from_cm_iso",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "m_x": "m_x",
+              "m_y": "m_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            },
+            "z3_form": "Implies(And(t != 0,\n            mpar != 0,\n            m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            (m_x - 1)*p_y == (p_x - 1)*m_y,\n            t**2 == (p_x - 1)**2 + (p_y - t)**2,\n            Not(And(p_x == 1, p_y == 0))),\n        And(p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2)))"
+          },
+          {
+            "lemma": "akp_param_relation",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "D": "D",
+              "u": "alpha",
+              "v": "kpar",
+              "u_x": "a_x",
+              "u_y": "a_y",
+              "v_x": "k_x",
+              "v_y": "k_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            },
+            "z3_form": "Implies(And(D == 1 + mpar**2 - mpar*t,\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2),\n            (k_x - a_x)*(p_y - a_y) ==\n            (p_x - a_x)*(k_y - a_y)),\n        kpar*(D*alpha - t) == t*(alpha - mpar))"
+          },
+          {
+            "lemma": "akp_param_relation",
+            "terms": {
+              "t": "t",
+              "mpar": "mpar",
+              "D": "D",
+              "u": "beta",
+              "v": "lpar",
+              "u_x": "b_x",
+              "u_y": "b_y",
+              "v_x": "l_x",
+              "v_y": "l_y",
+              "p_x": "p_x",
+              "p_y": "p_y"
+            },
+            "z3_form": "Implies(And(D == 1 + mpar**2 - mpar*t,\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2),\n            (l_x - b_x)*(p_y - b_y) ==\n            (p_x - b_x)*(l_y - b_y)),\n        lpar*(D*beta - t) == t*(beta - mpar))"
+          },
+          {
+            "lemma": "parameter_identity",
+            "terms": {
+              "t": "t",
+              "alpha": "alpha",
+              "beta": "beta",
+              "mpar": "mpar",
+              "kpar": "kpar",
+              "lpar": "lpar",
+              "D": "D"
+            },
+            "z3_form": "Implies(And(t != 0,\n            2*alpha*beta == t*(alpha + beta),\n            D == 1 + mpar**2 - mpar*t,\n            D*alpha - t != 0,\n            D*beta - t != 0,\n            kpar*(D*alpha - t) == t*(alpha - mpar),\n            lpar*(D*beta - t) == t*(beta - mpar)),\n        (1 - mpar**2)*(kpar + lpar) + 2*mpar*(kpar*lpar - 1) ==\n        0)"
+          },
+          {
+            "lemma": "unit_circle_parameter_distance",
+            "terms": {
+              "u": "mpar",
+              "v": "kpar",
+              "x1": "m_x",
+              "y1": "m_y",
+              "x2": "k_x",
+              "y2": "k_y"
+            },
+            "z3_form": "Implies(And(m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2)),\n        (m_x - k_x)**2 + (m_y - k_y)**2 ==\n        (4*(mpar - kpar)**2)/((1 + mpar**2)*(1 + kpar**2)))"
+          },
+          {
+            "lemma": "unit_circle_parameter_distance",
+            "terms": {
+              "u": "mpar",
+              "v": "lpar",
+              "x1": "m_x",
+              "y1": "m_y",
+              "x2": "l_x",
+              "y2": "l_y"
+            },
+            "z3_form": "Implies(And(m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2)),\n        (m_x - l_x)**2 + (m_y - l_y)**2 ==\n        (4*(mpar - lpar)**2)/((1 + mpar**2)*(1 + lpar**2)))"
+          },
+          {
+            "lemma": "final_distance_parameter_identity",
+            "terms": {
+              "mpar": "mpar",
+              "kpar": "kpar",
+              "lpar": "lpar"
+            },
+            "z3_form": "Implies((1 - mpar**2)*(kpar + lpar) + 2*mpar*(kpar*lpar - 1) ==\n        0,\n        (4*(mpar - kpar)**2)/((1 + mpar**2)*(1 + kpar**2)) ==\n        (4*(mpar - lpar)**2)/((1 + mpar**2)*(1 + lpar**2)))"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "tangent_chord_relation",
+            "english": "For two unit-circle parameter points A=T(alpha), B=T(beta) collinear with S=(1,t) on the tangent at C=(1,0), the parameters satisfy 2 alpha beta = t(alpha+beta).",
+            "consistent": false,
+            "check": "unsat"
+          },
+          {
+            "name": "p_coordinate_from_cm_iso",
+            "english": "If C=(1,0), S=(1,t), M=T(mpar), P lies on CM, SP=SC, and P is not C, then P has coordinates (1-2*mpar*t/(1+mpar^2), 2*t/(1+mpar^2)).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "akp_param_relation",
+            "english": "If P has the coordinates derived from M and S, D=1+mpar^2-mpar*t, and T(u), T(v), P are collinear, then v*(D*u-t)=t*(u-mpar).",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "parameter_identity",
+            "english": "From the parameter equations for A,B,K,L,M, the key identity (1-m^2)(k+l)+2m(kl-1)=0 follows.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "unit_circle_parameter_distance",
+            "english": "For T(u)=((1-u^2)/(1+u^2),2u/(1+u^2)), the squared chord length between T(u) and T(v) is 4(u-v)^2/((1+u^2)(1+v^2)).",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "final_distance_parameter_identity",
+            "english": "The key parameter identity implies equality of the squared chord lengths from T(m) to T(k) and from T(m) to T(l).",
+            "consistent": true,
+            "check": "unknown"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 8,
+        "n_hypotheses": 68
+      },
+      "errors": [
+        "lemma(s) ['tangent_chord_relation'] are contradictory; refusing to certify"
+      ]
+    },
+    {
+      "attempt": 2,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nGoal: cong m k m l\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.\",\n  \"plan\": [\n    \"Normalize the circle and introduce a rational parameter for points on it.\",\n    \"Derive the equation of a chord in terms of the parameters of its endpoints.\",\n    \"Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.\",\n    \"Use collinearity with P to relate the parameters of A, B, K, L, M.\",\n    \"Prove the algebraic identity equivalent to MK = ML.\",\n    \"Conclude equality of the two chord lengths from the distance formula on the unit circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.\",\n      \"reasoning\": \"A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.\",\n      \"facts_used\": [\n        \"similarity transformations preserve incidence and length equality\",\n        \"radius is perpendicular to tangent at point of tangency\"\n      ]\n    },\n    {\n      \"claim\": \"For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.\",\n      \"reasoning\": \"Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.\",\n      \"facts_used\": [\n        \"rational parametrization of the unit circle\",\n        \"equation of a line through two points\"\n      ]\n    },\n    {\n      \"claim\": \"If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).\",\n      \"reasoning\": \"Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).\",\n      \"reasoning\": \"Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"definition of distance\",\n        \"hypothesis SC = SP\"\n      ]\n    },\n    {\n      \"claim\": \"Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).\",\n      \"reasoning\": \"Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"collinearity\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.\",\n      \"reasoning\": \"Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).\",\n      \"reasoning\": \"Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"Euclidean distance formula\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\",\n        \"algebra\",\n        \"nonnegativity of segment lengths\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"s_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"s_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"t\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"alpha\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"beta\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"mpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"kpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"lpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"D\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"o_x == 0\",\n      \"o_y == 0\",\n      \"c_x == 1\",\n      \"c_y == 0\",\n      \"s_x == 1\",\n      \"s_y == t\",\n      \"t != 0\",\n      \"a_x == (1 - alpha**2) / (1 + alpha**2)\",\n      \"a_y == (2 * alpha) / (1 + alpha**2)\",\n      \"b_x == (1 - beta**2) / (1 + beta**2)\",\n      \"b_y == (2 * beta) / (1 + beta**2)\",\n      \"m_x == (1 - mpar**2) / (1 + mpar**2)\",\n      \"m_y == (2 * mpar) / (1 + mpar**2)\",\n      \"k_x == (1 - kpar**2) / (1 + kpar**2)\",\n      \"k_y == (2 * kpar) / (1 + kpar**2)\",\n      \"l_x == (1 - lpar**2) / (1 + lpar**2)\",\n      \"l_y == (2 * lpar) / (1 + lpar**2)\",\n      \"D == 1 + mpar**2 - mpar * t\",\n      \"D * alpha - t != 0\",\n      \"D * beta - t != 0\",\n      \"(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2\",\n      \"(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0\",\n      \"(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)\",\n      \"(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)\",\n      \"(l_x - b_x) * (p_y - b_y) == (p_x - b\n... [truncated]\n\nErrors:\n- lemma(s) ['tangent_chord_relation'] are contradictory; refusing to certify\n\nFix these issues and return the corrected JSON object only."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"s_x\", \"sort\": \"Real\"},\n      {\"name\": \"s_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"p_x\", \"sort\": \"Real\"},\n      {\"name\": \"p_y\", \"sort\": \"Real\"},\n      {\"name\": \"o_x\", \"sort\": \"Real\"},\n      {\"name\": \"o_y\", \"sort\": \"Real\"},\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"m_x\", \"sort\": \"Real\"},\n      {\"name\": \"m_y\", \"sort\": \"Real\"},\n      {\"name\": \"l_x\", \"sort\": \"Real\"},\n      {\"name\": \"l_y\", \"sort\": \"Real\"},\n      {\"name\": \"k_x\", \"sort\": \"Real\"},\n      {\"name\": \"k_y\", \"sort\": \"Real\"},\n      {\"name\": \"t\", \"sort\": \"Real\"},\n      {\"name\": \"alpha\", \"sort\": \"Real\"},\n      {\"name\": \"beta\", \"sort\": \"Real\"},\n      {\"name\": \"mpar\", \"sort\": \"Real\"},\n      {\"name\": \"kpar\", \"sort\": \"Real\"},\n      {\"name\": \"lpar\", \"sort\": \"Real\"},\n      {\"name\": \"D\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"o_x == 0\",\n      \"o_y == 0\",\n      \"c_x == 1\",\n      \"c_y == 0\",\n      \"s_x == 1\",\n      \"s_y == t\",\n      \"t != 0\",\n      \"1 + alpha**2 != 0\",\n      \"1 + beta**2 != 0\",\n      \"1 + mpar**2 != 0\",\n      \"1 + kpar**2 != 0\",\n      \"1 + lpar**2 != 0\",\n      \"a_x == (1 - alpha**2) / (1 + alpha**2)\",\n      \"a_y == (2 * alpha) / (1 + alpha**2)\",\n      \"b_x == (1 - beta**2) / (1 + beta**2)\",\n      \"b_y == (2 * beta) / (1 + beta**2)\",\n      \"m_x == (1 - mpar**2) / (1 + mpar**2)\",\n      \"m_y == (2 * mpar) / (1 + mpar**2)\",\n      \"k_x == (1 - kpar**2) / (1 + kpar**2)\",\n      \"k_y == (2 * kpar) / (1 + kpar**2)\",\n      \"l_x == (1 - lpar**2) / (1 + lpar**2)\",\n      \"l_y == (2 * lpar) / (1 + lpar**2)\",\n      \"D == 1 + mpar**2 - mpar * t\",\n      \"D * alpha - t != 0\",\n      \"D * beta - t != 0\",\n      \"(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2\",\n      \"(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0\",\n      \"(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)\",\n      \"(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)\",\n      \"(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)\",\n      \"(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)\",\n      \"(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)\",\n      \"Not(And(s_x == c_x, s_y == c_y))\",\n      \"Not(And(s_x == p_x, s_y == p_y))\",\n      \"Not(And(s_x == o_x, s_y == o_y))\",\n      \"Not(And(s_x == a_x, s_y == a_y))\",\n      \"Not(And(s_x == b_x, s_y == b_y))\",\n      \"Not(And(s_x == m_x, s_y == m_y))\",\n      \"Not(And(s_x == l_x, s_y == l_y))\",\n      \"Not(And(s_x == k_x, s_y == k_y))\",\n      \"Not(And(c_x == p_x, c_y == p_y))\",\n      \"Not(And(c_x == o_x, c_y == o_y))\",\n      \"Not(And(c_x == a_x, c_y == a_y))\",\n      \"Not(And(c_x == b_x, c_y == b_y))\",\n      \"Not(And(c_x == m_x, c_y == m_y))\",\n      \"Not(And(c_x == l_x, c_y == l_y))\",\n      \"Not(And(c_x == k_x, c_y == k_y))\",\n      \"Not(And(p_x == o_x, p_y == o_y))\",\n      \"Not(And(p_x == a_x, p_y == a_y))\",\n      \"Not(And(p_x == b_x, p_y == b_y))\",\n      \"Not(And(p_x == m_x, p_y == m_y))\",\n      \"Not(And(p_x == l_x, p_y == l_y))\",\n      \"Not(And(p_x == k_x, p_y == k_y))\",\n      \"Not(And(o_x == a_x, o_y == a_y))\",\n      \"Not(And(o_x == b_x, o_y == b_y))\",\n      \"Not(And(o_x == m_x, o_y == m_y))\",\n      \"Not(And(o_x == l_x, o_y == l_y))\",\n      \"Not(And(o_x == k_x, o_y == k_y))\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == m_x, a_y == m_y))\",\n      \"Not(And(a_x == l_x, a_y == l_y))\",\n      \"Not(And(a_x == k_x, a_y == k_y))\",\n      \"Not(And(b_x == m_x, b_y == m_y))\",\n      \"Not(And(b_x == l_x, b_y == l_y))\",\n      \"Not(And(b_x == k_x, b_y == k_y))\",\n      \"Not(And(m_x == l_x, m_y == l_y))\",\n      \"Not(And(m_x == k_x, m_y == k_y))\",\n      \"Not(And(l_x == k_x, l_y == k_y))\"\n    ],\n    \"goal\": \"(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"collinear_AB_with_tangent_point_gives_alpha_beta_relation\",\n      \"english\": \"For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).\",\n      \"vars\": [\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"bx\", \"sort\": \"Real\"},\n        {\"name\": \"by\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"v\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(sx == 1, sy == t0, ax == (1 - u**2) / (1 + u**2), ay == (2 * u) / (1 + u**2), bx == (1 - v**2) / (1 + v**2), by == (2 * v) / (1 + v**2), Not(And(ax == bx, ay == by)), (bx - sx) * (ay - sy) == (ax - sx) * (by - sy)), 2 * u * v == t0 * (u + v))\"\n    },\n    {\n      \"name\": \"p_coordinates_from_CM_and_isosceles_condition\",\n      \"english\": \"With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).\",\n      \"vars\": [\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"cx\", \"sort\": \"Real\"},\n        {\"name\": \"cy\", \"sort\": \"Real\"},\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"px\", \"sort\": \"Real\"},\n        {\"name\": \"py\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(cx == 1, cy == 0, sx == 1, sy == t0, t0 != 0, mx == (1 - u**2) / (1 + u**2), my == (2 * u) / (1 + u**2), Not(And(mx == cx, my == cy)), Not(And(px == cx, py == cy)), (mx - cx) * (py - cy) == (px - cx) * (my - cy), (sx - cx)**2 + (sy - cy)**2 == (sx - px)**2 + (sy - py)**2), And(px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2)))\"\n    },\n    {\n      \"name\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"english\": \"If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.\",\n      \"vars\": [\n        {\"name\": \"xx\", \"sort\": \"Real\"},\n        {\"name\": \"xy\", \"sort\": \"Real\"},\n        {\"name\": \"rx\", \"sort\": \"Real\"},\n        {\"name\": \"ry\", \"sort\": \"Real\"},\n        {\"name\": \"px\", \"sort\": \"Real\"},\n        {\"name\": \"py\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"r\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"D0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(xx == (1 - q**2) / (1 + q**2), xy == (2 * q) / (1 + q**2), rx == (1 - r**2) / (1 + r**2), ry == (2 * r) / (1 + r**2), px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2), D0 == 1 + u**2 - u * t0, Not(And(rx == xx, ry == xy)), (rx - xx) * (py - xy) == (px - xx) * (ry - xy)), r * (D0 * q - t0) == t0 * (q - u))\"\n    },\n    {\n      \"name\": \"algebraic_elimination_gives_mkl_parameter_relation\",\n      \"english\": \"From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.\",\n      \"vars\": [\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"v\", \"sort\": \"Real\"},\n        {\"name\": \"m0\", \"sort\": \"Real\"},\n        {\"name\": \"k0\", \"sort\": \"Real\"},\n        {\"name\": \"l0\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"D0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(D0 == 1 + m0**2 - m0 * t0, D0 * u - t0 != 0, D0 * v - t0 != 0, 2 * u * v == t0 * (u + v), k0 * (D0 * u - t0) == t0 * (u - m0), l0 * (D0 * v - t0) == t0 * (v - m0)), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0)\"\n    },\n    {\n      \"name\": \"unit_circle_parameter_relation_implies_equal_distances\",\n      \"english\": \"For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.\",\n      \"vars\": [\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"},\n        {\"name\": \"m0\", \"sort\": \"Real\"},\n        {\"name\": \"k0\", \"sort\": \"Real\"},\n        {\"name\": \"l0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(mx == (1 - m0**2) / (1 + m0**2), my == (2 * m0) / (1 + m0**2), kx == (1 - k0**2) / (1 + k0**2), ky == (2 * k0) / (1 + k0**2), lx == (1 - l0**2) / (1 + l0**2), ly == (2 * l0) / (1 + l0**2), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0), (mx - kx)**2 + (my - ky)**2 == (mx - lx)**2 + (my - ly)**2)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"collinear_AB_with_tangent_point_gives_alpha_beta_relation\",\n      \"terms\": {\n        \"sx\": \"s_x\",\n        \"sy\": \"s_y\",\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"t0\": \"t\",\n        \"u\": \"alpha\",\n        \"v\": \"beta\"\n      }\n    },\n    {\n      \"lemma\": \"p_coordinates_from_CM_and_isosceles_condition\",\n      \"terms\": {\n        \"sx\": \"s_x\",\n        \"sy\": \"s_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"mx\": \"m_x\",\n        \"my\": \"m_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"t0\": \"t\",\n        \"u\": \"mpar\"\n      }\n    },\n    {\n      \"lemma\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"terms\": {\n        \"xx\": \"a_x\",\n        \"xy\": \"a_y\",\n        \"rx\": \"k_x\",\n        \"ry\": \"k_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"q\": \"alpha\",\n        \"r\": \"kpar\",\n        \"u\": \"mpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"terms\": {\n        \"xx\": \"b_x\",\n        \"xy\": \"b_y\",\n        \"rx\": \"l_x\",\n        \"ry\": \"l_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"q\": \"beta\",\n        \"r\": \"lpar\",\n        \"u\": \"mpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"algebraic_elimination_gives_mkl_parameter_relation\",\n      \"terms\": {\n        \"u\": \"alpha\",\n        \"v\": \"beta\",\n        \"m0\": \"mpar\",\n        \"k0\": \"kpar\",\n        \"l0\": \"lpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"unit_circle_parameter_relation_implies_equal_distances\",\n      \"terms\": {\n        \"mx\": \"m_x\",\n        \"my\": \"m_y\",\n        \"kx\": \"k_x\",\n        \"ky\": \"k_y\",\n        \"lx\": \"l_x\",\n        \"ly\": \"l_y\",\n        \"m0\": \"mpar\",\n        \"k0\": \"kpar\",\n        \"l0\": \"lpar\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "s_x",
+              "sort": "Real"
+            },
+            {
+              "name": "s_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "p_x",
+              "sort": "Real"
+            },
+            {
+              "name": "p_y",
+              "sort": "Real"
+            },
+            {
+              "name": "o_x",
+              "sort": "Real"
+            },
+            {
+              "name": "o_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "m_x",
+              "sort": "Real"
+            },
+            {
+              "name": "m_y",
+              "sort": "Real"
+            },
+            {
+              "name": "l_x",
+              "sort": "Real"
+            },
+            {
+              "name": "l_y",
+              "sort": "Real"
+            },
+            {
+              "name": "k_x",
+              "sort": "Real"
+            },
+            {
+              "name": "k_y",
+              "sort": "Real"
+            },
+            {
+              "name": "t",
+              "sort": "Real"
+            },
+            {
+              "name": "alpha",
+              "sort": "Real"
+            },
+            {
+              "name": "beta",
+              "sort": "Real"
+            },
+            {
+              "name": "mpar",
+              "sort": "Real"
+            },
+            {
+              "name": "kpar",
+              "sort": "Real"
+            },
+            {
+              "name": "lpar",
+              "sort": "Real"
+            },
+            {
+              "name": "D",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "o_x == 0",
+            "o_y == 0",
+            "c_x == 1",
+            "c_y == 0",
+            "s_x == 1",
+            "s_y == t",
+            "t != 0",
+            "1 + alpha**2 != 0",
+            "1 + beta**2 != 0",
+            "1 + mpar**2 != 0",
+            "1 + kpar**2 != 0",
+            "1 + lpar**2 != 0",
+            "a_x == (1 - alpha**2) / (1 + alpha**2)",
+            "a_y == (2 * alpha) / (1 + alpha**2)",
+            "b_x == (1 - beta**2) / (1 + beta**2)",
+            "b_y == (2 * beta) / (1 + beta**2)",
+            "m_x == (1 - mpar**2) / (1 + mpar**2)",
+            "m_y == (2 * mpar) / (1 + mpar**2)",
+            "k_x == (1 - kpar**2) / (1 + kpar**2)",
+            "k_y == (2 * kpar) / (1 + kpar**2)",
+            "l_x == (1 - lpar**2) / (1 + lpar**2)",
+            "l_y == (2 * lpar) / (1 + lpar**2)",
+            "D == 1 + mpar**2 - mpar * t",
+            "D * alpha - t != 0",
+            "D * beta - t != 0",
+            "(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2",
+            "(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0",
+            "(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+            "(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)",
+            "(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)",
+            "(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)",
+            "(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)",
+            "(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)",
+            "Not(And(s_x == c_x, s_y == c_y))",
+            "Not(And(s_x == p_x, s_y == p_y))",
+            "Not(And(s_x == o_x, s_y == o_y))",
+            "Not(And(s_x == a_x, s_y == a_y))",
+            "Not(And(s_x == b_x, s_y == b_y))",
+            "Not(And(s_x == m_x, s_y == m_y))",
+            "Not(And(s_x == l_x, s_y == l_y))",
+            "Not(And(s_x == k_x, s_y == k_y))",
+            "Not(And(c_x == p_x, c_y == p_y))",
+            "Not(And(c_x == o_x, c_y == o_y))",
+            "Not(And(c_x == a_x, c_y == a_y))",
+            "Not(And(c_x == b_x, c_y == b_y))",
+            "Not(And(c_x == m_x, c_y == m_y))",
+            "Not(And(c_x == l_x, c_y == l_y))",
+            "Not(And(c_x == k_x, c_y == k_y))",
+            "Not(And(p_x == o_x, p_y == o_y))",
+            "Not(And(p_x == a_x, p_y == a_y))",
+            "Not(And(p_x == b_x, p_y == b_y))",
+            "Not(And(p_x == m_x, p_y == m_y))",
+            "Not(And(p_x == l_x, p_y == l_y))",
+            "Not(And(p_x == k_x, p_y == k_y))",
+            "Not(And(o_x == a_x, o_y == a_y))",
+            "Not(And(o_x == b_x, o_y == b_y))",
+            "Not(And(o_x == m_x, o_y == m_y))",
+            "Not(And(o_x == l_x, o_y == l_y))",
+            "Not(And(o_x == k_x, o_y == k_y))",
+            "Not(And(a_x == b_x, a_y == b_y))",
+            "Not(And(a_x == m_x, a_y == m_y))",
+            "Not(And(a_x == l_x, a_y == l_y))",
+            "Not(And(a_x == k_x, a_y == k_y))",
+            "Not(And(b_x == m_x, b_y == m_y))",
+            "Not(And(b_x == l_x, b_y == l_y))",
+            "Not(And(b_x == k_x, b_y == k_y))",
+            "Not(And(m_x == l_x, m_y == l_y))",
+            "Not(And(m_x == k_x, m_y == k_y))",
+            "Not(And(l_x == k_x, l_y == k_y))"
+          ],
+          "goal": "(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2"
+        },
+        "lemmas": [
+          {
+            "name": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+            "english": "For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).",
+            "vars": [
+              {
+                "name": "sx",
+                "sort": "Real"
+              },
+              {
+                "name": "sy",
+                "sort": "Real"
+              },
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "bx",
+                "sort": "Real"
+              },
+              {
+                "name": "by",
+                "sort": "Real"
+              },
+              {
+                "name": "t0",
+                "sort": "Real"
+              },
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "v",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(sx == 1, sy == t0, ax == (1 - u**2) / (1 + u**2), ay == (2 * u) / (1 + u**2), bx == (1 - v**2) / (1 + v**2), by == (2 * v) / (1 + v**2), Not(And(ax == bx, ay == by)), (bx - sx) * (ay - sy) == (ax - sx) * (by - sy)), 2 * u * v == t0 * (u + v))"
+          },
+          {
+            "name": "p_coordinates_from_CM_and_isosceles_condition",
+            "english": "With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).",
+            "vars": [
+              {
+                "name": "sx",
+                "sort": "Real"
+              },
+              {
+                "name": "sy",
+                "sort": "Real"
+              },
+              {
+                "name": "cx",
+                "sort": "Real"
+              },
+              {
+                "name": "cy",
+                "sort": "Real"
+              },
+              {
+                "name": "mx",
+                "sort": "Real"
+              },
+              {
+                "name": "my",
+                "sort": "Real"
+              },
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              },
+              {
+                "name": "t0",
+                "sort": "Real"
+              },
+              {
+                "name": "u",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(cx == 1, cy == 0, sx == 1, sy == t0, t0 != 0, mx == (1 - u**2) / (1 + u**2), my == (2 * u) / (1 + u**2), Not(And(mx == cx, my == cy)), Not(And(px == cx, py == cy)), (mx - cx) * (py - cy) == (px - cx) * (my - cy), (sx - cx)**2 + (sy - cy)**2 == (sx - px)**2 + (sy - py)**2), And(px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2)))"
+          },
+          {
+            "name": "collinear_point_with_P_gives_parameter_relation",
+            "english": "If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.",
+            "vars": [
+              {
+                "name": "xx",
+                "sort": "Real"
+              },
+              {
+                "name": "xy",
+                "sort": "Real"
+              },
+              {
+                "name": "rx",
+                "sort": "Real"
+              },
+              {
+                "name": "ry",
+                "sort": "Real"
+              },
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "r",
+                "sort": "Real"
+              },
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "t0",
+                "sort": "Real"
+              },
+              {
+                "name": "D0",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(xx == (1 - q**2) / (1 + q**2), xy == (2 * q) / (1 + q**2), rx == (1 - r**2) / (1 + r**2), ry == (2 * r) / (1 + r**2), px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2), D0 == 1 + u**2 - u * t0, Not(And(rx == xx, ry == xy)), (rx - xx) * (py - xy) == (px - xx) * (ry - xy)), r * (D0 * q - t0) == t0 * (q - u))"
+          },
+          {
+            "name": "algebraic_elimination_gives_mkl_parameter_relation",
+            "english": "From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.",
+            "vars": [
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "v",
+                "sort": "Real"
+              },
+              {
+                "name": "m0",
+                "sort": "Real"
+              },
+              {
+                "name": "k0",
+                "sort": "Real"
+              },
+              {
+                "name": "l0",
+                "sort": "Real"
+              },
+              {
+                "name": "t0",
+                "sort": "Real"
+              },
+              {
+                "name": "D0",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(D0 == 1 + m0**2 - m0 * t0, D0 * u - t0 != 0, D0 * v - t0 != 0, 2 * u * v == t0 * (u + v), k0 * (D0 * u - t0) == t0 * (u - m0), l0 * (D0 * v - t0) == t0 * (v - m0)), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0)"
+          },
+          {
+            "name": "unit_circle_parameter_relation_implies_equal_distances",
+            "english": "For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.",
+            "vars": [
+              {
+                "name": "mx",
+                "sort": "Real"
+              },
+              {
+                "name": "my",
+                "sort": "Real"
+              },
+              {
+                "name": "kx",
+                "sort": "Real"
+              },
+              {
+                "name": "ky",
+                "sort": "Real"
+              },
+              {
+                "name": "lx",
+                "sort": "Real"
+              },
+              {
+                "name": "ly",
+                "sort": "Real"
+              },
+              {
+                "name": "m0",
+                "sort": "Real"
+              },
+              {
+                "name": "k0",
+                "sort": "Real"
+              },
+              {
+                "name": "l0",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(mx == (1 - m0**2) / (1 + m0**2), my == (2 * m0) / (1 + m0**2), kx == (1 - k0**2) / (1 + k0**2), ky == (2 * k0) / (1 + k0**2), lx == (1 - l0**2) / (1 + l0**2), ly == (2 * l0) / (1 + l0**2), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0), (mx - kx)**2 + (my - ky)**2 == (mx - lx)**2 + (my - ly)**2)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+            "terms": {
+              "sx": "s_x",
+              "sy": "s_y",
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "t0": "t",
+              "u": "alpha",
+              "v": "beta"
+            }
+          },
+          {
+            "lemma": "p_coordinates_from_CM_and_isosceles_condition",
+            "terms": {
+              "sx": "s_x",
+              "sy": "s_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "mx": "m_x",
+              "my": "m_y",
+              "px": "p_x",
+              "py": "p_y",
+              "t0": "t",
+              "u": "mpar"
+            }
+          },
+          {
+            "lemma": "collinear_point_with_P_gives_parameter_relation",
+            "terms": {
+              "xx": "a_x",
+              "xy": "a_y",
+              "rx": "k_x",
+              "ry": "k_y",
+              "px": "p_x",
+              "py": "p_y",
+              "q": "alpha",
+              "r": "kpar",
+              "u": "mpar",
+              "t0": "t",
+              "D0": "D"
+            }
+          },
+          {
+            "lemma": "collinear_point_with_P_gives_parameter_relation",
+            "terms": {
+              "xx": "b_x",
+              "xy": "b_y",
+              "rx": "l_x",
+              "ry": "l_y",
+              "px": "p_x",
+              "py": "p_y",
+              "q": "beta",
+              "r": "lpar",
+              "u": "mpar",
+              "t0": "t",
+              "D0": "D"
+            }
+          },
+          {
+            "lemma": "algebraic_elimination_gives_mkl_parameter_relation",
+            "terms": {
+              "u": "alpha",
+              "v": "beta",
+              "m0": "mpar",
+              "k0": "kpar",
+              "l0": "lpar",
+              "t0": "t",
+              "D0": "D"
+            }
+          },
+          {
+            "lemma": "unit_circle_parameter_relation_implies_equal_distances",
+            "terms": {
+              "mx": "m_x",
+              "my": "m_y",
+              "kx": "k_x",
+              "ky": "k_y",
+              "lx": "l_x",
+              "ly": "l_y",
+              "m0": "mpar",
+              "k0": "kpar",
+              "l0": "lpar"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 5.74183464050293,
+        "instantiated": [
+          {
+            "lemma": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+            "terms": {
+              "sx": "s_x",
+              "sy": "s_y",
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "t0": "t",
+              "u": "alpha",
+              "v": "beta"
+            },
+            "z3_form": "Implies(And(s_x == 1,\n            s_y == t,\n            a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            Not(And(a_x == b_x, a_y == b_y)),\n            (b_x - s_x)*(a_y - s_y) ==\n            (a_x - s_x)*(b_y - s_y)),\n        2*alpha*beta == t*(alpha + beta))"
+          },
+          {
+            "lemma": "p_coordinates_from_CM_and_isosceles_condition",
+            "terms": {
+              "sx": "s_x",
+              "sy": "s_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "mx": "m_x",
+              "my": "m_y",
+              "px": "p_x",
+              "py": "p_y",
+              "t0": "t",
+              "u": "mpar"
+            },
+            "z3_form": "Implies(And(c_x == 1,\n            c_y == 0,\n            s_x == 1,\n            s_y == t,\n            t != 0,\n            m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            Not(And(m_x == c_x, m_y == c_y)),\n            Not(And(p_x == c_x, p_y == c_y)),\n            (m_x - c_x)*(p_y - c_y) ==\n            (p_x - c_x)*(m_y - c_y),\n            (s_x - c_x)**2 + (s_y - c_y)**2 ==\n            (s_x - p_x)**2 + (s_y - p_y)**2),\n        And(p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2)))"
+          },
+          {
+            "lemma": "collinear_point_with_P_gives_parameter_relation",
+            "terms": {
+              "xx": "a_x",
+              "xy": "a_y",
+              "rx": "k_x",
+              "ry": "k_y",
+              "px": "p_x",
+              "py": "p_y",
+              "q": "alpha",
+              "r": "kpar",
+              "u": "mpar",
+              "t0": "t",
+              "D0": "D"
+            },
+            "z3_form": "Implies(And(a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2),\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            D == 1 + mpar**2 - mpar*t,\n            Not(And(k_x == a_x, k_y == a_y)),\n            (k_x - a_x)*(p_y - a_y) ==\n            (p_x - a_x)*(k_y - a_y)),\n        kpar*(D*alpha - t) == t*(alpha - mpar))"
+          },
+          {
+            "lemma": "collinear_point_with_P_gives_parameter_relation",
+            "terms": {
+              "xx": "b_x",
+              "xy": "b_y",
+              "rx": "l_x",
+              "ry": "l_y",
+              "px": "p_x",
+              "py": "p_y",
+              "q": "beta",
+              "r": "lpar",
+              "u": "mpar",
+              "t0": "t",
+              "D0": "D"
+            },
+            "z3_form": "Implies(And(b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2),\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            D == 1 + mpar**2 - mpar*t,\n            Not(And(l_x == b_x, l_y == b_y)),\n            (l_x - b_x)*(p_y - b_y) ==\n            (p_x - b_x)*(l_y - b_y)),\n        lpar*(D*beta - t) == t*(beta - mpar))"
+          },
+          {
+            "lemma": "algebraic_elimination_gives_mkl_parameter_relation",
+            "terms": {
+              "u": "alpha",
+              "v": "beta",
+              "m0": "mpar",
+              "k0": "kpar",
+              "l0": "lpar",
+              "t0": "t",
+              "D0": "D"
+            },
+            "z3_form": "Implies(And(D == 1 + mpar**2 - mpar*t,\n            D*alpha - t != 0,\n            D*beta - t != 0,\n            2*alpha*beta == t*(alpha + beta),\n            kpar*(D*alpha - t) == t*(alpha - mpar),\n            lpar*(D*beta - t) == t*(beta - mpar)),\n        (1 - mpar**2)*(kpar + lpar) + 2*mpar*(kpar*lpar - 1) ==\n        0)"
+          },
+          {
+            "lemma": "unit_circle_parameter_relation_implies_equal_distances",
+            "terms": {
+              "mx": "m_x",
+              "my": "m_y",
+              "kx": "k_x",
+              "ky": "k_y",
+              "lx": "l_x",
+              "ly": "l_y",
+              "m0": "mpar",
+              "k0": "kpar",
+              "l0": "lpar"
+            },
+            "z3_form": "Implies(And(m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2),\n            (1 - mpar**2)*(kpar + lpar) +\n            2*mpar*(kpar*lpar - 1) ==\n            0),\n        (m_x - k_x)**2 + (m_y - k_y)**2 ==\n        (m_x - l_x)**2 + (m_y - l_y)**2)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+            "english": "For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "p_coordinates_from_CM_and_isosceles_condition",
+            "english": "With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "collinear_point_with_P_gives_parameter_relation",
+            "english": "If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "algebraic_elimination_gives_mkl_parameter_relation",
+            "english": "From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "unit_circle_parameter_relation_implies_equal_distances",
+            "english": "For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.",
+            "consistent": true,
+            "check": "unknown"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 6,
+        "n_hypotheses": 73
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nGoal: cong m k m l\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.\",\n  \"plan\": [\n    \"Normalize the circle and introduce a rational parameter for points on it.\",\n    \"Derive the equation of a chord in terms of the parameters of its endpoints.\",\n    \"Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.\",\n    \"Use collinearity with P to relate the parameters of A, B, K, L, M.\",\n    \"Prove the algebraic identity equivalent to MK = ML.\",\n    \"Conclude equality of the two chord lengths from the distance formula on the unit circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.\",\n      \"reasoning\": \"A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.\",\n      \"facts_used\": [\n        \"similarity transformations preserve incidence and length equality\",\n        \"radius is perpendicular to tangent at point of tangency\"\n      ]\n    },\n    {\n      \"claim\": \"For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.\",\n      \"reasoning\": \"Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.\",\n      \"facts_used\": [\n        \"rational parametrization of the unit circle\",\n        \"equation of a line through two points\"\n      ]\n    },\n    {\n      \"claim\": \"If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).\",\n      \"reasoning\": \"Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).\",\n      \"reasoning\": \"Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"definition of distance\",\n        \"hypothesis SC = SP\"\n      ]\n    },\n    {\n      \"claim\": \"Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).\",\n      \"reasoning\": \"Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"collinearity\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.\",\n      \"reasoning\": \"Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).\",\n      \"reasoning\": \"Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"Euclidean distance formula\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\",\n        \"algebra\",\n        \"nonnegativity of segment lengths\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"s_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"s_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"p_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"o_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"m_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"l_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"k_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"t\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"alpha\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"beta\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"mpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"kpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"lpar\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"D\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"o_x == 0\",\n      \"o_y == 0\",\n      \"c_x == 1\",\n      \"c_y == 0\",\n      \"s_x == 1\",\n      \"s_y == t\",\n      \"t != 0\",\n      \"a_x == (1 - alpha**2) / (1 + alpha**2)\",\n      \"a_y == (2 * alpha) / (1 + alpha**2)\",\n      \"b_x == (1 - beta**2) / (1 + beta**2)\",\n      \"b_y == (2 * beta) / (1 + beta**2)\",\n      \"m_x == (1 - mpar**2) / (1 + mpar**2)\",\n      \"m_y == (2 * mpar) / (1 + mpar**2)\",\n      \"k_x == (1 - kpar**2) / (1 + kpar**2)\",\n      \"k_y == (2 * kpar) / (1 + kpar**2)\",\n      \"l_x == (1 - lpar**2) / (1 + lpar**2)\",\n      \"l_y == (2 * lpar) / (1 + lpar**2)\",\n      \"D == 1 + mpar**2 - mpar * t\",\n      \"D * alpha - t != 0\",\n      \"D * beta - t != 0\",\n      \"(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2\",\n      \"(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0\",\n      \"(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)\",\n      \"(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)\",\n      \"(l_x - b_x) * (p_y - b_y) == (p_x - b\n... [truncated]\n\nErrors:\n- lemma(s) ['tangent_chord_relation'] are contradictory; refusing to certify\n\nFix these issues and return the corrected JSON object only."
+    }
+  ],
+  "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"s_x\", \"sort\": \"Real\"},\n      {\"name\": \"s_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"p_x\", \"sort\": \"Real\"},\n      {\"name\": \"p_y\", \"sort\": \"Real\"},\n      {\"name\": \"o_x\", \"sort\": \"Real\"},\n      {\"name\": \"o_y\", \"sort\": \"Real\"},\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"m_x\", \"sort\": \"Real\"},\n      {\"name\": \"m_y\", \"sort\": \"Real\"},\n      {\"name\": \"l_x\", \"sort\": \"Real\"},\n      {\"name\": \"l_y\", \"sort\": \"Real\"},\n      {\"name\": \"k_x\", \"sort\": \"Real\"},\n      {\"name\": \"k_y\", \"sort\": \"Real\"},\n      {\"name\": \"t\", \"sort\": \"Real\"},\n      {\"name\": \"alpha\", \"sort\": \"Real\"},\n      {\"name\": \"beta\", \"sort\": \"Real\"},\n      {\"name\": \"mpar\", \"sort\": \"Real\"},\n      {\"name\": \"kpar\", \"sort\": \"Real\"},\n      {\"name\": \"lpar\", \"sort\": \"Real\"},\n      {\"name\": \"D\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"o_x == 0\",\n      \"o_y == 0\",\n      \"c_x == 1\",\n      \"c_y == 0\",\n      \"s_x == 1\",\n      \"s_y == t\",\n      \"t != 0\",\n      \"1 + alpha**2 != 0\",\n      \"1 + beta**2 != 0\",\n      \"1 + mpar**2 != 0\",\n      \"1 + kpar**2 != 0\",\n      \"1 + lpar**2 != 0\",\n      \"a_x == (1 - alpha**2) / (1 + alpha**2)\",\n      \"a_y == (2 * alpha) / (1 + alpha**2)\",\n      \"b_x == (1 - beta**2) / (1 + beta**2)\",\n      \"b_y == (2 * beta) / (1 + beta**2)\",\n      \"m_x == (1 - mpar**2) / (1 + mpar**2)\",\n      \"m_y == (2 * mpar) / (1 + mpar**2)\",\n      \"k_x == (1 - kpar**2) / (1 + kpar**2)\",\n      \"k_y == (2 * kpar) / (1 + kpar**2)\",\n      \"l_x == (1 - lpar**2) / (1 + lpar**2)\",\n      \"l_y == (2 * lpar) / (1 + lpar**2)\",\n      \"D == 1 + mpar**2 - mpar * t\",\n      \"D * alpha - t != 0\",\n      \"D * beta - t != 0\",\n      \"(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2\",\n      \"(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0\",\n      \"(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2\",\n      \"(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)\",\n      \"(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)\",\n      \"(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)\",\n      \"(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)\",\n      \"(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)\",\n      \"Not(And(s_x == c_x, s_y == c_y))\",\n      \"Not(And(s_x == p_x, s_y == p_y))\",\n      \"Not(And(s_x == o_x, s_y == o_y))\",\n      \"Not(And(s_x == a_x, s_y == a_y))\",\n      \"Not(And(s_x == b_x, s_y == b_y))\",\n      \"Not(And(s_x == m_x, s_y == m_y))\",\n      \"Not(And(s_x == l_x, s_y == l_y))\",\n      \"Not(And(s_x == k_x, s_y == k_y))\",\n      \"Not(And(c_x == p_x, c_y == p_y))\",\n      \"Not(And(c_x == o_x, c_y == o_y))\",\n      \"Not(And(c_x == a_x, c_y == a_y))\",\n      \"Not(And(c_x == b_x, c_y == b_y))\",\n      \"Not(And(c_x == m_x, c_y == m_y))\",\n      \"Not(And(c_x == l_x, c_y == l_y))\",\n      \"Not(And(c_x == k_x, c_y == k_y))\",\n      \"Not(And(p_x == o_x, p_y == o_y))\",\n      \"Not(And(p_x == a_x, p_y == a_y))\",\n      \"Not(And(p_x == b_x, p_y == b_y))\",\n      \"Not(And(p_x == m_x, p_y == m_y))\",\n      \"Not(And(p_x == l_x, p_y == l_y))\",\n      \"Not(And(p_x == k_x, p_y == k_y))\",\n      \"Not(And(o_x == a_x, o_y == a_y))\",\n      \"Not(And(o_x == b_x, o_y == b_y))\",\n      \"Not(And(o_x == m_x, o_y == m_y))\",\n      \"Not(And(o_x == l_x, o_y == l_y))\",\n      \"Not(And(o_x == k_x, o_y == k_y))\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == m_x, a_y == m_y))\",\n      \"Not(And(a_x == l_x, a_y == l_y))\",\n      \"Not(And(a_x == k_x, a_y == k_y))\",\n      \"Not(And(b_x == m_x, b_y == m_y))\",\n      \"Not(And(b_x == l_x, b_y == l_y))\",\n      \"Not(And(b_x == k_x, b_y == k_y))\",\n      \"Not(And(m_x == l_x, m_y == l_y))\",\n      \"Not(And(m_x == k_x, m_y == k_y))\",\n      \"Not(And(l_x == k_x, l_y == k_y))\"\n    ],\n    \"goal\": \"(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"collinear_AB_with_tangent_point_gives_alpha_beta_relation\",\n      \"english\": \"For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).\",\n      \"vars\": [\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"bx\", \"sort\": \"Real\"},\n        {\"name\": \"by\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"v\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(sx == 1, sy == t0, ax == (1 - u**2) / (1 + u**2), ay == (2 * u) / (1 + u**2), bx == (1 - v**2) / (1 + v**2), by == (2 * v) / (1 + v**2), Not(And(ax == bx, ay == by)), (bx - sx) * (ay - sy) == (ax - sx) * (by - sy)), 2 * u * v == t0 * (u + v))\"\n    },\n    {\n      \"name\": \"p_coordinates_from_CM_and_isosceles_condition\",\n      \"english\": \"With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).\",\n      \"vars\": [\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"cx\", \"sort\": \"Real\"},\n        {\"name\": \"cy\", \"sort\": \"Real\"},\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"px\", \"sort\": \"Real\"},\n        {\"name\": \"py\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(cx == 1, cy == 0, sx == 1, sy == t0, t0 != 0, mx == (1 - u**2) / (1 + u**2), my == (2 * u) / (1 + u**2), Not(And(mx == cx, my == cy)), Not(And(px == cx, py == cy)), (mx - cx) * (py - cy) == (px - cx) * (my - cy), (sx - cx)**2 + (sy - cy)**2 == (sx - px)**2 + (sy - py)**2), And(px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2)))\"\n    },\n    {\n      \"name\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"english\": \"If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.\",\n      \"vars\": [\n        {\"name\": \"xx\", \"sort\": \"Real\"},\n        {\"name\": \"xy\", \"sort\": \"Real\"},\n        {\"name\": \"rx\", \"sort\": \"Real\"},\n        {\"name\": \"ry\", \"sort\": \"Real\"},\n        {\"name\": \"px\", \"sort\": \"Real\"},\n        {\"name\": \"py\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"r\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"D0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(xx == (1 - q**2) / (1 + q**2), xy == (2 * q) / (1 + q**2), rx == (1 - r**2) / (1 + r**2), ry == (2 * r) / (1 + r**2), px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2), D0 == 1 + u**2 - u * t0, Not(And(rx == xx, ry == xy)), (rx - xx) * (py - xy) == (px - xx) * (ry - xy)), r * (D0 * q - t0) == t0 * (q - u))\"\n    },\n    {\n      \"name\": \"algebraic_elimination_gives_mkl_parameter_relation\",\n      \"english\": \"From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.\",\n      \"vars\": [\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"v\", \"sort\": \"Real\"},\n        {\"name\": \"m0\", \"sort\": \"Real\"},\n        {\"name\": \"k0\", \"sort\": \"Real\"},\n        {\"name\": \"l0\", \"sort\": \"Real\"},\n        {\"name\": \"t0\", \"sort\": \"Real\"},\n        {\"name\": \"D0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(D0 == 1 + m0**2 - m0 * t0, D0 * u - t0 != 0, D0 * v - t0 != 0, 2 * u * v == t0 * (u + v), k0 * (D0 * u - t0) == t0 * (u - m0), l0 * (D0 * v - t0) == t0 * (v - m0)), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0)\"\n    },\n    {\n      \"name\": \"unit_circle_parameter_relation_implies_equal_distances\",\n      \"english\": \"For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.\",\n      \"vars\": [\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"},\n        {\"name\": \"m0\", \"sort\": \"Real\"},\n        {\"name\": \"k0\", \"sort\": \"Real\"},\n        {\"name\": \"l0\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(mx == (1 - m0**2) / (1 + m0**2), my == (2 * m0) / (1 + m0**2), kx == (1 - k0**2) / (1 + k0**2), ky == (2 * k0) / (1 + k0**2), lx == (1 - l0**2) / (1 + l0**2), ly == (2 * l0) / (1 + l0**2), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0), (mx - kx)**2 + (my - ky)**2 == (mx - lx)**2 + (my - ly)**2)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"collinear_AB_with_tangent_point_gives_alpha_beta_relation\",\n      \"terms\": {\n        \"sx\": \"s_x\",\n        \"sy\": \"s_y\",\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"t0\": \"t\",\n        \"u\": \"alpha\",\n        \"v\": \"beta\"\n      }\n    },\n    {\n      \"lemma\": \"p_coordinates_from_CM_and_isosceles_condition\",\n      \"terms\": {\n        \"sx\": \"s_x\",\n        \"sy\": \"s_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"mx\": \"m_x\",\n        \"my\": \"m_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"t0\": \"t\",\n        \"u\": \"mpar\"\n      }\n    },\n    {\n      \"lemma\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"terms\": {\n        \"xx\": \"a_x\",\n        \"xy\": \"a_y\",\n        \"rx\": \"k_x\",\n        \"ry\": \"k_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"q\": \"alpha\",\n        \"r\": \"kpar\",\n        \"u\": \"mpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"collinear_point_with_P_gives_parameter_relation\",\n      \"terms\": {\n        \"xx\": \"b_x\",\n        \"xy\": \"b_y\",\n        \"rx\": \"l_x\",\n        \"ry\": \"l_y\",\n        \"px\": \"p_x\",\n        \"py\": \"p_y\",\n        \"q\": \"beta\",\n        \"r\": \"lpar\",\n        \"u\": \"mpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"algebraic_elimination_gives_mkl_parameter_relation\",\n      \"terms\": {\n        \"u\": \"alpha\",\n        \"v\": \"beta\",\n        \"m0\": \"mpar\",\n        \"k0\": \"kpar\",\n        \"l0\": \"lpar\",\n        \"t0\": \"t\",\n        \"D0\": \"D\"\n      }\n    },\n    {\n      \"lemma\": \"unit_circle_parameter_relation_implies_equal_distances\",\n      \"terms\": {\n        \"mx\": \"m_x\",\n        \"my\": \"m_y\",\n        \"kx\": \"k_x\",\n        \"ky\": \"k_y\",\n        \"lx\": \"l_x\",\n        \"ly\": \"l_y\",\n        \"m0\": \"mpar\",\n        \"k0\": \"kpar\",\n        \"l0\": \"lpar\"\n      }\n    }\n  ]\n}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "s_x",
+          "sort": "Real"
+        },
+        {
+          "name": "s_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "p_x",
+          "sort": "Real"
+        },
+        {
+          "name": "p_y",
+          "sort": "Real"
+        },
+        {
+          "name": "o_x",
+          "sort": "Real"
+        },
+        {
+          "name": "o_y",
+          "sort": "Real"
+        },
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "m_x",
+          "sort": "Real"
+        },
+        {
+          "name": "m_y",
+          "sort": "Real"
+        },
+        {
+          "name": "l_x",
+          "sort": "Real"
+        },
+        {
+          "name": "l_y",
+          "sort": "Real"
+        },
+        {
+          "name": "k_x",
+          "sort": "Real"
+        },
+        {
+          "name": "k_y",
+          "sort": "Real"
+        },
+        {
+          "name": "t",
+          "sort": "Real"
+        },
+        {
+          "name": "alpha",
+          "sort": "Real"
+        },
+        {
+          "name": "beta",
+          "sort": "Real"
+        },
+        {
+          "name": "mpar",
+          "sort": "Real"
+        },
+        {
+          "name": "kpar",
+          "sort": "Real"
+        },
+        {
+          "name": "lpar",
+          "sort": "Real"
+        },
+        {
+          "name": "D",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "o_x == 0",
+        "o_y == 0",
+        "c_x == 1",
+        "c_y == 0",
+        "s_x == 1",
+        "s_y == t",
+        "t != 0",
+        "1 + alpha**2 != 0",
+        "1 + beta**2 != 0",
+        "1 + mpar**2 != 0",
+        "1 + kpar**2 != 0",
+        "1 + lpar**2 != 0",
+        "a_x == (1 - alpha**2) / (1 + alpha**2)",
+        "a_y == (2 * alpha) / (1 + alpha**2)",
+        "b_x == (1 - beta**2) / (1 + beta**2)",
+        "b_y == (2 * beta) / (1 + beta**2)",
+        "m_x == (1 - mpar**2) / (1 + mpar**2)",
+        "m_y == (2 * mpar) / (1 + mpar**2)",
+        "k_x == (1 - kpar**2) / (1 + kpar**2)",
+        "k_y == (2 * kpar) / (1 + kpar**2)",
+        "l_x == (1 - lpar**2) / (1 + lpar**2)",
+        "l_y == (2 * lpar) / (1 + lpar**2)",
+        "D == 1 + mpar**2 - mpar * t",
+        "D * alpha - t != 0",
+        "D * beta - t != 0",
+        "(s_x - c_x)**2 + (s_y - c_y)**2 == (s_x - p_x)**2 + (s_y - p_y)**2",
+        "(o_x - c_x) * (s_x - c_x) + (o_y - c_y) * (s_y - c_y) == 0",
+        "(a_x - o_x)**2 + (a_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+        "(b_x - o_x)**2 + (b_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+        "(m_x - o_x)**2 + (m_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+        "(l_x - o_x)**2 + (l_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+        "(k_x - o_x)**2 + (k_y - o_y)**2 == (c_x - o_x)**2 + (c_y - o_y)**2",
+        "(b_x - s_x) * (a_y - s_y) == (a_x - s_x) * (b_y - s_y)",
+        "(m_x - c_x) * (p_y - c_y) == (p_x - c_x) * (m_y - c_y)",
+        "(l_x - b_x) * (p_y - b_y) == (p_x - b_x) * (l_y - b_y)",
+        "(k_x - a_x) * (p_y - a_y) == (p_x - a_x) * (k_y - a_y)",
+        "(c_x - s_x) * (p_y - s_y) != (p_x - s_x) * (c_y - s_y)",
+        "Not(And(s_x == c_x, s_y == c_y))",
+        "Not(And(s_x == p_x, s_y == p_y))",
+        "Not(And(s_x == o_x, s_y == o_y))",
+        "Not(And(s_x == a_x, s_y == a_y))",
+        "Not(And(s_x == b_x, s_y == b_y))",
+        "Not(And(s_x == m_x, s_y == m_y))",
+        "Not(And(s_x == l_x, s_y == l_y))",
+        "Not(And(s_x == k_x, s_y == k_y))",
+        "Not(And(c_x == p_x, c_y == p_y))",
+        "Not(And(c_x == o_x, c_y == o_y))",
+        "Not(And(c_x == a_x, c_y == a_y))",
+        "Not(And(c_x == b_x, c_y == b_y))",
+        "Not(And(c_x == m_x, c_y == m_y))",
+        "Not(And(c_x == l_x, c_y == l_y))",
+        "Not(And(c_x == k_x, c_y == k_y))",
+        "Not(And(p_x == o_x, p_y == o_y))",
+        "Not(And(p_x == a_x, p_y == a_y))",
+        "Not(And(p_x == b_x, p_y == b_y))",
+        "Not(And(p_x == m_x, p_y == m_y))",
+        "Not(And(p_x == l_x, p_y == l_y))",
+        "Not(And(p_x == k_x, p_y == k_y))",
+        "Not(And(o_x == a_x, o_y == a_y))",
+        "Not(And(o_x == b_x, o_y == b_y))",
+        "Not(And(o_x == m_x, o_y == m_y))",
+        "Not(And(o_x == l_x, o_y == l_y))",
+        "Not(And(o_x == k_x, o_y == k_y))",
+        "Not(And(a_x == b_x, a_y == b_y))",
+        "Not(And(a_x == m_x, a_y == m_y))",
+        "Not(And(a_x == l_x, a_y == l_y))",
+        "Not(And(a_x == k_x, a_y == k_y))",
+        "Not(And(b_x == m_x, b_y == m_y))",
+        "Not(And(b_x == l_x, b_y == l_y))",
+        "Not(And(b_x == k_x, b_y == k_y))",
+        "Not(And(m_x == l_x, m_y == l_y))",
+        "Not(And(m_x == k_x, m_y == k_y))",
+        "Not(And(l_x == k_x, l_y == k_y))"
+      ],
+      "goal": "(m_x - k_x)**2 + (m_y - k_y)**2 == (m_x - l_x)**2 + (m_y - l_y)**2"
+    },
+    "lemmas": [
+      {
+        "name": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+        "english": "For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).",
+        "vars": [
+          {
+            "name": "sx",
+            "sort": "Real"
+          },
+          {
+            "name": "sy",
+            "sort": "Real"
+          },
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "bx",
+            "sort": "Real"
+          },
+          {
+            "name": "by",
+            "sort": "Real"
+          },
+          {
+            "name": "t0",
+            "sort": "Real"
+          },
+          {
+            "name": "u",
+            "sort": "Real"
+          },
+          {
+            "name": "v",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(sx == 1, sy == t0, ax == (1 - u**2) / (1 + u**2), ay == (2 * u) / (1 + u**2), bx == (1 - v**2) / (1 + v**2), by == (2 * v) / (1 + v**2), Not(And(ax == bx, ay == by)), (bx - sx) * (ay - sy) == (ax - sx) * (by - sy)), 2 * u * v == t0 * (u + v))"
+      },
+      {
+        "name": "p_coordinates_from_CM_and_isosceles_condition",
+        "english": "With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).",
+        "vars": [
+          {
+            "name": "sx",
+            "sort": "Real"
+          },
+          {
+            "name": "sy",
+            "sort": "Real"
+          },
+          {
+            "name": "cx",
+            "sort": "Real"
+          },
+          {
+            "name": "cy",
+            "sort": "Real"
+          },
+          {
+            "name": "mx",
+            "sort": "Real"
+          },
+          {
+            "name": "my",
+            "sort": "Real"
+          },
+          {
+            "name": "px",
+            "sort": "Real"
+          },
+          {
+            "name": "py",
+            "sort": "Real"
+          },
+          {
+            "name": "t0",
+            "sort": "Real"
+          },
+          {
+            "name": "u",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(cx == 1, cy == 0, sx == 1, sy == t0, t0 != 0, mx == (1 - u**2) / (1 + u**2), my == (2 * u) / (1 + u**2), Not(And(mx == cx, my == cy)), Not(And(px == cx, py == cy)), (mx - cx) * (py - cy) == (px - cx) * (my - cy), (sx - cx)**2 + (sy - cy)**2 == (sx - px)**2 + (sy - py)**2), And(px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2)))"
+      },
+      {
+        "name": "collinear_point_with_P_gives_parameter_relation",
+        "english": "If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.",
+        "vars": [
+          {
+            "name": "xx",
+            "sort": "Real"
+          },
+          {
+            "name": "xy",
+            "sort": "Real"
+          },
+          {
+            "name": "rx",
+            "sort": "Real"
+          },
+          {
+            "name": "ry",
+            "sort": "Real"
+          },
+          {
+            "name": "px",
+            "sort": "Real"
+          },
+          {
+            "name": "py",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "r",
+            "sort": "Real"
+          },
+          {
+            "name": "u",
+            "sort": "Real"
+          },
+          {
+            "name": "t0",
+            "sort": "Real"
+          },
+          {
+            "name": "D0",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(xx == (1 - q**2) / (1 + q**2), xy == (2 * q) / (1 + q**2), rx == (1 - r**2) / (1 + r**2), ry == (2 * r) / (1 + r**2), px == 1 - (2 * u * t0) / (1 + u**2), py == (2 * t0) / (1 + u**2), D0 == 1 + u**2 - u * t0, Not(And(rx == xx, ry == xy)), (rx - xx) * (py - xy) == (px - xx) * (ry - xy)), r * (D0 * q - t0) == t0 * (q - u))"
+      },
+      {
+        "name": "algebraic_elimination_gives_mkl_parameter_relation",
+        "english": "From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.",
+        "vars": [
+          {
+            "name": "u",
+            "sort": "Real"
+          },
+          {
+            "name": "v",
+            "sort": "Real"
+          },
+          {
+            "name": "m0",
+            "sort": "Real"
+          },
+          {
+            "name": "k0",
+            "sort": "Real"
+          },
+          {
+            "name": "l0",
+            "sort": "Real"
+          },
+          {
+            "name": "t0",
+            "sort": "Real"
+          },
+          {
+            "name": "D0",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(D0 == 1 + m0**2 - m0 * t0, D0 * u - t0 != 0, D0 * v - t0 != 0, 2 * u * v == t0 * (u + v), k0 * (D0 * u - t0) == t0 * (u - m0), l0 * (D0 * v - t0) == t0 * (v - m0)), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0)"
+      },
+      {
+        "name": "unit_circle_parameter_relation_implies_equal_distances",
+        "english": "For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.",
+        "vars": [
+          {
+            "name": "mx",
+            "sort": "Real"
+          },
+          {
+            "name": "my",
+            "sort": "Real"
+          },
+          {
+            "name": "kx",
+            "sort": "Real"
+          },
+          {
+            "name": "ky",
+            "sort": "Real"
+          },
+          {
+            "name": "lx",
+            "sort": "Real"
+          },
+          {
+            "name": "ly",
+            "sort": "Real"
+          },
+          {
+            "name": "m0",
+            "sort": "Real"
+          },
+          {
+            "name": "k0",
+            "sort": "Real"
+          },
+          {
+            "name": "l0",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(mx == (1 - m0**2) / (1 + m0**2), my == (2 * m0) / (1 + m0**2), kx == (1 - k0**2) / (1 + k0**2), ky == (2 * k0) / (1 + k0**2), lx == (1 - l0**2) / (1 + l0**2), ly == (2 * l0) / (1 + l0**2), (1 - m0**2) * (k0 + l0) + 2 * m0 * (k0 * l0 - 1) == 0), (mx - kx)**2 + (my - ky)**2 == (mx - lx)**2 + (my - ly)**2)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+        "terms": {
+          "sx": "s_x",
+          "sy": "s_y",
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "t0": "t",
+          "u": "alpha",
+          "v": "beta"
+        }
+      },
+      {
+        "lemma": "p_coordinates_from_CM_and_isosceles_condition",
+        "terms": {
+          "sx": "s_x",
+          "sy": "s_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "mx": "m_x",
+          "my": "m_y",
+          "px": "p_x",
+          "py": "p_y",
+          "t0": "t",
+          "u": "mpar"
+        }
+      },
+      {
+        "lemma": "collinear_point_with_P_gives_parameter_relation",
+        "terms": {
+          "xx": "a_x",
+          "xy": "a_y",
+          "rx": "k_x",
+          "ry": "k_y",
+          "px": "p_x",
+          "py": "p_y",
+          "q": "alpha",
+          "r": "kpar",
+          "u": "mpar",
+          "t0": "t",
+          "D0": "D"
+        }
+      },
+      {
+        "lemma": "collinear_point_with_P_gives_parameter_relation",
+        "terms": {
+          "xx": "b_x",
+          "xy": "b_y",
+          "rx": "l_x",
+          "ry": "l_y",
+          "px": "p_x",
+          "py": "p_y",
+          "q": "beta",
+          "r": "lpar",
+          "u": "mpar",
+          "t0": "t",
+          "D0": "D"
+        }
+      },
+      {
+        "lemma": "algebraic_elimination_gives_mkl_parameter_relation",
+        "terms": {
+          "u": "alpha",
+          "v": "beta",
+          "m0": "mpar",
+          "k0": "kpar",
+          "l0": "lpar",
+          "t0": "t",
+          "D0": "D"
+        }
+      },
+      {
+        "lemma": "unit_circle_parameter_relation_implies_equal_distances",
+        "terms": {
+          "mx": "m_x",
+          "my": "m_y",
+          "kx": "k_x",
+          "ky": "k_y",
+          "lx": "l_x",
+          "ly": "l_y",
+          "m0": "mpar",
+          "k0": "kpar",
+          "l0": "lpar"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 5.74183464050293,
+    "instantiated": [
+      {
+        "lemma": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+        "terms": {
+          "sx": "s_x",
+          "sy": "s_y",
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "t0": "t",
+          "u": "alpha",
+          "v": "beta"
+        },
+        "z3_form": "Implies(And(s_x == 1,\n            s_y == t,\n            a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            Not(And(a_x == b_x, a_y == b_y)),\n            (b_x - s_x)*(a_y - s_y) ==\n            (a_x - s_x)*(b_y - s_y)),\n        2*alpha*beta == t*(alpha + beta))"
+      },
+      {
+        "lemma": "p_coordinates_from_CM_and_isosceles_condition",
+        "terms": {
+          "sx": "s_x",
+          "sy": "s_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "mx": "m_x",
+          "my": "m_y",
+          "px": "p_x",
+          "py": "p_y",
+          "t0": "t",
+          "u": "mpar"
+        },
+        "z3_form": "Implies(And(c_x == 1,\n            c_y == 0,\n            s_x == 1,\n            s_y == t,\n            t != 0,\n            m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            Not(And(m_x == c_x, m_y == c_y)),\n            Not(And(p_x == c_x, p_y == c_y)),\n            (m_x - c_x)*(p_y - c_y) ==\n            (p_x - c_x)*(m_y - c_y),\n            (s_x - c_x)**2 + (s_y - c_y)**2 ==\n            (s_x - p_x)**2 + (s_y - p_y)**2),\n        And(p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2)))"
+      },
+      {
+        "lemma": "collinear_point_with_P_gives_parameter_relation",
+        "terms": {
+          "xx": "a_x",
+          "xy": "a_y",
+          "rx": "k_x",
+          "ry": "k_y",
+          "px": "p_x",
+          "py": "p_y",
+          "q": "alpha",
+          "r": "kpar",
+          "u": "mpar",
+          "t0": "t",
+          "D0": "D"
+        },
+        "z3_form": "Implies(And(a_x == (1 - alpha**2)/(1 + alpha**2),\n            a_y == (2*alpha)/(1 + alpha**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2),\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            D == 1 + mpar**2 - mpar*t,\n            Not(And(k_x == a_x, k_y == a_y)),\n            (k_x - a_x)*(p_y - a_y) ==\n            (p_x - a_x)*(k_y - a_y)),\n        kpar*(D*alpha - t) == t*(alpha - mpar))"
+      },
+      {
+        "lemma": "collinear_point_with_P_gives_parameter_relation",
+        "terms": {
+          "xx": "b_x",
+          "xy": "b_y",
+          "rx": "l_x",
+          "ry": "l_y",
+          "px": "p_x",
+          "py": "p_y",
+          "q": "beta",
+          "r": "lpar",
+          "u": "mpar",
+          "t0": "t",
+          "D0": "D"
+        },
+        "z3_form": "Implies(And(b_x == (1 - beta**2)/(1 + beta**2),\n            b_y == (2*beta)/(1 + beta**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2),\n            p_x == 1 - (2*mpar*t)/(1 + mpar**2),\n            p_y == (2*t)/(1 + mpar**2),\n            D == 1 + mpar**2 - mpar*t,\n            Not(And(l_x == b_x, l_y == b_y)),\n            (l_x - b_x)*(p_y - b_y) ==\n            (p_x - b_x)*(l_y - b_y)),\n        lpar*(D*beta - t) == t*(beta - mpar))"
+      },
+      {
+        "lemma": "algebraic_elimination_gives_mkl_parameter_relation",
+        "terms": {
+          "u": "alpha",
+          "v": "beta",
+          "m0": "mpar",
+          "k0": "kpar",
+          "l0": "lpar",
+          "t0": "t",
+          "D0": "D"
+        },
+        "z3_form": "Implies(And(D == 1 + mpar**2 - mpar*t,\n            D*alpha - t != 0,\n            D*beta - t != 0,\n            2*alpha*beta == t*(alpha + beta),\n            kpar*(D*alpha - t) == t*(alpha - mpar),\n            lpar*(D*beta - t) == t*(beta - mpar)),\n        (1 - mpar**2)*(kpar + lpar) + 2*mpar*(kpar*lpar - 1) ==\n        0)"
+      },
+      {
+        "lemma": "unit_circle_parameter_relation_implies_equal_distances",
+        "terms": {
+          "mx": "m_x",
+          "my": "m_y",
+          "kx": "k_x",
+          "ky": "k_y",
+          "lx": "l_x",
+          "ly": "l_y",
+          "m0": "mpar",
+          "k0": "kpar",
+          "l0": "lpar"
+        },
+        "z3_form": "Implies(And(m_x == (1 - mpar**2)/(1 + mpar**2),\n            m_y == (2*mpar)/(1 + mpar**2),\n            k_x == (1 - kpar**2)/(1 + kpar**2),\n            k_y == (2*kpar)/(1 + kpar**2),\n            l_x == (1 - lpar**2)/(1 + lpar**2),\n            l_y == (2*lpar)/(1 + lpar**2),\n            (1 - mpar**2)*(kpar + lpar) +\n            2*mpar*(kpar*lpar - 1) ==\n            0),\n        (m_x - k_x)**2 + (m_y - k_y)**2 ==\n        (m_x - l_x)**2 + (m_y - l_y)**2)"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "collinear_AB_with_tangent_point_gives_alpha_beta_relation",
+        "english": "For A=T(alpha), B=T(beta), and S=(1,t), if A,B,S are collinear and A != B, then substituting S into the chord equation gives 2 alpha beta = t(alpha+beta).",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "p_coordinates_from_CM_and_isosceles_condition",
+        "english": "With C=(1,0), S=(1,t), M=T(m), P on CM, SP=SC, P != C, and M != C, the non-C intersection is P=(1-2mt/(1+m^2), 2t/(1+m^2)).",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "collinear_point_with_P_gives_parameter_relation",
+        "english": "If X=T(q), R=T(r), P has the derived coordinates from M=T(m), and X,R,P are collinear with X != R, then r(Dq-t)=t(q-m), where D=1+m^2-mt.",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "algebraic_elimination_gives_mkl_parameter_relation",
+        "english": "From 2 alpha beta=t(alpha+beta), D=1+m^2-mt, and the two solved collinearity relations for k and l, direct algebra gives (1-m^2)(k+l)+2m(kl-1)=0.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "unit_circle_parameter_relation_implies_equal_distances",
+        "english": "For points T(m), T(k), T(l) on the unit circle, the relation (1-m^2)(k+l)+2m(kl-1)=0 is exactly the algebraic condition that squared distances MK and ML are equal.",
+        "consistent": true,
+        "check": "unknown"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 6,
+    "n_hypotheses": 73
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-16T04:40:13.741817+00:00"
+}

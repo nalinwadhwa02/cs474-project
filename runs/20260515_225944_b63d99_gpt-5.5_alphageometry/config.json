@@ -1,0 +1,8 @@
+{
+  "model": "gpt-5.5",
+  "split": "alphageometry",
+  "problem_filter": null,
+  "limit": 50,
+  "n_problems": 30,
+  "started_at": "2026-05-15T22:59:44.325482+00:00"
+}

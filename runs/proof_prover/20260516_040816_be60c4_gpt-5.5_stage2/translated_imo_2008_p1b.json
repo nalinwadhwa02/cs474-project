@@ -1,0 +1,1745 @@
+{
+  "theorem_id": "translated_imo_2008_p1b",
+  "statement": "Theorem: translated_imo_2008_p1b\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, a1 are concyclic",
+  "goal": "cyclic c1 c2 b1 a1",
+  "stage1_english_proof": {
+    "key_observation": "With the orthocenter chosen as the origin, the three vertex vectors have equal pairwise dot products, and each of the diameter-circle conditions reduces to the same circle equation.",
+    "plan": [
+      "Put the origin at the orthocenter and translate the geometric conditions into vector equations.",
+      "Use the orthocenter property to prove that the pairwise dot products of the vertex vectors are equal.",
+      "Define a candidate common circle by a single quadratic equation.",
+      "Show that any relevant intersection point on each side satisfies this same equation.",
+      "Conclude that c1, c2, b1, and a1 lie on one circle."
+    ],
+    "steps": [
+      {
+        "claim": "Choose vector coordinates with H as the origin. Let the position vectors of A, B, C be a, b, c respectively, and let D, E, F have vectors d = (b + c)/2, e = (c + a)/2, f = (a + b)/2.",
+        "reasoning": "A translation of coordinates does not affect incidence, perpendicularity, midpoint relations, or concyclicity. Since D, E, F are midpoints of BC, CA, AB, their position vectors are the corresponding averages.",
+        "facts_used": [
+          "translation invariance of Euclidean geometry",
+          "midpoint formula"
+        ]
+      },
+      {
+        "claim": "There is a real number k such that a · b = a · c = b · c = k.",
+        "reasoning": "Because H is the orthocenter and H is the origin, AH is perpendicular to BC, so a · (b - c) = 0, hence a · b = a · c. Similarly, BH is perpendicular to CA, so b · (c - a) = 0, hence b · c = b · a. Therefore all three pairwise dot products are equal.",
+        "facts_used": [
+          "definition of orthocenter",
+          "perpendicularity and dot product"
+        ]
+      },
+      {
+        "claim": "The equation 2|x|^2 - (a + b + c) · x + k = 0 defines a nondegenerate circle Γ.",
+        "reasoning": "Let s = a + b + c. Dividing by 2 gives |x|^2 - (s/2) · x + k/2 = 0, whose center is s/4 and whose squared radius is |s|^2/16 - k/2. Since |s|^2 = |a|^2 + |b|^2 + |c|^2 + 6k, the squared radius is (|a|^2 + |b|^2 + |c|^2 - 2k)/16 = (|a|^2 + |b - c|^2)/16 > 0 because B ≠ C in a triangle.",
+        "facts_used": [
+          "standard equation of a circle",
+          "step 2",
+          "triangle nondegeneracy"
+        ]
+      },
+      {
+        "claim": "Every point x on line BC and on the circle with diameter DH satisfies 2|x|^2 - (a + b + c) · x + k = 0.",
+        "reasoning": "Since x lies on BC, we have a · x = k, because a · b = a · c = k. Since x lies on the circle with diameter DH and H is the origin, the diameter-circle condition gives x · (x - d) = 0, so |x|^2 = x · d. As d = (b + c)/2, we get |x|^2 = x · (b + c)/2 = ((a + b + c) · x - a · x)/2 = ((a + b + c) · x - k)/2, which rearranges to the claimed equation.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "circle with diameter characterization",
+          "line parametrization"
+        ]
+      },
+      {
+        "claim": "The point a1 lies on Γ.",
+        "reasoning": "By hypothesis, a1 lies on line BC and on the circle with diameter DH. Therefore step 4 applies to x = a1, so a1 satisfies the defining equation of Γ.",
+        "facts_used": [
+          "hypothesis on a1",
+          "step 4",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Every point y on line CA and on the circle with diameter EH satisfies 2|y|^2 - (a + b + c) · y + k = 0.",
+        "reasoning": "Since y lies on CA, we have b · y = k, because b · c = b · a = k. Since y lies on the circle with diameter EH and H is the origin, |y|^2 = y · e. As e = (c + a)/2, this gives |y|^2 = y · (c + a)/2 = ((a + b + c) · y - b · y)/2 = ((a + b + c) · y - k)/2, which is equivalent to the defining equation of Γ.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "circle with diameter characterization",
+          "line parametrization"
+        ]
+      },
+      {
+        "claim": "The point b1 lies on Γ.",
+        "reasoning": "By hypothesis, b1 lies on line CA and on the circle with diameter EH. Therefore step 6 applies to y = b1, so b1 satisfies the defining equation of Γ.",
+        "facts_used": [
+          "hypothesis on b1",
+          "step 6",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "Every point z on line AB and on the circle with diameter FH satisfies 2|z|^2 - (a + b + c) · z + k = 0.",
+        "reasoning": "Since z lies on AB, we have c · z = k, because c · a = c · b = k. Since z lies on the circle with diameter FH and H is the origin, |z|^2 = z · f. As f = (a + b)/2, this gives |z|^2 = z · (a + b)/2 = ((a + b + c) · z - c · z)/2 = ((a + b + c) · z - k)/2, which is equivalent to the defining equation of Γ.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "circle with diameter characterization",
+          "line parametrization"
+        ]
+      },
+      {
+        "claim": "The points c1 and c2 lie on Γ.",
+        "reasoning": "By hypothesis, both c1 and c2 lie on line AB and on the circle with diameter FH. Therefore step 8 applies to z = c1 and z = c2, so both points satisfy the defining equation of Γ.",
+        "facts_used": [
+          "hypotheses on c1 and c2",
+          "step 8",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The points c1, c2, b1, and a1 are concyclic.",
+        "reasoning": "Steps 5, 7, and 9 show that a1, b1, c1, and c2 all lie on the same nondegenerate circle Γ. Hence these four points are concyclic.",
+        "facts_used": [
+          "step 3",
+          "step 5",
+          "step 7",
+          "step 9",
+          "definition of concyclic points"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2008_p1b\n\nTheorem: translated_imo_2008_p1b\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, a1 are concyclic\n\nGoal: cyclic c1 c2 b1 a1\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"With the orthocenter chosen as the origin, the three vertex vectors have equal pairwise dot products, and each of the diameter-circle conditions reduces to the same circle equation.\",\n  \"plan\": [\n    \"Put the origin at the orthocenter and translate the geometric conditions into vector equations.\",\n    \"Use the orthocenter property to prove that the pairwise dot products of the vertex vectors are equal.\",\n    \"Define a candidate common circle by a single quadratic equation.\",\n    \"Show that any relevant intersection point on each side satisfies this same equation.\",\n    \"Conclude that c1, c2, b1, and a1 lie on one circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Choose vector coordinates with H as the origin. Let the position vectors of A, B, C be a, b, c respectively, and let D, E, F have vectors d = (b + c)/2, e = (c + a)/2, f = (a + b)/2.\",\n      \"reasoning\": \"A translation of coordinates does not affect incidence, perpendicularity, midpoint relations, or concyclicity. Since D, E, F are midpoints of BC, CA, AB, their position vectors are the corresponding averages.\",\n      \"facts_used\": [\n        \"translation invariance of Euclidean geometry\",\n        \"midpoint formula\"\n      ]\n    },\n    {\n      \"claim\": \"There is a real number k such that a · b = a · c = b · c = k.\",\n      \"reasoning\": \"Because H is the orthocenter and H is the origin, AH is perpendicular to BC, so a · (b - c) = 0, hence a · b = a · c. Similarly, BH is perpendicular to CA, so b · (c - a) = 0, hence b · c = b · a. Therefore all three pairwise dot products are equal.\",\n      \"facts_used\": [\n        \"definition of orthocenter\",\n        \"perpendicularity and dot product\"\n      ]\n    },\n    {\n      \"claim\": \"The equation 2|x|^2 - (a + b + c) · x + k = 0 defines a nondegenerate circle Γ.\",\n      \"reasoning\": \"Let s = a + b + c. Dividing by 2 gives |x|^2 - (s/2) · x + k/2 = 0, whose center is s/4 and whose squared radius is |s|^2/16 - k/2. Since |s|^2 = |a|^2 + |b|^2 + |c|^2 + 6k, the squared radius is (|a|^2 + |b|^2 + |c|^2 - 2k)/16 = (|a|^2 + |b - c|^2)/16 > 0 because B ≠ C in a triangle.\",\n      \"facts_used\": [\n        \"standard equation of a circle\",\n        \"step 2\",\n        \"triangle nondegeneracy\"\n      ]\n    },\n    {\n      \"claim\": \"Every point x on line BC and on the circle with diameter DH satisfies 2|x|^2 - (a + b + c) · x + k = 0.\",\n      \"reasoning\": \"Since x lies on BC, we have a · x = k, because a · b = a · c = k. Since x lies on the circle with diameter DH and H is the origin, the diameter-circle condition gives x · (x - d) = 0, so |x|^2 = x · d. As d = (b + c)/2, we get |x|^2 = x · (b + c)/2 = ((a + b + c) · x - a · x)/2 = ((a + b + c) · x - k)/2, which rearranges to the claimed equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point a1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, a1 lies on line BC and on the circle with diameter DH. Therefore step 4 applies to x = a1, so a1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on a1\",\n        \"step 4\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point y on line CA and on the circle with diameter EH satisfies 2|y|^2 - (a + b + c) · y + k = 0.\",\n      \"reasoning\": \"Since y lies on CA, we have b · y = k, because b · c = b · a = k. Since y lies on the circle with diameter EH and H is the origin, |y|^2 = y · e. As e = (c + a)/2, this gives |y|^2 = y · (c + a)/2 = ((a + b + c) · y - b · y)/2 = ((a + b + c) · y - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point b1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, b1 lies on line CA and on the circle with diameter EH. Therefore step 6 applies to y = b1, so b1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on b1\",\n        \"step 6\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point z on line AB and on the circle with diameter FH satisfies 2|z|^2 - (a + b + c) · z + k = 0.\",\n      \"reasoning\": \"Since z lies on AB, we have c · z = k, because c · a = c · b = k. Since z lies on the circle with diameter FH and H is the origin, |z|^2 = z · f. As f = (a + b)/2, this gives |z|^2 = z · (a + b)/2 = ((a + b + c) · z - c · z)/2 = ((a + b + c) · z - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1 and c2 lie on Γ.\",\n      \"reasoning\": \"By hypothesis, both c1 and c2 lie on line AB and on the circle with diameter FH. Therefore step 8 applies to z = c1 and z = c2, so both points satisfy the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypotheses on c1 and c2\",\n        \"step 8\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1, c2, b1, and a1 are concyclic.\",\n      \"reasoning\": \"Steps 5, 7, and 9 show that a1, b1, c1, and c2 all lie on the same nondegenerate circle Γ. Hence these four points are concyclic.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"step 7\",\n        \"step 9\",\n        \"definition of concyclic points\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"h_x\", \"sort\": \"Real\"},\n      {\"name\": \"h_y\", \"sort\": \"Real\"},\n      {\"name\": \"d_x\", \"sort\": \"Real\"},\n      {\"name\": \"d_y\", \"sort\": \"Real\"},\n      {\"name\": \"e_x\", \"sort\": \"Real\"},\n      {\"name\": \"e_y\", \"sort\": \"Real\"},\n      {\"name\": \"f_x\", \"sort\": \"Real\"},\n      {\"name\": \"f_y\", \"sort\": \"Real\"},\n      {\"name\": \"a1_x\", \"sort\": \"Real\"},\n      {\"name\": \"a1_y\", \"sort\": \"Real\"},\n      {\"name\": \"a2_x\", \"sort\": \"Real\"},\n      {\"name\": \"a2_y\", \"sort\": \"Real\"},\n      {\"name\": \"b1_x\", \"sort\": \"Real\"},\n      {\"name\": \"b1_y\", \"sort\": \"Real\"},\n      {\"name\": \"b2_x\", \"sort\": \"Real\"},\n      {\"name\": \"b2_y\", \"sort\": \"Real\"},\n      {\"name\": \"c1_x\", \"sort\": \"Real\"},\n      {\"name\": \"c1_y\", \"sort\": \"Real\"},\n      {\"name\": \"c2_x\", \"sort\": \"Real\"},\n      {\"name\": \"c2_y\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"h_x == 0\",\n      \"h_y == 0\",\n      \"(a_x - h_x) * (b_x - c_x) + (a_y - h_y) * (b_y - c_y) == 0\",\n      \"(b_x - h_x) * (c_x - a_x) + (b_y - h_y) * (c_y - a_y) == 0\",\n      \"(c_x - h_x) * (a_x - b_x) + (c_y - h_y) * (a_y - b_y) == 0\",\n      \"d_x == (b_x + c_x) / 2\",\n      \"d_y == (b_y + c_y) / 2\",\n      \"e_x == (c_x + a_x) / 2\",\n      \"e_y == (c_y + a_y) / 2\",\n      \"f_x == (a_x + b_x) / 2\",\n      \"f_y == (a_y + b_y) / 2\",\n      \"(a1_x - d_x) * (a1_x - h_x) + (a1_y - d_y) * (a1_y - h_y) == 0\",\n      \"(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)\",\n      \"(a2_x - d_x) * (a2_x - h_x) + (a2_y - d_y) * (a2_y - h_y) == 0\",\n      \"(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)\",\n      \"(b1_x - e_x) * (b1_x - h_x) + (b1_y - e_y) * (b1_y - h_y) == 0\",\n      \"(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)\",\n      \"(b2_x - e_x) * (b2_x - h_x) + (b2_y - e_y) * (b2_y - h_y) == 0\",\n      \"(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)\",\n      \"(c1_x - f_x) * (c1_x - h_x) + (c1_y - f_y) * (c1_y - h_y) == 0\",\n      \"(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)\",\n      \"(c2_x - f_x) * (c2_x - h_x) + (c2_y - f_y) * (c2_y - h_y) == 0\",\n      \"(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(a_x == h_x, a_y == h_y))\",\n      \"Not(And(a_x == d_x, a_y == d_y))\",\n      \"Not(And(a_x == e_x, a_y == e_y))\",\n      \"Not(And(a_x == f_x, a_y == f_y))\",\n      \"Not(And(a_x == a1_x, a_y == a1_y))\",\n      \"Not(And(a_x == a2_x, a_y == a2_y))\",\n      \"Not(And(a_x == b1_x, a_y == b1_y))\",\n      \"Not(And(a_x == b2_x, a_y == b2_y))\",\n      \"Not(And(a_x == c1_x, a_y == c1_y))\",\n      \"Not(And(a_x == c2_x, a_y == c2_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(b_x == h_x, b_y == h_y))\",\n      \"Not(And(b_x == d_x, b_y == d_y))\",\n      \"Not(And(b_x == e_x, b_y == e_y))\",\n      \"Not(And(b_x == f_x, b_y == f_y))\",\n      \"Not(And(b_x == a1_x, b_y == a1_y))\",\n      \"Not(And(b_x == a2_x, b_y == a2_y))\",\n      \"Not(And(b_x == b1_x, b_y == b1_y))\",\n      \"Not(And(b_x == b2_x, b_y == b2_y))\",\n      \"Not(And(b_x == c1_x, b_y == c1_y))\",\n      \"Not(And(b_x == c2_x, b_y == c2_y))\",\n      \"Not(And(c_x == h_x, c_y == h_y))\",\n      \"Not(And(c_x == d_x, c_y == d_y))\",\n      \"Not(And(c_x == e_x, c_y == e_y))\",\n      \"Not(And(c_x == f_x, c_y == f_y))\",\n      \"Not(And(c_x == a1_x, c_y == a1_y))\",\n      \"Not(And(c_x == a2_x, c_y == a2_y))\",\n      \"Not(And(c_x == b1_x, c_y == b1_y))\",\n      \"Not(And(c_x == b2_x, c_y == b2_y))\",\n      \"Not(And(c_x == c1_x, c_y == c1_y))\",\n      \"Not(And(c_x == c2_x, c_y == c2_y))\",\n      \"Not(And(h_x == d_x, h_y == d_y))\",\n      \"Not(And(h_x == e_x, h_y == e_y))\",\n      \"Not(And(h_x == f_x, h_y == f_y))\",\n      \"Not(And(h_x == a1_x, h_y == a1_y))\",\n      \"Not(And(h_x == a2_x, h_y == a2_y))\",\n      \"Not(And(h_x == b1_x, h_y == b1_y))\",\n      \"Not(And(h_x == b2_x, h_y == b2_y))\",\n      \"Not(And(h_x == c1_x, h_y == c1_y))\",\n      \"Not(And(h_x == c2_x, h_y == c2_y))\",\n      \"Not(And(d_x == e_x, d_y == e_y))\",\n      \"Not(And(d_x == f_x, d_y == f_y))\",\n      \"Not(And(d_x == a1_x, d_y == a1_y))\",\n      \"Not(And(d_x == a2_x, d_y == a2_y))\",\n      \"Not(And(d_x == b1_x, d_y == b1_y))\",\n      \"Not(And(d_x == b2_x, d_y == b2_y))\",\n      \"Not(And(d_x == c1_x, d_y == c1_y))\",\n      \"Not(And(d_x == c2_x, d_y == c2_y))\",\n      \"Not(And(e_x == f_x, e_y == f_y))\",\n      \"Not(And(e_x == a1_x, e_y == a1_y))\",\n      \"Not(And(e_x == a2_x, e_y == a2_y))\",\n      \"Not(And(e_x == b1_x, e_y == b1_y))\",\n      \"Not(And(e_x == b2_x, e_y == b2_y))\",\n      \"Not(And(e_x == c1_x, e_y == c1_y))\",\n      \"Not(And(e_x == c2_x, e_y == c2_y))\",\n      \"Not(And(f_x == a1_x, f_y == a1_y))\",\n      \"Not(And(f_x == a2_x, f_y == a2_y))\",\n      \"Not(And(f_x == b1_x, f_y == b1_y))\",\n      \"Not(And(f_x == b2_x, f_y == b2_y))\",\n      \"Not(And(f_x == c1_x, f_y == c1_y))\",\n      \"Not(And(f_x == c2_x, f_y == c2_y))\",\n      \"Not(And(a1_x == a2_x, a1_y == a2_y))\",\n      \"Not(And(a1_x == b1_x, a1_y == b1_y))\",\n      \"Not(And(a1_x == b2_x, a1_y == b2_y))\",\n      \"Not(And(a1_x == c1_x, a1_y == c1_y))\",\n      \"Not(And(a1_x == c2_x, a1_y == c2_y))\",\n      \"Not(And(a2_x == b1_x, a2_y == b1_y))\",\n      \"Not(And(a2_x == b2_x, a2_y == b2_y))\",\n      \"Not(And(a2_x == c1_x, a2_y == c1_y))\",\n      \"Not(And(a2_x == c2_x, a2_y == c2_y))\",\n      \"Not(And(b1_x == b2_x, b1_y == b2_y))\",\n      \"Not(And(b1_x == c1_x, b1_y == c1_y))\",\n      \"Not(And(b1_x == c2_x, b1_y == c2_y))\",\n      \"Not(And(b2_x == c1_x, b2_y == c1_y))\",\n      \"Not(And(b2_x == c2_x, b2_y == c2_y))\",\n      \"Not(And(c1_x == c2_x, c1_y == c2_y))\"\n    ],\n    \"goal\": \"(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"side_diameter_intersection_lies_on_common_circle\",\n      \"english\": \"If H is the origin, M is the midpoint of QR, P has equal dot products with Q and R, and X lies on line QR and on the circle with diameter MH, then X satisfies the common quadratic circle equation.\",\n      \"vars\": [\n        {\"name\": \"px\", \"sort\": \"Real\"},\n        {\"name\": \"py\", \"sort\": \"Real\"},\n        {\"name\": \"qx\", \"sort\": \"Real\"},\n        {\"name\": \"qy\", \"sort\": \"Real\"},\n        {\"name\": \"rx\", \"sort\": \"Real\"},\n        {\"name\": \"ry\", \"sort\": \"Real\"},\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"hx\", \"sort\": \"Real\"},\n        {\"name\": \"hy\", \"sort\": \"Real\"},\n        {\"name\": \"xx\", \"sort\": \"Real\"},\n        {\"name\": \"xy\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(hx == 0, hy == 0, mx == (qx + rx) / 2, my == (qy + ry) / 2, px * qx + py * qy == px * rx + py * ry, Not(And(qx == rx, qy == ry)), (xx - qx) * (ry - qy) == (xy - qy) * (rx - qx), (xx - mx) * (xx - hx) + (xy - my) * (xy - hy) == 0), xx**2 + xy**2 - ((px + qx + rx) / 2) * xx - ((py + qy + ry) / 2) * xy + (px * qx + py * qy) / 2 == 0)\"\n    },\n    {\n      \"name\": \"four_points_on_same_quadratic_are_cyclic\",\n      \"english\": \"Four points satisfying one equation x^2+y^2+u x+v y+w=0 have zero cyclic determinant, hence are concyclic.\",\n      \"vars\": [\n        {\"name\": \"x1\", \"sort\": \"Real\"},\n        {\"name\": \"y1\", \"sort\": \"Real\"},\n        {\"name\": \"x2\", \"sort\": \"Real\"},\n        {\"name\": \"y2\", \"sort\": \"Real\"},\n        {\"name\": \"x3\", \"sort\": \"Real\"},\n        {\"name\": \"y3\", \"sort\": \"Real\"},\n        {\"name\": \"x4\", \"sort\": \"Real\"},\n        {\"name\": \"y4\", \"sort\": \"Real\"},\n        {\"name\": \"u\", \"sort\": \"Real\"},\n        {\"name\": \"v\", \"sort\": \"Real\"},\n        {\"name\": \"w\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(x1**2 + y1**2 + u * x1 + v * y1 + w == 0, x2**2 + y2**2 + u * x2 + v * y2 + w == 0, x3**2 + y3**2 + u * x3 + v * y3 + w == 0, x4**2 + y4**2 + u * x4 + v * y4 + w == 0), (x1**2 + y1**2) * (x2 * (y3 - y4) + x3 * (y4 - y2) + x4 * (y2 - y3)) - (x2**2 + y2**2) * (x1 * (y3 - y4) + x3 * (y4 - y1) + x4 * (y1 - y3)) + (x3**2 + y3**2) * (x1 * (y2 - y4) + x2 * (y4 - y1) + x4 * (y1 - y2)) - (x4**2 + y4**2) * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) == 0)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"side_diameter_intersection_lies_on_common_circle\",\n      \"terms\": {\n        \"px\": \"a_x\",\n        \"py\": \"a_y\",\n        \"qx\": \"b_x\",\n        \"qy\": \"b_y\",\n        \"rx\": \"c_x\",\n        \"ry\": \"c_y\",\n        \"mx\": \"d_x\",\n        \"my\": \"d_y\",\n        \"hx\": \"h_x\",\n        \"hy\": \"h_y\",\n        \"xx\": \"a1_x\",\n        \"xy\": \"a1_y\"\n      }\n    },\n    {\n      \"lemma\": \"side_diameter_intersection_lies_on_common_circle\",\n      \"terms\": {\n        \"px\": \"b_x\",\n        \"py\": \"b_y\",\n        \"qx\": \"c_x\",\n        \"qy\": \"c_y\",\n        \"rx\": \"a_x\",\n        \"ry\": \"a_y\",\n        \"mx\": \"e_x\",\n        \"my\": \"e_y\",\n        \"hx\": \"h_x\",\n        \"hy\": \"h_y\",\n        \"xx\": \"b1_x\",\n        \"xy\": \"b1_y\"\n      }\n    },\n    {\n      \"lemma\": \"side_diameter_intersection_lies_on_common_circle\",\n      \"terms\": {\n        \"px\": \"c_x\",\n        \"py\": \"c_y\",\n        \"qx\": \"a_x\",\n        \"qy\": \"a_y\",\n        \"rx\": \"b_x\",\n        \"ry\": \"b_y\",\n        \"mx\": \"f_x\",\n        \"my\": \"f_y\",\n        \"hx\": \"h_x\",\n        \"hy\": \"h_y\",\n        \"xx\": \"c1_x\",\n        \"xy\": \"c1_y\"\n      }\n    },\n    {\n      \"lemma\": \"side_diameter_intersection_lies_on_common_circle\",\n      \"terms\": {\n        \"px\": \"c_x\",\n        \"py\": \"c_y\",\n        \"qx\": \"a_x\",\n        \"qy\": \"a_y\",\n        \"rx\": \"b_x\",\n        \"ry\": \"b_y\",\n        \"mx\": \"f_x\",\n        \"my\": \"f_y\",\n        \"hx\": \"h_x\",\n        \"hy\": \"h_y\",\n        \"xx\": \"c2_x\",\n        \"xy\": \"c2_y\"\n      }\n    },\n    {\n      \"lemma\": \"four_points_on_same_quadratic_are_cyclic\",\n      \"terms\": {\n        \"x1\": \"c1_x\",\n        \"y1\": \"c1_y\",\n        \"x2\": \"c2_x\",\n        \"y2\": \"c2_y\",\n        \"x3\": \"b1_x\",\n        \"y3\": \"b1_y\",\n        \"x4\": \"a1_x\",\n        \"y4\": \"a1_y\",\n        \"u\": \"-(a_x + b_x + c_x) / 2\",\n        \"v\": \"-(a_y + b_y + c_y) / 2\",\n        \"w\": \"(a_x * b_x + a_y * b_y) / 2\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "h_x",
+              "sort": "Real"
+            },
+            {
+              "name": "h_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "e_x",
+              "sort": "Real"
+            },
+            {
+              "name": "e_y",
+              "sort": "Real"
+            },
+            {
+              "name": "f_x",
+              "sort": "Real"
+            },
+            {
+              "name": "f_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a2_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b2_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c2_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)",
+            "h_x == 0",
+            "h_y == 0",
+            "(a_x - h_x) * (b_x - c_x) + (a_y - h_y) * (b_y - c_y) == 0",
+            "(b_x - h_x) * (c_x - a_x) + (b_y - h_y) * (c_y - a_y) == 0",
+            "(c_x - h_x) * (a_x - b_x) + (c_y - h_y) * (a_y - b_y) == 0",
+            "d_x == (b_x + c_x) / 2",
+            "d_y == (b_y + c_y) / 2",
+            "e_x == (c_x + a_x) / 2",
+            "e_y == (c_y + a_y) / 2",
+            "f_x == (a_x + b_x) / 2",
+            "f_y == (a_y + b_y) / 2",
+            "(a1_x - d_x) * (a1_x - h_x) + (a1_y - d_y) * (a1_y - h_y) == 0",
+            "(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)",
+            "(a2_x - d_x) * (a2_x - h_x) + (a2_y - d_y) * (a2_y - h_y) == 0",
+            "(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)",
+            "(b1_x - e_x) * (b1_x - h_x) + (b1_y - e_y) * (b1_y - h_y) == 0",
+            "(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)",
+            "(b2_x - e_x) * (b2_x - h_x) + (b2_y - e_y) * (b2_y - h_y) == 0",
+            "(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)",
+            "(c1_x - f_x) * (c1_x - h_x) + (c1_y - f_y) * (c1_y - h_y) == 0",
+            "(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)",
+            "(c2_x - f_x) * (c2_x - h_x) + (c2_y - f_y) * (c2_y - h_y) == 0",
+            "(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)",
+            "Not(And(a_x == b_x, a_y == b_y))",
+            "Not(And(a_x == c_x, a_y == c_y))",
+            "Not(And(a_x == h_x, a_y == h_y))",
+            "Not(And(a_x == d_x, a_y == d_y))",
+            "Not(And(a_x == e_x, a_y == e_y))",
+            "Not(And(a_x == f_x, a_y == f_y))",
+            "Not(And(a_x == a1_x, a_y == a1_y))",
+            "Not(And(a_x == a2_x, a_y == a2_y))",
+            "Not(And(a_x == b1_x, a_y == b1_y))",
+            "Not(And(a_x == b2_x, a_y == b2_y))",
+            "Not(And(a_x == c1_x, a_y == c1_y))",
+            "Not(And(a_x == c2_x, a_y == c2_y))",
+            "Not(And(b_x == c_x, b_y == c_y))",
+            "Not(And(b_x == h_x, b_y == h_y))",
+            "Not(And(b_x == d_x, b_y == d_y))",
+            "Not(And(b_x == e_x, b_y == e_y))",
+            "Not(And(b_x == f_x, b_y == f_y))",
+            "Not(And(b_x == a1_x, b_y == a1_y))",
+            "Not(And(b_x == a2_x, b_y == a2_y))",
+            "Not(And(b_x == b1_x, b_y == b1_y))",
+            "Not(And(b_x == b2_x, b_y == b2_y))",
+            "Not(And(b_x == c1_x, b_y == c1_y))",
+            "Not(And(b_x == c2_x, b_y == c2_y))",
+            "Not(And(c_x == h_x, c_y == h_y))",
+            "Not(And(c_x == d_x, c_y == d_y))",
+            "Not(And(c_x == e_x, c_y == e_y))",
+            "Not(And(c_x == f_x, c_y == f_y))",
+            "Not(And(c_x == a1_x, c_y == a1_y))",
+            "Not(And(c_x == a2_x, c_y == a2_y))",
+            "Not(And(c_x == b1_x, c_y == b1_y))",
+            "Not(And(c_x == b2_x, c_y == b2_y))",
+            "Not(And(c_x == c1_x, c_y == c1_y))",
+            "Not(And(c_x == c2_x, c_y == c2_y))",
+            "Not(And(h_x == d_x, h_y == d_y))",
+            "Not(And(h_x == e_x, h_y == e_y))",
+            "Not(And(h_x == f_x, h_y == f_y))",
+            "Not(And(h_x == a1_x, h_y == a1_y))",
+            "Not(And(h_x == a2_x, h_y == a2_y))",
+            "Not(And(h_x == b1_x, h_y == b1_y))",
+            "Not(And(h_x == b2_x, h_y == b2_y))",
+            "Not(And(h_x == c1_x, h_y == c1_y))",
+            "Not(And(h_x == c2_x, h_y == c2_y))",
+            "Not(And(d_x == e_x, d_y == e_y))",
+            "Not(And(d_x == f_x, d_y == f_y))",
+            "Not(And(d_x == a1_x, d_y == a1_y))",
+            "Not(And(d_x == a2_x, d_y == a2_y))",
+            "Not(And(d_x == b1_x, d_y == b1_y))",
+            "Not(And(d_x == b2_x, d_y == b2_y))",
+            "Not(And(d_x == c1_x, d_y == c1_y))",
+            "Not(And(d_x == c2_x, d_y == c2_y))",
+            "Not(And(e_x == f_x, e_y == f_y))",
+            "Not(And(e_x == a1_x, e_y == a1_y))",
+            "Not(And(e_x == a2_x, e_y == a2_y))",
+            "Not(And(e_x == b1_x, e_y == b1_y))",
+            "Not(And(e_x == b2_x, e_y == b2_y))",
+            "Not(And(e_x == c1_x, e_y == c1_y))",
+            "Not(And(e_x == c2_x, e_y == c2_y))",
+            "Not(And(f_x == a1_x, f_y == a1_y))",
+            "Not(And(f_x == a2_x, f_y == a2_y))",
+            "Not(And(f_x == b1_x, f_y == b1_y))",
+            "Not(And(f_x == b2_x, f_y == b2_y))",
+            "Not(And(f_x == c1_x, f_y == c1_y))",
+            "Not(And(f_x == c2_x, f_y == c2_y))",
+            "Not(And(a1_x == a2_x, a1_y == a2_y))",
+            "Not(And(a1_x == b1_x, a1_y == b1_y))",
+            "Not(And(a1_x == b2_x, a1_y == b2_y))",
+            "Not(And(a1_x == c1_x, a1_y == c1_y))",
+            "Not(And(a1_x == c2_x, a1_y == c2_y))",
+            "Not(And(a2_x == b1_x, a2_y == b1_y))",
+            "Not(And(a2_x == b2_x, a2_y == b2_y))",
+            "Not(And(a2_x == c1_x, a2_y == c1_y))",
+            "Not(And(a2_x == c2_x, a2_y == c2_y))",
+            "Not(And(b1_x == b2_x, b1_y == b2_y))",
+            "Not(And(b1_x == c1_x, b1_y == c1_y))",
+            "Not(And(b1_x == c2_x, b1_y == c2_y))",
+            "Not(And(b2_x == c1_x, b2_y == c1_y))",
+            "Not(And(b2_x == c2_x, b2_y == c2_y))",
+            "Not(And(c1_x == c2_x, c1_y == c2_y))"
+          ],
+          "goal": "(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0"
+        },
+        "lemmas": [
+          {
+            "name": "side_diameter_intersection_lies_on_common_circle",
+            "english": "If H is the origin, M is the midpoint of QR, P has equal dot products with Q and R, and X lies on line QR and on the circle with diameter MH, then X satisfies the common quadratic circle equation.",
+            "vars": [
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              },
+              {
+                "name": "qx",
+                "sort": "Real"
+              },
+              {
+                "name": "qy",
+                "sort": "Real"
+              },
+              {
+                "name": "rx",
+                "sort": "Real"
+              },
+              {
+                "name": "ry",
+                "sort": "Real"
+              },
+              {
+                "name": "mx",
+                "sort": "Real"
+              },
+              {
+                "name": "my",
+                "sort": "Real"
+              },
+              {
+                "name": "hx",
+                "sort": "Real"
+              },
+              {
+                "name": "hy",
+                "sort": "Real"
+              },
+              {
+                "name": "xx",
+                "sort": "Real"
+              },
+              {
+                "name": "xy",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(hx == 0, hy == 0, mx == (qx + rx) / 2, my == (qy + ry) / 2, px * qx + py * qy == px * rx + py * ry, Not(And(qx == rx, qy == ry)), (xx - qx) * (ry - qy) == (xy - qy) * (rx - qx), (xx - mx) * (xx - hx) + (xy - my) * (xy - hy) == 0), xx**2 + xy**2 - ((px + qx + rx) / 2) * xx - ((py + qy + ry) / 2) * xy + (px * qx + py * qy) / 2 == 0)"
+          },
+          {
+            "name": "four_points_on_same_quadratic_are_cyclic",
+            "english": "Four points satisfying one equation x^2+y^2+u x+v y+w=0 have zero cyclic determinant, hence are concyclic.",
+            "vars": [
+              {
+                "name": "x1",
+                "sort": "Real"
+              },
+              {
+                "name": "y1",
+                "sort": "Real"
+              },
+              {
+                "name": "x2",
+                "sort": "Real"
+              },
+              {
+                "name": "y2",
+                "sort": "Real"
+              },
+              {
+                "name": "x3",
+                "sort": "Real"
+              },
+              {
+                "name": "y3",
+                "sort": "Real"
+              },
+              {
+                "name": "x4",
+                "sort": "Real"
+              },
+              {
+                "name": "y4",
+                "sort": "Real"
+              },
+              {
+                "name": "u",
+                "sort": "Real"
+              },
+              {
+                "name": "v",
+                "sort": "Real"
+              },
+              {
+                "name": "w",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(x1**2 + y1**2 + u * x1 + v * y1 + w == 0, x2**2 + y2**2 + u * x2 + v * y2 + w == 0, x3**2 + y3**2 + u * x3 + v * y3 + w == 0, x4**2 + y4**2 + u * x4 + v * y4 + w == 0), (x1**2 + y1**2) * (x2 * (y3 - y4) + x3 * (y4 - y2) + x4 * (y2 - y3)) - (x2**2 + y2**2) * (x1 * (y3 - y4) + x3 * (y4 - y1) + x4 * (y1 - y3)) + (x3**2 + y3**2) * (x1 * (y2 - y4) + x2 * (y4 - y1) + x4 * (y1 - y2)) - (x4**2 + y4**2) * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) == 0)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "a_x",
+              "py": "a_y",
+              "qx": "b_x",
+              "qy": "b_y",
+              "rx": "c_x",
+              "ry": "c_y",
+              "mx": "d_x",
+              "my": "d_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "a1_x",
+              "xy": "a1_y"
+            }
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "b_x",
+              "py": "b_y",
+              "qx": "c_x",
+              "qy": "c_y",
+              "rx": "a_x",
+              "ry": "a_y",
+              "mx": "e_x",
+              "my": "e_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "b1_x",
+              "xy": "b1_y"
+            }
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "c_x",
+              "py": "c_y",
+              "qx": "a_x",
+              "qy": "a_y",
+              "rx": "b_x",
+              "ry": "b_y",
+              "mx": "f_x",
+              "my": "f_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "c1_x",
+              "xy": "c1_y"
+            }
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "c_x",
+              "py": "c_y",
+              "qx": "a_x",
+              "qy": "a_y",
+              "rx": "b_x",
+              "ry": "b_y",
+              "mx": "f_x",
+              "my": "f_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "c2_x",
+              "xy": "c2_y"
+            }
+          },
+          {
+            "lemma": "four_points_on_same_quadratic_are_cyclic",
+            "terms": {
+              "x1": "c1_x",
+              "y1": "c1_y",
+              "x2": "c2_x",
+              "y2": "c2_y",
+              "x3": "b1_x",
+              "y3": "b1_y",
+              "x4": "a1_x",
+              "y4": "a1_y",
+              "u": "-(a_x + b_x + c_x) / 2",
+              "v": "-(a_y + b_y + c_y) / 2",
+              "w": "(a_x * b_x + a_y * b_y) / 2"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unknown",
+        "elapsed_ms": 30014.801263809204,
+        "instantiated": [
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "a_x",
+              "py": "a_y",
+              "qx": "b_x",
+              "qy": "b_y",
+              "rx": "c_x",
+              "ry": "c_y",
+              "mx": "d_x",
+              "my": "d_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "a1_x",
+              "xy": "a1_y"
+            },
+            "z3_form": "Implies(And(h_x == 0,\n            h_y == 0,\n            d_x == (b_x + c_x)/2,\n            d_y == (b_y + c_y)/2,\n            a_x*b_x + a_y*b_y == a_x*c_x + a_y*c_y,\n            Not(And(b_x == c_x, b_y == c_y)),\n            (a1_x - b_x)*(c_y - b_y) ==\n            (a1_y - b_y)*(c_x - b_x),\n            (a1_x - d_x)*(a1_x - h_x) +\n            (a1_y - d_y)*(a1_y - h_y) ==\n            0),\n        a1_x**2 + a1_y**2 -\n        ((a_x + b_x + c_x)/2)*a1_x -\n        ((a_y + b_y + c_y)/2)*a1_y +\n        (a_x*b_x + a_y*b_y)/2 ==\n        0)"
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "b_x",
+              "py": "b_y",
+              "qx": "c_x",
+              "qy": "c_y",
+              "rx": "a_x",
+              "ry": "a_y",
+              "mx": "e_x",
+              "my": "e_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "b1_x",
+              "xy": "b1_y"
+            },
+            "z3_form": "Implies(And(h_x == 0,\n            h_y == 0,\n            e_x == (c_x + a_x)/2,\n            e_y == (c_y + a_y)/2,\n            b_x*c_x + b_y*c_y == b_x*a_x + b_y*a_y,\n            Not(And(c_x == a_x, c_y == a_y)),\n            (b1_x - c_x)*(a_y - c_y) ==\n            (b1_y - c_y)*(a_x - c_x),\n            (b1_x - e_x)*(b1_x - h_x) +\n            (b1_y - e_y)*(b1_y - h_y) ==\n            0),\n        b1_x**2 + b1_y**2 -\n        ((b_x + c_x + a_x)/2)*b1_x -\n        ((b_y + c_y + a_y)/2)*b1_y +\n        (b_x*c_x + b_y*c_y)/2 ==\n        0)"
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "c_x",
+              "py": "c_y",
+              "qx": "a_x",
+              "qy": "a_y",
+              "rx": "b_x",
+              "ry": "b_y",
+              "mx": "f_x",
+              "my": "f_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "c1_x",
+              "xy": "c1_y"
+            },
+            "z3_form": "Implies(And(h_x == 0,\n            h_y == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            c_x*a_x + c_y*a_y == c_x*b_x + c_y*b_y,\n            Not(And(a_x == b_x, a_y == b_y)),\n            (c1_x - a_x)*(b_y - a_y) ==\n            (c1_y - a_y)*(b_x - a_x),\n            (c1_x - f_x)*(c1_x - h_x) +\n            (c1_y - f_y)*(c1_y - h_y) ==\n            0),\n        c1_x**2 + c1_y**2 -\n        ((c_x + a_x + b_x)/2)*c1_x -\n        ((c_y + a_y + b_y)/2)*c1_y +\n        (c_x*a_x + c_y*a_y)/2 ==\n        0)"
+          },
+          {
+            "lemma": "side_diameter_intersection_lies_on_common_circle",
+            "terms": {
+              "px": "c_x",
+              "py": "c_y",
+              "qx": "a_x",
+              "qy": "a_y",
+              "rx": "b_x",
+              "ry": "b_y",
+              "mx": "f_x",
+              "my": "f_y",
+              "hx": "h_x",
+              "hy": "h_y",
+              "xx": "c2_x",
+              "xy": "c2_y"
+            },
+            "z3_form": "Implies(And(h_x == 0,\n            h_y == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            c_x*a_x + c_y*a_y == c_x*b_x + c_y*b_y,\n            Not(And(a_x == b_x, a_y == b_y)),\n            (c2_x - a_x)*(b_y - a_y) ==\n            (c2_y - a_y)*(b_x - a_x),\n            (c2_x - f_x)*(c2_x - h_x) +\n            (c2_y - f_y)*(c2_y - h_y) ==\n            0),\n        c2_x**2 + c2_y**2 -\n        ((c_x + a_x + b_x)/2)*c2_x -\n        ((c_y + a_y + b_y)/2)*c2_y +\n        (c_x*a_x + c_y*a_y)/2 ==\n        0)"
+          },
+          {
+            "lemma": "four_points_on_same_quadratic_are_cyclic",
+            "terms": {
+              "x1": "c1_x",
+              "y1": "c1_y",
+              "x2": "c2_x",
+              "y2": "c2_y",
+              "x3": "b1_x",
+              "y3": "b1_y",
+              "x4": "a1_x",
+              "y4": "a1_y",
+              "u": "-(a_x + b_x + c_x) / 2",
+              "v": "-(a_y + b_y + c_y) / 2",
+              "w": "(a_x * b_x + a_y * b_y) / 2"
+            },
+            "z3_form": "Implies(And(c1_x**2 +\n            c1_y**2 +\n            (-(a_x + b_x + c_x)/2)*c1_x +\n            (-(a_y + b_y + c_y)/2)*c1_y +\n            (a_x*b_x + a_y*b_y)/2 ==\n            0,\n            c2_x**2 +\n            c2_y**2 +\n            (-(a_x + b_x + c_x)/2)*c2_x +\n            (-(a_y + b_y + c_y)/2)*c2_y +\n            (a_x*b_x + a_y*b_y)/2 ==\n            0,\n            b1_x**2 +\n            b1_y**2 +\n            (-(a_x + b_x + c_x)/2)*b1_x +\n            (-(a_y + b_y + c_y)/2)*b1_y +\n            (a_x*b_x + a_y*b_y)/2 ==\n            0,\n            a1_x**2 +\n            a1_y**2 +\n            (-(a_x + b_x + c_x)/2)*a1_x +\n            (-(a_y + b_y + c_y)/2)*a1_y +\n            (a_x*b_x + a_y*b_y)/2 ==\n            0),\n        (c1_x**2 + c1_y**2)*\n        (c2_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c2_y) +\n         a1_x*(c2_y - b1_y)) -\n        (c2_x**2 + c2_y**2)*\n        (c1_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c1_y) +\n         a1_x*(c1_y - b1_y)) +\n        (b1_x**2 + b1_y**2)*\n        (c1_x*(c2_y - a1_y) +\n         c2_x*(a1_y - c1_y) +\n         a1_x*(c1_y - c2_y)) -\n        (a1_x**2 + a1_y**2)*\n        (c1_x*(c2_y - b1_y) +\n         c2_x*(b1_y - c1_y) +\n         b1_x*(c1_y - c2_y)) ==\n        0)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "side_diameter_intersection_lies_on_common_circle",
+            "english": "If H is the origin, M is the midpoint of QR, P has equal dot products with Q and R, and X lies on line QR and on the circle with diameter MH, then X satisfies the common quadratic circle equation.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "four_points_on_same_quadratic_are_cyclic",
+            "english": "Four points satisfying one equation x^2+y^2+u x+v y+w=0 have zero cyclic determinant, hence are concyclic.",
+            "consistent": true,
+            "check": "unknown"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 5,
+        "n_hypotheses": 102
+      },
+      "errors": [
+        "Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations."
+      ]
+    },
+    {
+      "attempt": 2,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2008_p1b\n\nTheorem: translated_imo_2008_p1b\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, a1 are concyclic\n\nGoal: cyclic c1 c2 b1 a1\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"With the orthocenter chosen as the origin, the three vertex vectors have equal pairwise dot products, and each of the diameter-circle conditions reduces to the same circle equation.\",\n  \"plan\": [\n    \"Put the origin at the orthocenter and translate the geometric conditions into vector equations.\",\n    \"Use the orthocenter property to prove that the pairwise dot products of the vertex vectors are equal.\",\n    \"Define a candidate common circle by a single quadratic equation.\",\n    \"Show that any relevant intersection point on each side satisfies this same equation.\",\n    \"Conclude that c1, c2, b1, and a1 lie on one circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Choose vector coordinates with H as the origin. Let the position vectors of A, B, C be a, b, c respectively, and let D, E, F have vectors d = (b + c)/2, e = (c + a)/2, f = (a + b)/2.\",\n      \"reasoning\": \"A translation of coordinates does not affect incidence, perpendicularity, midpoint relations, or concyclicity. Since D, E, F are midpoints of BC, CA, AB, their position vectors are the corresponding averages.\",\n      \"facts_used\": [\n        \"translation invariance of Euclidean geometry\",\n        \"midpoint formula\"\n      ]\n    },\n    {\n      \"claim\": \"There is a real number k such that a · b = a · c = b · c = k.\",\n      \"reasoning\": \"Because H is the orthocenter and H is the origin, AH is perpendicular to BC, so a · (b - c) = 0, hence a · b = a · c. Similarly, BH is perpendicular to CA, so b · (c - a) = 0, hence b · c = b · a. Therefore all three pairwise dot products are equal.\",\n      \"facts_used\": [\n        \"definition of orthocenter\",\n        \"perpendicularity and dot product\"\n      ]\n    },\n    {\n      \"claim\": \"The equation 2|x|^2 - (a + b + c) · x + k = 0 defines a nondegenerate circle Γ.\",\n      \"reasoning\": \"Let s = a + b + c. Dividing by 2 gives |x|^2 - (s/2) · x + k/2 = 0, whose center is s/4 and whose squared radius is |s|^2/16 - k/2. Since |s|^2 = |a|^2 + |b|^2 + |c|^2 + 6k, the squared radius is (|a|^2 + |b|^2 + |c|^2 - 2k)/16 = (|a|^2 + |b - c|^2)/16 > 0 because B ≠ C in a triangle.\",\n      \"facts_used\": [\n        \"standard equation of a circle\",\n        \"step 2\",\n        \"triangle nondegeneracy\"\n      ]\n    },\n    {\n      \"claim\": \"Every point x on line BC and on the circle with diameter DH satisfies 2|x|^2 - (a + b + c) · x + k = 0.\",\n      \"reasoning\": \"Since x lies on BC, we have a · x = k, because a · b = a · c = k. Since x lies on the circle with diameter DH and H is the origin, the diameter-circle condition gives x · (x - d) = 0, so |x|^2 = x · d. As d = (b + c)/2, we get |x|^2 = x · (b + c)/2 = ((a + b + c) · x - a · x)/2 = ((a + b + c) · x - k)/2, which rearranges to the claimed equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point a1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, a1 lies on line BC and on the circle with diameter DH. Therefore step 4 applies to x = a1, so a1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on a1\",\n        \"step 4\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point y on line CA and on the circle with diameter EH satisfies 2|y|^2 - (a + b + c) · y + k = 0.\",\n      \"reasoning\": \"Since y lies on CA, we have b · y = k, because b · c = b · a = k. Since y lies on the circle with diameter EH and H is the origin, |y|^2 = y · e. As e = (c + a)/2, this gives |y|^2 = y · (c + a)/2 = ((a + b + c) · y - b · y)/2 = ((a + b + c) · y - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point b1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, b1 lies on line CA and on the circle with diameter EH. Therefore step 6 applies to y = b1, so b1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on b1\",\n        \"step 6\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point z on line AB and on the circle with diameter FH satisfies 2|z|^2 - (a + b + c) · z + k = 0.\",\n      \"reasoning\": \"Since z lies on AB, we have c · z = k, because c · a = c · b = k. Since z lies on the circle with diameter FH and H is the origin, |z|^2 = z · f. As f = (a + b)/2, this gives |z|^2 = z · (a + b)/2 = ((a + b + c) · z - c · z)/2 = ((a + b + c) · z - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1 and c2 lie on Γ.\",\n      \"reasoning\": \"By hypothesis, both c1 and c2 lie on line AB and on the circle with diameter FH. Therefore step 8 applies to z = c1 and z = c2, so both points satisfy the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypotheses on c1 and c2\",\n        \"step 8\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1, c2, b1, and a1 are concyclic.\",\n      \"reasoning\": \"Steps 5, 7, and 9 show that a1, b1, c1, and c2 all lie on the same nondegenerate circle Γ. Hence these four points are concyclic.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"step 7\",\n        \"step 9\",\n        \"definition of concyclic points\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"h_x\", \"sort\": \"Real\"},\n      {\"name\": \"h_y\", \"sort\": \"Real\"},\n      {\"name\": \"d_x\", \"sort\": \"Real\"},\n      {\"name\": \"d_y\", \"sort\": \"Real\"},\n      {\"name\": \"e_x\", \"sort\": \"Real\"},\n      {\"name\": \"e_y\", \"sort\": \"Real\"},\n      {\"name\": \"f_x\", \"sort\": \"Real\"},\n      {\"name\": \"f_y\", \"sort\": \"Real\"},\n      {\"name\": \"a1_x\", \"sort\": \"Real\"},\n      {\"name\": \"a1_y\", \"sort\": \"Real\"},\n      {\"name\": \"a2_x\", \"sort\": \"Real\"},\n      {\"name\": \"a2_y\", \"sort\": \"Real\"},\n      {\"name\": \"b1_x\", \"sort\": \"Real\"},\n      {\"name\": \"b1_y\", \"sort\": \"Real\"},\n      {\"name\": \"b2_x\", \"sort\": \"Real\"},\n      {\"name\": \"b2_y\", \"sort\": \"Real\"},\n      {\"name\": \"c1_x\", \"sort\": \"Real\"},\n      {\"name\": \"c1_y\", \"sort\": \"Real\"},\n      {\"name\": \"c2_x\", \"sort\": \"Real\"},\n      {\"name\": \"c2_y\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"h_x == 0\",\n      \"h_y == 0\",\n      \"(a_x - h_x) * (b_x - c_x) + (a_y - h_y) * (b_y - c_y) == 0\",\n      \"(b_x - h_x) * (c_x - a_x) + (b_y - h_y) * (c_y - a_y) == 0\",\n      \"(c_x - h_x) * (a_x - b_x) + (c_y - h_y) * (a_y - b_y) == 0\",\n      \"d_x == (b_x + c_x) / 2\",\n      \"d_y == (b_y + c_y) / 2\",\n      \"e_x == (c_x + a_x) / 2\",\n      \"e_y == (c_y + a_y) / 2\",\n      \"f_x == (a_x + b_x) / 2\",\n      \"f_y == (a_y + b_y) / 2\",\n      \"(a1_x - d_x) * (a1_x - h_x) + (a1_y - d_y) * (a1_y - h_y) == 0\",\n      \"(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)\",\n      \"(a2_x - d_x) * (a2_x - h_x) + (a2_y - d_y) * (a2_y - h_y) == 0\",\n      \"(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)\",\n      \"(b1_x - e_x) * (b1_x - h_x) + (b1_y - e_y) * (b1_y - h_y) == 0\",\n      \"(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)\",\n      \"(b2_x - e_x) * (b2_x - h_x) + (b2_y - e_y) * (b2_y - h_y) == 0\",\n      \"(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)\",\n      \"(c1_x - f_x) * (c1_x - h_x) + (c1_y - f_y) * (c1_y - h_y) == 0\",\n      \"(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)\",\n      \"(c2_x - f_x) * (c2_x - h_x) + (c2_y - f_y) * (c2_y - h_y) == 0\",\n      \"(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(a_x == h_x, a_y == h_y))\",\n      \"Not(And(a_x == d_x, a_y == d_y))\",\n      \"Not(And(a_x == e_x, a_y == e_y))\",\n      \"Not(And(a_x == f_x, a_y == f_y))\",\n      \"Not(And(a_x == a1_x, a_y == a1_y))\",\n      \"Not(And(a_x == a2_x, a_y == a2_y))\",\n      \"Not(And(a_x == b1_x, a_y == b1_y))\",\n      \"Not(And(a_x == b2_x, a_y == b2_y))\",\n      \"Not(And(a_x == c1_x, a_y == c1_y))\",\n      \"Not(And(a_x == c2_x, a_y == c2_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(b_x == h_x, b_y\n... [truncated]\n\nErrors:\n- Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations.\n\nFix these issues and return the corrected JSON object only."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"a_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"h_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"h_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"d_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"d_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"e_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"e_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"f_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"f_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a2_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b2_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c2_y\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"h_x == 0\",\n      \"h_y == 0\",\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(a1_x == a2_x, a1_y == a2_y))\",\n      \"Not(And(b1_x == b2_x, b1_y == b2_y))\",\n      \"Not(And(c1_x == c2_x, c1_y == c2_y))\",\n      \"a_x * (b_x - c_x) + a_y * (b_y - c_y) == 0\",\n      \"b_x * (c_x - a_x) + b_y * (c_y - a_y) == 0\",\n      \"c_x * (a_x - b_x) + c_y * (a_y - b_y) == 0\",\n      \"d_x == (b_x + c_x) / 2\",\n      \"d_y == (b_y + c_y) / 2\",\n      \"e_x == (c_x + a_x) / 2\",\n      \"e_y == (c_y + a_y) / 2\",\n      \"f_x == (a_x + b_x) / 2\",\n      \"f_y == (a_y + b_y) / 2\",\n      \"(a1_x - d_x) * a1_x + (a1_y - d_y) * a1_y == 0\",\n      \"(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)\",\n      \"(a2_x - d_x) * a2_x + (a2_y - d_y) * a2_y == 0\",\n      \"(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)\",\n      \"(b1_x - e_x) * b1_x + (b1_y - e_y) * b1_y == 0\",\n      \"(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)\",\n      \"(b2_x - e_x) * b2_x + (b2_y - e_y) * b2_y == 0\",\n      \"(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)\",\n      \"(c1_x - f_x) * c1_x + (c1_y - f_y) * c1_y == 0\",\n      \"(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)\",\n      \"(c2_x - f_x) * c2_x + (c2_y - f_y) * c2_y == 0\",\n      \"(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)\"\n    ],\n    \"goal\": \"(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"bc_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"dx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"dy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(bx == cx, by == cy)), ax * (bx - cx) + ay * (by - cy) == 0, dx == (bx + cx) / 2, dy == (by + cy) / 2, (px - dx) * px + (py - dy) * py == 0, (px - bx) * (cy - by) == (py - by) * (cx - bx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"ca_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ex\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ey\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(cx == ax, cy == ay)), bx * (cx - ax) + by * (cy - ay) == 0, ex == (cx + ax) / 2, ey == (cy + ay) / 2, (px - ex) * px + (py - ey) * py == 0, (px - cx) * (ay - cy) == (py - cy) * (ax - cx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"fx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"fy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(ax == bx, ay == by)), ax * (bx - cx) + ay * (by - cy) == 0, cx * (ax - bx) + cy * (ay - by) == 0, fx == (ax + bx) / 2, fy == (ay + by) / 2, (px - fx) * px + (py - fy) * py == 0, (px - ax) * (by - ay) == (py - ay) * (bx - ax)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"four_points_on_same_quadratic_circle_are_cyclic\",\n      \"english\": \"Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.\",\n      \"vars\": [\n        {\n          \"name\": \"p1x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p1y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p2x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p2y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p3x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p3y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p4x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p4y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"sx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"sy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"kk\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(2 * (p1x**2 + p1y**2) - sx * p1x - sy * p1y + kk == 0, 2 * (p2x**2 + p2y**2) - sx * p2x - sy * p2y + kk == 0, 2 * (p3x**2 + p3y**2) - sx * p3x - sy * p3y + kk == 0, 2 * (p4x**2 + p4y**2) - sx * p4x - sy * p4y + kk == 0), (p1x**2 + p1y**2) * (p2x * (p3y - p4y) + p3x * (p4y - p2y) + p4x * (p2y - p3y)) - (p2x**2 + p2y**2) * (p1x * (p3y - p4y) + p3x * (p4y - p1y) + p4x * (p1y - p3y)) + (p3x**2 + p3y**2) * (p1x * (p2y - p4y) + p2x * (p4y - p1y) + p4x * (p1y - p2y)) - (p4x**2 + p4y**2) * (p1x * (p2y - p3y) + p2x * (p3y - p1y) + p3x * (p1y - p2y)) == 0)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"bc_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"dx\": \"d_x\",\n        \"dy\": \"d_y\",\n        \"px\": \"a1_x\",\n        \"py\": \"a1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ca_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"ex\": \"e_x\",\n        \"ey\": \"e_y\",\n        \"px\": \"b1_x\",\n        \"py\": \"b1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"fx\": \"f_x\",\n        \"fy\": \"f_y\",\n        \"px\": \"c1_x\",\n        \"py\": \"c1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"fx\": \"f_x\",\n        \"fy\": \"f_y\",\n        \"px\": \"c2_x\",\n        \"py\": \"c2_y\"\n      }\n    },\n    {\n      \"lemma\": \"four_points_on_same_quadratic_circle_are_cyclic\",\n      \"terms\": {\n        \"p1x\": \"c1_x\",\n        \"p1y\": \"c1_y\",\n        \"p2x\": \"c2_x\",\n        \"p2y\": \"c2_y\",\n        \"p3x\": \"b1_x\",\n        \"p3y\": \"b1_y\",\n        \"p4x\": \"a1_x\",\n        \"p4y\": \"a1_y\",\n        \"sx\": \"a_x + b_x + c_x\",\n        \"sy\": \"a_y + b_y + c_y\",\n        \"kk\": \"a_x * b_x + a_y * b_y\"\n      }\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "h_x",
+              "sort": "Real"
+            },
+            {
+              "name": "h_y",
+              "sort": "Real"
+            },
+            {
+              "name": "d_x",
+              "sort": "Real"
+            },
+            {
+              "name": "d_y",
+              "sort": "Real"
+            },
+            {
+              "name": "e_x",
+              "sort": "Real"
+            },
+            {
+              "name": "e_y",
+              "sort": "Real"
+            },
+            {
+              "name": "f_x",
+              "sort": "Real"
+            },
+            {
+              "name": "f_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "a2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a2_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b2_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c1_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c2_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c2_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "h_x == 0",
+            "h_y == 0",
+            "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)",
+            "Not(And(a_x == b_x, a_y == b_y))",
+            "Not(And(a_x == c_x, a_y == c_y))",
+            "Not(And(b_x == c_x, b_y == c_y))",
+            "Not(And(a1_x == a2_x, a1_y == a2_y))",
+            "Not(And(b1_x == b2_x, b1_y == b2_y))",
+            "Not(And(c1_x == c2_x, c1_y == c2_y))",
+            "a_x * (b_x - c_x) + a_y * (b_y - c_y) == 0",
+            "b_x * (c_x - a_x) + b_y * (c_y - a_y) == 0",
+            "c_x * (a_x - b_x) + c_y * (a_y - b_y) == 0",
+            "d_x == (b_x + c_x) / 2",
+            "d_y == (b_y + c_y) / 2",
+            "e_x == (c_x + a_x) / 2",
+            "e_y == (c_y + a_y) / 2",
+            "f_x == (a_x + b_x) / 2",
+            "f_y == (a_y + b_y) / 2",
+            "(a1_x - d_x) * a1_x + (a1_y - d_y) * a1_y == 0",
+            "(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)",
+            "(a2_x - d_x) * a2_x + (a2_y - d_y) * a2_y == 0",
+            "(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)",
+            "(b1_x - e_x) * b1_x + (b1_y - e_y) * b1_y == 0",
+            "(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)",
+            "(b2_x - e_x) * b2_x + (b2_y - e_y) * b2_y == 0",
+            "(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)",
+            "(c1_x - f_x) * c1_x + (c1_y - f_y) * c1_y == 0",
+            "(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)",
+            "(c2_x - f_x) * c2_x + (c2_y - f_y) * c2_y == 0",
+            "(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)"
+          ],
+          "goal": "(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0"
+        },
+        "lemmas": [
+          {
+            "name": "bc_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "vars": [
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "bx",
+                "sort": "Real"
+              },
+              {
+                "name": "by",
+                "sort": "Real"
+              },
+              {
+                "name": "cx",
+                "sort": "Real"
+              },
+              {
+                "name": "cy",
+                "sort": "Real"
+              },
+              {
+                "name": "dx",
+                "sort": "Real"
+              },
+              {
+                "name": "dy",
+                "sort": "Real"
+              },
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(Not(And(bx == cx, by == cy)), ax * (bx - cx) + ay * (by - cy) == 0, dx == (bx + cx) / 2, dy == (by + cy) / 2, (px - dx) * px + (py - dy) * py == 0, (px - bx) * (cy - by) == (py - by) * (cx - bx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+          },
+          {
+            "name": "ca_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "vars": [
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "bx",
+                "sort": "Real"
+              },
+              {
+                "name": "by",
+                "sort": "Real"
+              },
+              {
+                "name": "cx",
+                "sort": "Real"
+              },
+              {
+                "name": "cy",
+                "sort": "Real"
+              },
+              {
+                "name": "ex",
+                "sort": "Real"
+              },
+              {
+                "name": "ey",
+                "sort": "Real"
+              },
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(Not(And(cx == ax, cy == ay)), bx * (cx - ax) + by * (cy - ay) == 0, ex == (cx + ax) / 2, ey == (cy + ay) / 2, (px - ex) * px + (py - ey) * py == 0, (px - cx) * (ay - cy) == (py - cy) * (ax - cx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+          },
+          {
+            "name": "ab_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "vars": [
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "bx",
+                "sort": "Real"
+              },
+              {
+                "name": "by",
+                "sort": "Real"
+              },
+              {
+                "name": "cx",
+                "sort": "Real"
+              },
+              {
+                "name": "cy",
+                "sort": "Real"
+              },
+              {
+                "name": "fx",
+                "sort": "Real"
+              },
+              {
+                "name": "fy",
+                "sort": "Real"
+              },
+              {
+                "name": "px",
+                "sort": "Real"
+              },
+              {
+                "name": "py",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(Not(And(ax == bx, ay == by)), ax * (bx - cx) + ay * (by - cy) == 0, cx * (ax - bx) + cy * (ay - by) == 0, fx == (ax + bx) / 2, fy == (ay + by) / 2, (px - fx) * px + (py - fy) * py == 0, (px - ax) * (by - ay) == (py - ay) * (bx - ax)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+          },
+          {
+            "name": "four_points_on_same_quadratic_circle_are_cyclic",
+            "english": "Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.",
+            "vars": [
+              {
+                "name": "p1x",
+                "sort": "Real"
+              },
+              {
+                "name": "p1y",
+                "sort": "Real"
+              },
+              {
+                "name": "p2x",
+                "sort": "Real"
+              },
+              {
+                "name": "p2y",
+                "sort": "Real"
+              },
+              {
+                "name": "p3x",
+                "sort": "Real"
+              },
+              {
+                "name": "p3y",
+                "sort": "Real"
+              },
+              {
+                "name": "p4x",
+                "sort": "Real"
+              },
+              {
+                "name": "p4y",
+                "sort": "Real"
+              },
+              {
+                "name": "sx",
+                "sort": "Real"
+              },
+              {
+                "name": "sy",
+                "sort": "Real"
+              },
+              {
+                "name": "kk",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(2 * (p1x**2 + p1y**2) - sx * p1x - sy * p1y + kk == 0, 2 * (p2x**2 + p2y**2) - sx * p2x - sy * p2y + kk == 0, 2 * (p3x**2 + p3y**2) - sx * p3x - sy * p3y + kk == 0, 2 * (p4x**2 + p4y**2) - sx * p4x - sy * p4y + kk == 0), (p1x**2 + p1y**2) * (p2x * (p3y - p4y) + p3x * (p4y - p2y) + p4x * (p2y - p3y)) - (p2x**2 + p2y**2) * (p1x * (p3y - p4y) + p3x * (p4y - p1y) + p4x * (p1y - p3y)) + (p3x**2 + p3y**2) * (p1x * (p2y - p4y) + p2x * (p4y - p1y) + p4x * (p1y - p2y)) - (p4x**2 + p4y**2) * (p1x * (p2y - p3y) + p2x * (p3y - p1y) + p3x * (p1y - p2y)) == 0)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "bc_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "dx": "d_x",
+              "dy": "d_y",
+              "px": "a1_x",
+              "py": "a1_y"
+            }
+          },
+          {
+            "lemma": "ca_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "ex": "e_x",
+              "ey": "e_y",
+              "px": "b1_x",
+              "py": "b1_y"
+            }
+          },
+          {
+            "lemma": "ab_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "px": "c1_x",
+              "py": "c1_y"
+            }
+          },
+          {
+            "lemma": "ab_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "px": "c2_x",
+              "py": "c2_y"
+            }
+          },
+          {
+            "lemma": "four_points_on_same_quadratic_circle_are_cyclic",
+            "terms": {
+              "p1x": "c1_x",
+              "p1y": "c1_y",
+              "p2x": "c2_x",
+              "p2y": "c2_y",
+              "p3x": "b1_x",
+              "p3y": "b1_y",
+              "p4x": "a1_x",
+              "p4y": "a1_y",
+              "sx": "a_x + b_x + c_x",
+              "sy": "a_y + b_y + c_y",
+              "kk": "a_x * b_x + a_y * b_y"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 6.885766983032227,
+        "instantiated": [
+          {
+            "lemma": "bc_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "dx": "d_x",
+              "dy": "d_y",
+              "px": "a1_x",
+              "py": "a1_y"
+            },
+            "z3_form": "Implies(And(Not(And(b_x == c_x, b_y == c_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            d_x == (b_x + c_x)/2,\n            d_y == (b_y + c_y)/2,\n            (a1_x - d_x)*a1_x + (a1_y - d_y)*a1_y == 0,\n            (a1_x - b_x)*(c_y - b_y) ==\n            (a1_y - b_y)*(c_x - b_x)),\n        2*(a1_x**2 + a1_y**2) -\n        (a_x + b_x + c_x)*a1_x -\n        (a_y + b_y + c_y)*a1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+          },
+          {
+            "lemma": "ca_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "ex": "e_x",
+              "ey": "e_y",
+              "px": "b1_x",
+              "py": "b1_y"
+            },
+            "z3_form": "Implies(And(Not(And(c_x == a_x, c_y == a_y)),\n            b_x*(c_x - a_x) + b_y*(c_y - a_y) == 0,\n            e_x == (c_x + a_x)/2,\n            e_y == (c_y + a_y)/2,\n            (b1_x - e_x)*b1_x + (b1_y - e_y)*b1_y == 0,\n            (b1_x - c_x)*(a_y - c_y) ==\n            (b1_y - c_y)*(a_x - c_x)),\n        2*(b1_x**2 + b1_y**2) -\n        (a_x + b_x + c_x)*b1_x -\n        (a_y + b_y + c_y)*b1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+          },
+          {
+            "lemma": "ab_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "px": "c1_x",
+              "py": "c1_y"
+            },
+            "z3_form": "Implies(And(Not(And(a_x == b_x, a_y == b_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            c_x*(a_x - b_x) + c_y*(a_y - b_y) == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            (c1_x - f_x)*c1_x + (c1_y - f_y)*c1_y == 0,\n            (c1_x - a_x)*(b_y - a_y) ==\n            (c1_y - a_y)*(b_x - a_x)),\n        2*(c1_x**2 + c1_y**2) -\n        (a_x + b_x + c_x)*c1_x -\n        (a_y + b_y + c_y)*c1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+          },
+          {
+            "lemma": "ab_line_diameter_point_lies_on_gamma",
+            "terms": {
+              "ax": "a_x",
+              "ay": "a_y",
+              "bx": "b_x",
+              "by": "b_y",
+              "cx": "c_x",
+              "cy": "c_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "px": "c2_x",
+              "py": "c2_y"
+            },
+            "z3_form": "Implies(And(Not(And(a_x == b_x, a_y == b_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            c_x*(a_x - b_x) + c_y*(a_y - b_y) == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            (c2_x - f_x)*c2_x + (c2_y - f_y)*c2_y == 0,\n            (c2_x - a_x)*(b_y - a_y) ==\n            (c2_y - a_y)*(b_x - a_x)),\n        2*(c2_x**2 + c2_y**2) -\n        (a_x + b_x + c_x)*c2_x -\n        (a_y + b_y + c_y)*c2_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+          },
+          {
+            "lemma": "four_points_on_same_quadratic_circle_are_cyclic",
+            "terms": {
+              "p1x": "c1_x",
+              "p1y": "c1_y",
+              "p2x": "c2_x",
+              "p2y": "c2_y",
+              "p3x": "b1_x",
+              "p3y": "b1_y",
+              "p4x": "a1_x",
+              "p4y": "a1_y",
+              "sx": "a_x + b_x + c_x",
+              "sy": "a_y + b_y + c_y",
+              "kk": "a_x * b_x + a_y * b_y"
+            },
+            "z3_form": "Implies(And(2*(c1_x**2 + c1_y**2) -\n            (a_x + b_x + c_x)*c1_x -\n            (a_y + b_y + c_y)*c1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(c2_x**2 + c2_y**2) -\n            (a_x + b_x + c_x)*c2_x -\n            (a_y + b_y + c_y)*c2_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(b1_x**2 + b1_y**2) -\n            (a_x + b_x + c_x)*b1_x -\n            (a_y + b_y + c_y)*b1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(a1_x**2 + a1_y**2) -\n            (a_x + b_x + c_x)*a1_x -\n            (a_y + b_y + c_y)*a1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0),\n        (c1_x**2 + c1_y**2)*\n        (c2_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c2_y) +\n         a1_x*(c2_y - b1_y)) -\n        (c2_x**2 + c2_y**2)*\n        (c1_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c1_y) +\n         a1_x*(c1_y - b1_y)) +\n        (b1_x**2 + b1_y**2)*\n        (c1_x*(c2_y - a1_y) +\n         c2_x*(a1_y - c1_y) +\n         a1_x*(c1_y - c2_y)) -\n        (a1_x**2 + a1_y**2)*\n        (c1_x*(c2_y - b1_y) +\n         c2_x*(b1_y - c1_y) +\n         b1_x*(c1_y - c2_y)) ==\n        0)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "bc_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "ca_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "ab_line_diameter_point_lies_on_gamma",
+            "english": "If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "four_points_on_same_quadratic_circle_are_cyclic",
+            "english": "Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.",
+            "consistent": true,
+            "check": "unknown"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 5,
+        "n_hypotheses": 30
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2008_p1b\n\nTheorem: translated_imo_2008_p1b\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, a1 are concyclic\n\nGoal: cyclic c1 c2 b1 a1\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"With the orthocenter chosen as the origin, the three vertex vectors have equal pairwise dot products, and each of the diameter-circle conditions reduces to the same circle equation.\",\n  \"plan\": [\n    \"Put the origin at the orthocenter and translate the geometric conditions into vector equations.\",\n    \"Use the orthocenter property to prove that the pairwise dot products of the vertex vectors are equal.\",\n    \"Define a candidate common circle by a single quadratic equation.\",\n    \"Show that any relevant intersection point on each side satisfies this same equation.\",\n    \"Conclude that c1, c2, b1, and a1 lie on one circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Choose vector coordinates with H as the origin. Let the position vectors of A, B, C be a, b, c respectively, and let D, E, F have vectors d = (b + c)/2, e = (c + a)/2, f = (a + b)/2.\",\n      \"reasoning\": \"A translation of coordinates does not affect incidence, perpendicularity, midpoint relations, or concyclicity. Since D, E, F are midpoints of BC, CA, AB, their position vectors are the corresponding averages.\",\n      \"facts_used\": [\n        \"translation invariance of Euclidean geometry\",\n        \"midpoint formula\"\n      ]\n    },\n    {\n      \"claim\": \"There is a real number k such that a · b = a · c = b · c = k.\",\n      \"reasoning\": \"Because H is the orthocenter and H is the origin, AH is perpendicular to BC, so a · (b - c) = 0, hence a · b = a · c. Similarly, BH is perpendicular to CA, so b · (c - a) = 0, hence b · c = b · a. Therefore all three pairwise dot products are equal.\",\n      \"facts_used\": [\n        \"definition of orthocenter\",\n        \"perpendicularity and dot product\"\n      ]\n    },\n    {\n      \"claim\": \"The equation 2|x|^2 - (a + b + c) · x + k = 0 defines a nondegenerate circle Γ.\",\n      \"reasoning\": \"Let s = a + b + c. Dividing by 2 gives |x|^2 - (s/2) · x + k/2 = 0, whose center is s/4 and whose squared radius is |s|^2/16 - k/2. Since |s|^2 = |a|^2 + |b|^2 + |c|^2 + 6k, the squared radius is (|a|^2 + |b|^2 + |c|^2 - 2k)/16 = (|a|^2 + |b - c|^2)/16 > 0 because B ≠ C in a triangle.\",\n      \"facts_used\": [\n        \"standard equation of a circle\",\n        \"step 2\",\n        \"triangle nondegeneracy\"\n      ]\n    },\n    {\n      \"claim\": \"Every point x on line BC and on the circle with diameter DH satisfies 2|x|^2 - (a + b + c) · x + k = 0.\",\n      \"reasoning\": \"Since x lies on BC, we have a · x = k, because a · b = a · c = k. Since x lies on the circle with diameter DH and H is the origin, the diameter-circle condition gives x · (x - d) = 0, so |x|^2 = x · d. As d = (b + c)/2, we get |x|^2 = x · (b + c)/2 = ((a + b + c) · x - a · x)/2 = ((a + b + c) · x - k)/2, which rearranges to the claimed equation.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point a1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, a1 lies on line BC and on the circle with diameter DH. Therefore step 4 applies to x = a1, so a1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on a1\",\n        \"step 4\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point y on line CA and on the circle with diameter EH satisfies 2|y|^2 - (a + b + c) · y + k = 0.\",\n      \"reasoning\": \"Since y lies on CA, we have b · y = k, because b · c = b · a = k. Since y lies on the circle with diameter EH and H is the origin, |y|^2 = y · e. As e = (c + a)/2, this gives |y|^2 = y · (c + a)/2 = ((a + b + c) · y - b · y)/2 = ((a + b + c) · y - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The point b1 lies on Γ.\",\n      \"reasoning\": \"By hypothesis, b1 lies on line CA and on the circle with diameter EH. Therefore step 6 applies to y = b1, so b1 satisfies the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypothesis on b1\",\n        \"step 6\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"Every point z on line AB and on the circle with diameter FH satisfies 2|z|^2 - (a + b + c) · z + k = 0.\",\n      \"reasoning\": \"Since z lies on AB, we have c · z = k, because c · a = c · b = k. Since z lies on the circle with diameter FH and H is the origin, |z|^2 = z · f. As f = (a + b)/2, this gives |z|^2 = z · (a + b)/2 = ((a + b + c) · z - c · z)/2 = ((a + b + c) · z - k)/2, which is equivalent to the defining equation of Γ.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"circle with diameter characterization\",\n        \"line parametrization\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1 and c2 lie on Γ.\",\n      \"reasoning\": \"By hypothesis, both c1 and c2 lie on line AB and on the circle with diameter FH. Therefore step 8 applies to z = c1 and z = c2, so both points satisfy the defining equation of Γ.\",\n      \"facts_used\": [\n        \"hypotheses on c1 and c2\",\n        \"step 8\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The points c1, c2, b1, and a1 are concyclic.\",\n      \"reasoning\": \"Steps 5, 7, and 9 show that a1, b1, c1, and c2 all lie on the same nondegenerate circle Γ. Hence these four points are concyclic.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"step 7\",\n        \"step 9\",\n        \"definition of concyclic points\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization.\n\n## Previous attempt (failed)\nYour last formalization:\n{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"h_x\", \"sort\": \"Real\"},\n      {\"name\": \"h_y\", \"sort\": \"Real\"},\n      {\"name\": \"d_x\", \"sort\": \"Real\"},\n      {\"name\": \"d_y\", \"sort\": \"Real\"},\n      {\"name\": \"e_x\", \"sort\": \"Real\"},\n      {\"name\": \"e_y\", \"sort\": \"Real\"},\n      {\"name\": \"f_x\", \"sort\": \"Real\"},\n      {\"name\": \"f_y\", \"sort\": \"Real\"},\n      {\"name\": \"a1_x\", \"sort\": \"Real\"},\n      {\"name\": \"a1_y\", \"sort\": \"Real\"},\n      {\"name\": \"a2_x\", \"sort\": \"Real\"},\n      {\"name\": \"a2_y\", \"sort\": \"Real\"},\n      {\"name\": \"b1_x\", \"sort\": \"Real\"},\n      {\"name\": \"b1_y\", \"sort\": \"Real\"},\n      {\"name\": \"b2_x\", \"sort\": \"Real\"},\n      {\"name\": \"b2_y\", \"sort\": \"Real\"},\n      {\"name\": \"c1_x\", \"sort\": \"Real\"},\n      {\"name\": \"c1_y\", \"sort\": \"Real\"},\n      {\"name\": \"c2_x\", \"sort\": \"Real\"},\n      {\"name\": \"c2_y\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"h_x == 0\",\n      \"h_y == 0\",\n      \"(a_x - h_x) * (b_x - c_x) + (a_y - h_y) * (b_y - c_y) == 0\",\n      \"(b_x - h_x) * (c_x - a_x) + (b_y - h_y) * (c_y - a_y) == 0\",\n      \"(c_x - h_x) * (a_x - b_x) + (c_y - h_y) * (a_y - b_y) == 0\",\n      \"d_x == (b_x + c_x) / 2\",\n      \"d_y == (b_y + c_y) / 2\",\n      \"e_x == (c_x + a_x) / 2\",\n      \"e_y == (c_y + a_y) / 2\",\n      \"f_x == (a_x + b_x) / 2\",\n      \"f_y == (a_y + b_y) / 2\",\n      \"(a1_x - d_x) * (a1_x - h_x) + (a1_y - d_y) * (a1_y - h_y) == 0\",\n      \"(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)\",\n      \"(a2_x - d_x) * (a2_x - h_x) + (a2_y - d_y) * (a2_y - h_y) == 0\",\n      \"(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)\",\n      \"(b1_x - e_x) * (b1_x - h_x) + (b1_y - e_y) * (b1_y - h_y) == 0\",\n      \"(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)\",\n      \"(b2_x - e_x) * (b2_x - h_x) + (b2_y - e_y) * (b2_y - h_y) == 0\",\n      \"(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)\",\n      \"(c1_x - f_x) * (c1_x - h_x) + (c1_y - f_y) * (c1_y - h_y) == 0\",\n      \"(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)\",\n      \"(c2_x - f_x) * (c2_x - h_x) + (c2_y - f_y) * (c2_y - h_y) == 0\",\n      \"(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(a_x == h_x, a_y == h_y))\",\n      \"Not(And(a_x == d_x, a_y == d_y))\",\n      \"Not(And(a_x == e_x, a_y == e_y))\",\n      \"Not(And(a_x == f_x, a_y == f_y))\",\n      \"Not(And(a_x == a1_x, a_y == a1_y))\",\n      \"Not(And(a_x == a2_x, a_y == a2_y))\",\n      \"Not(And(a_x == b1_x, a_y == b1_y))\",\n      \"Not(And(a_x == b2_x, a_y == b2_y))\",\n      \"Not(And(a_x == c1_x, a_y == c1_y))\",\n      \"Not(And(a_x == c2_x, a_y == c2_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(b_x == h_x, b_y\n... [truncated]\n\nErrors:\n- Z3 returned unknown (timeout or incomplete reasoning). Simplify the formalization or add more targeted instantiations.\n\nFix these issues and return the corrected JSON object only."
+    }
+  ],
+  "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\n        \"name\": \"a_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"h_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"h_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"d_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"d_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"e_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"e_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"f_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"f_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"a2_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"b2_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c1_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c1_y\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c2_x\",\n        \"sort\": \"Real\"\n      },\n      {\n        \"name\": \"c2_y\",\n        \"sort\": \"Real\"\n      }\n    ],\n    \"hypotheses\": [\n      \"h_x == 0\",\n      \"h_y == 0\",\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(a1_x == a2_x, a1_y == a2_y))\",\n      \"Not(And(b1_x == b2_x, b1_y == b2_y))\",\n      \"Not(And(c1_x == c2_x, c1_y == c2_y))\",\n      \"a_x * (b_x - c_x) + a_y * (b_y - c_y) == 0\",\n      \"b_x * (c_x - a_x) + b_y * (c_y - a_y) == 0\",\n      \"c_x * (a_x - b_x) + c_y * (a_y - b_y) == 0\",\n      \"d_x == (b_x + c_x) / 2\",\n      \"d_y == (b_y + c_y) / 2\",\n      \"e_x == (c_x + a_x) / 2\",\n      \"e_y == (c_y + a_y) / 2\",\n      \"f_x == (a_x + b_x) / 2\",\n      \"f_y == (a_y + b_y) / 2\",\n      \"(a1_x - d_x) * a1_x + (a1_y - d_y) * a1_y == 0\",\n      \"(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)\",\n      \"(a2_x - d_x) * a2_x + (a2_y - d_y) * a2_y == 0\",\n      \"(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)\",\n      \"(b1_x - e_x) * b1_x + (b1_y - e_y) * b1_y == 0\",\n      \"(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)\",\n      \"(b2_x - e_x) * b2_x + (b2_y - e_y) * b2_y == 0\",\n      \"(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)\",\n      \"(c1_x - f_x) * c1_x + (c1_y - f_y) * c1_y == 0\",\n      \"(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)\",\n      \"(c2_x - f_x) * c2_x + (c2_y - f_y) * c2_y == 0\",\n      \"(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)\"\n    ],\n    \"goal\": \"(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"bc_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"dx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"dy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(bx == cx, by == cy)), ax * (bx - cx) + ay * (by - cy) == 0, dx == (bx + cx) / 2, dy == (by + cy) / 2, (px - dx) * px + (py - dy) * py == 0, (px - bx) * (cy - by) == (py - by) * (cx - bx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"ca_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ex\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ey\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(cx == ax, cy == ay)), bx * (cx - ax) + by * (cy - ay) == 0, ex == (cx + ax) / 2, ey == (cy + ay) / 2, (px - ex) * px + (py - ey) * py == 0, (px - cx) * (ay - cy) == (py - cy) * (ax - cx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"english\": \"If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.\",\n      \"vars\": [\n        {\n          \"name\": \"ax\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"ay\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"bx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"by\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"cy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"fx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"fy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"px\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"py\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(Not(And(ax == bx, ay == by)), ax * (bx - cx) + ay * (by - cy) == 0, cx * (ax - bx) + cy * (ay - by) == 0, fx == (ax + bx) / 2, fy == (ay + by) / 2, (px - fx) * px + (py - fy) * py == 0, (px - ax) * (by - ay) == (py - ay) * (bx - ax)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)\"\n    },\n    {\n      \"name\": \"four_points_on_same_quadratic_circle_are_cyclic\",\n      \"english\": \"Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.\",\n      \"vars\": [\n        {\n          \"name\": \"p1x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p1y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p2x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p2y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p3x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p3y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p4x\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"p4y\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"sx\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"sy\",\n          \"sort\": \"Real\"\n        },\n        {\n          \"name\": \"kk\",\n          \"sort\": \"Real\"\n        }\n      ],\n      \"body\": \"Implies(And(2 * (p1x**2 + p1y**2) - sx * p1x - sy * p1y + kk == 0, 2 * (p2x**2 + p2y**2) - sx * p2x - sy * p2y + kk == 0, 2 * (p3x**2 + p3y**2) - sx * p3x - sy * p3y + kk == 0, 2 * (p4x**2 + p4y**2) - sx * p4x - sy * p4y + kk == 0), (p1x**2 + p1y**2) * (p2x * (p3y - p4y) + p3x * (p4y - p2y) + p4x * (p2y - p3y)) - (p2x**2 + p2y**2) * (p1x * (p3y - p4y) + p3x * (p4y - p1y) + p4x * (p1y - p3y)) + (p3x**2 + p3y**2) * (p1x * (p2y - p4y) + p2x * (p4y - p1y) + p4x * (p1y - p2y)) - (p4x**2 + p4y**2) * (p1x * (p2y - p3y) + p2x * (p3y - p1y) + p3x * (p1y - p2y)) == 0)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"bc_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"dx\": \"d_x\",\n        \"dy\": \"d_y\",\n        \"px\": \"a1_x\",\n        \"py\": \"a1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ca_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"ex\": \"e_x\",\n        \"ey\": \"e_y\",\n        \"px\": \"b1_x\",\n        \"py\": \"b1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"fx\": \"f_x\",\n        \"fy\": \"f_y\",\n        \"px\": \"c1_x\",\n        \"py\": \"c1_y\"\n      }\n    },\n    {\n      \"lemma\": \"ab_line_diameter_point_lies_on_gamma\",\n      \"terms\": {\n        \"ax\": \"a_x\",\n        \"ay\": \"a_y\",\n        \"bx\": \"b_x\",\n        \"by\": \"b_y\",\n        \"cx\": \"c_x\",\n        \"cy\": \"c_y\",\n        \"fx\": \"f_x\",\n        \"fy\": \"f_y\",\n        \"px\": \"c2_x\",\n        \"py\": \"c2_y\"\n      }\n    },\n    {\n      \"lemma\": \"four_points_on_same_quadratic_circle_are_cyclic\",\n      \"terms\": {\n        \"p1x\": \"c1_x\",\n        \"p1y\": \"c1_y\",\n        \"p2x\": \"c2_x\",\n        \"p2y\": \"c2_y\",\n        \"p3x\": \"b1_x\",\n        \"p3y\": \"b1_y\",\n        \"p4x\": \"a1_x\",\n        \"p4y\": \"a1_y\",\n        \"sx\": \"a_x + b_x + c_x\",\n        \"sy\": \"a_y + b_y + c_y\",\n        \"kk\": \"a_x * b_x + a_y * b_y\"\n      }\n    }\n  ]\n}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "h_x",
+          "sort": "Real"
+        },
+        {
+          "name": "h_y",
+          "sort": "Real"
+        },
+        {
+          "name": "d_x",
+          "sort": "Real"
+        },
+        {
+          "name": "d_y",
+          "sort": "Real"
+        },
+        {
+          "name": "e_x",
+          "sort": "Real"
+        },
+        {
+          "name": "e_y",
+          "sort": "Real"
+        },
+        {
+          "name": "f_x",
+          "sort": "Real"
+        },
+        {
+          "name": "f_y",
+          "sort": "Real"
+        },
+        {
+          "name": "a1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "a2_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a2_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b2_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b2_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c1_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c1_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c2_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c2_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "h_x == 0",
+        "h_y == 0",
+        "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)",
+        "Not(And(a_x == b_x, a_y == b_y))",
+        "Not(And(a_x == c_x, a_y == c_y))",
+        "Not(And(b_x == c_x, b_y == c_y))",
+        "Not(And(a1_x == a2_x, a1_y == a2_y))",
+        "Not(And(b1_x == b2_x, b1_y == b2_y))",
+        "Not(And(c1_x == c2_x, c1_y == c2_y))",
+        "a_x * (b_x - c_x) + a_y * (b_y - c_y) == 0",
+        "b_x * (c_x - a_x) + b_y * (c_y - a_y) == 0",
+        "c_x * (a_x - b_x) + c_y * (a_y - b_y) == 0",
+        "d_x == (b_x + c_x) / 2",
+        "d_y == (b_y + c_y) / 2",
+        "e_x == (c_x + a_x) / 2",
+        "e_y == (c_y + a_y) / 2",
+        "f_x == (a_x + b_x) / 2",
+        "f_y == (a_y + b_y) / 2",
+        "(a1_x - d_x) * a1_x + (a1_y - d_y) * a1_y == 0",
+        "(a1_x - b_x) * (c_y - b_y) == (a1_y - b_y) * (c_x - b_x)",
+        "(a2_x - d_x) * a2_x + (a2_y - d_y) * a2_y == 0",
+        "(a2_x - b_x) * (c_y - b_y) == (a2_y - b_y) * (c_x - b_x)",
+        "(b1_x - e_x) * b1_x + (b1_y - e_y) * b1_y == 0",
+        "(b1_x - c_x) * (a_y - c_y) == (b1_y - c_y) * (a_x - c_x)",
+        "(b2_x - e_x) * b2_x + (b2_y - e_y) * b2_y == 0",
+        "(b2_x - c_x) * (a_y - c_y) == (b2_y - c_y) * (a_x - c_x)",
+        "(c1_x - f_x) * c1_x + (c1_y - f_y) * c1_y == 0",
+        "(c1_x - a_x) * (b_y - a_y) == (c1_y - a_y) * (b_x - a_x)",
+        "(c2_x - f_x) * c2_x + (c2_y - f_y) * c2_y == 0",
+        "(c2_x - a_x) * (b_y - a_y) == (c2_y - a_y) * (b_x - a_x)"
+      ],
+      "goal": "(c1_x**2 + c1_y**2) * (c2_x * (b1_y - a1_y) + b1_x * (a1_y - c2_y) + a1_x * (c2_y - b1_y)) - (c2_x**2 + c2_y**2) * (c1_x * (b1_y - a1_y) + b1_x * (a1_y - c1_y) + a1_x * (c1_y - b1_y)) + (b1_x**2 + b1_y**2) * (c1_x * (c2_y - a1_y) + c2_x * (a1_y - c1_y) + a1_x * (c1_y - c2_y)) - (a1_x**2 + a1_y**2) * (c1_x * (c2_y - b1_y) + c2_x * (b1_y - c1_y) + b1_x * (c1_y - c2_y)) == 0"
+    },
+    "lemmas": [
+      {
+        "name": "bc_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "vars": [
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "bx",
+            "sort": "Real"
+          },
+          {
+            "name": "by",
+            "sort": "Real"
+          },
+          {
+            "name": "cx",
+            "sort": "Real"
+          },
+          {
+            "name": "cy",
+            "sort": "Real"
+          },
+          {
+            "name": "dx",
+            "sort": "Real"
+          },
+          {
+            "name": "dy",
+            "sort": "Real"
+          },
+          {
+            "name": "px",
+            "sort": "Real"
+          },
+          {
+            "name": "py",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(Not(And(bx == cx, by == cy)), ax * (bx - cx) + ay * (by - cy) == 0, dx == (bx + cx) / 2, dy == (by + cy) / 2, (px - dx) * px + (py - dy) * py == 0, (px - bx) * (cy - by) == (py - by) * (cx - bx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+      },
+      {
+        "name": "ca_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "vars": [
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "bx",
+            "sort": "Real"
+          },
+          {
+            "name": "by",
+            "sort": "Real"
+          },
+          {
+            "name": "cx",
+            "sort": "Real"
+          },
+          {
+            "name": "cy",
+            "sort": "Real"
+          },
+          {
+            "name": "ex",
+            "sort": "Real"
+          },
+          {
+            "name": "ey",
+            "sort": "Real"
+          },
+          {
+            "name": "px",
+            "sort": "Real"
+          },
+          {
+            "name": "py",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(Not(And(cx == ax, cy == ay)), bx * (cx - ax) + by * (cy - ay) == 0, ex == (cx + ax) / 2, ey == (cy + ay) / 2, (px - ex) * px + (py - ey) * py == 0, (px - cx) * (ay - cy) == (py - cy) * (ax - cx)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+      },
+      {
+        "name": "ab_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "vars": [
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "bx",
+            "sort": "Real"
+          },
+          {
+            "name": "by",
+            "sort": "Real"
+          },
+          {
+            "name": "cx",
+            "sort": "Real"
+          },
+          {
+            "name": "cy",
+            "sort": "Real"
+          },
+          {
+            "name": "fx",
+            "sort": "Real"
+          },
+          {
+            "name": "fy",
+            "sort": "Real"
+          },
+          {
+            "name": "px",
+            "sort": "Real"
+          },
+          {
+            "name": "py",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(Not(And(ax == bx, ay == by)), ax * (bx - cx) + ay * (by - cy) == 0, cx * (ax - bx) + cy * (ay - by) == 0, fx == (ax + bx) / 2, fy == (ay + by) / 2, (px - fx) * px + (py - fy) * py == 0, (px - ax) * (by - ay) == (py - ay) * (bx - ax)), 2 * (px**2 + py**2) - (ax + bx + cx) * px - (ay + by + cy) * py + (ax * bx + ay * by) == 0)"
+      },
+      {
+        "name": "four_points_on_same_quadratic_circle_are_cyclic",
+        "english": "Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.",
+        "vars": [
+          {
+            "name": "p1x",
+            "sort": "Real"
+          },
+          {
+            "name": "p1y",
+            "sort": "Real"
+          },
+          {
+            "name": "p2x",
+            "sort": "Real"
+          },
+          {
+            "name": "p2y",
+            "sort": "Real"
+          },
+          {
+            "name": "p3x",
+            "sort": "Real"
+          },
+          {
+            "name": "p3y",
+            "sort": "Real"
+          },
+          {
+            "name": "p4x",
+            "sort": "Real"
+          },
+          {
+            "name": "p4y",
+            "sort": "Real"
+          },
+          {
+            "name": "sx",
+            "sort": "Real"
+          },
+          {
+            "name": "sy",
+            "sort": "Real"
+          },
+          {
+            "name": "kk",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(2 * (p1x**2 + p1y**2) - sx * p1x - sy * p1y + kk == 0, 2 * (p2x**2 + p2y**2) - sx * p2x - sy * p2y + kk == 0, 2 * (p3x**2 + p3y**2) - sx * p3x - sy * p3y + kk == 0, 2 * (p4x**2 + p4y**2) - sx * p4x - sy * p4y + kk == 0), (p1x**2 + p1y**2) * (p2x * (p3y - p4y) + p3x * (p4y - p2y) + p4x * (p2y - p3y)) - (p2x**2 + p2y**2) * (p1x * (p3y - p4y) + p3x * (p4y - p1y) + p4x * (p1y - p3y)) + (p3x**2 + p3y**2) * (p1x * (p2y - p4y) + p2x * (p4y - p1y) + p4x * (p1y - p2y)) - (p4x**2 + p4y**2) * (p1x * (p2y - p3y) + p2x * (p3y - p1y) + p3x * (p1y - p2y)) == 0)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "bc_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "dx": "d_x",
+          "dy": "d_y",
+          "px": "a1_x",
+          "py": "a1_y"
+        }
+      },
+      {
+        "lemma": "ca_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "ex": "e_x",
+          "ey": "e_y",
+          "px": "b1_x",
+          "py": "b1_y"
+        }
+      },
+      {
+        "lemma": "ab_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "px": "c1_x",
+          "py": "c1_y"
+        }
+      },
+      {
+        "lemma": "ab_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "px": "c2_x",
+          "py": "c2_y"
+        }
+      },
+      {
+        "lemma": "four_points_on_same_quadratic_circle_are_cyclic",
+        "terms": {
+          "p1x": "c1_x",
+          "p1y": "c1_y",
+          "p2x": "c2_x",
+          "p2y": "c2_y",
+          "p3x": "b1_x",
+          "p3y": "b1_y",
+          "p4x": "a1_x",
+          "p4y": "a1_y",
+          "sx": "a_x + b_x + c_x",
+          "sy": "a_y + b_y + c_y",
+          "kk": "a_x * b_x + a_y * b_y"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 6.885766983032227,
+    "instantiated": [
+      {
+        "lemma": "bc_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "dx": "d_x",
+          "dy": "d_y",
+          "px": "a1_x",
+          "py": "a1_y"
+        },
+        "z3_form": "Implies(And(Not(And(b_x == c_x, b_y == c_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            d_x == (b_x + c_x)/2,\n            d_y == (b_y + c_y)/2,\n            (a1_x - d_x)*a1_x + (a1_y - d_y)*a1_y == 0,\n            (a1_x - b_x)*(c_y - b_y) ==\n            (a1_y - b_y)*(c_x - b_x)),\n        2*(a1_x**2 + a1_y**2) -\n        (a_x + b_x + c_x)*a1_x -\n        (a_y + b_y + c_y)*a1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+      },
+      {
+        "lemma": "ca_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "ex": "e_x",
+          "ey": "e_y",
+          "px": "b1_x",
+          "py": "b1_y"
+        },
+        "z3_form": "Implies(And(Not(And(c_x == a_x, c_y == a_y)),\n            b_x*(c_x - a_x) + b_y*(c_y - a_y) == 0,\n            e_x == (c_x + a_x)/2,\n            e_y == (c_y + a_y)/2,\n            (b1_x - e_x)*b1_x + (b1_y - e_y)*b1_y == 0,\n            (b1_x - c_x)*(a_y - c_y) ==\n            (b1_y - c_y)*(a_x - c_x)),\n        2*(b1_x**2 + b1_y**2) -\n        (a_x + b_x + c_x)*b1_x -\n        (a_y + b_y + c_y)*b1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+      },
+      {
+        "lemma": "ab_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "px": "c1_x",
+          "py": "c1_y"
+        },
+        "z3_form": "Implies(And(Not(And(a_x == b_x, a_y == b_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            c_x*(a_x - b_x) + c_y*(a_y - b_y) == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            (c1_x - f_x)*c1_x + (c1_y - f_y)*c1_y == 0,\n            (c1_x - a_x)*(b_y - a_y) ==\n            (c1_y - a_y)*(b_x - a_x)),\n        2*(c1_x**2 + c1_y**2) -\n        (a_x + b_x + c_x)*c1_x -\n        (a_y + b_y + c_y)*c1_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+      },
+      {
+        "lemma": "ab_line_diameter_point_lies_on_gamma",
+        "terms": {
+          "ax": "a_x",
+          "ay": "a_y",
+          "bx": "b_x",
+          "by": "b_y",
+          "cx": "c_x",
+          "cy": "c_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "px": "c2_x",
+          "py": "c2_y"
+        },
+        "z3_form": "Implies(And(Not(And(a_x == b_x, a_y == b_y)),\n            a_x*(b_x - c_x) + a_y*(b_y - c_y) == 0,\n            c_x*(a_x - b_x) + c_y*(a_y - b_y) == 0,\n            f_x == (a_x + b_x)/2,\n            f_y == (a_y + b_y)/2,\n            (c2_x - f_x)*c2_x + (c2_y - f_y)*c2_y == 0,\n            (c2_x - a_x)*(b_y - a_y) ==\n            (c2_y - a_y)*(b_x - a_x)),\n        2*(c2_x**2 + c2_y**2) -\n        (a_x + b_x + c_x)*c2_x -\n        (a_y + b_y + c_y)*c2_y +\n        a_x*b_x +\n        a_y*b_y ==\n        0)"
+      },
+      {
+        "lemma": "four_points_on_same_quadratic_circle_are_cyclic",
+        "terms": {
+          "p1x": "c1_x",
+          "p1y": "c1_y",
+          "p2x": "c2_x",
+          "p2y": "c2_y",
+          "p3x": "b1_x",
+          "p3y": "b1_y",
+          "p4x": "a1_x",
+          "p4y": "a1_y",
+          "sx": "a_x + b_x + c_x",
+          "sy": "a_y + b_y + c_y",
+          "kk": "a_x * b_x + a_y * b_y"
+        },
+        "z3_form": "Implies(And(2*(c1_x**2 + c1_y**2) -\n            (a_x + b_x + c_x)*c1_x -\n            (a_y + b_y + c_y)*c1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(c2_x**2 + c2_y**2) -\n            (a_x + b_x + c_x)*c2_x -\n            (a_y + b_y + c_y)*c2_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(b1_x**2 + b1_y**2) -\n            (a_x + b_x + c_x)*b1_x -\n            (a_y + b_y + c_y)*b1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0,\n            2*(a1_x**2 + a1_y**2) -\n            (a_x + b_x + c_x)*a1_x -\n            (a_y + b_y + c_y)*a1_y +\n            a_x*b_x +\n            a_y*b_y ==\n            0),\n        (c1_x**2 + c1_y**2)*\n        (c2_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c2_y) +\n         a1_x*(c2_y - b1_y)) -\n        (c2_x**2 + c2_y**2)*\n        (c1_x*(b1_y - a1_y) +\n         b1_x*(a1_y - c1_y) +\n         a1_x*(c1_y - b1_y)) +\n        (b1_x**2 + b1_y**2)*\n        (c1_x*(c2_y - a1_y) +\n         c2_x*(a1_y - c1_y) +\n         a1_x*(c1_y - c2_y)) -\n        (a1_x**2 + a1_y**2)*\n        (c1_x*(c2_y - b1_y) +\n         c2_x*(b1_y - c1_y) +\n         b1_x*(c1_y - c2_y)) ==\n        0)"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "bc_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, AH is perpendicular to BC, D is the midpoint of BC, and P lies both on line BC and on the circle with diameter DH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "ca_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, BH is perpendicular to CA, E is the midpoint of CA, and P lies both on line CA and on the circle with diameter EH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "ab_line_diameter_point_lies_on_gamma",
+        "english": "If H is the origin, AH is perpendicular to BC and CH is perpendicular to AB, F is the midpoint of AB, and P lies both on line AB and on the circle with diameter FH, then P satisfies the common circle equation 2|P|^2 - (A+B+C).P + A.B = 0.",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "four_points_on_same_quadratic_circle_are_cyclic",
+        "english": "Four points satisfying one equation 2(x^2+y^2)-sx*x-sy*y+k=0 have zero cyclic determinant, hence are concyclic.",
+        "consistent": true,
+        "check": "unknown"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 5,
+    "n_hypotheses": 30
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-16T04:28:49.983352+00:00"
+}

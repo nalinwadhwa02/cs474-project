@@ -1,0 +1,120 @@
+{
+  "theorem_id": "translated_imo_2009_p2",
+  "statement": "Theorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq",
+  "goal": "cong o p o q",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2009_p2\n\nTheorem: translated_imo_2009_p2\nGiven: m l k = triangle m l k\nGiven: w = circle w m l k\nGiven: q = on_tline q m w m\nGiven: p = mirror p q m\nGiven: b = mirror b p k\nGiven: c = mirror c q l\nGiven: a = on_line a b q, on_line a c p\nGiven: o = circle o a b c\nProve: prove that segment op = segment oq\n\nHypotheses:\n  m l k = triangle m l k\n  w = circle w m l k\n  q = on_tline q m w m\n  p = mirror p q m\n  b = mirror b p k\n  c = mirror c q l\n  a = on_line a b q, on_line a c p\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"After placing the tangent at M as the x-axis, P and Q become symmetric points (-r,0) and (r,0), so it suffices to prove that the circumcenter of triangle ABC lies on the y-axis.\",\n  \"plan\": [\n    \"Normalize coordinates using the tangent line and circumcircle.\",\n    \"Parametrize K and L on the normalized circumcircle.\",\n    \"Compute the coordinates of B, C, and A from the reflection and incidence conditions.\",\n    \"Construct an explicit point O* on the y-axis and show it is equidistant from A, B, and C.\",\n    \"Conclude that O = O*, hence OP = OQ.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"If Q = M, then P = Q and the desired conclusion OP = OQ is immediate.\",\n      \"reasoning\": \"Since P is the reflection of Q in M, when Q = M we also have P = M. Thus P and Q are the same point, so every point O has OP = OQ.\",\n      \"facts_used\": [\n        \"definition of reflection\",\n        \"identity of distances\"\n      ]\n    },\n    {\n      \"claim\": \"Assume Q != M. We may choose Cartesian coordinates such that M = (0,0), the tangent line at M is the x-axis, the circumcircle of triangle MLK has equation x^2 + y^2 = y, Q = (r,0), and P = (-r,0) for some nonzero real number r.\",\n      \"reasoning\": \"Translate M to the origin, rotate so that the tangent line is the x-axis, and scale so that the circle tangent at M has equation x^2 + y^2 = y. Since Q lies on the tangent line, Q = (r,0); since P is the reflection of Q in M, P = (-r,0).\",\n      \"facts_used\": [\n        \"coordinate normalization by translation, rotation, and scaling\",\n        \"definition of tangent line\",\n        \"definition of reflection\"\n      ]\n    },\n    {\n      \"claim\": \"There exist real numbers u and v with u != v such that K = (u/(1 + u^2), 1/(1 + u^2)) and L = (v/(1 + v^2), 1/(1 + v^2)).\",\n      \"reasoning\": \"Every point (x,y) != (0,0) on x^2 + y^2 = y has y != 0, so setting u = x/y gives x = uy. Substituting into the circle equation gives (u^2 + 1)y^2 = y, hence y = 1/(1 + u^2) and x = u/(1 + u^2). The same parametrization applies to L; nondegeneracy of triangle MLK gives u != v.\",\n      \"facts_used\": [\n        \"parametrization of a circle through the origin\",\n        \"nondegeneracy of a triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The reflected points B and C have coordinates B = (r + 2u/(1 + u^2), 2/(1 + u^2)) and C = (-r + 2v/(1 + v^2), 2/(1 + v^2)).\",\n      \"reasoning\": \"Because B is the reflection of P in K, the point K is the midpoint of PB, so B = 2K - P. Similarly, since C is the reflection of Q in L, we have C = 2L - Q.\",\n      \"facts_used\": [\n        \"definition of reflection\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"The point A has coordinates A = (r(u + v)/(v - u), 2r/(v - u)).\",\n      \"reasoning\": \"The line BQ has direction B - Q = 2K, hence direction (u,1). The line CP has direction C - P = 2L, hence direction (v,1). Thus A = Q + lambda(u,1) = P + lambda(v,1), so comparing x-coordinates gives r + lambda u = -r + lambda v, hence lambda = 2r/(v - u).\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"definition of collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"Let O* = (0,z), where z = 1 + r(1 + uv)/(v - u), and define F(x,y) = x^2 + y^2 - 2zy. Then F(B) = r^2 - 4r/(v - u).\",\n      \"reasoning\": \"Using the coordinates of B, we get B_x^2 + B_y^2 = r^2 + 4ru/(1 + u^2) + 4/(1 + u^2). Therefore F(B) = r^2 + [4ru + 4 - 4z]/(1 + u^2). Since 1 - z = -r(1 + uv)/(v - u), this simplifies to r^2 + 4r[u(v - u) - (1 + uv)]/((v - u)(1 + u^2)) = r^2 - 4r/(v - u).\",\n      \"facts_used\": [\n        \"step 4\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"With the same O* and F, one has F(C) = r^2 - 4r/(v - u).\",\n      \"reasoning\": \"Using the coordinates of C, we get C_x^2 + C_y^2 = r^2 - 4rv/(1 + v^2) + 4/(1 + v^2). Hence F(C) = r^2 + [-4rv + 4 - 4z]/(1 + v^2). Since 1 - z = -r(1 + uv)/(v - u), this becomes r^2 - 4r[v(v - u) + (1 + uv)]/((v - u)(1 + v^2)) = r^2 - 4r/(v - u).\",\n      \"facts_used\": [\n        \"step 4\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"With the same O* and F, one has F(A) = r^2 - 4r/(v - u).\",\n      \"reasoning\": \"From the coordinates of A, A_x^2 + A_y^2 = r^2((u + v)^2 + 4)/(v - u)^2 and A_y = 2r/(v - u). Thus F(A) = r^2((u + v)^2 + 4)/(v - u)^2 - 4rz/(v - u). Substituting z = 1 + r(1 + uv)/(v - u), we obtain F(A) = r^2((u + v)^2 + 4 - 4(1 + uv))/(v - u)^2 - 4r/(v - u) = r^2 - 4r/(v - u).\",\n      \"facts_used\": [\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"The point O* is the circumcenter of triangle ABC, so O = O*.\",\n      \"reasoning\": \"The equation F(x,y) = constant is equivalent to x^2 + (y - z)^2 = constant + z^2, which is a circle centered at O* = (0,z). Steps 6, 7, and 8 show that A, B, and C lie on this circle. Since O is defined as the circumcenter of A, B, C, uniqueness of the circumcenter gives O = O*.\",\n      \"facts_used\": [\n        \"steps 6\",\n        \"step 7\",\n        \"step 8\",\n        \"equation of a circle\",\n        \"uniqueness of circumcenter\"\n      ]\n    },\n    {\n      \"claim\": \"OP = OQ.\",\n      \"reasoning\": \"Since O = O* = (0,z), P = (-r,0), and Q = (r,0), we have OP^2 = r^2 + z^2 and OQ^2 = r^2 + z^2. Hence OP = OQ.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 9\",\n        \"distance formula\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "After placing the tangent at M as the x-axis, P and Q become symmetric points (-r,0) and (r,0), so it suffices to prove that the circumcenter of triangle ABC lies on the y-axis.",
+    "plan": [
+      "Normalize coordinates using the tangent line and circumcircle.",
+      "Parametrize K and L on the normalized circumcircle.",
+      "Compute the coordinates of B, C, and A from the reflection and incidence conditions.",
+      "Construct an explicit point O* on the y-axis and show it is equidistant from A, B, and C.",
+      "Conclude that O = O*, hence OP = OQ."
+    ],
+    "steps": [
+      {
+        "claim": "If Q = M, then P = Q and the desired conclusion OP = OQ is immediate.",
+        "reasoning": "Since P is the reflection of Q in M, when Q = M we also have P = M. Thus P and Q are the same point, so every point O has OP = OQ.",
+        "facts_used": [
+          "definition of reflection",
+          "identity of distances"
+        ]
+      },
+      {
+        "claim": "Assume Q != M. We may choose Cartesian coordinates such that M = (0,0), the tangent line at M is the x-axis, the circumcircle of triangle MLK has equation x^2 + y^2 = y, Q = (r,0), and P = (-r,0) for some nonzero real number r.",
+        "reasoning": "Translate M to the origin, rotate so that the tangent line is the x-axis, and scale so that the circle tangent at M has equation x^2 + y^2 = y. Since Q lies on the tangent line, Q = (r,0); since P is the reflection of Q in M, P = (-r,0).",
+        "facts_used": [
+          "coordinate normalization by translation, rotation, and scaling",
+          "definition of tangent line",
+          "definition of reflection"
+        ]
+      },
+      {
+        "claim": "There exist real numbers u and v with u != v such that K = (u/(1 + u^2), 1/(1 + u^2)) and L = (v/(1 + v^2), 1/(1 + v^2)).",
+        "reasoning": "Every point (x,y) != (0,0) on x^2 + y^2 = y has y != 0, so setting u = x/y gives x = uy. Substituting into the circle equation gives (u^2 + 1)y^2 = y, hence y = 1/(1 + u^2) and x = u/(1 + u^2). The same parametrization applies to L; nondegeneracy of triangle MLK gives u != v.",
+        "facts_used": [
+          "parametrization of a circle through the origin",
+          "nondegeneracy of a triangle"
+        ]
+      },
+      {
+        "claim": "The reflected points B and C have coordinates B = (r + 2u/(1 + u^2), 2/(1 + u^2)) and C = (-r + 2v/(1 + v^2), 2/(1 + v^2)).",
+        "reasoning": "Because B is the reflection of P in K, the point K is the midpoint of PB, so B = 2K - P. Similarly, since C is the reflection of Q in L, we have C = 2L - Q.",
+        "facts_used": [
+          "definition of reflection",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "The point A has coordinates A = (r(u + v)/(v - u), 2r/(v - u)).",
+        "reasoning": "The line BQ has direction B - Q = 2K, hence direction (u,1). The line CP has direction C - P = 2L, hence direction (v,1). Thus A = Q + lambda(u,1) = P + lambda(v,1), so comparing x-coordinates gives r + lambda u = -r + lambda v, hence lambda = 2r/(v - u).",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "definition of collinearity"
+        ]
+      },
+      {
+        "claim": "Let O* = (0,z), where z = 1 + r(1 + uv)/(v - u), and define F(x,y) = x^2 + y^2 - 2zy. Then F(B) = r^2 - 4r/(v - u).",
+        "reasoning": "Using the coordinates of B, we get B_x^2 + B_y^2 = r^2 + 4ru/(1 + u^2) + 4/(1 + u^2). Therefore F(B) = r^2 + [4ru + 4 - 4z]/(1 + u^2). Since 1 - z = -r(1 + uv)/(v - u), this simplifies to r^2 + 4r[u(v - u) - (1 + uv)]/((v - u)(1 + u^2)) = r^2 - 4r/(v - u).",
+        "facts_used": [
+          "step 4",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "With the same O* and F, one has F(C) = r^2 - 4r/(v - u).",
+        "reasoning": "Using the coordinates of C, we get C_x^2 + C_y^2 = r^2 - 4rv/(1 + v^2) + 4/(1 + v^2). Hence F(C) = r^2 + [-4rv + 4 - 4z]/(1 + v^2). Since 1 - z = -r(1 + uv)/(v - u), this becomes r^2 - 4r[v(v - u) + (1 + uv)]/((v - u)(1 + v^2)) = r^2 - 4r/(v - u).",
+        "facts_used": [
+          "step 4",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "With the same O* and F, one has F(A) = r^2 - 4r/(v - u).",
+        "reasoning": "From the coordinates of A, A_x^2 + A_y^2 = r^2((u + v)^2 + 4)/(v - u)^2 and A_y = 2r/(v - u). Thus F(A) = r^2((u + v)^2 + 4)/(v - u)^2 - 4rz/(v - u). Substituting z = 1 + r(1 + uv)/(v - u), we obtain F(A) = r^2((u + v)^2 + 4 - 4(1 + uv))/(v - u)^2 - 4r/(v - u) = r^2 - 4r/(v - u).",
+        "facts_used": [
+          "step 5",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "The point O* is the circumcenter of triangle ABC, so O = O*.",
+        "reasoning": "The equation F(x,y) = constant is equivalent to x^2 + (y - z)^2 = constant + z^2, which is a circle centered at O* = (0,z). Steps 6, 7, and 8 show that A, B, and C lie on this circle. Since O is defined as the circumcenter of A, B, C, uniqueness of the circumcenter gives O = O*.",
+        "facts_used": [
+          "steps 6",
+          "step 7",
+          "step 8",
+          "equation of a circle",
+          "uniqueness of circumcenter"
+        ]
+      },
+      {
+        "claim": "OP = OQ.",
+        "reasoning": "Since O = O* = (0,z), P = (-r,0), and Q = (r,0), we have OP^2 = r^2 + z^2 and OQ^2 = r^2 + z^2. Hence OP = OQ.",
+        "facts_used": [
+          "step 2",
+          "step 9",
+          "distance formula"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:23:06.615150+00:00"
+}

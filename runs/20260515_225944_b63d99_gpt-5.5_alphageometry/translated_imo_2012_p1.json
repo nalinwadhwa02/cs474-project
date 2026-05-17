@@ -1,0 +1,112 @@
+{
+  "theorem_id": "translated_imo_2012_p1",
+  "statement": "Theorem: translated_imo_2012_p1\nGiven: a b c = triangle a b c\nGiven: m l k j = excenter2 m l k j a b c\nGiven: f = on_line f m l, on_line f b j\nGiven: g = on_line g m k, on_line g c j\nGiven: s = on_line s f a, on_line s b c\nGiven: t = on_line t g a, on_line t c b\nProve: prove that segment ms = segment mt",
+  "goal": "cong m s m t",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p1\n\nTheorem: translated_imo_2012_p1\nGiven: a b c = triangle a b c\nGiven: m l k j = excenter2 m l k j a b c\nGiven: f = on_line f m l, on_line f b j\nGiven: g = on_line g m k, on_line g c j\nGiven: s = on_line s f a, on_line s b c\nGiven: t = on_line t g a, on_line t c b\nProve: prove that segment ms = segment mt\n\nHypotheses:\n  a b c = triangle a b c\n  m l k j = excenter2 m l k j a b c\n  f = on_line f m l, on_line f b j\n  g = on_line g m k, on_line g c j\n  s = on_line s f a, on_line s b c\n  t = on_line t g a, on_line t c b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.\",\n  \"plan\": [\n    \"Normalize the configuration by coordinates with M at the origin and BC as the x-axis.\",\n    \"Compute the tangency points K and L of the excircle with AB and AC.\",\n    \"Compute the coordinates of A, F, and G.\",\n    \"Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.\",\n    \"Show that S and T are symmetric about M on line BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.\",\n      \"reasoning\": \"Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.\",\n      \"facts_used\": [\n        \"coordinate normalization by similarity\",\n        \"radius to tangent line is perpendicular\",\n        \"definition of excircle tangency\"\n      ]\n    },\n    {\n      \"claim\": \"The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.\",\n      \"reasoning\": \"For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)\u00b7(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).\",\n      \"facts_used\": [\n        \"equation of a circle\",\n        \"radius to tangent line is perpendicular\",\n        \"dot product criterion for perpendicularity\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).\",\n      \"reasoning\": \"Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point F=ML\u2229BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point G=MK\u2229CJ has coordinates G=(q/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point S=AF\u2229BC has coordinates S=(-(p+q)/(1-pq),0).\",\n      \"reasoning\": \"Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The point T=AG\u2229BC has coordinates T=((p+q)/(1-pq),0).\",\n      \"reasoning\": \"Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 5\"\n      ]\n    },\n    {\n      \"claim\": \"MS=MT.\",\n      \"reasoning\": \"By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.\",\n      \"facts_used\": [\n        \"distance formula on a coordinate line\",\n        \"definition of midpoint\",\n        \"step 1\",\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.",
+    "plan": [
+      "Normalize the configuration by coordinates with M at the origin and BC as the x-axis.",
+      "Compute the tangency points K and L of the excircle with AB and AC.",
+      "Compute the coordinates of A, F, and G.",
+      "Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.",
+      "Show that S and T are symmetric about M on line BC."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.",
+        "reasoning": "Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.",
+        "facts_used": [
+          "coordinate normalization by similarity",
+          "radius to tangent line is perpendicular",
+          "definition of excircle tangency"
+        ]
+      },
+      {
+        "claim": "The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.",
+        "reasoning": "For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)\u00b7(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).",
+        "facts_used": [
+          "equation of a circle",
+          "radius to tangent line is perpendicular",
+          "dot product criterion for perpendicularity",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).",
+        "reasoning": "Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point F=ML\u2229BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+        "reasoning": "Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point G=MK\u2229CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+        "reasoning": "Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point S=AF\u2229BC has coordinates S=(-(p+q)/(1-pq),0).",
+        "reasoning": "Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).",
+        "facts_used": [
+          "collinearity",
+          "affine coordinates on a line",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point T=AG\u2229BC has coordinates T=((p+q)/(1-pq),0).",
+        "reasoning": "Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).",
+        "facts_used": [
+          "collinearity",
+          "affine coordinates on a line",
+          "step 3",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "MS=MT.",
+        "reasoning": "By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.",
+        "facts_used": [
+          "distance formula on a coordinate line",
+          "definition of midpoint",
+          "step 1",
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:32:38.927027+00:00"
+}

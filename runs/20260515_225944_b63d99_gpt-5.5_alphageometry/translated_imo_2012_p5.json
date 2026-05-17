@@ -1,0 +1,114 @@
+{
+  "theorem_id": "translated_imo_2012_p5",
+  "statement": "Theorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p5\n\nTheorem: translated_imo_2012_p5\nGiven: c a b = r_triangle c a b\nGiven: d = foot d c a b\nGiven: x = on_line x c d\nGiven: k = on_line k a x, on_circle k b c\nGiven: l = on_line l b x, on_circle l a c\nGiven: m = on_line m a l, on_line m b k\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  c a b = r_triangle c a b\n  d = foot d c a b\n  x = on_line x c d\n  k = on_line k a x, on_circle k b c\n  l = on_line l b x, on_circle l a c\n  m = on_line m a l, on_line m b k\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Using coordinates with the right angle at C, the condition X lies on the altitude CD makes the algebra symmetric enough to show that the intersection parameters of M on BK and AL differ exactly by the circle-radius relation.\",\n  \"plan\": [\n    \"Place the right triangle in coordinates with C at the origin and the legs on the coordinate axes.\",\n    \"Parametrize X on the altitude CD and parametrize K and L on AX and BX.\",\n    \"Use BK = BC and AL = AC to derive a relation between the parameters of K and L.\",\n    \"Parametrize M as the intersection of BK and AL and compute its two line parameters.\",\n    \"Use the parameter relation to prove MK = ML.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates C = (0, 0), A = (a, 0), and B = (0, b), where a = CA > 0 and b = CB > 0.\",\n      \"reasoning\": \"The triangle CAB is right-angled at C. A rigid motion and scaling of axes preserve collinearity, circle membership, and segment lengths, so this coordinate placement is valid.\",\n      \"facts_used\": [\n        \"Euclidean coordinate normalization\",\n        \"right triangle hypothesis\"\n      ]\n    },\n    {\n      \"claim\": \"There is a real number p such that X = (pb, pa).\",\n      \"reasoning\": \"The line AB has direction vector (-a, b). A perpendicular direction is (b, a), since (-a, b) \u00b7 (b, a) = -ab + ab = 0. Because D is the foot from C to AB, the line CD is the line through C in direction (b, a), and X lies on this line.\",\n      \"facts_used\": [\n        \"definition of foot of perpendicular\",\n        \"dot product criterion for perpendicular lines\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"There exist real parameters s and t such that K = A + s(X - A) and L = B + t(X - B). Hence K = (a + s(pb - a), spa) and L = (tpb, b + t(pa - b)).\",\n      \"reasoning\": \"Since K lies on line AX, it is an affine combination of A and X. Since L lies on line BX, it is an affine combination of B and X. Substituting the coordinates of A, B, and X gives the stated formulas.\",\n      \"facts_used\": [\n        \"definition of collinearity\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The condition BK = BC = b gives a^2(1 - s)^2 = E s^2, where E = 2pab - p^2(a^2 + b^2).\",\n      \"reasoning\": \"Using K = (a + s(pb - a), spa), the equation BK^2 = b^2 becomes (a + s(pb - a))^2 + (spa - b)^2 = b^2. Expanding and simplifying gives ((pb - a)^2 + p^2a^2)s^2 - 2a^2s + a^2 = 0. Rearranging this equation yields a^2(1 - s)^2 = (a^2 - ((pb - a)^2 + p^2a^2))s^2 = (2pab - p^2(a^2 + b^2))s^2.\",\n      \"facts_used\": [\n        \"distance formula\",\n        \"step 3\",\n        \"definition of circle centered at B through C\"\n      ]\n    },\n    {\n      \"claim\": \"The condition AL = AC = a gives b^2(1 - t)^2 = E t^2, with the same E = 2pab - p^2(a^2 + b^2).\",\n      \"reasoning\": \"Using L = (tpb, b + t(pa - b)), the equation AL^2 = a^2 becomes (tpb - a)^2 + (b + t(pa - b))^2 = a^2. Expanding and simplifying gives (p^2b^2 + (pa - b)^2)t^2 - 2b^2t + b^2 = 0. Rearranging gives b^2(1 - t)^2 = (b^2 - (p^2b^2 + (pa - b)^2))t^2 = (2pab - p^2(a^2 + b^2))t^2.\",\n      \"facts_used\": [\n        \"distance formula\",\n        \"step 3\",\n        \"definition of circle centered at A through C\"\n      ]\n    },\n    {\n      \"claim\": \"The parameters s and t satisfy b s(1 - t) = a t(1 - s).\",\n      \"reasoning\": \"From steps 4 and 5, we have a^2(1 - s)^2/s^2 = b^2(1 - t)^2/t^2 = E. For the chosen points K and L on the corresponding segments, s, t, 1 - s, and 1 - t are positive, so taking positive square roots gives a(1 - s)/s = b(1 - t)/t. Cross-multiplying gives b s(1 - t) = a t(1 - s).\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 5\",\n        \"positive square root property\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"If M = B + u(K - B) = A + v(L - A), then u = t/(s + t - st) and v = s/(s + t - st).\",\n      \"reasoning\": \"Let P = K - B and Q = L - A. The equality B + uP = A + vQ is equivalent to uP - vQ = A - B. A direct determinant computation gives det(P, Q) = H(s + t - st), det(A - B, Q) = tH, and det(P, A - B) = -sH, where H = p(a^2 + b^2) - ab. Solving the two-by-two linear system by determinants yields u = t/(s + t - st) and v = s/(s + t - st).\",\n      \"facts_used\": [\n        \"Cramer's rule\",\n        \"step 3\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"MK = b(1 - u) = b s(1 - t)/(s + t - st), and ML = a(1 - v) = a t(1 - s)/(s + t - st).\",\n      \"reasoning\": \"Since M = B + u(K - B), K corresponds to parameter 1 on line BK, so MK = |1 - u| \u00b7 BK. Similarly, since M = A + v(L - A), L corresponds to parameter 1 on line AL, so ML = |1 - v| \u00b7 AL. Using BK = b, AL = a, and the formulas for u and v from step 7 gives the stated expressions.\",\n      \"facts_used\": [\n        \"affine parameterization of a line\",\n        \"step 7\",\n        \"BK = BC\",\n        \"AL = AC\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"By step 8, MK = b s(1 - t)/(s + t - st) and ML = a t(1 - s)/(s + t - st). Step 6 states exactly that the two numerators are equal, so the two segment lengths are equal.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 8\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Using coordinates with the right angle at C, the condition X lies on the altitude CD makes the algebra symmetric enough to show that the intersection parameters of M on BK and AL differ exactly by the circle-radius relation.",
+    "plan": [
+      "Place the right triangle in coordinates with C at the origin and the legs on the coordinate axes.",
+      "Parametrize X on the altitude CD and parametrize K and L on AX and BX.",
+      "Use BK = BC and AL = AC to derive a relation between the parameters of K and L.",
+      "Parametrize M as the intersection of BK and AL and compute its two line parameters.",
+      "Use the parameter relation to prove MK = ML."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates C = (0, 0), A = (a, 0), and B = (0, b), where a = CA > 0 and b = CB > 0.",
+        "reasoning": "The triangle CAB is right-angled at C. A rigid motion and scaling of axes preserve collinearity, circle membership, and segment lengths, so this coordinate placement is valid.",
+        "facts_used": [
+          "Euclidean coordinate normalization",
+          "right triangle hypothesis"
+        ]
+      },
+      {
+        "claim": "There is a real number p such that X = (pb, pa).",
+        "reasoning": "The line AB has direction vector (-a, b). A perpendicular direction is (b, a), since (-a, b) \u00b7 (b, a) = -ab + ab = 0. Because D is the foot from C to AB, the line CD is the line through C in direction (b, a), and X lies on this line.",
+        "facts_used": [
+          "definition of foot of perpendicular",
+          "dot product criterion for perpendicular lines",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "There exist real parameters s and t such that K = A + s(X - A) and L = B + t(X - B). Hence K = (a + s(pb - a), spa) and L = (tpb, b + t(pa - b)).",
+        "reasoning": "Since K lies on line AX, it is an affine combination of A and X. Since L lies on line BX, it is an affine combination of B and X. Substituting the coordinates of A, B, and X gives the stated formulas.",
+        "facts_used": [
+          "definition of collinearity",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The condition BK = BC = b gives a^2(1 - s)^2 = E s^2, where E = 2pab - p^2(a^2 + b^2).",
+        "reasoning": "Using K = (a + s(pb - a), spa), the equation BK^2 = b^2 becomes (a + s(pb - a))^2 + (spa - b)^2 = b^2. Expanding and simplifying gives ((pb - a)^2 + p^2a^2)s^2 - 2a^2s + a^2 = 0. Rearranging this equation yields a^2(1 - s)^2 = (a^2 - ((pb - a)^2 + p^2a^2))s^2 = (2pab - p^2(a^2 + b^2))s^2.",
+        "facts_used": [
+          "distance formula",
+          "step 3",
+          "definition of circle centered at B through C"
+        ]
+      },
+      {
+        "claim": "The condition AL = AC = a gives b^2(1 - t)^2 = E t^2, with the same E = 2pab - p^2(a^2 + b^2).",
+        "reasoning": "Using L = (tpb, b + t(pa - b)), the equation AL^2 = a^2 becomes (tpb - a)^2 + (b + t(pa - b))^2 = a^2. Expanding and simplifying gives (p^2b^2 + (pa - b)^2)t^2 - 2b^2t + b^2 = 0. Rearranging gives b^2(1 - t)^2 = (b^2 - (p^2b^2 + (pa - b)^2))t^2 = (2pab - p^2(a^2 + b^2))t^2.",
+        "facts_used": [
+          "distance formula",
+          "step 3",
+          "definition of circle centered at A through C"
+        ]
+      },
+      {
+        "claim": "The parameters s and t satisfy b s(1 - t) = a t(1 - s).",
+        "reasoning": "From steps 4 and 5, we have a^2(1 - s)^2/s^2 = b^2(1 - t)^2/t^2 = E. For the chosen points K and L on the corresponding segments, s, t, 1 - s, and 1 - t are positive, so taking positive square roots gives a(1 - s)/s = b(1 - t)/t. Cross-multiplying gives b s(1 - t) = a t(1 - s).",
+        "facts_used": [
+          "step 4",
+          "step 5",
+          "positive square root property",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "If M = B + u(K - B) = A + v(L - A), then u = t/(s + t - st) and v = s/(s + t - st).",
+        "reasoning": "Let P = K - B and Q = L - A. The equality B + uP = A + vQ is equivalent to uP - vQ = A - B. A direct determinant computation gives det(P, Q) = H(s + t - st), det(A - B, Q) = tH, and det(P, A - B) = -sH, where H = p(a^2 + b^2) - ab. Solving the two-by-two linear system by determinants yields u = t/(s + t - st) and v = s/(s + t - st).",
+        "facts_used": [
+          "Cramer's rule",
+          "step 3",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "MK = b(1 - u) = b s(1 - t)/(s + t - st), and ML = a(1 - v) = a t(1 - s)/(s + t - st).",
+        "reasoning": "Since M = B + u(K - B), K corresponds to parameter 1 on line BK, so MK = |1 - u| \u00b7 BK. Similarly, since M = A + v(L - A), L corresponds to parameter 1 on line AL, so ML = |1 - v| \u00b7 AL. Using BK = b, AL = a, and the formulas for u and v from step 7 gives the stated expressions.",
+        "facts_used": [
+          "affine parameterization of a line",
+          "step 7",
+          "BK = BC",
+          "AL = AC"
+        ]
+      },
+      {
+        "claim": "MK = ML.",
+        "reasoning": "By step 8, MK = b s(1 - t)/(s + t - st) and ML = a t(1 - s)/(s + t - st). Step 6 states exactly that the two numerators are equal, so the two segment lengths are equal.",
+        "facts_used": [
+          "step 6",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:34:04.944065+00:00"
+}

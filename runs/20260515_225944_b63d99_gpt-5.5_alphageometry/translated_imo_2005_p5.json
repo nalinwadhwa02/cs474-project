@@ -1,0 +1,126 @@
+{
+  "theorem_id": "translated_imo_2005_p5",
+  "statement": "Theorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic",
+  "goal": "cyclic p q r m",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2005_p5\n\nTheorem: translated_imo_2005_p5\nGiven: a b c = triangle a b c\nGiven: d = eqdistance d a b c\nGiven: e = on_line e b c\nGiven: f = on_line f a d, eqdistance f d e b\nGiven: p = on_line p a c, on_line p b d\nGiven: q = on_line q e f, on_line q b d\nGiven: r = on_line r e f, on_line r a c\nGiven: o1 = circle o1 a p d\nGiven: o2 = circle o2 b p c\nGiven: m = on_circle m o1 p, on_circle m o2 p\nProve: prove that points p, q, r, m are concyclic\n\nHypotheses:\n  a b c = triangle a b c\n  d = eqdistance d a b c\n  e = on_line e b c\n  f = on_line f a d, eqdistance f d e b\n  p = on_line p a c, on_line p b d\n  q = on_line q e f, on_line q b d\n  r = on_line r e f, on_line r a c\n  o1 = circle o1 a p d\n  o2 = circle o2 b p c\n  m = on_circle m o1 p, on_circle m o2 p\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Use affine coordinates with origin at P and coordinate axes along AC and BD; although these axes need not be perpendicular, every circle through P has the same quadratic part, so the proof reduces to comparing the intercepts of EF with the two axes.\",\n  \"plan\": [\n    \"Introduce oblique coordinates adapted to the two lines AC and BD.\",\n    \"Parametrize E and F by the same parameter using AD = BC and DF = EB.\",\n    \"Compute the intercepts Q and R of EF with BD and AC.\",\n    \"Derive a linear relation between those intercepts.\",\n    \"Write the equations of the relevant circles in the oblique coordinate system.\",\n    \"Use the intercept relation and the radical axis of the two given circles to prove that M lies on the circle through P, Q, R.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates with P = (0,0), A = (a,0), C = (c,0), B = (0,b), and D = (0,d), where the x-axis is AC and the y-axis is BD.\",\n      \"reasoning\": \"The point P lies on both AC and BD. Taking P as the origin and taking the two lines AC and BD as coordinate axes gives such coordinates. The axes are not assumed perpendicular.\",\n      \"facts_used\": [\n        \"definition of affine coordinates\",\n        \"P lies on AC\",\n        \"P lies on BD\"\n      ]\n    },\n    {\n      \"claim\": \"In these coordinates, the squared Euclidean length of a vector (x,y) has the form S(x,y) = alpha x^2 + 2 gamma xy + beta y^2 for constants alpha, beta, gamma with alpha beta - gamma^2 > 0.\",\n      \"reasoning\": \"Any Euclidean metric expressed in an arbitrary affine basis is a positive definite quadratic form. Since the basis vectors lie along AC and BD, the same quadratic form S measures all squared distances in these coordinates.\",\n      \"facts_used\": [\n        \"Euclidean metric in affine coordinates\",\n        \"positive definite quadratic forms\"\n      ]\n    },\n    {\n      \"claim\": \"There exists a parameter t such that E = (tc, (1-t)b) and F = (ta, (1-t)d).\",\n      \"reasoning\": \"Since E lies on BC, we can write E = (1-t)B + tC, hence E = (tc,(1-t)b). Since AD = BC and DF = EB, the point F on AD is the corresponding point satisfying F = (1-t)D + tA, hence F = (ta,(1-t)d).\",\n      \"facts_used\": [\n        \"E lies on BC\",\n        \"F lies on AD\",\n        \"AD = BC\",\n        \"DF = EB\",\n        \"affine parametrization of a line\"\n      ]\n    },\n    {\n      \"claim\": \"If Q = (0,q) and R = (r,0), then q = ((1-t)(ab - cd))/(a-c) and r = (t(ab - cd))/(b-d).\",\n      \"reasoning\": \"The line EF is parametrized by F + lambda(E-F). Its x-coordinate is t(a + lambda(c-a)); setting this equal to 0 gives lambda = a/(a-c), and substituting into the y-coordinate gives q = ((1-t)(ab-cd))/(a-c). Similarly, setting the y-coordinate equal to 0 gives lambda = d/(d-b), and substituting into the x-coordinate gives r = t(ab-cd)/(b-d).\",\n      \"facts_used\": [\n        \"step 3\",\n        \"equation of a line through two points\",\n        \"coordinate computation\"\n      ]\n    },\n    {\n      \"claim\": \"(b-d)(r-a) = (c-a)(q-d).\",\n      \"reasoning\": \"Using the formulas from step 4 and writing K = ab - cd, we have (b-d)(r-a) = tK - a(b-d). Also, (c-a)(q-d) = (c-a)((1-t)K/(a-c) - d) = -(1-t)K - d(c-a). Since K = ab - cd, these two expressions are equal.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through P, A, D has equation S(x,y) - alpha a x - beta d y = 0, and the circle through P, B, C has equation S(x,y) - alpha c x - beta b y = 0.\",\n      \"reasoning\": \"Every circle through P = (0,0) has equation S(x,y) + ux + vy = 0. Substituting A = (a,0) and D = (0,d) gives u = -alpha a and v = -beta d. Similarly, substituting C = (c,0) and B = (0,b) gives u = -alpha c and v = -beta b.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"equation of a circle in affine coordinates\",\n        \"P, A, D lie on the first circle\",\n        \"P, B, C lie on the second circle\"\n      ]\n    },\n    {\n      \"claim\": \"If M = (x_M,y_M), then alpha(c-a)x_M + beta(b-d)y_M = 0.\",\n      \"reasoning\": \"The point M lies on both circles from step 6. Subtracting their equations gives alpha(c-a)x + beta(b-d)y = 0, so M satisfies this equation.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"M lies on both given circles\",\n        \"subtraction of equations\"\n      ]\n    },\n    {\n      \"claim\": \"The circle through P, Q, R has equation S(x,y) - alpha r x - beta q y = 0.\",\n      \"reasoning\": \"A circle through P has equation S(x,y) + ux + vy = 0. Substituting R = (r,0) gives u = -alpha r, and substituting Q = (0,q) gives v = -beta q.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"Q = (0,q)\",\n        \"R = (r,0)\",\n        \"equation of a circle in affine coordinates\"\n      ]\n    },\n    {\n      \"claim\": \"M lies on the circle through P, Q, R.\",\n      \"reasoning\": \"From step 5, there is a scalar lambda such that r-a = lambda(c-a) and q-d = lambda(b-d). Hence alpha(r-a)x_M + beta(q-d)y_M = lambda[alpha(c-a)x_M + beta(b-d)y_M] = 0 by step 7. Since M lies on the circle through P, A, D, we also have S(M) = alpha a x_M + beta d y_M, and therefore S(M) = alpha r x_M + beta q y_M. By step 8, this means M lies on the circle through P, Q, R.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"step 7\",\n        \"step 6\",\n        \"step 8\"\n      ]\n    },\n    {\n      \"claim\": \"The points P, Q, R, M are concyclic.\",\n      \"reasoning\": \"The circle through P, Q, R also contains M by step 9. Therefore the four points P, Q, R, M lie on one circle.\",\n      \"facts_used\": [\n        \"step 9\",\n        \"definition of concyclic points\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Use affine coordinates with origin at P and coordinate axes along AC and BD; although these axes need not be perpendicular, every circle through P has the same quadratic part, so the proof reduces to comparing the intercepts of EF with the two axes.",
+    "plan": [
+      "Introduce oblique coordinates adapted to the two lines AC and BD.",
+      "Parametrize E and F by the same parameter using AD = BC and DF = EB.",
+      "Compute the intercepts Q and R of EF with BD and AC.",
+      "Derive a linear relation between those intercepts.",
+      "Write the equations of the relevant circles in the oblique coordinate system.",
+      "Use the intercept relation and the radical axis of the two given circles to prove that M lies on the circle through P, Q, R."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates with P = (0,0), A = (a,0), C = (c,0), B = (0,b), and D = (0,d), where the x-axis is AC and the y-axis is BD.",
+        "reasoning": "The point P lies on both AC and BD. Taking P as the origin and taking the two lines AC and BD as coordinate axes gives such coordinates. The axes are not assumed perpendicular.",
+        "facts_used": [
+          "definition of affine coordinates",
+          "P lies on AC",
+          "P lies on BD"
+        ]
+      },
+      {
+        "claim": "In these coordinates, the squared Euclidean length of a vector (x,y) has the form S(x,y) = alpha x^2 + 2 gamma xy + beta y^2 for constants alpha, beta, gamma with alpha beta - gamma^2 > 0.",
+        "reasoning": "Any Euclidean metric expressed in an arbitrary affine basis is a positive definite quadratic form. Since the basis vectors lie along AC and BD, the same quadratic form S measures all squared distances in these coordinates.",
+        "facts_used": [
+          "Euclidean metric in affine coordinates",
+          "positive definite quadratic forms"
+        ]
+      },
+      {
+        "claim": "There exists a parameter t such that E = (tc, (1-t)b) and F = (ta, (1-t)d).",
+        "reasoning": "Since E lies on BC, we can write E = (1-t)B + tC, hence E = (tc,(1-t)b). Since AD = BC and DF = EB, the point F on AD is the corresponding point satisfying F = (1-t)D + tA, hence F = (ta,(1-t)d).",
+        "facts_used": [
+          "E lies on BC",
+          "F lies on AD",
+          "AD = BC",
+          "DF = EB",
+          "affine parametrization of a line"
+        ]
+      },
+      {
+        "claim": "If Q = (0,q) and R = (r,0), then q = ((1-t)(ab - cd))/(a-c) and r = (t(ab - cd))/(b-d).",
+        "reasoning": "The line EF is parametrized by F + lambda(E-F). Its x-coordinate is t(a + lambda(c-a)); setting this equal to 0 gives lambda = a/(a-c), and substituting into the y-coordinate gives q = ((1-t)(ab-cd))/(a-c). Similarly, setting the y-coordinate equal to 0 gives lambda = d/(d-b), and substituting into the x-coordinate gives r = t(ab-cd)/(b-d).",
+        "facts_used": [
+          "step 3",
+          "equation of a line through two points",
+          "coordinate computation"
+        ]
+      },
+      {
+        "claim": "(b-d)(r-a) = (c-a)(q-d).",
+        "reasoning": "Using the formulas from step 4 and writing K = ab - cd, we have (b-d)(r-a) = tK - a(b-d). Also, (c-a)(q-d) = (c-a)((1-t)K/(a-c) - d) = -(1-t)K - d(c-a). Since K = ab - cd, these two expressions are equal.",
+        "facts_used": [
+          "step 4",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "The circle through P, A, D has equation S(x,y) - alpha a x - beta d y = 0, and the circle through P, B, C has equation S(x,y) - alpha c x - beta b y = 0.",
+        "reasoning": "Every circle through P = (0,0) has equation S(x,y) + ux + vy = 0. Substituting A = (a,0) and D = (0,d) gives u = -alpha a and v = -beta d. Similarly, substituting C = (c,0) and B = (0,b) gives u = -alpha c and v = -beta b.",
+        "facts_used": [
+          "step 2",
+          "equation of a circle in affine coordinates",
+          "P, A, D lie on the first circle",
+          "P, B, C lie on the second circle"
+        ]
+      },
+      {
+        "claim": "If M = (x_M,y_M), then alpha(c-a)x_M + beta(b-d)y_M = 0.",
+        "reasoning": "The point M lies on both circles from step 6. Subtracting their equations gives alpha(c-a)x + beta(b-d)y = 0, so M satisfies this equation.",
+        "facts_used": [
+          "step 6",
+          "M lies on both given circles",
+          "subtraction of equations"
+        ]
+      },
+      {
+        "claim": "The circle through P, Q, R has equation S(x,y) - alpha r x - beta q y = 0.",
+        "reasoning": "A circle through P has equation S(x,y) + ux + vy = 0. Substituting R = (r,0) gives u = -alpha r, and substituting Q = (0,q) gives v = -beta q.",
+        "facts_used": [
+          "step 2",
+          "Q = (0,q)",
+          "R = (r,0)",
+          "equation of a circle in affine coordinates"
+        ]
+      },
+      {
+        "claim": "M lies on the circle through P, Q, R.",
+        "reasoning": "From step 5, there is a scalar lambda such that r-a = lambda(c-a) and q-d = lambda(b-d). Hence alpha(r-a)x_M + beta(q-d)y_M = lambda[alpha(c-a)x_M + beta(b-d)y_M] = 0 by step 7. Since M lies on the circle through P, A, D, we also have S(M) = alpha a x_M + beta d y_M, and therefore S(M) = alpha r x_M + beta q y_M. By step 8, this means M lies on the circle through P, Q, R.",
+        "facts_used": [
+          "step 5",
+          "step 7",
+          "step 6",
+          "step 8"
+        ]
+      },
+      {
+        "claim": "The points P, Q, R, M are concyclic.",
+        "reasoning": "The circle through P, Q, R also contains M by step 9. Therefore the four points P, Q, R, M lie on one circle.",
+        "facts_used": [
+          "step 9",
+          "definition of concyclic points"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:15:02.270666+00:00"
+}

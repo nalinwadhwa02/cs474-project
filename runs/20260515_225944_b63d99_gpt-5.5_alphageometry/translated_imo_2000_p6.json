@@ -1,0 +1,104 @@
+{
+  "theorem_id": "translated_imo_2000_p6",
+  "statement": "Theorem: translated_imo_2000_p6\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\nGiven: h1 = foot h1 a b c\nGiven: h2 = foot h2 b c a\nGiven: h3 = foot h3 c a b\nGiven: x1 = reflect x1 h1 t1 t2\nGiven: x2 = reflect x2 h2 t1 t2\nGiven: y2 = reflect y2 h2 t2 t3\nGiven: y3 = reflect y3 h3 t2 t3\nGiven: z = on_line z x1 x2, on_line z y2 y3\nProve: prove that segment iz = segment it1",
+  "goal": "cong i z i t1",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2000_p6\n\nTheorem: translated_imo_2000_p6\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\nGiven: h1 = foot h1 a b c\nGiven: h2 = foot h2 b c a\nGiven: h3 = foot h3 c a b\nGiven: x1 = reflect x1 h1 t1 t2\nGiven: x2 = reflect x2 h2 t1 t2\nGiven: y2 = reflect y2 h2 t2 t3\nGiven: y3 = reflect y3 h3 t2 t3\nGiven: z = on_line z x1 x2, on_line z y2 y3\nProve: prove that segment iz = segment it1\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  t1 t2 t3 i = incenter2 t1 t2 t3 i a b c\n  h1 = foot h1 a b c\n  h2 = foot h2 b c a\n  h3 = foot h3 c a b\n  x1 = reflect x1 h1 t1 t2\n  x2 = reflect x2 h2 t1 t2\n  y2 = reflect y2 h2 t2 t3\n  y3 = reflect y3 h3 t2 t3\n  z = on_line z x1 x2, on_line z y2 y3\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"After normalizing the incircle to the unit circle, each reflected line is a chord of the incircle with an explicitly computable equation, and the two such chords meet at a point on the incircle.\",\n  \"plan\": [\n    \"Normalize the incircle to be the unit circle centered at the incenter.\",\n    \"Parametrize the tangency points by angles on the unit circle.\",\n    \"Prove an analytic lemma describing the line obtained by reflecting two altitude feet across a chord of the contact triangle.\",\n    \"Apply the lemma to the two reflected lines x1x2 and y2y3.\",\n    \"Identify their common point as a point of the incircle and rescale.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"It is enough to prove the result when the incircle has center I=(0,0) and radius 1.\",\n      \"reasoning\": \"A similarity transformation preserves incidences, perpendicularity, reflection, and ratios of distances. Under such a transformation, the desired equality IZ=IT1 becomes the statement that the normalized point z has distance 1 from the origin.\",\n      \"facts_used\": [\n        \"similarity transformations preserve angles and reflections\",\n        \"definition of incircle radius\"\n      ]\n    },\n    {\n      \"claim\": \"In the normalized coordinates, write T(\u03b8)=(cos \u03b8,sin \u03b8). The tangent to the incircle at T(\u03b8) has equation x cos \u03b8+y sin \u03b8=1.\",\n      \"reasoning\": \"For the unit circle centered at the origin, the radius to T(\u03b8) is perpendicular to the tangent line. Therefore the tangent line consists of all points X satisfying T(\u03b8)\u00b7X=1.\",\n      \"facts_used\": [\n        \"equation of tangent to the unit circle\",\n        \"dot product\"\n      ]\n    },\n    {\n      \"claim\": \"Let three tangency points be T(-\u03c6), T(\u03c6), and T(\u03c8). Let the corresponding tangent lines form a triangle. If F_{-\u03c6} is the foot from the vertex opposite the tangent at T(-\u03c6) to that tangent, and F_\u03c6 is the analogous foot to the tangent at T(\u03c6), then after reflecting F_{-\u03c6} and F_\u03c6 across the chord T(-\u03c6)T(\u03c6), the image points both lie on the line T(\u03c8)\u00b7X=cos 2\u03c6.\",\n      \"reasoning\": \"Put c=cos \u03c6 and s=sin \u03c6. The chord T(-\u03c6)T(\u03c6) has equation x=c, so reflection in it sends (x,y) to (2c-x,y). The vertex on the tangents at T(\u03c6) and T(\u03c8) is A=(T(\u03c6)+T(\u03c8))/(1+T(\u03c6)\u00b7T(\u03c8)); hence the foot on the tangent at T(-\u03c6) has the form F_{-\u03c6}=T(-\u03c6)+\u03bb(s,c), where \u03bb=(sin 2\u03c6+sin(\u03c8+\u03c6))/(1+cos(\u03c8-\u03c6))=(cos 2\u03c6-cos(\u03c8+\u03c6))/sin(\u03c8-\u03c6). Its reflection is X=(c-\u03bb s,-s+\u03bb c), and then T(\u03c8)\u00b7X=cos(\u03c8+\u03c6)+\u03bb sin(\u03c8-\u03c6)=cos 2\u03c6. Similarly, for the foot on the tangent at T(\u03c6), one obtains F_\u03c6=T(\u03c6)+\u03bc(-s,c), where \u03bc=(sin(\u03c8-\u03c6)-sin 2\u03c6)/(1+cos(\u03c8+\u03c6))=(cos 2\u03c6-cos(\u03c8-\u03c6))/sin(\u03c8+\u03c6). Its reflection is Y=(c+\u03bc s,s+\u03bc c), and T(\u03c8)\u00b7Y=cos(\u03c8-\u03c6)+\u03bc sin(\u03c8+\u03c6)=cos 2\u03c6.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"formula for intersection of two tangents to the unit circle\",\n        \"orthogonal projection onto a line\",\n        \"reflection across a vertical line\",\n        \"trigonometric identities\"\n      ]\n    },\n    {\n      \"claim\": \"With the notation of step 3, the reflected line is the chord of the unit circle through T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6).\",\n      \"reasoning\": \"By step 3, both reflected points lie on the line T(\u03c8)\u00b7X=cos 2\u03c6. For any \u03b7, one has T(\u03c8)\u00b7T(\u03b7)=cos(\u03b7-\u03c8). Therefore T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6) both satisfy the same line equation, since cos(\u00b12\u03c6)=cos 2\u03c6.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)\"\n      ]\n    },\n    {\n      \"claim\": \"For arbitrary contact angles \u03b81, \u03b82, \u03b83 of t1,t2,t3, respectively, the line x1x2 has equation T(\u03b83)\u00b7X=cos(\u03b82-\u03b81), and the line y2y3 has equation T(\u03b81)\u00b7X=cos(\u03b83-\u03b82).\",\n      \"reasoning\": \"Apply step 4 after rotating the coordinate system so that the two reflected contact points are symmetric about the x-axis. For the pair t1,t2, the third contact point is t3, so the reflected line x1x2 is the chord whose normal direction is T(\u03b83) and whose distance from the origin is cos(\u03b82-\u03b81). For the pair t2,t3, the third contact point is t1, giving the equation for y2y3.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"rotation invariance of dot products\",\n        \"definition of x1,x2,y2,y3\"\n      ]\n    },\n    {\n      \"claim\": \"The point P=T(\u03b81+\u03b83-\u03b82) lies on both lines x1x2 and y2y3.\",\n      \"reasoning\": \"Using step 5, we compute T(\u03b83)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b83)=cos(\u03b81-\u03b82)=cos(\u03b82-\u03b81), so P lies on x1x2. Also T(\u03b81)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b81)=cos(\u03b83-\u03b82), so P lies on y2y3.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)\",\n        \"cosine is even\"\n      ]\n    },\n    {\n      \"claim\": \"The intersection point z of the lines x1x2 and y2y3 is P, and hence |Iz|=1 in the normalized coordinates.\",\n      \"reasoning\": \"The tangency points t1 and t3 are distinct and not antipodal in a nondegenerate triangle, so the normals T(\u03b81) and T(\u03b83) are not parallel; hence the two lines in step 5 are distinct and have a unique intersection. Since P lies on both lines by step 6, z=P. Because P lies on the unit circle, |Iz|=1.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"uniqueness of intersection of nonparallel lines\",\n        \"definition of unit circle\"\n      ]\n    },\n    {\n      \"claim\": \"In the original triangle, IZ=IT1.\",\n      \"reasoning\": \"Undoing the initial similarity transformation multiplies both IZ and IT1 by the same positive scale factor. Since in normalized coordinates IZ=1 and IT1=1, the equality holds in the original configuration.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 7\",\n        \"similarities scale all distances by the same factor\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "After normalizing the incircle to the unit circle, each reflected line is a chord of the incircle with an explicitly computable equation, and the two such chords meet at a point on the incircle.",
+    "plan": [
+      "Normalize the incircle to be the unit circle centered at the incenter.",
+      "Parametrize the tangency points by angles on the unit circle.",
+      "Prove an analytic lemma describing the line obtained by reflecting two altitude feet across a chord of the contact triangle.",
+      "Apply the lemma to the two reflected lines x1x2 and y2y3.",
+      "Identify their common point as a point of the incircle and rescale."
+    ],
+    "steps": [
+      {
+        "claim": "It is enough to prove the result when the incircle has center I=(0,0) and radius 1.",
+        "reasoning": "A similarity transformation preserves incidences, perpendicularity, reflection, and ratios of distances. Under such a transformation, the desired equality IZ=IT1 becomes the statement that the normalized point z has distance 1 from the origin.",
+        "facts_used": [
+          "similarity transformations preserve angles and reflections",
+          "definition of incircle radius"
+        ]
+      },
+      {
+        "claim": "In the normalized coordinates, write T(\u03b8)=(cos \u03b8,sin \u03b8). The tangent to the incircle at T(\u03b8) has equation x cos \u03b8+y sin \u03b8=1.",
+        "reasoning": "For the unit circle centered at the origin, the radius to T(\u03b8) is perpendicular to the tangent line. Therefore the tangent line consists of all points X satisfying T(\u03b8)\u00b7X=1.",
+        "facts_used": [
+          "equation of tangent to the unit circle",
+          "dot product"
+        ]
+      },
+      {
+        "claim": "Let three tangency points be T(-\u03c6), T(\u03c6), and T(\u03c8). Let the corresponding tangent lines form a triangle. If F_{-\u03c6} is the foot from the vertex opposite the tangent at T(-\u03c6) to that tangent, and F_\u03c6 is the analogous foot to the tangent at T(\u03c6), then after reflecting F_{-\u03c6} and F_\u03c6 across the chord T(-\u03c6)T(\u03c6), the image points both lie on the line T(\u03c8)\u00b7X=cos 2\u03c6.",
+        "reasoning": "Put c=cos \u03c6 and s=sin \u03c6. The chord T(-\u03c6)T(\u03c6) has equation x=c, so reflection in it sends (x,y) to (2c-x,y). The vertex on the tangents at T(\u03c6) and T(\u03c8) is A=(T(\u03c6)+T(\u03c8))/(1+T(\u03c6)\u00b7T(\u03c8)); hence the foot on the tangent at T(-\u03c6) has the form F_{-\u03c6}=T(-\u03c6)+\u03bb(s,c), where \u03bb=(sin 2\u03c6+sin(\u03c8+\u03c6))/(1+cos(\u03c8-\u03c6))=(cos 2\u03c6-cos(\u03c8+\u03c6))/sin(\u03c8-\u03c6). Its reflection is X=(c-\u03bb s,-s+\u03bb c), and then T(\u03c8)\u00b7X=cos(\u03c8+\u03c6)+\u03bb sin(\u03c8-\u03c6)=cos 2\u03c6. Similarly, for the foot on the tangent at T(\u03c6), one obtains F_\u03c6=T(\u03c6)+\u03bc(-s,c), where \u03bc=(sin(\u03c8-\u03c6)-sin 2\u03c6)/(1+cos(\u03c8+\u03c6))=(cos 2\u03c6-cos(\u03c8-\u03c6))/sin(\u03c8+\u03c6). Its reflection is Y=(c+\u03bc s,s+\u03bc c), and T(\u03c8)\u00b7Y=cos(\u03c8-\u03c6)+\u03bc sin(\u03c8+\u03c6)=cos 2\u03c6.",
+        "facts_used": [
+          "step 2",
+          "formula for intersection of two tangents to the unit circle",
+          "orthogonal projection onto a line",
+          "reflection across a vertical line",
+          "trigonometric identities"
+        ]
+      },
+      {
+        "claim": "With the notation of step 3, the reflected line is the chord of the unit circle through T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6).",
+        "reasoning": "By step 3, both reflected points lie on the line T(\u03c8)\u00b7X=cos 2\u03c6. For any \u03b7, one has T(\u03c8)\u00b7T(\u03b7)=cos(\u03b7-\u03c8). Therefore T(\u03c8+2\u03c6) and T(\u03c8-2\u03c6) both satisfy the same line equation, since cos(\u00b12\u03c6)=cos 2\u03c6.",
+        "facts_used": [
+          "step 3",
+          "dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)"
+        ]
+      },
+      {
+        "claim": "For arbitrary contact angles \u03b81, \u03b82, \u03b83 of t1,t2,t3, respectively, the line x1x2 has equation T(\u03b83)\u00b7X=cos(\u03b82-\u03b81), and the line y2y3 has equation T(\u03b81)\u00b7X=cos(\u03b83-\u03b82).",
+        "reasoning": "Apply step 4 after rotating the coordinate system so that the two reflected contact points are symmetric about the x-axis. For the pair t1,t2, the third contact point is t3, so the reflected line x1x2 is the chord whose normal direction is T(\u03b83) and whose distance from the origin is cos(\u03b82-\u03b81). For the pair t2,t3, the third contact point is t1, giving the equation for y2y3.",
+        "facts_used": [
+          "step 4",
+          "rotation invariance of dot products",
+          "definition of x1,x2,y2,y3"
+        ]
+      },
+      {
+        "claim": "The point P=T(\u03b81+\u03b83-\u03b82) lies on both lines x1x2 and y2y3.",
+        "reasoning": "Using step 5, we compute T(\u03b83)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b83)=cos(\u03b81-\u03b82)=cos(\u03b82-\u03b81), so P lies on x1x2. Also T(\u03b81)\u00b7P=cos((\u03b81+\u03b83-\u03b82)-\u03b81)=cos(\u03b83-\u03b82), so P lies on y2y3.",
+        "facts_used": [
+          "step 5",
+          "dot product identity T(\u03b1)\u00b7T(\u03b2)=cos(\u03b1-\u03b2)",
+          "cosine is even"
+        ]
+      },
+      {
+        "claim": "The intersection point z of the lines x1x2 and y2y3 is P, and hence |Iz|=1 in the normalized coordinates.",
+        "reasoning": "The tangency points t1 and t3 are distinct and not antipodal in a nondegenerate triangle, so the normals T(\u03b81) and T(\u03b83) are not parallel; hence the two lines in step 5 are distinct and have a unique intersection. Since P lies on both lines by step 6, z=P. Because P lies on the unit circle, |Iz|=1.",
+        "facts_used": [
+          "step 6",
+          "uniqueness of intersection of nonparallel lines",
+          "definition of unit circle"
+        ]
+      },
+      {
+        "claim": "In the original triangle, IZ=IT1.",
+        "reasoning": "Undoing the initial similarity transformation multiplies both IZ and IT1 by the same positive scale factor. Since in normalized coordinates IZ=1 and IT1=1, the equality holds in the original configuration.",
+        "facts_used": [
+          "step 1",
+          "step 7",
+          "similarities scale all distances by the same factor"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:03:16.325984+00:00"
+}

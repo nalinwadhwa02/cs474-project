@@ -107,7 +107,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         help="Model name as served by the endpoint",
-        default="deepseek-ai/deepseek-v4-pro",
+        default="gpt-5.5",
     )
 
     parser.add_argument(

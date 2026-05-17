@@ -1,0 +1,107 @@
+{
+  "theorem_id": "translated_imo_2010_p4",
+  "statement": "Theorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml",
+  "goal": "cong m k m l",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2010_p4\n\nTheorem: translated_imo_2010_p4\nGiven: s c p = iso_triangle s c p\nGiven: o = on_tline o c s c\nGiven: a = on_circle a o c\nGiven: b = on_circle b o c, on_line b s a\nGiven: m = on_line m c p, on_circle m o c\nGiven: l = on_line l b p, on_circle l o c\nGiven: k = on_line k a p, on_circle k o c\nProve: prove that segment mk = segment ml\n\nHypotheses:\n  s c p = iso_triangle s c p\n  o = on_tline o c s c\n  a = on_circle a o c\n  b = on_circle b o c, on_line b s a\n  m = on_line m c p, on_circle m o c\n  l = on_line l b p, on_circle l o c\n  k = on_line k a p, on_circle k o c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.\",\n  \"plan\": [\n    \"Normalize the circle and introduce a rational parameter for points on it.\",\n    \"Derive the equation of a chord in terms of the parameters of its endpoints.\",\n    \"Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.\",\n    \"Use collinearity with P to relate the parameters of A, B, K, L, M.\",\n    \"Prove the algebraic identity equivalent to MK = ML.\",\n    \"Conclude equality of the two chord lengths from the distance formula on the unit circle.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.\",\n      \"reasoning\": \"A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.\",\n      \"facts_used\": [\n        \"similarity transformations preserve incidence and length equality\",\n        \"radius is perpendicular to tangent at point of tangency\"\n      ]\n    },\n    {\n      \"claim\": \"For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.\",\n      \"reasoning\": \"Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.\",\n      \"facts_used\": [\n        \"rational parametrization of the unit circle\",\n        \"equation of a line through two points\"\n      ]\n    },\n    {\n      \"claim\": \"If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).\",\n      \"reasoning\": \"Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).\",\n      \"reasoning\": \"Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"definition of distance\",\n        \"hypothesis SC = SP\"\n      ]\n    },\n    {\n      \"claim\": \"Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).\",\n      \"reasoning\": \"Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).\",\n      \"facts_used\": [\n        \"step 2\",\n        \"step 4\",\n        \"collinearity\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.\",\n      \"reasoning\": \"Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).\",\n      \"reasoning\": \"Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.\",\n      \"facts_used\": [\n        \"step 2\",\n        \"Euclidean distance formula\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"MK = ML.\",\n      \"reasoning\": \"By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.\",\n      \"facts_used\": [\n        \"step 6\",\n        \"step 7\",\n        \"algebra\",\n        \"nonnegativity of segment lengths\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "After putting the circumcircle in unit-circle coordinates, the condition SC = SP gives an explicit formula for P, and the desired equality becomes a single algebraic identity in the circle parameters of K, L, and M.",
+    "plan": [
+      "Normalize the circle and introduce a rational parameter for points on it.",
+      "Derive the equation of a chord in terms of the parameters of its endpoints.",
+      "Use SC = SP and the line CP to express the coordinates of P in terms of the parameter of M.",
+      "Use collinearity with P to relate the parameters of A, B, K, L, M.",
+      "Prove the algebraic identity equivalent to MK = ML.",
+      "Conclude equality of the two chord lengths from the distance formula on the unit circle."
+    ],
+    "steps": [
+      {
+        "claim": "We may assume the circumcircle has center O = (0,0), radius 1, C = (1,0), and the tangent at C is the vertical line x = 1; hence S = (1,t) for some real t with t != 0.",
+        "reasoning": "A similarity transformation preserves tangency, collinearity, ratios of lengths, and equality of lengths. Since SC is tangent to the circle at C, we may choose coordinates so that the circle is the unit circle and the tangent at C is x = 1.",
+        "facts_used": [
+          "similarity transformations preserve incidence and length equality",
+          "radius is perpendicular to tangent at point of tangency"
+        ]
+      },
+      {
+        "claim": "For a real parameter u, write T(u) = ((1 - u^2)/(1 + u^2), 2u/(1 + u^2)); then T(u) lies on the unit circle, T(0) = C, and the line through T(u) and T(v) has equation (uv - 1)x - (u + v)y + (uv + 1) = 0.",
+        "reasoning": "Substitution gives ((1-u^2)/(1+u^2))^2 + (2u/(1+u^2))^2 = 1, so T(u) lies on the unit circle. A line through two circle points has an equation whose substitution in the parameter r vanishes at r = u and r = v; expanding gives the stated equation.",
+        "facts_used": [
+          "rational parametrization of the unit circle",
+          "equation of a line through two points"
+        ]
+      },
+      {
+        "claim": "If A = T(alpha) and B = T(beta), then alpha and beta satisfy 2 alpha beta = t(alpha + beta).",
+        "reasoning": "Since A, B, and S are collinear, S = (1,t) lies on the line through T(alpha) and T(beta). Substituting x = 1 and y = t into the chord equation gives (alpha beta - 1) - t(alpha + beta) + (alpha beta + 1) = 0, hence 2 alpha beta = t(alpha + beta).",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "collinearity"
+        ]
+      },
+      {
+        "claim": "If M = T(m), then P = (1 - 2mt/(1 + m^2), 2t/(1 + m^2)).",
+        "reasoning": "Since C = T(0), M = T(m), and P are collinear, substituting u = 0 and v = m in the chord equation gives the line CM: x = 1 - my. Write P = (1 - my, y). The condition SP = SC gives (P_x - 1)^2 + (P_y - t)^2 = t^2, so m^2y^2 + (y - t)^2 = t^2, hence y((1 + m^2)y - 2t) = 0. Since P is not C in the nondegenerate configuration, y = 2t/(1 + m^2), giving the stated coordinates.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "definition of distance",
+          "hypothesis SC = SP"
+        ]
+      },
+      {
+        "claim": "Let K = T(k), L = T(l), and define D = 1 + m^2 - mt. Then k = t(alpha - m)/(D alpha - t) and l = t(beta - m)/(D beta - t).",
+        "reasoning": "Since A, K, and P are collinear, P lies on the line through T(alpha) and T(k). Substituting the coordinates of P from step 4 into the chord equation and simplifying gives D alpha k - t(alpha + k) + mt = 0, hence k = t(alpha - m)/(D alpha - t). The same argument applied to B, L, and P gives l = t(beta - m)/(D beta - t).",
+        "facts_used": [
+          "step 2",
+          "step 4",
+          "collinearity",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "The parameters k and l satisfy (1 - m^2)(k + l) + 2m(kl - 1) = 0.",
+        "reasoning": "Let sigma = alpha + beta and pi = alpha beta. By step 3, t sigma = 2pi. From step 5, with Delta = (D alpha - t)(D beta - t), we get k + l = 2[pi(D(t - m) - t) + mt^2]/Delta and kl = [pi(t^2 - 2mt) + m^2t^2]/Delta, while Delta = pi(D^2 - 2D) + t^2. Substituting these expressions into (1 - m^2)(k + l) + 2m(kl - 1), the numerator becomes 2pi F, where F = (1 - m^2)(D(t - m) - t) + m(t^2 - 2mt - D^2 + 2D). Since D = 1 + m^2 - mt, one checks directly that D(t - m) - t = -m((m - t)^2 + 1) and t^2 - 2mt - D^2 + 2D = t^2 - 2mt + 1 - m^2(m - t)^2, so F = 0.",
+        "facts_used": [
+          "step 3",
+          "step 5",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "For any real u and v, |T(u)T(v)|^2 = 4(u - v)^2/((1 + u^2)(1 + v^2)).",
+        "reasoning": "Subtracting the coordinate formulas for T(u) and T(v), squaring the two coordinate differences, and simplifying gives the stated expression.",
+        "facts_used": [
+          "step 2",
+          "Euclidean distance formula",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "MK = ML.",
+        "reasoning": "By step 7, MK^2 - ML^2 equals 4/((1 + m^2)(1 + k^2)(1 + l^2)) times ((m - k)^2(1 + l^2) - (m - l)^2(1 + k^2)). The latter factor simplifies to (k - l)((1 - m^2)(k + l) + 2m(kl - 1)), which is 0 by step 6. Hence MK^2 = ML^2, and therefore MK = ML.",
+        "facts_used": [
+          "step 6",
+          "step 7",
+          "algebra",
+          "nonnegativity of segment lengths"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:27:55.657243+00:00"
+}

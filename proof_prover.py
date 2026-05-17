@@ -49,6 +49,15 @@ def load_stage1_records(stage1_run_dir: Path) -> list[dict]:
     return records
 
 
+def load_existing_theorem_ids(results_dir: Path) -> set[str]:
+    """Collect theorem ids that already have saved per-problem JSON results."""
+    return {
+        p.stem
+        for p in results_dir.glob("*.json")
+        if p.is_file() and p.name != "config.json"
+    }
+
+
 # ---------------------------------------------------------------------------
 # Pipeline
 # ---------------------------------------------------------------------------
@@ -147,13 +156,51 @@ def run_proof(
 # ---------------------------------------------------------------------------
 
 
-def save_config(run_dir: Path, args: argparse.Namespace, n_problems: int) -> None:
+def setup_run_dir(args: argparse.Namespace) -> Path:
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    rand = secrets.token_hex(3)
+    model_slug = re.sub(r"[^\w.-]", "-", args.model.split("/")[-1])[:30]
+    folder = RUNS_DIR / f"{ts}_{rand}_{model_slug}_stage2"
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder
+
+
+def setup_logging(run_dir: Path) -> logging.Logger:
+    logger = logging.getLogger("prover")
+    logger.handlers.clear()
+    logger.setLevel(logging.DEBUG)
+
+    fmt = logging.Formatter(
+        "%(asctime)s  %(levelname)-8s  %(message)s", datefmt="%H:%M:%S"
+    )
+
+    fh = logging.FileHandler(run_dir / "run.log", encoding="utf-8")
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(fmt)
+
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(logging.INFO)
+    ch.setFormatter(fmt)
+
+    logger.addHandler(fh)
+    logger.addHandler(ch)
+    return logger
+
+
+def save_config(
+    run_dir: Path,
+    args: argparse.Namespace,
+    n_problems: int,
+    skipped_existing: int = 0,
+) -> None:
     config = {
         "model": args.model,
         "stage1_run": args.proofs_dir,
+        "skip_existing_dir": args.skip_existing_dir,
         "problem_filter": args.problem,
         "limit": args.limit,
         "max_retries": args.max_retries,
+        "skipped_existing": skipped_existing,
         "n_problems": n_problems,
         "started_at": datetime.now(timezone.utc).isoformat(),
     }
@@ -243,7 +290,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         help="Model name as served by the endpoint",
-        default="deepseek-ai/deepseek-v4-pro",
+        default="gpt-5.5",
     )
     parser.add_argument(
         "--api-key",
@@ -252,9 +299,13 @@ def main() -> None:
     )
     parser.add_argument(
         "--proofs-dir",
-        # required=True,
         help="Path to a proofs dir(contains <id>.json files)",
-        default="/Users/dush/cs474-project/runs/20260515_081823_b674e0_gpt-5.4-mini-2026-03-17_test50",
+        required=True,
+    )
+    parser.add_argument(
+        "--skip-existing-dir",
+        default="",
+        help="Skip theorems whose <id>.json result already exists in this directory",
     )
     parser.add_argument(
         "--problem", help="Run a single problem by id instead of the full set"
@@ -277,6 +328,7 @@ def main() -> None:
     logger.info("Model         : %s", args.model)
     logger.info("Server        : %s", args.base_url)
     logger.info("Proofs source: %s", args.proofs_dir)
+    logger.info("Skip existing: %s", args.skip_existing_dir)
 
     base_url = args.base_url
     if args.base_url is not None:
@@ -291,6 +343,16 @@ def main() -> None:
         logger.error("Stage-1 run dir not found: %s", stage1_dir)
         sys.exit(1)
 
+    skip_existing_dir = None
+    if args.skip_existing_dir:
+        skip_existing_dir = Path(args.skip_existing_dir)
+        if not skip_existing_dir.exists():
+            logger.error("Skip-existing dir not found: %s", skip_existing_dir)
+            sys.exit(1)
+        if not skip_existing_dir.is_dir():
+            logger.error("Skip-existing path is not a directory: %s", skip_existing_dir)
+            sys.exit(1)
+
     records = load_stage1_records(stage1_dir)
     logger.info("Loaded %d stage-1 records from %s", len(records), stage1_dir)
 
@@ -299,10 +361,23 @@ def main() -> None:
         if not records:
             logger.error("Problem %r not found in %s.", args.problem, stage1_dir)
             sys.exit(1)
-    elif args.limit:
+
+    skipped_existing = 0
+    if skip_existing_dir is not None:
+        existing_ids = load_existing_theorem_ids(skip_existing_dir)
+        before = len(records)
+        records = [r for r in records if r["theorem_id"] not in existing_ids]
+        skipped_existing = before - len(records)
+        logger.info(
+            "Skipped %d problems already present in %s",
+            skipped_existing,
+            skip_existing_dir,
+        )
+
+    if args.limit:
         records = records[: args.limit]
 
-    save_config(run_dir, args, len(records))
+    save_config(run_dir, args, len(records), skipped_existing=skipped_existing)
     logger.info("Running %d problems — logs in %s", len(records), run_dir)
 
     n_proved = n_sat = n_unknown = n_unsound = n_error = 0

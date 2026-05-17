@@ -1,0 +1,141 @@
+{
+  "theorem_id": "translated_imo_2008_p1a",
+  "statement": "Theorem: translated_imo_2008_p1a\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, b2 are concyclic",
+  "goal": "cyclic c1 c2 b1 b2",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2008_p1a\n\nTheorem: translated_imo_2008_p1a\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: d = midpoint d b c\nGiven: e = midpoint e a c\nGiven: f = midpoint f a b\nGiven: a1 = on_circle a1 d h, on_line a1 b c\nGiven: a2 = on_circle a2 d h, on_line a2 b c\nGiven: b1 = on_circle b1 e h, on_line b1 c a\nGiven: b2 = on_circle b2 e h, on_line b2 c a\nGiven: c1 = on_circle c1 f h, on_line c1 a b\nGiven: c2 = on_circle c2 f h, on_line c2 a b\nProve: prove that points c1, c2, b1, b2 are concyclic\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  d = midpoint d b c\n  e = midpoint e a c\n  f = midpoint f a b\n  a1 = on_circle a1 d h, on_line a1 b c\n  a2 = on_circle a2 d h, on_line a2 b c\n  b1 = on_circle b1 e h, on_line b1 c a\n  b2 = on_circle b2 e h, on_line b2 c a\n  c1 = on_circle c1 f h, on_line c1 a b\n  c2 = on_circle c2 f h, on_line c2 a b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Using coordinates with A as the origin, the two intersection parameters on AB have sum 1 and scaled product |AB|^2 x_1x_2 = H\\\\cdot AB - |H|^2, and the analogous two parameters on AC have the same scaled product because H is the orthocenter.\",\n  \"plan\": [\n    \"Place the triangle in vector coordinates with A as the origin.\",\n    \"Use the orthocenter condition to compute dot products involving H.\",\n    \"Parametrize c1,c2 on AB and derive their quadratic equation from the circle centered at F through H.\",\n    \"Parametrize b1,b2 on AC and derive the analogous quadratic equation from the circle centered at E through H.\",\n    \"Construct one circle equation containing both pairs of points.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"Let A be the origin, let B have position vector u, let C have position vector v, and let H have position vector h. Then u and v are linearly independent.\",\n      \"reasoning\": \"Since ABC is a triangle, A, B, C are not collinear. Therefore the vectors AB = u and AC = v are linearly independent.\",\n      \"facts_used\": [\n        \"definition of triangle\",\n        \"linear independence criterion for non-collinear points\"\n      ]\n    },\n    {\n      \"claim\": \"The orthocenter condition gives h \\\\cdot u = u \\\\cdot v and h \\\\cdot v = u \\\\cdot v.\",\n      \"reasoning\": \"Because H lies on the altitude from C, the vector H - C is perpendicular to AB, so (h - v) \\\\cdot u = 0, hence h \\\\cdot u = v \\\\cdot u. Because H lies on the altitude from B, the vector H - B is perpendicular to AC, so (h - u) \\\\cdot v = 0, hence h \\\\cdot v = u \\\\cdot v.\",\n      \"facts_used\": [\n        \"definition of orthocenter\",\n        \"perpendicular vectors have zero dot product\",\n        \"symmetry of dot product\"\n      ]\n    },\n    {\n      \"claim\": \"The midpoint F of AB has position vector u/2, and the midpoint E of AC has position vector v/2.\",\n      \"reasoning\": \"A is the origin, B has vector u, and C has vector v. Therefore the midpoint of AB is (0 + u)/2 = u/2, and the midpoint of AC is (0 + v)/2 = v/2.\",\n      \"facts_used\": [\n        \"midpoint formula\"\n      ]\n    },\n    {\n      \"claim\": \"There exist real numbers x_1,x_2 such that c_1 = x_1u and c_2 = x_2u.\",\n      \"reasoning\": \"Both c1 and c2 lie on the line AB. Since A is the origin and B has position vector u, every point on line AB has position vector xu for some real number x.\",\n      \"facts_used\": [\n        \"definition of line through two points\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The numbers x_1,x_2 satisfy x_1 + x_2 = 1 and |u|^2 x_1x_2 = u \\\\cdot v - |h|^2.\",\n      \"reasoning\": \"Since c_i lies on the circle centered at F through H, we have |x_i u - u/2|^2 = |h - u/2|^2. Thus x_i is a root of |u|^2(x - 1/2)^2 - |h - u/2|^2 = 0, equivalently |u|^2x^2 - |u|^2x + |u|^2/4 - |h - u/2|^2 = 0. By Vieta's formulas, x_1+x_2=1 and |u|^2x_1x_2 = |u|^2/4 - |h-u/2|^2 = h\\\\cdot u - |h|^2 = u\\\\cdot v - |h|^2.\",\n      \"facts_used\": [\n        \"definition of circle with center F through H\",\n        \"step 2\",\n        \"step 3\",\n        \"Vieta's formulas\",\n        \"dot product expansion\"\n      ]\n    },\n    {\n      \"claim\": \"There exist real numbers y_1,y_2 such that b_1 = y_1v and b_2 = y_2v.\",\n      \"reasoning\": \"Both b1 and b2 lie on the line AC. Since A is the origin and C has position vector v, every point on line AC has position vector yv for some real number y.\",\n      \"facts_used\": [\n        \"definition of line through two points\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The numbers y_1,y_2 satisfy y_1 + y_2 = 1 and |v|^2 y_1y_2 = u \\\\cdot v - |h|^2.\",\n      \"reasoning\": \"Since b_i lies on the circle centered at E through H, we have |y_i v - v/2|^2 = |h - v/2|^2. Thus y_i is a root of |v|^2(y - 1/2)^2 - |h - v/2|^2 = 0, equivalently |v|^2y^2 - |v|^2y + |v|^2/4 - |h - v/2|^2 = 0. By Vieta's formulas, y_1+y_2=1 and |v|^2y_1y_2 = |v|^2/4 - |h-v/2|^2 = h\\\\cdot v - |h|^2 = u\\\\cdot v - |h|^2.\",\n      \"facts_used\": [\n        \"definition of circle with center E through H\",\n        \"step 2\",\n        \"step 3\",\n        \"Vieta's formulas\",\n        \"dot product expansion\"\n      ]\n    },\n    {\n      \"claim\": \"There exists a vector L such that L \\\\cdot u = -|u|^2 and L \\\\cdot v = -|v|^2.\",\n      \"reasoning\": \"Because u and v are linearly independent, they form a basis of the plane. The two linear equations on the dot products with u and v therefore determine a unique vector L.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"nondegeneracy of Euclidean dot product\",\n        \"linear algebra basis theorem\"\n      ]\n    },\n    {\n      \"claim\": \"Let k = u \\\\cdot v - |h|^2. The equation |X|^2 + L \\\\cdot X + k = 0 defines a circle.\",\n      \"reasoning\": \"Completing the square gives |X + L/2|^2 = |L|^2/4 - k. This is the standard equation of a circle; since the equation will contain the real points c1 and c2, its radius squared is nonnegative.\",\n      \"facts_used\": [\n        \"completion of squares\",\n        \"standard equation of a circle\"\n      ]\n    },\n    {\n      \"claim\": \"Both c_1 and c_2 lie on the circle |X|^2 + L \\\\cdot X + k = 0.\",\n      \"reasoning\": \"For X = x_i u, we have |X|^2 + L \\\\cdot X + k = |u|^2x_i^2 - |u|^2x_i + k. By step 5, x_1+x_2=1 and k=|u|^2x_1x_2, so the expression equals |u|^2(x_i-x_1)(x_i-x_2), which is 0 for i=1,2.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"step 8\",\n        \"step 9\",\n        \"factorization of quadratic polynomials\"\n      ]\n    },\n    {\n      \"claim\": \"Both b_1 and b_2 lie on the circle |X|^2 + L \\\\cdot X + k = 0.\",\n      \"reasoning\": \"For X = y_i v, we have |X|^2 + L \\\\cdot X + k = |v|^2y_i^2 - |v|^2y_i + k. By step 7, y_1+y_2=1 and k=|v|^2y_1y_2, so the expression equals |v|^2(y_i-y_1)(y_i-y_2), which is 0 for i=1,2.\",\n      \"facts_used\": [\n        \"step 7\",\n        \"step 8\",\n        \"step 9\",\n        \"factorization of quadratic polynomials\"\n      ]\n    },\n    {\n      \"claim\": \"The points c_1,c_2,b_1,b_2 are concyclic.\",\n      \"reasoning\": \"Steps 10 and 11 show that all four points lie on the same circle defined by |X|^2 + L \\\\cdot X + k = 0. Therefore c1, c2, b1, and b2 are concyclic.\",\n      \"facts_used\": [\n        \"step 10\",\n        \"step 11\",\n        \"definition of concyclic points\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Using coordinates with A as the origin, the two intersection parameters on AB have sum 1 and scaled product |AB|^2 x_1x_2 = H\\cdot AB - |H|^2, and the analogous two parameters on AC have the same scaled product because H is the orthocenter.",
+    "plan": [
+      "Place the triangle in vector coordinates with A as the origin.",
+      "Use the orthocenter condition to compute dot products involving H.",
+      "Parametrize c1,c2 on AB and derive their quadratic equation from the circle centered at F through H.",
+      "Parametrize b1,b2 on AC and derive the analogous quadratic equation from the circle centered at E through H.",
+      "Construct one circle equation containing both pairs of points."
+    ],
+    "steps": [
+      {
+        "claim": "Let A be the origin, let B have position vector u, let C have position vector v, and let H have position vector h. Then u and v are linearly independent.",
+        "reasoning": "Since ABC is a triangle, A, B, C are not collinear. Therefore the vectors AB = u and AC = v are linearly independent.",
+        "facts_used": [
+          "definition of triangle",
+          "linear independence criterion for non-collinear points"
+        ]
+      },
+      {
+        "claim": "The orthocenter condition gives h \\cdot u = u \\cdot v and h \\cdot v = u \\cdot v.",
+        "reasoning": "Because H lies on the altitude from C, the vector H - C is perpendicular to AB, so (h - v) \\cdot u = 0, hence h \\cdot u = v \\cdot u. Because H lies on the altitude from B, the vector H - B is perpendicular to AC, so (h - u) \\cdot v = 0, hence h \\cdot v = u \\cdot v.",
+        "facts_used": [
+          "definition of orthocenter",
+          "perpendicular vectors have zero dot product",
+          "symmetry of dot product"
+        ]
+      },
+      {
+        "claim": "The midpoint F of AB has position vector u/2, and the midpoint E of AC has position vector v/2.",
+        "reasoning": "A is the origin, B has vector u, and C has vector v. Therefore the midpoint of AB is (0 + u)/2 = u/2, and the midpoint of AC is (0 + v)/2 = v/2.",
+        "facts_used": [
+          "midpoint formula"
+        ]
+      },
+      {
+        "claim": "There exist real numbers x_1,x_2 such that c_1 = x_1u and c_2 = x_2u.",
+        "reasoning": "Both c1 and c2 lie on the line AB. Since A is the origin and B has position vector u, every point on line AB has position vector xu for some real number x.",
+        "facts_used": [
+          "definition of line through two points",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The numbers x_1,x_2 satisfy x_1 + x_2 = 1 and |u|^2 x_1x_2 = u \\cdot v - |h|^2.",
+        "reasoning": "Since c_i lies on the circle centered at F through H, we have |x_i u - u/2|^2 = |h - u/2|^2. Thus x_i is a root of |u|^2(x - 1/2)^2 - |h - u/2|^2 = 0, equivalently |u|^2x^2 - |u|^2x + |u|^2/4 - |h - u/2|^2 = 0. By Vieta's formulas, x_1+x_2=1 and |u|^2x_1x_2 = |u|^2/4 - |h-u/2|^2 = h\\cdot u - |h|^2 = u\\cdot v - |h|^2.",
+        "facts_used": [
+          "definition of circle with center F through H",
+          "step 2",
+          "step 3",
+          "Vieta's formulas",
+          "dot product expansion"
+        ]
+      },
+      {
+        "claim": "There exist real numbers y_1,y_2 such that b_1 = y_1v and b_2 = y_2v.",
+        "reasoning": "Both b1 and b2 lie on the line AC. Since A is the origin and C has position vector v, every point on line AC has position vector yv for some real number y.",
+        "facts_used": [
+          "definition of line through two points",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The numbers y_1,y_2 satisfy y_1 + y_2 = 1 and |v|^2 y_1y_2 = u \\cdot v - |h|^2.",
+        "reasoning": "Since b_i lies on the circle centered at E through H, we have |y_i v - v/2|^2 = |h - v/2|^2. Thus y_i is a root of |v|^2(y - 1/2)^2 - |h - v/2|^2 = 0, equivalently |v|^2y^2 - |v|^2y + |v|^2/4 - |h - v/2|^2 = 0. By Vieta's formulas, y_1+y_2=1 and |v|^2y_1y_2 = |v|^2/4 - |h-v/2|^2 = h\\cdot v - |h|^2 = u\\cdot v - |h|^2.",
+        "facts_used": [
+          "definition of circle with center E through H",
+          "step 2",
+          "step 3",
+          "Vieta's formulas",
+          "dot product expansion"
+        ]
+      },
+      {
+        "claim": "There exists a vector L such that L \\cdot u = -|u|^2 and L \\cdot v = -|v|^2.",
+        "reasoning": "Because u and v are linearly independent, they form a basis of the plane. The two linear equations on the dot products with u and v therefore determine a unique vector L.",
+        "facts_used": [
+          "step 1",
+          "nondegeneracy of Euclidean dot product",
+          "linear algebra basis theorem"
+        ]
+      },
+      {
+        "claim": "Let k = u \\cdot v - |h|^2. The equation |X|^2 + L \\cdot X + k = 0 defines a circle.",
+        "reasoning": "Completing the square gives |X + L/2|^2 = |L|^2/4 - k. This is the standard equation of a circle; since the equation will contain the real points c1 and c2, its radius squared is nonnegative.",
+        "facts_used": [
+          "completion of squares",
+          "standard equation of a circle"
+        ]
+      },
+      {
+        "claim": "Both c_1 and c_2 lie on the circle |X|^2 + L \\cdot X + k = 0.",
+        "reasoning": "For X = x_i u, we have |X|^2 + L \\cdot X + k = |u|^2x_i^2 - |u|^2x_i + k. By step 5, x_1+x_2=1 and k=|u|^2x_1x_2, so the expression equals |u|^2(x_i-x_1)(x_i-x_2), which is 0 for i=1,2.",
+        "facts_used": [
+          "step 5",
+          "step 8",
+          "step 9",
+          "factorization of quadratic polynomials"
+        ]
+      },
+      {
+        "claim": "Both b_1 and b_2 lie on the circle |X|^2 + L \\cdot X + k = 0.",
+        "reasoning": "For X = y_i v, we have |X|^2 + L \\cdot X + k = |v|^2y_i^2 - |v|^2y_i + k. By step 7, y_1+y_2=1 and k=|v|^2y_1y_2, so the expression equals |v|^2(y_i-y_1)(y_i-y_2), which is 0 for i=1,2.",
+        "facts_used": [
+          "step 7",
+          "step 8",
+          "step 9",
+          "factorization of quadratic polynomials"
+        ]
+      },
+      {
+        "claim": "The points c_1,c_2,b_1,b_2 are concyclic.",
+        "reasoning": "Steps 10 and 11 show that all four points lie on the same circle defined by |X|^2 + L \\cdot X + k = 0. Therefore c1, c2, b1, and b2 are concyclic.",
+        "facts_used": [
+          "step 10",
+          "step 11",
+          "definition of concyclic points"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:17:06.168153+00:00"
+}

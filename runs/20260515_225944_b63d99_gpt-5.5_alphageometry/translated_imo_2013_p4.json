@@ -1,0 +1,119 @@
+{
+  "theorem_id": "translated_imo_2013_p4",
+  "statement": "Theorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear",
+  "goal": "coll x h y",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2013_p4\n\nTheorem: translated_imo_2013_p4\nGiven: a b c = triangle a b c\nGiven: h = orthocenter h a b c\nGiven: m = on_line m h b, on_line m a c\nGiven: n = on_line n h c, on_line n a b\nGiven: w = on_line w b c\nGiven: o1 = circle o1 b n w\nGiven: o2 = circle o2 c m w\nGiven: x = on_line x o1 w, on_circle x o1 w\nGiven: y = on_line y o2 w, on_circle y o2 w\nProve: prove that points x, h, y are collinear\n\nHypotheses:\n  a b c = triangle a b c\n  h = orthocenter h a b c\n  m = on_line m h b, on_line m a c\n  n = on_line n h c, on_line n a b\n  w = on_line w b c\n  o1 = circle o1 b n w\n  o2 = circle o2 c m w\n  x = on_line x o1 w, on_circle x o1 w\n  y = on_line y o2 w, on_circle y o2 w\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"After placing B and C on the x-axis, the point X is the antipode of W on the circle through B,N,W and hence lies on the vertical line through B, while Y similarly lies on the vertical line through C; their heights can then be computed directly.\",\n  \"plan\": [\n    \"Choose coordinates with B=(0,0), C=(1,0), A=(u,v), and W=(s,0).\",\n    \"Compute the orthocenter H and the altitude-foot points N and M.\",\n    \"Write equations for the two circles through B,N,W and C,M,W.\",\n    \"Use the fact that X and Y are antipodes of W on their respective circles to find their coordinates.\",\n    \"Verify directly that H lies on the line XY.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may assume B=(0,0), C=(1,0), A=(u,v) with v != 0, and W=(s,0).\",\n      \"reasoning\": \"A similarity transformation preserves collinearity, perpendicularity, circles, orthocenters, and antipodal points on a circle. Since W lies on line BC, after translating, rotating, and scaling we may put BC on the x-axis with B=(0,0) and C=(1,0).\",\n      \"facts_used\": [\n        \"invariance under similarity transformations\",\n        \"definition of collinearity\"\n      ]\n    },\n    {\n      \"claim\": \"The orthocenter is H=(u, u(1-u)/v).\",\n      \"reasoning\": \"Since BC is horizontal, the altitude from A is the vertical line x=u. The slope of AC is v/(u-1), so the altitude from B has slope -(u-1)/v=(1-u)/v and equation y=((1-u)/v)x. Substituting x=u gives H=(u,u(1-u)/v).\",\n      \"facts_used\": [\n        \"definition of orthocenter\",\n        \"perpendicular slopes\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The point N is N=(u^2/(u^2+v^2), uv/(u^2+v^2)).\",\n      \"reasoning\": \"The point N lies on AB and on HC. Since HC is an altitude, HC is perpendicular to AB, so N is the foot of the perpendicular from C to line AB. The projection of C=(1,0) onto the line through the origin in direction A=(u,v) is ((C dot A)/(A dot A))A = (u/(u^2+v^2))(u,v).\",\n      \"facts_used\": [\n        \"definition of altitude\",\n        \"orthogonal projection formula\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point M is M=(v^2/((1-u)^2+v^2), v(1-u)/((1-u)^2+v^2)).\",\n      \"reasoning\": \"The point M lies on AC and on HB. Since HB is an altitude, HB is perpendicular to AC, so M is the foot of the perpendicular from B to line AC. Writing AC with base C=(1,0) and direction A-C=(u-1,v), the projection parameter of B-C=(-1,0) onto A-C is (1-u)/((1-u)^2+v^2), giving the stated coordinates.\",\n      \"facts_used\": [\n        \"definition of altitude\",\n        \"orthogonal projection formula\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"If the circle through B,N,W has equation x^2+y^2-sx+Ey=0, then X=(0,-E).\",\n      \"reasoning\": \"Because the circle passes through B=(0,0), its constant term is 0. Because it passes through W=(s,0), the coefficient of x is -s. Its center is therefore O1=(s/2,-E/2). Since X lies on line O1W and on the circle as the point opposite W, X is the reflection of W in O1, hence X=2O1-W=(0,-E).\",\n      \"facts_used\": [\n        \"standard equation of a circle\",\n        \"center of a circle from its equation\",\n        \"diameter endpoints are collinear with the center\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The coordinate of X is X=(0, u(1-s)/v).\",\n      \"reasoning\": \"Substituting N=(n_x,n_y) into x^2+y^2-sx+Ey=0 gives -E=(n_x^2+n_y^2-sn_x)/n_y. From step 3, n_x=u^2/(u^2+v^2), n_y=uv/(u^2+v^2), and n_x^2+n_y^2=u^2/(u^2+v^2). Therefore -E=(u^2(1-s)/(u^2+v^2))/(uv/(u^2+v^2))=u(1-s)/v.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"step 5\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"If the circle through C,M,W has equation x^2+y^2-(s+1)x+E'y+s=0, then Y=(1,-E').\",\n      \"reasoning\": \"For y=0, the circle meets the x-axis at x=s and x=1, so the quadratic part on the x-axis is (x-s)(x-1)=x^2-(s+1)x+s. Thus the center is O2=((s+1)/2,-E'/2). Since Y is the point opposite W on this circle, Y=2O2-W=(1,-E').\",\n      \"facts_used\": [\n        \"standard equation of a circle\",\n        \"center of a circle from its equation\",\n        \"diameter endpoints are collinear with the center\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The coordinate of Y is Y=(1, s(1-u)/v).\",\n      \"reasoning\": \"Substituting M=(m_x,m_y) into x^2+y^2-(s+1)x+E'y+s=0 gives -E'=(m_x^2+m_y^2-(s+1)m_x+s)/m_y. From step 4, with T=(1-u)^2+v^2, we have m_x=v^2/T, m_y=v(1-u)/T, and m_x^2+m_y^2=v^2/T. Hence -E'=(v^2/T-(s+1)v^2/T+s)/(v(1-u)/T)=s(1-u)/v.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 7\",\n        \"algebraic simplification\"\n      ]\n    },\n    {\n      \"claim\": \"The points X,H,Y are collinear.\",\n      \"reasoning\": \"From steps 6 and 8, X=(0,u(1-s)/v) and Y=(1,s(1-u)/v). The point on line XY with x-coordinate u has y-coordinate (1-u)(u(1-s)/v)+u(s(1-u)/v)=u(1-u)/v. By step 2, this is exactly the y-coordinate of H, so H lies on line XY.\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"step 2\",\n        \"step 6\",\n        \"step 8\",\n        \"algebraic simplification\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "After placing B and C on the x-axis, the point X is the antipode of W on the circle through B,N,W and hence lies on the vertical line through B, while Y similarly lies on the vertical line through C; their heights can then be computed directly.",
+    "plan": [
+      "Choose coordinates with B=(0,0), C=(1,0), A=(u,v), and W=(s,0).",
+      "Compute the orthocenter H and the altitude-foot points N and M.",
+      "Write equations for the two circles through B,N,W and C,M,W.",
+      "Use the fact that X and Y are antipodes of W on their respective circles to find their coordinates.",
+      "Verify directly that H lies on the line XY."
+    ],
+    "steps": [
+      {
+        "claim": "We may assume B=(0,0), C=(1,0), A=(u,v) with v != 0, and W=(s,0).",
+        "reasoning": "A similarity transformation preserves collinearity, perpendicularity, circles, orthocenters, and antipodal points on a circle. Since W lies on line BC, after translating, rotating, and scaling we may put BC on the x-axis with B=(0,0) and C=(1,0).",
+        "facts_used": [
+          "invariance under similarity transformations",
+          "definition of collinearity"
+        ]
+      },
+      {
+        "claim": "The orthocenter is H=(u, u(1-u)/v).",
+        "reasoning": "Since BC is horizontal, the altitude from A is the vertical line x=u. The slope of AC is v/(u-1), so the altitude from B has slope -(u-1)/v=(1-u)/v and equation y=((1-u)/v)x. Substituting x=u gives H=(u,u(1-u)/v).",
+        "facts_used": [
+          "definition of orthocenter",
+          "perpendicular slopes",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The point N is N=(u^2/(u^2+v^2), uv/(u^2+v^2)).",
+        "reasoning": "The point N lies on AB and on HC. Since HC is an altitude, HC is perpendicular to AB, so N is the foot of the perpendicular from C to line AB. The projection of C=(1,0) onto the line through the origin in direction A=(u,v) is ((C dot A)/(A dot A))A = (u/(u^2+v^2))(u,v).",
+        "facts_used": [
+          "definition of altitude",
+          "orthogonal projection formula",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point M is M=(v^2/((1-u)^2+v^2), v(1-u)/((1-u)^2+v^2)).",
+        "reasoning": "The point M lies on AC and on HB. Since HB is an altitude, HB is perpendicular to AC, so M is the foot of the perpendicular from B to line AC. Writing AC with base C=(1,0) and direction A-C=(u-1,v), the projection parameter of B-C=(-1,0) onto A-C is (1-u)/((1-u)^2+v^2), giving the stated coordinates.",
+        "facts_used": [
+          "definition of altitude",
+          "orthogonal projection formula",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "If the circle through B,N,W has equation x^2+y^2-sx+Ey=0, then X=(0,-E).",
+        "reasoning": "Because the circle passes through B=(0,0), its constant term is 0. Because it passes through W=(s,0), the coefficient of x is -s. Its center is therefore O1=(s/2,-E/2). Since X lies on line O1W and on the circle as the point opposite W, X is the reflection of W in O1, hence X=2O1-W=(0,-E).",
+        "facts_used": [
+          "standard equation of a circle",
+          "center of a circle from its equation",
+          "diameter endpoints are collinear with the center",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The coordinate of X is X=(0, u(1-s)/v).",
+        "reasoning": "Substituting N=(n_x,n_y) into x^2+y^2-sx+Ey=0 gives -E=(n_x^2+n_y^2-sn_x)/n_y. From step 3, n_x=u^2/(u^2+v^2), n_y=uv/(u^2+v^2), and n_x^2+n_y^2=u^2/(u^2+v^2). Therefore -E=(u^2(1-s)/(u^2+v^2))/(uv/(u^2+v^2))=u(1-s)/v.",
+        "facts_used": [
+          "step 3",
+          "step 5",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "If the circle through C,M,W has equation x^2+y^2-(s+1)x+E'y+s=0, then Y=(1,-E').",
+        "reasoning": "For y=0, the circle meets the x-axis at x=s and x=1, so the quadratic part on the x-axis is (x-s)(x-1)=x^2-(s+1)x+s. Thus the center is O2=((s+1)/2,-E'/2). Since Y is the point opposite W on this circle, Y=2O2-W=(1,-E').",
+        "facts_used": [
+          "standard equation of a circle",
+          "center of a circle from its equation",
+          "diameter endpoints are collinear with the center",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The coordinate of Y is Y=(1, s(1-u)/v).",
+        "reasoning": "Substituting M=(m_x,m_y) into x^2+y^2-(s+1)x+E'y+s=0 gives -E'=(m_x^2+m_y^2-(s+1)m_x+s)/m_y. From step 4, with T=(1-u)^2+v^2, we have m_x=v^2/T, m_y=v(1-u)/T, and m_x^2+m_y^2=v^2/T. Hence -E'=(v^2/T-(s+1)v^2/T+s)/(v(1-u)/T)=s(1-u)/v.",
+        "facts_used": [
+          "step 4",
+          "step 7",
+          "algebraic simplification"
+        ]
+      },
+      {
+        "claim": "The points X,H,Y are collinear.",
+        "reasoning": "From steps 6 and 8, X=(0,u(1-s)/v) and Y=(1,s(1-u)/v). The point on line XY with x-coordinate u has y-coordinate (1-u)(u(1-s)/v)+u(s(1-u)/v)=u(1-u)/v. By step 2, this is exactly the y-coordinate of H, so H lies on line XY.",
+        "facts_used": [
+          "two-point equation of a line",
+          "step 2",
+          "step 6",
+          "step 8",
+          "algebraic simplification"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:35:17.933594+00:00"
+}

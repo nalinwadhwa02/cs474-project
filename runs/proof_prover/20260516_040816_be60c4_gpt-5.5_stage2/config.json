@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.5",
+  "stage1_run": "/Users/dush/cs474-project/runs/20260515_225944_b63d99_gpt-5.5_alphageometry",
+  "skip_existing_dir": "",
+  "problem_filter": null,
+  "limit": 50,
+  "max_retries": 3,
+  "skipped_existing": 0,
+  "n_problems": 18,
+  "started_at": "2026-05-16T04:08:16.992262+00:00"
+}

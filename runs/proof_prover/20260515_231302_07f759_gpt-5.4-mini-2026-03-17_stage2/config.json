@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.4-mini-2026-03-17",
+  "stage1_run": "/Users/dush/cs474-project/runs/proof_prover/20260515_082358_ebb8fa_gpt-5.4-mini-2026-03-17_stage2",
+  "skip_existing_dir": "/Users/dush/cs474-project/runs/proof_prover/20260515_082358_ebb8fa_gpt-5.4-mini-2026-03-17_stage2",
+  "problem_filter": null,
+  "limit": 50,
+  "max_retries": 3,
+  "skipped_existing": 0,
+  "n_problems": 0,
+  "started_at": "2026-05-15T23:13:03.032286+00:00"
+}

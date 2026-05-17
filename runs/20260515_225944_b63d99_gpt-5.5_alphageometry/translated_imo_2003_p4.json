@@ -1,0 +1,100 @@
+{
+  "theorem_id": "translated_imo_2003_p4",
+  "statement": "Theorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr",
+  "goal": "cong p q q r",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2003_p4\n\nTheorem: translated_imo_2003_p4\nGiven: a b c = triangle a b c\nGiven: o = circle o a b c\nGiven: b1 = on_circle b1 o a, on_bline b1 c a\nGiven: d1 = on_circle d1 o a, on_bline d1 c a\nGiven: x = on_line x b b1, on_line x a c\nGiven: d = on_line d d1 x, on_circle d o a\nGiven: p = foot p d b c\nGiven: q = foot q d c a\nGiven: r = foot r d a b\nProve: prove that segment pq = segment qr\n\nHypotheses:\n  a b c = triangle a b c\n  o = circle o a b c\n  b1 = on_circle b1 o a, on_bline b1 c a\n  d1 = on_circle d1 o a, on_bline d1 c a\n  x = on_line x b b1, on_line x a c\n  d = on_line d d1 x, on_circle d o a\n  p = foot p d b c\n  q = foot q d c a\n  r = foot r d a b\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"The points b1 and d1 are arc midpoints of AC on the circumcircle, so BB1 and DD1 are angle bisectors; this gives AD/DC = AB/BC, which together with the projection-distance formula gives PQ = QR.\",\n  \"plan\": [\n    \"Show that BB1 and DD1 are angle bisectors of the relevant angles.\",\n    \"Use the angle-bisector theorem to relate AB/BC and AD/DC.\",\n    \"Use the sine rule in triangle ABC to rewrite AB/BC in terms of sin C and sin A.\",\n    \"Compute PQ and QR using the standard distance formula for orthogonal projections onto two intersecting lines.\",\n    \"Combine the equalities to conclude PQ = QR.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"The line BB1 is an angle bisector of angle ABC.\",\n      \"reasoning\": \"Since b1 lies on the perpendicular bisector of CA, we have b1A = b1C. Since b1, A, B, C lie on the same circle, equal chords b1A and b1C subtend equal angles at B, so \u2220ABb1 = \u2220b1BC. Therefore BB1 bisects angle ABC, possibly as an internal or external angle bisector depending on the position of b1.\",\n      \"facts_used\": [\n        \"definition of perpendicular bisector\",\n        \"equal chords subtend equal inscribed angles\"\n      ]\n    },\n    {\n      \"claim\": \"The line DD1 is an angle bisector of angle ADC.\",\n      \"reasoning\": \"Since d1 lies on the perpendicular bisector of CA, we have d1A = d1C. Since d1, A, D, C lie on the same circle, equal chords d1A and d1C subtend equal angles at D, so \u2220ADd1 = \u2220d1DC. Thus DD1 bisects angle ADC, possibly internally or externally.\",\n      \"facts_used\": [\n        \"definition of perpendicular bisector\",\n        \"equal chords subtend equal inscribed angles\"\n      ]\n    },\n    {\n      \"claim\": \"AB/BC = AD/DC.\",\n      \"reasoning\": \"Because X lies on BB1 and on AC, step 1 and the angle-bisector theorem in triangle ABC give AX/XC = AB/BC, with directed lengths if X lies outside segment AC. Because X lies on DD1 and on AC, step 2 and the angle-bisector theorem in triangle ADC give AX/XC = AD/DC. Hence AB/BC = AD/DC.\",\n      \"facts_used\": [\n        \"step 1\",\n        \"step 2\",\n        \"angle-bisector theorem\"\n      ]\n    },\n    {\n      \"claim\": \"AD sin\u2220BAC = DC sin\u2220BCA.\",\n      \"reasoning\": \"By the sine rule in triangle ABC, AB/BC = sin\u2220BCA/sin\u2220BAC. Combining this with step 3 gives AD/DC = sin\u2220BCA/sin\u2220BAC. Multiplying both sides by DC sin\u2220BAC gives AD sin\u2220BAC = DC sin\u2220BCA.\",\n      \"facts_used\": [\n        \"step 3\",\n        \"sine rule\"\n      ]\n    },\n    {\n      \"claim\": \"For any point Y and two lines through a point V making angle \u03b8, if F1 and F2 are the perpendicular projections of Y onto the two lines, then F1F2 = VY \u00b7 sin \u03b8.\",\n      \"reasoning\": \"Choose coordinates with V as the origin, the first line as the x-axis, and the second line making angle \u03b8 with the x-axis. If Y = \u03c1(cos \u03c6, sin \u03c6), then the projections are F1 = \u03c1 cos \u03c6 \u00b7 e1 and F2 = \u03c1 cos(\u03c6 - \u03b8) \u00b7 e2, where e1 and e2 are unit vectors along the two lines. A direct calculation gives |F1F2|^2 = \u03c1^2 sin^2 \u03b8, so F1F2 = VY \u00b7 sin \u03b8.\",\n      \"facts_used\": [\n        \"orthogonal projection formula\",\n        \"coordinate distance formula\",\n        \"trigonometric identities\"\n      ]\n    },\n    {\n      \"claim\": \"PQ = DC sin\u2220BCA.\",\n      \"reasoning\": \"Apply step 5 with V = C, Y = D, and the two lines CA and CB. The perpendicular projections of D onto CA and CB are Q and P respectively, so PQ = DC sin\u2220BCA.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"definition of foot of perpendicular\"\n      ]\n    },\n    {\n      \"claim\": \"QR = AD sin\u2220BAC.\",\n      \"reasoning\": \"Apply step 5 with V = A, Y = D, and the two lines AC and AB. The perpendicular projections of D onto AC and AB are Q and R respectively, so QR = AD sin\u2220BAC.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"definition of foot of perpendicular\"\n      ]\n    },\n    {\n      \"claim\": \"PQ = QR.\",\n      \"reasoning\": \"By step 6, PQ = DC sin\u2220BCA. By step 7, QR = AD sin\u2220BAC. Step 4 states that these two quantities are equal, hence PQ = QR.\",\n      \"facts_used\": [\n        \"step 4\",\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "The points b1 and d1 are arc midpoints of AC on the circumcircle, so BB1 and DD1 are angle bisectors; this gives AD/DC = AB/BC, which together with the projection-distance formula gives PQ = QR.",
+    "plan": [
+      "Show that BB1 and DD1 are angle bisectors of the relevant angles.",
+      "Use the angle-bisector theorem to relate AB/BC and AD/DC.",
+      "Use the sine rule in triangle ABC to rewrite AB/BC in terms of sin C and sin A.",
+      "Compute PQ and QR using the standard distance formula for orthogonal projections onto two intersecting lines.",
+      "Combine the equalities to conclude PQ = QR."
+    ],
+    "steps": [
+      {
+        "claim": "The line BB1 is an angle bisector of angle ABC.",
+        "reasoning": "Since b1 lies on the perpendicular bisector of CA, we have b1A = b1C. Since b1, A, B, C lie on the same circle, equal chords b1A and b1C subtend equal angles at B, so \u2220ABb1 = \u2220b1BC. Therefore BB1 bisects angle ABC, possibly as an internal or external angle bisector depending on the position of b1.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "equal chords subtend equal inscribed angles"
+        ]
+      },
+      {
+        "claim": "The line DD1 is an angle bisector of angle ADC.",
+        "reasoning": "Since d1 lies on the perpendicular bisector of CA, we have d1A = d1C. Since d1, A, D, C lie on the same circle, equal chords d1A and d1C subtend equal angles at D, so \u2220ADd1 = \u2220d1DC. Thus DD1 bisects angle ADC, possibly internally or externally.",
+        "facts_used": [
+          "definition of perpendicular bisector",
+          "equal chords subtend equal inscribed angles"
+        ]
+      },
+      {
+        "claim": "AB/BC = AD/DC.",
+        "reasoning": "Because X lies on BB1 and on AC, step 1 and the angle-bisector theorem in triangle ABC give AX/XC = AB/BC, with directed lengths if X lies outside segment AC. Because X lies on DD1 and on AC, step 2 and the angle-bisector theorem in triangle ADC give AX/XC = AD/DC. Hence AB/BC = AD/DC.",
+        "facts_used": [
+          "step 1",
+          "step 2",
+          "angle-bisector theorem"
+        ]
+      },
+      {
+        "claim": "AD sin\u2220BAC = DC sin\u2220BCA.",
+        "reasoning": "By the sine rule in triangle ABC, AB/BC = sin\u2220BCA/sin\u2220BAC. Combining this with step 3 gives AD/DC = sin\u2220BCA/sin\u2220BAC. Multiplying both sides by DC sin\u2220BAC gives AD sin\u2220BAC = DC sin\u2220BCA.",
+        "facts_used": [
+          "step 3",
+          "sine rule"
+        ]
+      },
+      {
+        "claim": "For any point Y and two lines through a point V making angle \u03b8, if F1 and F2 are the perpendicular projections of Y onto the two lines, then F1F2 = VY \u00b7 sin \u03b8.",
+        "reasoning": "Choose coordinates with V as the origin, the first line as the x-axis, and the second line making angle \u03b8 with the x-axis. If Y = \u03c1(cos \u03c6, sin \u03c6), then the projections are F1 = \u03c1 cos \u03c6 \u00b7 e1 and F2 = \u03c1 cos(\u03c6 - \u03b8) \u00b7 e2, where e1 and e2 are unit vectors along the two lines. A direct calculation gives |F1F2|^2 = \u03c1^2 sin^2 \u03b8, so F1F2 = VY \u00b7 sin \u03b8.",
+        "facts_used": [
+          "orthogonal projection formula",
+          "coordinate distance formula",
+          "trigonometric identities"
+        ]
+      },
+      {
+        "claim": "PQ = DC sin\u2220BCA.",
+        "reasoning": "Apply step 5 with V = C, Y = D, and the two lines CA and CB. The perpendicular projections of D onto CA and CB are Q and P respectively, so PQ = DC sin\u2220BCA.",
+        "facts_used": [
+          "step 5",
+          "definition of foot of perpendicular"
+        ]
+      },
+      {
+        "claim": "QR = AD sin\u2220BAC.",
+        "reasoning": "Apply step 5 with V = A, Y = D, and the two lines AC and AB. The perpendicular projections of D onto AC and AB are Q and R respectively, so QR = AD sin\u2220BAC.",
+        "facts_used": [
+          "step 5",
+          "definition of foot of perpendicular"
+        ]
+      },
+      {
+        "claim": "PQ = QR.",
+        "reasoning": "By step 6, PQ = DC sin\u2220BCA. By step 7, QR = AD sin\u2220BAC. Step 4 states that these two quantities are equal, hence PQ = QR.",
+        "facts_used": [
+          "step 4",
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:05:41.429772+00:00"
+}

@@ -1,0 +1,115 @@
+{
+  "theorem_id": "translated_imo_2014_p4",
+  "statement": "Theorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa",
+  "goal": "cong o x o a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a mathematical proof assistant. Given a theorem statement, produce a clear,\nstructured natural-language proof. Your proof will later be analyzed to extract\nformal verification steps, so the structure of each step matters more than prose\nquality.\n\n## Output Format\nReturn a JSON object with these fields:\n\n  \"key_observation\": One sentence stating the main insight that makes the proof\n    work. Often this identifies a structural property (e.g., \"z is a primitive\n    8th root of unity, so z^8 = 1\") or a key reformulation. If there is no single\n    insight, summarize the strategy in one sentence.\n\n  \"plan\": An array of 3-6 short strings describing the high-level proof strategy\n    in order. Each item is a logical milestone, not a detailed step.\n\n  \"steps\": An array of proof steps. Each step is an object with:\n    - \"claim\": A precise mathematical statement this step establishes.\n    - \"reasoning\": Brief explanation (1-3 sentences) of why the claim follows.\n    - \"facts_used\": Array of strings \u2014 names of standard results\n      (e.g., \"AM-GM inequality\", \"Fermat's little theorem\", \"definition of\n      modular arithmetic\") and/or references to prior steps by index\n      (e.g., \"step 2\").\n\n  \"final_answer\": For problems with a numerical or closed-form answer, state it\n    as a string (e.g., \"36\", \"n^2 + 1\"). Use null if not applicable.\n\n## Rules\n- Claims must be precise mathematical statements, not vague summaries.\n- Each step should be small enough that a careful human could verify it in\n  isolation given the previous steps.\n- Do not skip algebraic manipulations that are non-obvious.\n- Return ONLY the JSON object \u2014 no markdown fences, no preamble, no trailing text.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2014_p4\n\nTheorem: translated_imo_2014_p4\nGiven: a b c = triangle a b c\nGiven: p = on_line p b c, on_aline p a b b c a\nGiven: q = on_line q b c, on_aline q a c c b a\nGiven: m = mirror m a p\nGiven: n = mirror n a q\nGiven: x = on_line x b m, on_line x c n\nGiven: o = circle o a b c\nProve: prove that segment ox = segment oa\n\nHypotheses:\n  a b c = triangle a b c\n  p = on_line p b c, on_aline p a b b c a\n  q = on_line q b c, on_aline q a c c b a\n  m = mirror m a p\n  n = mirror n a q\n  x = on_line x b m, on_line x c n\n  o = circle o a b c\n\nVariables: \n\nProduce the structured English proof."
+    }
+  ],
+  "raw_response": "{\n  \"key_observation\": \"Using coordinates on the line BC, the angle conditions give explicit positions for P and Q, and after reflecting A in P and Q the intersection X can be checked directly to satisfy the circumcircle equation of ABC.\",\n  \"plan\": [\n    \"Place B and C on the x-axis and write A in coordinates.\",\n    \"Use the sine rule and the given angle equalities to determine the coordinates of P and Q.\",\n    \"Use point reflection to determine M and N.\",\n    \"Compute the intersection X of BM and CN.\",\n    \"Substitute the coordinates of X into the circumcircle equation of ABC.\",\n    \"Conclude that X lies on the circumcircle, hence OX = OA.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates B = (0,0), C = (a,0), and A = (u,v), where v != 0, AB = c, AC = b, and u = (a^2 + c^2 - b^2)/(2a).\",\n      \"reasoning\": \"A nondegenerate triangle can be placed in the plane with BC on the x-axis. Since AB^2 = u^2 + v^2 = c^2 and AC^2 = (u-a)^2 + v^2 = b^2, subtracting the two equations gives 2au = a^2 + c^2 - b^2.\",\n      \"facts_used\": [\n        \"coordinate placement\",\n        \"distance formula\",\n        \"nondegeneracy of a triangle\"\n      ]\n    },\n    {\n      \"claim\": \"The point P has coordinates P = (c^2/a,0).\",\n      \"reasoning\": \"Since P lies on line BC and angle PAB equals angle BCA, triangle ABP has angles angle BAP = angle BCA and angle ABP = angle ABC. Hence its third angle equals angle BAC. By the sine rule in triangle ABP, BP/sin(angle BAP) = AB/sin(angle APB), so BP/sin C = c/sin A. Using the sine rule in triangle ABC, c/sin C = a/sin A, hence BP = c^2/a.\",\n      \"facts_used\": [\n        \"given angle equality for P\",\n        \"P lies on line BC\",\n        \"angle sum in a triangle\",\n        \"sine rule\"\n      ]\n    },\n    {\n      \"claim\": \"The point Q has coordinates Q = ((a^2 - b^2)/a,0).\",\n      \"reasoning\": \"Since Q lies on line BC and angle CAQ equals angle CBA, triangle ACQ has angles angle CAQ = angle CBA and angle ACQ = angle ACB. Hence its third angle equals angle BAC. By the sine rule in triangle ACQ, CQ/sin(angle CAQ) = AC/sin(angle AQC), so CQ/sin B = b/sin A. Using the sine rule in triangle ABC, b/sin B = a/sin A, hence CQ = b^2/a. Therefore BQ = BC - CQ = a - b^2/a = (a^2 - b^2)/a.\",\n      \"facts_used\": [\n        \"given angle equality for Q\",\n        \"Q lies on line BC\",\n        \"angle sum in a triangle\",\n        \"sine rule\"\n      ]\n    },\n    {\n      \"claim\": \"The reflected points are M = (2c^2/a - u,-v) and N = (2(a^2-b^2)/a - u,-v).\",\n      \"reasoning\": \"Because M is the reflection of A in P, the point P is the midpoint of AM, so M = 2P - A. Similarly, because N is the reflection of A in Q, the point Q is the midpoint of AN, so N = 2Q - A.\",\n      \"facts_used\": [\n        \"definition of reflection in a point\",\n        \"step 1\",\n        \"step 2\",\n        \"step 3\"\n      ]\n    },\n    {\n      \"claim\": \"If X = BM intersect CN, then X = tM with t = a^2/(2b^2 + 2c^2 - a^2).\",\n      \"reasoning\": \"Since B = (0,0), every point on BM has the form tM. Write M = (m,-v), where m = 2c^2/a - u. Since C = (a,0), every point on CN has the form C + s(N-C). Comparing y-coordinates gives s = t. Comparing x-coordinates gives tm = a + t(N_x-a), so t(m - N_x + a) = a. Now m - N_x + a = 2c^2/a - 2(a^2-b^2)/a + a = (2b^2 + 2c^2 - a^2)/a, hence t = a^2/(2b^2 + 2c^2 - a^2).\",\n      \"facts_used\": [\n        \"equation of a line through two points\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The circumcircle of ABC has equation x^2 + y^2 - ax + lambda y = 0, where lambda = (au - c^2)/v.\",\n      \"reasoning\": \"Any circle through B = (0,0) has equation x^2 + y^2 + Dx + Ey = 0. Since it also passes through C = (a,0), we get a^2 + Da = 0, hence D = -a. Since it passes through A = (u,v), we have u^2 + v^2 - au + lambda v = 0. Because u^2 + v^2 = c^2, this gives lambda = (au - c^2)/v.\",\n      \"facts_used\": [\n        \"general equation of a circle\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"For m = 2c^2/a - u, one has m^2 + v^2 = c^2(2b^2 + 2c^2 - a^2)/a^2.\",\n      \"reasoning\": \"Using u^2 + v^2 = c^2, we compute m^2 + v^2 = (2c^2/a - u)^2 + v^2 = 4c^4/a^2 - 4c^2u/a + c^2. Substituting u = (a^2 + c^2 - b^2)/(2a), this becomes c^2(4c^2/a^2 - 2(a^2+c^2-b^2)/a^2 + 1) = c^2(2b^2 + 2c^2 - a^2)/a^2.\",\n      \"facts_used\": [\n        \"algebra\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The point X lies on the circumcircle of ABC.\",\n      \"reasoning\": \"By step 5, X = (tm,-tv), where t = a^2/(2b^2+2c^2-a^2). Substituting X into the circle equation from step 6 gives t^2(m^2+v^2) - atm - lambda tv = t(t(m^2+v^2) - am - lambda v). Since lambda v = au - c^2 and m = 2c^2/a - u, we have am + lambda v = a(2c^2/a-u) + au - c^2 = c^2. Thus the circle expression equals t(t(m^2+v^2)-c^2). By step 7 and the value of t, t(m^2+v^2) = c^2, so the expression is 0.\",\n      \"facts_used\": [\n        \"step 5\",\n        \"step 6\",\n        \"step 7\",\n        \"algebra\"\n      ]\n    },\n    {\n      \"claim\": \"OX = OA.\",\n      \"reasoning\": \"The point O is the circumcenter of triangle ABC. Since X lies on the circumcircle of ABC, its distance from O equals the common radius of the circumcircle, which is also OA.\",\n      \"facts_used\": [\n        \"definition of circumcenter\",\n        \"step 8\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}",
+  "english_proof": {
+    "key_observation": "Using coordinates on the line BC, the angle conditions give explicit positions for P and Q, and after reflecting A in P and Q the intersection X can be checked directly to satisfy the circumcircle equation of ABC.",
+    "plan": [
+      "Place B and C on the x-axis and write A in coordinates.",
+      "Use the sine rule and the given angle equalities to determine the coordinates of P and Q.",
+      "Use point reflection to determine M and N.",
+      "Compute the intersection X of BM and CN.",
+      "Substitute the coordinates of X into the circumcircle equation of ABC.",
+      "Conclude that X lies on the circumcircle, hence OX = OA."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates B = (0,0), C = (a,0), and A = (u,v), where v != 0, AB = c, AC = b, and u = (a^2 + c^2 - b^2)/(2a).",
+        "reasoning": "A nondegenerate triangle can be placed in the plane with BC on the x-axis. Since AB^2 = u^2 + v^2 = c^2 and AC^2 = (u-a)^2 + v^2 = b^2, subtracting the two equations gives 2au = a^2 + c^2 - b^2.",
+        "facts_used": [
+          "coordinate placement",
+          "distance formula",
+          "nondegeneracy of a triangle"
+        ]
+      },
+      {
+        "claim": "The point P has coordinates P = (c^2/a,0).",
+        "reasoning": "Since P lies on line BC and angle PAB equals angle BCA, triangle ABP has angles angle BAP = angle BCA and angle ABP = angle ABC. Hence its third angle equals angle BAC. By the sine rule in triangle ABP, BP/sin(angle BAP) = AB/sin(angle APB), so BP/sin C = c/sin A. Using the sine rule in triangle ABC, c/sin C = a/sin A, hence BP = c^2/a.",
+        "facts_used": [
+          "given angle equality for P",
+          "P lies on line BC",
+          "angle sum in a triangle",
+          "sine rule"
+        ]
+      },
+      {
+        "claim": "The point Q has coordinates Q = ((a^2 - b^2)/a,0).",
+        "reasoning": "Since Q lies on line BC and angle CAQ equals angle CBA, triangle ACQ has angles angle CAQ = angle CBA and angle ACQ = angle ACB. Hence its third angle equals angle BAC. By the sine rule in triangle ACQ, CQ/sin(angle CAQ) = AC/sin(angle AQC), so CQ/sin B = b/sin A. Using the sine rule in triangle ABC, b/sin B = a/sin A, hence CQ = b^2/a. Therefore BQ = BC - CQ = a - b^2/a = (a^2 - b^2)/a.",
+        "facts_used": [
+          "given angle equality for Q",
+          "Q lies on line BC",
+          "angle sum in a triangle",
+          "sine rule"
+        ]
+      },
+      {
+        "claim": "The reflected points are M = (2c^2/a - u,-v) and N = (2(a^2-b^2)/a - u,-v).",
+        "reasoning": "Because M is the reflection of A in P, the point P is the midpoint of AM, so M = 2P - A. Similarly, because N is the reflection of A in Q, the point Q is the midpoint of AN, so N = 2Q - A.",
+        "facts_used": [
+          "definition of reflection in a point",
+          "step 1",
+          "step 2",
+          "step 3"
+        ]
+      },
+      {
+        "claim": "If X = BM intersect CN, then X = tM with t = a^2/(2b^2 + 2c^2 - a^2).",
+        "reasoning": "Since B = (0,0), every point on BM has the form tM. Write M = (m,-v), where m = 2c^2/a - u. Since C = (a,0), every point on CN has the form C + s(N-C). Comparing y-coordinates gives s = t. Comparing x-coordinates gives tm = a + t(N_x-a), so t(m - N_x + a) = a. Now m - N_x + a = 2c^2/a - 2(a^2-b^2)/a + a = (2b^2 + 2c^2 - a^2)/a, hence t = a^2/(2b^2 + 2c^2 - a^2).",
+        "facts_used": [
+          "equation of a line through two points",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The circumcircle of ABC has equation x^2 + y^2 - ax + lambda y = 0, where lambda = (au - c^2)/v.",
+        "reasoning": "Any circle through B = (0,0) has equation x^2 + y^2 + Dx + Ey = 0. Since it also passes through C = (a,0), we get a^2 + Da = 0, hence D = -a. Since it passes through A = (u,v), we have u^2 + v^2 - au + lambda v = 0. Because u^2 + v^2 = c^2, this gives lambda = (au - c^2)/v.",
+        "facts_used": [
+          "general equation of a circle",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "For m = 2c^2/a - u, one has m^2 + v^2 = c^2(2b^2 + 2c^2 - a^2)/a^2.",
+        "reasoning": "Using u^2 + v^2 = c^2, we compute m^2 + v^2 = (2c^2/a - u)^2 + v^2 = 4c^4/a^2 - 4c^2u/a + c^2. Substituting u = (a^2 + c^2 - b^2)/(2a), this becomes c^2(4c^2/a^2 - 2(a^2+c^2-b^2)/a^2 + 1) = c^2(2b^2 + 2c^2 - a^2)/a^2.",
+        "facts_used": [
+          "algebra",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The point X lies on the circumcircle of ABC.",
+        "reasoning": "By step 5, X = (tm,-tv), where t = a^2/(2b^2+2c^2-a^2). Substituting X into the circle equation from step 6 gives t^2(m^2+v^2) - atm - lambda tv = t(t(m^2+v^2) - am - lambda v). Since lambda v = au - c^2 and m = 2c^2/a - u, we have am + lambda v = a(2c^2/a-u) + au - c^2 = c^2. Thus the circle expression equals t(t(m^2+v^2)-c^2). By step 7 and the value of t, t(m^2+v^2) = c^2, so the expression is 0.",
+        "facts_used": [
+          "step 5",
+          "step 6",
+          "step 7",
+          "algebra"
+        ]
+      },
+      {
+        "claim": "OX = OA.",
+        "reasoning": "The point O is the circumcenter of triangle ABC. Since X lies on the circumcircle of ABC, its distance from O equals the common radius of the circumcircle, which is also OA.",
+        "facts_used": [
+          "definition of circumcenter",
+          "step 8"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "parse_error": null,
+  "schema_missing": [],
+  "succeeded": true,
+  "timestamp": "2026-05-15T23:36:21.018427+00:00"
+}

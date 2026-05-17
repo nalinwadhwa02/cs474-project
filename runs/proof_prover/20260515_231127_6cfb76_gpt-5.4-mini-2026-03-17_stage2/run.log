@@ -1,0 +1,10 @@
+18:11:27  INFO      Run dir       : /Users/dush/cs474-project/runs/proof_prover/20260515_231127_6cfb76_gpt-5.4-mini-2026-03-17_stage2
+18:11:27  INFO      Model         : gpt-5.4-mini-2026-03-17
+18:11:27  INFO      Server        : https://api.openai.com/v1
+18:11:27  INFO      Proofs source: 
+18:11:27  INFO      Skip existing: /Users/dush/cs474-project/runs/proof_prover/20260515_082358_ebb8fa_gpt-5.4-mini-2026-03-17_stage2
+18:11:27  INFO      Loaded 0 stage-1 records from .
+18:11:27  INFO      Skipped 0 problems already present in /Users/dush/cs474-project/runs/proof_prover/20260515_082358_ebb8fa_gpt-5.4-mini-2026-03-17_stage2
+18:11:27  INFO      Running 0 problems — logs in /Users/dush/cs474-project/runs/proof_prover/20260515_231127_6cfb76_gpt-5.4-mini-2026-03-17_stage2
+18:11:27  INFO      Done. proved=0  sat=0  unknown=0  unsound=0  error=0  (of 0)
+18:11:27  INFO      Results saved to /Users/dush/cs474-project/runs/proof_prover/20260515_231127_6cfb76_gpt-5.4-mini-2026-03-17_stage2

@@ -1,0 +1,1516 @@
+{
+  "theorem_id": "translated_imo_2012_p1",
+  "statement": "Theorem: translated_imo_2012_p1\nGiven: a b c = triangle a b c\nGiven: m l k j = excenter2 m l k j a b c\nGiven: f = on_line f m l, on_line f b j\nGiven: g = on_line g m k, on_line g c j\nGiven: s = on_line s f a, on_line s b c\nGiven: t = on_line t g a, on_line t c b\nProve: prove that segment ms = segment mt",
+  "goal": "cong m s m t",
+  "stage1_english_proof": {
+    "key_observation": "After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.",
+    "plan": [
+      "Normalize the configuration by coordinates with M at the origin and BC as the x-axis.",
+      "Compute the tangency points K and L of the excircle with AB and AC.",
+      "Compute the coordinates of A, F, and G.",
+      "Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.",
+      "Show that S and T are symmetric about M on line BC."
+    ],
+    "steps": [
+      {
+        "claim": "We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.",
+        "reasoning": "Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.",
+        "facts_used": [
+          "coordinate normalization by similarity",
+          "radius to tangent line is perpendicular",
+          "definition of excircle tangency"
+        ]
+      },
+      {
+        "claim": "The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.",
+        "reasoning": "For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)·(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).",
+        "facts_used": [
+          "equation of a circle",
+          "radius to tangent line is perpendicular",
+          "dot product criterion for perpendicularity",
+          "step 1"
+        ]
+      },
+      {
+        "claim": "The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).",
+        "reasoning": "Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+        "reasoning": "Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+        "reasoning": "Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).",
+        "facts_used": [
+          "two-point equation of a line",
+          "solving simultaneous linear equations",
+          "step 1",
+          "step 2"
+        ]
+      },
+      {
+        "claim": "The point S=AF∩BC has coordinates S=(-(p+q)/(1-pq),0).",
+        "reasoning": "Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).",
+        "facts_used": [
+          "collinearity",
+          "affine coordinates on a line",
+          "step 3",
+          "step 4"
+        ]
+      },
+      {
+        "claim": "The point T=AG∩BC has coordinates T=((p+q)/(1-pq),0).",
+        "reasoning": "Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).",
+        "facts_used": [
+          "collinearity",
+          "affine coordinates on a line",
+          "step 3",
+          "step 5"
+        ]
+      },
+      {
+        "claim": "MS=MT.",
+        "reasoning": "By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.",
+        "facts_used": [
+          "distance formula on a coordinate line",
+          "definition of midpoint",
+          "step 1",
+          "step 6",
+          "step 7"
+        ]
+      }
+    ],
+    "final_answer": null
+  },
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+        },
+        {
+          "role": "user",
+          "content": "## Theorem: translated_imo_2012_p1\n\nTheorem: translated_imo_2012_p1\nGiven: a b c = triangle a b c\nGiven: m l k j = excenter2 m l k j a b c\nGiven: f = on_line f m l, on_line f b j\nGiven: g = on_line g m k, on_line g c j\nGiven: s = on_line s f a, on_line s b c\nGiven: t = on_line t g a, on_line t c b\nProve: prove that segment ms = segment mt\n\nGoal: cong m s m t\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.\",\n  \"plan\": [\n    \"Normalize the configuration by coordinates with M at the origin and BC as the x-axis.\",\n    \"Compute the tangency points K and L of the excircle with AB and AC.\",\n    \"Compute the coordinates of A, F, and G.\",\n    \"Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.\",\n    \"Show that S and T are symmetric about M on line BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.\",\n      \"reasoning\": \"Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.\",\n      \"facts_used\": [\n        \"coordinate normalization by similarity\",\n        \"radius to tangent line is perpendicular\",\n        \"definition of excircle tangency\"\n      ]\n    },\n    {\n      \"claim\": \"The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.\",\n      \"reasoning\": \"For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)·(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).\",\n      \"facts_used\": [\n        \"equation of a circle\",\n        \"radius to tangent line is perpendicular\",\n        \"dot product criterion for perpendicularity\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).\",\n      \"reasoning\": \"Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point S=AF∩BC has coordinates S=(-(p+q)/(1-pq),0).\",\n      \"reasoning\": \"Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The point T=AG∩BC has coordinates T=((p+q)/(1-pq),0).\",\n      \"reasoning\": \"Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 5\"\n      ]\n    },\n    {\n      \"claim\": \"MS=MT.\",\n      \"reasoning\": \"By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.\",\n      \"facts_used\": [\n        \"distance formula on a coordinate line\",\n        \"definition of midpoint\",\n        \"step 1\",\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+        }
+      ],
+      "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"p\", \"sort\": \"Real\"},\n      {\"name\": \"q\", \"sort\": \"Real\"},\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"m_x\", \"sort\": \"Real\"},\n      {\"name\": \"m_y\", \"sort\": \"Real\"},\n      {\"name\": \"l_x\", \"sort\": \"Real\"},\n      {\"name\": \"l_y\", \"sort\": \"Real\"},\n      {\"name\": \"k_x\", \"sort\": \"Real\"},\n      {\"name\": \"k_y\", \"sort\": \"Real\"},\n      {\"name\": \"j_x\", \"sort\": \"Real\"},\n      {\"name\": \"j_y\", \"sort\": \"Real\"},\n      {\"name\": \"f_x\", \"sort\": \"Real\"},\n      {\"name\": \"f_y\", \"sort\": \"Real\"},\n      {\"name\": \"g_x\", \"sort\": \"Real\"},\n      {\"name\": \"g_y\", \"sort\": \"Real\"},\n      {\"name\": \"s_x\", \"sort\": \"Real\"},\n      {\"name\": \"s_y\", \"sort\": \"Real\"},\n      {\"name\": \"t_x\", \"sort\": \"Real\"},\n      {\"name\": \"t_y\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"p > 0\",\n      \"q > 0\",\n      \"1 - p*q != 0\",\n      \"m_x == 0\",\n      \"m_y == 0\",\n      \"j_x == 0\",\n      \"j_y == -1\",\n      \"b_x == -p\",\n      \"b_y == 0\",\n      \"c_x == q\",\n      \"c_y == 0\",\n      \"l_x**2 + (l_y + 1)**2 == 1\",\n      \"l_x*(l_x - q) + (l_y + 1)*l_y == 0\",\n      \"k_x**2 + (k_y + 1)**2 == 1\",\n      \"k_x*(k_x + p) + (k_y + 1)*k_y == 0\",\n      \"(a_x + p)*k_y == a_y*(k_x + p)\",\n      \"(a_x - q)*l_y == a_y*(l_x - q)\",\n      \"f_x*l_y == f_y*l_x\",\n      \"f_x + p + p*f_y == 0\",\n      \"g_x*k_y == g_y*k_x\",\n      \"g_x == q*(g_y + 1)\",\n      \"(f_x - a_x)*(s_y - a_y) == (f_y - a_y)*(s_x - a_x)\",\n      \"s_y == 0\",\n      \"(g_x - a_x)*(t_y - a_y) == (g_y - a_y)*(t_x - a_x)\",\n      \"t_y == 0\",\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(a_x == m_x, a_y == m_y))\",\n      \"Not(And(a_x == l_x, a_y == l_y))\",\n      \"Not(And(a_x == k_x, a_y == k_y))\",\n      \"Not(And(a_x == j_x, a_y == j_y))\",\n      \"Not(And(a_x == f_x, a_y == f_y))\",\n      \"Not(And(a_x == g_x, a_y == g_y))\",\n      \"Not(And(a_x == s_x, a_y == s_y))\",\n      \"Not(And(a_x == t_x, a_y == t_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(b_x == m_x, b_y == m_y))\",\n      \"Not(And(b_x == l_x, b_y == l_y))\",\n      \"Not(And(b_x == k_x, b_y == k_y))\",\n      \"Not(And(b_x == j_x, b_y == j_y))\",\n      \"Not(And(b_x == f_x, b_y == f_y))\",\n      \"Not(And(b_x == g_x, b_y == g_y))\",\n      \"Not(And(b_x == s_x, b_y == s_y))\",\n      \"Not(And(b_x == t_x, b_y == t_y))\",\n      \"Not(And(c_x == m_x, c_y == m_y))\",\n      \"Not(And(c_x == l_x, c_y == l_y))\",\n      \"Not(And(c_x == k_x, c_y == k_y))\",\n      \"Not(And(c_x == j_x, c_y == j_y))\",\n      \"Not(And(c_x == f_x, c_y == f_y))\",\n      \"Not(And(c_x == g_x, c_y == g_y))\",\n      \"Not(And(c_x == s_x, c_y == s_y))\",\n      \"Not(And(c_x == t_x, c_y == t_y))\",\n      \"Not(And(m_x == l_x, m_y == l_y))\",\n      \"Not(And(m_x == k_x, m_y == k_y))\",\n      \"Not(And(m_x == j_x, m_y == j_y))\",\n      \"Not(And(m_x == f_x, m_y == f_y))\",\n      \"Not(And(m_x == g_x, m_y == g_y))\",\n      \"Not(And(m_x == s_x, m_y == s_y))\",\n      \"Not(And(m_x == t_x, m_y == t_y))\",\n      \"Not(And(l_x == k_x, l_y == k_y))\",\n      \"Not(And(l_x == j_x, l_y == j_y))\",\n      \"Not(And(l_x == f_x, l_y == f_y))\",\n      \"Not(And(l_x == g_x, l_y == g_y))\",\n      \"Not(And(l_x == s_x, l_y == s_y))\",\n      \"Not(And(l_x == t_x, l_y == t_y))\",\n      \"Not(And(k_x == j_x, k_y == j_y))\",\n      \"Not(And(k_x == f_x, k_y == f_y))\",\n      \"Not(And(k_x == g_x, k_y == g_y))\",\n      \"Not(And(k_x == s_x, k_y == s_y))\",\n      \"Not(And(k_x == t_x, k_y == t_y))\",\n      \"Not(And(j_x == f_x, j_y == f_y))\",\n      \"Not(And(j_x == g_x, j_y == g_y))\",\n      \"Not(And(j_x == s_x, j_y == s_y))\",\n      \"Not(And(j_x == t_x, j_y == t_y))\",\n      \"Not(And(f_x == g_x, f_y == g_y))\",\n      \"Not(And(f_x == s_x, f_y == s_y))\",\n      \"Not(And(f_x == t_x, f_y == t_y))\",\n      \"Not(And(g_x == s_x, g_y == s_y))\",\n      \"Not(And(g_x == t_x, g_y == t_y))\",\n      \"Not(And(s_x == t_x, s_y == t_y))\"\n    ],\n    \"goal\": \"(s_x - m_x)**2 + (s_y - m_y)**2 == (t_x - m_x)**2 + (t_y - m_y)**2\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"tangent_point_from_C\",\n      \"english\": \"For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).\",\n      \"vars\": [\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(q > 0, lx**2 + (ly + 1)**2 == 1, lx*(lx - q) + (ly + 1)*ly == 0, Not(And(lx == 0, ly == 0))), And(lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2)))\"\n    },\n    {\n      \"name\": \"tangent_point_from_B\",\n      \"english\": \"For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, kx**2 + (ky + 1)**2 == 1, kx*(kx + p) + (ky + 1)*ky == 0, Not(And(kx == 0, ky == 0))), And(kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2)))\"\n    },\n    {\n      \"name\": \"vertex_A_coordinates\",\n      \"english\": \"Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), (ax + p)*ky == ay*(kx + p), (ax - q)*ly == ay*(lx - q)), And(ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_F_coordinates\",\n      \"english\": \"The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"fx\", \"sort\": \"Real\"},\n        {\"name\": \"fy\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), fx*ly == fy*lx, fx + p + p*fy == 0), And(fx == -p/(1 - p*q), fy == p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_G_coordinates\",\n      \"english\": \"The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"gx\", \"sort\": \"Real\"},\n        {\"name\": \"gy\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), gx*ky == gy*kx, gx == q*(gy + 1)), And(gx == q/(1 - p*q), gy == p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_S_coordinates\",\n      \"english\": \"Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"fx\", \"sort\": \"Real\"},\n        {\"name\": \"fy\", \"sort\": \"Real\"},\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), fx == -p/(1 - p*q), fy == p*q/(1 - p*q), sy == 0, (fx - ax)*(sy - ay) == (fy - ay)*(sx - ax)), And(sx == -(p + q)/(1 - p*q), sy == 0))\"\n    },\n    {\n      \"name\": \"point_T_coordinates\",\n      \"english\": \"Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"gx\", \"sort\": \"Real\"},\n        {\"name\": \"gy\", \"sort\": \"Real\"},\n        {\"name\": \"tx\", \"sort\": \"Real\"},\n        {\"name\": \"ty\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), gx == q/(1 - p*q), gy == p*q/(1 - p*q), ty == 0, (gx - ax)*(ty - ay) == (gy - ay)*(tx - ax)), And(tx == (p + q)/(1 - p*q), ty == 0))\"\n    },\n    {\n      \"name\": \"opposite_points_on_axis_equidistant\",\n      \"english\": \"If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"tx\", \"sort\": \"Real\"},\n        {\"name\": \"ty\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(mx == 0, my == 0, sx == -(p + q)/(1 - p*q), sy == 0, tx == (p + q)/(1 - p*q), ty == 0), (sx - mx)**2 + (sy - my)**2 == (tx - mx)**2 + (ty - my)**2)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"tangent_point_from_C\",\n      \"terms\": {\"q\": \"q\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"tangent_point_from_B\",\n      \"terms\": {\"p\": \"p\", \"kx\": \"k_x\", \"ky\": \"k_y\"}\n    },\n    {\n      \"lemma\": \"vertex_A_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"kx\": \"k_x\", \"ky\": \"k_y\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"point_F_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"fx\": \"f_x\", \"fy\": \"f_y\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"point_G_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"gx\": \"g_x\", \"gy\": \"g_y\", \"kx\": \"k_x\", \"ky\": \"k_y\"}\n    },\n    {\n      \"lemma\": \"point_S_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"fx\": \"f_x\", \"fy\": \"f_y\", \"sx\": \"s_x\", \"sy\": \"s_y\"}\n    },\n    {\n      \"lemma\": \"point_T_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"gx\": \"g_x\", \"gy\": \"g_y\", \"tx\": \"t_x\", \"ty\": \"t_y\"}\n    },\n    {\n      \"lemma\": \"opposite_points_on_axis_equidistant\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"mx\": \"m_x\", \"my\": \"m_y\", \"sx\": \"s_x\", \"sy\": \"s_y\", \"tx\": \"t_x\", \"ty\": \"t_y\"}\n    }\n  ]\n}",
+      "formalization": {
+        "theorem": {
+          "variables": [
+            {
+              "name": "p",
+              "sort": "Real"
+            },
+            {
+              "name": "q",
+              "sort": "Real"
+            },
+            {
+              "name": "a_x",
+              "sort": "Real"
+            },
+            {
+              "name": "a_y",
+              "sort": "Real"
+            },
+            {
+              "name": "b_x",
+              "sort": "Real"
+            },
+            {
+              "name": "b_y",
+              "sort": "Real"
+            },
+            {
+              "name": "c_x",
+              "sort": "Real"
+            },
+            {
+              "name": "c_y",
+              "sort": "Real"
+            },
+            {
+              "name": "m_x",
+              "sort": "Real"
+            },
+            {
+              "name": "m_y",
+              "sort": "Real"
+            },
+            {
+              "name": "l_x",
+              "sort": "Real"
+            },
+            {
+              "name": "l_y",
+              "sort": "Real"
+            },
+            {
+              "name": "k_x",
+              "sort": "Real"
+            },
+            {
+              "name": "k_y",
+              "sort": "Real"
+            },
+            {
+              "name": "j_x",
+              "sort": "Real"
+            },
+            {
+              "name": "j_y",
+              "sort": "Real"
+            },
+            {
+              "name": "f_x",
+              "sort": "Real"
+            },
+            {
+              "name": "f_y",
+              "sort": "Real"
+            },
+            {
+              "name": "g_x",
+              "sort": "Real"
+            },
+            {
+              "name": "g_y",
+              "sort": "Real"
+            },
+            {
+              "name": "s_x",
+              "sort": "Real"
+            },
+            {
+              "name": "s_y",
+              "sort": "Real"
+            },
+            {
+              "name": "t_x",
+              "sort": "Real"
+            },
+            {
+              "name": "t_y",
+              "sort": "Real"
+            }
+          ],
+          "hypotheses": [
+            "p > 0",
+            "q > 0",
+            "1 - p*q != 0",
+            "m_x == 0",
+            "m_y == 0",
+            "j_x == 0",
+            "j_y == -1",
+            "b_x == -p",
+            "b_y == 0",
+            "c_x == q",
+            "c_y == 0",
+            "l_x**2 + (l_y + 1)**2 == 1",
+            "l_x*(l_x - q) + (l_y + 1)*l_y == 0",
+            "k_x**2 + (k_y + 1)**2 == 1",
+            "k_x*(k_x + p) + (k_y + 1)*k_y == 0",
+            "(a_x + p)*k_y == a_y*(k_x + p)",
+            "(a_x - q)*l_y == a_y*(l_x - q)",
+            "f_x*l_y == f_y*l_x",
+            "f_x + p + p*f_y == 0",
+            "g_x*k_y == g_y*k_x",
+            "g_x == q*(g_y + 1)",
+            "(f_x - a_x)*(s_y - a_y) == (f_y - a_y)*(s_x - a_x)",
+            "s_y == 0",
+            "(g_x - a_x)*(t_y - a_y) == (g_y - a_y)*(t_x - a_x)",
+            "t_y == 0",
+            "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)",
+            "Not(And(a_x == b_x, a_y == b_y))",
+            "Not(And(a_x == c_x, a_y == c_y))",
+            "Not(And(a_x == m_x, a_y == m_y))",
+            "Not(And(a_x == l_x, a_y == l_y))",
+            "Not(And(a_x == k_x, a_y == k_y))",
+            "Not(And(a_x == j_x, a_y == j_y))",
+            "Not(And(a_x == f_x, a_y == f_y))",
+            "Not(And(a_x == g_x, a_y == g_y))",
+            "Not(And(a_x == s_x, a_y == s_y))",
+            "Not(And(a_x == t_x, a_y == t_y))",
+            "Not(And(b_x == c_x, b_y == c_y))",
+            "Not(And(b_x == m_x, b_y == m_y))",
+            "Not(And(b_x == l_x, b_y == l_y))",
+            "Not(And(b_x == k_x, b_y == k_y))",
+            "Not(And(b_x == j_x, b_y == j_y))",
+            "Not(And(b_x == f_x, b_y == f_y))",
+            "Not(And(b_x == g_x, b_y == g_y))",
+            "Not(And(b_x == s_x, b_y == s_y))",
+            "Not(And(b_x == t_x, b_y == t_y))",
+            "Not(And(c_x == m_x, c_y == m_y))",
+            "Not(And(c_x == l_x, c_y == l_y))",
+            "Not(And(c_x == k_x, c_y == k_y))",
+            "Not(And(c_x == j_x, c_y == j_y))",
+            "Not(And(c_x == f_x, c_y == f_y))",
+            "Not(And(c_x == g_x, c_y == g_y))",
+            "Not(And(c_x == s_x, c_y == s_y))",
+            "Not(And(c_x == t_x, c_y == t_y))",
+            "Not(And(m_x == l_x, m_y == l_y))",
+            "Not(And(m_x == k_x, m_y == k_y))",
+            "Not(And(m_x == j_x, m_y == j_y))",
+            "Not(And(m_x == f_x, m_y == f_y))",
+            "Not(And(m_x == g_x, m_y == g_y))",
+            "Not(And(m_x == s_x, m_y == s_y))",
+            "Not(And(m_x == t_x, m_y == t_y))",
+            "Not(And(l_x == k_x, l_y == k_y))",
+            "Not(And(l_x == j_x, l_y == j_y))",
+            "Not(And(l_x == f_x, l_y == f_y))",
+            "Not(And(l_x == g_x, l_y == g_y))",
+            "Not(And(l_x == s_x, l_y == s_y))",
+            "Not(And(l_x == t_x, l_y == t_y))",
+            "Not(And(k_x == j_x, k_y == j_y))",
+            "Not(And(k_x == f_x, k_y == f_y))",
+            "Not(And(k_x == g_x, k_y == g_y))",
+            "Not(And(k_x == s_x, k_y == s_y))",
+            "Not(And(k_x == t_x, k_y == t_y))",
+            "Not(And(j_x == f_x, j_y == f_y))",
+            "Not(And(j_x == g_x, j_y == g_y))",
+            "Not(And(j_x == s_x, j_y == s_y))",
+            "Not(And(j_x == t_x, j_y == t_y))",
+            "Not(And(f_x == g_x, f_y == g_y))",
+            "Not(And(f_x == s_x, f_y == s_y))",
+            "Not(And(f_x == t_x, f_y == t_y))",
+            "Not(And(g_x == s_x, g_y == s_y))",
+            "Not(And(g_x == t_x, g_y == t_y))",
+            "Not(And(s_x == t_x, s_y == t_y))"
+          ],
+          "goal": "(s_x - m_x)**2 + (s_y - m_y)**2 == (t_x - m_x)**2 + (t_y - m_y)**2"
+        },
+        "lemmas": [
+          {
+            "name": "tangent_point_from_C",
+            "english": "For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).",
+            "vars": [
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "lx",
+                "sort": "Real"
+              },
+              {
+                "name": "ly",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(q > 0, lx**2 + (ly + 1)**2 == 1, lx*(lx - q) + (ly + 1)*ly == 0, Not(And(lx == 0, ly == 0))), And(lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2)))"
+          },
+          {
+            "name": "tangent_point_from_B",
+            "english": "For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "kx",
+                "sort": "Real"
+              },
+              {
+                "name": "ky",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, kx**2 + (ky + 1)**2 == 1, kx*(kx + p) + (ky + 1)*ky == 0, Not(And(kx == 0, ky == 0))), And(kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2)))"
+          },
+          {
+            "name": "vertex_A_coordinates",
+            "english": "Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "kx",
+                "sort": "Real"
+              },
+              {
+                "name": "ky",
+                "sort": "Real"
+              },
+              {
+                "name": "lx",
+                "sort": "Real"
+              },
+              {
+                "name": "ly",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), (ax + p)*ky == ay*(kx + p), (ax - q)*ly == ay*(lx - q)), And(ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q)))"
+          },
+          {
+            "name": "point_F_coordinates",
+            "english": "The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "fx",
+                "sort": "Real"
+              },
+              {
+                "name": "fy",
+                "sort": "Real"
+              },
+              {
+                "name": "lx",
+                "sort": "Real"
+              },
+              {
+                "name": "ly",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), fx*ly == fy*lx, fx + p + p*fy == 0), And(fx == -p/(1 - p*q), fy == p*q/(1 - p*q)))"
+          },
+          {
+            "name": "point_G_coordinates",
+            "english": "The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "gx",
+                "sort": "Real"
+              },
+              {
+                "name": "gy",
+                "sort": "Real"
+              },
+              {
+                "name": "kx",
+                "sort": "Real"
+              },
+              {
+                "name": "ky",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), gx*ky == gy*kx, gx == q*(gy + 1)), And(gx == q/(1 - p*q), gy == p*q/(1 - p*q)))"
+          },
+          {
+            "name": "point_S_coordinates",
+            "english": "Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "fx",
+                "sort": "Real"
+              },
+              {
+                "name": "fy",
+                "sort": "Real"
+              },
+              {
+                "name": "sx",
+                "sort": "Real"
+              },
+              {
+                "name": "sy",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), fx == -p/(1 - p*q), fy == p*q/(1 - p*q), sy == 0, (fx - ax)*(sy - ay) == (fy - ay)*(sx - ax)), And(sx == -(p + q)/(1 - p*q), sy == 0))"
+          },
+          {
+            "name": "point_T_coordinates",
+            "english": "Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "ax",
+                "sort": "Real"
+              },
+              {
+                "name": "ay",
+                "sort": "Real"
+              },
+              {
+                "name": "gx",
+                "sort": "Real"
+              },
+              {
+                "name": "gy",
+                "sort": "Real"
+              },
+              {
+                "name": "tx",
+                "sort": "Real"
+              },
+              {
+                "name": "ty",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), gx == q/(1 - p*q), gy == p*q/(1 - p*q), ty == 0, (gx - ax)*(ty - ay) == (gy - ay)*(tx - ax)), And(tx == (p + q)/(1 - p*q), ty == 0))"
+          },
+          {
+            "name": "opposite_points_on_axis_equidistant",
+            "english": "If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.",
+            "vars": [
+              {
+                "name": "p",
+                "sort": "Real"
+              },
+              {
+                "name": "q",
+                "sort": "Real"
+              },
+              {
+                "name": "mx",
+                "sort": "Real"
+              },
+              {
+                "name": "my",
+                "sort": "Real"
+              },
+              {
+                "name": "sx",
+                "sort": "Real"
+              },
+              {
+                "name": "sy",
+                "sort": "Real"
+              },
+              {
+                "name": "tx",
+                "sort": "Real"
+              },
+              {
+                "name": "ty",
+                "sort": "Real"
+              }
+            ],
+            "body": "Implies(And(mx == 0, my == 0, sx == -(p + q)/(1 - p*q), sy == 0, tx == (p + q)/(1 - p*q), ty == 0), (sx - mx)**2 + (sy - my)**2 == (tx - mx)**2 + (ty - my)**2)"
+          }
+        ],
+        "instantiations": [
+          {
+            "lemma": "tangent_point_from_C",
+            "terms": {
+              "q": "q",
+              "lx": "l_x",
+              "ly": "l_y"
+            }
+          },
+          {
+            "lemma": "tangent_point_from_B",
+            "terms": {
+              "p": "p",
+              "kx": "k_x",
+              "ky": "k_y"
+            }
+          },
+          {
+            "lemma": "vertex_A_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "kx": "k_x",
+              "ky": "k_y",
+              "lx": "l_x",
+              "ly": "l_y"
+            }
+          },
+          {
+            "lemma": "point_F_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "fx": "f_x",
+              "fy": "f_y",
+              "lx": "l_x",
+              "ly": "l_y"
+            }
+          },
+          {
+            "lemma": "point_G_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "gx": "g_x",
+              "gy": "g_y",
+              "kx": "k_x",
+              "ky": "k_y"
+            }
+          },
+          {
+            "lemma": "point_S_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "sx": "s_x",
+              "sy": "s_y"
+            }
+          },
+          {
+            "lemma": "point_T_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "gx": "g_x",
+              "gy": "g_y",
+              "tx": "t_x",
+              "ty": "t_y"
+            }
+          },
+          {
+            "lemma": "opposite_points_on_axis_equidistant",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "mx": "m_x",
+              "my": "m_y",
+              "sx": "s_x",
+              "sy": "s_y",
+              "tx": "t_x",
+              "ty": "t_y"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "status": "unsat",
+        "elapsed_ms": 4.523992538452148,
+        "instantiated": [
+          {
+            "lemma": "tangent_point_from_C",
+            "terms": {
+              "q": "q",
+              "lx": "l_x",
+              "ly": "l_y"
+            },
+            "z3_form": "Implies(And(q > 0,\n            l_x**2 + (l_y + 1)**2 == 1,\n            l_x*(l_x - q) + (l_y + 1)*l_y == 0,\n            Not(And(l_x == 0, l_y == 0))),\n        And(l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2)))"
+          },
+          {
+            "lemma": "tangent_point_from_B",
+            "terms": {
+              "p": "p",
+              "kx": "k_x",
+              "ky": "k_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            k_x**2 + (k_y + 1)**2 == 1,\n            k_x*(k_x + p) + (k_y + 1)*k_y == 0,\n            Not(And(k_x == 0, k_y == 0))),\n        And(k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2)))"
+          },
+          {
+            "lemma": "vertex_A_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "kx": "k_x",
+              "ky": "k_y",
+              "lx": "l_x",
+              "ly": "l_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2),\n            l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2),\n            (a_x + p)*k_y == a_y*(k_x + p),\n            (a_x - q)*l_y == a_y*(l_x - q)),\n        And(a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q)))"
+          },
+          {
+            "lemma": "point_F_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "fx": "f_x",
+              "fy": "f_y",
+              "lx": "l_x",
+              "ly": "l_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2),\n            f_x*l_y == f_y*l_x,\n            f_x + p + p*f_y == 0),\n        And(f_x == -p/(1 - p*q), f_y == (p*q)/(1 - p*q)))"
+          },
+          {
+            "lemma": "point_G_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "gx": "g_x",
+              "gy": "g_y",
+              "kx": "k_x",
+              "ky": "k_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2),\n            g_x*k_y == g_y*k_x,\n            g_x == q*(g_y + 1)),\n        And(g_x == q/(1 - p*q), g_y == (p*q)/(1 - p*q)))"
+          },
+          {
+            "lemma": "point_S_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "fx": "f_x",
+              "fy": "f_y",
+              "sx": "s_x",
+              "sy": "s_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q),\n            f_x == -p/(1 - p*q),\n            f_y == (p*q)/(1 - p*q),\n            s_y == 0,\n            (f_x - a_x)*(s_y - a_y) ==\n            (f_y - a_y)*(s_x - a_x)),\n        And(s_x == -(p + q)/(1 - p*q), s_y == 0))"
+          },
+          {
+            "lemma": "point_T_coordinates",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "ax": "a_x",
+              "ay": "a_y",
+              "gx": "g_x",
+              "gy": "g_y",
+              "tx": "t_x",
+              "ty": "t_y"
+            },
+            "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q),\n            g_x == q/(1 - p*q),\n            g_y == (p*q)/(1 - p*q),\n            t_y == 0,\n            (g_x - a_x)*(t_y - a_y) ==\n            (g_y - a_y)*(t_x - a_x)),\n        And(t_x == (p + q)/(1 - p*q), t_y == 0))"
+          },
+          {
+            "lemma": "opposite_points_on_axis_equidistant",
+            "terms": {
+              "p": "p",
+              "q": "q",
+              "mx": "m_x",
+              "my": "m_y",
+              "sx": "s_x",
+              "sy": "s_y",
+              "tx": "t_x",
+              "ty": "t_y"
+            },
+            "z3_form": "Implies(And(m_x == 0,\n            m_y == 0,\n            s_x == -(p + q)/(1 - p*q),\n            s_y == 0,\n            t_x == (p + q)/(1 - p*q),\n            t_y == 0),\n        (s_x - m_x)**2 + (s_y - m_y)**2 ==\n        (t_x - m_x)**2 + (t_y - m_y)**2)"
+          }
+        ],
+        "compile_errors": [],
+        "lemma_audit": [
+          {
+            "name": "tangent_point_from_C",
+            "english": "For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "tangent_point_from_B",
+            "english": "For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "vertex_A_coordinates",
+            "english": "Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).",
+            "consistent": true,
+            "check": "unknown"
+          },
+          {
+            "name": "point_F_coordinates",
+            "english": "The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "point_G_coordinates",
+            "english": "The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "point_S_coordinates",
+            "english": "Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "point_T_coordinates",
+            "english": "Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).",
+            "consistent": true,
+            "check": "sat"
+          },
+          {
+            "name": "opposite_points_on_axis_equidistant",
+            "english": "If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.",
+            "consistent": true,
+            "check": "sat"
+          }
+        ],
+        "function_declarations": [],
+        "instantiation_count": 8,
+        "n_hypotheses": 81
+      },
+      "errors": []
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a formal-methods assistant. Given a theorem and a natural-language\nproof, extract a Z3 formalization so that Z3 can verify the proof's conclusion\nby quantifier instantiation.\n\nYou are NOT re-proving the theorem from scratch. Your job is to:\n  1. Encode the theorem (variables, hypotheses, goal) in Z3 Python syntax.\n  2. State, as universally-quantified Z3 formulas, the lemmas the English\n     proof appeals to (e.g., AM-GM, divisibility facts, logarithm rules,\n     definitional axioms for non-builtin operations).\n  3. Provide the specific ground-term instantiations the proof uses.\n\nZ3 will check (hypotheses ∧ instantiated_lemmas ⇒ goal). If unsat-on-negation,\nthe proof closes. If not, more or different instantiations were needed.\n\n## Output Format\nReturn a single JSON object — no markdown fences, no preamble, no trailing text.\n\n{\n  \"theorem\": {\n    \"variables\": [{\"name\": \"n\", \"sort\": \"Int\"}, ...],\n    \"hypotheses\": [\"<Z3 expr>\", ...],\n    \"goal\": \"<Z3 expr>\"\n  },\n  \"functions\": [\n    {\"name\": \"MyFunc\", \"args\": [\"Real\", \"Int\"], \"result\": \"Real\"},\n    ...\n  ],\n  \"lemmas\": [\n    {\n      \"name\": \"interval_at_most_one_int\",\n      \"english\": \"An open real interval (a,b) of length < 1 contains at most one integer.\",\n      \"vars\": [\n        {\"name\": \"a\", \"sort\": \"Real\"},\n        {\"name\": \"b\", \"sort\": \"Real\"},\n        {\"name\": \"x\", \"sort\": \"Real\"},\n        {\"name\": \"y\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n    },\n    ...\n  ],\n  \"instantiations\": [\n    {\"lemma\": \"<lemma name>\", \"terms\": {\"a\": \"<expr in theorem vars>\", ...}},\n    ...\n  ]\n}\n\nThe `functions` field is optional and only needed for problem-specific\nuninterpreted functions not in the predeclared list below.\n\n## Predeclared functions (uninterpreted — you MUST axiomatize behavior via lemmas)\n  Log(base, arg)    : Real x Real -> Real   (logarithm in given base)\n  Ln(x)             : Real -> Real          (natural log)\n  Sqrt(x)           : Real -> Real\n  Exp(x)            : Real -> Real\n  Sin(x), Cos(x), Tan(x) : Real -> Real\n  Factorial(n)      : Int -> Int\n  GCD(a, b), LCM(a, b)   : Int x Int -> Int\n  Choose(n, k)      : Int x Int -> Int      (binomial coefficient)\n  Floor(x), Ceil(x) : Real -> Int\n\nZ3 has NO BUILTIN SEMANTICS for these — `Log(2, 8)` does not simplify to `3`.\nYou MUST provide the lemmas the proof needs (e.g., `Log(b, a*c) == Log(b, a) + Log(b, c)`,\n`Factorial(n+1) == (n+1) * Factorial(n)`), or Z3 will be unable to close the goal.\n\n## Geometry problems (AlphaGeometry DSL)\nIf the theorem statement uses AlphaGeometry DSL predicates (`on_circle`, `cong`,\n`coll`, `triangle`, `midpoint`, `cyclic`, `perp`, `eqangle`, etc.), you MUST\ntranslate them into Cartesian coordinate arithmetic — do NOT copy the predicates\nverbatim as Z3 hypotheses (they are not Z3 functions and will cause compile errors).\n\n\n**IMPORTANT simplification:** For most `cong` and `coll` goals (distance equality or\ncollinearity), the coordinate encoding plus Z3's polynomial arithmetic is sufficient\nwith NO lemmas. Try empty lemmas first.\n\nFor `cyclic` goals, expand the 4×4 determinant manually:\n  `cyclic(a,b,c,d)` iff\n  ```\n  (a_x - c_x) * ((b_x - d_x) * (c_y - d_y) - (c_x - d_x) * (b_y - d_y))\n  - (a_y - c_y) * ((b_x - d_x) * (c_x - d_x) - (c_x - d_x) * (b_x - d_x))\n  + ...\n  ```\n  In practice: assert `(a_x**2+a_y**2)*(b_x*(c_y-d_y)+c_x*(d_y-b_y)+d_x*(b_y-c_y))\n  - (b_x**2+b_y**2)*(a_x*(c_y-d_y)+c_x*(d_y-a_y)+d_x*(a_y-c_y))\n  + (c_x**2+c_y**2)*(a_x*(b_y-d_y)+b_x*(d_y-a_y)+d_x*(a_y-b_y))\n  - (d_x**2+d_y**2)*(a_x*(b_y-c_y)+b_x*(c_y-a_y)+c_x*(a_y-b_y)) == 0`\n\n## Z3 Syntax (Python API)\nReference declared variables directly by name (e.g. `n`, not `Int(\"n\")`).\n  Arithmetic   :  +  -  *  /  **\n  Comparisons  :  <  <=  ==  >=  >  !=\n  Logic        :  And, Or, Not, Implies\n  Conditional  :  If(cond, then_expr, else_expr)\n  Coercion     :  ToReal(int_expr), ToInt(real_expr)\n  Constants    :  IntVal(k), RealVal(k)\n  Predicates   :  IsInt(real_expr)   — true iff the real value is an integer\n  Absolute     :  Abs(x)             — expands to If(x > 0, x, -x)\n\n## Sorts\n\"Int\", \"Real\", or \"Bool\". No others.\n\n## CRITICAL: ALL variables must be declared in theorem.variables\nEvery name referenced anywhere in `hypotheses` or `goal` — including names\nbound inside `Exists([...], ...)` or `ForAll([...], ...)` expressions — MUST\nbe listed in `theorem.variables` with its sort. The verifier pre-declares only\nthose names; any undeclared name causes a compile error.\n\nExample: if a hypothesis is\n  `And(Exists([k], And(IsInt(ToReal(k)), n/(n+k) < 7/13)), ...)`\nthen `k` MUST appear in `theorem.variables` as `{\"name\": \"k\", \"sort\": \"Int\"}`.\n\n## CRITICAL: bound variables in lemma bodies\nDo NOT write `ForAll([...], ...)` or `Exists([...], ...)` inside a lemma `body`\nto introduce new bound names. The outer `ForAll(vars, body)` is added\nautomatically by the verifier, and any name not in `vars` (or the predeclared\nnamespace) is undefined.\n\nWRONG:\n  \"vars\": [{\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"}],\n  \"body\": \"Implies(b - a < 1, ForAll([x, y], Implies(..., x == y)))\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    x and y are NOT in vars — they're undefined, compilation will fail.\n\nRIGHT:\n  \"vars\": [\n    {\"name\": \"a\", \"sort\": \"Real\"}, {\"name\": \"b\", \"sort\": \"Real\"},\n    {\"name\": \"x\", \"sort\": \"Real\"}, {\"name\": \"y\", \"sort\": \"Real\"}\n  ],\n  \"body\": \"Implies(And(b - a < 1, IsInt(x), IsInt(y), a < x, x < b, a < y, y < b), x == y)\"\n\nIf the lemma logically has nested quantification (rare), only THEN use explicit\n`ForAll([new_var], ...)` inside `body`, and only for the inner one.\n\n## Limitations to be aware of\n- Z3 cannot reason about general real exponents `x ** y` where y is non-numeric.\n  Use uninterpreted functions (e.g. `Exp(x * Ln(b))` for `b**x`) and axiomatize.\n- Z3 cannot reason about transcendental closed forms (`sin(pi/3) = sqrt(3)/2`)\n  unless you assert them as instantiated lemmas.\n- Equality reasoning across uninterpreted functions is shallow; the LLM hints\n  (instantiations) are what make the proof go through, not Z3's own QI.\n\n## Critical rules\n- Each lemma MUST be a universally true mathematical statement. If you assert\n  something false, Z3 will use it and produce an unsound proof. State side\n  conditions explicitly via `Implies(side_condition, conclusion)` inside `body`.\n- A common subtle error: when claiming \"interval of length < 1 has at most one\n  integer\", REMEMBER TO CONSTRAIN the candidate values to be integers (via\n  `IsInt(x)`). Without that, the claim is false over reals.\n- Every variable named in a lemma's `vars` MUST appear in its `body` and MUST\n  be supplied in every instantiation of that lemma.\n- Ground terms in `instantiations` use ONLY the theorem's declared variables,\n  numerals, and predeclared/declared functions.\n- Use the SMALLEST number of lemmas needed.\n\n## CRITICAL: Encoding theorem-specific functions\nIf the theorem statement mentions a function `f : T₁ → T₂` (or any multi-argument\nfunction), do NOT declare it as a plain scalar variable in `theorem.variables`.\nInstead, declare it in the `functions` field and axiomatize its behavior via lemmas.\n\nWRONG (f is a function, not a scalar):\n  \"variables\": [{\"name\": \"f\", \"sort\": \"Real\"}, ...]\n  //  then `f` is just one real number — you cannot apply it to arguments\n\nRIGHT:\n  \"functions\": [{\"name\": \"f\", \"args\": [\"Real\"], \"result\": \"Real\"}]\n  \"lemmas\": [{\"name\": \"f_def\", \"vars\": [{\"name\": \"x\", \"sort\": \"Real\"}],\n              \"body\": \"f(x) == <defining expression in x>\"}]\n  \"instantiations\": [{\"lemma\": \"f_def\", \"terms\": {\"x\": \"<concrete value>\"}}]\n\nInstantiate a function-definition lemma at every specific argument value that\nthe proof (or the goal) actually uses.\n\nCRITICAL: If a name appears in `functions`, do NOT also list it in\n`theorem.variables`. The two declarations conflict and cause a compile error.\nA function name is in scope everywhere once declared in `functions`; you never\nalso need it in `variables`.\n\n## CRITICAL: Complex numbers\nZ3 has NO Complex sort. If the theorem involves complex numbers (e.g., `i`, `I`,\n`complex.I`, `ℂ`), encode them using pairs of Reals for real and imaginary parts.\n\nStrategy: introduce auxiliary variables `<name>_re` and `<name>_im` for each\ncomplex quantity, state the definitions as hypotheses, and prove the goal in\nterms of real/imaginary components.\n\nExample: theorem states `q = 2 - 2*I`, `e = 5 + 5*I`, prove `q*e = 20`:\n  variables: q_re, q_im, e_re, e_im, prod_re, prod_im  (all Real)\n  hypotheses:\n    q_re == 2,  q_im == -2,\n    e_re == 5,  e_im == 5,\n    prod_re == q_re*e_re - q_im*e_im,\n    prod_im == q_re*e_im + q_im*e_re\n  goal: And(prod_re == 20, prod_im == 0)\n\nNo lemmas needed — Z3's arithmetic solver closes it directly.\n\n## CRITICAL: Transcribe hypotheses verbatim\nCopy hypotheses EXACTLY from the theorem statement. Do NOT rewrite, simplify,\nor rephrase them.\n\nExample: if the theorem says `h₀: (n * 7) % 398 = 1`, then the hypothesis MUST be\n  `n * 7 % 398 == 1`\nNOT `n % 398 == 57 % 398` (even if you think those are equivalent — they are not\nthe actual constraint given, and Z3 may reach wrong conclusions).\n\n## CRITICAL: Try Z3's arithmetic solver first\nFor theorems whose hypotheses and goal are pure linear or modular arithmetic\n(no functions, no transcendentals), first attempt `\"lemmas\": [], \"instantiations\": []`.\nZ3's built-in arithmetic/bit-vector solver will often close such goals directly\nwithout any user-supplied lemmas.\n\n## CRITICAL: Primality and Euclid's lemma\n`p > 1` alone does NOT imply `(p ∣ n² → p ∣ n)`.  That is only true when `p`\nis prime, and Z3 integer arithmetic has no built-in notion of primality.\nReturn ONLY the JSON object.\n\n\n## CRITICAL: Non-Degeneracy and Distinctness Constraints\nZ3 will exploit any ambiguity to find degenerate counterexamples (e.g., collapsing points together or flattening triangles). You MUST enforce geometric validity by appending the following constraints to the `hypotheses` array:\n\n1. DISTINCT POINTS: For every pair of uniquely named geometric points (e.g., m and n, a and b) introduced in the problem, you MUST explicitly assert they are not the same point.\n   - Example for points A and B: \"Not(And(a_x == b_x, a_y == b_y))\"\n   - Crucial for intersection points: If M and N are two intersection points of circles/lines, explicitly assert \"Not(And(m_x == n_x, m_y == n_y))\".\n\n2. NON-COLLAPSED LINES: For any segment or line defined by two points A and B, always assert that the base segment has a non-zero length:\n   - \"Not(And(a_x == b_x, a_y == b_y))\"\n\n3. NON-DEGENERATE TRIANGLES: If the problem mentions a triangle ABC or implies non-collinearity, assert that the points are not collinear using the inequality form:\n   - \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\"\n\n4. NO DIVISION BY ZERO: If your translation table uses division (like the midpoint formula `(a_x + b_x) / 2`), ensure denominators are constants. If you must use variables in a denominator, clear the denominator by multiplying it out into a polynomial equality instead.\n"
+    },
+    {
+      "role": "user",
+      "content": "## Theorem: translated_imo_2012_p1\n\nTheorem: translated_imo_2012_p1\nGiven: a b c = triangle a b c\nGiven: m l k j = excenter2 m l k j a b c\nGiven: f = on_line f m l, on_line f b j\nGiven: g = on_line g m k, on_line g c j\nGiven: s = on_line s f a, on_line s b c\nGiven: t = on_line t g a, on_line t c b\nProve: prove that segment ms = segment mt\n\nGoal: cong m s m t\n\n## English proof (from stage 1)\n{\n  \"key_observation\": \"After placing the excircle as the unit circle tangent to BC at the origin, the points F and G have exactly half the y-coordinate of A, so their projections through A to BC give opposite x-coordinates for S and T.\",\n  \"plan\": [\n    \"Normalize the configuration by coordinates with M at the origin and BC as the x-axis.\",\n    \"Compute the tangency points K and L of the excircle with AB and AC.\",\n    \"Compute the coordinates of A, F, and G.\",\n    \"Use collinearity of A,F,S and A,G,T to find the x-coordinates of S and T.\",\n    \"Show that S and T are symmetric about M on line BC.\"\n  ],\n  \"steps\": [\n    {\n      \"claim\": \"We may choose coordinates so that M=(0,0), J=(0,-1), B=(-p,0), and C=(q,0), where p,q>0.\",\n      \"reasoning\": \"Since the excircle is tangent to BC at M, the radius JM is perpendicular to BC. A translation, rotation, and scaling preserve all incidences and ratios of lengths, so we may put BC on the x-axis, M at the origin, and take the excircle to be the unit circle centered at J=(0,-1). Because M lies on segment BC, write B=(-p,0) and C=(q,0) with p,q>0.\",\n      \"facts_used\": [\n        \"coordinate normalization by similarity\",\n        \"radius to tangent line is perpendicular\",\n        \"definition of excircle tangency\"\n      ]\n    },\n    {\n      \"claim\": \"The excircle has equation x^2+(y+1)^2=1, and its tangency points with AB and AC are K=(-2p/(1+p^2),-2p^2/(1+p^2)) and L=(2q/(1+q^2),-2q^2/(1+q^2)), respectively.\",\n      \"reasoning\": \"For L=(x,y), the conditions are x^2+(y+1)^2=1 and (x,y+1)·(x-q,y)=0, because JL is perpendicular to CL. Subtracting gives y=-qx, and substitution gives the nonzero solution x=2q/(1+q^2), y=-2q^2/(1+q^2). The computation for K using B=(-p,0) gives y=px and hence K=(-2p/(1+p^2),-2p^2/(1+p^2)).\",\n      \"facts_used\": [\n        \"equation of a circle\",\n        \"radius to tangent line is perpendicular\",\n        \"dot product criterion for perpendicularity\",\n        \"step 1\"\n      ]\n    },\n    {\n      \"claim\": \"The vertex A has coordinates A=((q-p)/(1-pq), 2pq/(1-pq)).\",\n      \"reasoning\": \"Line AB passes through B and K, so its equation is (1-p^2)y=2p(x+p). Line AC passes through C and L, so its equation is (q^2-1)y=2q(x-q). Solving these two linear equations gives y=2pq/(1-pq) and x=(q-p)/(1-pq); the denominator is nonzero because A is a finite vertex of the triangle.\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and L lies on the line y=-qx, the line ML has equation y=-qx. The line BJ through B=(-p,0) and J=(0,-1) has equation y=-x/p-1. Solving -qx=-x/p-1 gives x=-p/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).\",\n      \"reasoning\": \"Since M=(0,0) and K lies on the line y=px, the line MK has equation y=px. The line CJ through C=(q,0) and J=(0,-1) has equation y=x/q-1. Solving px=x/q-1 gives x=q/(1-pq), and then y=pq/(1-pq).\",\n      \"facts_used\": [\n        \"two-point equation of a line\",\n        \"solving simultaneous linear equations\",\n        \"step 1\",\n        \"step 2\"\n      ]\n    },\n    {\n      \"claim\": \"The point S=AF∩BC has coordinates S=(-(p+q)/(1-pq),0).\",\n      \"reasoning\": \"Let h=pq/(1-pq). From steps 3 and 4, A has y-coordinate 2h and F has y-coordinate h. Since S lies on BC, its y-coordinate is 0, and since A,F,S are collinear, F is the midpoint of segment AS in affine coordinates; therefore x_S=2x_F-x_A. Substituting x_F=-p/(1-pq) and x_A=(q-p)/(1-pq) gives x_S=-(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 4\"\n      ]\n    },\n    {\n      \"claim\": \"The point T=AG∩BC has coordinates T=((p+q)/(1-pq),0).\",\n      \"reasoning\": \"Again let h=pq/(1-pq). From steps 3 and 5, A has y-coordinate 2h and G has y-coordinate h. Since T lies on BC and A,G,T are collinear, G is the midpoint of segment AT in affine coordinates; hence x_T=2x_G-x_A. Substituting x_G=q/(1-pq) and x_A=(q-p)/(1-pq) gives x_T=(p+q)/(1-pq).\",\n      \"facts_used\": [\n        \"collinearity\",\n        \"affine coordinates on a line\",\n        \"step 3\",\n        \"step 5\"\n      ]\n    },\n    {\n      \"claim\": \"MS=MT.\",\n      \"reasoning\": \"By steps 6 and 7, S and T lie on the x-axis with opposite x-coordinates, while M=(0,0). Therefore M is the midpoint of ST, and in particular the segment lengths MS and MT are equal.\",\n      \"facts_used\": [\n        \"distance formula on a coordinate line\",\n        \"definition of midpoint\",\n        \"step 1\",\n        \"step 6\",\n        \"step 7\"\n      ]\n    }\n  ],\n  \"final_answer\": null\n}\n\nProduce the JSON formalization."
+    }
+  ],
+  "raw_response": "{\n  \"theorem\": {\n    \"variables\": [\n      {\"name\": \"p\", \"sort\": \"Real\"},\n      {\"name\": \"q\", \"sort\": \"Real\"},\n      {\"name\": \"a_x\", \"sort\": \"Real\"},\n      {\"name\": \"a_y\", \"sort\": \"Real\"},\n      {\"name\": \"b_x\", \"sort\": \"Real\"},\n      {\"name\": \"b_y\", \"sort\": \"Real\"},\n      {\"name\": \"c_x\", \"sort\": \"Real\"},\n      {\"name\": \"c_y\", \"sort\": \"Real\"},\n      {\"name\": \"m_x\", \"sort\": \"Real\"},\n      {\"name\": \"m_y\", \"sort\": \"Real\"},\n      {\"name\": \"l_x\", \"sort\": \"Real\"},\n      {\"name\": \"l_y\", \"sort\": \"Real\"},\n      {\"name\": \"k_x\", \"sort\": \"Real\"},\n      {\"name\": \"k_y\", \"sort\": \"Real\"},\n      {\"name\": \"j_x\", \"sort\": \"Real\"},\n      {\"name\": \"j_y\", \"sort\": \"Real\"},\n      {\"name\": \"f_x\", \"sort\": \"Real\"},\n      {\"name\": \"f_y\", \"sort\": \"Real\"},\n      {\"name\": \"g_x\", \"sort\": \"Real\"},\n      {\"name\": \"g_y\", \"sort\": \"Real\"},\n      {\"name\": \"s_x\", \"sort\": \"Real\"},\n      {\"name\": \"s_y\", \"sort\": \"Real\"},\n      {\"name\": \"t_x\", \"sort\": \"Real\"},\n      {\"name\": \"t_y\", \"sort\": \"Real\"}\n    ],\n    \"hypotheses\": [\n      \"p > 0\",\n      \"q > 0\",\n      \"1 - p*q != 0\",\n      \"m_x == 0\",\n      \"m_y == 0\",\n      \"j_x == 0\",\n      \"j_y == -1\",\n      \"b_x == -p\",\n      \"b_y == 0\",\n      \"c_x == q\",\n      \"c_y == 0\",\n      \"l_x**2 + (l_y + 1)**2 == 1\",\n      \"l_x*(l_x - q) + (l_y + 1)*l_y == 0\",\n      \"k_x**2 + (k_y + 1)**2 == 1\",\n      \"k_x*(k_x + p) + (k_y + 1)*k_y == 0\",\n      \"(a_x + p)*k_y == a_y*(k_x + p)\",\n      \"(a_x - q)*l_y == a_y*(l_x - q)\",\n      \"f_x*l_y == f_y*l_x\",\n      \"f_x + p + p*f_y == 0\",\n      \"g_x*k_y == g_y*k_x\",\n      \"g_x == q*(g_y + 1)\",\n      \"(f_x - a_x)*(s_y - a_y) == (f_y - a_y)*(s_x - a_x)\",\n      \"s_y == 0\",\n      \"(g_x - a_x)*(t_y - a_y) == (g_y - a_y)*(t_x - a_x)\",\n      \"t_y == 0\",\n      \"(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)\",\n      \"Not(And(a_x == b_x, a_y == b_y))\",\n      \"Not(And(a_x == c_x, a_y == c_y))\",\n      \"Not(And(a_x == m_x, a_y == m_y))\",\n      \"Not(And(a_x == l_x, a_y == l_y))\",\n      \"Not(And(a_x == k_x, a_y == k_y))\",\n      \"Not(And(a_x == j_x, a_y == j_y))\",\n      \"Not(And(a_x == f_x, a_y == f_y))\",\n      \"Not(And(a_x == g_x, a_y == g_y))\",\n      \"Not(And(a_x == s_x, a_y == s_y))\",\n      \"Not(And(a_x == t_x, a_y == t_y))\",\n      \"Not(And(b_x == c_x, b_y == c_y))\",\n      \"Not(And(b_x == m_x, b_y == m_y))\",\n      \"Not(And(b_x == l_x, b_y == l_y))\",\n      \"Not(And(b_x == k_x, b_y == k_y))\",\n      \"Not(And(b_x == j_x, b_y == j_y))\",\n      \"Not(And(b_x == f_x, b_y == f_y))\",\n      \"Not(And(b_x == g_x, b_y == g_y))\",\n      \"Not(And(b_x == s_x, b_y == s_y))\",\n      \"Not(And(b_x == t_x, b_y == t_y))\",\n      \"Not(And(c_x == m_x, c_y == m_y))\",\n      \"Not(And(c_x == l_x, c_y == l_y))\",\n      \"Not(And(c_x == k_x, c_y == k_y))\",\n      \"Not(And(c_x == j_x, c_y == j_y))\",\n      \"Not(And(c_x == f_x, c_y == f_y))\",\n      \"Not(And(c_x == g_x, c_y == g_y))\",\n      \"Not(And(c_x == s_x, c_y == s_y))\",\n      \"Not(And(c_x == t_x, c_y == t_y))\",\n      \"Not(And(m_x == l_x, m_y == l_y))\",\n      \"Not(And(m_x == k_x, m_y == k_y))\",\n      \"Not(And(m_x == j_x, m_y == j_y))\",\n      \"Not(And(m_x == f_x, m_y == f_y))\",\n      \"Not(And(m_x == g_x, m_y == g_y))\",\n      \"Not(And(m_x == s_x, m_y == s_y))\",\n      \"Not(And(m_x == t_x, m_y == t_y))\",\n      \"Not(And(l_x == k_x, l_y == k_y))\",\n      \"Not(And(l_x == j_x, l_y == j_y))\",\n      \"Not(And(l_x == f_x, l_y == f_y))\",\n      \"Not(And(l_x == g_x, l_y == g_y))\",\n      \"Not(And(l_x == s_x, l_y == s_y))\",\n      \"Not(And(l_x == t_x, l_y == t_y))\",\n      \"Not(And(k_x == j_x, k_y == j_y))\",\n      \"Not(And(k_x == f_x, k_y == f_y))\",\n      \"Not(And(k_x == g_x, k_y == g_y))\",\n      \"Not(And(k_x == s_x, k_y == s_y))\",\n      \"Not(And(k_x == t_x, k_y == t_y))\",\n      \"Not(And(j_x == f_x, j_y == f_y))\",\n      \"Not(And(j_x == g_x, j_y == g_y))\",\n      \"Not(And(j_x == s_x, j_y == s_y))\",\n      \"Not(And(j_x == t_x, j_y == t_y))\",\n      \"Not(And(f_x == g_x, f_y == g_y))\",\n      \"Not(And(f_x == s_x, f_y == s_y))\",\n      \"Not(And(f_x == t_x, f_y == t_y))\",\n      \"Not(And(g_x == s_x, g_y == s_y))\",\n      \"Not(And(g_x == t_x, g_y == t_y))\",\n      \"Not(And(s_x == t_x, s_y == t_y))\"\n    ],\n    \"goal\": \"(s_x - m_x)**2 + (s_y - m_y)**2 == (t_x - m_x)**2 + (t_y - m_y)**2\"\n  },\n  \"lemmas\": [\n    {\n      \"name\": \"tangent_point_from_C\",\n      \"english\": \"For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).\",\n      \"vars\": [\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(q > 0, lx**2 + (ly + 1)**2 == 1, lx*(lx - q) + (ly + 1)*ly == 0, Not(And(lx == 0, ly == 0))), And(lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2)))\"\n    },\n    {\n      \"name\": \"tangent_point_from_B\",\n      \"english\": \"For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, kx**2 + (ky + 1)**2 == 1, kx*(kx + p) + (ky + 1)*ky == 0, Not(And(kx == 0, ky == 0))), And(kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2)))\"\n    },\n    {\n      \"name\": \"vertex_A_coordinates\",\n      \"english\": \"Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), (ax + p)*ky == ay*(kx + p), (ax - q)*ly == ay*(lx - q)), And(ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_F_coordinates\",\n      \"english\": \"The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"fx\", \"sort\": \"Real\"},\n        {\"name\": \"fy\", \"sort\": \"Real\"},\n        {\"name\": \"lx\", \"sort\": \"Real\"},\n        {\"name\": \"ly\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), fx*ly == fy*lx, fx + p + p*fy == 0), And(fx == -p/(1 - p*q), fy == p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_G_coordinates\",\n      \"english\": \"The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"gx\", \"sort\": \"Real\"},\n        {\"name\": \"gy\", \"sort\": \"Real\"},\n        {\"name\": \"kx\", \"sort\": \"Real\"},\n        {\"name\": \"ky\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), gx*ky == gy*kx, gx == q*(gy + 1)), And(gx == q/(1 - p*q), gy == p*q/(1 - p*q)))\"\n    },\n    {\n      \"name\": \"point_S_coordinates\",\n      \"english\": \"Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"fx\", \"sort\": \"Real\"},\n        {\"name\": \"fy\", \"sort\": \"Real\"},\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), fx == -p/(1 - p*q), fy == p*q/(1 - p*q), sy == 0, (fx - ax)*(sy - ay) == (fy - ay)*(sx - ax)), And(sx == -(p + q)/(1 - p*q), sy == 0))\"\n    },\n    {\n      \"name\": \"point_T_coordinates\",\n      \"english\": \"Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"ax\", \"sort\": \"Real\"},\n        {\"name\": \"ay\", \"sort\": \"Real\"},\n        {\"name\": \"gx\", \"sort\": \"Real\"},\n        {\"name\": \"gy\", \"sort\": \"Real\"},\n        {\"name\": \"tx\", \"sort\": \"Real\"},\n        {\"name\": \"ty\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), gx == q/(1 - p*q), gy == p*q/(1 - p*q), ty == 0, (gx - ax)*(ty - ay) == (gy - ay)*(tx - ax)), And(tx == (p + q)/(1 - p*q), ty == 0))\"\n    },\n    {\n      \"name\": \"opposite_points_on_axis_equidistant\",\n      \"english\": \"If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.\",\n      \"vars\": [\n        {\"name\": \"p\", \"sort\": \"Real\"},\n        {\"name\": \"q\", \"sort\": \"Real\"},\n        {\"name\": \"mx\", \"sort\": \"Real\"},\n        {\"name\": \"my\", \"sort\": \"Real\"},\n        {\"name\": \"sx\", \"sort\": \"Real\"},\n        {\"name\": \"sy\", \"sort\": \"Real\"},\n        {\"name\": \"tx\", \"sort\": \"Real\"},\n        {\"name\": \"ty\", \"sort\": \"Real\"}\n      ],\n      \"body\": \"Implies(And(mx == 0, my == 0, sx == -(p + q)/(1 - p*q), sy == 0, tx == (p + q)/(1 - p*q), ty == 0), (sx - mx)**2 + (sy - my)**2 == (tx - mx)**2 + (ty - my)**2)\"\n    }\n  ],\n  \"instantiations\": [\n    {\n      \"lemma\": \"tangent_point_from_C\",\n      \"terms\": {\"q\": \"q\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"tangent_point_from_B\",\n      \"terms\": {\"p\": \"p\", \"kx\": \"k_x\", \"ky\": \"k_y\"}\n    },\n    {\n      \"lemma\": \"vertex_A_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"kx\": \"k_x\", \"ky\": \"k_y\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"point_F_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"fx\": \"f_x\", \"fy\": \"f_y\", \"lx\": \"l_x\", \"ly\": \"l_y\"}\n    },\n    {\n      \"lemma\": \"point_G_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"gx\": \"g_x\", \"gy\": \"g_y\", \"kx\": \"k_x\", \"ky\": \"k_y\"}\n    },\n    {\n      \"lemma\": \"point_S_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"fx\": \"f_x\", \"fy\": \"f_y\", \"sx\": \"s_x\", \"sy\": \"s_y\"}\n    },\n    {\n      \"lemma\": \"point_T_coordinates\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"ax\": \"a_x\", \"ay\": \"a_y\", \"gx\": \"g_x\", \"gy\": \"g_y\", \"tx\": \"t_x\", \"ty\": \"t_y\"}\n    },\n    {\n      \"lemma\": \"opposite_points_on_axis_equidistant\",\n      \"terms\": {\"p\": \"p\", \"q\": \"q\", \"mx\": \"m_x\", \"my\": \"m_y\", \"sx\": \"s_x\", \"sy\": \"s_y\", \"tx\": \"t_x\", \"ty\": \"t_y\"}\n    }\n  ]\n}",
+  "formalization": {
+    "theorem": {
+      "variables": [
+        {
+          "name": "p",
+          "sort": "Real"
+        },
+        {
+          "name": "q",
+          "sort": "Real"
+        },
+        {
+          "name": "a_x",
+          "sort": "Real"
+        },
+        {
+          "name": "a_y",
+          "sort": "Real"
+        },
+        {
+          "name": "b_x",
+          "sort": "Real"
+        },
+        {
+          "name": "b_y",
+          "sort": "Real"
+        },
+        {
+          "name": "c_x",
+          "sort": "Real"
+        },
+        {
+          "name": "c_y",
+          "sort": "Real"
+        },
+        {
+          "name": "m_x",
+          "sort": "Real"
+        },
+        {
+          "name": "m_y",
+          "sort": "Real"
+        },
+        {
+          "name": "l_x",
+          "sort": "Real"
+        },
+        {
+          "name": "l_y",
+          "sort": "Real"
+        },
+        {
+          "name": "k_x",
+          "sort": "Real"
+        },
+        {
+          "name": "k_y",
+          "sort": "Real"
+        },
+        {
+          "name": "j_x",
+          "sort": "Real"
+        },
+        {
+          "name": "j_y",
+          "sort": "Real"
+        },
+        {
+          "name": "f_x",
+          "sort": "Real"
+        },
+        {
+          "name": "f_y",
+          "sort": "Real"
+        },
+        {
+          "name": "g_x",
+          "sort": "Real"
+        },
+        {
+          "name": "g_y",
+          "sort": "Real"
+        },
+        {
+          "name": "s_x",
+          "sort": "Real"
+        },
+        {
+          "name": "s_y",
+          "sort": "Real"
+        },
+        {
+          "name": "t_x",
+          "sort": "Real"
+        },
+        {
+          "name": "t_y",
+          "sort": "Real"
+        }
+      ],
+      "hypotheses": [
+        "p > 0",
+        "q > 0",
+        "1 - p*q != 0",
+        "m_x == 0",
+        "m_y == 0",
+        "j_x == 0",
+        "j_y == -1",
+        "b_x == -p",
+        "b_y == 0",
+        "c_x == q",
+        "c_y == 0",
+        "l_x**2 + (l_y + 1)**2 == 1",
+        "l_x*(l_x - q) + (l_y + 1)*l_y == 0",
+        "k_x**2 + (k_y + 1)**2 == 1",
+        "k_x*(k_x + p) + (k_y + 1)*k_y == 0",
+        "(a_x + p)*k_y == a_y*(k_x + p)",
+        "(a_x - q)*l_y == a_y*(l_x - q)",
+        "f_x*l_y == f_y*l_x",
+        "f_x + p + p*f_y == 0",
+        "g_x*k_y == g_y*k_x",
+        "g_x == q*(g_y + 1)",
+        "(f_x - a_x)*(s_y - a_y) == (f_y - a_y)*(s_x - a_x)",
+        "s_y == 0",
+        "(g_x - a_x)*(t_y - a_y) == (g_y - a_y)*(t_x - a_x)",
+        "t_y == 0",
+        "(b_x - a_x) * (c_y - a_y) != (c_x - a_x) * (b_y - a_y)",
+        "Not(And(a_x == b_x, a_y == b_y))",
+        "Not(And(a_x == c_x, a_y == c_y))",
+        "Not(And(a_x == m_x, a_y == m_y))",
+        "Not(And(a_x == l_x, a_y == l_y))",
+        "Not(And(a_x == k_x, a_y == k_y))",
+        "Not(And(a_x == j_x, a_y == j_y))",
+        "Not(And(a_x == f_x, a_y == f_y))",
+        "Not(And(a_x == g_x, a_y == g_y))",
+        "Not(And(a_x == s_x, a_y == s_y))",
+        "Not(And(a_x == t_x, a_y == t_y))",
+        "Not(And(b_x == c_x, b_y == c_y))",
+        "Not(And(b_x == m_x, b_y == m_y))",
+        "Not(And(b_x == l_x, b_y == l_y))",
+        "Not(And(b_x == k_x, b_y == k_y))",
+        "Not(And(b_x == j_x, b_y == j_y))",
+        "Not(And(b_x == f_x, b_y == f_y))",
+        "Not(And(b_x == g_x, b_y == g_y))",
+        "Not(And(b_x == s_x, b_y == s_y))",
+        "Not(And(b_x == t_x, b_y == t_y))",
+        "Not(And(c_x == m_x, c_y == m_y))",
+        "Not(And(c_x == l_x, c_y == l_y))",
+        "Not(And(c_x == k_x, c_y == k_y))",
+        "Not(And(c_x == j_x, c_y == j_y))",
+        "Not(And(c_x == f_x, c_y == f_y))",
+        "Not(And(c_x == g_x, c_y == g_y))",
+        "Not(And(c_x == s_x, c_y == s_y))",
+        "Not(And(c_x == t_x, c_y == t_y))",
+        "Not(And(m_x == l_x, m_y == l_y))",
+        "Not(And(m_x == k_x, m_y == k_y))",
+        "Not(And(m_x == j_x, m_y == j_y))",
+        "Not(And(m_x == f_x, m_y == f_y))",
+        "Not(And(m_x == g_x, m_y == g_y))",
+        "Not(And(m_x == s_x, m_y == s_y))",
+        "Not(And(m_x == t_x, m_y == t_y))",
+        "Not(And(l_x == k_x, l_y == k_y))",
+        "Not(And(l_x == j_x, l_y == j_y))",
+        "Not(And(l_x == f_x, l_y == f_y))",
+        "Not(And(l_x == g_x, l_y == g_y))",
+        "Not(And(l_x == s_x, l_y == s_y))",
+        "Not(And(l_x == t_x, l_y == t_y))",
+        "Not(And(k_x == j_x, k_y == j_y))",
+        "Not(And(k_x == f_x, k_y == f_y))",
+        "Not(And(k_x == g_x, k_y == g_y))",
+        "Not(And(k_x == s_x, k_y == s_y))",
+        "Not(And(k_x == t_x, k_y == t_y))",
+        "Not(And(j_x == f_x, j_y == f_y))",
+        "Not(And(j_x == g_x, j_y == g_y))",
+        "Not(And(j_x == s_x, j_y == s_y))",
+        "Not(And(j_x == t_x, j_y == t_y))",
+        "Not(And(f_x == g_x, f_y == g_y))",
+        "Not(And(f_x == s_x, f_y == s_y))",
+        "Not(And(f_x == t_x, f_y == t_y))",
+        "Not(And(g_x == s_x, g_y == s_y))",
+        "Not(And(g_x == t_x, g_y == t_y))",
+        "Not(And(s_x == t_x, s_y == t_y))"
+      ],
+      "goal": "(s_x - m_x)**2 + (s_y - m_y)**2 == (t_x - m_x)**2 + (t_y - m_y)**2"
+    },
+    "lemmas": [
+      {
+        "name": "tangent_point_from_C",
+        "english": "For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).",
+        "vars": [
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "lx",
+            "sort": "Real"
+          },
+          {
+            "name": "ly",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(q > 0, lx**2 + (ly + 1)**2 == 1, lx*(lx - q) + (ly + 1)*ly == 0, Not(And(lx == 0, ly == 0))), And(lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2)))"
+      },
+      {
+        "name": "tangent_point_from_B",
+        "english": "For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "kx",
+            "sort": "Real"
+          },
+          {
+            "name": "ky",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, kx**2 + (ky + 1)**2 == 1, kx*(kx + p) + (ky + 1)*ky == 0, Not(And(kx == 0, ky == 0))), And(kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2)))"
+      },
+      {
+        "name": "vertex_A_coordinates",
+        "english": "Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "kx",
+            "sort": "Real"
+          },
+          {
+            "name": "ky",
+            "sort": "Real"
+          },
+          {
+            "name": "lx",
+            "sort": "Real"
+          },
+          {
+            "name": "ly",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), (ax + p)*ky == ay*(kx + p), (ax - q)*ly == ay*(lx - q)), And(ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q)))"
+      },
+      {
+        "name": "point_F_coordinates",
+        "english": "The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "fx",
+            "sort": "Real"
+          },
+          {
+            "name": "fy",
+            "sort": "Real"
+          },
+          {
+            "name": "lx",
+            "sort": "Real"
+          },
+          {
+            "name": "ly",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, lx == 2*q/(1 + q**2), ly == -2*q**2/(1 + q**2), fx*ly == fy*lx, fx + p + p*fy == 0), And(fx == -p/(1 - p*q), fy == p*q/(1 - p*q)))"
+      },
+      {
+        "name": "point_G_coordinates",
+        "english": "The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "gx",
+            "sort": "Real"
+          },
+          {
+            "name": "gy",
+            "sort": "Real"
+          },
+          {
+            "name": "kx",
+            "sort": "Real"
+          },
+          {
+            "name": "ky",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, kx == -2*p/(1 + p**2), ky == -2*p**2/(1 + p**2), gx*ky == gy*kx, gx == q*(gy + 1)), And(gx == q/(1 - p*q), gy == p*q/(1 - p*q)))"
+      },
+      {
+        "name": "point_S_coordinates",
+        "english": "Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "fx",
+            "sort": "Real"
+          },
+          {
+            "name": "fy",
+            "sort": "Real"
+          },
+          {
+            "name": "sx",
+            "sort": "Real"
+          },
+          {
+            "name": "sy",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), fx == -p/(1 - p*q), fy == p*q/(1 - p*q), sy == 0, (fx - ax)*(sy - ay) == (fy - ay)*(sx - ax)), And(sx == -(p + q)/(1 - p*q), sy == 0))"
+      },
+      {
+        "name": "point_T_coordinates",
+        "english": "Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "ax",
+            "sort": "Real"
+          },
+          {
+            "name": "ay",
+            "sort": "Real"
+          },
+          {
+            "name": "gx",
+            "sort": "Real"
+          },
+          {
+            "name": "gy",
+            "sort": "Real"
+          },
+          {
+            "name": "tx",
+            "sort": "Real"
+          },
+          {
+            "name": "ty",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(p > 0, q > 0, 1 - p*q != 0, ax == (q - p)/(1 - p*q), ay == 2*p*q/(1 - p*q), gx == q/(1 - p*q), gy == p*q/(1 - p*q), ty == 0, (gx - ax)*(ty - ay) == (gy - ay)*(tx - ax)), And(tx == (p + q)/(1 - p*q), ty == 0))"
+      },
+      {
+        "name": "opposite_points_on_axis_equidistant",
+        "english": "If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.",
+        "vars": [
+          {
+            "name": "p",
+            "sort": "Real"
+          },
+          {
+            "name": "q",
+            "sort": "Real"
+          },
+          {
+            "name": "mx",
+            "sort": "Real"
+          },
+          {
+            "name": "my",
+            "sort": "Real"
+          },
+          {
+            "name": "sx",
+            "sort": "Real"
+          },
+          {
+            "name": "sy",
+            "sort": "Real"
+          },
+          {
+            "name": "tx",
+            "sort": "Real"
+          },
+          {
+            "name": "ty",
+            "sort": "Real"
+          }
+        ],
+        "body": "Implies(And(mx == 0, my == 0, sx == -(p + q)/(1 - p*q), sy == 0, tx == (p + q)/(1 - p*q), ty == 0), (sx - mx)**2 + (sy - my)**2 == (tx - mx)**2 + (ty - my)**2)"
+      }
+    ],
+    "instantiations": [
+      {
+        "lemma": "tangent_point_from_C",
+        "terms": {
+          "q": "q",
+          "lx": "l_x",
+          "ly": "l_y"
+        }
+      },
+      {
+        "lemma": "tangent_point_from_B",
+        "terms": {
+          "p": "p",
+          "kx": "k_x",
+          "ky": "k_y"
+        }
+      },
+      {
+        "lemma": "vertex_A_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "kx": "k_x",
+          "ky": "k_y",
+          "lx": "l_x",
+          "ly": "l_y"
+        }
+      },
+      {
+        "lemma": "point_F_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "fx": "f_x",
+          "fy": "f_y",
+          "lx": "l_x",
+          "ly": "l_y"
+        }
+      },
+      {
+        "lemma": "point_G_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "gx": "g_x",
+          "gy": "g_y",
+          "kx": "k_x",
+          "ky": "k_y"
+        }
+      },
+      {
+        "lemma": "point_S_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "sx": "s_x",
+          "sy": "s_y"
+        }
+      },
+      {
+        "lemma": "point_T_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "gx": "g_x",
+          "gy": "g_y",
+          "tx": "t_x",
+          "ty": "t_y"
+        }
+      },
+      {
+        "lemma": "opposite_points_on_axis_equidistant",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "mx": "m_x",
+          "my": "m_y",
+          "sx": "s_x",
+          "sy": "s_y",
+          "tx": "t_x",
+          "ty": "t_y"
+        }
+      }
+    ]
+  },
+  "verification": {
+    "status": "unsat",
+    "elapsed_ms": 4.523992538452148,
+    "instantiated": [
+      {
+        "lemma": "tangent_point_from_C",
+        "terms": {
+          "q": "q",
+          "lx": "l_x",
+          "ly": "l_y"
+        },
+        "z3_form": "Implies(And(q > 0,\n            l_x**2 + (l_y + 1)**2 == 1,\n            l_x*(l_x - q) + (l_y + 1)*l_y == 0,\n            Not(And(l_x == 0, l_y == 0))),\n        And(l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2)))"
+      },
+      {
+        "lemma": "tangent_point_from_B",
+        "terms": {
+          "p": "p",
+          "kx": "k_x",
+          "ky": "k_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            k_x**2 + (k_y + 1)**2 == 1,\n            k_x*(k_x + p) + (k_y + 1)*k_y == 0,\n            Not(And(k_x == 0, k_y == 0))),\n        And(k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2)))"
+      },
+      {
+        "lemma": "vertex_A_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "kx": "k_x",
+          "ky": "k_y",
+          "lx": "l_x",
+          "ly": "l_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2),\n            l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2),\n            (a_x + p)*k_y == a_y*(k_x + p),\n            (a_x - q)*l_y == a_y*(l_x - q)),\n        And(a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q)))"
+      },
+      {
+        "lemma": "point_F_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "fx": "f_x",
+          "fy": "f_y",
+          "lx": "l_x",
+          "ly": "l_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            l_x == (2*q)/(1 + q**2),\n            l_y == (-2*q**2)/(1 + q**2),\n            f_x*l_y == f_y*l_x,\n            f_x + p + p*f_y == 0),\n        And(f_x == -p/(1 - p*q), f_y == (p*q)/(1 - p*q)))"
+      },
+      {
+        "lemma": "point_G_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "gx": "g_x",
+          "gy": "g_y",
+          "kx": "k_x",
+          "ky": "k_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            k_x == (-2*p)/(1 + p**2),\n            k_y == (-2*p**2)/(1 + p**2),\n            g_x*k_y == g_y*k_x,\n            g_x == q*(g_y + 1)),\n        And(g_x == q/(1 - p*q), g_y == (p*q)/(1 - p*q)))"
+      },
+      {
+        "lemma": "point_S_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "fx": "f_x",
+          "fy": "f_y",
+          "sx": "s_x",
+          "sy": "s_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q),\n            f_x == -p/(1 - p*q),\n            f_y == (p*q)/(1 - p*q),\n            s_y == 0,\n            (f_x - a_x)*(s_y - a_y) ==\n            (f_y - a_y)*(s_x - a_x)),\n        And(s_x == -(p + q)/(1 - p*q), s_y == 0))"
+      },
+      {
+        "lemma": "point_T_coordinates",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "ax": "a_x",
+          "ay": "a_y",
+          "gx": "g_x",
+          "gy": "g_y",
+          "tx": "t_x",
+          "ty": "t_y"
+        },
+        "z3_form": "Implies(And(p > 0,\n            q > 0,\n            1 - p*q != 0,\n            a_x == (q - p)/(1 - p*q),\n            a_y == (2*p*q)/(1 - p*q),\n            g_x == q/(1 - p*q),\n            g_y == (p*q)/(1 - p*q),\n            t_y == 0,\n            (g_x - a_x)*(t_y - a_y) ==\n            (g_y - a_y)*(t_x - a_x)),\n        And(t_x == (p + q)/(1 - p*q), t_y == 0))"
+      },
+      {
+        "lemma": "opposite_points_on_axis_equidistant",
+        "terms": {
+          "p": "p",
+          "q": "q",
+          "mx": "m_x",
+          "my": "m_y",
+          "sx": "s_x",
+          "sy": "s_y",
+          "tx": "t_x",
+          "ty": "t_y"
+        },
+        "z3_form": "Implies(And(m_x == 0,\n            m_y == 0,\n            s_x == -(p + q)/(1 - p*q),\n            s_y == 0,\n            t_x == (p + q)/(1 - p*q),\n            t_y == 0),\n        (s_x - m_x)**2 + (s_y - m_y)**2 ==\n        (t_x - m_x)**2 + (t_y - m_y)**2)"
+      }
+    ],
+    "compile_errors": [],
+    "lemma_audit": [
+      {
+        "name": "tangent_point_from_C",
+        "english": "For the unit circle centered at (0,-1), the nonzero tangency point from C=(q,0) is L=(2q/(1+q^2), -2q^2/(1+q^2)).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "tangent_point_from_B",
+        "english": "For the unit circle centered at (0,-1), the nonzero tangency point from B=(-p,0) is K=(-2p/(1+p^2), -2p^2/(1+p^2)).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "vertex_A_coordinates",
+        "english": "Solving the two tangent-line equations through B,K and C,L gives A=((q-p)/(1-pq), 2pq/(1-pq)).",
+        "consistent": true,
+        "check": "unknown"
+      },
+      {
+        "name": "point_F_coordinates",
+        "english": "The intersection F=ML∩BJ has coordinates F=(-p/(1-pq), pq/(1-pq)).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "point_G_coordinates",
+        "english": "The intersection G=MK∩CJ has coordinates G=(q/(1-pq), pq/(1-pq)).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "point_S_coordinates",
+        "english": "Since A,F,S are collinear, S lies on BC, and F has half the y-coordinate of A, S=(-(p+q)/(1-pq),0).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "point_T_coordinates",
+        "english": "Since A,G,T are collinear, T lies on BC, and G has half the y-coordinate of A, T=((p+q)/(1-pq),0).",
+        "consistent": true,
+        "check": "sat"
+      },
+      {
+        "name": "opposite_points_on_axis_equidistant",
+        "english": "If M is the origin and S,T lie on the x-axis with opposite x-coordinates, then MS=MT.",
+        "consistent": true,
+        "check": "sat"
+      }
+    ],
+    "function_declarations": [],
+    "instantiation_count": 8,
+    "n_hypotheses": 81
+  },
+  "parse_error": null,
+  "succeeded": true,
+  "timestamp": "2026-05-16T04:44:15.974914+00:00"
+}
